@@ -39,5 +39,5 @@ dependencies {
     compile 'com.android.support:support-v4:22.1.1'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.3'
     compile project(':ptrlibrary')
-    compile 'com.zhy:percent-support-extends:1.0.1'
+
 }
