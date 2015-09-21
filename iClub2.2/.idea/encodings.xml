@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jeremy/Customer/bean/LoginValueBean.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jeremy/Customer/bean/ParmeBean.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jeremy/Customer/uilt/MD5Uutils.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jeremy/Customer/uilt/SQLhelper.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/rounded_button.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/drawable/rounded_edittext.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/login_tailt_layout.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/login_code_icon.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/login_left_icon.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/login_phone_icon.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/login_right_icon.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/login_tailt_layout.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/logo.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/qq_login_icon.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/return_icon.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/wei_bo_login_icon.png" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
