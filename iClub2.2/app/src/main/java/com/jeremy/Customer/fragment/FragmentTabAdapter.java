@@ -56,10 +56,13 @@ public class FragmentTabAdapter implements RadioGroup.OnCheckedChangeListener {
             if (rgs.getChildAt(i).getId() == checkedId) {
 
                 if(i==0){//首页
+                    home_title_bar_rl.setVisibility(View.VISIBLE);
                     home_title_neme_tv.setText("首页");
                 }else if(i==1){//找工作
+                    home_title_bar_rl.setVisibility(View.VISIBLE);
                     home_title_neme_tv.setText("找工作");
                 }else if(i==2) {//找人才
+                    home_title_bar_rl.setVisibility(View.VISIBLE);
                     home_title_neme_tv.setText("找人才");
                 }else {//我的
                     home_title_bar_rl.setVisibility(View.GONE);
