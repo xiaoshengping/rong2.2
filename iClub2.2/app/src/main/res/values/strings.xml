@@ -15,4 +15,6 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_role_register">RoleRegisterActivity</string>
+    <string name="title_activity_announcement">AnnouncementActivity</string>
+    <string name="title_activity_detailed_information">DetailedInformationActivity</string>
 </resources>

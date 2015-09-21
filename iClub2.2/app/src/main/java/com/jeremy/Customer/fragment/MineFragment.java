@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.uilt.AnnouncementMessageActivity;
 import com.jeremy.Customer.uilt.LoginActivity;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -21,6 +23,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     @ViewInject(R.id.touxiang_iv)
     private ImageView touXiangIv;
+    @ViewInject(R.id.announcement_message_tv)
+    private TextView announcementMessageTv;
 
 
     public MineFragment() {
@@ -42,7 +46,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     private void intiView() {
         touXiangIv.setOnClickListener(this);
-
+        announcementMessageTv.setOnClickListener(this);
 
     }
 
@@ -54,8 +58,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 Intent intent =new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.announcement_message_tv:
+                Intent announcementIntent =new Intent(getActivity(), AnnouncementMessageActivity.class);
+                startActivity(announcementIntent);
 
-
+                break;
 
         }
     }
