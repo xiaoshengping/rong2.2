@@ -36,7 +36,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     private EditText pswEdit;
     @ViewInject(R.id.login_button)
     private Button loginButton;
-    @ViewInject(R.id.login_reten_tv)
+    @ViewInject(R.id.tailt_return_tv)
     private TextView returnTV;
     @ViewInject(R.id.register_tv)
     private TextView RegisterTv;
@@ -78,7 +78,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.login_reten_tv:
+            case R.id.tailt_return_tv:
                 finish();
                 break;
             case R.id.login_button:
@@ -99,15 +99,14 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
                 break;
             case R.id.register_tv:
-                Intent registerIntent=new Intent(LoginActivity.this,RegisterActivity.class);
-                registerIntent.putExtra("falge","2");
+                Intent registerIntent=new Intent(LoginActivity.this,RoleRegisterActivity.class);
                 startActivity(registerIntent);
 
                 break;
             case R.id.forget_psw_tv:
-               /* Intent forgetIntent=new Intent(LoginActivity.this,RegisterActivity.class);
-                forgetIntent.putExtra("falge","3");
-                startActivity(forgetIntent);*/
+                Intent forgetIntent=new Intent(LoginActivity.this,RegisterActivity.class);
+                forgetIntent.putExtra("falge","forgetPsw");
+                startActivity(forgetIntent);
 
                 break;
         }
@@ -174,6 +173,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
         }else {
             MyAppliction.showToast("请输入您的手机号码");
+
 
         }
 

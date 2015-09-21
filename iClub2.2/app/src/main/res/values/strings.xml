@@ -14,4 +14,5 @@
     <color name="textColor242424">#242424</color>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_role_register">RoleRegisterActivity</string>
 </resources>

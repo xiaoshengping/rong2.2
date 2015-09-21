@@ -3,17 +3,10 @@ package com.jeremy.Customer.uilt;
 import java.security.MessageDigest;
 
 /**
- *
- *
- * @Package com.qianfeng.demo.utils
- * @×÷ ÓÃ:
- * @´´ ½¨ ÈË: zhangwei
- * @ÈÕ ÆÚ: ÈıÔÂ
- * @ĞŞ ¸Ä ÈË:
- * @ÈÕ ÆÚ:
+ * Created by xiaoshengping on 2015/9/21.
  */
 public class MD5Uutils {
-    //MD5¼ÓÃÜ£¬32Î»
+    //MD5åŠ å¯†ï¼Œ32ä½
     public static String MD5(String str) {
         MessageDigest md5 = null;
         try {
@@ -39,7 +32,7 @@ public class MD5Uutils {
         return hexValue.toString();
     }
 
-    // ¿ÉÄæµÄ¼ÓÃÜËã·¨
+    // å¯é€†çš„åŠ å¯†ç®—æ³•
     public static String encryptMd5(String str) {
         char[] a = str.toCharArray();
         for (int i = 0; i < a.length; i++) {
@@ -48,5 +41,4 @@ public class MD5Uutils {
         String s = new String(a);
         return s;
     }
-
 }
