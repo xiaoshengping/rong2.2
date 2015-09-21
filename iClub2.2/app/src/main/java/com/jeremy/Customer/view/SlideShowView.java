@@ -186,7 +186,7 @@ public class SlideShowView extends FrameLayout {
 
         viewPager = (ViewPagerCustomDuration) findViewById(R.id.viewPager);
         viewPager.setFocusable(true);
-        viewPager.setScrollDurationFactor(20);
+        viewPager.setScrollDurationFactor(10);
         viewPager.setAdapter(new MyPagerAdapter());
         viewPager.setOnPageChangeListener(new MyPageChangeListener());
     }
