@@ -1,87 +1,114 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" tools:context=".HomeActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HomeActivity">
 
-    <LinearLayout
-        android:background="#f8f8f8"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/home_rido_layout"
-        android:orientation="vertical"
+    <RelativeLayout
+        android:id="@+id/home_title_bar_rl"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
-    <RadioGroup
-        android:id="@+id/iclub_home_rg"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        >
-        <RadioButton
-            android:id="@+id/home_artist_rb"
+        android:layout_height="45dp"
+        android:background="#574659">
 
+        <TextView
+            android:id="@+id/home_title_neme_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="首页"
-            android:layout_weight="1"
-            android:textSize="@dimen/textSize15"
-            android:background="#00000000"
-            android:checked="true"
-            android:textColor="@color/home_color_seletor"
+            android:textColor="#ffffff"
+            android:textSize="20dp"
+            android:layout_centerInParent="true"/>
 
-            android:drawableTop="@drawable/home_artist_selector"
-            style="@style/paren_radiogrud"
-            />
-        <RadioButton
-            android:text="演艺人才"
-            android:layout_weight="1"
-            android:textSize="@dimen/textSize15"
-            android:gravity="center"
-            android:background="#00000000"
-            android:textColor="@color/home_color_seletor"
-            android:drawableTop="@drawable/home_talents_selector"
-            style="@style/paren_radiogrud"
-
-            />
-        <RadioButton
-            android:background="#00000000"
-            android:text="演艺招聘"
-            android:layout_weight="1"
-            android:textSize="@dimen/textSize15"
-            android:gravity="center"
-            android:textColor="@color/home_color_seletor"
-            android:drawableTop="@drawable/home_recruitment_selector"
-            style="@style/paren_radiogrud"
-
-            />
-        <RadioButton
-            android:background="#00000000"
-            android:button="@color/textColor242424"
-            android:text="我的"
-            android:gravity="center"
-            android:textSize="@dimen/textSize15"
-            android:layout_weight="1"
-            android:textColor="@color/home_color_seletor"
-            android:drawableTop="@drawable/home_mine_selector"
-            style="@style/paren_radiogrud"
-
-            />
-
-    </RadioGroup>
-    </LinearLayout>
-    <ImageView
-        android:layout_above="@+id/home_rido_layout"
-        android:src="#999999"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
+    </RelativeLayout>
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/home_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_above="@+id/home_rido_layout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:id="@+id/home_layout"
-        android:layout_above="@+id/home_rido_layout">
+        android:orientation="vertical">
 
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/home_rido_layout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="#f8f8f8"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/iclub_home_rg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/home_artist_rb"
+
+                style="@style/paren_radiogrud"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:checked="true"
+                android:drawableTop="@drawable/home_artist_selector"
+                android:text="首页"
+
+                android:textColor="@color/home_color_seletor"
+                android:textSize="@dimen/textSize15" />
+
+            <RadioButton
+                style="@style/paren_radiogrud"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:drawableTop="@drawable/home_talents_selector"
+                android:gravity="center"
+                android:text="演艺人才"
+                android:textColor="@color/home_color_seletor"
+                android:textSize="@dimen/textSize15"
+
+                />
+
+            <RadioButton
+                style="@style/paren_radiogrud"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:drawableTop="@drawable/home_recruitment_selector"
+                android:gravity="center"
+                android:text="演艺招聘"
+                android:textColor="@color/home_color_seletor"
+                android:textSize="@dimen/textSize15"
+
+                />
+
+            <RadioButton
+                style="@style/paren_radiogrud"
+                android:layout_weight="1"
+                android:background="#00000000"
+                android:button="@color/textColor242424"
+                android:drawableTop="@drawable/home_mine_selector"
+                android:gravity="center"
+                android:text="我的"
+                android:textColor="@color/home_color_seletor"
+                android:textSize="@dimen/textSize15"
+
+                />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/home_rido_layout"
+        android:src="#999999" />
+
+
+
+</LinearLayout>
