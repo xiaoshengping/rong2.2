@@ -13,5 +13,7 @@
     <dimen name="textSize11">11sp</dimen>
     <dimen name="textSize10">10sp</dimen>
 
+    <dimen name="advertisement_heitht">200dp</dimen><!--首页广告栏高-->
+
 
 </resources>
