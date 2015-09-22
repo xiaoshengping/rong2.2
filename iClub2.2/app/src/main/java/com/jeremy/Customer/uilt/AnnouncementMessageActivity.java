@@ -51,7 +51,7 @@ public class AnnouncementMessageActivity extends ActionBarActivity implements Vi
     }
 
     private void intiView() {
-        tailtText.setText("公告消息");
+        tailtText.setText("鍏憡娑堟伅");
         tailtReturnButton.setOnClickListener(this);
 
 
