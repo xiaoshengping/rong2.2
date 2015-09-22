@@ -95,6 +95,9 @@
             android:value="55cc370967e58ead01000232" >
         </meta-data>
         <!-- ###################友盟使用的Activity####-结束################## -->
+
+        <activity android:name=".uilt.RecommendListActivity"></activity>
+
     </application>
 
 </manifest>
