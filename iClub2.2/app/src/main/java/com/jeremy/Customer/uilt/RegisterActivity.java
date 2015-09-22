@@ -126,6 +126,11 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                                             requestParams.addBodyParameter("uid",registerPhoneEdit.getText().toString());
                                             requestParams.addBodyParameter("pwd",MD5Uutils.MD5(setPswEdit.getText().toString()));
                                             requestParams.addBodyParameter("vcode", captchaEdit.getText().toString());
+                                            if (userType.equals("talentsUser")){
+                                                requestParams.addBodyParameter("state","2");
+                                            }else if(userType.equals("merchantUser")){
+                                                requestParams.addBodyParameter("state","3");
+                                            }
                                             httpUtils.send(HttpRequest.HttpMethod.POST, url, requestParams, new RequestCallBack<String>() {
                                                 @Override
                                                 public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -138,6 +143,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                                                         if ("success".equals(registerValueBean.getMessage())) {
 
                                                             //showExitGameAlert(text);
+                                                            finish();
 
                                                         } else {
 

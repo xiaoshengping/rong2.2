@@ -24,6 +24,7 @@ import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
@@ -158,6 +159,8 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                             for(String key : keys){
                                 sb.append(key+"="+info.get(key).toString()+"\r\n");
                             }
+                           String qqId= info.get("openid").toString();
+                            qqLoginData(qqId);
                             Log.d("TestData",sb.toString());
                         }else{
                             Log.d("TestData","发生错误："+status);
@@ -170,6 +173,25 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 Toast.makeText(LoginActivity.this, "授权取消", Toast.LENGTH_SHORT).show();
             }
         } );
+
+    }
+
+    private void qqLoginData(String qqId) {
+        HttpUtils httpUtils=new HttpUtils();
+        RequestParams requestParams=new RequestParams();
+       // requestParams.addBodyParameter("");
+        httpUtils.send(HttpRequest.HttpMethod.POST, "",requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+
+            }
+        });
+
 
     }
 

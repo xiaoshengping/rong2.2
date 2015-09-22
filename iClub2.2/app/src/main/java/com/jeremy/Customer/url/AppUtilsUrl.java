@@ -37,7 +37,7 @@ public class AppUtilsUrl  {
     //注册
     public static String getRegisterData(){
         //SignUp_V2.action? uid=13800138000&pwd=abc123&vcode=888888
-        return BaseUrl+"SignUp_V2.action";
+        return BaseUrl+"SignUp_V2_2.action";
 
     }
     //短信验证

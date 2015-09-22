@@ -2,17 +2,24 @@ package com.jeremy.Customer.fragment;
 
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.uilt.AnnouncementMessageActivity;
 import com.jeremy.Customer.uilt.LoginActivity;
+import com.jeremy.Customer.uilt.SQLhelper;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.umeng.socialize.controller.UMServiceFactory;
@@ -39,6 +46,20 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView announcementMessageTv;
     @ViewInject(R.id.share_tv)
     private TextView shareTv;
+    @ViewInject(R.id.exit_login)
+    private TextView exitLoginTv;
+    @ViewInject(R.id.petname_tv)
+    private TextView petNameTv;
+    @ViewInject(R.id.resume_zhaoping_tv)
+    private TextView resumeZhaoPingTv;
+    @ViewInject(R.id.invite_message_tv)
+    private TextView inviteMessageTv;
+    @ViewInject(R.id.journey_merchant_tv)
+    private TextView journeyMerchantTv;
+    @ViewInject(R.id.deliver_message_tv)
+    private TextView deliverMessageTv;
+    @ViewInject(R.id.mine_layout)
+    private LinearLayout mineLayout;
 
     private  UMSocialService mController;
 
@@ -135,6 +156,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         touXiangIv.setOnClickListener(this);
         announcementMessageTv.setOnClickListener(this);
         shareTv.setOnClickListener(this);
+        exitLoginTv.setOnClickListener(this);
 
     }
 
@@ -155,12 +177,104 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 mController.openShare(getActivity(), false);
 
                 break;
+            case R.id.exit_login:
+                showExitGameAlert();
+                break;
         }
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SQLhelper sqLhelper=new SQLhelper(getActivity());
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        String state=null;
+        while (cursor.moveToNext()) {
+            state = cursor.getString(4);
+
+        }
+
+        if (!TextUtils.isEmpty(state)){
+            mineLayout.setVisibility(View.VISIBLE);
+            exitLoginTv.setVisibility(View.VISIBLE);
+            if (state.equals("2")){
+                resumeZhaoPingTv.setText("我的简历");
+                inviteMessageTv.setText("邀约消息");
+                journeyMerchantTv.setText("我的行程");
+                deliverMessageTv.setText("投递消息");
+
+            }else if (state.equals("3")){
+                resumeZhaoPingTv.setText("我的招聘");
+                inviteMessageTv.setText("邀约消息");
+                journeyMerchantTv.setText("商家信息");
+                deliverMessageTv.setText("投递消息");
+
+            }
+
+        }else {
+            mineLayout.setVisibility(View.GONE);
+            exitLoginTv.setVisibility(View.GONE);
+
+        }
+
+
+
+        cursor.close();
+        db.close();
+
+
+
+
+    }
+    //对话框
+    private void showExitGameAlert() {
+        final AlertDialog dlg = new AlertDialog.Builder(getActivity()).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.shrew_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText("确定注销账号？");
+        // 为确认按钮添加事件,执行退出应用操作
+        TextView ok = (TextView) window.findViewById(R.id.btn_ok);
+        ok.setText("确定");
+        ok.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                exitLoginTv.setVisibility(View.GONE);
+                mineLayout.setVisibility(View.GONE);
+                SQLhelper sqLhelper = new SQLhelper(getActivity());
+                SQLiteDatabase db = sqLhelper.getWritableDatabase();
+                Cursor cursor = db.query("user", null, null, null, null, null, null);
+                while (cursor.moveToNext()) {
+                    String uid = cursor.getString(0);
+                    if (uid != null) {
+                        db.delete("user", null, null);
+
+                    }
+                }
+
+                cursor.close();
+                db.close();
+                dlg.cancel();
+            }
+        });
+
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("取消");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                dlg.cancel();
+            }
+        });
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        /**ʹ��SSO��Ȩ����������´��� */
+
         UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode) ;
         if(ssoHandler != null){
             ssoHandler.authorizeCallBack(requestCode, resultCode, data);
