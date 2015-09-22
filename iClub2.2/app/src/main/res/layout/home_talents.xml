@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingTop="15dp"
+    android:paddingTop="10dp"
 
     android:paddingBottom="15dp"
     android:background="#FDFBFC"
@@ -15,7 +15,7 @@
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="0dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp">
         <TextView
@@ -26,9 +26,13 @@
             android:textColor="@color/home_module_name"
             android:textSize="@dimen/home_module_name"/>
         <TextView
+            android:id="@+id/home_more2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="更多"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:textSize="@dimen/home_more"
             android:textColor="@color/home_more"/>
     </LinearLayout>

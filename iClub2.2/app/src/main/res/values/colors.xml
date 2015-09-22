@@ -30,5 +30,6 @@
     <color name="position_item_name">#272A31</color><!--职位item名-->
     <color name="position_item_salary">#ED7D7C</color><!--职位item工资-->
     <color name="position_item_rest">#737373</color><!--职位item其他信息-->
+    <color name="background">#eaecef</color><!--项目背景色-->
 
 </resources>

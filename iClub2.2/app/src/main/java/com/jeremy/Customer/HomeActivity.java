@@ -42,4 +42,6 @@ public class HomeActivity extends ActionBarActivity {
         fragments.add(new MineFragment());
     }
 
+
+
 }

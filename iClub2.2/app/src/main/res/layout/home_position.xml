@@ -2,21 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00FDFBFC"
-    android:orientation="vertical"
+    android:layout_marginBottom="0dp"
     android:layout_marginTop="15dp"
-    android:layout_marginBottom="0dp">
+    android:background="#00FDFBFC"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
-        android:paddingTop="20dp"
-        android:paddingRight="15dp"
-        android:paddingLeft="15dp"
-        android:gravity="center_vertical"
+        android:background="#FDFBFC"
+        android:gravity="bottom"
         android:orientation="horizontal"
-        android:background="#FDFBFC">
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp">
 
         <TextView
             android:layout_width="0dp"
@@ -27,9 +27,12 @@
             android:textSize="@dimen/home_module_name" />
 
         <TextView
+            android:id="@+id/home_more3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="更多"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
             android:textColor="@color/home_more"
             android:textSize="@dimen/home_more" />
     </LinearLayout>
@@ -37,154 +40,171 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="#FDFBFC"
+        android:orientation="vertical"
         android:paddingBottom="15dp"
         android:paddingLeft="20dp"
         android:paddingRight="15dp"
-        android:paddingTop="15dp"
-        android:background="#FDFBFC"
-        android:orientation="vertical"
-        android:layout_marginBottom="1px">
+        android:paddingTop="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="bottom">
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="酒吧singer"
                 android:layout_marginBottom="0dp"
+                android:layout_weight="1"
+                android:text="酒吧singer"
                 android:textColor="@color/position_item_name"
                 android:textSize="@dimen/position_item_name" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6000-8000元"
                 android:textColor="@color/position_item_salary"
-                android:textSize="@dimen/position_item_salary"/>
+                android:textSize="@dimen/position_item_salary" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="工作时间  09-02  10:00"
                 android:textColor="@color/position_item_rest"
-                android:textSize="@dimen/position_item_rest"/>
+                android:textSize="@dimen/position_item_rest" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="地点  广州"
                 android:textColor="@color/position_item_rest"
-                android:textSize="@dimen/position_item_rest"/>
+                android:textSize="@dimen/position_item_rest" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="#FDFBFC"
+        android:orientation="vertical"
         android:paddingBottom="15dp"
         android:paddingLeft="20dp"
         android:paddingRight="15dp"
-        android:paddingTop="15dp"
-        android:background="#FDFBFC"
-        android:orientation="vertical"
-        android:layout_marginBottom="1px">
+        android:paddingTop="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="bottom">
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="酒吧singer"
                 android:layout_marginBottom="0dp"
+                android:layout_weight="1"
+                android:text="酒吧singer"
                 android:textColor="@color/position_item_name"
                 android:textSize="@dimen/position_item_name" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6000-8000元"
                 android:textColor="@color/position_item_salary"
-                android:textSize="@dimen/position_item_salary"/>
+                android:textSize="@dimen/position_item_salary" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="工作时间  09-02  10:00"
                 android:textColor="@color/position_item_rest"
-                android:textSize="@dimen/position_item_rest"/>
+                android:textSize="@dimen/position_item_rest" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="地点  广州"
                 android:textColor="@color/position_item_rest"
-                android:textSize="@dimen/position_item_rest"/>
+                android:textSize="@dimen/position_item_rest" />
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="#FDFBFC"
+        android:orientation="vertical"
         android:paddingBottom="15dp"
         android:paddingLeft="20dp"
         android:paddingRight="15dp"
-        android:paddingTop="15dp"
-        android:background="#FDFBFC"
-        android:orientation="vertical"
-        android:layout_marginBottom="1px">
+        android:paddingTop="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="bottom">
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="酒吧singer"
                 android:layout_marginBottom="0dp"
+                android:layout_weight="1"
+                android:text="酒吧singer"
                 android:textColor="@color/position_item_name"
                 android:textSize="@dimen/position_item_name" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="6000-8000元"
                 android:textColor="@color/position_item_salary"
-                android:textSize="@dimen/position_item_salary"/>
+                android:textSize="@dimen/position_item_salary" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="工作时间  09-02  10:00"
                 android:textColor="@color/position_item_rest"
-                android:textSize="@dimen/position_item_rest"/>
+                android:textSize="@dimen/position_item_rest" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="地点  广州"
                 android:textColor="@color/position_item_rest"
-                android:textSize="@dimen/position_item_rest"/>
+                android:textSize="@dimen/position_item_rest" />
         </LinearLayout>
     </LinearLayout>
 
