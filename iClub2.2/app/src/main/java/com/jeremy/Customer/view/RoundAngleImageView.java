@@ -15,7 +15,6 @@ import android.widget.ImageView;
 
 import com.jeremy.Customer.R;
 
-
 /**
  * Created by Administrator on 2015/6/12.
  */

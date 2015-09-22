@@ -10,7 +10,7 @@
         <LinearLayout
             android:id="@+id/advertisement_ll"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/advertisement_heitht"
+            android:layout_height="@dimen/advertisement_height"
             android:orientation="vertical"></LinearLayout>
     </LinearLayout>
 

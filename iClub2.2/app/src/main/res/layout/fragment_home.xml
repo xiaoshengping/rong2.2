@@ -1,17 +1,32 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EBECF0"
     tools:context="com.jeremy.Customer.fragment.RecruitmentFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <LinearLayout
-            android:id="@+id/advertisement_ll"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/advertisement_heitht"
-            android:orientation="vertical"></LinearLayout>
-    </LinearLayout>
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/advertisement_ll"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/advertisement_height"
+                android:orientation="vertical"></LinearLayout>
+
+            <include
+                layout="@layout/home_advertisement"></include>
+            <include
+                layout="@layout/home_talents"></include>
+            <include
+                layout="@layout/home_position"></include>
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

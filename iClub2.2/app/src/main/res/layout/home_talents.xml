@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="15dp"
+
+    android:paddingBottom="15dp"
+    android:background="#FDFBFC"
+    android:layout_marginTop="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="热门人才"
+            android:textColor="@color/home_module_name"
+            android:textSize="@dimen/home_module_name"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更多"
+            android:textSize="@dimen/home_more"
+            android:textColor="@color/home_more"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <com.jeremy.Customer.view.RoundAngleImageView
+                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+                android:layout_width="@dimen/home_talents_headportrait"
+                android:layout_height="@dimen/home_talents_headportrait"
+                android:background="#000000"
+                app:roundWidth = "@dimen/home_talents_headportrait_radius"
+                app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:layout_marginTop="3dp"
+                android:layout_margin="6dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="啦啦啦"
+                android:textSize="@dimen/home_talents_item_name"
+                android:textColor="@color/home_talents_item_name"
+                android:layout_marginBottom="5dp"/>
+            <com.jeremy.Customer.view.RoundAngleImageView
+                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+                android:layout_width="@dimen/home_talents_headportrait"
+                android:layout_height="@dimen/home_talents_headportrait"
+                android:background="#000000"
+                app:roundWidth = "@dimen/home_talents_headportrait_radius"
+                app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:layout_marginTop="3dp"
+                android:layout_margin="6dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="啦啦啦"
+                android:textSize="@dimen/home_talents_item_name"
+                android:textColor="@color/home_talents_item_name"
+                android:layout_marginBottom="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <com.jeremy.Customer.view.RoundAngleImageView
+                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+                android:layout_width="@dimen/home_talents_headportrait"
+                android:layout_height="@dimen/home_talents_headportrait"
+                android:background="#000000"
+                app:roundWidth = "@dimen/home_talents_headportrait_radius"
+                app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:layout_marginTop="3dp"
+                android:layout_margin="6dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="啦啦啦"
+                android:textSize="@dimen/home_talents_item_name"
+                android:textColor="@color/home_talents_item_name"
+                android:layout_marginBottom="5dp"/>
+            <com.jeremy.Customer.view.RoundAngleImageView
+                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+                android:layout_width="@dimen/home_talents_headportrait"
+                android:layout_height="@dimen/home_talents_headportrait"
+                android:background="#000000"
+                app:roundWidth = "@dimen/home_talents_headportrait_radius"
+                app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:layout_marginTop="3dp"
+                android:layout_margin="6dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="啦啦啦"
+                android:textSize="@dimen/home_talents_item_name"
+                android:textColor="@color/home_talents_item_name"
+                android:layout_marginBottom="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+            <com.jeremy.Customer.view.RoundAngleImageView
+                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+                android:layout_width="@dimen/home_talents_headportrait"
+                android:layout_height="@dimen/home_talents_headportrait"
+                android:background="#000000"
+                app:roundWidth = "@dimen/home_talents_headportrait_radius"
+                app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:layout_marginTop="3dp"
+                android:layout_margin="6dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="啦啦啦"
+                android:textSize="@dimen/home_talents_item_name"
+                android:textColor="@color/home_talents_item_name"
+                android:layout_marginBottom="5dp"/>
+            <com.jeremy.Customer.view.RoundAngleImageView
+                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+                android:layout_width="@dimen/home_talents_headportrait"
+                android:layout_height="@dimen/home_talents_headportrait"
+                android:background="#000000"
+                app:roundWidth = "@dimen/home_talents_headportrait_radius"
+                app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:layout_marginTop="3dp"
+                android:layout_margin="6dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="啦啦啦"
+                android:textSize="@dimen/home_talents_item_name"
+                android:textColor="@color/home_talents_item_name"
+                android:layout_marginBottom="5dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

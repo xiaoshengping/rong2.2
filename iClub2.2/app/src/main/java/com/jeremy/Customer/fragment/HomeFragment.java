@@ -40,7 +40,7 @@ public class HomeFragment extends Fragment {
     private void initAdvertisement(){
         SlideShowView ssv = new SlideShowView(getActivity());
         advertisement_ll.addView(ssv);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (getResources().getDimension(R.dimen.advertisement_heitht)));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (getResources().getDimension(R.dimen.advertisement_height)));
         layoutParams.setMargins(0, 0, 0, 0);
         ssv.setLayoutParams(layoutParams);
     }
