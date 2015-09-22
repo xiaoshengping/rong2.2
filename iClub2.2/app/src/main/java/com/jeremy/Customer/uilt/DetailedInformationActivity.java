@@ -17,7 +17,7 @@ public class DetailedInformationActivity extends ActionBarActivity implements Vi
     private Button tailtReturnButton;
     @ViewInject(R.id.tailt_text)
     private TextView tailtText;
-    //公告详细
+    //鍏憡璇︽儏
     @ViewInject(R.id.detail_information_layout)
     private LinearLayout detailLayout;
     @ViewInject(R.id.particular_title_tv)
@@ -39,7 +39,7 @@ public class DetailedInformationActivity extends ActionBarActivity implements Vi
     }
 
     private void intiView() {
-        tailtText.setText("公告消息");
+        tailtText.setText("鍏憡娑堟伅");
         tailtReturnButton.setOnClickListener(this);
         InformationValueBean informationValueBean= (InformationValueBean) getIntent().getSerializableExtra("informationValueBeans");
         tailteDetailTv.setText(informationValueBean.getTitle());
