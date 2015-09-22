@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/petname_tv"
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/touxiang_iv"
@@ -26,11 +27,14 @@
 
     </RelativeLayout>
     <LinearLayout
+
+        android:id="@+id/mine_layout"
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="100dp">
         <TextView
+            android:id="@+id/resume_zhaoping_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
             android:layout_weight="1"
@@ -38,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/invite_message_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
             android:layout_weight="1"
@@ -45,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/journey_merchant_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
             android:layout_weight="1"
@@ -52,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/deliver_message_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
             android:layout_weight="1"
@@ -81,9 +88,10 @@
         android:layout_width="match_parent"
         android:layout_height="50dp" />
     <TextView
+        android:id="@+id/exit_login"
         android:text="退出登录"
         android:gravity="center"
-
+         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 </LinearLayout>

@@ -15,7 +15,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ParmeBean;
-import com.jeremy.Customer.bean.RegisterValueBean;
+import com.jeremy.Customer.bean.mine.RegisterValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -126,6 +126,11 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                                             requestParams.addBodyParameter("uid",registerPhoneEdit.getText().toString());
                                             requestParams.addBodyParameter("pwd",MD5Uutils.MD5(setPswEdit.getText().toString()));
                                             requestParams.addBodyParameter("vcode", captchaEdit.getText().toString());
+                                            if (userType.equals("talentsUser")){
+                                                requestParams.addBodyParameter("state","2");
+                                            }else if(userType.equals("merchantUser")){
+                                                requestParams.addBodyParameter("state","3");
+                                            }
                                             httpUtils.send(HttpRequest.HttpMethod.POST, url, requestParams, new RequestCallBack<String>() {
                                                 @Override
                                                 public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -138,6 +143,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                                                         if ("success".equals(registerValueBean.getMessage())) {
 
                                                             //showExitGameAlert(text);
+                                                            finish();
 
                                                         } else {
 

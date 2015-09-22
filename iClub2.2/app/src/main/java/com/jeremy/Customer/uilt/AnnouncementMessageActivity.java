@@ -15,7 +15,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.InfomationAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
-import com.jeremy.Customer.bean.InformationValueBean;
+import com.jeremy.Customer.bean.mine.InformationValueBean;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;

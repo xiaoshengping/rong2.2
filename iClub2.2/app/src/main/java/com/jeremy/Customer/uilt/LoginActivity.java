@@ -6,28 +6,41 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
-import com.jeremy.Customer.bean.LoginValueBean;
+import com.jeremy.Customer.bean.mine.LoginValueBean;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+import com.umeng.socialize.controller.UMServiceFactory;
+import com.umeng.socialize.controller.UMSocialService;
+import com.umeng.socialize.controller.listener.SocializeListeners;
+import com.umeng.socialize.exception.SocializeException;
+import com.umeng.socialize.sso.SinaSsoHandler;
+import com.umeng.socialize.sso.UMQQSsoHandler;
+import com.umeng.socialize.sso.UMSsoHandler;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
+import java.util.Set;
 
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
     @ViewInject(R.id.edit_phone)
@@ -48,6 +61,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     private ImageView weibo_login;
 
     private HttpUtils httpUtils;
+    private  UMSocialService mController ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +71,13 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     }
 
     private void init() {
+        mController = UMServiceFactory.getUMSocialService("com.umeng.login");
+        //设置新浪SSO handler
+        mController.getConfig().setSsoHandler(new SinaSsoHandler());
+        //参数1为当前Activity， 参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
+        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(LoginActivity.this, "1102291619",
+                "aPJ8P5pCeUTKK0Id");
+        qqSsoHandler.addToSocialSDK();
         intiView();
         
         
@@ -70,7 +91,6 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         qq_login.setOnClickListener(this);
         weibo_login.setOnClickListener(this);
         httpUtils=new HttpUtils();
-
 
     }
 
@@ -93,10 +113,10 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
                 break;
             case R.id.qq_login:
-
+                  qqLogin();
                 break;
             case R.id.weibo_login:
-
+                weiboLogin();
                 break;
             case R.id.register_tv:
                 Intent registerIntent=new Intent(LoginActivity.this,RoleRegisterActivity.class);
@@ -111,10 +131,136 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 break;
         }
     }
+        //第三方QQ登录
+    private void qqLogin() {
+        mController.doOauthVerify(LoginActivity.this, SHARE_MEDIA.QQ, new SocializeListeners.UMAuthListener() {
+            @Override
+            public void onStart(SHARE_MEDIA platform) {
+                Toast.makeText(LoginActivity.this, "授权开始", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onError(SocializeException e, SHARE_MEDIA platform) {
+                Toast.makeText(LoginActivity.this, "授权错误", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onComplete(Bundle value, SHARE_MEDIA platform) {
+                Toast.makeText(LoginActivity.this, "授权完成", Toast.LENGTH_SHORT).show();
+                //获取相关授权信息
+                mController.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.QQ, new SocializeListeners.UMDataListener() {
+                    @Override
+                    public void onStart() {
+                        Toast.makeText(LoginActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onComplete(int status, Map<String, Object> info) {
+                        if(status == 200 && info != null){
+                            StringBuilder sb = new StringBuilder();
+                            Set<String> keys = info.keySet();
+                            for(String key : keys){
+                                sb.append(key+"="+info.get(key).toString()+"\r\n");
+                            }
+                           String qqId= info.get("openid").toString();
+                            qqLoginData(qqId);
+                            Log.d("TestData",sb.toString());
+                        }else{
+                            Log.d("TestData","发生错误："+status);
+                        }
+                    }
+                });
+            }
+            @Override
+            public void onCancel(SHARE_MEDIA platform) {
+                Toast.makeText(LoginActivity.this, "授权取消", Toast.LENGTH_SHORT).show();
+            }
+        } );
+
+    }
+
+    private void qqLoginData(String qqId) {
+        HttpUtils httpUtils=new HttpUtils();
+        RequestParams requestParams=new RequestParams();
+       // requestParams.addBodyParameter("");
+        httpUtils.send(HttpRequest.HttpMethod.POST, "",requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+
+            }
+        });
+
+
+    }
+
+    //微博第三方登录
+    private void weiboLogin() {
+        //在新浪微博登录按钮中实现下面的方法，点击按钮则弹出新浪微博登录页面
+        mController.doOauthVerify(LoginActivity.this, SHARE_MEDIA.SINA, new SocializeListeners.UMAuthListener() {
+            @Override
+            public void onError(SocializeException e, SHARE_MEDIA platform) {
+            }
+
+            @Override
+            public void onComplete(Bundle value, SHARE_MEDIA platform) {
+                if (value != null && !TextUtils.isEmpty(value.getString("uid"))) {
+                    Toast.makeText(LoginActivity.this, "授权成功.", Toast.LENGTH_SHORT).show();
+                    weiboLoginAccesstoken(); //获取用户信息
+                } else {
+                    Toast.makeText(LoginActivity.this, "授权失败", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA platform) {
+            }
+
+            @Override
+            public void onStart(SHARE_MEDIA platform) {
+            }
+        });
 
 
 
-    //登录数据
+    }
+          //获取用户信息
+    private void weiboLoginAccesstoken() {
+
+        mController.getPlatformInfo(LoginActivity.this, SHARE_MEDIA.SINA, new SocializeListeners.UMDataListener() {
+            @Override
+            public void onStart() {
+                Toast.makeText(LoginActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onComplete(int status, Map<String, Object> info) {
+                if (status == 200 && info != null) {
+                    StringBuilder sb = new StringBuilder();
+                    Set<String> keys = info.keySet();
+                    for (String key : keys) {
+                        sb.append(key + "=" + info.get(key).toString() + "\r\n");
+                    }
+                    Log.d("TestData", sb.toString());
+                } else {
+                    Log.d("TestData", "发生错误：" + status);
+                }
+            }
+        });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        /**使用SSO授权必须添加如下代码 */
+        UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode);
+        if(ssoHandler != null){
+            ssoHandler.authorizeCallBack(requestCode, resultCode, data);
+        }
+    }
+    //app登录
     private void intiLoginData(final String uid,String psw) throws NoSuchAlgorithmException {
 
         if (!TextUtils.isEmpty(uid)){
