@@ -15,7 +15,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ParmeBean;
-import com.jeremy.Customer.bean.RegisterValueBean;
+import com.jeremy.Customer.bean.mine.RegisterValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;

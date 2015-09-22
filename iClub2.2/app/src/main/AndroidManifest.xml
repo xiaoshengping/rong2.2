@@ -88,7 +88,6 @@
             android:exported="true"
             android:screenOrientation="portrait" />
 
-
         <!-- ###################添加UmengAppkey###################### -->
         <meta-data
             android:name="UMENG_APPKEY"

@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
-import com.jeremy.Customer.bean.InformationValueBean;
+import com.jeremy.Customer.bean.mine.InformationValueBean;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 

@@ -1,4 +1,4 @@
-package com.jeremy.Customer.bean;
+package com.jeremy.Customer.bean.mine;
 
 import java.io.Serializable;
 
