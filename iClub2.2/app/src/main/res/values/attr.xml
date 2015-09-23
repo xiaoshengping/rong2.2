@@ -12,5 +12,9 @@
         <attr name="title_left_show" format="boolean"/>
         <attr name="title_right_show" format="boolean"/>
     </declare-styleable>
+    <declare-styleable name="MyInputBox">
+        <attr name="input_box_text" format="string" />
+        <attr name="input_box_edit" format="string" />
+    </declare-styleable>
 
 </resources>

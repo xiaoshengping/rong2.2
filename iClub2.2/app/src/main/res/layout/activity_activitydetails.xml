@@ -81,6 +81,7 @@
         android:background="#3DA5DA"
         android:text="立即参与"
         android:textColor="#ffffff"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:onClick="immediately_attend"/>
 
 </LinearLayout>

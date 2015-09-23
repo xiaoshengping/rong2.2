@@ -1,0 +1,80 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <com.jeremy.Customer.view.MyTitleBar
+        xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        app:title_name_text = "活动报名"></com.jeremy.Customer.view.MyTitleBar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/apply_back_shape"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp">
+
+        <com.jeremy.Customer.view.MyInputBox
+            xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:input_box_text="名字"
+            app:input_box_edit="请填写您的名称"></com.jeremy.Customer.view.MyInputBox>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#E9E9E9"/>
+        <com.jeremy.Customer.view.MyInputBox
+            xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:input_box_text="年龄"
+            app:input_box_edit="请填写您的年龄"></com.jeremy.Customer.view.MyInputBox>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#E9E9E9"/>
+        <com.jeremy.Customer.view.MyInputBox
+            xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:input_box_text="性别"
+            app:input_box_edit="请填写您的性别"></com.jeremy.Customer.view.MyInputBox>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#E9E9E9"/>
+        <com.jeremy.Customer.view.MyInputBox
+            xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:input_box_text="电话"
+            app:input_box_edit="请填写您的电话"></com.jeremy.Customer.view.MyInputBox>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#E9E9E9"/>
+        <com.jeremy.Customer.view.MyInputBox
+            xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:input_box_text="邮箱"
+            app:input_box_edit="请填写您的邮箱"></com.jeremy.Customer.view.MyInputBox>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="完成"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:background="@drawable/apply_button_shape"/>
+
+</LinearLayout>
