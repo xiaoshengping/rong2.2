@@ -107,6 +107,10 @@
             android:name=".uilt.ModificationPswActivity"
             android:label="@string/title_activity_modification_psw" >
         </activity>
+        <activity
+            android:name=".uilt.FeedBackActivity"
+            android:label="@string/title_activity_feed_back" >
+        </activity>
     </application>
 
 </manifest>
