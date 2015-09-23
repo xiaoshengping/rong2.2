@@ -12,8 +12,16 @@
         android:layout_height="wrap_content"
         app:title_name_text = "活动"></com.jeremy.Customer.view.MyTitleBar>
 
-    <ListView
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></ListView>
+        android:layout_height="1dp"
+        android:background="#DDDDDD"/>
+
+    <ListView
+        android:id="@+id/recommend_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="#00ffffff"
+        android:dividerHeight="0px"></ListView>
 
 </LinearLayout>

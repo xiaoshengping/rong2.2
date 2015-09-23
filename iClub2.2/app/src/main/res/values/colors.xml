@@ -23,13 +23,13 @@
 
     <color name="title_c">#50000000</color>
 
-    <color name="home_module_name">#767676</color><!--首页模块头部名-->
-    <color name="home_more">#BF0157</color><!--首页更多-->
-    <color name="activity_item_name">#707271</color><!--活动item名-->
-    <color name="home_talents_item_name">#414141</color><!--首页人才item名-->
-    <color name="position_item_name">#272A31</color><!--职位item名-->
-    <color name="position_item_salary">#ED7D7C</color><!--职位item工资-->
-    <color name="position_item_rest">#737373</color><!--职位item其他信息-->
+    <color name="home_module_name">#777778</color><!--首页模块头部名-->
+    <color name="home_more">#Be0158</color><!--首页更多-->
+    <color name="activity_item_name">#777778</color><!--活动item名-->
+    <color name="home_talents_item_name">#282a31</color><!--首页人才item名-->
+    <color name="position_item_name">#282a31</color><!--职位item名-->
+    <color name="position_item_salary">#e13430</color><!--职位item工资-->
+    <color name="position_item_rest">#777778</color><!--职位item其他信息-->
     <color name="background">#eaecef</color><!--项目背景色-->
 
 </resources>

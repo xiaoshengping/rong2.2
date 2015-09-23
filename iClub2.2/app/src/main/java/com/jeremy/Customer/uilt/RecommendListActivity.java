@@ -3,16 +3,17 @@ package com.jeremy.Customer.uilt;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.adapter.RecommendListAdater;
 import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.view.MyTitleBar;
 
 public class RecommendListActivity extends Activity {
 
-//    @ViewInject(R.id.mytitle)
-//    private MyTitleBar mytitle;
     private MyTitleBar mytitle;
+    private ListView recommend_list;
     private int identi = 1;
 
     @Override
@@ -24,37 +25,44 @@ public class RecommendListActivity extends Activity {
     }
 
     //初始化
-    private void inti(){
+    private void inti() {
 
-        mytitle = (MyTitleBar)findViewById(R.id.mytitle);
+        mytitle = (MyTitleBar) findViewById(R.id.mytitle);
+        recommend_list = (ListView)findViewById(R.id.recommend_list);
 
         Bundle bundle = this.getIntent().getExtras();
         identi = bundle.getInt("Ident");
-        if(identi== Identification.ACTIVITY){
+        if (identi == Identification.ACTIVITY) {
             intiActivity();
-        }else if(identi== Identification.TALENTS){
+        } else if (identi == Identification.TALENTS) {
             intiTalents();
-        }else if(identi== Identification.PROSITION){
+        } else if (identi == Identification.PROSITION) {
             intiProsition();
         }
     }
 
     //初始化活动列表
-    private void intiActivity(){
+    private void intiActivity() {
         mytitle.setTextViewText("活动");
+        RecommendListAdater adater = new RecommendListAdater(this,identi);
+        recommend_list.setAdapter(adater);
     }
 
     //初始化人才列表
-    private void intiTalents(){
+    private void intiTalents() {
         mytitle.setTextViewText("热门人才");
+        RecommendListAdater adater = new RecommendListAdater(this,identi);
+        recommend_list.setAdapter(adater);
     }
 
     //初始化职位列表
-    private void intiProsition(){
+    private void intiProsition() {
         mytitle.setTextViewText("热门职位");
+        RecommendListAdater adater = new RecommendListAdater(this,identi);
+        recommend_list.setAdapter(adater);
     }
 
-    public void back(View v){
+    public void back(View v) {
         finish();
     }
 

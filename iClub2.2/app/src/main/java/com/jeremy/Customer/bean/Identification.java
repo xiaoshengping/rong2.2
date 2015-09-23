@@ -6,5 +6,5 @@ package com.jeremy.Customer.bean;
 public class Identification {
     public static int ACTIVITY = 1;//活动
     public static int TALENTS = 2;//人才
-    public static int PROSITION = 2;//职位
+    public static int PROSITION = 3;//职位
 }
