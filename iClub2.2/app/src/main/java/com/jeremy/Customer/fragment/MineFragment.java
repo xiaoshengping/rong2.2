@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.uilt.AnnouncementMessageActivity;
 import com.jeremy.Customer.uilt.LoginActivity;
+import com.jeremy.Customer.uilt.MineMoreActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -60,6 +61,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView deliverMessageTv;
     @ViewInject(R.id.mine_layout)
     private LinearLayout mineLayout;
+    @ViewInject(R.id.more_mine_tv)
+    private TextView moreMineTv;
 
     private  UMSocialService mController;
 
@@ -157,6 +160,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         announcementMessageTv.setOnClickListener(this);
         shareTv.setOnClickListener(this);
         exitLoginTv.setOnClickListener(this);
+        moreMineTv.setOnClickListener(this);
 
     }
 
@@ -179,6 +183,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.exit_login:
                 showExitGameAlert();
+                break;
+            case R.id.more_mine_tv:
+                Intent  moreIntent =new Intent(getActivity(), MineMoreActivity.class);
+                startActivity(moreIntent);
                 break;
         }
     }

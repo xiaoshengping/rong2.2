@@ -17,5 +17,8 @@
     <string name="title_activity_role_register">RoleRegisterActivity</string>
     <string name="title_activity_announcement">AnnouncementActivity</string>
     <string name="title_activity_detailed_information">DetailedInformationActivity</string>
-    <string name="title_activity_recommend_list">RecommendListActivity</string>
+    <string name="title_activity_mine_more">MineMoreActivity</string>
+    <string name="title_activity_modification_psw">ModificationPswActivity</string>
+    <string name="title_activity_feed_back">FeedBackActivity</string>
+
 </resources>

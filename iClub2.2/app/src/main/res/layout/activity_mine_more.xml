@@ -1,0 +1,34 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#cccccc"
+    tools:context="com.jeremy.Customer.uilt.MineMoreActivity">
+     <include layout="@layout/app_tailt_layout"/>
+    <TextView
+        android:id="@+id/modification_psw_tv"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+       android:paddingTop="20dp"
+        android:paddingLeft="10dp"
+        android:text="修改密码"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+    <TextView
+        android:layout_marginTop="2dp"
+        android:background="#ffffff"
+        android:paddingTop="20dp"
+        android:paddingLeft="10dp"
+        android:text="关于iClub"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+    <TextView
+        android:id="@+id/feedback_tv"
+        android:layout_marginTop="2dp"
+        android:background="#ffffff"
+        android:paddingTop="20dp"
+        android:paddingLeft="10dp"
+        android:text="反馈"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+</LinearLayout>
