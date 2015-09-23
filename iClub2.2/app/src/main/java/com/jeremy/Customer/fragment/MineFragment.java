@@ -21,6 +21,7 @@ import com.jeremy.Customer.uilt.AnnouncementMessageActivity;
 import com.jeremy.Customer.uilt.LoginActivity;
 import com.jeremy.Customer.uilt.MineMoreActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
+import com.jeremy.Customer.uilt.TalentsDeliverMessageActivity;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.umeng.socialize.controller.UMServiceFactory;
@@ -63,6 +64,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private LinearLayout mineLayout;
     @ViewInject(R.id.more_mine_tv)
     private TextView moreMineTv;
+
 
     private  UMSocialService mController;
 
@@ -161,6 +163,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         shareTv.setOnClickListener(this);
         exitLoginTv.setOnClickListener(this);
         moreMineTv.setOnClickListener(this);
+        deliverMessageTv.setOnClickListener(this);
 
     }
 
@@ -187,6 +190,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.more_mine_tv:
                 Intent  moreIntent =new Intent(getActivity(), MineMoreActivity.class);
                 startActivity(moreIntent);
+                break;
+            case R.id.deliver_message_tv:
+                Intent TalentsDeliverMessageIntent=new Intent(getActivity(), TalentsDeliverMessageActivity.class);
+                startActivity(TalentsDeliverMessageIntent);
                 break;
         }
     }

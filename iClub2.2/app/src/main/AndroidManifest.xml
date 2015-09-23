@@ -111,11 +111,13 @@
             android:name=".uilt.FeedBackActivity"
             android:label="@string/title_activity_feed_back" >
         </activity>
-        <activity android:name=".uilt.ActivityDetailActivity" />
-        <activity android:name=".uilt.RecommenListActivity" />
         <activity
-            android:name=".uilt.ActivityApplyActivity"
-            android:label="@string/title_activity_activity_apply" >
+            android:name=".uilt.TalentsDeliverMessageActivity"
+            android:label="@string/title_activity_talents_deliver_message" >
+        </activity>
+        <activity
+            android:name=".uilt.MerchantJobParticularActivity"
+            android:label="@string/title_activity_merchant_job_particular" >
         </activity>
     </application>
 
