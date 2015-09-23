@@ -17,5 +17,5 @@
     <string name="title_activity_role_register">RoleRegisterActivity</string>
     <string name="title_activity_announcement">AnnouncementActivity</string>
     <string name="title_activity_detailed_information">DetailedInformationActivity</string>
-    <string name="title_activity_recommend_list">RecommendListActivity</string>
+
 </resources>

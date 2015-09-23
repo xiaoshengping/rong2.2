@@ -83,6 +83,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp" />
     <TextView
+        android:id="@+id/more_mine_tv"
         android:text="更多"
         android:paddingTop="15dp"
         android:layout_width="match_parent"
