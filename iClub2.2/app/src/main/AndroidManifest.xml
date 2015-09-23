@@ -111,6 +111,8 @@
             android:name=".uilt.FeedBackActivity"
             android:label="@string/title_activity_feed_back" >
         </activity>
+        <activity android:name=".uilt.ActivityDetailActivity"></activity>
+        <activity android:name=".uilt.RecommenListActivity"></activity>
     </application>
 
 </manifest>

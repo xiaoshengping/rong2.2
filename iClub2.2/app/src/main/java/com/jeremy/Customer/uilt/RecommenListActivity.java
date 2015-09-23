@@ -1,8 +1,10 @@
 package com.jeremy.Customer.uilt;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.jeremy.Customer.R;
@@ -10,7 +12,7 @@ import com.jeremy.Customer.adapter.RecommendListAdater;
 import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.view.MyTitleBar;
 
-public class RecommendListActivity extends Activity {
+public class RecommenListActivity extends Activity {
 
     private MyTitleBar mytitle;
     private ListView recommend_list;
@@ -39,6 +41,22 @@ public class RecommendListActivity extends Activity {
         } else if (identi == Identification.PROSITION) {
             intiProsition();
         }
+
+        recommend_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (identi == Identification.ACTIVITY) {
+                    Intent intent = new Intent();
+                    intent.setClass(RecommenListActivity.this, ActivityDetailActivity.class);
+                    startActivity(intent);
+                } else if (identi == Identification.TALENTS) {
+
+                } else if (identi == Identification.PROSITION) {
+
+                }
+            }
+        });
+
     }
 
     //初始化活动列表

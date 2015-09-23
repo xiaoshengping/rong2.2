@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.Identification;
-import com.jeremy.Customer.uilt.RecommendListActivity;
+import com.jeremy.Customer.uilt.RecommenListActivity;
 import com.jeremy.Customer.view.SlideShowView;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
 
     private void TouchMore(int ident){
         Intent intent = new Intent();
-        intent.setClass(getActivity(), RecommendListActivity.class);
+        intent.setClass(getActivity(), RecommenListActivity.class);
         intent.putExtra("Ident", ident);
         startActivity(intent);
     }
