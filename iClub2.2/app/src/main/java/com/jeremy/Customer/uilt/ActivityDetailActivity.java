@@ -25,4 +25,8 @@ public class ActivityDetailActivity extends Activity {
         startActivity(intent);
     }
 
+    public void back(View v) {
+        finish();
+    }
+
 }
