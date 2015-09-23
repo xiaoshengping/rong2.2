@@ -17,7 +17,7 @@
     <!-- QQ、QQ空间所需权限 -->
     <uses-permission android:name="android.permission.GET_TASKS" />
 
-
+    <activity android:name=".uilt.RecommendListActivity" />
 
     <!-- 友盟 -->
     <application
@@ -99,6 +99,14 @@
         </meta-data>
         <!-- ###################友盟使用的Activity####-结束################## -->
 
+        <activity
+            android:name=".uilt.MineMoreActivity"
+            android:label="@string/title_activity_mine_more" >
+        </activity>
+        <activity
+            android:name=".uilt.ModificationPswActivity"
+            android:label="@string/title_activity_modification_psw" >
+        </activity>
     </application>
-    <activity android:name=".uilt.RecommendListActivity"></activity>
+
 </manifest>
