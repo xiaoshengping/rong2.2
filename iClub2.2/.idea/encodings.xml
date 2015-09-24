@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jeremy/Customer/adapter/ResumeMessageListAdapter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jeremy/Customer/bean/mine/RecruitmentHistoryValueBean.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/java/com/jeremy/Customer/bean/mine/ResumeMessageValueBean.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/app/src/main/res/layout/resume_message_list_layout.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/layout/shrew_exit_dialog.xml" charset="GBK" />
     <file url="file://$PROJECT_DIR$/app/src/main/res/mipmap-xhdpi/icon.png" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />

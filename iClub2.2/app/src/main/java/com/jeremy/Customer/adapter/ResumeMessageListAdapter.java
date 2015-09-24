@@ -40,7 +40,7 @@ public class ResumeMessageListAdapter extends AppBaseAdapter<ResumeMessageValueB
 
     private void intiView(int position) {
 
-        //viewHedle.nameTextView.setText("Í¶µÝÍ¨Öª");
+
         viewHedle.jodTextView.setText(data.get(position).getPosition());
         viewHedle.dayTextView.setText(data.get(position).getPuttime());
 
