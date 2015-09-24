@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.uilt.AnnouncementMessageActivity;
+import com.jeremy.Customer.uilt.InviteMessageActivity;
 import com.jeremy.Customer.uilt.LoginActivity;
 import com.jeremy.Customer.uilt.MineMoreActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
@@ -164,6 +165,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         exitLoginTv.setOnClickListener(this);
         moreMineTv.setOnClickListener(this);
         deliverMessageTv.setOnClickListener(this);
+        inviteMessageTv.setOnClickListener(this);
 
     }
 
@@ -194,6 +196,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.deliver_message_tv:
                 Intent TalentsDeliverMessageIntent=new Intent(getActivity(), TalentsDeliverMessageActivity.class);
                 startActivity(TalentsDeliverMessageIntent);
+                break;
+            case R.id.invite_message_tv:
+                Intent InviteMessageIntent=new Intent(getActivity(), InviteMessageActivity.class);
+                startActivity(InviteMessageIntent);
                 break;
         }
     }
