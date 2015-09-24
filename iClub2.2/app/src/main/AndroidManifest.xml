@@ -119,6 +119,8 @@
             android:name=".uilt.MerchantJobParticularActivity"
             android:label="@string/title_activity_merchant_job_particular" >
         </activity>
+        <activity
+            android:name=".uilt.RecommenListActivity"/>
     </application>
 
 </manifest>
