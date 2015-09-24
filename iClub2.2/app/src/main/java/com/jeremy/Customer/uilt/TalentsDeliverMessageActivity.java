@@ -82,7 +82,7 @@ public class TalentsDeliverMessageActivity extends ActionBarActivity implements 
         MessageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               Intent intent = new Intent(TalentsDeliverMessageActivity.this, MerchantJobParticularActivity.class);
+                Intent intent = new Intent(TalentsDeliverMessageActivity.this, MerchantJobParticularActivity.class);
                 intent.putExtra("informationValueBeans", informationValueBeans.get(position - 1).getJobid());
                 startActivity(intent);
 
@@ -96,7 +96,7 @@ public class TalentsDeliverMessageActivity extends ActionBarActivity implements 
 
     @Override
     public void onClick(View v) {
-         finish();
+        finish();
     }
 
     @Override

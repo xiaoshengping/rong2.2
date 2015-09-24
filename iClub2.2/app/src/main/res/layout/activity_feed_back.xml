@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:background="#cccccc"
     tools:context="com.jeremy.Customer.uilt.FeedBackActivity">
-     <include layout="@layout/app_tailt_layout"/>
+    <include layout="@layout/app_tailt_layout"/>
     <EditText
 
         android:background="#ffffff"

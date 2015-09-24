@@ -55,7 +55,7 @@ public class MineMoreActivity extends ActionBarActivity implements View.OnClickL
                 startActivity(modificationPswIntent);
                 break;
             case R.id.feedback_tv:
-               Intent feedBackIntent=new Intent(MineMoreActivity.this,FeedBackActivity.class);
+              Intent feedBackIntent=new Intent(MineMoreActivity.this,FeedBackActivity.class);
                 startActivity(feedBackIntent);
                 break;
         }
