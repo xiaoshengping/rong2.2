@@ -50,7 +50,9 @@ public class RecommenListActivity extends Activity {
                     intent.setClass(RecommenListActivity.this, ActivityDetailActivity.class);
                     startActivity(intent);
                 } else if (identi == Identification.TALENTS) {
-
+                    Intent intent = new Intent();
+                    intent.setClass(RecommenListActivity.this, TalentsDetailsActivity.class);
+                    startActivity(intent);
                 } else if (identi == Identification.PROSITION) {
 
                 }

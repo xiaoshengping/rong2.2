@@ -27,5 +27,6 @@
     <dimen name="activity_height2">190dp</dimen><!--活动item图片高度2-->
     <dimen name="home_talents_headportrait">70dp</dimen><!--主页头像宽高-->
     <dimen name="home_talents_headportrait_radius">35dp</dimen><!--主页头像宽高半径-->
+    <dimen name="talents_details_back">200dp</dimen><!--人才详情背景高-->
 
 </resources>
