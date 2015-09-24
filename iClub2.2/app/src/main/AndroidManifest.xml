@@ -119,8 +119,11 @@
             android:name=".uilt.MerchantJobParticularActivity"
             android:label="@string/title_activity_merchant_job_particular" >
         </activity>
+        <activity android:name=".uilt.RecommenListActivity" />
         <activity
-            android:name=".uilt.RecommenListActivity"/>
+            android:name=".uilt.InviteMessageActivity"
+            android:label="@string/title_activity_invite_message" >
+        </activity>
     </application>
 
 </manifest>
