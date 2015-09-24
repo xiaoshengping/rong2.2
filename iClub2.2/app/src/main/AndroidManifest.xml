@@ -128,6 +128,9 @@
         </activity>
         <activity
             android:name=".uilt.RecommenListActivity"/>
+        <activity android:name=".uilt.ActivityDetailActivity"></activity>
+        <activity android:name=".uilt.TalentsDetailsActivity"></activity>
+        <activity android:name=".uilt.ActivityApplyActivity"></activity>
     </application>
 
 </manifest>
