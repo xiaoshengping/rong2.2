@@ -68,9 +68,9 @@
                 style="@style/paren_radiogrud"
                 android:layout_weight="1"
                 android:background="#00000000"
-                android:drawableTop="@drawable/home_talents_selector"
+                android:drawableTop="@drawable/home_recruitment_selector"
                 android:gravity="center"
-                android:text="演艺人才"
+                android:text="演艺招聘"
                 android:textColor="@color/home_color_seletor"
                 android:textSize="@dimen/textSize15"
 
@@ -80,9 +80,9 @@
                 style="@style/paren_radiogrud"
                 android:layout_weight="1"
                 android:background="#00000000"
-                android:drawableTop="@drawable/home_recruitment_selector"
+                android:drawableTop="@drawable/home_talents_selector"
                 android:gravity="center"
-                android:text="演艺招聘"
+                android:text="演艺人才"
                 android:textColor="@color/home_color_seletor"
                 android:textSize="@dimen/textSize15"
 

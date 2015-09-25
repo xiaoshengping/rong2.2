@@ -54,7 +54,7 @@
             android:id="@+id/item_position_site_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="地点  广州"
+            android:text="地点   广州"
             android:textColor="@color/position_item_rest"
             android:textSize="@dimen/position_item_rest" />
     </LinearLayout>

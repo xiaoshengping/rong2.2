@@ -37,8 +37,8 @@ public class HomeActivity extends ActionBarActivity {
 
     private void addFragment() {
         fragments.add(new HomeFragment());
-        fragments.add(new TalentFragment());
         fragments.add(new RecruitmentFragment());
+        fragments.add(new TalentFragment());
         fragments.add(new MineFragment());
     }
 

@@ -3,8 +3,20 @@
     android:layout_height="match_parent"
     tools:context="com.jeremy.Customer.fragment.TalentFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/conditions_selected"></include>
+
+        <ListView
+            android:id="@+id/recommend_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#00ffffff"
+            android:dividerHeight="0px"></ListView>
+    </LinearLayout>
 
 </FrameLayout>

@@ -7,11 +7,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout
-            android:id="@+id/advertisement_ll"
+
+        <include
+            layout="@layout/conditions_selected"></include>
+
+        <ListView
+            android:id="@+id/recommend_list"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/advertisement_height"
-            android:orientation="vertical"></LinearLayout>
+            android:layout_height="match_parent"
+            android:divider="#00ffffff"
+            android:dividerHeight="0px"></ListView>
     </LinearLayout>
 
 </FrameLayout>
