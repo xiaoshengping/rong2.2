@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <com.jeremy.Customer.view.MyTitleBar xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+        android:id="@+id/mytitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_name_text="职位详情"></com.jeremy.Customer.view.MyTitleBar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#E2E2E4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/apply_back_shape"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="职位详情"
+            android:textColor="@color/home_more"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="公司详情"
+            android:textColor="@color/activity_item_name"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/item_position_details"></include>
+
+        <include layout="@layout/item_company_details"></include>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
