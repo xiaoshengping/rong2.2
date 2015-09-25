@@ -159,6 +159,8 @@
 
                 <include
                     layout="@layout/item_talents_personal_data"></include>
+                <include
+                    layout="@layout/item_talents_personage_production"></include>
 
             </RelativeLayout>
 
