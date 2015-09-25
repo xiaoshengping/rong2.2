@@ -2,6 +2,7 @@ package com.jeremy.Customer.uilt;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.PictureAdapter;
@@ -23,6 +24,10 @@ public class JobDetailsActivity extends Activity{
         company_picture_production_list = (MyGridView)findViewById(R.id.company_picture_production_list);
         PictureAdapter pictureAdapter = new PictureAdapter(this);
         company_picture_production_list.setAdapter(pictureAdapter);
+    }
+
+    public void back(View v) {
+        finish();
     }
 
 }
