@@ -140,7 +140,7 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                inviteMessageLv.onRefreshComplete();
             }
         });
 
@@ -153,7 +153,7 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
         inviteMessageLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               /* Intent intent = new Intent(getActivity(), CompanyInviteMessageActivity.class);
+                /*Intent intent = new Intent(getActivity(), CompanyInviteMessageActivity.class);
                 intent.putExtra("InviteMessgaeListValueBean", inviteMessgaeListValueBeans.get(position-1));
                 intent.putExtra("flage", "InviteMessageFragment");
                 startActivity(intent);*/
