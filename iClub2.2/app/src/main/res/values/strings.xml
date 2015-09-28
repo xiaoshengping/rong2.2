@@ -28,5 +28,6 @@
     <string name="title_activity_talents_deliver_message">TalentsDeliverMessageActivity</string>
     <string name="title_activity_merchant_job_particular">MerchantJobParticularActivity</string>
     <string name="title_activity_invite_message">InviteMessageActivity</string>
+    <string name="title_activity_company_invite_message">CompanyInviteMessageActivity</string>
 
 </resources>
