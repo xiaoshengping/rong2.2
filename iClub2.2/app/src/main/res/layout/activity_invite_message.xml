@@ -54,7 +54,6 @@
 
 
    <LinearLayout
-       android:background="#cccccc"
         android:orientation="vertical"
         android:id="@+id/invite_fragment_layout"
         android:layout_width="match_parent"

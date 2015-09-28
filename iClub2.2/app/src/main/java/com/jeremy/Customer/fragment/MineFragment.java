@@ -4,6 +4,7 @@ package com.jeremy.Customer.fragment;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
@@ -224,13 +225,36 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 inviteMessageTv.setText("邀约消息");
                 journeyMerchantTv.setText("我的行程");
                 deliverMessageTv.setText("投递消息");
+                Drawable drawableResume= getResources().getDrawable(R.mipmap.resume_icon);
+                drawableResume.setBounds(0, 0, drawableResume.getMinimumWidth(), drawableResume.getMinimumHeight());
+                resumeZhaoPingTv.setCompoundDrawables(null, drawableResume, null, null);
+                Drawable drawableInvite= getResources().getDrawable(R.mipmap.invite_icon);
+                drawableInvite.setBounds(0, 0, drawableInvite.getMinimumWidth(), drawableInvite.getMinimumHeight());
+                inviteMessageTv.setCompoundDrawables(null, drawableInvite, null, null);
+                Drawable drawableInviteDater= getResources().getDrawable(R.mipmap.invite_dater_icon);
+                drawableInviteDater.setBounds(0, 0, drawableInviteDater.getMinimumWidth(), drawableInviteDater.getMinimumHeight());
+                journeyMerchantTv.setCompoundDrawables(null, drawableInviteDater, null, null);
+                Drawable drawableDeliver= getResources().getDrawable(R.mipmap.deliver_icon);
+                drawableDeliver.setBounds(0, 0, drawableDeliver.getMinimumWidth(), drawableDeliver.getMinimumHeight());
+                deliverMessageTv.setCompoundDrawables(null, drawableDeliver, null, null);
 
             }else if (state.equals("3")){
                 resumeZhaoPingTv.setText("我的招聘");
                 inviteMessageTv.setText("邀约消息");
                 journeyMerchantTv.setText("商家信息");
                 deliverMessageTv.setText("投递消息");
-
+                Drawable drawableResume= getResources().getDrawable(R.mipmap.resume_icon);
+                drawableResume.setBounds(0, 0, drawableResume.getMinimumWidth(), drawableResume.getMinimumHeight());
+                resumeZhaoPingTv.setCompoundDrawables(null, drawableResume, null, null);
+                Drawable drawableInvite= getResources().getDrawable(R.mipmap.invite_icon);
+                drawableInvite.setBounds(0, 0, drawableInvite.getMinimumWidth(), drawableInvite.getMinimumHeight());
+                inviteMessageTv.setCompoundDrawables(null, drawableInvite, null, null);
+                Drawable drawableInviteDater= getResources().getDrawable(R.mipmap.merchant_message_icon);
+                drawableInviteDater.setBounds(0, 0, drawableInviteDater.getMinimumWidth(), drawableInviteDater.getMinimumHeight());
+                journeyMerchantTv.setCompoundDrawables(null, drawableInviteDater, null, null);
+                Drawable drawableDeliver= getResources().getDrawable(R.mipmap.deliver_icon);
+                drawableDeliver.setBounds(0, 0, drawableDeliver.getMinimumWidth(), drawableDeliver.getMinimumHeight());
+                deliverMessageTv.setCompoundDrawables(null, drawableDeliver, null, null);
             }
 
         }else {
