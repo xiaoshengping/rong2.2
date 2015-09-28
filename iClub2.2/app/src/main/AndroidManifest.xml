@@ -126,11 +126,11 @@
             android:name=".uilt.MerchantJobParticularActivity"
             android:label="@string/title_activity_merchant_job_particular" >
         </activity>
-        <activity android:name=".uilt.RecommenListActivity"></activity>
+        <activity
+            android:name=".uilt.RecommenListActivity"/>
         <activity android:name=".uilt.ActivityDetailActivity"></activity>
         <activity android:name=".uilt.TalentsDetailsActivity"></activity>
         <activity android:name=".uilt.ActivityApplyActivity"></activity>
-        <activity android:name=".uilt.JobDetailsActivity"></activity>
     </application>
 
 </manifest>
