@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/login_layout"
     android:layout_width="match_parent"
-    android:background="#30000000"
+    android:background="#574659"
     android:layout_height="50dp">
      <Button
-
+         android:id="@+id/tailt_return1_tv"
          android:layout_marginTop="15dp"
          android:layout_marginLeft="20dp"
          android:background="@mipmap/return_icon"
@@ -23,7 +23,7 @@
          android:layout_marginTop="15dp"
          android:text="登录"
          android:textSize="@dimen/textSize16"
-
+         android:textColor="@color/white"
          android:layout_centerHorizontal="true"
          style="@style/paren_layout_width"
          />

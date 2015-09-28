@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -44,6 +45,12 @@ import com.umeng.socialize.weixin.media.WeiXinShareContent;
  */
 public class MineFragment extends Fragment implements View.OnClickListener {
 
+
+
+    @ViewInject(R.id.tailt_text)
+    private TextView tailtText;
+    @ViewInject(R.id.tailt_return1_tv)
+    private Button tailtReturnTv;
     @ViewInject(R.id.touxiang_iv)
     private ImageView touXiangIv;
     @ViewInject(R.id.announcement_message_tv)
@@ -83,6 +90,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         View view=inflater.inflate(R.layout.fragment_mine, container, false);
         //TextView textView= (TextView) getActivity().findViewById(R.id.text);
         ViewUtils.inject(this, view);
+        tailtReturnTv.setVisibility(View.GONE);
            inti();
 
         return view;
@@ -167,6 +175,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         moreMineTv.setOnClickListener(this);
         deliverMessageTv.setOnClickListener(this);
         inviteMessageTv.setOnClickListener(this);
+        tailtText.setText("我的");
+
 
     }
 
