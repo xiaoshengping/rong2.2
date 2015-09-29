@@ -26,7 +26,9 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- To retrieve the account name (email) as part of sign-in: -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" /> <!-- 友盟 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <!-- 友盟 -->
     <application
         android:name=".http.MyAppliction"
         android:allowBackup="true"
@@ -126,7 +128,15 @@
             android:name=".uilt.MerchantJobParticularActivity"
             android:label="@string/title_activity_merchant_job_particular" >
         </activity>
+        <activity android:name=".uilt.RecommenListActivity" />
+        <activity android:name=".uilt.ActivityDetailActivity" />
+        <activity android:name=".uilt.TalentsDetailsActivity" />
+        <activity android:name=".uilt.ActivityApplyActivity" />
+        <activity android:name=".uilt.InviteMessageActivity" />
         <activity
+            android:name=".uilt.CompanyInviteMessageActivity"
+            android:label="@string/title_activity_company_invite_message" >
+        </activity>
             android:name=".uilt.RecommenListActivity"/>
         <activity android:name=".uilt.ActivityDetailActivity"></activity>
         <activity android:name=".uilt.TalentsDetailsActivity"></activity>

@@ -3,22 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.fragment.MineFragment"
     >
+    <include layout="@layout/app_tailt_layout"/>
     <RelativeLayout
-        android:background="@mipmap/ic_launcher"
+        android:background="@mipmap/mine_tailt_icon"
         android:layout_width="match_parent"
         android:layout_height="180dp">
+
+
         <ImageView
             android:id="@+id/touxiang_iv"
+            android:src="@mipmap/login_touxiang_cion"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:src="@mipmap/ic_launcher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_centerHorizontal="true" />
         <TextView
             android:id="@+id/petname_tv"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/touxiang_iv"
             android:text="点击头像登录"
@@ -27,16 +31,18 @@
 
     </RelativeLayout>
     <LinearLayout
-
+        android:layout_marginBottom="5dp"
+        android:background="#ffffff"
         android:id="@+id/mine_layout"
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="80dp">
         <TextView
             android:id="@+id/resume_zhaoping_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
+            android:drawablePadding="10dp"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -45,6 +51,7 @@
             android:id="@+id/invite_message_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
+            android:drawablePadding="10dp"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -53,6 +60,7 @@
             android:id="@+id/journey_merchant_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
+            android:drawablePadding="10dp"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -61,34 +69,56 @@
             android:id="@+id/deliver_message_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
+            android:drawablePadding="10dp"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <ImageView
-        android:background="#ccc"
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
+
     <TextView
+        android:background="#ffffff"
+        android:drawableLeft="@mipmap/announement_icon"
         android:id="@+id/announcement_message_tv"
         android:text="公告消息"
-        android:paddingTop="15dp"
+        android:paddingLeft="10dp"
+        android:padding="15dp"
+        android:drawablePadding="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <TextView
+        android:background="#ffffff"
+        android:layout_marginTop="1dp"
+        android:drawableLeft="@mipmap/share_icon"
         android:id="@+id/share_tv"
         android:text="分享"
-        android:paddingTop="15dp"
+        android:padding="15dp"
+        android:paddingLeft="10dp"
+        android:drawablePadding="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <TextView
+        android:background="#ffffff"
+        android:layout_marginTop="1dp"
+        android:paddingLeft="10dp"
         android:id="@+id/more_mine_tv"
         android:text="更多"
-        android:paddingTop="15dp"
+        android:padding="15dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@mipmap/more_icon"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
     <TextView
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
         android:id="@+id/exit_login"
         android:text="退出登录"
         android:gravity="center"

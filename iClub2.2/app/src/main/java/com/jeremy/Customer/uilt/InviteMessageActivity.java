@@ -10,6 +10,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.fragment.AcceptInviteFragment;
 import com.jeremy.Customer.fragment.FragmentInviteTabAdapter;
 import com.jeremy.Customer.fragment.InviteMessageFragment;
+import com.jeremy.Customer.fragment.TalentSucceedFragment;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -20,6 +21,12 @@ public class InviteMessageActivity extends ActionBarActivity {
     private RadioGroup inviteRadioGrop;
     @ViewInject(R.id.nvite_radio_bt)
     private RadioButton adoptRadioButton;
+    /*@ViewInject(R.id.tailt_text)
+    private TextView tailtText;
+    @ViewInject(R.id.tailt_return_tv)
+    private  TextView tailtReturnTv;*/
+
+
     private ArrayList<Fragment> fragments=new ArrayList<Fragment>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +47,7 @@ public class InviteMessageActivity extends ActionBarActivity {
     private void addFragment() {
         fragments.add(new InviteMessageFragment());
         fragments.add(new AcceptInviteFragment());
+        fragments.add(new TalentSucceedFragment());
     }
 
 }
