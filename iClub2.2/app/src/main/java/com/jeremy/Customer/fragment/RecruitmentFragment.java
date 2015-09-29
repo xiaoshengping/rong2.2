@@ -17,6 +17,8 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.RecommendListAdater;
 import com.jeremy.Customer.bean.ArtistParme;
+import com.jeremy.Customer.bean.Identification;
+import com.jeremy.Customer.bean.MyDialog;
 import com.jeremy.Customer.bean.RecruitmentListBean;
 import com.jeremy.Customer.uilt.JobDetailsActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -115,7 +117,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                dialog();
             }
         });
 
@@ -134,4 +136,20 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
         offset=offset+10;
             initRecruitmentListData(0, 0, offset);
     }
+
+    private MyDialog dialog2;
+    //提示框
+    private void dialog() {
+        dialog2 = new MyDialog(getActivity(), Identification.TOOLTIP,Identification.NETWORKANOMALY);
+        dialog2.setDetermine(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                recommend_list.setVisibility(View.GONE);
+                dialog2.dismiss();
+            }
+        });
+
+        dialog2.show();
+    }
+
 }
