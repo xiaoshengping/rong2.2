@@ -24,13 +24,15 @@
             android:layout_weight="1"
             android:text="酒吧singer"
             android:textColor="@color/position_item_name"
-            android:textSize="@dimen/position_item_name" />
+            android:textSize="@dimen/position_item_name"
+            android:singleLine="true"
+            android:ellipsize="end"  />
 
         <TextView
             android:id="@+id/item_position_salary_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="6000-8000元"
+            android:text="面议"
             android:textColor="@color/position_item_salary"
             android:textSize="@dimen/position_item_salary" />
     </LinearLayout>
@@ -46,7 +48,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="工作时间  09-02  10:00"
+            android:text="工作时间  待定"
+            android:singleLine="true"
+            android:ellipsize="end"
             android:textColor="@color/position_item_rest"
             android:textSize="@dimen/position_item_rest" />
 
@@ -54,7 +58,7 @@
             android:id="@+id/item_position_site_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="地点   广州"
+            android:text="地点   不限"
             android:textColor="@color/position_item_rest"
             android:textSize="@dimen/position_item_rest" />
     </LinearLayout>

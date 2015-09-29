@@ -10,7 +10,10 @@ import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.Identification;
+import com.jeremy.Customer.bean.RecruitmentListBean;
 import com.jeremy.Customer.view.RoundAngleImageView;
+
+import java.util.List;
 
 /**
  * Created by Administrator on 2015/9/22.
@@ -22,15 +25,25 @@ public class RecommendListAdater extends BaseAdapter {
     private ViewTalents viewTalents;
     private ViewPosition viewPosition;
     private int identi;
+    public List<RecruitmentListBean> recruitmentListData;
+    private int maxNumber = 0;
 
     public RecommendListAdater(Context context,int identi) {
         this.mInflater = LayoutInflater.from(context);
         this.identi = identi;
     }
 
+    public RecommendListAdater(Context context,int identi , List<RecruitmentListBean> data) {
+        this.mInflater = LayoutInflater.from(context);
+        this.identi = identi;
+        recruitmentListData = data;
+        maxNumber = data.size();
+//        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
+    }
+
     @Override
     public int getCount() {
-        return 10;
+        return maxNumber;
     }
 
     @Override
@@ -51,7 +64,7 @@ public class RecommendListAdater extends BaseAdapter {
         } else if (identi == Identification.TALENTS) {
             return talents(convertView);
         } else if (identi == Identification.PROSITION) {
-            return position(convertView);
+            return position(convertView ,position);
         }
 
         return null;
@@ -93,7 +106,7 @@ public class RecommendListAdater extends BaseAdapter {
         return view;
     }
     //职位
-    private View position(View view){
+    private View position(View view ,int position){
         if (view == null) {
             view = mInflater.inflate(R.layout.item_position, null);
             viewPosition = new ViewPosition();
@@ -106,6 +119,16 @@ public class RecommendListAdater extends BaseAdapter {
             view.setTag(viewPosition);
         } else {
             viewPosition = (ViewPosition) view.getTag();
+        }
+        viewPosition.item_position_name_tv.setText(recruitmentListData.get(position).getPosition());
+        if(recruitmentListData.get(position).getWorkPay()==null){}else {
+            viewPosition.item_position_salary_tv.setText(recruitmentListData.get(position).getWorkPay());
+        }
+        if(recruitmentListData.get(position).getWorkingTime()==null){}else {
+            viewPosition.item_position_time_tv.setText("工作时间  " + recruitmentListData.get(position).getWorkingTime());
+        }
+        if(recruitmentListData.get(position).getWorkPlace()==null){}else {
+            viewPosition.item_position_site_tv.setText("地点   " + recruitmentListData.get(position).getWorkPlace());
         }
 
         return view;

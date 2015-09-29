@@ -10,7 +10,7 @@ import com.jeremy.Customer.http.MyAppliction;
 import java.util.List;
 
 /**
- * Created by xiaoshengping on 2015/9/8.
+ * Created by Administrator on 2015/3/21.
  */
 public class HttpHelper {
     // private  RequestQueue queue;

@@ -131,7 +131,7 @@
         <activity android:name=".uilt.ActivityDetailActivity"></activity>
         <activity android:name=".uilt.TalentsDetailsActivity"></activity>
         <activity android:name=".uilt.ActivityApplyActivity"></activity>
-
+        <activity android:name=".uilt.JobDetailsActivity"></activity>
         <activity android:name=".uilt.InviteMessageActivity"></activity>
 
     </application>

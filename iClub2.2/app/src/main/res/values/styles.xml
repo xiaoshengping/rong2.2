@@ -59,6 +59,13 @@
         <item name="android:padding">2dp</item>
     </style>
 
+    <style name="MyDialog" parent="android:style/Theme.Dialog">
+        <item name="android:background">#00000000</item>
+        <item name="android:windowBackground">@color/searchbox_back</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
 
 
 </resources>
