@@ -6,7 +6,7 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <color name="white" >#fff1ff</color>
+    <color name="white" >#ffffff</color>
 
     <color name="whiteOne" >#b0c5ec</color>
     <color name="textColor9a4274">#9a4274</color>

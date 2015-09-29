@@ -46,15 +46,22 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
             viewHold.InviteStatusTv.setText("new");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor9a4274));
            // viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_icon);
+            viewHold.acceptButtonTv.setText("接受");
+            viewHold.refuseButtonTv.setText("拒绝");
 
         }else if (status.equals("2")){
             viewHold.InviteStatusTv.setText("拒绝");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
            // viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
+            viewHold.acceptButtonTv.setVisibility(View.GONE);
+            viewHold.refuseButtonTv.setVisibility(View.GONE);
+
         }else if (status.equals("6")){
             viewHold.InviteStatusTv.setText("过期");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
             //viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
+            viewHold.acceptButtonTv.setVisibility(View.GONE);
+            viewHold.refuseButtonTv.setVisibility(View.GONE);
         }else if (status.equals("5")){
             viewHold.InviteStatusTv.setText("完成");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
@@ -63,14 +70,20 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
             viewHold.InviteStatusTv.setText("接受");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
            // viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
+            viewHold.acceptButtonTv.setText("成功");
+            viewHold.refuseButtonTv.setText("失败");
         }else if (status.equals("3")){
             viewHold.InviteStatusTv.setText("成功");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
             //viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
+            viewHold.acceptButtonTv.setText("评论");
+            viewHold.refuseButtonTv.setText("删除");
         }else if (status.equals("4")){
             viewHold.InviteStatusTv.setText("失败");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
             //viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
+            viewHold.acceptButtonTv.setText("评论");
+            viewHold.refuseButtonTv.setText("删除");
         }
         viewHold.inviteTripTimeTv.setText(data.get(position).getTripTime());
         viewHold.InviteJobCategoryTv.setText(data.get(position).getInviteResume().getResumeWorkPlace());
@@ -88,6 +101,10 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
         private TextView InviteJobCategoryTv;
         @ViewInject(R.id.BEcompanyName_tv)
         private TextView InviteCompanyNameTv;
+        @ViewInject(R.id.accept_button_tv)
+        private TextView acceptButtonTv;
+        @ViewInject(R.id.refuse_button_tv)
+        private TextView refuseButtonTv;
 
         public ViewHold(View view) {
             ViewUtils.inject(this, view);
