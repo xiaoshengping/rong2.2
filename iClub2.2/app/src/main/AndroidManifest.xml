@@ -137,10 +137,11 @@
             android:name=".uilt.CompanyInviteMessageActivity"
             android:label="@string/title_activity_company_invite_message" >
         </activity>
-
-        <activity android:name=".uilt.JobDetailsActivity"></activity>
-
-
+        <activity android:name=".uilt.JobDetailsActivity" />
+        <activity
+            android:name=".uilt.CommentGradeActivity"
+            android:label="@string/title_activity_comment_grade" >
+        </activity>
     </application>
 
 </manifest>
