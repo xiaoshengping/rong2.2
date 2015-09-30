@@ -122,13 +122,19 @@ public class RecommendListAdater extends BaseAdapter {
         }
         viewPosition.item_position_name_tv.setText(recruitmentListData.get(position).getPosition());
         if(recruitmentListData.get(position).getWorkPay()==null){}else {
-            viewPosition.item_position_salary_tv.setText(recruitmentListData.get(position).getWorkPay());
+            if (recruitmentListData.get(position).getWorkPay().equals("")) {} else {
+                viewPosition.item_position_salary_tv.setText(recruitmentListData.get(position).getWorkPay());
+            }
         }
         if(recruitmentListData.get(position).getWorkingTime()==null){}else {
-            viewPosition.item_position_time_tv.setText("工作时间  " + recruitmentListData.get(position).getWorkingTime());
+            if (recruitmentListData.get(position).getWorkingTime().equals("")) {} else {
+                viewPosition.item_position_time_tv.setText("工作时间  " + recruitmentListData.get(position).getWorkingTime());
+            }
         }
         if(recruitmentListData.get(position).getWorkPlace()==null){}else {
-            viewPosition.item_position_site_tv.setText("地点   " + recruitmentListData.get(position).getWorkPlace());
+            if (recruitmentListData.get(position).getWorkPlace().equals("")) {} else {
+                viewPosition.item_position_site_tv.setText("地点   " + recruitmentListData.get(position).getWorkPlace());
+            }
         }
 
         return view;

@@ -140,6 +140,9 @@
 
         <activity android:name=".uilt.JobDetailsActivity"></activity>
 
+        <!--测试-->
+        <activity android:name=".myActivity"></activity>
+
 
     </application>
 

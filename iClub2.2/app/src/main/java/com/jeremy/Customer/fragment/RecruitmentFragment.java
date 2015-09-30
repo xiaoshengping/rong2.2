@@ -85,12 +85,14 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
         recommend_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+//                Intent intent = new Intent(getActivity(), myActivity.class);  //方法1
+//                startActivity(intent);
+
                 Intent intent = new Intent(getActivity(), JobDetailsActivity.class);  //方法1
-//                intent.putCharSequenceArrayListExtra("Detail",recruitmentListData);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("Detail", recruitmentListData.get(position));
                 intent.putExtras(bundle);
-//                intent.putExtra("Status", areaBean.PROVINCE);
                 startActivity(intent);
             }
         });

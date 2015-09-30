@@ -18,27 +18,27 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40sp"
         android:background="@drawable/apply_back_shape"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/job_details_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="8dp"
             android:text="职位详情"
             android:textColor="@color/home_more"
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/company_details_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="8dp"
             android:text="公司详情"
             android:textColor="@color/activity_item_name"
             android:textSize="16sp" />
@@ -47,10 +47,19 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vPager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:background="#00000000"
+            android:flipInterval="30"
+            android:persistentDrawingCache="animation" />
 
-        <include layout="@layout/item_position_details"></include>
+        <!--<include layout="@layout/item_position_details"></include>
 
-        <include layout="@layout/item_company_details"></include>
+        <include layout="@layout/item_company_details"></include>-->
 
     </RelativeLayout>
 
