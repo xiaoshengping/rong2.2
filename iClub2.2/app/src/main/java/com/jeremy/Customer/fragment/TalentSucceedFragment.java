@@ -1,6 +1,7 @@
 package com.jeremy.Customer.fragment;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.InviteMessageListAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.InviteMessgaeListValueBean;
+import com.jeremy.Customer.uilt.CompanyInviteMessageActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
@@ -154,7 +156,10 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
                 } else {
                     showExitGameAlert(position);
                 }*/
-
+                Intent intent = new Intent(getActivity(), CompanyInviteMessageActivity.class);
+                intent.putExtra("InviteMessgaeListValueBean", inviteMessgaeListValueBeans.get(position-1));
+                intent.putExtra("flage", "AcceptInviteFragment");
+                startActivity(intent);
 
             }
         });

@@ -16,6 +16,7 @@
 
     <color name="layoutBackground" >#eaecef</color>
     <color name="lineColor" >#dddddd</color>
+    <color name="editTextPromptColor" >#d7d7d7</color>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_role_register">RoleRegisterActivity</string>

@@ -1,6 +1,7 @@
 package com.jeremy.Customer.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.mine.InviteMessgaeListValueBean;
 import com.jeremy.Customer.http.MyAppliction;
+import com.jeremy.Customer.uilt.CommentGradeActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -23,6 +25,7 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
@@ -132,7 +135,10 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
                 } else if (data.get(position).getStatus().equals("0")) {
                     adoptData("1");
                 } else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
-                    // Intent intent=new Intent(context,);
+                    Intent intent=new Intent(context, CommentGradeActivity.class);
+                    intent.putExtra("inviteMessgaeListValueBeans", (Serializable) data.get(position));
+                    intent.putExtra("falgeData", "SuccessfulInviteFragment");
+                    context.startActivity(intent);
                     MyAppliction.showToast("成功接受");
                 }
 
@@ -151,6 +157,7 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
 
                 }else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
                     // Intent intent=new Intent(context,);
+
                     MyAppliction.showToast("成功接受");
                 }
                 MyAppliction.showToast("jsjfhfhfss");

@@ -2,12 +2,12 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#cccccc"
+    android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.TalentsDeliverMessageActivity">
     <include layout="@layout/app_tailt_layout"/>
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/message_listView"
-        android:dividerHeight="3dp"
+        android:dividerHeight="1dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

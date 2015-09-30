@@ -8,9 +8,9 @@
          android:id="@+id/tailt_return1_tv"
          android:layout_marginTop="15dp"
          android:layout_marginLeft="20dp"
-         android:background="@mipmap/return_icon"
-         android:layout_width="10dp"
-         android:layout_height="20dp" />
+         android:background="@mipmap/red_return_icon"
+         android:layout_width="21dp"
+         android:layout_height="21dp" />
     <Button
         android:id="@+id/tailt_return_tv"
         android:layout_marginTop="15dp"
@@ -22,8 +22,7 @@
          android:id="@+id/tailt_text"
          android:layout_marginTop="15dp"
          android:text="登录"
-         android:textSize="@dimen/textSize16"
-         android:textColor="@color/white"
+         android:textSize="@dimen/textSize18"
          android:layout_centerHorizontal="true"
          style="@style/paren_layout_width"
          />

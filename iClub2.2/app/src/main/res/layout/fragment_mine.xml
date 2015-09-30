@@ -6,7 +6,6 @@
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.fragment.MineFragment"
     >
-    <include layout="@layout/app_tailt_layout"/>
     <RelativeLayout
         android:background="@mipmap/mine_tailt_icon"
         android:layout_width="match_parent"
