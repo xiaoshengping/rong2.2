@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -148,7 +147,7 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
         inviteSuccessfulListLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("kjjjsjjj", inviteMessgaeListValueBeans.get(position - 1).getStatus());
+               // Log.e("kjjjsjjj", inviteMessgaeListValueBeans.get(position - 1).getStatus());
                /* if (inviteMessgaeListValueBeans.get(position - 1).getStatus().equals("3") ||
                         inviteMessgaeListValueBeans.get(position - 1).getStatus().equals("4")) {
                     MyAppliction.showToast("您已经完成评论!");

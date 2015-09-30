@@ -144,6 +144,11 @@
         <activity android:name=".myActivity"></activity>
 
 
+        <activity android:name=".uilt.JobDetailsActivity" />
+        <activity
+            android:name=".uilt.CommentGradeActivity"
+            android:label="@string/title_activity_comment_grade" >
+        </activity>
     </application>
 
 </manifest>

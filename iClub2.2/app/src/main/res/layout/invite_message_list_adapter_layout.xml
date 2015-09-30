@@ -67,6 +67,16 @@
             android:textSize="@dimen/textSize14"
             android:layout_width="40dp"
             android:layout_height="wrap_content" />
+
+        <CheckBox
+            android:visibility="gone"
+            android:focusable="false"
+            android:text="弹出"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/popup_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
     <ImageView
         android:background="#cccccc"
@@ -74,29 +84,41 @@
         android:layout_height="1dp"/>
     <RelativeLayout
 
+        android:id="@+id/accept_refuse_layout"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
+        <Button
             android:id="@+id/accept_button_tv"
             android:background="@mipmap/invite_button_icon"
             android:layout_toLeftOf="@+id/refuse_button_tv"
             android:gravity="center"
             android:text="接受"
+            android:focusable="false"
             android:layout_marginRight="10dp"
             android:layout_width="50dp"
             android:layout_height="25dp" />
 
-        <TextView
+        <Button
             android:background="@mipmap/invite_button_icon"
-
+            android:focusable="false"
             android:layout_marginRight="10dp"
             android:id="@+id/refuse_button_tv"
             android:layout_alignParentRight="true"
             android:gravity="center"
             android:text="拒绝"
+            android:layout_width="50dp"
+            android:layout_height="25dp" />
+        <TextView
+            android:background="@mipmap/invite_button_icon"
+            android:visibility="gone"
+            android:layout_marginRight="10dp"
+            android:id="@+id/delete_button_tv"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="删除"
             android:layout_width="50dp"
             android:layout_height="25dp" />
     </RelativeLayout>
