@@ -31,5 +31,6 @@
     <string name="title_activity_invite_message">InviteMessageActivity</string>
     <string name="title_activity_company_invite_message">CompanyInviteMessageActivity</string>
     <string name="title_activity_comment_grade">CommentGradeActivity</string>
+    <string name="title_activity_nick_name">NickNameActivity</string>
 
 </resources>

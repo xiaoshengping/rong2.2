@@ -137,17 +137,19 @@
             android:name=".uilt.CompanyInviteMessageActivity"
             android:label="@string/title_activity_company_invite_message" >
         </activity>
+        <activity android:name=".uilt.JobDetailsActivity" />
 
-        <activity android:name=".uilt.JobDetailsActivity"></activity>
-
-        <!--测试-->
-        <activity android:name=".myActivity"></activity>
-
+        <!-- 测试 -->
+        <activity android:name=".myActivity" />
         <activity
             android:name=".uilt.CommentGradeActivity"
             android:label="@string/title_activity_comment_grade" >
         </activity>
-        <activity android:name=".uilt.CitySelectionActivity"></activity>
+        <activity android:name=".uilt.CitySelectionActivity" />
+        <activity
+            android:name=".uilt.NickNameActivity"
+            android:label="@string/title_activity_nick_name" >
+        </activity>
     </application>
 
 </manifest>
