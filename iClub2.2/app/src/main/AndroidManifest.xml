@@ -147,7 +147,7 @@
             android:name=".uilt.CommentGradeActivity"
             android:label="@string/title_activity_comment_grade" >
         </activity>
-        <activity android:name=".citySelection.CitySelectionActivity"></activity>
+        <activity android:name=".uilt.CitySelectionActivity"></activity>
     </application>
 
 </manifest>

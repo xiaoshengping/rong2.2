@@ -7,10 +7,8 @@
 
     <ImageView
         android:id="@+id/touxiang_iv"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:background="@mipmap/ic_launcher"
+        android:layout_marginLeft="10dp"
+        android:background="@mipmap/message_icon"
         android:scaleType="fitXY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -65,7 +63,7 @@
                 android:textSize="@dimen/textSize14"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:layout_width="300dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
                 android:text="职位成功"

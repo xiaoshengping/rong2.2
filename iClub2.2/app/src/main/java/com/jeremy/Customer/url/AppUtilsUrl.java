@@ -52,6 +52,14 @@ public class AppUtilsUrl  {
         return BaseUrl+"Reset_V2.action";
 
     }
+    //修改头像editUsericon.action
+    public static String getEditUserIcon(){
+        //addPersonResume.action
+        return BaseUrl+"editUsericon.action" ;
+
+    }
+
+
     //保存简历
 
     public static String getAddResume(){
