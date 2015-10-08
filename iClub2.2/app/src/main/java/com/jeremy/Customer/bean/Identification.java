@@ -10,6 +10,8 @@ public class Identification {
     public static int TALENTS = 2;//人才
     public static int PROSITION = 3;//职位
 
+    public static int CITYSELECTION = 1;//选择城市
+
 
     //提示框种类
     public static int TOOLTIP = 1;//提示框（单个按钮）

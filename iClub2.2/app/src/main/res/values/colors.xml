@@ -32,4 +32,6 @@
     <color name="position_item_rest">#777778</color><!--职位item其他信息-->
     <color name="background">#eaecef</color><!--项目背景色-->
 
+    <color name="city_name">#5F5F5F</color><!--城市选择界面字体颜色-->
+
 </resources>

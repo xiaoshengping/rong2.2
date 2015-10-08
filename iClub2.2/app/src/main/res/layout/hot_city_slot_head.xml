@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="12dp"
+    android:paddingRight="6dp"
+    android:paddingBottom="4dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="热门城市"
+        android:textSize="16sp"
+        android:textColor="#8F8F8F"
+        android:layout_margin="5dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hot_city1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="北京"
+            android:textColor="@color/city_name"
+            android:textSize="16sp"
+            android:background="@drawable/hot_city_button_shape"/>
+
+        <TextView
+            android:id="@+id/hot_city2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="上海"
+            android:textColor="@color/city_name"
+            android:textSize="16sp"
+            android:background="@drawable/hot_city_button_shape"/>
+
+        <TextView
+            android:id="@+id/hot_city3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="广州"
+            android:textColor="@color/city_name"
+            android:textSize="16sp"
+            android:background="@drawable/hot_city_button_shape"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hot_city4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="深圳"
+            android:textColor="@color/city_name"
+            android:textSize="16sp"
+            android:background="@drawable/hot_city_button_shape"/>
+
+        <TextView
+            android:id="@+id/hot_city5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="成都"
+            android:textColor="@color/city_name"
+            android:textSize="16sp"
+            android:background="@drawable/hot_city_button_shape"/>
+
+        <TextView
+            android:id="@+id/hot_city6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="杭州"
+            android:textColor="@color/city_name"
+            android:textSize="16sp"
+            android:background="@drawable/hot_city_button_shape"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/hot_city7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="南京"
+            android:textColor="@color/city_name"
+            android:textSize="16sp"
+            android:background="@drawable/hot_city_button_shape"/>
+
+        <TextView
+            android:id="@+id/hot_city8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="天津"
+            android:textColor="@color/city_name"
+            android:textSize="16sp"
+            android:background="@drawable/hot_city_button_shape"/>
+
+        <TextView
+            android:id="@+id/hot_city9"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="武汉"
+            android:textColor="@color/city_name"
+            android:textSize="16sp"
+            android:background="@drawable/hot_city_button_shape"/>
+
+    </LinearLayout>
+
+</LinearLayout>
