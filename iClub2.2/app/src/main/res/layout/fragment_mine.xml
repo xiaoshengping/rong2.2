@@ -15,8 +15,8 @@
         <ImageView
             android:id="@+id/touxiang_iv"
             android:src="@mipmap/login_touxiang_cion"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
         <TextView
@@ -25,12 +25,13 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/touxiang_iv"
             android:text="点击头像登录"
+            android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </RelativeLayout>
     <LinearLayout
-        android:layout_marginBottom="5dp"
+
         android:background="#ffffff"
         android:id="@+id/mine_layout"
         android:gravity="center"
@@ -76,6 +77,7 @@
     </LinearLayout>
 
     <TextView
+        android:layout_marginTop="5dp"
         android:background="#ffffff"
         android:drawableLeft="@mipmap/announement_icon"
         android:id="@+id/announcement_message_tv"
