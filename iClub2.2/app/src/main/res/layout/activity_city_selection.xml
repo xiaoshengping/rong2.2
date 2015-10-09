@@ -1,17 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:orientation="vertical"
     android:background="#F2F2F2">
 
+    <LinearLayout
+        android:id="@+id/seek_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#ffffff"
+        android:padding="10dp">
 
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dropDownHeight="wrap_content"
+            android:dropDownWidth="wrap_content"
+            android:dropDownAnchor="@id/seek_ll"
+            android:completionThreshold="1"
+            android:dropDownHorizontalOffset="0dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:dropDownSelector="#F2F2F2"
+            android:padding="6dp"
+            android:ems="20"
+            android:text=""
+            android:textColor="#91999C"
+            android:hint="请输入城市名查询"
+            android:textColorHint="#91999C"
+            android:textSize="14sp"
+            android:background="@drawable/city_selection_seek_back_shape"
+            android:drawableLeft="@mipmap/magnifying_glass">
+
+            <requestFocus />
+        </AutoCompleteTextView>
+
+
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_gravity="center"
-
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <ListView
             android:id="@+id/lvContact"
@@ -20,7 +55,8 @@
             android:layout_height="wrap_content"
             android:scrollbars="none"
             android:divider="#00ffffff"
-            android:dividerHeight="0px"  />
+            android:dividerHeight="0px"
+            android:listSelector="@android:color/transparent"  />
         <com.jeremy.Customer.citySelection.SideBar
             android:id="@+id/sideBar"
             android:layout_width="25dp"
@@ -31,4 +67,4 @@
 
 
 
-</FrameLayout>
+</LinearLayout>

@@ -62,10 +62,11 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recruitment, container, false);
+        recommend_list = (PullToRefreshListView) view.findViewById(R.id.recommend_list);
         ViewUtils.inject(this, view);
 //        initRecruitmentListData(0, 0, offset);
         conditionsSelected(view);
-        intiProsition(view);
+        intiProsition();
         return view;
 
     }
@@ -85,8 +86,8 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
     }
 
     //初始化职位列表
-    private void intiProsition(View view) {
-        recommend_list = (PullToRefreshListView) view.findViewById(R.id.recommend_list);
+    private void intiProsition() {
+
         adater = new RecommendListAdater(getActivity(), PROSITION, recruitmentListData);
         recommend_list.setAdapter(adater);
 //        Toast.makeText(getActivity(), recruitmentListData.size() + "", Toast.LENGTH_LONG).show();
@@ -141,6 +142,11 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
             @Override
             public void onFailure(HttpException e, String s) {
+                adater = new RecommendListAdater();
+                recommend_list.setAdapter(adater);
+                recommend_list.onRefreshComplete();
+//                recommend_list.setRefreshing(false);
+//                recommend_list.on;
                 dialog();
             }
         });
@@ -152,13 +158,13 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         recruitmentListData.clear();
         offset = 0;
-        initRecruitmentListData(0, 0, offset);
+        initRecruitmentListData(citynum, jobnum, offset);
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
         offset = offset + 10;
-        initRecruitmentListData(0, 0, offset);
+        initRecruitmentListData(citynum, jobnum, offset);
     }
 
     private MyDialog dialog2;
@@ -192,13 +198,9 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                     selected_city.setText("选择城市");
                 }
                 citynum = city;
-//            if(searchStatusfalse) {
-//                update(getActivity(), citynum, jobnum, sousuo,offset);
-//            }else {
                 recruitmentListData.clear();
-                initRecruitmentListData(citynum, jobnum, offset);
-//            }
-//            initRecruitmentListData(citynum,jobnum,"");
+
+//                recommend_list.setRefreshing(true);
 
             }
         }
@@ -219,6 +221,10 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 //        initRecruitmentListData(citynum, jobnum, offset);
 //            }
 //        }
+
+        recommend_list.onRefreshComplete();
+        recommend_list.setRefreshing(true);
+
     }
 
 

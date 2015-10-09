@@ -40,6 +40,10 @@ public class RecommendListAdater extends BaseAdapter {
         maxNumber = data.size();
 //        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
     }
+    public RecommendListAdater() {
+
+//        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public int getCount() {
@@ -120,7 +124,11 @@ public class RecommendListAdater extends BaseAdapter {
         } else {
             viewPosition = (ViewPosition) view.getTag();
         }
-        viewPosition.item_position_name_tv.setText(recruitmentListData.get(position).getPosition());
+        if(recruitmentListData.get(position).getPosition()==null){}else {
+            if (recruitmentListData.get(position).getPosition().equals("")) {} else {
+                viewPosition.item_position_name_tv.setText(recruitmentListData.get(position).getPosition());
+            }
+        }
         if(recruitmentListData.get(position).getWorkPay()==null){}else {
             if (recruitmentListData.get(position).getWorkPay().equals("")) {} else {
                 viewPosition.item_position_salary_tv.setText(recruitmentListData.get(position).getWorkPay());

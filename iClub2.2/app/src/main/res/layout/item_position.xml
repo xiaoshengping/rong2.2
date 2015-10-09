@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp"
             android:layout_weight="1"
-            android:text="酒吧singer"
+            android:text="没有"
             android:textColor="@color/position_item_name"
             android:textSize="@dimen/position_item_name"
             android:singleLine="true"
