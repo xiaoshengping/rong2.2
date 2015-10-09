@@ -37,6 +37,7 @@ import com.jeremy.Customer.uilt.AnnouncementMessageActivity;
 import com.jeremy.Customer.uilt.InviteMessageActivity;
 import com.jeremy.Customer.uilt.LoginActivity;
 import com.jeremy.Customer.uilt.MineMoreActivity;
+import com.jeremy.Customer.uilt.NickNameActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.uilt.TalentsDeliverMessageActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -77,6 +78,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     @ViewInject(R.id.touxiang_iv)
     private ImageView touXiangIv;
+    @ViewInject(R.id.touxiang1_iv)
+    private ImageView touXiang1Tv;
     @ViewInject(R.id.announcement_message_tv)
     private TextView announcementMessageTv;
     @ViewInject(R.id.share_tv)
@@ -85,6 +88,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private TextView exitLoginTv;
     @ViewInject(R.id.petname_tv)
     private TextView petNameTv;
+    @ViewInject(R.id.petname1_tv)
+    private TextView petname1Tv;
     @ViewInject(R.id.resume_zhaoping_tv)
     private TextView resumeZhaoPingTv;
     @ViewInject(R.id.invite_message_tv)
@@ -214,31 +219,25 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         moreMineTv.setOnClickListener(this);
         deliverMessageTv.setOnClickListener(this);
         inviteMessageTv.setOnClickListener(this);
+        petNameTv.setOnClickListener(this);
+        touXiang1Tv.setOnClickListener(this);
 
     }
 
 
     @Override
     public void onClick(View v) {
-        SQLhelper sqLhelper=new SQLhelper(getActivity());
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
-        while (cursor.moveToNext()) {
-            state = cursor.getString(4);
-        }
         switch (v.getId()){
             case R.id.touxiang_iv:
-                if (!TextUtils.isEmpty(state)){
                     showDialog();
-                }else {
-                    Intent intent =new Intent(getActivity(), LoginActivity.class);
-                    startActivity(intent);
-                }
+                break;
+            case R.id.touxiang1_iv:
+                Intent intent =new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
                 break;
             case R.id.announcement_message_tv:
                 Intent announcementIntent =new Intent(getActivity(), AnnouncementMessageActivity.class);
                 startActivity(announcementIntent);
-
                 break;
             case R.id.share_tv:
                 mController.openShare(getActivity(), false);
@@ -258,6 +257,15 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.invite_message_tv:
                 Intent InviteMessageIntent=new Intent(getActivity(), InviteMessageActivity.class);
                 startActivity(InviteMessageIntent);
+                break;
+            case R.id.petname_tv:
+                Intent nickNameIntent=new Intent(getActivity(), NickNameActivity.class);
+                if (!TextUtils.isEmpty(userName)){
+                    nickNameIntent.putExtra("userName",userName);
+                }else {
+                    nickNameIntent.putExtra("userName","hello");
+                }
+                startActivity(nickNameIntent);
                 break;
         }
     }
@@ -283,71 +291,69 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             userName = cursor.getString(2);
             userIcon=cursor.getString(3);
         }
-        if (!TextUtils.isEmpty(state)){
-            mineLayout.setVisibility(View.VISIBLE);
-            exitLoginTv.setVisibility(View.VISIBLE);
+            if (!TextUtils.isEmpty(state)){
+                mineLayout.setVisibility(View.VISIBLE);
+                exitLoginTv.setVisibility(View.VISIBLE);
+                touXiangIv.setVisibility(View.VISIBLE);
+                touXiang1Tv.setVisibility(View.GONE);
+                petname1Tv.setVisibility(View.GONE);
+                petNameTv.setVisibility(View.VISIBLE);
+                if (!TextUtils.isEmpty(userName)){
+                    petNameTv.setText(userName);
+                }else {
+                    petNameTv.setText("请设置昵称");
+                }
+                if (!TextUtils.isEmpty(userIcon)){
+                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+userIcon,touXiangIv,MyAppliction.RoundedOptions);
+                }
+                if (state.equals("2")){
+                    resumeZhaoPingTv.setText("我的简历");
+                    inviteMessageTv.setText("邀约消息");
+                    journeyMerchantTv.setText("我的行程");
+                    deliverMessageTv.setText("投递消息");
+                    Drawable drawableResume= getResources().getDrawable(R.mipmap.resume_icon);
+                    drawableResume.setBounds(0, 0, drawableResume.getMinimumWidth(), drawableResume.getMinimumHeight());
+                    resumeZhaoPingTv.setCompoundDrawables(null, drawableResume, null, null);
+                    Drawable drawableInvite= getResources().getDrawable(R.mipmap.invite_icon);
+                    drawableInvite.setBounds(0, 0, drawableInvite.getMinimumWidth(), drawableInvite.getMinimumHeight());
+                    inviteMessageTv.setCompoundDrawables(null, drawableInvite, null, null);
+                    Drawable drawableInviteDater= getResources().getDrawable(R.mipmap.invite_dater_icon);
+                    drawableInviteDater.setBounds(0, 0, drawableInviteDater.getMinimumWidth(), drawableInviteDater.getMinimumHeight());
+                    journeyMerchantTv.setCompoundDrawables(null, drawableInviteDater, null, null);
+                    Drawable drawableDeliver= getResources().getDrawable(R.mipmap.deliver_icon);
+                    drawableDeliver.setBounds(0, 0, drawableDeliver.getMinimumWidth(), drawableDeliver.getMinimumHeight());
+                    deliverMessageTv.setCompoundDrawables(null, drawableDeliver, null, null);
 
-            if (!TextUtils.isEmpty(userName)){
-                petNameTv.setText(userName);
+                }else if (state.equals("3")){
+                    resumeZhaoPingTv.setText("我的招聘");
+                    inviteMessageTv.setText("邀约消息");
+                    journeyMerchantTv.setText("商家信息");
+                    deliverMessageTv.setText("投递消息");
+                    Drawable drawableResume= getResources().getDrawable(R.mipmap.resume_icon);
+                    drawableResume.setBounds(0, 0, drawableResume.getMinimumWidth(), drawableResume.getMinimumHeight());
+                    resumeZhaoPingTv.setCompoundDrawables(null, drawableResume, null, null);
+                    Drawable drawableInvite= getResources().getDrawable(R.mipmap.invite_icon);
+                    drawableInvite.setBounds(0, 0, drawableInvite.getMinimumWidth(), drawableInvite.getMinimumHeight());
+                    inviteMessageTv.setCompoundDrawables(null, drawableInvite, null, null);
+                    Drawable drawableInviteDater= getResources().getDrawable(R.mipmap.merchant_message_icon);
+                    drawableInviteDater.setBounds(0, 0, drawableInviteDater.getMinimumWidth(), drawableInviteDater.getMinimumHeight());
+                    journeyMerchantTv.setCompoundDrawables(null, drawableInviteDater, null, null);
+                    Drawable drawableDeliver= getResources().getDrawable(R.mipmap.deliver_icon);
+                    drawableDeliver.setBounds(0, 0, drawableDeliver.getMinimumWidth(), drawableDeliver.getMinimumHeight());
+                    deliverMessageTv.setCompoundDrawables(null, drawableDeliver, null, null);
+                }
+
             }else {
-                petNameTv.setText("请设置昵称");
-            }
-            if (!TextUtils.isEmpty(userIcon)){
-                MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+userIcon,touXiangIv,MyAppliction.RoundedOptions);
-            }
-            if (state.equals("2")){
-                resumeZhaoPingTv.setText("我的简历");
-                inviteMessageTv.setText("邀约消息");
-                journeyMerchantTv.setText("我的行程");
-                deliverMessageTv.setText("投递消息");
-                Drawable drawableResume= getResources().getDrawable(R.mipmap.resume_icon);
-                drawableResume.setBounds(0, 0, drawableResume.getMinimumWidth(), drawableResume.getMinimumHeight());
-                resumeZhaoPingTv.setCompoundDrawables(null, drawableResume, null, null);
-                Drawable drawableInvite= getResources().getDrawable(R.mipmap.invite_icon);
-                drawableInvite.setBounds(0, 0, drawableInvite.getMinimumWidth(), drawableInvite.getMinimumHeight());
-                inviteMessageTv.setCompoundDrawables(null, drawableInvite, null, null);
-                Drawable drawableInviteDater= getResources().getDrawable(R.mipmap.invite_dater_icon);
-                drawableInviteDater.setBounds(0, 0, drawableInviteDater.getMinimumWidth(), drawableInviteDater.getMinimumHeight());
-                journeyMerchantTv.setCompoundDrawables(null, drawableInviteDater, null, null);
-                Drawable drawableDeliver= getResources().getDrawable(R.mipmap.deliver_icon);
-                drawableDeliver.setBounds(0, 0, drawableDeliver.getMinimumWidth(), drawableDeliver.getMinimumHeight());
-                deliverMessageTv.setCompoundDrawables(null, drawableDeliver, null, null);
-
-            }else if (state.equals("3")){
-                resumeZhaoPingTv.setText("我的招聘");
-                inviteMessageTv.setText("邀约消息");
-                journeyMerchantTv.setText("商家信息");
-                deliverMessageTv.setText("投递消息");
-                Drawable drawableResume= getResources().getDrawable(R.mipmap.resume_icon);
-                drawableResume.setBounds(0, 0, drawableResume.getMinimumWidth(), drawableResume.getMinimumHeight());
-                resumeZhaoPingTv.setCompoundDrawables(null, drawableResume, null, null);
-                Drawable drawableInvite= getResources().getDrawable(R.mipmap.invite_icon);
-                drawableInvite.setBounds(0, 0, drawableInvite.getMinimumWidth(), drawableInvite.getMinimumHeight());
-                inviteMessageTv.setCompoundDrawables(null, drawableInvite, null, null);
-                Drawable drawableInviteDater= getResources().getDrawable(R.mipmap.merchant_message_icon);
-                drawableInviteDater.setBounds(0, 0, drawableInviteDater.getMinimumWidth(), drawableInviteDater.getMinimumHeight());
-                journeyMerchantTv.setCompoundDrawables(null, drawableInviteDater, null, null);
-                Drawable drawableDeliver= getResources().getDrawable(R.mipmap.deliver_icon);
-                drawableDeliver.setBounds(0, 0, drawableDeliver.getMinimumWidth(), drawableDeliver.getMinimumHeight());
-                deliverMessageTv.setCompoundDrawables(null, drawableDeliver, null, null);
+                mineLayout.setVisibility(View.GONE);
+                exitLoginTv.setVisibility(View.GONE);
+                //petNameTv.setText("点击头像登录");
+                touXiang1Tv.setVisibility(View.VISIBLE);
+                petname1Tv.setVisibility(View.VISIBLE);
             }
 
-        }else {
-            mineLayout.setVisibility(View.GONE);
-            exitLoginTv.setVisibility(View.GONE);
-            petNameTv.setText("点击头像登录");
-        }
-
-
-       if (!TextUtils.isEmpty(uid)||tempFile.exists()){
-            intiToXiangData();
-        }
-
-
-
-
-
-
+            if (!TextUtils.isEmpty(uid)||tempFile.exists()){
+                intiToXiangData();
+            }
 
     }
 
@@ -360,7 +366,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getEditUserIcon(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("000000",responseInfo.result);
+               // Log.e("000000",responseInfo.result);
                 if (!TextUtils.isEmpty(responseInfo.result)){
                     ParmeBean<MessageBean> parmeBean= com.alibaba.fastjson.JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
                     if (parmeBean.getState().equals("success")){
@@ -371,9 +377,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                             SQLiteDatabase db= sqLhelper.getWritableDatabase();
                             Cursor cursor=db.query("user", null, null, null, null, null, null);
                             while (cursor.moveToNext()) {
-
                                 userIcon=cursor.getString(3);
                             }
+                            touXiangIv.setVisibility(View.VISIBLE);
                             if (!TextUtils.isEmpty(userIcon)){
                                 MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+userIcon,touXiangIv,MyAppliction.RoundedOptions);
                             }
@@ -567,7 +573,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             public void onClick(View v) {
                 exitLoginTv.setVisibility(View.GONE);
                 mineLayout.setVisibility(View.GONE);
-                petNameTv.setText("点击头像登录");
+                petNameTv.setVisibility(View.GONE);
+                petname1Tv.setVisibility(View.VISIBLE);
+                touXiangIv.setVisibility(View.GONE);
+                touXiang1Tv.setVisibility(View.VISIBLE);
+
                 SQLhelper sqLhelper = new SQLhelper(getActivity());
                 SQLiteDatabase db = sqLhelper.getWritableDatabase();
                 Cursor cursor = db.query("user", null, null, null, null, null, null);

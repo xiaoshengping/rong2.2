@@ -133,21 +133,24 @@
         <activity android:name=".uilt.TalentsDetailsActivity" />
         <activity android:name=".uilt.ActivityApplyActivity" />
         <activity android:name=".uilt.InviteMessageActivity" />
+        <activity android:name=".uilt.NickNameActivity" />
         <activity
             android:name=".uilt.CompanyInviteMessageActivity"
             android:label="@string/title_activity_company_invite_message" >
         </activity>
+        <activity android:name=".uilt.JobDetailsActivity" />
 
-        <activity android:name=".uilt.JobDetailsActivity"></activity>
-
-        <!--测试-->
-        <activity android:name=".myActivity"></activity>
-
+        <!-- 测试 -->
+        <activity android:name=".myActivity" />
         <activity
             android:name=".uilt.CommentGradeActivity"
             android:label="@string/title_activity_comment_grade" >
         </activity>
-        <activity android:name=".citySelection.CitySelectionActivity"></activity>
+        <activity android:name=".citySelection.CitySelectionActivity" />
+        <activity
+            android:name=".uilt.ResumeActivity"
+            android:label="@string/title_activity_resume" >
+        </activity>
     </application>
 
 </manifest>

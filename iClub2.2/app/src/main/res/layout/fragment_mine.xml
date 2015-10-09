@@ -13,13 +13,33 @@
 
 
         <ImageView
+            android:visibility="gone"
             android:id="@+id/touxiang_iv"
             android:src="@mipmap/login_touxiang_cion"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/touxiang1_iv"
+            android:src="@mipmap/login_touxiang_cion"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
         <TextView
+            android:id="@+id/petname1_tv"
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/touxiang1_iv"
+            android:text="点击头像登录"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:visibility="gone"
             android:id="@+id/petname_tv"
             android:layout_marginTop="5dp"
             android:layout_centerHorizontal="true"

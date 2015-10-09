@@ -54,11 +54,15 @@ public class AppUtilsUrl  {
     }
     //修改头像editUsericon.action
     public static String getEditUserIcon(){
-        //addPersonResume.action
         return BaseUrl+"editUsericon.action" ;
 
     }
+    //修改昵称editUsername.action
+    public static String getEditUserName(){
 
+        return BaseUrl+"editUsername.action" ;
+
+    }
 
     //保存简历
 
