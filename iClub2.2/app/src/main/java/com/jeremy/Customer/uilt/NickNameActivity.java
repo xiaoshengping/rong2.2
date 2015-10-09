@@ -79,6 +79,12 @@ public class NickNameActivity extends ActionBarActivity  implements View.OnClick
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        editTextSize.setText(nickNamrEdti.getText().length()+"/8");
+
+    }
 
     @Override
     public void onClick(View v) {
