@@ -27,5 +27,16 @@
          android:layout_centerHorizontal="true"
          style="@style/paren_layout_width"
          />
+    <TextView
+        android:id="@+id/save_text"
+        android:layout_marginTop="15dp"
+        android:text="保存"
+        android:visibility="gone"
+        android:textSize="@dimen/textSize18"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        style="@style/paren_layout_width"
+        />
 
 </RelativeLayout>
