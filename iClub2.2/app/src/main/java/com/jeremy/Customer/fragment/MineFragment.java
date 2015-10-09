@@ -227,13 +227,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        SQLhelper sqLhelper=new SQLhelper(getActivity());
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
-        while (cursor.moveToNext()) {
-            uid = cursor.getString(0);
-            state = cursor.getString(4);
-        }
         switch (v.getId()){
             case R.id.touxiang_iv:
                     showDialog();
@@ -241,12 +234,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             case R.id.touxiang1_iv:
                 Intent intent =new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
-
                 break;
             case R.id.announcement_message_tv:
                 Intent announcementIntent =new Intent(getActivity(), AnnouncementMessageActivity.class);
                 startActivity(announcementIntent);
-
                 break;
             case R.id.share_tv:
                 mController.openShare(getActivity(), false);
@@ -274,7 +265,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 }else {
                     nickNameIntent.putExtra("userName","hello");
                 }
-
                 startActivity(nickNameIntent);
                 break;
         }
@@ -301,7 +291,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             userName = cursor.getString(2);
             userIcon=cursor.getString(3);
         }
-
             if (!TextUtils.isEmpty(state)){
                 mineLayout.setVisibility(View.VISIBLE);
                 exitLoginTv.setVisibility(View.VISIBLE);
@@ -366,19 +355,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 intiToXiangData();
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     //上传头像
@@ -401,7 +377,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                             SQLiteDatabase db= sqLhelper.getWritableDatabase();
                             Cursor cursor=db.query("user", null, null, null, null, null, null);
                             while (cursor.moveToNext()) {
-
                                 userIcon=cursor.getString(3);
                             }
                             touXiangIv.setVisibility(View.VISIBLE);
