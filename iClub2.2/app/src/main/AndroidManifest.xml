@@ -155,6 +155,7 @@
             android:name=".uilt.AddResumeActivity"
             android:label="@string/title_activity_add_resume" >
         </activity>
+        <activity android:name=".uilt.JobChoiceActivity"></activity>
     </application>
 
 </manifest>
