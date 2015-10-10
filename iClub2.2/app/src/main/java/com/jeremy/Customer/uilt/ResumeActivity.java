@@ -169,8 +169,6 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
         switch (v.getId()){
             case  R.id.add_resume_tv:
                 Intent intent =new Intent(ResumeActivity.this,AddResumeActivity.class);
-                intent.putExtra("resumeNuber","2222");
-                intent.putExtra("resumeValueBeans", "");
                 startActivity(intent);
                 break;
             case R.id.tailt_return_tv:
