@@ -71,6 +71,20 @@ public class AppUtilsUrl  {
         return BaseUrl+"addPersonResume.action" ;
 
     }
+
+    //刷新简历
+    public static String getRefreshResume(){
+        //refreshResume.action
+        return BaseUrl+"refreshResume.action" ;
+
+    }
+    //人才--公开/保密简历
+    public static String getSaveStateResume(){
+        //refreshResume.action
+        return BaseUrl+"displayHideResume.action" ;
+
+    }
+
     //图片介绍
     public static String getAddPicture(){
         //editResumeAddPicture_V2_2.action?

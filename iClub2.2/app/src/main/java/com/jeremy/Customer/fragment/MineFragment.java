@@ -38,6 +38,7 @@ import com.jeremy.Customer.uilt.InviteMessageActivity;
 import com.jeremy.Customer.uilt.LoginActivity;
 import com.jeremy.Customer.uilt.MineMoreActivity;
 import com.jeremy.Customer.uilt.NickNameActivity;
+import com.jeremy.Customer.uilt.ResumeActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.uilt.TalentsDeliverMessageActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -221,6 +222,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         inviteMessageTv.setOnClickListener(this);
         petNameTv.setOnClickListener(this);
         touXiang1Tv.setOnClickListener(this);
+        resumeZhaoPingTv.setOnClickListener(this);
 
     }
 
@@ -266,6 +268,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     nickNameIntent.putExtra("userName","hello");
                 }
                 startActivity(nickNameIntent);
+                break;
+            case R.id.resume_zhaoping_tv:
+                Intent resumeIntent=new Intent(getActivity(), ResumeActivity.class);
+                startActivity(resumeIntent);
+
                 break;
         }
     }
