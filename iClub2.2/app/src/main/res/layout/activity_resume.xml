@@ -1,9 +1,25 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.ResumeActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <include layout="@layout/app_tailt_layout"/>
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/not_resume_tv"
+        android:gravity="center"
+        android:text="还没有简历"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/resume_list_lv"
+        android:scrollbars="none"
+        android:dividerHeight="3dp"
+        ptr:ptrHeaderTextColor="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
-</RelativeLayout>
+</LinearLayout>
