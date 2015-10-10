@@ -1,7 +1,6 @@
 package com.jeremy.Customer.citySelection;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
@@ -20,6 +19,7 @@ import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.Identification;
+import com.jeremy.Customer.bean.LoadingDialog;
 
 import java.util.Arrays;
 
@@ -41,7 +41,7 @@ public class CitySelectionActivity extends Activity implements View.OnClickListe
     private ArrayAdapter<String> av;
     //    static int i;
     ListViewAdp lAdp;
-    ProgressDialog prodialog;
+    //    ProgressDialog prodialog;
     ListView lvContact;
 
     private TextView hot_city1, hot_city2, hot_city3, hot_city4, hot_city5, hot_city6, hot_city7, hot_city8, hot_city9;
@@ -125,7 +125,7 @@ public class CitySelectionActivity extends Activity implements View.OnClickListe
             switch (msg.what) {
                 case 1:
                     // lAdp.notifyDataSetChanged();// 动态更新ListView
-                    prodialog.dismiss();
+                    loadingDialog.dismiss();
                     lAdp = new ListViewAdp(CitySelectionActivity.this, cityName);
                     lvContact.setAdapter(lAdp);
 
@@ -186,13 +186,31 @@ public class CitySelectionActivity extends Activity implements View.OnClickListe
     }
 
     private static String[] sArea;
+    private LoadingDialog loadingDialog;
 
     public void getdata() {
 
-        System.out.println("1111111112");
-        prodialog = ProgressDialog.show(CitySelectionActivity.this, "",
-                "正在更新数据……", true, true);
-        System.out.println("1111111113");
+        loadingDialog = new LoadingDialog(this,"正在更新数据……");
+        loadingDialog.show();
+
+
+
+
+//        loadingDialog = new LoadingDialog(CitySelectionActivity.this,"正在更新数据……");
+//        dialog2.setDetermine(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                recommend_list.setVisibility(View.GONE);
+//                dialog2.dismiss();
+//            }
+//        });
+
+//        loadingDialog.show();
+
+//        System.out.println("1111111112");
+//        prodialog = ProgressDialog.show(CitySelectionActivity.this, "",
+//                "正在更新数据……", true, true);
+//        System.out.println("1111111113");
         Thread thread = new Thread() {
 
             @Override
@@ -258,6 +276,11 @@ public class CitySelectionActivity extends Activity implements View.OnClickListe
 
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             //这里重写返回键
+            Intent intent = new Intent();
+            intent.putExtra("City", -1);
+            intent.putExtra("CityName", "无");
+                        /*给上一个Activity返回结果*/
+            CitySelectionActivity.this.setResult(Identification.RETURN, intent);
             CitySelectionActivity.this.finish();
             return true;
         }

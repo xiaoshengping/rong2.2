@@ -10,6 +10,7 @@ public class Identification {
     public static int TALENTS = 2;//人才
     public static int PROSITION = 3;//职位
 
+    public static int RETURN = 0;//无返回值
     public static int CITYSELECTION = 1;//选择城市
 
 
