@@ -1,5 +1,6 @@
 package com.jeremy.Customer.uilt;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -167,10 +168,10 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
             case  R.id.add_resume_tv:
-                /*Intent intent =new Intent(ResumeActivity.this,AddResumeActivity.class);
+                Intent intent =new Intent(ResumeActivity.this,AddResumeActivity.class);
                 intent.putExtra("resumeNuber","2222");
                 intent.putExtra("resumeValueBeans", "");
-                startActivity(intent);*/
+                startActivity(intent);
                 break;
             case R.id.tailt_return_tv:
                 finish();
