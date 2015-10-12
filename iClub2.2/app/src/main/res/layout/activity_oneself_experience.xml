@@ -1,8 +1,36 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.OneselfExperienceActivity">
+    <include layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.jeremy.Customer.view.EditTextWithDel
+            android:paddingLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:textColorHint="@color/editTextPromptColor"
+            android:id="@+id/oneself_experrience_edit"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
 
+    </LinearLayout>
 
-
-</RelativeLayout>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+</LinearLayout>
