@@ -11,7 +11,10 @@ import android.widget.TextView;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.RecruitmentListBean;
+import com.jeremy.Customer.bean.TalentValueBean;
+import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.RoundAngleImageView;
+import com.lidroid.xutils.BitmapUtils;
 
 import java.util.List;
 
@@ -21,11 +24,13 @@ import java.util.List;
 public class RecommendListAdater extends BaseAdapter {
 
     private LayoutInflater mInflater;
+    private BitmapUtils bitmapUtils;
     private ViewActivity viewActivity;
     private ViewTalents viewTalents;
     private ViewPosition viewPosition;
     private int identi;
     public List<RecruitmentListBean> recruitmentListData;
+    public List<TalentValueBean> talentValueBean;
     private int maxNumber = 0;
 
     public RecommendListAdater(Context context, int identi) {
@@ -33,10 +38,21 @@ public class RecommendListAdater extends BaseAdapter {
         this.identi = identi;
     }
 
+    //找工作列表
     public RecommendListAdater(Context context, int identi, List<RecruitmentListBean> data) {
         this.mInflater = LayoutInflater.from(context);
         this.identi = identi;
         recruitmentListData = data;
+        maxNumber = data.size();
+//        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
+    }
+
+    //找人才列表
+    public RecommendListAdater(Context context, List<TalentValueBean> data, int identi) {
+        this.mInflater = LayoutInflater.from(context);
+        this.bitmapUtils = new BitmapUtils(context);
+        this.identi = identi;
+        talentValueBean = data;
         maxNumber = data.size();
 //        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
     }
@@ -67,7 +83,7 @@ public class RecommendListAdater extends BaseAdapter {
         if (identi == Identification.ACTIVITY) {
             return activity(convertView);
         } else if (identi == Identification.TALENTS) {
-            return talents(convertView);
+            return talents(convertView, position);
         } else if (identi == Identification.PROSITION) {
             return position(convertView, position);
         }
@@ -93,7 +109,7 @@ public class RecommendListAdater extends BaseAdapter {
     }
 
     //人才
-    private View talents(View view) {
+    private View talents(View view, int position) {
         if (view == null) {
             view = mInflater.inflate(R.layout.item_talents, null);
             viewTalents = new ViewTalents();
@@ -107,6 +123,20 @@ public class RecommendListAdater extends BaseAdapter {
             view.setTag(viewTalents);
         } else {
             viewTalents = (ViewTalents) view.getTag();
+        }
+        if(talentValueBean.size()>0) {
+            if (talentValueBean.get(position).getUsericon() != null) {
+                bitmapUtils.display(viewTalents.item_talents_head, AppUtilsUrl.ImageBaseUrl + talentValueBean.get(position).getUsericon());
+            }
+            viewTalents.item_talents_name_tv.setText(talentValueBean.get(position).getResumeZhName());
+            viewTalents.item_talents_age_tv.setText(talentValueBean.get(position).getResumeAge() + "岁");
+            viewTalents.item_talents_rest_tv.setText(talentValueBean.get(position).getResumeJobCategoryName() + "    " + talentValueBean.get(position).getResumeWorkPlace());
+
+            if (talentValueBean.get(position).getResumeSex() == 0) {
+                viewTalents.item_talents_sex_iv.setImageResource(R.mipmap.man);
+            } else {
+                viewTalents.item_talents_sex_iv.setImageResource(R.mipmap.woman);
+            }
         }
 
         return view;

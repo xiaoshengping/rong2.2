@@ -401,5 +401,8 @@ public class AppUtilsUrl  {
     public static String getModificationRoute(String uid,String tripValues , String yearAndMonth){
         return BaseUrl+"editTrip.action?uid="+uid+"&tripValues="+tripValues+"&yearAndMonth="+yearAndMonth;
     }
+    public static String getTalent(int cityid ,int jobCategory,int offset){
+        return BaseUrl+"getPersonResume.action?cityid="+cityid+"&jobCategory="+jobCategory+"&offset=0&limit="+offset;
+    }
 
 }

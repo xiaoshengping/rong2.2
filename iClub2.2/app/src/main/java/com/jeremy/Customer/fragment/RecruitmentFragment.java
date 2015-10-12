@@ -232,16 +232,13 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                 selected_position.setText("选择职位");
             }
             jobnum = job;
-//            if(searchStatusfalse) {
-//                update(getActivity(), citynum, jobnum, sousuo,offset);
-//            }else {
             recruitmentListData.clear();
-//        initRecruitmentListData(citynum, jobnum, offset);
-//            }
         }
 
-        recommend_list.onRefreshComplete();
-        recommend_list.setRefreshing(true);
+        if(resultCode != Identification.RETURN) {
+            recommend_list.onRefreshComplete();
+            recommend_list.setRefreshing(true);
+        }
 
     }
 
