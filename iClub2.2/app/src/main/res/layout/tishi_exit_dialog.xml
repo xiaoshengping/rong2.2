@@ -7,15 +7,15 @@
         android:layout_centerInParent="true"
         android:layout_height="150dp"
         android:layout_width="300dp"
-        android:src="#1b052b" />
+        android:src="@color/white" />
     <TextView
         android:id="@+id/tv"
         android:text="提示"
         android:layout_alignLeft="@+id/exitGameBackground"
         android:layout_alignParentTop="@+id/exitGameBackground"
-        android:background="#000000"
+        android:background="@color/editTextPromptColor"
         android:gravity="center"
-        android:textColor="@color/white"
+
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_alignTop="@+id/exitGameBackground"

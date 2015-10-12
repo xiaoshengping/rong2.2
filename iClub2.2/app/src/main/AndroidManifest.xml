@@ -155,7 +155,11 @@
             android:name=".uilt.AddResumeActivity"
             android:label="@string/title_activity_add_resume" >
         </activity>
-        <activity android:name=".uilt.JobChoiceActivity"></activity>
+        <activity android:name=".uilt.JobChoiceActivity" />
+        <activity
+            android:name=".uilt.OneselfExperienceActivity"
+            android:label="@string/title_activity_oneself_experience" >
+        </activity>
     </application>
 
 </manifest>
