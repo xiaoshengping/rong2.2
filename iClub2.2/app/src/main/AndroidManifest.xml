@@ -169,6 +169,7 @@
             android:name=".uilt.AddPictureActivity"
             android:label="@string/title_activity_add_picture" >
         </activity>
+
     </application>
 
 </manifest>
