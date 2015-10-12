@@ -160,6 +160,10 @@
             android:name=".uilt.OneselfExperienceActivity"
             android:label="@string/title_activity_oneself_experience" >
         </activity>
+        <activity
+            android:name=".uilt.ProductionResumeActivity"
+            android:label="@string/title_activity_production_resume" >
+        </activity>
     </application>
 
 </manifest>

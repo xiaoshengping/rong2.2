@@ -278,9 +278,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                                 } else {
                                     MyAppliction.showToast(saveValueBean.getMessage());
                                 }
-                                /*Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
+                                Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
                                 intent.putExtra("resumeid", saveValueBean.getResumeid());
-                                startActivity(intent);*/
+                                startActivity(intent);
 
                                 finish();
 
