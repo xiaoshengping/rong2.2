@@ -12,6 +12,7 @@ public class Identification {
 
     public static int RETURN = 0;//无返回值
     public static int CITYSELECTION = 1;//选择城市
+    public static int JOBCHOICE = 2;//选择城市
 
 
     //提示框种类

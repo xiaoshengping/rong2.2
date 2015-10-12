@@ -30,6 +30,13 @@ public class LoadingDialog extends Dialog {
         this.msg = msg;
         createLoadingDialog();
     }
+    public LoadingDialog(Context context) {
+        super(context, R.style.loading_dialog);
+        this.setCancelable(false);
+        this.context = context;
+//        this.msg = msg;
+//        createLoadingDialog();
+    }
 
     private void createLoadingDialog() {
 

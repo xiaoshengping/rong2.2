@@ -19,9 +19,11 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.RecommendListAdater;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.Identification;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.MyDialog;
 import com.jeremy.Customer.bean.RecruitmentListBean;
 import com.jeremy.Customer.citySelection.CitySelectionActivity;
+import com.jeremy.Customer.uilt.JobChoiceActivity;
 import com.jeremy.Customer.uilt.JobDetailsActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
@@ -82,6 +84,13 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                 startActivityForResult(intent, 0);
             }
         });
+        selected_position.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), JobChoiceActivity.class);  //方法1
+                startActivityForResult(intent, 0);
+            }
+        });
 
     }
 
@@ -121,8 +130,14 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
         });
     }
 
+    private LoadingDialog loadingDialog;
+
     //获取招聘列表（非搜索）
     private void initRecruitmentListData(int city, int job, int offset) {
+
+        loadingDialog = new LoadingDialog(getActivity());
+        loadingDialog.show();
+
         HttpUtils httpUtils = new HttpUtils();
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRecruitmentList(city, job, offset), new RequestCallBack<String>() {
             @Override
@@ -135,6 +150,8 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                     recommend_list.setAdapter(adater);
                     recommend_list.onRefreshComplete();
 
+                    loadingDialog.dismiss();
+
                 }
 
 
@@ -145,6 +162,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                 adater = new RecommendListAdater();
                 recommend_list.setAdapter(adater);
                 recommend_list.onRefreshComplete();
+                loadingDialog.dismiss();
 //                recommend_list.setRefreshing(false);
 //                recommend_list.on;
                 dialog();
@@ -203,24 +221,24 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 //                recommend_list.setRefreshing(true);
 
             }
-        }
-//        int job = bundle.getInt("Position");
-//        String pName = bundle.getString("PositionName");
-////        if(job>=0&&job!=10){
-//        if (job != 0) {
-//            selected_position.setText(pName);
-//        } else {
-//
-//            selected_position.setText("选择职位");
-//        }
-//        jobnum = job;
-////            if(searchStatusfalse) {
-////                update(getActivity(), citynum, jobnum, sousuo,offset);
-////            }else {
-//        recruitmentListData.clear();
+        } else if(resultCode == Identification.JOBCHOICE){
+            int job = bundle.getInt("Job");
+            String pName = bundle.getString("JobName");
+//        if(job>=0&&job!=10){
+            if (job != 0) {
+                selected_position.setText(pName);
+            } else {
+
+                selected_position.setText("选择职位");
+            }
+            jobnum = job;
+//            if(searchStatusfalse) {
+//                update(getActivity(), citynum, jobnum, sousuo,offset);
+//            }else {
+            recruitmentListData.clear();
 //        initRecruitmentListData(citynum, jobnum, offset);
 //            }
-//        }
+        }
 
         recommend_list.onRefreshComplete();
         recommend_list.setRefreshing(true);

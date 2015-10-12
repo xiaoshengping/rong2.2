@@ -31,7 +31,6 @@ public class CitySelectionActivity extends Activity implements View.OnClickListe
      */
 //	private static ArrayList<ProvinceBean> parentData = new ArrayList<ProvinceBean>();
 
-// private ListView lvContact;
     private SideBar indexBar;
     private WindowManager mWindowManager;
     private TextView mDialogText;
@@ -72,7 +71,6 @@ public class CitySelectionActivity extends Activity implements View.OnClickListe
         hot_city9.setOnClickListener(this);
         lvContact.addHeaderView(header);//添加头部
         mWindowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
-        // new Thread(runa).start();
         findView();
         getdata();
         // 设置右侧触摸监听

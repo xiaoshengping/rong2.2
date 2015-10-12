@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:paddingTop="5dp"
+                android:text="影视制作"
+                android:textColor="@color/city_name"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="编剧"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="摄影师"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="后期制作"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="影视配音"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="道具师"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="化妆师"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="导演"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="灯光师"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="助理"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:paddingTop="5dp"
+                android:text="音乐制作"
+                android:textColor="@color/city_name"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job10"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="填词作曲"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job11"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="编曲"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="录音师"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job13"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="乐手"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job14"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="唱片制作"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="音乐配音"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="后期制作"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job17"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="音效师"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:paddingTop="5dp"
+                android:text="演艺人才"
+                android:textColor="@color/city_name"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job18"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="临时演员"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job19"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Dancer"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job20"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="Singer"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job21"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="魔术师"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job22"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="主持人"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job23"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="模特礼仪"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job24"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="DJ"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job25"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="杂技师"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job26"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="演讲师"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:paddingTop="5dp"
+                android:text="艺术人才"
+                android:textColor="@color/city_name"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job27"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="钢琴"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job28"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="指挥家"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job29"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="小提琴"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job30"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="芭蕾舞"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job31"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="国标舞"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job32"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="管弦乐"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job33"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="声乐视唱"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job34"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="打击乐"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/job35"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="吉他"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job36"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="民族乐器"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:paddingTop="5dp"
+                android:text="其他"
+                android:textColor="@color/city_name"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/job37"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/hot_city_button_shape"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="其他"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:textColor="@color/city_name"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

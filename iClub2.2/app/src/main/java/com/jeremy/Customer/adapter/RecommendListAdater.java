@@ -28,18 +28,19 @@ public class RecommendListAdater extends BaseAdapter {
     public List<RecruitmentListBean> recruitmentListData;
     private int maxNumber = 0;
 
-    public RecommendListAdater(Context context,int identi) {
+    public RecommendListAdater(Context context, int identi) {
         this.mInflater = LayoutInflater.from(context);
         this.identi = identi;
     }
 
-    public RecommendListAdater(Context context,int identi , List<RecruitmentListBean> data) {
+    public RecommendListAdater(Context context, int identi, List<RecruitmentListBean> data) {
         this.mInflater = LayoutInflater.from(context);
         this.identi = identi;
         recruitmentListData = data;
         maxNumber = data.size();
 //        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
     }
+
     public RecommendListAdater() {
 
 //        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
@@ -68,14 +69,14 @@ public class RecommendListAdater extends BaseAdapter {
         } else if (identi == Identification.TALENTS) {
             return talents(convertView);
         } else if (identi == Identification.PROSITION) {
-            return position(convertView ,position);
+            return position(convertView, position);
         }
 
         return null;
     }
 
     //活动
-    private View activity(View view){
+    private View activity(View view) {
         if (view == null) {
             view = mInflater.inflate(R.layout.item_activity, null);
             viewActivity = new ViewActivity();
@@ -90,8 +91,9 @@ public class RecommendListAdater extends BaseAdapter {
 
         return view;
     }
+
     //人才
-    private View talents(View view){
+    private View talents(View view) {
         if (view == null) {
             view = mInflater.inflate(R.layout.item_talents, null);
             viewTalents = new ViewTalents();
@@ -109,8 +111,9 @@ public class RecommendListAdater extends BaseAdapter {
 
         return view;
     }
+
     //职位
-    private View position(View view ,int position){
+    private View position(View view, int position) {
         if (view == null) {
             view = mInflater.inflate(R.layout.item_position, null);
             viewPosition = new ViewPosition();
@@ -124,41 +127,55 @@ public class RecommendListAdater extends BaseAdapter {
         } else {
             viewPosition = (ViewPosition) view.getTag();
         }
-        if(recruitmentListData.get(position).getPosition()==null){}else {
-            if (recruitmentListData.get(position).getPosition().equals("")) {} else {
+
+//        if(position<recruitmentListData.size()) {
+
+        if (recruitmentListData.get(position).getPosition() == null) {
+        } else {
+            if (recruitmentListData.get(position).getPosition().equals("")) {
+            } else {
                 viewPosition.item_position_name_tv.setText(recruitmentListData.get(position).getPosition());
             }
         }
-        if(recruitmentListData.get(position).getWorkPay()==null){}else {
-            if (recruitmentListData.get(position).getWorkPay().equals("")) {} else {
+        if (recruitmentListData.get(position).getWorkPay() == null) {
+        } else {
+            if (recruitmentListData.get(position).getWorkPay().equals("")) {
+            } else {
                 viewPosition.item_position_salary_tv.setText(recruitmentListData.get(position).getWorkPay());
             }
         }
-        if(recruitmentListData.get(position).getWorkingTime()==null){}else {
-            if (recruitmentListData.get(position).getWorkingTime().equals("")) {} else {
+        if (recruitmentListData.get(position).getWorkingTime() == null) {
+        } else {
+            if (recruitmentListData.get(position).getWorkingTime().equals("")) {
+            } else {
                 viewPosition.item_position_time_tv.setText("工作时间  " + recruitmentListData.get(position).getWorkingTime());
             }
         }
-        if(recruitmentListData.get(position).getWorkPlace()==null){}else {
-            if (recruitmentListData.get(position).getWorkPlace().equals("")) {} else {
+        if (recruitmentListData.get(position).getWorkPlace() == null) {
+        } else {
+            if (recruitmentListData.get(position).getWorkPlace().equals("")) {
+            } else {
                 viewPosition.item_position_site_tv.setText("地点   " + recruitmentListData.get(position).getWorkPlace());
             }
         }
+//        }
 
         return view;
     }
 
-    public class ViewActivity{
+    public class ViewActivity {
         private RoundAngleImageView activity_poster;
         private TextView activity_name;
     }
-    public class ViewTalents{
+
+    public class ViewTalents {
         private RoundAngleImageView item_talents_head;
-        private TextView item_talents_name_tv,item_talents_age_tv,item_talents_rest_tv;
+        private TextView item_talents_name_tv, item_talents_age_tv, item_talents_rest_tv;
         private ImageView item_talents_sex_iv;
     }
-    public class ViewPosition{
-        private TextView item_position_name_tv,item_position_salary_tv,item_position_time_tv,item_position_site_tv;
+
+    public class ViewPosition {
+        private TextView item_position_name_tv, item_position_salary_tv, item_position_time_tv, item_position_site_tv;
     }
 
 }
