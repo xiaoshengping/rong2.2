@@ -226,7 +226,10 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 //overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_not);*/
                 break;
             case R.id.next_resume_tv:
-                intiSaveData();
+               // intiSaveData();
+                Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
+                //intent.putExtra("resumeid", saveValueBean.getResumeid());
+                startActivity(intent);
                 break;
 
 
