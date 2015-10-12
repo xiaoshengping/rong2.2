@@ -134,6 +134,7 @@
         <activity android:name=".uilt.ActivityApplyActivity" />
         <activity android:name=".uilt.InviteMessageActivity" />
         <activity android:name=".uilt.NickNameActivity" />
+        <activity android:name=".uilt.SelectPictureActivity" />
         <activity
             android:name=".uilt.CompanyInviteMessageActivity"
             android:label="@string/title_activity_company_invite_message" >
