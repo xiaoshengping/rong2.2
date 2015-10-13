@@ -173,6 +173,10 @@
             android:name=".uilt.AddVideoActivity"
             android:label="@string/title_activity_add_video" >
         </activity>
+        <activity
+            android:name=".uilt.AddMusicActivity"
+            android:label="@string/title_activity_add_music" >
+        </activity>
     </application>
 
 </manifest>
