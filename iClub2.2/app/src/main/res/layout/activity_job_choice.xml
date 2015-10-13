@@ -51,7 +51,7 @@
                     android:background="@drawable/hot_city_button_shape"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="摄影师"
+                    android:text="摄影"
                     android:textColor="@color/city_name"
                     android:textSize="16sp" />
 
@@ -96,7 +96,7 @@
                     android:background="@drawable/hot_city_button_shape"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="道具师"
+                    android:text="道具"
                     android:textColor="@color/city_name"
                     android:textSize="16sp" />
 
@@ -109,7 +109,7 @@
                     android:background="@drawable/hot_city_button_shape"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="化妆师"
+                    android:text="化妆"
                     android:textColor="@color/city_name"
                     android:textSize="16sp" />
 
@@ -141,7 +141,7 @@
                     android:background="@drawable/hot_city_button_shape"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="灯光师"
+                    android:text="灯光"
                     android:textColor="@color/city_name"
                     android:textSize="16sp" />
 
@@ -209,7 +209,7 @@
                     android:background="@drawable/hot_city_button_shape"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="录音师"
+                    android:text="录音"
                     android:textColor="@color/city_name"
                     android:textSize="16sp" />
 
@@ -286,7 +286,7 @@
                     android:background="@drawable/hot_city_button_shape"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="音效师"
+                    android:text="音效"
                     android:textColor="@color/city_name"
                     android:textSize="16sp" />
 
@@ -370,7 +370,7 @@
                     android:background="@drawable/hot_city_button_shape"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="魔术师"
+                    android:text="魔术"
                     android:textColor="@color/city_name"
                     android:textSize="16sp" />
 
@@ -428,7 +428,7 @@
                     android:background="@drawable/hot_city_button_shape"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="杂技师"
+                    android:text="杂技"
                     android:textColor="@color/city_name"
                     android:textSize="16sp" />
 
@@ -441,7 +441,7 @@
                     android:background="@drawable/hot_city_button_shape"
                     android:gravity="center"
                     android:padding="8dp"
-                    android:text="演讲师"
+                    android:text="演讲"
                     android:textColor="@color/city_name"
                     android:textSize="16sp" />
 
