@@ -110,7 +110,7 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
 
                 if (!TextUtils.isEmpty(resumeid)&&selectedPicture.size()!=0){
                     for (int i = 0; i <selectedPicture.size() ; i++) {
-                        savePictureData("432",selectedPicture.get(i));
+                        savePictureData(resumeid,selectedPicture.get(i));
                     }
                 }else {
                     MyAppliction.showExitGameAlert("你还没有选择照片", AddPictureActivity.this);

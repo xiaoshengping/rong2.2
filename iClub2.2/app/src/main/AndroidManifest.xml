@@ -169,7 +169,10 @@
             android:name=".uilt.AddPictureActivity"
             android:label="@string/title_activity_add_picture" >
         </activity>
-
+        <activity
+            android:name=".uilt.AddVideoActivity"
+            android:label="@string/title_activity_add_video" >
+        </activity>
     </application>
 
 </manifest>

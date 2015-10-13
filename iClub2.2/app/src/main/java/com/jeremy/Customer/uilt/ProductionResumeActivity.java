@@ -71,7 +71,7 @@ public class ProductionResumeActivity extends ActionBarActivity implements View.
                 startActivity(picturnIntent);
                 break;
             case R.id.add_video_tv:
-                Intent videoIntent=new Intent(ProductionResumeActivity.this,AddPictureActivity.class);
+                Intent videoIntent=new Intent(ProductionResumeActivity.this,AddVideoActivity.class);
                 videoIntent.putExtra("resumeid", resumeid);
                 startActivity(videoIntent);
                 break;
