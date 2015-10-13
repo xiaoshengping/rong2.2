@@ -43,4 +43,9 @@
 
     <string name="title_activity_add_resume">AddResumeActivity</string>
     <string name="title_activity_oneself_experience">OneselfExperienceActivity</string>
+    <string name="title_activity_production_resume">ProductionResumeActivity</string>
+    <string name="title_activity_add_picture">AddPictureActivity</string>
+    <string name="title_activity_add_video">AddVideoActivity</string>
+    <string name="title_activity_add_music">AddMusicActivity</string>
+    <string name="title_activity_add_music_production">AddMusicProductionActivity</string>
 </resources>

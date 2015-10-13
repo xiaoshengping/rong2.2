@@ -126,6 +126,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
     private HttpUtils httpUtils;
+    private static final int INFOLT_HINT_DATA=7;//自我介绍
+    private static final int EXPERIENCE_HINT_DATA=8;//工作经验
 
     private ResumeValueBean resumeValueBean;
     private String resumeNuber;
@@ -194,45 +196,30 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 showDialog();
                 break;
             case R.id.oneself_known_layout:
-                /*Intent infoIntent = new Intent(AddResumeActivity.this, ResumeMessageActivity.class);
-                if (resumeValueBean!=null){
-                    infoIntent.putExtra("caseData", "oneself");
-                    infoIntent.putExtra("resumeInfoData",resumeValueBean);
-                }else {
-                    infoIntent.putExtra("caseData", "oneselfNo");
+                Intent infoIntent = new Intent(AddResumeActivity.this, OneselfExperienceActivity.class);  //方法1
+                infoIntent.putExtra("hintData","infoIntent");
+                if (!TextUtils.isEmpty(userOnselfText.getText().toString())){
+                    infoIntent.putExtra("content",userOnselfText.getText().toString());
                 }
-
-                startActivityForResult(infoIntent, 7);*/
+                startActivityForResult(infoIntent, INFOLT_HINT_DATA);
                 break;
             case R.id.work_experience_layout:
-                /*Intent workIntent = new Intent(AddResumeActivity.this, ResumeMessageActivity.class);
-
-                if (resumeValueBean!=null){
-                    workIntent.putExtra("caseData", "wor k");
-                    workIntent.putExtra("resumeInfoData",resumeValueBean);
-                } else{
-                    workIntent.putExtra("caseData", "workNo");
-
+                Intent workIntent = new Intent(AddResumeActivity.this, OneselfExperienceActivity.class);  //方法1
+                workIntent.putExtra("hintData","workIntent");
+                if (!TextUtils.isEmpty(workExpexteText.getText().toString())){
+                    workIntent.putExtra("content",workExpexteText.getText().toString());
                 }
-                startActivityForResult(workIntent, 8);*/
-
+                startActivityForResult(workIntent, EXPERIENCE_HINT_DATA);
                 break;
 
 
 
             case R.id.job_classfite_layout:
-              /*  Intent intentClassfite = new Intent(AddResumeActivity.this, SelectedCityOrPositionActivity.class);  //方法1
-                intentClassfite.putExtra("Status", areaBean.POSITION);
-                intentClassfite.putExtra("Company",-1);
-                startActivityForResult(intentClassfite, 12);
-                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_not);*/
+
+
                 break;
             case R.id.job_city_layout:
-               /* Intent intentCity = new Intent(AddResumeActivity.this, SelectedCityOrPositionActivity.class);  //方法1
-                intentCity.putExtra("Status", areaBean.PROVINCE);
-                intentCity.putExtra("Company",-1);
-                startActivityForResult(intentCity, 12);
-                overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_not);*/
+
                 break;
             case R.id.next_resume_tv:
                 intiSaveData();
@@ -249,24 +236,26 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         userQq = resumeQq.getText().toString();
         userEmail = resumeEmail.getText().toString();
         touXiangPath = screenshotFile.getAbsolutePath();
+        userInfo=userOnselfText.getText().toString();
+        userWork=workExpexteText.getText().toString();
             if (!tempFile.exists() || TextUtils.isEmpty(userName)
                     || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
-                    || TextUtils.isEmpty(userInfo) || TextUtils.isEmpty(userWork)
+                    || userInfo.equals("介绍一下自己") ||userWork.equals("分享一下自己工作经验")
                     ||selectYear==0||selectMonthOfYear==0||selectDayOfMonth==0) {
                 MyAppliction.showExitGameAlert("您填写的信息不全或错误", AddResumeActivity.this);
             } else {
                 requestParams = new RequestParams();
                 requestParams.addBodyParameter("resumeSex", sex);
                 requestParams.addBodyParameter("uid", uid);
-                //requestParams.addBodyParameter("resumeWorkExperience", userWork);
-                //requestParams.addBodyParameter("resumeInfo", userInfo);
+                requestParams.addBodyParameter("resumeWorkExperience", userWork);
+                requestParams.addBodyParameter("resumeInfo", userInfo);
                 requestParams.addBodyParameter("resumeEmail", userEmail);
                 requestParams.addBodyParameter("resumeQq", userQq);
                 requestParams.addBodyParameter("resumeJobName", userJobName);
                 requestParams.addBodyParameter("resumeZhName", userName);
                 requestParams.addBodyParameter("usericon", new File(touXiangPath));
-                //requestParams.addBodyParameter("resumeJobCategory", job_classfite_num + "");
-                //requestParams.addBodyParameter("resumeCityId", job_city_num + "");
+                requestParams.addBodyParameter("resumeJobCategory", "12");
+                //requestParams.addBodyParameter("resumeCityId", job_city_num);
                 requestParams.addBodyParameter("resumeMobile", mobile);
                 requestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
 
@@ -282,14 +271,17 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                                 SaveResumeValueBean saveValueBean = parmeBean.getValue();
                                 if (saveValueBean.getMessage().equals("success")) {
                                     MyAppliction.showToast("提交数据成功");
+                                    Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
+                                    intent.putExtra("resumeid", saveValueBean.getResumeid());
+                                    startActivity(intent);
+                                    finish();
                                 } else {
                                     MyAppliction.showToast(saveValueBean.getMessage());
                                 }
-                                /*Intent intent = new Intent(AddResumeActivity.this, NextResumeActivity.class);
-                                intent.putExtra("resumeid", saveValueBean.getResumeid());
-                                startActivity(intent);*/
 
-                                finish();
+
+
+
 
 
                             }
@@ -490,6 +482,54 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 if (data != null)
                     // setPicToView(data);
                     sentPicToNext(data);
+                break;
+            case INFOLT_HINT_DATA:
+                if (data.getStringExtra("infoIntent").toString().equals("notData")){
+                    if (userOnselfText.getText().toString().equals("介绍一下自己")){
+                        userOnselfText.setText("介绍一下自己");
+                        userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        userOnselfText.setText(userOnselfText.getText().toString());
+                        userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else if (data.getStringExtra("infoIntent").toString().equals("data")){
+                    if (userOnselfText.getText().toString().equals("介绍一下自己")){
+                        userOnselfText.setText("介绍一下自己");
+                        userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        userOnselfText.setText(userOnselfText.getText().toString());
+                        userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else {
+                    userOnselfText.setText(data.getStringExtra("infoIntent").toString());
+                    userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
+                }
+
+                break;
+            case EXPERIENCE_HINT_DATA:
+                if (data.getStringExtra("workIntent").toString().equals("notData")){
+                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")){
+                        workExpexteText.setText("分享一下自己工作经验");
+                        workExpexteText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        workExpexteText.setText(workExpexteText.getText().toString());
+                        workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+                }else if (data.getStringExtra("workIntent").toString().equals("data")){
+                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")){
+                        workExpexteText.setText("分享一下自己工作经验");
+                        workExpexteText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        workExpexteText.setText(workExpexteText.getText().toString());
+                        workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else {
+                    workExpexteText.setText(data.getStringExtra("workIntent").toString());
+                    workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
+                }
 
                 break;
         }
@@ -506,6 +546,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 //Log.e("age00000",age+"");
                 if (Integer.valueOf(age)>0){
                     resumeAgeTv.setText(age);
+                    resumeAgeTv.setTextColor(getResources().getColor(R.color.textColor242424));
                 }else {
                     Toast.makeText(AddResumeActivity.this, "亲,您设置的年龄要大于0哦!", Toast.LENGTH_LONG).show();
                 }

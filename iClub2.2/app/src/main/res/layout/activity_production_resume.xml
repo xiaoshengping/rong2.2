@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/layoutBackground"
+    tools:context="com.jeremy.Customer.uilt.ProductionResumeActivity">
+    <include layout="@layout/app_white_tailt_layout"/>
+
+    <LinearLayout
+        android:id="@+id/next_layout"
+        android:background="@color/white"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:background="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <TextView
+            android:id="@+id/add_picture_tv"
+            android:text="图片介绍"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:textSize="@dimen/textSize15"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <ImageView
+            android:background="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <TextView
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:id="@+id/add_video_tv"
+            android:text="视频展示"
+            android:textSize="@dimen/textSize15"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <ImageView
+            android:background="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <TextView
+            android:id="@+id/add_music_tv"
+            android:text="音乐制作"
+            android:textSize="@dimen/textSize15"
+            android:paddingLeft="20dp"
+            android:paddingTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <ImageView
+            android:background="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

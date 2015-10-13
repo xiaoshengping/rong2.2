@@ -134,6 +134,7 @@
         <activity android:name=".uilt.ActivityApplyActivity" />
         <activity android:name=".uilt.InviteMessageActivity" />
         <activity android:name=".uilt.NickNameActivity" />
+        <activity android:name=".uilt.SelectPictureActivity" />
         <activity
             android:name=".uilt.CompanyInviteMessageActivity"
             android:label="@string/title_activity_company_invite_message" >
@@ -159,6 +160,26 @@
         <activity
             android:name=".uilt.OneselfExperienceActivity"
             android:label="@string/title_activity_oneself_experience" >
+        </activity>
+        <activity
+            android:name=".uilt.ProductionResumeActivity"
+            android:label="@string/title_activity_production_resume" >
+        </activity>
+        <activity
+            android:name=".uilt.AddPictureActivity"
+            android:label="@string/title_activity_add_picture" >
+        </activity>
+        <activity
+            android:name=".uilt.AddVideoActivity"
+            android:label="@string/title_activity_add_video" >
+        </activity>
+        <activity
+            android:name=".uilt.AddMusicActivity"
+            android:label="@string/title_activity_add_music" >
+        </activity>
+        <activity
+            android:name=".uilt.AddMusicProductionActivity"
+            android:label="@string/title_activity_add_music_production" >
         </activity>
     </application>
 
