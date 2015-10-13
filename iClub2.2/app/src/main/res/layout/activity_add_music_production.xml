@@ -1,0 +1,99 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/layoutBackground"
+    android:orientation="vertical"
+    tools:context="com.jeremy.Customer.uilt.AddMusicProductionActivity">
+    <include layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+
+        android:gravity="center"
+        android:id="@+id/tailt_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:textSize="@dimen/textSize18"
+            android:layout_marginLeft="20dp"
+            android:text="名称"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/music_name_ed"
+            android:paddingLeft="10dp"
+            android:textColorHint="@color/editTextPromptColor"
+            android:hint="请输入音乐名字"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:layout_marginLeft="20dp"
+        android:layout_below="@+id/tailt_layout"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    <Button
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/add_music_production_bt"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/textColor9a4274"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@mipmap/add_music_icon"
+         />
+        <LinearLayout
+            android:id="@+id/music_layout"
+            android:visibility="gone"
+            android:layout_marginBottom="40dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <TextView
+
+            android:id="@+id/text_tv"
+            android:paddingLeft="20dp"
+            android:text="你选择的音乐文件: "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/show_music_tv"
+                android:paddingLeft="20dp"
+
+                android:text="hdhfh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/confirm_bt"
+        android:text="确定"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@mipmap/red_button_icon"
+        android:layout_centerHorizontal="true" />
+</LinearLayout>

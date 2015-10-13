@@ -47,4 +47,5 @@
     <string name="title_activity_add_picture">AddPictureActivity</string>
     <string name="title_activity_add_video">AddVideoActivity</string>
     <string name="title_activity_add_music">AddMusicActivity</string>
+    <string name="title_activity_add_music_production">AddMusicProductionActivity</string>
 </resources>

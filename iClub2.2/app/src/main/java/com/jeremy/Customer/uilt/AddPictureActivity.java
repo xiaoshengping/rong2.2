@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -128,7 +127,7 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddPicture(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("图片上传",responseInfo.result);
+                finish();
 
 
             }

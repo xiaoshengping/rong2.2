@@ -219,17 +219,10 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
                 break;
             case R.id.job_city_layout:
-                Intent intentCity = new Intent(AddResumeActivity.this, OneselfExperienceActivity.class);  //方法1
-                /*intentCity.putExtra("Status", areaBean.PROVINCE);
-                intentCity.putExtra("Company",-1);*/
-                startActivityForResult(intentCity, 12);
-                //overridePendingTransition(R.anim.in_from_buttom, R.anim.out_to_not);*/
+
                 break;
             case R.id.next_resume_tv:
-               // intiSaveData();
-                Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
-                //intent.putExtra("resumeid", saveValueBean.getResumeid());
-                startActivity(intent);
+                intiSaveData();
                 break;
 
 
@@ -261,8 +254,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 requestParams.addBodyParameter("resumeJobName", userJobName);
                 requestParams.addBodyParameter("resumeZhName", userName);
                 requestParams.addBodyParameter("usericon", new File(touXiangPath));
-                //requestParams.addBodyParameter("resumeJobCategory", job_classfite_num + "");
-                //requestParams.addBodyParameter("resumeCityId", job_city_num + "");
+                requestParams.addBodyParameter("resumeJobCategory", "12");
+                //requestParams.addBodyParameter("resumeCityId", job_city_num);
                 requestParams.addBodyParameter("resumeMobile", mobile);
                 requestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
 
@@ -278,14 +271,17 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                                 SaveResumeValueBean saveValueBean = parmeBean.getValue();
                                 if (saveValueBean.getMessage().equals("success")) {
                                     MyAppliction.showToast("提交数据成功");
+                                    Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
+                                    intent.putExtra("resumeid", saveValueBean.getResumeid());
+                                    startActivity(intent);
+                                    finish();
                                 } else {
                                     MyAppliction.showToast(saveValueBean.getMessage());
                                 }
-                                Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
-                                intent.putExtra("resumeid", saveValueBean.getResumeid());
-                                startActivity(intent);
 
-                                finish();
+
+
+
 
 
                             }
@@ -550,6 +546,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 //Log.e("age00000",age+"");
                 if (Integer.valueOf(age)>0){
                     resumeAgeTv.setText(age);
+                    resumeAgeTv.setTextColor(getResources().getColor(R.color.textColor242424));
                 }else {
                     Toast.makeText(AddResumeActivity.this, "亲,您设置的年龄要大于0哦!", Toast.LENGTH_LONG).show();
                 }

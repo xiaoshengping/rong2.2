@@ -62,13 +62,13 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
     private void intiView() {
         tailtText.setText("我的简历");
-        if (resumeValueBeans.size()!=0){
+        /*if (resumeValueBeans.size()!=0){
                 notResumeTv.setVisibility(View.GONE);
             addResumeTv.setText("继续添加");
             }else {
                 notResumeTv.setVisibility(View.VISIBLE);
             addResumeTv.setText("马上添加");
-            }
+            }*/
 
 
     }

@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -103,7 +102,7 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddMovie(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("jjdjjfjf",responseInfo.result);
+                finish();
             }
 
             @Override
