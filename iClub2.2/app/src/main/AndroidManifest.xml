@@ -177,6 +177,10 @@
             android:name=".uilt.AddMusicActivity"
             android:label="@string/title_activity_add_music" >
         </activity>
+        <activity
+            android:name=".uilt.AddMusicProductionActivity"
+            android:label="@string/title_activity_add_music_production" >
+        </activity>
     </application>
 
 </manifest>
