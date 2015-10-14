@@ -62,13 +62,8 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
     private void intiView() {
         tailtText.setText("我的简历");
-        /*if (resumeValueBeans.size()!=0){
-                notResumeTv.setVisibility(View.GONE);
-            addResumeTv.setText("继续添加");
-            }else {
-                notResumeTv.setVisibility(View.VISIBLE);
-            addResumeTv.setText("马上添加");
-            }*/
+
+
 
 
     }
@@ -76,7 +71,14 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
     @Override
     protected void onResume() {
         super.onResume();
-        resumeListLv.onRefreshComplete();
+        /*if (resumeValueBeans.size()==0){
+            notResumeTv.setVisibility(View.VISIBLE);
+            addResumeTv.setText("马上添加");
+        }else {
+            notResumeTv.setVisibility(View.GONE);
+            addResumeTv.setText("继续添加");
+        }*/
+        resumeListLv.setRefreshing();
     }
 
     private void intiListView() {
@@ -89,7 +91,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
         addResumeTv.setOnClickListener(this);
         tailtReturnTv.setOnClickListener(this);
         resumeValueBeans=new ArrayList<ResumeValueBean>();
-        resumeListAdapter=new ResumeListAdapter(resumeValueBeans,ResumeActivity.this);
+        resumeListAdapter=new ResumeListAdapter(resumeValueBeans,ResumeActivity.this,resumeListLv);
         listView.setAdapter(resumeListAdapter);
         resumeListLv.setMode(PullToRefreshBase.Mode.BOTH);
         resumeListLv.setOnRefreshListener(this);
@@ -144,6 +146,15 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
                     }, resumeValueBeans, resumeListAdapter);
                     resumeListLv.onRefreshComplete();
+                    if (resumeValueBeans.size()!=0){
+                        notResumeTv.setVisibility(View.GONE);
+                        addResumeTv.setText("继续添加");
+                    }else {
+                        notResumeTv.setVisibility(View.VISIBLE);
+                        addResumeTv.setText("马上添加");
+
+                    }
+
 
                 }
 

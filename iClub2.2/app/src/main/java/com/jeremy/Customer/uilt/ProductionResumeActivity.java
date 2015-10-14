@@ -52,6 +52,7 @@ public class ProductionResumeActivity extends ActionBarActivity implements View.
         tailtText.setText("添加作品");
         saveText.setVisibility(View.VISIBLE);
         saveText.setText("完成");
+        saveText.setOnClickListener(this);
         addPictureTv.setOnClickListener(this);
         addVideoTv.setOnClickListener(this);
         addMusicTv.setOnClickListener(this);
@@ -63,7 +64,7 @@ public class ProductionResumeActivity extends ActionBarActivity implements View.
                 finish();
                 break;
             case R.id.save_text:
-
+                 finish();
                 break;
             case R.id.add_picture_tv:
                 Intent picturnIntent=new Intent(ProductionResumeActivity.this,AddPictureActivity.class);

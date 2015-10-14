@@ -75,7 +75,7 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
             case R.id.save_text:
              if (!TextUtils.isEmpty(resumeid)&&!TextUtils.isEmpty(musicName)&&
                         !TextUtils.isEmpty(musicPath)){
-                     saveMusicData("432",musicName,musicPath);
+                     saveMusicData(resumeid,musicName,musicPath);
                 }else {
                     MyAppliction.showToast("你还没有音频文件");
                 }

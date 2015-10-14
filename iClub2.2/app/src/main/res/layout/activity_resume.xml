@@ -14,11 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="300dp" />
     <com.handmark.pulltorefresh.library.PullToRefreshListView
-        xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@+id/resume_list_lv"
         android:scrollbars="none"
         android:dividerHeight="3dp"
-        ptr:ptrHeaderTextColor="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

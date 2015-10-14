@@ -271,16 +271,13 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                                 SaveResumeValueBean saveValueBean = parmeBean.getValue();
                                 if (saveValueBean.getMessage().equals("success")) {
                                     MyAppliction.showToast("提交数据成功");
-                                    Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
-                                    intent.putExtra("resumeid", saveValueBean.getResumeid());
-                                    startActivity(intent);
-                                    finish();
                                 } else {
                                     MyAppliction.showToast(saveValueBean.getMessage());
                                 }
-
-
-
+                                Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
+                                intent.putExtra("resumeid", saveValueBean.getResumeid());
+                                startActivity(intent);
+                                finish();
 
 
 

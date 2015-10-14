@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.MessageBean;
 import com.jeremy.Customer.bean.ParmeBean;
@@ -39,8 +40,12 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
     private int resumeId;
     private String state;
     private Button stateDialogButton;
-    public ResumeListAdapter(List<ResumeValueBean> data, Context context) {
+    private PullToRefreshListView resumeListLv;
+
+    private int positions;
+    public ResumeListAdapter(List<ResumeValueBean> data, Context context,PullToRefreshListView resumeListLv) {
         super(data, context);
+        this.resumeListLv=resumeListLv;
     }
 
     @Override
@@ -59,6 +64,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
     }
 
     private void inti(int position) {
+        positions=position;
         viewHolde.resumeJobNameTv.setText(data.get(position).getResumeJobName());
         viewHolde.createTimeTv.setText(data.get(position).getCreateTime());
         viewHolde.updateTimeTv.setText("浏览量: " + data.get(position).getResumeViewCount());
@@ -83,10 +89,12 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
             case R.id.refresh_button:
                 if (!TextUtils.isEmpty(Integer.toString(resumeId))){
                     refreshResumeData(Integer.toString(resumeId));
+                    //Log.e("refresh_button","--------"+positions);
                 }
                 break;
             case R.id.more_button:
                 showDialog();
+                //Log.e("more_button", "--------" + positions);
                 break;
 
 
@@ -141,6 +149,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
                     }
 
                 }
+                //Log.e("stateDialogButton", "--------" + positions);
                 dialog.dismiss();
             }
         });
@@ -148,6 +157,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
             @Override
             public void onClick(View v) {
                 deleteResumeData(resumeId+"");
+                //Log.e("deleteDialogButton", "--------" + positions);
                 dialog.dismiss();
             }
         });
@@ -174,6 +184,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
                     if (parmeBean.getValue().getMessage().equals("success")){
                         MyAppliction.showToast("删除简历成功");
                         notifyDataSetChanged();
+                        resumeListLv.setRefreshing();
                     }else {
                         MyAppliction.showToast("删除简历失败");
 
@@ -212,12 +223,13 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
                 if (parmeBean.getState().equals("success")){
                     if (parmeBean.getValue().getMessage().equals("success")){
                         MyAppliction.showToast(text);
-                        if (text.equals("简历已保密")){
+                        if (state.equals("0")){
                             viewHolde.resumeStateTv.setText("保密");
-                        }else if (text.equals("简历已公开")){
+                        }else if (state.equals("1")){
                             viewHolde.resumeStateTv.setText("公开");
                         }
-
+                        notifyDataSetChanged();
+                        resumeListLv.setRefreshing();
                     }else {
                         MyAppliction.showToast("简历保存失败");
 
@@ -249,6 +261,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
                 if (parmeBean.getState().equals("success")){
                     if (parmeBean.getValue().getMessage().equals("success")){
                         MyAppliction.showToast("刷新简历成功");
+                        resumeListLv.setRefreshing();
                     }else {
                         MyAppliction.showToast("刷新简历失败");
 

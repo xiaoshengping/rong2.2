@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -101,6 +102,8 @@ public class AddMusicProductionActivity extends ActionBarActivity implements Vie
                 break;
         }
     }
+
+
     private void showDialog() {
         View view = this.getLayoutInflater().inflate(R.layout.photo_choose_dialog, null);
         final Dialog dialog = new Dialog(this, R.style.transparentFrameWindowStyle);
@@ -189,5 +192,16 @@ public class AddMusicProductionActivity extends ActionBarActivity implements Vie
                 break;
         }
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==KeyEvent.KEYCODE_BACK){
+            intent.putExtra("musicPath","");
+            intent.putExtra("musicName","");
+            setResult(10, intent);
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 }
