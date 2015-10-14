@@ -185,6 +185,7 @@
             android:name=".uilt.ResumeParticularsActivity"
             android:label="@string/title_activity_resume_particulars" >
         </activity>
+        <activity android:name=".view.MusicActivity"></activity>
     </application>
 
 </manifest>
