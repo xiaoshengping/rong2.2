@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jeremy.Customer" >
+    package="com.jeremy.Customer">
 
     <!-- ###################声明SDK使用的相关权限###################### -->
     <!-- 友盟 -->
@@ -23,8 +23,10 @@
      To retrieve OAuth 2.0 tokens or invalidate tokens to disconnect a user. This disconnect
      option is required to comply with the Google+ Sign-In developer policies
     -->
-    <uses-permission android:name="android.permission.USE_CREDENTIALS" /> <!-- To retrieve the account name (email) as part of sign-in: -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+    <!-- To retrieve the account name (email) as part of sign-in: -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
@@ -34,10 +36,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".HomeActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,24 +48,19 @@
         </activity>
         <activity
             android:name=".uilt.LoginActivity"
-            android:label="@string/title_activity_login" >
-        </activity>
+            android:label="@string/title_activity_login"></activity>
         <activity
             android:name=".uilt.RegisterActivity"
-            android:label="@string/title_activity_register" >
-        </activity>
+            android:label="@string/title_activity_register"></activity>
         <activity
             android:name=".uilt.RoleRegisterActivity"
-            android:label="@string/title_activity_role_register" >
-        </activity>
+            android:label="@string/title_activity_role_register"></activity>
         <activity
             android:name=".uilt.AnnouncementMessageActivity"
-            android:label="@string/title_activity_announcement" >
-        </activity>
+            android:label="@string/title_activity_announcement"></activity>
         <activity
             android:name=".uilt.DetailedInformationActivity"
-            android:label="@string/title_activity_detailed_information" >
-        </activity>
+            android:label="@string/title_activity_detailed_information"></activity>
         <!-- ###################友盟使用的Activity####-开始################## -->
         <!-- 分享编辑页 -->
         <activity
@@ -72,14 +69,13 @@
             android:launchMode="singleTask"
             android:noHistory="true"
             android:theme="@style/Theme.UMDialog"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
-        </activity>
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
 
         <!-- ############ QQ空间和QQ SSO授权的Activity注册 ############ -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -92,8 +88,7 @@
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -104,30 +99,24 @@
         <!-- ###################添加UmengAppkey###################### -->
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="55cc370967e58ead01000232" >
-        </meta-data>
+            android:value="55cc370967e58ead01000232"></meta-data>
         <!-- ###################友盟使用的Activity####-结束################## -->
 
         <activity
             android:name=".uilt.MineMoreActivity"
-            android:label="@string/title_activity_mine_more" >
-        </activity>
+            android:label="@string/title_activity_mine_more"></activity>
         <activity
             android:name=".uilt.ModificationPswActivity"
-            android:label="@string/title_activity_modification_psw" >
-        </activity>
+            android:label="@string/title_activity_modification_psw"></activity>
         <activity
             android:name=".uilt.FeedBackActivity"
-            android:label="@string/title_activity_feed_back" >
-        </activity>
+            android:label="@string/title_activity_feed_back"></activity>
         <activity
             android:name=".uilt.TalentsDeliverMessageActivity"
-            android:label="@string/title_activity_talents_deliver_message" >
-        </activity>
+            android:label="@string/title_activity_talents_deliver_message"></activity>
         <activity
             android:name=".uilt.MerchantJobParticularActivity"
-            android:label="@string/title_activity_merchant_job_particular" >
-        </activity>
+            android:label="@string/title_activity_merchant_job_particular"></activity>
         <activity android:name=".uilt.RecommenListActivity" />
         <activity android:name=".uilt.ActivityDetailActivity" />
         <activity android:name=".uilt.TalentsDetailsActivity" />
@@ -137,55 +126,47 @@
         <activity android:name=".uilt.SelectPictureActivity" />
         <activity
             android:name=".uilt.CompanyInviteMessageActivity"
-            android:label="@string/title_activity_company_invite_message" >
-        </activity>
+            android:label="@string/title_activity_company_invite_message"></activity>
         <activity android:name=".uilt.JobDetailsActivity" />
 
         <!-- 测试 -->
         <activity android:name=".myActivity" />
         <activity
             android:name=".uilt.CommentGradeActivity"
-            android:label="@string/title_activity_comment_grade" >
-        </activity>
+            android:label="@string/title_activity_comment_grade"></activity>
         <activity android:name=".citySelection.CitySelectionActivity" />
         <activity
             android:name=".uilt.ResumeActivity"
-            android:label="@string/title_activity_resume" >
-        </activity>
+            android:label="@string/title_activity_resume"></activity>
         <activity
             android:name=".uilt.AddResumeActivity"
-            android:label="@string/title_activity_add_resume" >
-        </activity>
+            android:label="@string/title_activity_add_resume"></activity>
         <activity android:name=".uilt.JobChoiceActivity" />
         <activity
             android:name=".uilt.OneselfExperienceActivity"
-            android:label="@string/title_activity_oneself_experience" >
-        </activity>
+            android:label="@string/title_activity_oneself_experience"></activity>
         <activity
             android:name=".uilt.ProductionResumeActivity"
-            android:label="@string/title_activity_production_resume" >
-        </activity>
+            android:label="@string/title_activity_production_resume"></activity>
         <activity
             android:name=".uilt.AddPictureActivity"
-            android:label="@string/title_activity_add_picture" >
-        </activity>
+            android:label="@string/title_activity_add_picture"></activity>
         <activity
             android:name=".uilt.AddVideoActivity"
-            android:label="@string/title_activity_add_video" >
-        </activity>
+            android:label="@string/title_activity_add_video"></activity>
         <activity
             android:name=".uilt.AddMusicActivity"
-            android:label="@string/title_activity_add_music" >
-        </activity>
+            android:label="@string/title_activity_add_music"></activity>
         <activity
             android:name=".uilt.AddMusicProductionActivity"
-            android:label="@string/title_activity_add_music_production" >
-        </activity>
+            android:label="@string/title_activity_add_music_production"></activity>
         <activity
             android:name=".uilt.ResumeParticularsActivity"
-            android:label="@string/title_activity_resume_particulars" >
-        </activity>
-        <activity android:name=".view.MusicActivity"></activity>
+            android:label="@string/title_activity_resume_particulars"></activity>
+        <activity
+            android:name=".view.MusicActivity"
+            android:theme="@android:style/Theme.Translucent"></activity>
+        <activity android:name=".view.SpaceImageDetailActivity"></activity>
     </application>
 
 </manifest>

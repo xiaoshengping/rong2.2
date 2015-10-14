@@ -40,6 +40,29 @@ public class TalentValueBean implements Serializable {
     private String integrity;//80" // 诚信度
     private String transactionRecord;//合作记录
 
+    public String getAuthenticity() {
+        return authenticity;
+    }
+
+    public void setAuthenticity(String authenticity) {
+        this.authenticity = authenticity;
+    }
+
+    public String getIntegrity() {
+        return integrity;
+    }
+
+    public void setIntegrity(String integrity) {
+        this.integrity = integrity;
+    }
+
+    public String getTransactionRecord() {
+        return transactionRecord;
+    }
+
+    public void setTransactionRecord(String transactionRecord) {
+        this.transactionRecord = transactionRecord;
+    }
 
     public String getInviteCount() {
         return inviteCount;

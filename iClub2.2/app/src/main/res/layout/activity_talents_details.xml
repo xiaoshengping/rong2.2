@@ -53,7 +53,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerHorizontal="true"
-
+                android:scaleType="centerCrop"
                 android:background="@mipmap/mine_head_default"
 
                 app:roundHeight="50dp"
@@ -71,6 +71,14 @@
                 android:text="啦啦啦"
                 android:textColor="@color/home_talents_item_name"
                 android:textSize="20dp" />
+            <ImageView
+                android:id="@+id/talents_sex_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/talents_name_tv"
+                android:src="@mipmap/man_big"
+                android:layout_alignTop="@+id/talents_name_tv"
+                android:layout_alignBottom="@+id/talents_name_tv"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -93,6 +101,7 @@
                     android:textSize="16dp" />
 
                 <TextView
+                    android:id="@+id/talents_age_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -115,6 +124,7 @@
                     android:textSize="16dp" />
 
                 <TextView
+                    android:id="@+id/talents_site_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -137,6 +147,7 @@
                     android:textSize="16dp" />
 
                 <TextView
+                    android:id="@+id/talents_profession_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

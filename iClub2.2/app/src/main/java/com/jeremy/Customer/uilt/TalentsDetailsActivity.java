@@ -1,6 +1,7 @@
 package com.jeremy.Customer.uilt;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
@@ -10,6 +11,7 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -21,9 +23,20 @@ import com.jeremy.Customer.adapter.MusicAdapter;
 import com.jeremy.Customer.adapter.PictureAdapter;
 import com.jeremy.Customer.adapter.VideoAdapter;
 import com.jeremy.Customer.bean.Identification;
+import com.jeremy.Customer.bean.TalentValueBean;
 import com.jeremy.Customer.bean.Utility;
+import com.jeremy.Customer.bean.mine.ResumeMovie;
+import com.jeremy.Customer.bean.mine.ResumeMusic;
+import com.jeremy.Customer.bean.mine.ResumePicture;
+import com.jeremy.Customer.url.AppUtilsUrl;
+import com.jeremy.Customer.view.MusicActivity;
 import com.jeremy.Customer.view.MyGridView;
 import com.jeremy.Customer.view.MyScrollView;
+import com.jeremy.Customer.view.SpaceImageDetailActivity;
+import com.lidroid.xutils.BitmapUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class TalentsDetailsActivity extends Activity implements View.OnClickListener, MyScrollView.OnScrollListener {
@@ -39,14 +52,26 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private TextView personal_data_button_tv, individual_works_button_tv;
     private TextView personal_data_button_tv1, individual_works_button_tv1;
     private LinearLayout individual_works_ll, personal_data_ll;
+    private ImageView talents_hear_iv;
+    private TextView talents_name_tv;
+    private ImageView talents_sex_iv;
+    private TextView talents_age_tv,talents_site_tv,talents_profession_tv;
+    private TextView talents_self_introduction_tv,talents_work_experience_tv,talents_reputation_tv;
 
     private int mScrollY = 0;
     private Bitmap bitmap;
+
+    private BitmapUtils bitmapUtils;
+
+    private TalentValueBean talentValueBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talents_details);
+
+        bitmapUtils=new BitmapUtils(this);
+        talentValueBean = (TalentValueBean) getIntent().getSerializableExtra("Detail");
         init();
         initTitleAnimation();
         initVideoProduction();
@@ -54,21 +79,49 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         initPictureProduction();
     }
 
+    //初始化界面
     private void init() {
         myScrollView = (MyScrollView) findViewById(R.id.talents_detail_msv);
         myScrollView.setOnScrollListener(this);
-
         personal_data_button_tv = (TextView) findViewById(R.id.personal_data_button_tv);
         individual_works_button_tv = (TextView) findViewById(R.id.individual_works_button_tv);
         personal_data_button_tv1 = (TextView) findViewById(R.id.personal_data_button_tv1);
         individual_works_button_tv1 = (TextView) findViewById(R.id.individual_works_button_tv1);
         individual_works_ll = (LinearLayout) findViewById(R.id.individual_works_ll);
         personal_data_ll = (LinearLayout) findViewById(R.id.personal_data_ll);
+        talents_hear_iv = (ImageView)findViewById(R.id.talents_hear_iv);
+        talents_name_tv = (TextView)findViewById(R.id.talents_name_tv);
+        talents_sex_iv = (ImageView)findViewById(R.id.talents_sex_iv);
+        talents_age_tv = (TextView)findViewById(R.id.talents_age_tv);
+        talents_site_tv = (TextView)findViewById(R.id.talents_site_tv);
+        talents_profession_tv = (TextView)findViewById(R.id.talents_profession_tv);
+        talents_self_introduction_tv = (TextView)findViewById(R.id.talents_self_introduction_tv);
+        talents_work_experience_tv = (TextView)findViewById(R.id.talents_work_experience_tv);
+        talents_reputation_tv = (TextView)findViewById(R.id.talents_reputation_tv);
+        invite_a_few_tv = (TextView)findViewById(R.id.invite_a_few_tv);
 
         personal_data_button_tv.setOnClickListener(this);
         individual_works_button_tv.setOnClickListener(this);
         personal_data_button_tv1.setOnClickListener(this);
         individual_works_button_tv1.setOnClickListener(this);
+
+        //加载数据
+        bitmapUtils.display(talents_back_iv, AppUtilsUrl.ImageBaseUrl + talentValueBean.getResumeUserbg());
+        invite_a_few_tv.setText("邀约数\n" + talentValueBean.getInviteCount());
+        bitmapUtils.display(talents_hear_iv, AppUtilsUrl.ImageBaseUrl + talentValueBean.getUsericon());
+        talents_name_tv.setText(talentValueBean.getResumeZhName());
+        if(talentValueBean.getResumeSex()==0){
+            talents_sex_iv.setImageResource(R.mipmap.man_big);
+        }else {
+            talents_sex_iv.setImageResource(R.mipmap.woman_big);
+        }
+        talents_age_tv.setText(talentValueBean.getResumeAge()+"");
+        talents_site_tv.setText(talentValueBean.getResumeWorkPlace());
+        talents_profession_tv.setText(talentValueBean.getResumeJobName());
+        talents_self_introduction_tv.setText(talentValueBean.getResumeInfo());
+        talents_work_experience_tv.setText(talentValueBean.getResumeWorkExperience());
+        talents_reputation_tv.setText(talentValueBean.getIntegrity()+"\n"+talentValueBean.getAuthenticity()+"\n"+talentValueBean.getTransactionRecord());
+
     }
 
     //初始化标题栏动画
@@ -86,7 +139,8 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     //初始化视频作品
     private void initVideoProduction() {
         video_production_list = (ListView) findViewById(R.id.video_production_list);
-        VideoAdapter videoAdapter = new VideoAdapter(this);
+        List<ResumeMovie> resumeMovieData = talentValueBean.getResumeMovie();
+        VideoAdapter videoAdapter = new VideoAdapter(this,resumeMovieData);
         video_production_list.setAdapter(videoAdapter);
         Utility.setListViewHeightBasedOnChildren(video_production_list);
     }
@@ -94,16 +148,47 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     //初始化音乐作品
     private void initMusicProduction() {
         music_production_list = (ListView) findViewById(R.id.music_production_list);
-        MusicAdapter musicAdapter = new MusicAdapter(this);
+        List<ResumeMusic> resumeMusic = talentValueBean.getResumeMusic();
+        MusicAdapter musicAdapter = new MusicAdapter(this,resumeMusic);
         music_production_list.setAdapter(musicAdapter);
         Utility.setListViewHeightBasedOnChildren(music_production_list);
+
+        music_production_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(TalentsDetailsActivity.this, MusicActivity.class);  //方法1
+                intent.putExtra("url", AppUtilsUrl.ImageBaseUrl + talentValueBean.getResumeMusic().get(position).getPath());
+                intent.putExtra("musicName", talentValueBean.getResumeMusic().get(position).getTitle());
+                intent.putExtras(intent);
+                startActivity(intent);
+                overridePendingTransition(R.anim.out_to_not,R.anim.music_in);
+            }
+        });
+
     }
+
+    private List<ResumePicture> resumePicture;
 
     //初始化图片作品
     private void initPictureProduction() {
         picture_production_list = (MyGridView) findViewById(R.id.picture_production_list);
-        PictureAdapter pictureAdapter = new PictureAdapter(this);
+        resumePicture = talentValueBean.getResumePicture();
+        PictureAdapter pictureAdapter = new PictureAdapter(this,resumePicture);
         picture_production_list.setAdapter(pictureAdapter);
+
+        picture_production_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(TalentsDetailsActivity.this, SpaceImageDetailActivity.class);
+                Bundle bundle=new Bundle();
+                bundle.putParcelableArrayList("list", (ArrayList) resumePicture);
+                bundle.putInt("num", 2);
+                bundle.putInt("MaxNum",resumePicture.size());
+                intent.putExtras(bundle);
+                startActivity(intent);
+                overridePendingTransition(R.anim.spaceimagedetail_in,R.anim.out_to_not);
+            }
+        });
     }
 
     @Override
@@ -111,7 +196,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
         mScrollY = scrollY;
 
-        TextView a = (TextView) findViewById(R.id.talents_name_tv);
+//        TextView a = (TextView) findViewById(R.id.talents_name_tv);
         //邀约数淡出淡入动画
         int invite = Identification.dip2px(this, 100);
         float lucency = ((float) (invite - scrollY) / (float) invite);//控件透明度
@@ -186,7 +271,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         }
 
 
-        a.setText(scrollY + "");
+//        a.setText(scrollY + "");
     }
 
 

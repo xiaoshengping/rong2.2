@@ -6,10 +6,10 @@ import java.io.Serializable;
  * Created by Administrator on 2015/5/20.
  */
 public class ResumeMovie implements Serializable {
-        private String path;
+        private String path;//视频路径
         private int resumeid;
-        private int resumemovieid;
-        private String title;
+        private int resumemovieid;//视频ID
+        private String title;//视频标题
 
     public String getPath() {
         return path;
