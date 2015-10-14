@@ -111,10 +111,10 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (resumeValueBeans.size()!=0){
-                    /*Intent intent = new Intent(ResumeActivity.this, ResumeListParticularActivity.class);
-                    intent.putExtra("resumeValueBeans", resumeValueBeans.get(position-1));
-                    intent.putExtra("flage", "ResumeFragment");
-                    startActivity(intent);*/
+                    Intent intent = new Intent(ResumeActivity.this, ResumeParticularsActivity.class);
+                    //intent.putExtra("resumeValueBeans", resumeValueBeans.get(position-1));
+                    //intent.putExtra("flage", "ResumeFragment");
+                    startActivity(intent);
                 }
 
 
