@@ -182,6 +182,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <RadioButton
+                android:id="@+id/oneself_informaction_rb"
                 android:text="个人资料"
                 android:layout_weight="1"
                 android:button="@null"
@@ -191,6 +192,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <RadioButton
+                android:id="@+id/oneself_production_rb"
                 android:text="个人作品"
                 android:layout_weight="1"
                 android:button="@null"
@@ -202,6 +204,8 @@
 
         </RadioGroup>
         <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/resume_fragment_layout"
         android:background="@color/white"
         android:layout_below="@+id/resume_radioGroup"
         android:layout_width="match_parent"
