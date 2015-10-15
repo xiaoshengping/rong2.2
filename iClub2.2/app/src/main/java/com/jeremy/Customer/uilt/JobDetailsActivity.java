@@ -23,6 +23,7 @@ import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.MyDialog;
 import com.jeremy.Customer.bean.RecruitmentListBean;
 import com.jeremy.Customer.view.MyGridView;
+import com.lidroid.xutils.BitmapUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,14 +46,20 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
     private TextView work_pay_tv,describe_tv,require_tv,position_tv,workingtime_and_applyjobcount_tv,companyname_tv,job_informantion_tv,contact_way_tv,address_tv,reputation_value_tv,evaluate_tv;
 
     private RecruitmentListBean recruitmentListBean;
+    private BitmapUtils bitmapUtils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_position_details);
+
+        bitmapUtils=new BitmapUtils(this);
+        recruitmentListBean = (RecruitmentListBean) getIntent().getSerializableExtra("Detail");
+
         InitTextView();
         InitViewPager();
     }
+
 
     /**
      * 初始化头标
@@ -95,7 +102,7 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
         mPager.setCurrentItem(0);
         mPager.setOnPageChangeListener(new MyOnPageChangeListener());
 
-        initPictureProduction(company_details);
+//        initPictureProduction(company_details);
         initPositionDetails(position_details);
 
     }
@@ -117,6 +124,16 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
         reputation_value_tv = (TextView) view.findViewById(R.id.reputation_value_tv);
         evaluate_tv = (TextView) view.findViewById(R.id.evaluate_tv);
 
+        position_tv.setText(recruitmentListBean.getPosition());
+        work_pay_tv.setText(recruitmentListBean.getWorkPay());
+        workingtime_and_applyjobcount_tv.setText("发布时间  "+recruitmentListBean.getPuttime()+"        投递数量  "+recruitmentListBean.getApplyjobCount());
+        companyname_tv.setText(recruitmentListBean.getCompanyName());
+        job_informantion_tv.setText(recruitmentListBean.getWorkPlace()+"\n" +recruitmentListBean.getRecruitingNumbers()+
+                "\n" +recruitmentListBean.getWorkingTime()+
+                "\n" +recruitmentListBean.getWorkingHours());
+        describe_tv.setText(recruitmentListBean.getJobInfo());
+        require_tv.setText(recruitmentListBean.getJobRequirements());
+        reputation_value_tv.setText(recruitmentListBean.getIntegrity()+"\n"+recruitmentListBean.getAuthenticity()+"\n"+recruitmentListBean.getTransactionRecord());
 
         //初始化职位描述高度
         ViewTreeObserver viewTreeObserver = describe_tv.getViewTreeObserver();

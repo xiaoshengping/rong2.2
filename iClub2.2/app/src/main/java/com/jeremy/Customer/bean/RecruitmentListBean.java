@@ -29,6 +29,51 @@ public class RecruitmentListBean implements Serializable {
     private String workingHours;//工作时长
     private String workingTime;//工作时间
     private String applyjobCount;//投递数量
+    private String BEicon; //公司介绍图片
+    private String BEcompanyInfo;//公司简介
+    private String authenticity; // 真实性
+    private String integrity;// 诚信度
+    private String transactionRecord; //合作记录
+
+    public String getAuthenticity() {
+        return authenticity;
+    }
+
+    public void setAuthenticity(String authenticity) {
+        this.authenticity = authenticity;
+    }
+
+    public String getBEcompanyInfo() {
+        return BEcompanyInfo;
+    }
+
+    public void setBEcompanyInfo(String BEcompanyInfo) {
+        this.BEcompanyInfo = BEcompanyInfo;
+    }
+
+    public String getIntegrity() {
+        return integrity;
+    }
+
+    public void setIntegrity(String integrity) {
+        this.integrity = integrity;
+    }
+
+    public String getBEicon() {
+        return BEicon;
+    }
+
+    public void setBEicon(String BEicon) {
+        this.BEicon = BEicon;
+    }
+
+    public String getTransactionRecord() {
+        return transactionRecord;
+    }
+
+    public void setTransactionRecord(String transactionRecord) {
+        this.transactionRecord = transactionRecord;
+    }
 
     public String getWorkingHours() {
         return workingHours;

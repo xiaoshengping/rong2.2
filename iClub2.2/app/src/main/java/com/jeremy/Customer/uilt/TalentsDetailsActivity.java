@@ -1,16 +1,20 @@
 package com.jeremy.Customer.uilt;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -65,6 +69,13 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
     private TalentValueBean talentValueBean;
 
+    private Thread thread;
+    private static final int MAX = 6;//初始maxLine大小
+    private int maxLines;
+    private static final int TIME = 40;//间隔时间
+    private boolean hasMesure1 = false,hasMesure2 = false;
+    private TextView self_introduction_button_tv,work_experience_button_tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,11 +110,53 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         talents_work_experience_tv = (TextView)findViewById(R.id.talents_work_experience_tv);
         talents_reputation_tv = (TextView)findViewById(R.id.talents_reputation_tv);
         invite_a_few_tv = (TextView)findViewById(R.id.invite_a_few_tv);
+        self_introduction_button_tv = (TextView)findViewById(R.id.self_introduction_button_tv);
+        work_experience_button_tv = (TextView)findViewById(R.id.work_experience_button_tv);
 
         personal_data_button_tv.setOnClickListener(this);
         individual_works_button_tv.setOnClickListener(this);
         personal_data_button_tv1.setOnClickListener(this);
         individual_works_button_tv1.setOnClickListener(this);
+        self_introduction_button_tv.setOnClickListener(this);
+        work_experience_button_tv.setOnClickListener(this);
+
+        //初始化自我介绍高度
+        ViewTreeObserver viewTreeObserver = talents_self_introduction_tv.getViewTreeObserver();
+        viewTreeObserver.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+
+            @Override
+            public boolean onPreDraw() {
+                //只需要获取一次就可以了
+                if (!hasMesure1) {
+                    //这里获取到完全展示的maxLine
+                    maxLines = talents_self_introduction_tv.getLineCount();
+                    //设置maxLine的默认值，这样用户看到View就是限制了maxLine的TextView
+                    talents_self_introduction_tv.setMaxLines(MAX);
+                    hasMesure1 = true;
+                }
+
+                return true;
+            }
+        });
+
+        //初始化工作经历高度
+        ViewTreeObserver viewTreeObserver1 = talents_work_experience_tv.getViewTreeObserver();
+        viewTreeObserver1.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+
+            @Override
+            public boolean onPreDraw() {
+                //只需要获取一次就可以了
+                if (!hasMesure2) {
+                    //这里获取到完全展示的maxLine
+                    maxLines = talents_work_experience_tv.getLineCount();
+                    //设置maxLine的默认值，这样用户看到View就是限制了maxLine的TextView
+                    talents_work_experience_tv.setMaxLines(MAX);
+                    hasMesure2 = true;
+                }
+
+                return true;
+            }
+        });
 
         //加载数据
         bitmapUtils.display(talents_back_iv, AppUtilsUrl.ImageBaseUrl + talentValueBean.getResumeUserbg());
@@ -295,6 +348,14 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
             case R.id.individual_works_button_tv1:
                 a = true;
                 break;
+            case R.id.self_introduction_button_tv:
+                self_introduction_button_tv.setVisibility(View.GONE);
+                toggle(talents_self_introduction_tv);
+                break;
+            case R.id.work_experience_button_tv:
+                work_experience_button_tv.setVisibility(View.GONE);
+                toggle(talents_work_experience_tv);
+                break;
         }
 
         buttonView(a);
@@ -328,6 +389,47 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
             personal_data_ll.setVisibility(View.VISIBLE);
         }
+    }
+
+    /**
+     * 打开TextView
+     */
+    @SuppressLint("HandlerLeak")
+    private void toggle(final TextView view){
+
+        final Handler handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                int lines = msg.what;
+                //这里接受到消息，让后更新TextView设置他的maxLine就行了
+                view.setMaxLines(lines);
+                view.postInvalidate();
+            }
+        };
+        if(thread != null)
+            handler.removeCallbacks(thread);
+
+        thread = new Thread(){
+            @Override
+            public void run() {
+                int count = MAX;
+                while(count++ <= maxLines){
+                    //每隔20mms发送消息
+                    Message message = new Message();
+                    message.what = count;
+                    handler.sendMessage(message);
+
+                    try {
+                        Thread.sleep(TIME);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                super.run();
+            }
+        };
+        thread.start();
     }
 
     public void back(View v) {

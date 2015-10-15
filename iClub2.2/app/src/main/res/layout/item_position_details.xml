@@ -229,7 +229,7 @@
                         android:layout_marginLeft="15dp"
                         android:lineSpacingExtra="9dp"
                         android:lineSpacingMultiplier="1.0"
-                        android:text="1345886456\n56898452\nwww.app.com"
+                        android:text="**********\n********\n***********"
                         android:textColor="@color/home_talents_item_name"
                         android:textSize="16sp" />
 
@@ -256,7 +256,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:lineSpacingMultiplier="1.0"
-                        android:text="广州越秀区中山四路148号水电费和萨芬的规划三国杀"
+                        android:text="*************"
                         android:textColor="@color/home_talents_item_name"
                         android:textSize="16sp" />
 
@@ -309,7 +309,8 @@
                     android:padding="6dp"
                     android:text="100位商家评论过"
                     android:textColor="#888888"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:drawableRight="@mipmap/right"/>
 
             </LinearLayout>
         </LinearLayout>
