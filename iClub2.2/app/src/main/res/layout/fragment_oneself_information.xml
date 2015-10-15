@@ -1,10 +1,333 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.fragment.OneselfInformationFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginTop="7dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+            <TextView
+                android:textColor="@color/hunTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="自我介绍"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/neself_icon"
+                android:layout_marginLeft="5dp"
+                android:textSize="15sp"
+               />
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#08ffffff"/>
+
+        <TextView
+            android:id="@+id/resumeInfo_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/jobRequirements"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="@dimen/textSize15"
+            android:lineSpacingMultiplier="1.5"
+            android:lines="4"
+
+            android:text="仅仅是接电话都或多或少都好的好的好的好的不烦不烦烦不烦部分恢复恢复很好合适的好的好的哈哈就是减肥减肥减肥就是的加减法好的好的好的基督教 就是觉得就是减肥就是减肥的减肥减肥还是说睡觉睡觉jjjsdfjjjs记得减肥解决方法解决决定将发挥发挥发挥北京时间附加费很舒服恢复和范冰冰"
+            />
+        <LinearLayout
+            android:id="@+id/oneself_more_layout"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/oneself_more_tv"
+                android:textColor="@color/redTextColor"
+                android:gravity="center"
+                android:text="查看更多"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:src="@mipmap/below_return_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginTop="7dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp">
+
+
+
+            <TextView
+                android:textColor="@color/hunTextColor"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@mipmap/neself_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="工作经历"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#08ffffff"/>
+
+        <TextView
+            android:id="@+id/resume_WorkExperience_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/jobRequirements"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="@dimen/textSize15"
+            android:lineSpacingMultiplier="1.5"
+            android:lines="4"
+            android:text="手机都几点几点睡觉的交话费呵呵啥时候回家睡觉睡觉是技术监督局大家说的很多很多很多话就是减肥减肥减肥就是的加减法好的好的好的基督教 就是觉得就是减肥就是减肥的减肥减肥还是说睡觉睡觉jjjsdfjjjs记得减肥解决方法解决决定将发挥发挥发挥北京时间附加费很舒服恢复和范冰冰"
+            />
+        <LinearLayout
+            android:id="@+id/experience_more_layout"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/experience_more_tv"
+                android:textColor="@color/redTextColor"
+                android:gravity="center"
+                android:text="查看更多"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:src="@mipmap/below_return_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginTop="7dp">
+            <TextView
+                android:textColor="@color/hunTextColor"
+                android:layout_marginTop="10dp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/neself_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="联系方式"
+                android:layout_marginLeft="20dp"
+                android:textSize="15sp"
+               />
+
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="QQ"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/textSize14"
+                android:paddingLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/resumeQq_tv"
+                android:text="QQ___"
+                android:layout_marginLeft="47dp"
+                android:textSize="@dimen/textSize14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Email"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/textSize14"
+                android:paddingLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/resumeEmail_tv"
+                android:text="Email"
+                android:layout_marginLeft="32dp"
+                android:textSize="@dimen/textSize14"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="手机号码"
+                android:layout_marginLeft="15dp"
+                android:textSize="@dimen/textSize14"
+                android:paddingLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/resumeMobile_tv"
+                android:text="手机号码"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/textSize14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginTop="7dp">
+
+
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/hunTextColor"
+                android:text="信誉值"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/textSize14"
+                android:paddingLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/reputation_tv"
+                android:text="100"
+                android:textColor="@color/redTextColor"
+                android:layout_marginLeft="25dp"
+                android:textSize="@dimen/textSize14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/hunTextColor"
+                android:text="真实性"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/textSize14"
+                android:paddingLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/real_tv"
+                android:text="100"
+                android:layout_marginLeft="25dp"
+                android:textSize="@dimen/textSize14"
+                android:textColor="@color/redTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <LinearLayout
+
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/hunTextColor"
+                android:text="合作次数"
+                android:layout_marginLeft="15dp"
+                android:textSize="@dimen/textSize14"
+                android:paddingLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:textColor="@color/redTextColor"
+                android:id="@+id/cooperation_tv"
+                android:text="100"
+                android:layout_marginLeft="10dp"
+                android:textSize="@dimen/textSize14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:src="@color/editTextPromptColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
+        android:drawableRight="@mipmap/right_return_icon"
+        android:textColor="@color/hunTextColor"
+        android:paddingLeft="30dp"
+        android:paddingRight="20dp"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:text="100位商家评论过"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</LinearLayout>

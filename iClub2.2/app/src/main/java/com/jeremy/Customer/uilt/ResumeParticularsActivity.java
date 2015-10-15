@@ -35,7 +35,6 @@ public class ResumeParticularsActivity extends ActionBarActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resume_particulars);
         ViewUtils.inject(this);
-       // customImageView.setBackgroundResource(R.mipmap.ic_launcher);
             init();
 
 

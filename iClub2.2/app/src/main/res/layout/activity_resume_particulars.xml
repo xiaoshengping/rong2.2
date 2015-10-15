@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layoutBackground"
@@ -101,7 +101,7 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="20dp"
-                android:background="#ff0033"/>
+                android:background="@color/redTextColor"/>
 
             <LinearLayout
                 android:layout_marginRight="10dp"
@@ -130,7 +130,7 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="20dp"
-                android:background="#ff0033"/>
+                android:background="@color/redTextColor"/>
             <LinearLayout
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
@@ -212,5 +212,26 @@
         android:layout_height="match_parent">
 
     </LinearLayout>
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:background="@mipmap/return_icon"
+            android:layout_width="10dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:background="@mipmap/modification_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="100dp"
+            android:layout_marginRight="20dp"
+            android:text="浏览量"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </RelativeLayout>
-</RelativeLayout>
+</ScrollView>
