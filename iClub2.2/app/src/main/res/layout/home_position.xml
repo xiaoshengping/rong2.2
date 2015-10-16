@@ -38,6 +38,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/item_position_ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1px"
@@ -99,6 +100,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/item_position_ll2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1px"
@@ -160,6 +162,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/item_position_ll3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1px"

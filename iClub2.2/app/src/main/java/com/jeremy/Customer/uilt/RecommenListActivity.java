@@ -85,8 +85,10 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     intent.putExtras(bundle);
                     startActivity(intent);
                 } else if (identi == Identification.PROSITION) {
-                    Intent intent = new Intent();
-                    intent.setClass(RecommenListActivity.this, JobDetailsActivity.class);
+                    Intent intent = new Intent(RecommenListActivity.this, JobDetailsActivity.class);  //方法1
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("Detail", recruitmentListData.get(position - 1));
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 }
             }

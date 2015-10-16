@@ -19,7 +19,9 @@ import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.RecruitmentListBean;
 import com.jeremy.Customer.bean.TalentValueBean;
+import com.jeremy.Customer.uilt.JobDetailsActivity;
 import com.jeremy.Customer.uilt.RecommenListActivity;
+import com.jeremy.Customer.uilt.TalentsDetailsActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.RoundAngleImageView;
 import com.jeremy.Customer.view.SlideShowView;
@@ -47,12 +49,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private RoundAngleImageView recommend_the_virtuous_and_able_riv1, recommend_the_virtuous_and_able_riv2, recommend_the_virtuous_and_able_riv3, recommend_the_virtuous_and_able_riv4, recommend_the_virtuous_and_able_riv5, recommend_the_virtuous_and_able_riv6;
     private TextView recommend_the_virtuous_and_able_tv1, recommend_the_virtuous_and_able_tv2, recommend_the_virtuous_and_able_tv3, recommend_the_virtuous_and_able_tv4, recommend_the_virtuous_and_able_tv5, recommend_the_virtuous_and_able_tv6;
 
-    private TextView item_position_name_tv1,item_position_name_tv2,item_position_name_tv3;
-    private TextView item_position_salary_tv1,item_position_salary_tv2,item_position_salary_tv3;
-    private TextView item_position_time_tv1,item_position_time_tv2,item_position_time_tv3;
-    private TextView item_position_site_tv1,item_position_site_tv2,item_position_site_tv3;
+    private TextView item_position_name_tv1, item_position_name_tv2, item_position_name_tv3;
+    private TextView item_position_salary_tv1, item_position_salary_tv2, item_position_salary_tv3;
+    private TextView item_position_time_tv1, item_position_time_tv2, item_position_time_tv3;
+    private TextView item_position_site_tv1, item_position_site_tv2, item_position_site_tv3;
+
+    private LinearLayout item_position_ll1,item_position_ll2,item_position_ll3;
 
     private BitmapUtils bitmapUtils;
+
+    private ArtistParme<RecruitmentListBean> recruitmentListBean;
+    private ArtistParme<TalentValueBean> talentValueBean;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -109,9 +116,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         item_position_time_tv3 = (TextView) view.findViewById(R.id.item_position_time_tv3);
         item_position_site_tv3 = (TextView) view.findViewById(R.id.item_position_site_tv3);
 
+        item_position_ll1 = (LinearLayout)view.findViewById(R.id.item_position_ll1);
+        item_position_ll2 = (LinearLayout)view.findViewById(R.id.item_position_ll2);
+        item_position_ll3 = (LinearLayout)view.findViewById(R.id.item_position_ll3);
+
         home_more1.setOnClickListener(this);
         home_more2.setOnClickListener(this);
         home_more3.setOnClickListener(this);
+        recommend_the_virtuous_and_able_riv1.setOnClickListener(this);
+        recommend_the_virtuous_and_able_riv2.setOnClickListener(this);
+        recommend_the_virtuous_and_able_riv3.setOnClickListener(this);
+        recommend_the_virtuous_and_able_riv4.setOnClickListener(this);
+        recommend_the_virtuous_and_able_riv5.setOnClickListener(this);
+        recommend_the_virtuous_and_able_riv6.setOnClickListener(this);
+        item_position_ll1.setOnClickListener(this);
+        item_position_ll2.setOnClickListener(this);
+        item_position_ll3.setOnClickListener(this);
     }
 
 
@@ -190,7 +210,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 if (result != null) {
-                    ArtistParme<TalentValueBean> talentValueBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<TalentValueBean>>() {
+                    talentValueBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<TalentValueBean>>() {
                     });
                     if ("success".equals(talentValueBean.getState())) {
                         if (talentValueBean.getValue().size() != 0) {
@@ -234,7 +254,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 if (result != null) {
-                    ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
+                    recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
                     });
                     if ("success".equals(recruitmentListBean.getState())) {
 
@@ -354,7 +374,50 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.home_more3:
                 TouchMore(Identification.PROSITION);
                 break;
+            case R.id.recommend_the_virtuous_and_able_riv1:
+                Talents(0);
+                break;
+            case R.id.recommend_the_virtuous_and_able_riv2:
+                Talents(1);
+                break;
+            case R.id.recommend_the_virtuous_and_able_riv3:
+                Talents(2);
+                break;
+            case R.id.recommend_the_virtuous_and_able_riv4:
+                Talents(3);
+                break;
+            case R.id.recommend_the_virtuous_and_able_riv5:
+                Talents(4);
+                break;
+            case R.id.recommend_the_virtuous_and_able_riv6:
+                Talents(5);
+                break;
+            case R.id.item_position_ll1:
+                Position(0);
+                break;
+            case R.id.item_position_ll2:
+                Position(1);
+                break;
+            case R.id.item_position_ll3:
+                Position(2);
+                break;
         }
+    }
+
+    private void Position(int i){
+        Intent intent = new Intent(getActivity(), JobDetailsActivity.class);  //方法1
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Detail", recruitmentListBean.getValue().get(i));
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
+
+    private void Talents(int i) {
+        Intent intent = new Intent(getActivity(), TalentsDetailsActivity.class);  //方法1
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Detail", talentValueBean.getValue().get(i));
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     private void TouchMore(int ident) {
