@@ -6,6 +6,7 @@ import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.url.AppUtilsUrl;
+import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 /**
@@ -40,7 +42,7 @@ public class OneselfProductionFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_oneself_production, container, false);
-
+        ViewUtils.inject(this,view);
         init();
 
         return view;
@@ -54,6 +56,7 @@ public class OneselfProductionFragment extends Fragment {
     private void initView() {
         Bundle bundle=getArguments();
         ResumeValueBean resumeValueBeans= (ResumeValueBean) bundle.getSerializable("resumeValueBeans");
+        Log.e("hdhfhffjfjf",resumeValueBeans.getResumeEmail());
         if (resumeValueBeans!=null){
             showVideoResumeIv.setImageBitmap(getVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getResumeMovie().get(0).getPath(), 1700, 1000,
                     MediaStore.Images.Thumbnails.MINI_KIND));

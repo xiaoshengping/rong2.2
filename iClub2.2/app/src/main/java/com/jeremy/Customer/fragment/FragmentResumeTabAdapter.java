@@ -29,7 +29,8 @@ public class FragmentResumeTabAdapter implements RadioGroup.OnCheckedChangeListe
     private TextView home_title_neme_tv;
     private RelativeLayout home_title_bar_rl;
     private ResumeValueBean resumeValueBeans;
-    private Bundle bundle ;
+    private Bundle bundle;
+
 
     private OnRgsExtraCheckedChangedListener onRgsExtraCheckedChangedListener; // 用于让调用者在切换tab时候增加新的功能
 
@@ -39,19 +40,17 @@ public class FragmentResumeTabAdapter implements RadioGroup.OnCheckedChangeListe
         this.fragmentActivity = fragmentActivity;
         this.fragmentContentId = fragmentContentId;
         this.resumeValueBeans=resumeValueBeans;
+        bundle=new Bundle();
+        bundle.putSerializable("resumeValueBeans", resumeValueBeans);
+        fragments.get(currentTab).setArguments(bundle);
         home_title_neme_tv = (TextView) fragmentActivity.findViewById(R.id.home_title_neme_tv);
         home_title_bar_rl = (RelativeLayout)fragmentActivity.findViewById(R.id.home_title_bar_rl);
-        bundle =new Bundle();
-        bundle.putSerializable("resumeValueBeans",resumeValueBeans);
-        fragments.get(currentTab).setArguments(bundle);
         // 默认显示第一页
         FragmentTransaction ft = fragmentActivity.getSupportFragmentManager().beginTransaction();
         ft.add(fragmentContentId, fragments.get(0));
         ft.addToBackStack(null);
         ft.commit();
-
         rgs.setOnCheckedChangeListener(this);
-
 
     }
 
@@ -75,6 +74,8 @@ public class FragmentResumeTabAdapter implements RadioGroup.OnCheckedChangeListe
                     ft.add(fragmentContentId, fragment);
                 }
                 showTab(i); // 显示目标tab
+                bundle.putSerializable("resumeValueBeans", resumeValueBeans);
+                fragments.get(currentTab).setArguments(bundle);
                 ft.commit();
 
                 // 如果设置了切换tab额外功能功能接口
@@ -129,8 +130,6 @@ public class FragmentResumeTabAdapter implements RadioGroup.OnCheckedChangeListe
     }
 
     public Fragment getCurrentFragment() {
-
-
         return fragments.get(currentTab);
     }
 

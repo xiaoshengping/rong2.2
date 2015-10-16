@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -71,13 +72,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
     @Override
     protected void onResume() {
         super.onResume();
-        /*if (resumeValueBeans.size()==0){
-            notResumeTv.setVisibility(View.VISIBLE);
-            addResumeTv.setText("马上添加");
-        }else {
-            notResumeTv.setVisibility(View.GONE);
-            addResumeTv.setText("继续添加");
-        }*/
+
         resumeListLv.setRefreshing();
     }
 
@@ -90,6 +85,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
         listView.addFooterView(addView);
         addResumeTv.setOnClickListener(this);
         tailtReturnTv.setOnClickListener(this);
+
         resumeValueBeans=new ArrayList<ResumeValueBean>();
         resumeListAdapter=new ResumeListAdapter(resumeValueBeans,ResumeActivity.this,resumeListLv);
         listView.setAdapter(resumeListAdapter);
@@ -137,17 +133,15 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
         }
         String resumeListUrl= AppUtilsUrl.getResumeList(uid, offset);
-        httpUtils.send(HttpRequest.HttpMethod.POST, resumeListUrl, new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-
-
                 String result=responseInfo.result;
                 if (result!=null){
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
                     }, resumeValueBeans, resumeListAdapter);
                     resumeListLv.onRefreshComplete();
-                    if (resumeValueBeans.size()!=0){
+                   if (resumeValueBeans.size()!=0){
                         notResumeTv.setVisibility(View.GONE);
                         addResumeTv.setText("继续添加");
                     }else {
@@ -166,7 +160,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                   Log.e("onFailure.......", s);
             }
         });
 

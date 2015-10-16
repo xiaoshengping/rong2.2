@@ -1,39 +1,186 @@
 package com.jeremy.Customer.uilt;
 
-import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
+import com.handmark.pulltorefresh.library.ILoadingLayout;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.adapter.MerchantMessageListAdapter;
+import com.jeremy.Customer.bean.ArtistParme;
+import com.jeremy.Customer.bean.ParmeBean;
+import com.jeremy.Customer.bean.mine.MerchantMessageValueBean;
+import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.url.AppUtilsUrl;
+import com.jeremy.Customer.url.HttpHelper;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
+import com.lidroid.xutils.view.annotation.ViewInject;
 
-public class MerchantDeliverActivity extends ActionBarActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class MerchantDeliverActivity extends ActionBarActivity implements View.OnClickListener,  PullToRefreshBase.OnRefreshListener2<ListView>{
+
+    @ViewInject(R.id.tailt_return_tv)
+    private TextView tailtReturnTv;
+    @ViewInject(R.id.tailt_text)
+    private TextView tailtText;
+
+
+    @ViewInject(R.id.merchant_message_lv)
+    //private ListView informationListv;
+    private PullToRefreshListView informationListv;
+    private List<MerchantMessageValueBean> informationValueBeans;
+    private MerchantMessageListAdapter merchantMessageListAdapter;
+    private int offset=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_merchant_deliver);
+        ViewUtils.inject(this);
+        init();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_merchant_deliver, menu);
-        return true;
+    private void init() {
+               initView();
+
+
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    private void initView() {
+        tailtText.setText("投递消息");
+        tailtReturnTv.setOnClickListener(this);
+        informationValueBeans=new ArrayList<>();
+        merchantMessageListAdapter = new MerchantMessageListAdapter(informationValueBeans, this);
+        informationListv.setAdapter(merchantMessageListAdapter);
+        informationListv.setMode(PullToRefreshBase.Mode.BOTH);
+        informationListv.setOnRefreshListener(this);
+        ILoadingLayout endLabels  = informationListv
+                .getLoadingLayoutProxy(false, true);
+        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout startLabels  = informationListv
+                .getLoadingLayoutProxy(true, false);
+        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        informationListv.setRefreshing();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        informationListv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                intiResumeData(informationValueBeans.get(position-1).getApplyerResumeid());
+
+
+            }
+        });
+
+
+    }
+    private void intiData(int offset) {
+        SQLhelper sqLhelper=new SQLhelper(this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        String uid=null;
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+
+
         }
+        HttpUtils httpUtils=new HttpUtils();
+        String informationUrl= AppUtilsUrl.getMessageMerchantList(uid, offset);
+        httpUtils.send(HttpRequest.HttpMethod.POST, informationUrl, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result = responseInfo.result;
+                //Log.e("hsdhdfh",responseInfo.result);
+               /* ArtistParme<MerchantMessageValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<MerchantMessageValueBean>>() {
+                });
+                informationValueBeans = artistParme.getValue();*/
+                HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<MerchantMessageValueBean>>() {
+                }, informationValueBeans, merchantMessageListAdapter);
+                informationListv.onRefreshComplete();
+            }
 
-        return super.onOptionsItemSelected(item);
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure", s);
+            }
+        });
+
+
+
+
     }
+
+    private void intiResumeData(String resumeid) {
+        HttpUtils httpUtils=new HttpUtils();
+        RequestParams requestParams=new RequestParams();
+        requestParams.addBodyParameter("resumeid", resumeid);
+
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getPreviewResume(), requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result=responseInfo.result;
+                if (result!=null){
+                    ParmeBean<ResumeValueBean> artistParme= JSONObject.parseObject(result, new TypeReference<ParmeBean<ResumeValueBean>>() {
+                    });
+                    ResumeValueBean resumeValueBeans=    artistParme.getValue();
+                    Intent intent = new Intent(MerchantDeliverActivity.this, ResumeParticularsActivity.class);
+                    intent.putExtra("resumeValueBeans", resumeValueBeans);
+                    startActivity(intent);
+                }
+
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+
+            }
+        });
+
+
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        finish();
+    }
+
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+        informationValueBeans.clear();
+        offset=0;
+        intiData(offset);
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+        offset=offset+10;
+        intiData(offset);
+    }
+
 }

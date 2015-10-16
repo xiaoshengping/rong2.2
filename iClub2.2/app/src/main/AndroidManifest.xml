@@ -171,6 +171,10 @@
             android:name=".uilt.MerchantDeliverActivity"
             android:label="@string/title_activity_merchant_deliver" >
         </activity>
+        <activity
+            android:name=".uilt.MerchantInviteActivity"
+            android:label="@string/title_activity_merchant_invite" >
+        </activity>
     </application>
 
 </manifest>

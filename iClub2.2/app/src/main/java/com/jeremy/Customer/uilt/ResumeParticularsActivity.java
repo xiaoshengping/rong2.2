@@ -66,6 +66,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  {
     private void initView() {
         oneselfInformactionRb.setChecked(true);
          List<Fragment> listFragment=new ArrayList<>();
+
         oneselfInformationFragment=new OneselfInformationFragment();
         oneselfProductionFragment=new OneselfProductionFragment();
         listFragment.add(oneselfInformationFragment);

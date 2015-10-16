@@ -36,6 +36,7 @@ import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.uilt.AnnouncementMessageActivity;
 import com.jeremy.Customer.uilt.InviteMessageActivity;
 import com.jeremy.Customer.uilt.LoginActivity;
+import com.jeremy.Customer.uilt.MerchantDeliverActivity;
 import com.jeremy.Customer.uilt.MineMoreActivity;
 import com.jeremy.Customer.uilt.NickNameActivity;
 import com.jeremy.Customer.uilt.ResumeActivity;
@@ -253,8 +254,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(moreIntent);
                 break;
             case R.id.deliver_message_tv:
-                Intent TalentsDeliverMessageIntent=new Intent(getActivity(), TalentsDeliverMessageActivity.class);
-                startActivity(TalentsDeliverMessageIntent);
+                if (state.equals("2")){
+                    Intent TalentsDeliverMessageIntent=new Intent(getActivity(), TalentsDeliverMessageActivity.class);
+                    startActivity(TalentsDeliverMessageIntent);
+                }else if (state.equals("3")){
+                    Intent MerchantDeliver=new Intent(getActivity(), MerchantDeliverActivity.class);
+                    startActivity(MerchantDeliver);
+                }
+
                 break;
             case R.id.invite_message_tv:
                 Intent InviteMessageIntent=new Intent(getActivity(), InviteMessageActivity.class);
