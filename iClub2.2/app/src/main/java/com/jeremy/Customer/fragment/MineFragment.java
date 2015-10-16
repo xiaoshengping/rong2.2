@@ -37,6 +37,7 @@ import com.jeremy.Customer.uilt.AnnouncementMessageActivity;
 import com.jeremy.Customer.uilt.InviteMessageActivity;
 import com.jeremy.Customer.uilt.LoginActivity;
 import com.jeremy.Customer.uilt.MerchantDeliverActivity;
+import com.jeremy.Customer.uilt.MerchantInviteActivity;
 import com.jeremy.Customer.uilt.MineMoreActivity;
 import com.jeremy.Customer.uilt.NickNameActivity;
 import com.jeremy.Customer.uilt.ResumeActivity;
@@ -264,8 +265,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.invite_message_tv:
-                Intent InviteMessageIntent=new Intent(getActivity(), InviteMessageActivity.class);
-                startActivity(InviteMessageIntent);
+                if (state.equals("2")){
+                    Intent InviteMessageIntent=new Intent(getActivity(), InviteMessageActivity.class);
+                    startActivity(InviteMessageIntent);
+                }else if (state.equals("3")){
+                    Intent MerchantInviteMessageIntent=new Intent(getActivity(), MerchantInviteActivity.class);
+                    startActivity(MerchantInviteMessageIntent);
+                }
+
                 break;
             case R.id.petname_tv:
                 Intent nickNameIntent=new Intent(getActivity(), NickNameActivity.class);

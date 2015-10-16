@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+      <RelativeLayout
+          android:id="@+id/nrong_layout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+          <ImageView
+              android:layout_marginTop="8dp"
+              android:layout_marginBottom="8dp"
+              android:layout_marginLeft="10dp"
+              android:id="@+id/talent_list_image"
+              android:src="@mipmap/ic_launcher"
+              style="@style/image_paren1"
+
+              />
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/talent_list_image"
+         android:id="@+id/tailt_layout"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            style="@style/paren_layout_width_horgrivity"
+            >
+            <TextView
+                android:id="@+id/talent_name"
+
+                android:textSize="@dimen/textSize15"
+                android:text="name"
+                style="@style/textview_paren_width"
+                />
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:id="@+id/talent_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/talent_job"
+            android:textColor="@color/textColor9a4274"
+            android:textSize="@dimen/textSize13"
+            android:text="zwei"
+            style="@style/textview_paren_width"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/tailt_layout"
+        >
+        <TextView
+            android:id="@+id/talent_age_list"
+            android:textSize="@dimen/textSize12"
+            android:text="age"
+            android:layout_marginTop="5dp"
+            android:layout_width="50dp"
+            android:gravity="center"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/talent_time"
+            android:textColor="@color/textColor9a4274"
+            android:textSize="@dimen/textSize13"
+            android:text="city"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="10dp"
+            style="@style/textview_paren_width"/>
+
+
+    </LinearLayout>
+    <TextView
+
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:id="@+id/talent_state_tv"
+        android:textColor="@color/textColor9a4274"
+        android:textSize="@dimen/textSize13"
+        android:text="city"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+      </RelativeLayout>
+
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:id="@+id/line_iv"
+        android:layout_below="@+id/nrong_layout"
+        android:src="@color/editTextPromptColor"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp" />
+
+    <Button
+        android:layout_below="@+id/line_iv"
+        android:layout_toLeftOf="@+id/reject_merchant_bt"
+        android:text="接受"
+        android:layout_marginTop="10dp"
+        android:id="@+id/accept_merchant_bt"
+        android:background="#00000000"
+        android:focusable="false"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp" />
+    <Button
+        android:layout_below="@+id/line_iv"
+        android:layout_alignParentRight="true"
+        android:id="@+id/reject_merchant_bt"
+        android:text="拒绝"
+        android:layout_marginTop="10dp"
+        android:focusable="false"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="#00000000"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp" />
+</RelativeLayout>
