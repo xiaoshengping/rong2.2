@@ -51,4 +51,5 @@
     <string name="title_activity_add_music">AddMusicActivity</string>
     <string name="title_activity_add_music_production">AddMusicProductionActivity</string>
     <string name="title_activity_resume_particulars">ResumeParticularsActivity</string>
+    <string name="title_activity_merchant_deliver">MerchantDeliverActivity</string>
 </resources>
