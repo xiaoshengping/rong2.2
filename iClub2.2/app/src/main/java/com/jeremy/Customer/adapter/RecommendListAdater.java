@@ -33,6 +33,8 @@ public class RecommendListAdater extends BaseAdapter {
     public List<TalentValueBean> talentValueBean;
     private int maxNumber = 0;
 
+    private Context context;
+
     public RecommendListAdater(Context context, int identi) {
         this.mInflater = LayoutInflater.from(context);
         this.identi = identi;
@@ -44,6 +46,8 @@ public class RecommendListAdater extends BaseAdapter {
         this.identi = identi;
         recruitmentListData = data;
         maxNumber = data.size();
+        this.context = context;
+//        Toast.makeText(context, "get", Toast.LENGTH_LONG).show();
 //        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
     }
 
@@ -60,6 +64,15 @@ public class RecommendListAdater extends BaseAdapter {
     public RecommendListAdater() {
 
 //        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
+    }
+
+    public void setRecruitmentListData(List<RecruitmentListBean> datas){
+        recruitmentListData = datas;
+        maxNumber = datas.size();
+    }
+    public void setTalentValueBean(List<TalentValueBean> datas){
+        talentValueBean = datas;
+        maxNumber = datas.size();
     }
 
     @Override
@@ -80,15 +93,18 @@ public class RecommendListAdater extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+//        Toast.makeText(context, "getView", Toast.LENGTH_LONG).show();
+
         if (identi == Identification.ACTIVITY) {
             return activity(convertView);
         } else if (identi == Identification.TALENTS) {
             return talents(convertView, position);
         } else if (identi == Identification.PROSITION) {
+//            Toast.makeText(context, "PROSITION", Toast.LENGTH_LONG).show();
             return position(convertView, position);
         }
 
-        return null;
+        return convertView;
     }
 
     //活动
@@ -206,6 +222,7 @@ public class RecommendListAdater extends BaseAdapter {
 
     public class ViewPosition {
         private TextView item_position_name_tv, item_position_salary_tv, item_position_time_tv, item_position_site_tv;
+
     }
 
 }

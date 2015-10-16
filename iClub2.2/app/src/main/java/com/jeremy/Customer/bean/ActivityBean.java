@@ -1,0 +1,52 @@
+package com.jeremy.Customer.bean;
+
+/**
+ * Created by Administrator on 2015/10/15.
+ */
+public class ActivityBean {
+    private String activitieid;
+    private String content;
+    private String date;
+    private String image;
+    private String title;
+
+    public String getActivitieid() {
+        return activitieid;
+    }
+
+    public void setActivitieid(String activitieid) {
+        this.activitieid = activitieid;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+}

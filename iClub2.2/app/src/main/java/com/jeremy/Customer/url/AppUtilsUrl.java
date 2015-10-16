@@ -402,7 +402,21 @@ public class AppUtilsUrl  {
         return BaseUrl+"editTrip.action?uid="+uid+"&tripValues="+tripValues+"&yearAndMonth="+yearAndMonth;
     }
     public static String getTalent(int cityid ,int jobCategory,int offset){
-        return BaseUrl+"getPersonResume.action?cityid="+cityid+"&jobCategory="+jobCategory+"&offset=0&limit="+offset;
+        return BaseUrl+"getPersonResume.action?cityid="+cityid+"&jobCategory="+jobCategory+"&offset="+offset+"&limit=10";
     }
-
+    public static String getActivity(){
+        return BaseUrl+"activitieList?limit=2&offset=0";
+    }
+    public static String getRecommendTheVirtuousAndAble(){
+        return BaseUrl+"getListByRecommend.action?offset=0&limit=6";
+    }
+    public static String getRecommendTheVirtuousAndAble(int offset){
+        return BaseUrl+"getListByRecommend.action?offset="+offset+"&limit=10";
+    }
+    public static String getRecommendedWork(){
+        return BaseUrl+"getJobList_V2_2_By_Recommend.action?offset=0&limit=3";
+    }
+    public static String getRecommendedWork(int offset){
+        return BaseUrl+"getJobList_V2_2_By_Recommend.action?offset="+offset+"&limit=10";
+    }
 }

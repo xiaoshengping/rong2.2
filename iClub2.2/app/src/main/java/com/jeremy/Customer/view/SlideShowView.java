@@ -15,6 +15,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.ArtistHeadBean;
+import com.jeremy.Customer.url.AppUtilsUrl;
+import com.lidroid.xutils.BitmapUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,8 @@ import java.util.concurrent.TimeUnit;
  * Created by Administrator on 2015/9/21.
  */
 public class SlideShowView extends FrameLayout {
+
+    private BitmapUtils bitmapUtils;
 
     //轮播图图片数量
     private final static int IMAGE_COUNT = 5;
@@ -64,10 +69,11 @@ public class SlideShowView extends FrameLayout {
 //    List<ArtistHeadBean> artistHeadBean;
 
     //test
-    public SlideShowView(Context context) {
+    public SlideShowView(Context context,List<ArtistHeadBean> artistHeadBean) {
         super(context);
+        bitmapUtils=new BitmapUtils(context);
         initData();
-        initUI(context);
+        initUI(context,artistHeadBean);
         if (isAutoPlay) {
             startPlay();
         }
@@ -158,15 +164,16 @@ public class SlideShowView extends FrameLayout {
 
     private View view;
 
-    //test
-    private void initUI(Context context) {
+    //轮播图
+    private void initUI(Context context,List<ArtistHeadBean> artistHeadBean) {
         view = LayoutInflater.from(context).inflate(R.layout.layout_slideshow, this, true);
 
         for (int i = 0; i < 4; i++) {//int imageID : imagesResIds){
             ImageView view = new ImageView(context);
             view.setScaleType(ImageView.ScaleType.CENTER_CROP);
             view.setBackgroundResource(R.mipmap.list_touxiang_icon);
-            view.setImageResource(R.mipmap.dufuke_icon);
+            bitmapUtils.display(view, AppUtilsUrl.ImageBaseUrl + artistHeadBean.get(i).getPath());
+//            view.setImageResource(R.mipmap.dufuke_icon);
 //            view.setImageResource(imageID);
 
             imageViewsList.add(view);

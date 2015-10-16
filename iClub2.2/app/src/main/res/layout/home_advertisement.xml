@@ -33,13 +33,16 @@
     </LinearLayout>
     <com.jeremy.Customer.view.RoundAngleImageView
         xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+        android:id="@+id/activity_picture_riv1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_height"
         android:background="#000000"
+        android:scaleType="centerCrop"
         app:roundWidth = "5dp"
         app:roundHeight = "5dp"
         android:layout_marginTop="3dp"/>
     <TextView
+        android:id="@+id/activity_name_tv1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="玩使命“敢于挑战，超越梦想“微电影阿斯顿发送到"
@@ -53,6 +56,7 @@
         android:ellipsize="end"  />
     <com.jeremy.Customer.view.RoundAngleImageView
         xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+        android:id="@+id/activity_picture_riv2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_height"
         android:background="#000000"
@@ -60,6 +64,7 @@
         app:roundHeight = "5dp"
         android:layout_marginTop="3dp"/>
     <TextView
+        android:id="@+id/activity_name_tv2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="玩使命“敢于挑战，超越梦想“微电影阿斯顿发送到"

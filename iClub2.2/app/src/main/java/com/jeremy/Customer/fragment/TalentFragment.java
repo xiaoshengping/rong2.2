@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -26,7 +28,6 @@ import com.jeremy.Customer.citySelection.CitySelectionActivity;
 import com.jeremy.Customer.uilt.JobChoiceActivity;
 import com.jeremy.Customer.uilt.TalentsDetailsActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
-import com.jeremy.Customer.url.HttpHelper;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -138,10 +139,20 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 if (result != null) {
-                    HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<TalentValueBean>>() {
-                    }, talentValueBean, adater);
-                    adater = new RecommendListAdater(getActivity(), talentValueBean,Identification.TALENTS);
-                    recommend_list.setAdapter(adater);
+                    ArtistParme<TalentValueBean> talentValue = JSONObject.parseObject(result, new TypeReference<ArtistParme<TalentValueBean>>() {
+                    });
+                    if (talentValue.getState().equals("success")) {
+
+                        if(talentValue.getValue()!=null) {
+                            talentValueBean.addAll(talentValue.getValue());
+                            adater.setTalentValueBean(talentValueBean);
+                            adater.notifyDataSetChanged();
+                        }else {
+                            Toast.makeText(getActivity(), "以上已为全部内容", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+
                     recommend_list.onRefreshComplete();
 
                     loadingDialog.dismiss();
@@ -169,7 +180,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         talentValueBean.clear();
-        offset = 10;
+        offset = 0;
         initRecruitmentListData(citynum, jobnum, offset);
     }
 

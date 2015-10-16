@@ -10,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -26,7 +28,6 @@ import com.jeremy.Customer.citySelection.CitySelectionActivity;
 import com.jeremy.Customer.uilt.JobChoiceActivity;
 import com.jeremy.Customer.uilt.JobDetailsActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
-import com.jeremy.Customer.url.HttpHelper;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -37,8 +38,6 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.jeremy.Customer.bean.Identification.PROSITION;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -46,7 +45,6 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
     private PullToRefreshListView recommend_list;
     private List<RecruitmentListBean> recruitmentListData = new ArrayList<>();
-    ;
     private RecommendListAdater adater;
 
     private Button selected_city, selected_position;
@@ -69,6 +67,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 //        initRecruitmentListData(0, 0, offset);
         conditionsSelected(view);
         intiProsition();
+
         return view;
 
     }
@@ -96,8 +95,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
     //初始化职位列表
     private void intiProsition() {
-
-        adater = new RecommendListAdater(getActivity(), PROSITION, recruitmentListData);
+        adater = new RecommendListAdater(getActivity(), Identification.PROSITION, recruitmentListData);
         recommend_list.setAdapter(adater);
 //        Toast.makeText(getActivity(), recruitmentListData.size() + "", Toast.LENGTH_LONG).show();
         recommend_list.setMode(PullToRefreshBase.Mode.BOTH);
@@ -123,7 +121,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
                 Intent intent = new Intent(getActivity(), JobDetailsActivity.class);  //方法1
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("Detail", recruitmentListData.get(position-1));
+                bundle.putSerializable("Detail", recruitmentListData.get(position - 1));
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -144,10 +142,20 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 if (result != null) {
-                    HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
-                    }, recruitmentListData, adater);
-                    adater = new RecommendListAdater(getActivity(), PROSITION, recruitmentListData);
-                    recommend_list.setAdapter(adater);
+                    ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
+                    });
+                    if (recruitmentListBean.getState().equals("success")) {
+
+                        if(recruitmentListBean.getValue()!=null) {
+                            recruitmentListData.addAll(recruitmentListBean.getValue());
+                            adater.setRecruitmentListData(recruitmentListData);
+                            adater.notifyDataSetChanged();
+                        }else {
+                            Toast.makeText(getActivity(), "以上已为全部内容", Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+
                     recommend_list.onRefreshComplete();
 
                     loadingDialog.dismiss();
@@ -221,7 +229,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 //                recommend_list.setRefreshing(true);
 
             }
-        } else if(resultCode == Identification.JOBCHOICE){
+        } else if (resultCode == Identification.JOBCHOICE) {
             int job = bundle.getInt("Job");
             String pName = bundle.getString("JobName");
 //        if(job>=0&&job!=10){
@@ -235,7 +243,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             recruitmentListData.clear();
         }
 
-        if(resultCode != Identification.RETURN) {
+        if (resultCode != Identification.RETURN) {
             recommend_list.onRefreshComplete();
             recommend_list.setRefreshing(true);
         }
