@@ -26,7 +26,7 @@
             />
 
         <com.jeremy.Customer.view.CustomImageView
-            xmlns:myxmlns="http://schemas.android.com/apk/res/com.jeremy.Customer"
+
             android:id="@+id/usericon_background_iv"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -35,8 +35,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="18dp"
             android:layout_marginTop="-50dp"
-            myxmlns:border_width="3dp"
-            myxmlns:border_color="#80ffffff"
+
             android:layout_below="@+id/talen_back_iv"/>
         <LinearLayout
             android:layout_marginTop="10dp"
@@ -206,7 +205,6 @@
         <LinearLayout
         android:orientation="vertical"
         android:id="@+id/resume_fragment_layout"
-        android:background="@color/white"
         android:layout_below="@+id/resume_radioGroup"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

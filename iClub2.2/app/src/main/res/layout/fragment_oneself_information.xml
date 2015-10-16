@@ -256,7 +256,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/reputation_tv"
+                android:id="@+id/integrity_tv"
                 android:text="100"
                 android:textColor="@color/redTextColor"
                 android:layout_marginLeft="25dp"
@@ -280,7 +280,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/real_tv"
+                android:id="@+id/authenticity_tv"
                 android:text="100"
                 android:layout_marginLeft="25dp"
                 android:textSize="@dimen/textSize14"
@@ -306,7 +306,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:textColor="@color/redTextColor"
-                android:id="@+id/cooperation_tv"
+                android:id="@+id/transactionRecord_tv"
                 android:text="100"
                 android:layout_marginLeft="10dp"
                 android:textSize="@dimen/textSize14"
@@ -320,6 +320,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp" />
     <TextView
+        android:id="@+id/commentCount_tv"
         android:drawableRight="@mipmap/right_return_icon"
         android:textColor="@color/hunTextColor"
         android:paddingLeft="30dp"

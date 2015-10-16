@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -111,13 +110,12 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("jsdjhfhfhf",resumeValueBeans.size()+"");
-                Intent intent = new Intent(ResumeActivity.this, ResumeParticularsActivity.class);
-                //intent.putExtra("resumeValueBeans", resumeValueBeans.get(position-1));
-                //intent.putExtra("flage", "ResumeFragment");
-                startActivity(intent);
-                if (resumeValueBeans.size()!=0){
+                //Log.e("jsdjhfhfhf", resumeValueBeans.size() + "");
 
+                if (resumeValueBeans.size()!=0){
+                    Intent intent = new Intent(ResumeActivity.this, ResumeParticularsActivity.class);
+                    intent.putExtra("resumeValueBeans", resumeValueBeans.get(position-1));
+                    startActivity(intent);
                 }
 
 
@@ -157,6 +155,8 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
                         addResumeTv.setText("马上添加");
 
                     }
+
+
 
 
                 }
