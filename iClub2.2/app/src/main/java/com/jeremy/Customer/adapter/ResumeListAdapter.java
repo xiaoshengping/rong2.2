@@ -65,10 +65,11 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
 
     private void inti(int position) {
         positions=position;
-        viewHolde.resumeJobNameTv.setText(data.get(position).getResumeJobName());
-        viewHolde.createTimeTv.setText(data.get(position).getCreateTime());
-        viewHolde.updateTimeTv.setText("浏览量: " + data.get(position).getResumeViewCount());
-        resumeId= data.get(position).getResumeid();
+        ResumeValueBean ResumeValueBeans= data.get(position);
+        viewHolde.resumeJobNameTv.setText(ResumeValueBeans.getResumeJobName());
+        viewHolde.createTimeTv.setText(ResumeValueBeans.getCreateTime());
+        viewHolde.updateTimeTv.setText("浏览量: " + ResumeValueBeans.getResumeViewCount());
+        resumeId= ResumeValueBeans.getResumeid();
          state=data.get(position).getState()+"";
         if (state.equals("0")){
              viewHolde.resumeStateTv.setText("公开");

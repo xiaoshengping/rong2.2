@@ -87,9 +87,9 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
            resumeQqTv.setText(resumeValueBeans.getResumeQq());
            resumeEmailTv.setText(resumeValueBeans.getResumeEmail());
            resumeMobileTv.setText(resumeValueBeans.getResumeMobile());
-           authenticityTv.setText(resumeValueBeans.getAuthenticity());
-           integrityTv.setText(resumeValueBeans.getIntegrity());
-           transactionRecordTv.setText(resumeValueBeans.getTransactionRecord());
+           authenticityTv.setText(resumeValueBeans.getAuthenticity()+"");
+           integrityTv.setText(resumeValueBeans.getIntegrity()+"");
+           transactionRecordTv.setText(resumeValueBeans.getTransactionRecord()+"");
            commentCountTv.setText(resumeValueBeans.getCommentCount()+"位商家评论过");
        }
 

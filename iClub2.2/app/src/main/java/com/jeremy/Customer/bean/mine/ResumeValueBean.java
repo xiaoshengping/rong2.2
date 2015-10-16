@@ -35,55 +35,55 @@ public class ResumeValueBean implements Serializable {
     private String updateTime;//更新时间
     private Integer state;//状态
     private Integer rank;//排序
-    private String inviteCount; //邀约数
-
-    public String getInviteCount() {
-        return inviteCount;
-    }
-
-    public void setInviteCount(String inviteCount) {
-        this.inviteCount = inviteCount;
-    }
-
-    public String getAuthenticity() {
-        return authenticity;
-    }
-
-    public void setAuthenticity(String authenticity) {
-        this.authenticity = authenticity;
-    }
-
-    public String getIntegrity() {
-        return integrity;
-    }
-
-    public void setIntegrity(String integrity) {
-        this.integrity = integrity;
-    }
-
-    public String getTransactionRecord() {
-        return transactionRecord;
-    }
-
-    public void setTransactionRecord(String transactionRecord) {
-        this.transactionRecord = transactionRecord;
-    }
-
-    public String getCommentCount() {
-        return commentCount;
-    }
-
-    public void setCommentCount(String commentCount) {
-        this.commentCount = commentCount;
-    }
-
-    private String authenticity; // 真实性
-    private String integrity ;// 诚信度
-    private String transactionRecord; //合作记录
-    private String commentCount ;//评论总数
+    private Integer inviteCount; //邀约数
+    private Integer authenticity; // 真实性
+    private Integer integrity;// 诚信度
+    private Integer transactionRecord; //合作记录
+    private Integer commentCount;//评论总数
     private List<ResumePicture> resumePicture;// 图片介绍
     private List<ResumeMovie> resumeMovie;// 视频展示
     private List<ResumeMusic> resumeMusic;// 音乐作品
+
+
+    public Integer getInviteCount() {
+        return inviteCount;
+    }
+
+    public void setInviteCount(Integer inviteCount) {
+        this.inviteCount = inviteCount;
+    }
+
+    public Integer getAuthenticity() {
+        return authenticity;
+    }
+
+    public void setAuthenticity(Integer authenticity) {
+        this.authenticity = authenticity;
+    }
+
+    public Integer getIntegrity() {
+        return integrity;
+    }
+
+    public void setIntegrity(Integer integrity) {
+        this.integrity = integrity;
+    }
+
+    public Integer getTransactionRecord() {
+        return transactionRecord;
+    }
+
+    public void setTransactionRecord(Integer transactionRecord) {
+        this.transactionRecord = transactionRecord;
+    }
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
+    }
 
     public String getResumeJobCategoryName() {
         return resumeJobCategoryName;
@@ -337,11 +337,11 @@ public class ResumeValueBean implements Serializable {
                 ", updateTime='" + updateTime + '\'' +
                 ", state=" + state +
                 ", rank=" + rank +
-                ", inviteCount='" + inviteCount + '\'' +
-                ", authenticity='" + authenticity + '\'' +
-                ", integrity='" + integrity + '\'' +
-                ", transactionRecord='" + transactionRecord + '\'' +
-                ", commentCount='" + commentCount + '\'' +
+                ", inviteCount=" + inviteCount +
+                ", authenticity=" + authenticity +
+                ", integrity=" + integrity +
+                ", transactionRecord=" + transactionRecord +
+                ", commentCount=" + commentCount +
                 ", resumePicture=" + resumePicture +
                 ", resumeMovie=" + resumeMovie +
                 ", resumeMusic=" + resumeMusic +
