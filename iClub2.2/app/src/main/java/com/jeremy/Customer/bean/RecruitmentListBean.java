@@ -1,6 +1,9 @@
 package com.jeremy.Customer.bean;
 
+import com.jeremy.Customer.bean.mine.ResumePicture;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Administrator on 2015/5/25.
@@ -29,11 +32,19 @@ public class RecruitmentListBean implements Serializable {
     private String workingHours;//工作时长
     private String workingTime;//工作时间
     private String applyjobCount;//投递数量
-    private String BEicon; //公司介绍图片
+    private List<ResumePicture> BEpicture; //公司介绍图片
     private String BEcompanyInfo;//公司简介
     private String authenticity; // 真实性
     private String integrity;// 诚信度
     private String transactionRecord; //合作记录
+
+    public List<ResumePicture> getBEpicture() {
+        return BEpicture;
+    }
+
+    public void setBEpicture(List<ResumePicture> BEpicture) {
+        this.BEpicture = BEpicture;
+    }
 
     public String getAuthenticity() {
         return authenticity;
@@ -57,14 +68,6 @@ public class RecruitmentListBean implements Serializable {
 
     public void setIntegrity(String integrity) {
         this.integrity = integrity;
-    }
-
-    public String getBEicon() {
-        return BEicon;
-    }
-
-    public void setBEicon(String BEicon) {
-        this.BEicon = BEicon;
     }
 
     public String getTransactionRecord() {

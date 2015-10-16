@@ -4,6 +4,7 @@ import android.animation.ArgbEvaluator;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
@@ -22,7 +24,9 @@ import com.jeremy.Customer.adapter.PictureAdapter;
 import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.MyDialog;
 import com.jeremy.Customer.bean.RecruitmentListBean;
+import com.jeremy.Customer.bean.mine.ResumePicture;
 import com.jeremy.Customer.view.MyGridView;
+import com.jeremy.Customer.view.SpaceImageDetailActivity;
 import com.lidroid.xutils.BitmapUtils;
 
 import java.util.ArrayList;
@@ -38,14 +42,22 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
     private int currIndex = 0;// 当前页卡编号
 
     private static final int MAX = 6;//初始maxLine大小
+    private static final int MAX1 = 8;//初始maxLine大小
     private static final int TIME = 40;//间隔时间
     private int maxLines;
-    private boolean hasMesure1 = false,hasMesure2 = false;
+    private boolean hasMesure1 = false,hasMesure2 = false,hasMesure3 = false;
     private Thread thread;
     private TextView require_button_tv,describe_button_tv;
     private TextView work_pay_tv,describe_tv,require_tv,position_tv,workingtime_and_applyjobcount_tv,companyname_tv,job_informantion_tv,contact_way_tv,address_tv,reputation_value_tv,evaluate_tv;
 
+    private TextView company_name_tv,company_introduce_tv;
+    private TextView company_introduce_button_tv;
+    private TextView company_contact_information_tv;
+
     private RecruitmentListBean recruitmentListBean;
+
+    private List<ResumePicture> resumePicture;
+
     private BitmapUtils bitmapUtils;
 
     @Override
@@ -102,7 +114,7 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
         mPager.setCurrentItem(0);
         mPager.setOnPageChangeListener(new MyOnPageChangeListener());
 
-//        initPictureProduction(company_details);
+        initPictureProduction(company_details);
         initPositionDetails(position_details);
 
     }
@@ -179,11 +191,62 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
     }
 
 
-    //初始化图片作品
+    //初始化公司详情
     private void initPictureProduction(View view) {
+        company_name_tv = (TextView)view.findViewById(R.id.company_name_tv);
+        company_introduce_tv = (TextView)view.findViewById(R.id.company_introduce_tv);
+        company_introduce_button_tv = (TextView)view.findViewById(R.id.company_introduce_button_tv);
+        company_contact_information_tv = (TextView)view.findViewById(R.id.company_contact_information_tv);
+
+        company_name_tv.setText(recruitmentListBean.getCompanyName());
+        company_introduce_tv.setText(recruitmentListBean.getBEcompanyInfo());
+        company_contact_information_tv.setText("***********\n********\n"+recruitmentListBean.getWeb()+"\n"+recruitmentListBean.getAddress());
+
+        //初始化公司简介高度
+        ViewTreeObserver viewTreeObserver1 = company_introduce_tv.getViewTreeObserver();
+        viewTreeObserver1.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+
+            @Override
+            public boolean onPreDraw() {
+                //只需要获取一次就可以了
+                if (!hasMesure3) {
+                    //这里获取到完全展示的maxLine
+                    maxLines = company_introduce_tv.getLineCount();
+                    //设置maxLine的默认值，这样用户看到View就是限制了maxLine的TextView
+                    company_introduce_tv.setMaxLines(MAX1);
+                    hasMesure3 = true;
+                }
+
+                return true;
+            }
+        });
+
+        company_introduce_button_tv.setOnClickListener(this);
+
+//        company_picture_production_list = (MyGridView) view.findViewById(R.id.company_picture_production_list);
+//        List<ResumePicture> resumePicture = recruitmentListBean.getBEicon();
+//        PictureAdapter pictureAdapter = new PictureAdapter(this,resumePicture);
+//        company_picture_production_list.setAdapter(pictureAdapter);
+
         company_picture_production_list = (MyGridView) view.findViewById(R.id.company_picture_production_list);
-        PictureAdapter pictureAdapter = new PictureAdapter(this);
+        resumePicture = recruitmentListBean.getBEpicture();
+//        Toast.makeText(this,"asdff", Toast.LENGTH_LONG).show();
+        PictureAdapter pictureAdapter = new PictureAdapter(this,resumePicture);
         company_picture_production_list.setAdapter(pictureAdapter);
+        company_picture_production_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(JobDetailsActivity.this, SpaceImageDetailActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putParcelableArrayList("list", (ArrayList) resumePicture);
+                bundle.putInt("num", 2);
+                bundle.putInt("MaxNum", resumePicture.size());
+                intent.putExtras(bundle);
+                startActivity(intent);
+                overridePendingTransition(R.anim.spaceimagedetail_in, R.anim.out_to_not);
+            }
+        });
+
     }
 
     /**
@@ -355,6 +418,10 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
             case R.id.require_button_tv:
                 require_button_tv.setVisibility(View.GONE);
                 toggle(require_tv);
+                break;
+            case R.id.company_introduce_button_tv:
+                company_introduce_button_tv.setVisibility(View.GONE);
+                toggle(company_introduce_tv);
                 break;
         }
     }
