@@ -54,4 +54,6 @@
     <string name="title_activity_merchant_deliver">MerchantDeliverActivity</string>
     <string name="title_activity_merchant_invite">MerchantInviteActivity</string>
     <string name="title_activity_merchant_information">MerchantInformationActivity</string>
+    <string name="title_activity_merchant_information_preview">MerchantInformationPreviewActivity
+    </string>
 </resources>

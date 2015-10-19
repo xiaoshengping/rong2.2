@@ -179,6 +179,10 @@
             android:name=".uilt.MerchantInformationActivity"
             android:label="@string/title_activity_merchant_information" >
         </activity>
+        <activity
+            android:name=".uilt.MerchantInformationPreviewActivity"
+            android:label="@string/title_activity_merchant_information_preview" >
+        </activity>
     </application>
 
 </manifest>

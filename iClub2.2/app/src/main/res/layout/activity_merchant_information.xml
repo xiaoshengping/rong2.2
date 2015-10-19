@@ -1,9 +1,250 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/layoutBackground"
+
     tools:context="com.jeremy.Customer.uilt.MerchantInformationActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <include
+        android:id="@+id/tailt_layout"
+        layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:id="@+id/tailt_line_iv"
+        android:layout_below="@+id/tailt_layout"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:layout_below="@+id/tailt_line_iv"
+        android:id="@+id/company_messaage_layout"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <LinearLayout
+            android:background="@color/white"
+            android:id="@+id/company_name"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:text="公司名称"
+                android:paddingLeft="20dp"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/company_name_et"
+                android:layout_marginLeft="25dp"
+                android:background="#00000000"
+                android:textSize="@dimen/textSize15"
+                android:hint="请输入你公司名称"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-</RelativeLayout>
+        </LinearLayout>
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <LinearLayout
+            android:background="@color/white"
+            android:id="@+id/company_phone"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:text="电话"
+                android:paddingLeft="20dp"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/company_phone_tv"
+                android:layout_marginLeft="55dp"
+                android:background="#00000000"
+                android:textSize="@dimen/textSize15"
+                android:inputType="phone"
+                android:hint="请输入你公司的电话号码"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <ImageView
+            android:background="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <LinearLayout
+            android:background="@color/white"
+            android:id="@+id/company_email"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:text="Email"
+                android:paddingLeft="20dp"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/company_email_tv"
+                android:layout_marginLeft="47dp"
+                android:background="#00000000"
+                android:textSize="@dimen/textSize15"
+                android:inputType="textEmailAddress"
+                android:hint="请输入你公司电子邮箱"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <ImageView
+            android:background="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:background="@color/white"
+            android:id="@+id/company_http"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:text="官网"
+                android:paddingLeft="20dp"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/company_http_tv"
+                android:layout_marginLeft="55dp"
+                android:background="#00000000"
+                android:textSize="@dimen/textSize15"
+                android:inputType="textWebEditText"
+                android:hint="请输入你公司官网"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+        <ImageView
+
+            android:background="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:id="@+id/comapny_address"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:text="地址"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:textSize="@dimen/textSize15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <EditText
+                android:id="@+id/company_address_tv"
+                android:layout_marginLeft="55dp"
+                android:background="#00000000"
+                android:textSize="@dimen/textSize15"
+                android:hint="请输入你的详情地址"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/company_messaage_layout"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/oneself_known_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:text="公司介绍"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="@dimen/textSize15"
+            android:layout_marginLeft="20dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:background="@mipmap/weil_one_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginBottom="30dp"
+            android:id="@+id/onself_text_tv"
+            android:layout_marginTop="10dp"
+            android:text="介绍一下你的公司"
+            android:textColor="@color/editTextPromptColor"
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/image_layout"
+        android:layout_below="@+id/oneself_known_layout"
+        android:background="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        <TextView
+            android:text="图片介绍"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="@dimen/textSize15"
+            android:layout_marginLeft="20dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:background="@mipmap/weil_one_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/add_company_image"
+            android:src="@mipmap/add_merchant_icon"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/editTextPromptColor"
+            android:layout_marginLeft="20dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp" />
+        <GridView
+            android:visibility="gone"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/gridview"
+            android:verticalSpacing="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:numColumns="4" >
+        </GridView>
+    </LinearLayout>
+    </RelativeLayout>
+</ScrollView>

@@ -37,6 +37,8 @@ import com.jeremy.Customer.uilt.AnnouncementMessageActivity;
 import com.jeremy.Customer.uilt.InviteMessageActivity;
 import com.jeremy.Customer.uilt.LoginActivity;
 import com.jeremy.Customer.uilt.MerchantDeliverActivity;
+import com.jeremy.Customer.uilt.MerchantInformationActivity;
+import com.jeremy.Customer.uilt.MerchantInformationPreviewActivity;
 import com.jeremy.Customer.uilt.MerchantInviteActivity;
 import com.jeremy.Customer.uilt.MineMoreActivity;
 import com.jeremy.Customer.uilt.NickNameActivity;
@@ -113,6 +115,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private  String uid;
     private  String userName;
     private  String userIcon;
+    private  String companyName;
     private File tempFile = new File(Environment.getExternalStorageDirectory(),
             getPhotoFileName());
     private File screenshotFile = new File(Environment.getExternalStorageDirectory(),
@@ -225,6 +228,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         petNameTv.setOnClickListener(this);
         touXiang1Tv.setOnClickListener(this);
         resumeZhaoPingTv.setOnClickListener(this);
+        journeyMerchantTv.setOnClickListener(this);
 
     }
 
@@ -262,7 +266,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     Intent MerchantDeliver=new Intent(getActivity(), MerchantDeliverActivity.class);
                     startActivity(MerchantDeliver);
                 }
-
                 break;
             case R.id.invite_message_tv:
                 if (state.equals("2")){
@@ -288,6 +291,22 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(resumeIntent);
 
                 break;
+            case R.id.journey_merchant_tv:
+                if (state.equals("2")){
+
+                }else if (state.equals("3")){
+                   if (!TextUtils.isEmpty(companyName)){
+                       Intent merchantIntent=new Intent(getActivity(), MerchantInformationPreviewActivity.class);
+                       startActivity(merchantIntent);
+                   }else {
+                       Intent merchantIntent=new Intent(getActivity(), MerchantInformationActivity.class);
+                       merchantIntent.putExtra("merchantFalg","addMerchant");
+                       startActivity(merchantIntent);
+                   }
+
+                }
+
+                break;
         }
     }
 
@@ -311,6 +330,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             state = cursor.getString(4);
             userName = cursor.getString(2);
             userIcon=cursor.getString(3);
+            companyName=cursor.getString(6);
         }
             if (!TextUtils.isEmpty(state)){
                 mineLayout.setVisibility(View.VISIBLE);

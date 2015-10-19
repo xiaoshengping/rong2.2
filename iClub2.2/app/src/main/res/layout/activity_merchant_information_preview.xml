@@ -1,0 +1,218 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/layoutBackground"
+    tools:context="com.jeremy.Customer.uilt.MerchantInformationPreviewActivity">
+     <include
+         android:id="@+id/tailt_layout"
+         layout="@layout/app_white_tailt_layout"/>
+    <LinearLayout
+        android:id="@+id/informaction_layout"
+        android:background="@color/white"
+        android:layout_below="@+id/tailt_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+      <TextView
+          android:id="@+id/company_name_tv"
+          android:textSize="@dimen/textSize18"
+          android:layout_marginTop="10dp"
+          android:layout_marginLeft="20dp"
+          android:text="广州贸易有限公司"
+          android:layout_marginBottom="10dp"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
+    <LinearLayout
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="30dp">
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:text="电话"
+        android:textColor="@color/hunTextColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/company_phone_tv"
+            android:layout_marginLeft="20dp"
+            android:text="电话"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+           </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/hunTextColor"
+                android:text="邮箱"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/company_email_tv"
+                android:layout_marginLeft="20dp"
+
+                android:text="邮箱"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/hunTextColor"
+                android:text="官网"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/company_http_tv"
+                android:layout_marginLeft="20dp"
+                android:text="官网"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp">
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/hunTextColor"
+                android:text="地址"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/company_address_tv"
+                android:layout_marginLeft="20dp"
+                android:text="地址"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/introduce_layout"
+        android:layout_below="@+id/informaction_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:layout_marginTop="7dp">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:textColor="@color/hunTextColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="公司介绍"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/neself_icon"
+                android:layout_marginLeft="20dp"
+                android:textSize="15sp"
+                />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#08ffffff"/>
+
+        <TextView
+            android:id="@+id/resumeInfo_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/jobRequirements"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textSize="@dimen/textSize15"
+            android:lineSpacingMultiplier="1.5"
+            android:text="仅仅是接电话都或多或少都好的好的好的好的不烦不烦烦不烦部分恢复恢复很好合适的好的好的哈哈就是减肥减肥减肥就是的加减法好的好的好的基督教 就是觉得就是减肥就是减肥的减肥减肥还是说睡觉睡觉jjjsdfjjjs记得减肥解决方法解决决定将发挥发挥发挥北京时间附加费很舒服恢复和范冰冰"
+            />
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/oneself_more_layout"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/oneself_more_tv"
+                android:textColor="@color/redTextColor"
+                android:gravity="center"
+                android:text="查看更多"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_marginLeft="3dp"
+                android:src="@mipmap/below_return_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/introduce_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:textColor="@color/hunTextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="图片介绍"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@mipmap/neself_icon"
+            android:layout_marginLeft="20dp"
+            android:textSize="15sp"
+            />
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+            <ImageView
+                android:layout_marginLeft="5dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_width="80dp"
+                android:layout_height="80dp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>
