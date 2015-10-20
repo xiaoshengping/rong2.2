@@ -191,6 +191,10 @@
             android:name=".uilt.AddMerchantActivity"
             android:label="@string/title_activity_add_merchant" >
         </activity>
+        <activity
+            android:name=".uilt.MerchantParticularsActivity"
+            android:label="@string/title_activity_merchant_particulars" >
+        </activity>
     </application>
 
 </manifest>

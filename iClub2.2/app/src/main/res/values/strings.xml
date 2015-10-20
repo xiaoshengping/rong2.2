@@ -58,4 +58,5 @@
     </string>
     <string name="title_activity_applications_list">ApplicationsListActivity</string>
     <string name="title_activity_add_merchant">AddMerchantActivity</string>
+    <string name="title_activity_merchant_particulars">MerchantParticularsActivity</string>
 </resources>
