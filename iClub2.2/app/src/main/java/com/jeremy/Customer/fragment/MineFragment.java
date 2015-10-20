@@ -295,9 +295,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     Intent resumeIntent=new Intent(getActivity(), ApplicationsListActivity.class);
                     startActivity(resumeIntent);
                 }
-
-
-
                 break;
             case R.id.journey_merchant_tv:
                 if (state.equals("2")){

@@ -1,10 +1,12 @@
 package com.jeremy.Customer.uilt;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -53,6 +55,7 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
     private RequestParams requestParams;
     private String uid;
     private String bdName;
+    private TextView addResumeTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,11 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
 
     }
     private void intiListView() {
+        View addView= LayoutInflater.from(this).inflate(R.layout.add_resume_layout,null);
+        addResumeTv= (TextView) addView.findViewById(R.id.add_resume_tv);
+        ListView listView=recruitmentHistoryLv.getRefreshableView();
+        listView.addFooterView(addView);
+        addResumeTv.setOnClickListener(this);
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("我的招聘");
         requestParams=new RequestParams();
@@ -173,6 +181,16 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
         switch (v.getId()){
             case R.id.tailt_return_tv:
                 finish();
+                break;
+            case R.id.add_resume_tv:
+                if (!TextUtils.isEmpty(bdName)){
+                    Intent intent=new Intent(ApplicationsListActivity.this,AddMerchantActivity.class);
+                    startActivity(intent);
+                }else {
+                    Intent intent=new Intent(ApplicationsListActivity.this,MerchantInformationActivity.class);
+                    startActivity(intent);
+
+                }
                 break;
 
         }
