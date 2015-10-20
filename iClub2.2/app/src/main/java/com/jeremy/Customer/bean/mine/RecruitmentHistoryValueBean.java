@@ -24,6 +24,42 @@ public class RecruitmentHistoryValueBean implements Serializable {
        private String email;
        private int viewCount;
        private int cityid;
+       private String workingTime;
+       private String workingHours;
+       private String applyjobCount;
+       private String state;
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getWorkingTime() {
+        return workingTime;
+    }
+
+    public void setWorkingTime(String workingTime) {
+        this.workingTime = workingTime;
+    }
+
+    public String getWorkingHours() {
+        return workingHours;
+    }
+
+    public void setWorkingHours(String workingHours) {
+        this.workingHours = workingHours;
+    }
+
+    public String getApplyjobCount() {
+        return applyjobCount;
+    }
+
+    public void setApplyjobCount(String applyjobCount) {
+        this.applyjobCount = applyjobCount;
+    }
 
     public int getCityid() {
         return cityid;
@@ -189,6 +225,10 @@ public class RecruitmentHistoryValueBean implements Serializable {
                 ", jobRequirements='" + jobRequirements + '\'' +
                 ", email='" + email + '\'' +
                 ", viewCount=" + viewCount +
+                ", cityid=" + cityid +
+                ", workingTime='" + workingTime + '\'' +
+                ", workingHours='" + workingHours + '\'' +
+                ", applyjobCount='" + applyjobCount + '\'' +
                 '}';
     }
 }

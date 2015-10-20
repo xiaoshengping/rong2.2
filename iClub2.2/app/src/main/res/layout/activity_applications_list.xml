@@ -1,9 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jeremy.Customer.uilt.ApplicationsListActivity">
+       <include layout="@layout/app_white_tailt_layout"/>
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/recruiment_history_list_lv"
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        android:scrollbars="none"
+        android:dividerHeight="3dp"
+        ptr:ptrHeaderTextColor="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        />
 
-</RelativeLayout>
+</LinearLayout>
