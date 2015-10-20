@@ -183,6 +183,7 @@
             android:name=".uilt.MerchantInformationPreviewActivity"
             android:label="@string/title_activity_merchant_information_preview" >
         </activity>
+        <activity android:name=".PagesActivity"></activity>
     </application>
 
 </manifest>

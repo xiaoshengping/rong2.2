@@ -5,14 +5,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.renderscript.Allocation;
-import android.renderscript.Element;
-import android.renderscript.RenderScript;
-import android.renderscript.ScriptIntrinsicBlur;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
@@ -61,6 +56,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private ImageView talents_sex_iv;
     private TextView talents_age_tv,talents_site_tv,talents_profession_tv;
     private TextView talents_self_introduction_tv,talents_work_experience_tv,talents_reputation_tv;
+    private TextView comment_button_tv;
 
     private int mScrollY = 0;
     private Bitmap bitmap;
@@ -112,6 +108,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         invite_a_few_tv = (TextView)findViewById(R.id.invite_a_few_tv);
         self_introduction_button_tv = (TextView)findViewById(R.id.self_introduction_button_tv);
         work_experience_button_tv = (TextView)findViewById(R.id.work_experience_button_tv);
+        comment_button_tv = (TextView)findViewById(R.id.comment_button_tv);
 
         personal_data_button_tv.setOnClickListener(this);
         individual_works_button_tv.setOnClickListener(this);
@@ -119,6 +116,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         individual_works_button_tv1.setOnClickListener(this);
         self_introduction_button_tv.setOnClickListener(this);
         work_experience_button_tv.setOnClickListener(this);
+        comment_button_tv.setOnClickListener(this);
 
         //初始化自我介绍高度
         ViewTreeObserver viewTreeObserver = talents_self_introduction_tv.getViewTreeObserver();
@@ -250,13 +248,13 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         mScrollY = scrollY;
 
 //        TextView a = (TextView) findViewById(R.id.talents_name_tv);
-        //邀约数淡出淡入动画
+       /* //邀约数淡出淡入动画
         int invite = Identification.dip2px(this, 100);
         float lucency = ((float) (invite - scrollY) / (float) invite);//控件透明度
         invite_a_few_tv.setAlpha(lucency);
         invite_a_few_tv.setTranslationY(-(int) (scrollY * 0.7));
-
-        //用户基本资料跟随滑动动画
+*/
+        /*//用户基本资料跟随滑动动画
         if (scrollY <= Identification.dip2px(this, 130)) {
             talents_basics_rl.setTranslationY(-scrollY);
         } else {
@@ -275,30 +273,30 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         } else {
             talents_basics_rl.setScaleY((float) 1);
             talents_basics_rl.setScaleX((float) 1);
-        }
+        }*/
 
-        //人才背景滑动动画
-        if (scrollY <= Identification.dip2px(this, 106)) {
+      /*  //人才背景滑动动画
+        if (scrollY <= Identification.dip2px(this, 324)) {
 //        talents_back_iv.setScaleY((float) 0.5);
-            talents_back_iv.setTranslationY(-(int) (scrollY * 0.7));
-            talents_back_baffle_tv.setTranslationY(-(int) (scrollY * 1.7));
+            talents_back_iv.setTranslationY(-(int) (scrollY * 0.28));
+            talents_back_baffle_tv.setTranslationY(-(int) (scrollY * 0.555555));
         } else {
-            talents_back_iv.setTranslationY(-(int) (Identification.dip2px(this, 106) * 0.7));
-            talents_back_baffle_tv.setTranslationY(-(int) (Identification.dip2px(this, 106) * 1.7));
-        }
+            *//*talents_back_iv.setTranslationY(-(int) (Identification.dip2px(this, 106) * 0.7));
+            talents_back_baffle_tv.setTranslationY(-(int) (Identification.dip2px(this, 106) * 1.7));*//*
+        }*/
 
-        //显示浮框
+        /*//显示浮框
         if (scrollY >= Identification.dip2px(this, 324)) {
             floating_collar.setVisibility(View.VISIBLE);
         } else {
             floating_collar.setVisibility(View.GONE);
-        }
+        }*/
 
-        //毛玻璃化
-        if (scrollY > 5 && scrollY <= Identification.dip2px(this, 106)) {
+        /*//毛玻璃化
+        if (scrollY!=0&&scrollY <= Identification.dip2px(this, 324)) {
 
-            int max = Identification.dip2px(this, 106);
-            float maoboli = ((float) scrollY / (float) max) * 10.f;
+            int max = Identification.dip2px(this, 324);
+            float maoboli = ((float) scrollY / (float) max) * 20.f;
 
             if (Build.VERSION.SDK_INT > 16) {
                 Bitmap bitmap1 = bitmap.copy(bitmap.getConfig(), true);
@@ -317,11 +315,11 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 //                talents_back_iv.setImageBitmap(Identification.fastblur(this, bitmap, 10));
             }
 
-        } else if (scrollY <= 5) {
+        } else {
 //            talents_back_iv.setImageResource(R.drawable.talents_details_button_l_shape);
-                talents_back_iv.setImageBitmap(bitmap);
+//                talents_back_iv.setImageBitmap(bitmap);
 
-        }
+        }*/
 
 
 //        a.setText(scrollY + "");
@@ -355,6 +353,14 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
             case R.id.work_experience_button_tv:
                 work_experience_button_tv.setVisibility(View.GONE);
                 toggle(talents_work_experience_tv);
+                break;
+            case R.id.comment_button_tv:
+                Intent intent = new Intent();
+                intent.setClass(TalentsDetailsActivity.this, RecommenListActivity.class);
+                intent.putExtra("Ident", Identification.COMMENT);
+                intent.putExtra("URL","getCommentByPerson.action?resumeid=");
+                intent.putExtra("ID",talentValueBean.getResumeid());
+                startActivity(intent);
                 break;
         }
 

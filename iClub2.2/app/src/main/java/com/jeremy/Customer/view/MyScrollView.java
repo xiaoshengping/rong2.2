@@ -95,7 +95,13 @@ public class MyScrollView extends ScrollView {
 		 */
 		public void onScroll(int scrollY);
 	}
-	
-	
+
+	/**
+	 * 滑动事件
+	 */
+	@Override
+	public void fling(int velocityY) {
+		super.fling(velocityY / 3);
+	}
 
 }

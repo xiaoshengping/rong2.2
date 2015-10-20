@@ -70,7 +70,7 @@
                 android:padding="5dp"
                 android:text="啦啦啦"
                 android:textColor="@color/home_talents_item_name"
-                android:textSize="20dp" />
+                android:textSize="18dp" />
             <ImageView
                 android:id="@+id/talents_sex_iv"
                 android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
                     android:layout_marginLeft="8dp"
                     android:text="年龄"
                     android:textColor="#7A7A7C"
-                    android:textSize="16dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/talents_age_tv"
@@ -108,7 +108,7 @@
                     android:gravity="center_horizontal"
                     android:text="23"
                     android:textColor="@color/home_talents_item_name"
-                    android:textSize="18dp" />
+                    android:textSize="16dp" />
 
                 <TextView
                     android:layout_width="1px"
@@ -121,7 +121,7 @@
                     android:layout_marginLeft="8dp"
                     android:text="地点"
                     android:textColor="#7A7A7C"
-                    android:textSize="16dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/talents_site_tv"
@@ -131,7 +131,7 @@
                     android:gravity="center_horizontal"
                     android:text="广州"
                     android:textColor="@color/home_talents_item_name"
-                    android:textSize="17dp" />
+                    android:textSize="15dp" />
 
                 <TextView
                     android:layout_width="1px"
@@ -144,7 +144,7 @@
                     android:layout_marginLeft="8dp"
                     android:text="职业"
                     android:textColor="#7A7A7C"
-                    android:textSize="16dp" />
+                    android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/talents_profession_tv"
@@ -154,7 +154,7 @@
                     android:gravity="center_horizontal"
                     android:text="歌手讽德诵功"
                     android:textColor="@color/home_talents_item_name"
-                    android:textSize="17dp" />
+                    android:textSize="15dp" />
 
             </LinearLayout>
 
@@ -233,7 +233,7 @@
                 android:padding="6dp"
                 android:text="个人资料"
                 android:textColor="#ffffff"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/individual_works_button_tv1"
@@ -244,7 +244,7 @@
                 android:padding="6dp"
                 android:text="个人作品"
                 android:textColor="@color/home_talents_item_name"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
     </LinearLayout>
 

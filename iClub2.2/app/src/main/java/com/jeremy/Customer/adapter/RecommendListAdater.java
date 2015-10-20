@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.CommentBean;
 import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.RecruitmentListBean;
 import com.jeremy.Customer.bean.TalentValueBean;
@@ -28,9 +29,11 @@ public class RecommendListAdater extends BaseAdapter {
     private ViewActivity viewActivity;
     private ViewTalents viewTalents;
     private ViewPosition viewPosition;
+    private ViewComment viewComment;
     private int identi;
     public List<RecruitmentListBean> recruitmentListData;
     public List<TalentValueBean> talentValueBean;
+    public List<CommentBean> commentDate;
     private int maxNumber = 0;
 
     private Context context;
@@ -60,6 +63,15 @@ public class RecommendListAdater extends BaseAdapter {
         maxNumber = data.size();
 //        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
     }
+    //评论列表
+    public RecommendListAdater(List<CommentBean> data, int identi ,Context context) {
+        this.mInflater = LayoutInflater.from(context);
+//        this.bitmapUtils = new BitmapUtils(context);
+        this.identi = identi;
+        commentDate = data;
+        maxNumber = data.size();
+//        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
+    }
 
     public RecommendListAdater() {
 
@@ -72,6 +84,10 @@ public class RecommendListAdater extends BaseAdapter {
     }
     public void setTalentValueBean(List<TalentValueBean> datas){
         talentValueBean = datas;
+        maxNumber = datas.size();
+    }
+    public void setCommentBean(List<CommentBean> datas){
+        commentDate = datas;
         maxNumber = datas.size();
     }
 
@@ -209,6 +225,31 @@ public class RecommendListAdater extends BaseAdapter {
         return view;
     }
 
+    private View comment(View view, int position){
+        if (view == null) {
+            view = mInflater.inflate(R.layout.item_talents, null);
+            viewComment = new ViewComment();
+            viewComment.comment_text_tv = (TextView)view.findViewById(R.id.comment_text_tv);
+            viewComment.comment_unit_tv = (TextView)view.findViewById(R.id.comment_unit_tv);
+            viewComment.comment_time_tv = (TextView)view.findViewById(R.id.comment_time_tv);
+
+            view.setTag(viewTalents);
+        } else {
+            viewTalents = (ViewTalents) view.getTag();
+        }
+        if(commentDate.size()>0) {
+            viewComment.comment_text_tv.setText(commentDate.get(position).getBody());
+            if (commentDate.get(position).getCompanyName()==null||commentDate.get(position).getCompanyName().equals("")){
+                viewComment.comment_unit_tv.setText(commentDate.get(position).getNickname());
+            }else {
+                viewComment.comment_unit_tv.setText(commentDate.get(position).getCompanyName());
+            }
+            viewComment.comment_time_tv.setText(commentDate.get(position).getTime());
+        }
+
+        return view;
+    }
+
     public class ViewActivity {
         private RoundAngleImageView activity_poster;
         private TextView activity_name;
@@ -222,6 +263,10 @@ public class RecommendListAdater extends BaseAdapter {
 
     public class ViewPosition {
         private TextView item_position_name_tv, item_position_salary_tv, item_position_time_tv, item_position_site_tv;
+
+    }
+    public class ViewComment {
+        private TextView comment_text_tv, comment_unit_tv, comment_time_tv;
 
     }
 

@@ -392,8 +392,8 @@ public class AppUtilsUrl  {
     public static String getReputationValue(String personid){
         return BaseUrl+"grade.action?personid="+personid;
     }
-    public static String getComment(int personid , String Url){
-        return BaseUrl+Url+personid+"&offset=0&limit=15";
+    public static String getComment(int personid , String Url,int offset){
+        return BaseUrl+Url+personid+"&offset="+offset+"&limit=10";
     }
     public static String getComment(String uid , String Url){
         return BaseUrl+Url+uid+"&offset=0&limit=15";

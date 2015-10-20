@@ -16,6 +16,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.RecommendListAdater;
 import com.jeremy.Customer.bean.ArtistParme;
+import com.jeremy.Customer.bean.CommentBean;
 import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.MyDialog;
@@ -43,7 +44,10 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     private PullToRefreshListView recommend_list;
     private List<TalentValueBean> talentValueBean = new ArrayList<>();
     private List<RecruitmentListBean> recruitmentListData = new ArrayList<>();
+    private List<CommentBean> commentDate = new ArrayList<>();
     private RecommendListAdater adater;
+    private String url;
+    private int id;
 
     private int offset = 0;
 
@@ -63,12 +67,16 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
 
         Bundle bundle = this.getIntent().getExtras();
         identi = bundle.getInt("Ident");
+        url = bundle.getString("URL");
+        id = bundle.getInt("ID");
         if (identi == Identification.ACTIVITY) {
             intiActivity();
         } else if (identi == Identification.TALENTS) {
             intiTalents();
         } else if (identi == Identification.PROSITION) {
             intiProsition();
+        } else if (identi == Identification.COMMENT) {
+            intiComment();
         }
 
         recommend_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -144,11 +152,11 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     ArtistParme<TalentValueBean> talentValue = JSONObject.parseObject(result, new TypeReference<ArtistParme<TalentValueBean>>() {
                     });
                     if (talentValue.getState().equals("success")) {
-                        if(talentValue.getValue()!=null) {
+                        if (talentValue.getValue() != null) {
                             talentValueBean.addAll(talentValue.getValue());
                             adater.setTalentValueBean(talentValueBean);
                             adater.notifyDataSetChanged();
-                        }else {
+                        } else {
                             Toast.makeText(RecommenListActivity.this, "以上已为全部内容", Toast.LENGTH_LONG).show();
                         }
 
@@ -174,6 +182,94 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
             }
         });
 
+    }
+
+    //初始化评论列表
+    private void intiComment() {
+        adater = new RecommendListAdater(commentDate, Identification.COMMENT, this);
+        recommend_list.setAdapter(adater);
+//        Toast.makeText(getActivity(), recruitmentListData.size() + "", Toast.LENGTH_LONG).show();
+        recommend_list.setMode(PullToRefreshBase.Mode.BOTH);
+        recommend_list.setOnRefreshListener(this);
+        ILoadingLayout endLabels = recommend_list
+                .getLoadingLayoutProxy(false, true);
+        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout startLabels = recommend_list
+                .getLoadingLayoutProxy(true, false);
+        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        recommend_list.setRefreshing();
+
+        mytitle.setTextViewText("评论");
+//        RecommendListAdater adater = new RecommendListAdater(this,identi);
+//        recommend_list.setAdapter(adater);
+    }
+
+    //初始化合作评论
+    private void initcCollaborateComment(int offset) {
+
+        loadingDialog = new LoadingDialog(this);
+        loadingDialog.show();
+
+        HttpUtils httpUtils = new HttpUtils();
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(id, url,offset), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result = responseInfo.result;
+                if (result != null) {
+                    ArtistParme<CommentBean> commentBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<CommentBean>>() {
+                    });
+                    if (commentBean.getState().equals("success")) {
+
+                        if (commentBean.getValue() != null) {
+                            commentDate.addAll(commentBean.getValue());
+                            adater.setCommentBean(commentDate);
+                            adater.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(RecommenListActivity.this, "以上已为全部内容", Toast.LENGTH_LONG).show();
+                        }
+
+
+//                        if(commentBean.getValue()!=null) {
+                        /*List<CommentBean> commentDate = commentBean.getValue();
+                        adater = new ReputationAdapter(ReputationActivity.this,commentDate);
+                        reputation_list.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                        if(commentDate.size()!=0) {
+                            reputation_tipe_tv.setTextColor(0x00000000);
+                        }else {
+                            reputation_tipe_tv.setTextColor(0xffDEDDE2);
+                        }*/
+//                        }
+
+                    }
+
+                    recommend_list.onRefreshComplete();
+
+                    loadingDialog.dismiss();
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+
+                adater = new RecommendListAdater();
+                recommend_list.setAdapter(adater);
+                recommend_list.onRefreshComplete();
+                loadingDialog.dismiss();
+
+                dialog();
+
+//                reputation_tipe_tv.setTextColor(0xffDEDDE2);
+//                reputation_tipe_tv.setText("网路异常，请稍后再试！");
+            }
+        });
     }
 
     private MyDialog dialog2;
@@ -222,7 +318,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
 
                 Intent intent = new Intent(RecommenListActivity.this, JobDetailsActivity.class);  //方法1
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("Detail", recruitmentListData.get(position-1));
+                bundle.putSerializable("Detail", recruitmentListData.get(position - 1));
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -249,11 +345,11 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
                     });
                     if (recruitmentListBean.getState().equals("success")) {
-                        if(recruitmentListBean.getValue()!=null) {
+                        if (recruitmentListBean.getValue() != null) {
                             recruitmentListData.addAll(recruitmentListBean.getValue());
                             adater.setRecruitmentListData(recruitmentListData);
                             adater.notifyDataSetChanged();
-                        }else {
+                        } else {
                             Toast.makeText(RecommenListActivity.this, "以上已为全部内容", Toast.LENGTH_LONG).show();
                         }
 
@@ -300,6 +396,10 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
             recruitmentListData.clear();
             offset = 0;
             initPrositionListData(0, 0, offset);
+        } else if (identi == Identification.COMMENT) {
+            commentDate.clear();
+            offset = 0;
+            initcCollaborateComment(offset);
         }
 
     }
@@ -315,6 +415,9 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
         } else if (identi == Identification.PROSITION) {
             offset = offset + 10;
             initPrositionListData(0, 0, offset);
+        } else if (identi == Identification.COMMENT) {
+            offset = offset + 10;
+            initcCollaborateComment(offset);
         }
 
     }

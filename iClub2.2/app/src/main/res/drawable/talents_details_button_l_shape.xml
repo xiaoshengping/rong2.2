@@ -4,9 +4,9 @@
 
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:useLevel="false">
-    <corners android:topLeftRadius="2dp"
+    <corners android:topLeftRadius="4dp"
         android:topRightRadius="0dp"
-        android:bottomLeftRadius="2dp"
+        android:bottomLeftRadius="4dp"
         android:bottomRightRadius="0dp"></corners>
     <solid android:color="@color/home_more" />
     <stroke

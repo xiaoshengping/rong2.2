@@ -187,6 +187,7 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
 
         require_button_tv.setOnClickListener(this);
         describe_button_tv.setOnClickListener(this);
+        evaluate_tv.setOnClickListener(this);
 
     }
 
@@ -337,10 +338,10 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
         public void onPageScrolled(int arg0, float arg1, int arg2) {
             ArgbEvaluator evaluator = new ArgbEvaluator();
             if(arg1!=0) {
-                int evaluate = (Integer) evaluator.evaluate(arg1, 0XFFBe0158, 0XFF777778);
+                int evaluate = (Integer) evaluator.evaluate(arg1, 0XFF8744ad, 0XFF777778);
                 job_details_tv.setTextColor(evaluate);
                 job_details_tv.setTextSize(18-(arg1*2));
-                int evaluates = (Integer) evaluator.evaluate(arg1, 0XFF777778, 0XFFBe0158);
+                int evaluates = (Integer) evaluator.evaluate(arg1, 0XFF777778, 0XFF8744ad);
                 company_details_tv.setTextSize(16+(arg1*2));
                 company_details_tv.setTextColor(evaluates);
             }
@@ -422,6 +423,14 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
             case R.id.company_introduce_button_tv:
                 company_introduce_button_tv.setVisibility(View.GONE);
                 toggle(company_introduce_tv);
+                break;
+            case R.id.evaluate_tv:
+                Intent intent = new Intent();
+                intent.setClass(JobDetailsActivity.this, RecommenListActivity.class);
+                intent.putExtra("Ident", Identification.COMMENT);
+                intent.putExtra("URL","getCommentByBePerson.action?personid=");
+                intent.putExtra("ID",recruitmentListBean.getPersonid());
+                startActivity(intent);
                 break;
         }
     }
