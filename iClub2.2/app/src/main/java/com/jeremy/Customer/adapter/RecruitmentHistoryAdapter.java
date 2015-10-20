@@ -17,7 +17,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.MessageBean;
 import com.jeremy.Customer.bean.ParmeBean;
-import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.bean.mine.RecruitmentHistoryValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -32,53 +32,51 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import java.util.List;
 
 /**
- * Created by xiaoshengping on 2015/6/11.
+ * Created by xiaoshengping on 2015/6/17.
  */
-public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implements View.OnClickListener {
-
-    private  ViewHolde viewHolde;
-    private int resumeId;
+public class RecruitmentHistoryAdapter extends AppBaseAdapter<RecruitmentHistoryValueBean> implements View.OnClickListener {
+    private ViewHole viewHole;
     private String state;
+    private PullToRefreshListView recruitmentHistoryLv;
+    private  String jodId;
     private Button stateDialogButton;
-    private PullToRefreshListView resumeListLv;
 
-    private int positions;
-    public ResumeListAdapter(List<ResumeValueBean> data, Context context,PullToRefreshListView resumeListLv) {
+    public RecruitmentHistoryAdapter(List<RecruitmentHistoryValueBean> data, Context context,PullToRefreshListView recruitmentHistoryLv) {
         super(data, context);
-        this.resumeListLv=resumeListLv;
+        this.recruitmentHistoryLv=recruitmentHistoryLv;
     }
 
     @Override
     public View createView(int position, View convertView, ViewGroup parent) {
-        if (convertView==null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.resume_list_adapter, parent, false);
-             viewHolde=new ViewHolde(convertView);
-            convertView.setTag(viewHolde);
-        }else {
-          viewHolde= (ViewHolde) convertView.getTag();
+         if (convertView==null) {
+             convertView = LayoutInflater.from(context).inflate(R.layout.recruitment_history_adapter_layout, parent, false);
+              viewHole=new ViewHole(convertView);
+             convertView.setTag(viewHole);
 
-        }
-        inti(position);
+         }else {
+             viewHole= (ViewHole) convertView.getTag();
 
+         }
+        intiData(position);
         return convertView;
     }
 
-    private void inti(int position) {
-        positions=position;
-        ResumeValueBean ResumeValueBeans= data.get(position);
-        viewHolde.resumeJobNameTv.setText(ResumeValueBeans.getResumeJobName());
-        viewHolde.createTimeTv.setText(ResumeValueBeans.getCreateTime());
-        viewHolde.updateTimeTv.setText("浏览量: " + ResumeValueBeans.getResumeViewCount());
-        resumeId= ResumeValueBeans.getResumeid();
-         state=data.get(position).getState()+"";
+    private void intiData(int position) {
+        viewHole.createTimeTv.setText(data.get(position).getWorkingTime());
+        viewHole.recruitmentCompanyNameTv.setText(data.get(position).getCompanyName());
+        viewHole.recruitmentTimeTv.setText("投递量: "+data.get(position).getApplyjobCount());
+        state=data.get(position).getState();
         if (state.equals("0")){
-             viewHolde.resumeStateTv.setText("公开");
-         }else if (state.equals("1")){
-             viewHolde.resumeStateTv.setText("保密");
-         }
-       viewHolde.modificationButton.setOnClickListener(this);
-        viewHolde.refreshButton.setOnClickListener(this);
-        viewHolde.moreButton.setOnClickListener(this);
+            viewHole.merchantStateTv.setText("公开");
+        }else if (state.equals("1")){
+            viewHole.merchantStateTv.setText("保密");
+        }
+        viewHole.modificationButton.setOnClickListener(this);
+        viewHole.refreshButton.setOnClickListener(this);
+        viewHole.moreButton.setOnClickListener(this);
+        jodId=data.get(position).getJobId()+"";
+
+
 
     }
 
@@ -86,27 +84,23 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.modification_button:
+
                 break;
             case R.id.refresh_button:
-                if (!TextUtils.isEmpty(Integer.toString(resumeId))){
-                    refreshResumeData(Integer.toString(resumeId));
-                    //Log.e("refresh_button","--------"+positions);
-                }
+                 if (!TextUtils.isEmpty(jodId)){
+                     refreshMerchantData(jodId);
+                 }
                 break;
             case R.id.more_button:
                 showDialog();
-                //Log.e("more_button", "--------" + positions);
                 break;
+
 
 
         }
 
 
-    }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return super.getView(position, convertView, parent);
     }
 
     private void showDialog() {
@@ -130,7 +124,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
         // 设置点击外围解散
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
-       stateDialogButton= (Button) view.findViewById(R.id.picture_dialog_button);
+        stateDialogButton= (Button) view.findViewById(R.id.picture_dialog_button);
         Button deleteDialogButton= (Button) view.findViewById(R.id.photograph_dialog_button);
         Button cancelDialogButton= (Button) view.findViewById(R.id.cancel_dialog_button);
         deleteDialogButton.setText("删除");
@@ -142,23 +136,23 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
         stateDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!TextUtils.isEmpty(resumeId+"")||!TextUtils.isEmpty(state)){
+                if (!TextUtils.isEmpty(jodId)||!TextUtils.isEmpty(state)){
                     if (state.equals("0")){
-                        stateSaveData("简历已保密", "1", resumeId + "");
+                        stateSaveData("职位已保密", "1", jodId);
                     }else if (state.equals("1")){
-                        stateSaveData("简历已公开","0" ,  resumeId + "");
+                        stateSaveData("职位已公开","0" , jodId);
                     }
 
                 }
-                //Log.e("stateDialogButton", "--------" + positions);
                 dialog.dismiss();
             }
         });
         deleteDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteResumeData(resumeId+"");
-                //Log.e("deleteDialogButton", "--------" + positions);
+                if (!TextUtils.isEmpty(jodId)){
+                    deleteMerchantData(jodId);
+                }
                 dialog.dismiss();
             }
         });
@@ -171,23 +165,61 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
 
 
     }
-    //删除简历
-    private void deleteResumeData(String resumeId) {
+
+    //保密或者公开
+    private void stateSaveData(final String text, final String state,String  jobid) {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
-        requestParams.addBodyParameter("resumeid",resumeId);
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteResume(), requestParams,new RequestCallBack<String>() {
+        requestParams.addBodyParameter("jobid",jobid);
+        requestParams.addBodyParameter("state",state);
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getSaveStateMerchant(), requestParams,new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                ParmeBean<MessageBean> parmeBean= JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
+                if (parmeBean.getState().equals("success")){
+                    if (parmeBean.getValue().getMessage().equals("success")){
+                        MyAppliction.showToast(text);
+                        if (state.equals("0")){
+                            viewHole.merchantStateTv.setText("保密");
+                        }else if (state.equals("1")){
+                            viewHole.merchantStateTv.setText("公开");
+                        }
+                        notifyDataSetChanged();
+                        recruitmentHistoryLv.setRefreshing();
+                    }else {
+                        MyAppliction.showToast("职位保存失败");
+
+                    }
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+
+            }
+        });
+
+
+    }
+    //删除招聘
+    private void deleteMerchantData(String jobid) {
+        HttpUtils httpUtils=new HttpUtils();
+        RequestParams requestParams=new RequestParams();
+        requestParams.addBodyParameter("jobid",jobid);
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeleteJob(), requestParams,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 ParmeBean<MessageBean> parmeBean= JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
                 // Log.e("jfjfjfj",responseInfo.result);
                 if (parmeBean.getState().equals("success")){
                     if (parmeBean.getValue().getMessage().equals("success")){
-                        MyAppliction.showToast("删除简历成功");
+                        MyAppliction.showToast("删除招聘成功");
                         notifyDataSetChanged();
-                        resumeListLv.setRefreshing();
+                        recruitmentHistoryLv.setRefreshing();
                     }else {
-                        MyAppliction.showToast("删除简历失败");
+                        MyAppliction.showToast("删除招聘失败");
 
                     }
                 }
@@ -207,32 +239,22 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
     }
 
 
-
-
-
-        //保密或者公开
-    private void stateSaveData(final String text, final String state,String  resumeId) {
+    //刷新招聘列表
+    private void refreshMerchantData(String jobid) {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
-        requestParams.addBodyParameter("resumeid",resumeId);
-        requestParams.addBodyParameter("state",state);
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getSaveStateResume(), requestParams,new RequestCallBack<String>() {
+        requestParams.addBodyParameter("jobid",jobid);
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getRefreshMerchant(), requestParams,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                ParmeBean<MessageBean> parmeBean= JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
-               // Log.e("jfjfjfj",responseInfo.result);
+                ParmeBean<MessageBean> parmeBean= JSONObject.parseObject(responseInfo.result, new TypeReference<ParmeBean<MessageBean>>() {
+                });
                 if (parmeBean.getState().equals("success")){
                     if (parmeBean.getValue().getMessage().equals("success")){
-                        MyAppliction.showToast(text);
-                        if (state.equals("0")){
-                            viewHolde.resumeStateTv.setText("保密");
-                        }else if (state.equals("1")){
-                            viewHolde.resumeStateTv.setText("公开");
-                        }
-                        notifyDataSetChanged();
-                        resumeListLv.setRefreshing();
+                        MyAppliction.showToast("刷新职位成功");
+                        recruitmentHistoryLv.setRefreshing();
                     }else {
-                        MyAppliction.showToast("简历保存失败");
+                        MyAppliction.showToast("刷新职位失败");
 
                     }
                 }
@@ -249,48 +271,16 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
 
     }
 
-    //刷新简历
-    private void refreshResumeData(String resumeId) {
-        HttpUtils httpUtils=new HttpUtils();
-        RequestParams requestParams=new RequestParams();
-        requestParams.addBodyParameter("resumeid",resumeId);
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getRefreshResume(), requestParams,new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                ParmeBean<MessageBean> parmeBean= JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
-               // Log.e("jfjfjfj",responseInfo.result);
-                if (parmeBean.getState().equals("success")){
-                    if (parmeBean.getValue().getMessage().equals("success")){
-                        MyAppliction.showToast("刷新简历成功");
-                        resumeListLv.setRefreshing();
-                    }else {
-                        MyAppliction.showToast("刷新简历失败");
 
-                    }
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(HttpException e, String s) {
-
-            }
-        });
-
-
-    }
-
-    private class  ViewHolde{
-
-        @ViewInject(R.id.resume_JobName_tv)
-        private TextView resumeJobNameTv;
-         @ViewInject(R.id.createTime_tv)
+    private class ViewHole{
+        @ViewInject(R.id.recruiment_time_tv)
+        private TextView recruitmentTimeTv;
+        @ViewInject(R.id.createTime_tv)
         private TextView createTimeTv;
-         @ViewInject(R.id.updateTime_tv)
-        private TextView updateTimeTv;
-        @ViewInject(R.id.resume_state_tv)
-        private TextView resumeStateTv;
+        @ViewInject(R.id.application_JobName_tv)
+        private TextView recruitmentCompanyNameTv;
+        @ViewInject(R.id.merchant_state_tv)
+        private TextView merchantStateTv;
         @ViewInject(R.id.modification_button)
         private Button modificationButton;
         @ViewInject(R.id.refresh_button)
@@ -298,9 +288,9 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean> implement
         @ViewInject(R.id.more_button)
         private Button moreButton;
 
-        public ViewHolde(View view) {
+        public ViewHole(View view) {
+
             ViewUtils.inject(this, view);
         }
     }
-
 }

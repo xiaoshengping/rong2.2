@@ -78,6 +78,7 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
         if (!TextUtils.isEmpty(uid)){
             initData(uid);
         }
+        //Log.e("lines.......",merchantInfoTv.getLineCount()+"");
         if (merchantInfoTv.getLineCount()>0&&merchantInfoTv.getLineCount()<=4){
             MerchantMoreLayout.setVisibility(View.GONE);
             merchantInfoTv.setLines(merchantInfoTv.getLineCount());

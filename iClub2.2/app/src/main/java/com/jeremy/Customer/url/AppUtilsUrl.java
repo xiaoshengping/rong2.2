@@ -78,10 +78,22 @@ public class AppUtilsUrl  {
         return BaseUrl+"refreshResume.action" ;
 
     }
+    //刷新招聘列表
+    public static String getRefreshMerchant(){
+        //refreshJob.action
+        return BaseUrl+"refreshJob.action" ;
+
+    }
     //人才--公开/保密简历
     public static String getSaveStateResume(){
         //refreshResume.action
         return BaseUrl+"displayHideResume.action" ;
+
+    }
+    //人才--公开/保密简历
+    public static String getSaveStateMerchant(){
+        //displayHideJob.action
+        return BaseUrl+"displayHideJob.action" ;
 
     }
 

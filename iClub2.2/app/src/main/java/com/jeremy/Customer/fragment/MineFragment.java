@@ -34,6 +34,7 @@ import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.http.ImageUtil;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.uilt.AnnouncementMessageActivity;
+import com.jeremy.Customer.uilt.ApplicationsListActivity;
 import com.jeremy.Customer.uilt.InviteMessageActivity;
 import com.jeremy.Customer.uilt.LoginActivity;
 import com.jeremy.Customer.uilt.MerchantDeliverActivity;
@@ -287,8 +288,15 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 startActivity(nickNameIntent);
                 break;
             case R.id.resume_zhaoping_tv:
-                Intent resumeIntent=new Intent(getActivity(), ResumeActivity.class);
-                startActivity(resumeIntent);
+                if (state.equals("2")){
+                    Intent resumeIntent=new Intent(getActivity(), ResumeActivity.class);
+                    startActivity(resumeIntent);
+                }else if (state.equals("3")){
+                    Intent resumeIntent=new Intent(getActivity(), ApplicationsListActivity.class);
+                    startActivity(resumeIntent);
+                }
+
+
 
                 break;
             case R.id.journey_merchant_tv:
