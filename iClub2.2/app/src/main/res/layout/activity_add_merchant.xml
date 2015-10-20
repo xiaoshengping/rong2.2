@@ -71,7 +71,7 @@
                             android:focusable="true"
                             android:textColorHint="@color/editTextPromptColor"
                             android:layout_marginLeft="55dp"
-                            android:textColor="@color/white"
+
                             android:background="@null"
                             android:textSize="@dimen/textSize15"
                             android:layout_width="match_parent"
@@ -98,7 +98,7 @@
                             android:background="@null"
                             android:textColorHint="@color/editTextPromptColor"
                             android:layout_marginLeft="55dp"
-                            android:textColor="@color/white"
+
                             android:textSize="@dimen/textSize15"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -124,7 +124,6 @@
                             android:background="@null"
                             android:textColorHint="@color/editTextPromptColor"
                             android:layout_marginLeft="55dp"
-                            android:textColor="@color/white"
                             android:textSize="@dimen/textSize15"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -151,7 +150,6 @@
                             android:background="@null"
                             android:textColorHint="@color/editTextPromptColor"
                             android:layout_marginLeft="55dp"
-                            android:textColor="@color/white"
                             android:textSize="@dimen/textSize15"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -201,7 +199,6 @@
                             android:background="@null"
                             android:textColorHint="@color/editTextPromptColor"
                             android:layout_marginLeft="55dp"
-                            android:textColor="@color/white"
                             android:textSize="@dimen/textSize15"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content" />
@@ -236,7 +233,7 @@
                         android:layout_height="wrap_content" />
                     <TextView
                         android:id="@+id/experience_require_tv"
-                        android:text="亲，请填写经验要求哦(必填)"
+                        android:text="写一下经验要求哦(必填)"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
@@ -275,7 +272,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
                         android:id="@+id/work_describe_tv"
-                        android:text="亲，请填写职位描述哦(必填)"
+                        android:text="写一下职位描述哦(必填)"
                         android:textColor="@color/editTextPromptColor"
                         android:layout_marginLeft="20dp"
                         android:textSize="@dimen/textSize15"

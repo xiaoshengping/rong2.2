@@ -62,6 +62,8 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     private Intent intent;
     private HttpUtils httpUtils;
     private RequestParams requestParams;
+    private static final int INFOLT_HINT_DATA=7;//工作要求
+    private static final int EXPERIENCE_HINT_DATA=8;//职位描述
     /*private AreaBean areaBean = new AreaBean();
     private int job_classfite_num = -1;//职业类别
     private int job_city_num = -1;//工作地点*/
@@ -97,6 +99,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         tailtText.setText("添加招聘");
         saveText.setText("保存");
         saveText.setOnClickListener(this);
+        saveText.setVisibility(View.VISIBLE);
         jobRequirementsLayout.setOnClickListener(this);
         jobInfoLayout.setOnClickListener(this);
         professionClassfitionTv.setOnClickListener(this);
@@ -110,16 +113,15 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             if (!TextUtils.isEmpty(recruitmentHistoryValueBean.getJobRequirements())){
                 experienceRequireTv.setText(recruitmentHistoryValueBean.getJobRequirements());
                 experienceRequireTv.setTextColor(getResources().getColor(R.color.white));
-
             }else {
-                experienceRequireTv.setText("亲，请填写经验要求哦(必填)");
+                experienceRequireTv.setText("写一下经验要求哦(必填)");
                 experienceRequireTv.setTextColor(getResources().getColor(R.color.hunTextColor));
             }
             if (!TextUtils.isEmpty(recruitmentHistoryValueBean.getJobInfo())){
                 workDescribeTv.setText(recruitmentHistoryValueBean.getJobInfo());
                 workDescribeTv.setTextColor(getResources().getColor(R.color.white));
             }else {
-                workDescribeTv.setText("亲，请填写职位描述哦(必填)");
+                workDescribeTv.setText("写一下职位描述哦(必填)");
                 workDescribeTv.setTextColor(getResources().getColor(R.color.hunTextColor));
             }
             merchantWork=recruitmentHistoryValueBean.getJobRequirements();
@@ -135,14 +137,23 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.jobRequirements_layout:
-
+                Intent infoIntent = new Intent(AddMerchantActivity.this, OneselfExperienceActivity.class);  //方法1
+                infoIntent.putExtra("hintData","infoIntent");
+                if (!TextUtils.isEmpty(experienceRequireTv.getText().toString())){
+                    infoIntent.putExtra("content",experienceRequireTv.getText().toString());
+                }
+                startActivityForResult(infoIntent, INFOLT_HINT_DATA);
                 break;
             case R.id.jobInfo_layout:
-
+                Intent workIntent = new Intent(AddMerchantActivity.this, OneselfExperienceActivity.class);  //方法1
+                workIntent.putExtra("hintData","workIntent");
+                if (!TextUtils.isEmpty(workDescribeTv.getText().toString())){
+                    workIntent.putExtra("content",workDescribeTv.getText().toString());
+                }
+                startActivityForResult(workIntent, EXPERIENCE_HINT_DATA);
                 break;
             case R.id.save_text:
-
-
+                intiData();
                 break;
             case R.id.tailt_return_tv:
                 finish();
@@ -153,6 +164,63 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 break;
             case R.id.work_address_tv:
 
+
+                break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+
+            case INFOLT_HINT_DATA:
+                if (data.getStringExtra("infoIntent").toString().equals("notData")){
+                    if (experienceRequireTv.getText().toString().equals("写一下经验要求哦(必填)")){
+                        experienceRequireTv.setText("写一下经验要求哦(必填)");
+                        experienceRequireTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        experienceRequireTv.setText(experienceRequireTv.getText().toString());
+                        experienceRequireTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else if (data.getStringExtra("infoIntent").toString().equals("data")){
+                    if (experienceRequireTv.getText().toString().equals("写一下经验要求哦(必填)")){
+                        experienceRequireTv.setText("写一下经验要求哦(必填)");
+                        experienceRequireTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        experienceRequireTv.setText(experienceRequireTv.getText().toString());
+                        experienceRequireTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else {
+                    experienceRequireTv.setText(data.getStringExtra("infoIntent").toString());
+                    experienceRequireTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                }
+
+                break;
+            case EXPERIENCE_HINT_DATA:
+                if (data.getStringExtra("workIntent").toString().equals("notData")){
+                    if (workDescribeTv.getText().toString().equals("写一下职位描述哦(必填)")){
+                        workDescribeTv.setText("写一下职位描述哦(必填)");
+                        workDescribeTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        workDescribeTv.setText(workDescribeTv.getText().toString());
+                        workDescribeTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+                }else if (data.getStringExtra("workIntent").toString().equals("data")){
+                    if (workDescribeTv.getText().toString().equals("写一下职位描述哦(必填)")){
+                        workDescribeTv.setText("写一下职位描述哦(必填)");
+                        workDescribeTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        workDescribeTv.setText(workDescribeTv.getText().toString());
+                        workDescribeTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else {
+                    workDescribeTv.setText(data.getStringExtra("workIntent").toString());
+                    workDescribeTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                }
 
                 break;
         }
@@ -213,6 +281,8 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         String position = positionEdit.getText().toString();
         String workPay = workPayEdit.getText().toString();
         String recruitingNumbers = recruitingNumbersEdit.getText().toString();
+        String merchantInfo=experienceRequireTv.getText().toString();
+        String merchantWork=workDescribeTv.getText().toString();
         if (!TextUtils.isEmpty(position) && !TextUtils.isEmpty(workPay) && !TextUtils.isEmpty(merchantWork)
                 && !TextUtils.isEmpty(merchantInfo) && !TextUtils.isEmpty(recruitingNumbers)) {
             requestParams.addBodyParameter("uid", uid);

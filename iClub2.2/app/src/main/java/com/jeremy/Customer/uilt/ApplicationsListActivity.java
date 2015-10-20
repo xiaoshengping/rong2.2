@@ -148,10 +148,6 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
                     String result=responseInfo.result;
 
                     if (result!=null){
-                       /* ArtistParme<RecruitmentHistoryValueBean> artistParme= JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentHistoryValueBean>>() {
-                        });
-                        recruitmentHistoryValueBean=  artistParme.getValue();*/
-
                         HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<RecruitmentHistoryValueBean>>() {
                         }, recruitmentHistoryValueBean, recruitmentHistoryAdapter);
                         recruitmentHistoryLv.onRefreshComplete();
