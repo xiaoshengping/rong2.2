@@ -170,6 +170,8 @@
 
     </LinearLayout>
     <LinearLayout
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
         android:layout_below="@+id/introduce_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"

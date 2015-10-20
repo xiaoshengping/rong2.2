@@ -3,6 +3,7 @@ package com.jeremy.Customer.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,12 +78,15 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
         ResumeValueBean resumeValueBeans= (ResumeValueBean) bundle.getSerializable("resumeValueBeans");
        if (resumeValueBeans!=null){
            resumeInfoTv.setText(resumeValueBeans.getResumeInfo());
-           if (resumeInfoTv.getLineCount()>0&&resumeInfoTv.getLineCount()<4){
+           Log.e("hdhfhfkfk",resumeInfoTv.getLineCount()+"");
+           if (resumeInfoTv.getLineCount()>0&&resumeInfoTv.getLineCount()<=4){
                oneselfMoreLayout.setVisibility(View.GONE);
+               resumeInfoTv.setLines(resumeInfoTv.getLineCount());
            }
            resumeExperienceTv.setText(resumeValueBeans.getResumeWorkExperience());
-           if (resumeExperienceTv.getLineCount()>0&&resumeExperienceTv.getLineCount()<4){
+           if (resumeExperienceTv.getLineCount()>0&&resumeExperienceTv.getLineCount()<=4){
                experienceMoreLayout.setVisibility(View.GONE);
+               resumeExperienceTv.setLines(resumeExperienceTv.getLineCount());
            }
            resumeQqTv.setText(resumeValueBeans.getResumeQq());
            resumeEmailTv.setText(resumeValueBeans.getResumeEmail());
