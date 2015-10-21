@@ -5,6 +5,8 @@ import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,6 +14,7 @@ import android.os.Message;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -60,6 +63,8 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
 
     private BitmapUtils bitmapUtils;
 
+    private String states = null;//用户类型
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +72,23 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
 
         bitmapUtils=new BitmapUtils(this);
         recruitmentListBean = (RecruitmentListBean) getIntent().getSerializableExtra("Detail");
+
+        //获取登录状态
+        SQLhelper sqLhelper=new SQLhelper(this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        states=null;
+        while (cursor.moveToNext()) {
+            states = cursor.getString(4);
+
+        }
+        if (TextUtils.isEmpty(states)||states.equals("1")){
+            register = false;
+        }else if(states.equals("2")){
+            register = true;
+        }else if(states.equals("3")){
+            register = false;
+        }
 
         InitTextView();
         InitViewPager();
@@ -433,6 +455,60 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
                 startActivity(intent);
                 break;
         }
+    }
+
+    private boolean register = false;//登录状态
+
+    public void send(View v){
+
+        if(register) {
+            /*Intent intent = new Intent(JobDetailsActivity.this, ChooseAresumeActivity.class);
+            intent.putExtra("jobId", recruitmentListBean.getJobId());
+            startActivityForResult(intent, 0);*/
+//            Bundle bundle = new Bundle();
+//            bundle.putInt("UserType",2);
+//            bundle.putInt("Personid", recruitmentListBean.getPersonid());
+//            bundle.putSerializable("Detail", recruitmentListBean);
+//        bundle.putInt("Resumeid",talentValueBean.getResumeid());
+//        Toast.makeText(this, talentValueBean.getPersonid()+"", Toast.LENGTH_LONG).show();
+//            intent.putExtras(bundle);
+//            startActivity(intent);
+//            HttpUtils httpUtils = new HttpUtils();fyukjhk
+//            httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getSend(recruitmentListBean.getJobId(), 13), new RequestCallBack<String>() {
+//                @Override
+//                public void onSuccess(ResponseInfo<String> responseInfo) {gfyuiky
+//                    String result = responseInfo.result;
+//                    if (result != null) {
+//                    SendParme<ViewCountBean> viewCountBean = JSONObject.parseObject(result, new TypeReference<SendParme<ViewCountBean>>() {
+//                    });
+//                    if (viewCountBean.getState().equals("success")) {
+//                        ViewCountBean viewCountData = JSONObject.parseObject(viewCountBean.getValue(), ViewCountBean.class);
+//
+//                        if (viewCountData.getMessage().equals("success")) {
+//                            sendBl = true;
+//
+//                        } else if (viewCountData.getMessage().equals("failure")){
+//                            sendBl = false;
+//                        }else {
+//                            sendBl = false;
+//                        }
+//                    }
+//
+//                    }
+//
+//
+//                    }
+//
+//                @Override
+//                public void onFailure(HttpException e, String s) {
+//
+//                }
+//            });
+        }else {
+
+            dialog();
+        }
+
     }
 
     public void back(View v) {

@@ -61,6 +61,18 @@
 
         <include layout="@layout/item_company_details"></include>-->
 
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="投递"
+            android:textColor="#F2F2F0"
+            android:textSize="17sp"
+            android:background="@color/home_more"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:onClick="send"/>
+
     </RelativeLayout>
 
 
