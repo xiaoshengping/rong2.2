@@ -187,6 +187,7 @@
             android:name=".uilt.ApplicationsListActivity"
             android:label="@string/title_activity_applications_list" >
         </activity>
+        <activity android:name=".PagesActivity"></activity>
     </application>
 
 </manifest>
