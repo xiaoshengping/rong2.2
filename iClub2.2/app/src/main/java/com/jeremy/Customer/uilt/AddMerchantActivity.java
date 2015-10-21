@@ -48,6 +48,10 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     private TextView experienceRequireTv;
     @ViewInject(R.id.work_describe_tv)
     private TextView  workDescribeTv;
+    @ViewInject(R.id.working_Hours_edit)
+    private EditText workingHoursEdit;
+    @ViewInject(R.id.working_Time_edit)
+    private EditText workingTimeEdit;
 
     @ViewInject(R.id.jobRequirements_layout)
     private LinearLayout jobRequirementsLayout;
@@ -107,23 +111,24 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         recruitmentHistoryValueBean= (RecruitmentHistoryValueBean) intent.getSerializableExtra("recruitmentHistoryValueBean");
         if (recruitmentHistoryValueBean!=null){
             workAddressTv.setText(recruitmentHistoryValueBean.getWorkPlace());
-            workAddressTv.setTextColor(getResources().getColor(R.color.white));
-            professionClassfitionTv.setTextColor(getResources().getColor(R.color.white));
+            workAddressTv.setTextColor(getResources().getColor(R.color.textColor242424));
             positionEdit.setText(recruitmentHistoryValueBean.getPosition());
             if (!TextUtils.isEmpty(recruitmentHistoryValueBean.getJobRequirements())){
                 experienceRequireTv.setText(recruitmentHistoryValueBean.getJobRequirements());
-                experienceRequireTv.setTextColor(getResources().getColor(R.color.white));
+                experienceRequireTv.setTextColor(getResources().getColor(R.color.textColor242424));
             }else {
                 experienceRequireTv.setText("写一下经验要求哦(必填)");
                 experienceRequireTv.setTextColor(getResources().getColor(R.color.hunTextColor));
             }
             if (!TextUtils.isEmpty(recruitmentHistoryValueBean.getJobInfo())){
                 workDescribeTv.setText(recruitmentHistoryValueBean.getJobInfo());
-                workDescribeTv.setTextColor(getResources().getColor(R.color.white));
+                workDescribeTv.setTextColor(getResources().getColor(R.color.textColor242424));
             }else {
                 workDescribeTv.setText("写一下职位描述哦(必填)");
                 workDescribeTv.setTextColor(getResources().getColor(R.color.hunTextColor));
             }
+            workingTimeEdit.setText(recruitmentHistoryValueBean.getWorkingTime());
+            workingHoursEdit.setText(recruitmentHistoryValueBean.getWorkingHours());
             merchantWork=recruitmentHistoryValueBean.getJobRequirements();
             merchantInfo=recruitmentHistoryValueBean.getJobInfo();
             workPayEdit.setText(recruitmentHistoryValueBean.getWorkPay());
@@ -173,7 +178,6 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
-
             case INFOLT_HINT_DATA:
                 if (data.getStringExtra("infoIntent").toString().equals("notData")){
                     if (experienceRequireTv.getText().toString().equals("写一下经验要求哦(必填)")){
@@ -183,7 +187,6 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                         experienceRequireTv.setText(experienceRequireTv.getText().toString());
                         experienceRequireTv.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
-
                 }else if (data.getStringExtra("infoIntent").toString().equals("data")){
                     if (experienceRequireTv.getText().toString().equals("写一下经验要求哦(必填)")){
                         experienceRequireTv.setText("写一下经验要求哦(必填)");
