@@ -1,13 +1,20 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.MerchantParticularsActivity">
+    <include
+        android:id="@+id/tailt_layout"
+        layout="@layout/app_white_tailt_layout"/>
+    <ScrollView
+        android:layout_below="@+id/tailt_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include layout="@layout/app_white_tailt_layout"/>
+
         <RelativeLayout
             android:background="@color/white"
             android:layout_width="match_parent"
@@ -24,6 +31,7 @@
                 android:id="@+id/pay_tv"
                 android:layout_below="@+id/job_name_tv"
                 android:text="金薪"
+                android:textColor="@color/redTextColor"
                 android:layout_marginLeft="20dp"
                 android:textSize="@dimen/textSize16"
                 android:layout_width="match_parent"
@@ -305,8 +313,8 @@
 
 
     </LinearLayout>
+    </ScrollView>
 
 
 
-
-</ScrollView>
+</RelativeLayout>

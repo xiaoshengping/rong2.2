@@ -98,10 +98,10 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
         recruitmentHistoryLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               /* Intent intent = new Intent(getActivity(), AddRecruitmentActivity.class);
+              Intent intent = new Intent(ApplicationsListActivity.this, MerchantParticularsActivity.class);
                 intent.putExtra("recruitmentHistoryValueBean", recruitmentHistoryValueBean.get(position - 1));
-                intent.putExtra("falgeData", "RecruitmentHistoryFragment");
-                startActivity(intent);*/
+                //intent.putExtra("falgeData", "RecruitmentHistoryFragment");
+                startActivity(intent);
             }
         });
 
