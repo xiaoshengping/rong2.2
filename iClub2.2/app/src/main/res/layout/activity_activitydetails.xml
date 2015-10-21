@@ -23,11 +23,13 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/activity_poster_iv"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/activity_height2"
                 android:src="#000000"/>
 
             <TextView
+                android:id="@+id/activity_name_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
@@ -40,6 +42,7 @@
                 android:background="#ffffff"/>
 
             <TextView
+                android:id="@+id/activity_time_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="2015-08-31至2015-09-31"
@@ -62,6 +65,7 @@
                 android:layout_marginTop="10dp"
                 android:background="#ffffff"/>
             <TextView
+                android:id="@+id/activity_content_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="本次大赛主题是《Dare to do，dream comes ture》意为：敢做，梦想才能成真，灵感来源1980年代初期著名电影《浮生如梦-the Dream Merchants》，故事描述以为早期电影制作人20世纪初带着梦想来到好莱坞，经历种种磨难最后成为出色的电影制作人的励志故事"

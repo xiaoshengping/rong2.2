@@ -15,6 +15,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.RecommendListAdater;
+import com.jeremy.Customer.bean.ActivityBean;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.CommentBean;
 import com.jeremy.Customer.bean.Identification;
@@ -42,6 +43,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     private int identi = 1;
 
     private PullToRefreshListView recommend_list;
+    private List<ActivityBean> activityData = new ArrayList<>();
     private List<TalentValueBean> talentValueBean = new ArrayList<>();
     private List<RecruitmentListBean> recruitmentListData = new ArrayList<>();
     private List<CommentBean> commentDate = new ArrayList<>();
@@ -85,6 +87,9 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                 if (identi == Identification.ACTIVITY) {
                     Intent intent = new Intent();
                     intent.setClass(RecommenListActivity.this, ActivityDetailActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("Detail", activityData.get(position - 1));
+                    intent.putExtras(bundle);
                     startActivity(intent);
                 } else if (identi == Identification.TALENTS) {
                     Intent intent = new Intent(RecommenListActivity.this, TalentsDetailsActivity.class);  //方法1
@@ -107,8 +112,72 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     //初始化活动列表
     private void intiActivity() {
         mytitle.setTextViewText("活动");
-        RecommendListAdater adater = new RecommendListAdater(this, identi);
+        adater = new RecommendListAdater(identi,this,activityData);
         recommend_list.setAdapter(adater);
+
+        recommend_list.setMode(PullToRefreshBase.Mode.BOTH);
+        recommend_list.setOnRefreshListener(this);
+        ILoadingLayout endLabels = recommend_list
+                .getLoadingLayoutProxy(false, true);
+        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        ILoadingLayout startLabels = recommend_list
+                .getLoadingLayoutProxy(true, false);
+        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        recommend_list.setRefreshing();
+
+    }
+
+    //获取活动列表
+    private void initActivityListData(int offset) {
+
+        loadingDialog = new LoadingDialog(this);
+        loadingDialog.show();
+
+        HttpUtils headHttpUtils = new HttpUtils();
+        headHttpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getActivity(offset), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result = responseInfo.result;
+                if (result != null) {
+                    ArtistParme<ActivityBean> activityBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<ActivityBean>>() {
+                    });
+                    if ("success".equals(activityBean.getState())) {
+//                        if (activityBean.getValue().size() != 0) {
+                            if (activityBean.getTotal()>activityData.size()) {
+                                activityData.addAll(activityBean.getValue());
+                                adater.setActivityBean(activityData);
+                                adater.notifyDataSetChanged();
+                            } else {
+                                Toast.makeText(RecommenListActivity.this, "以上已为全部内容", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+                        recommend_list.onRefreshComplete();
+
+                        loadingDialog.dismiss();
+
+                    }
+
+
+                }
+//            }
+
+                @Override
+                public void onFailure(HttpException e, String s) {
+                    adater = new RecommendListAdater();
+                    recommend_list.setAdapter(adater);
+                    recommend_list.onRefreshComplete();
+                    loadingDialog.dismiss();
+//                recommend_list.setRefreshing(false);
+//                recommend_list.on;
+                    dialog();
+                }
+            });
+
     }
 
     //初始化人才列表
@@ -152,7 +221,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     ArtistParme<TalentValueBean> talentValue = JSONObject.parseObject(result, new TypeReference<ArtistParme<TalentValueBean>>() {
                     });
                     if (talentValue.getState().equals("success")) {
-                        if (talentValue.getValue() != null) {
+                        if (talentValue.getTotal()>talentValueBean.size()) {
                             talentValueBean.addAll(talentValue.getValue());
                             adater.setTalentValueBean(talentValueBean);
                             adater.notifyDataSetChanged();
@@ -224,7 +293,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     });
                     if (commentBean.getState().equals("success")) {
 
-                        if (commentBean.getValue() != null) {
+                        if (commentBean.getTotal()>commentDate.size()) {
                             commentDate.addAll(commentBean.getValue());
                             adater.setCommentBean(commentDate);
                             adater.notifyDataSetChanged();
@@ -345,7 +414,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
                     });
                     if (recruitmentListBean.getState().equals("success")) {
-                        if (recruitmentListBean.getValue() != null) {
+                        if (recruitmentListBean.getTotal()>recruitmentListData.size()) {
                             recruitmentListData.addAll(recruitmentListBean.getValue());
                             adater.setRecruitmentListData(recruitmentListData);
                             adater.notifyDataSetChanged();
@@ -387,7 +456,9 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         if (identi == Identification.ACTIVITY) {
-
+            talentValueBean.clear();
+            offset = 0;
+            initActivityListData(offset);
         } else if (identi == Identification.TALENTS) {
             talentValueBean.clear();
             offset = 0;
@@ -408,7 +479,8 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
 
         if (identi == Identification.ACTIVITY) {
-
+            offset = offset + 10;
+            initActivityListData(offset);
         } else if (identi == Identification.TALENTS) {
             offset = offset + 10;
             initTalentsListData(0, 0, offset);

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.ActivityBean;
 import com.jeremy.Customer.bean.CommentBean;
 import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.RecruitmentListBean;
@@ -31,6 +32,7 @@ public class RecommendListAdater extends BaseAdapter {
     private ViewPosition viewPosition;
     private ViewComment viewComment;
     private int identi;
+    private List<ActivityBean> activityData;
     public List<RecruitmentListBean> recruitmentListData;
     public List<TalentValueBean> talentValueBean;
     public List<CommentBean> commentDate;
@@ -63,6 +65,15 @@ public class RecommendListAdater extends BaseAdapter {
         maxNumber = data.size();
 //        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
     }
+    //活动列表
+    public RecommendListAdater(int identi,Context context, List<ActivityBean> data) {
+        this.mInflater = LayoutInflater.from(context);
+        this.bitmapUtils = new BitmapUtils(context);
+        this.identi = identi;
+        activityData = data;
+        maxNumber = data.size();
+//        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
+    }
     //评论列表
     public RecommendListAdater(List<CommentBean> data, int identi ,Context context) {
         this.mInflater = LayoutInflater.from(context);
@@ -76,6 +87,11 @@ public class RecommendListAdater extends BaseAdapter {
     public RecommendListAdater() {
 
 //        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
+    }
+
+    public void setActivityBean(List<ActivityBean> datas){
+        activityData = datas;
+        maxNumber = datas.size();
     }
 
     public void setRecruitmentListData(List<RecruitmentListBean> datas){
@@ -112,7 +128,7 @@ public class RecommendListAdater extends BaseAdapter {
 //        Toast.makeText(context, "getView", Toast.LENGTH_LONG).show();
 
         if (identi == Identification.ACTIVITY) {
-            return activity(convertView);
+            return activity(convertView,position);
         } else if (identi == Identification.TALENTS) {
             return talents(convertView, position);
         } else if (identi == Identification.PROSITION) {
@@ -124,7 +140,7 @@ public class RecommendListAdater extends BaseAdapter {
     }
 
     //活动
-    private View activity(View view) {
+    private View activity(View view,int position) {
         if (view == null) {
             view = mInflater.inflate(R.layout.item_activity, null);
             viewActivity = new ViewActivity();
@@ -136,6 +152,9 @@ public class RecommendListAdater extends BaseAdapter {
         } else {
             viewActivity = (ViewActivity) view.getTag();
         }
+
+        bitmapUtils.display(viewActivity.activity_poster, AppUtilsUrl.ImageBaseUrl + activityData.get(position).getImage());
+        viewActivity.activity_name.setText(activityData.get(position).getTitle());
 
         return view;
     }

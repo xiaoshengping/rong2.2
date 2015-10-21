@@ -143,7 +143,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                     });
                     if (talentValue.getState().equals("success")) {
 
-                        if(talentValue.getValue()!=null) {
+                        if(talentValue.getTotal()>talentValueBean.size()) {
                             talentValueBean.addAll(talentValue.getValue());
                             adater.setTalentValueBean(talentValueBean);
                             adater.notifyDataSetChanged();
