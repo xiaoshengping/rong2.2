@@ -151,8 +151,6 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
                         HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<RecruitmentHistoryValueBean>>() {
                         }, recruitmentHistoryValueBean, recruitmentHistoryAdapter);
                         recruitmentHistoryLv.onRefreshComplete();
-
-                        //Log.e("result",recruitmentHistoryValueBean.get(0).getAddress());
                     }
                 }
 
