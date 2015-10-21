@@ -182,7 +182,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     if ("success".equals(activityBean.getState())) {
                         if (activityBean.getValue().size() != 0) {
                             bitmapUtils.display(activity_picture_riv1, AppUtilsUrl.ImageBaseUrl + activityBean.getValue().get(0).getImage());
-//                            bitmapUtils.display(activity_picture_riv2, AppUtilsUrl.ImageBaseUrl + activityBean.getValue().get(1).getImage());
+                            bitmapUtils.display(activity_picture_riv2, AppUtilsUrl.ImageBaseUrl + activityBean.getValue().get(1).getImage());
                             activity_name_tv1.setText(activityBean.getValue().get(0).getTitle());
 //                            activity_name_tv2.setText(activityBean.getValue().get(1).getTitle());
                         }
