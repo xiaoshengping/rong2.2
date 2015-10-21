@@ -146,7 +146,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                     });
                     if (recruitmentListBean.getState().equals("success")) {
 
-                        if(recruitmentListBean.getValue()!=null) {
+                        if(recruitmentListBean.getTotal()>recruitmentListData.size()) {
                             recruitmentListData.addAll(recruitmentListBean.getValue());
                             adater.setRecruitmentListData(recruitmentListData);
                             adater.notifyDataSetChanged();

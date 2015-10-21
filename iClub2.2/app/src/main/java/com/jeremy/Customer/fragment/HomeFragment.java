@@ -19,6 +19,7 @@ import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.RecruitmentListBean;
 import com.jeremy.Customer.bean.TalentValueBean;
+import com.jeremy.Customer.uilt.ActivityDetailActivity;
 import com.jeremy.Customer.uilt.JobDetailsActivity;
 import com.jeremy.Customer.uilt.RecommenListActivity;
 import com.jeremy.Customer.uilt.TalentsDetailsActivity;
@@ -60,6 +61,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private ArtistParme<RecruitmentListBean> recruitmentListBean;
     private ArtistParme<TalentValueBean> talentValueBean;
+    private ArtistParme<ActivityBean> activityBean;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -132,6 +134,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         item_position_ll1.setOnClickListener(this);
         item_position_ll2.setOnClickListener(this);
         item_position_ll3.setOnClickListener(this);
+        activity_picture_riv1.setOnClickListener(this);
+        activity_picture_riv2.setOnClickListener(this);
     }
 
 
@@ -177,14 +181,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 if (result != null) {
-                    ArtistParme<ActivityBean> activityBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<ActivityBean>>() {
+                    activityBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<ActivityBean>>() {
                     });
                     if ("success".equals(activityBean.getState())) {
                         if (activityBean.getValue().size() != 0) {
                             bitmapUtils.display(activity_picture_riv1, AppUtilsUrl.ImageBaseUrl + activityBean.getValue().get(0).getImage());
-//                            bitmapUtils.display(activity_picture_riv2, AppUtilsUrl.ImageBaseUrl + activityBean.getValue().get(1).getImage());
+                            bitmapUtils.display(activity_picture_riv2, AppUtilsUrl.ImageBaseUrl + activityBean.getValue().get(1).getImage());
                             activity_name_tv1.setText(activityBean.getValue().get(0).getTitle());
-//                            activity_name_tv2.setText(activityBean.getValue().get(1).getTitle());
+                            activity_name_tv2.setText(activityBean.getValue().get(1).getTitle());
                         }
 
                     }
@@ -401,7 +405,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.item_position_ll3:
                 Position(2);
                 break;
+            case R.id.activity_picture_riv1:
+                Activity(0);
+                break;
+            case R.id.activity_picture_riv2:
+                Activity(1);
+                break;
         }
+    }
+
+    private void Activity(int i){
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), ActivityDetailActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Detail", activityBean.getValue().get(i));
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     private void Position(int i){

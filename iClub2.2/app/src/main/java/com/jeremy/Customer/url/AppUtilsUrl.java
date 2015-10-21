@@ -419,6 +419,9 @@ public class AppUtilsUrl  {
     public static String getActivity(){
         return BaseUrl+"activitieList?limit=2&offset=0";
     }
+    public static String getActivity(int offset){
+        return BaseUrl+"activitieList?limit=10&offset="+offset;
+    }
     public static String getRecommendTheVirtuousAndAble(){
         return BaseUrl+"getListByRecommend.action?offset=0&limit=6";
     }

@@ -1,9 +1,11 @@
 package com.jeremy.Customer.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2015/10/15.
  */
-public class ActivityBean {
+public class ActivityBean implements Serializable {
     private String activitieid;
     private String content;
     private String date;

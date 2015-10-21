@@ -10,7 +10,7 @@ public class ArtistParme<T> implements Serializable {
 
 
     private String state;
-    private String total;
+    private int total;
     private List<T> value;
 
     public String getState() {
@@ -21,7 +21,7 @@ public class ArtistParme<T> implements Serializable {
         return value;
     }
 
-    public String getTotal() {
+    public int getTotal() {
         return total;
     }
 
@@ -29,7 +29,7 @@ public class ArtistParme<T> implements Serializable {
         this.state = state;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
