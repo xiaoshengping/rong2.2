@@ -3,11 +3,14 @@ package com.jeremy.Customer.uilt;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.AdapterView;
@@ -27,6 +30,7 @@ import com.jeremy.Customer.bean.Utility;
 import com.jeremy.Customer.bean.mine.ResumeMovie;
 import com.jeremy.Customer.bean.mine.ResumeMusic;
 import com.jeremy.Customer.bean.mine.ResumePicture;
+import com.jeremy.Customer.calendar.CalendarActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.MusicActivity;
 import com.jeremy.Customer.view.MyGridView;
@@ -72,6 +76,8 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private boolean hasMesure1 = false,hasMesure2 = false;
     private TextView self_introduction_button_tv,work_experience_button_tv;
 
+    private String states = null;//用户类型
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +94,18 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
     //初始化界面
     private void init() {
+
+        //获取登录状态
+        SQLhelper sqLhelper=new SQLhelper(this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        states=null;
+        while (cursor.moveToNext()) {
+            states = cursor.getString(4);
+
+        }
+
+
         myScrollView = (MyScrollView) findViewById(R.id.talents_detail_msv);
         myScrollView.setOnScrollListener(this);
         personal_data_button_tv = (TextView) findViewById(R.id.personal_data_button_tv);
@@ -436,6 +454,27 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
             }
         };
         thread.start();
+    }
+
+    //邀约
+    public void call_for(View v){
+
+        if (TextUtils.isEmpty(states)||states.equals("1")){
+//            Toast.makeText(TalendDetailsActivity.this, "非登录状态或非商家类型", Toast.LENGTH_LONG).show();
+        }else if(states.equals("2")){
+//            Toast.makeText(TalendDetailsActivity.this, "非商家类型", Toast.LENGTH_LONG).show();
+        }else if(states.equals("3")){
+            Intent intent = new Intent(TalentsDetailsActivity.this, CalendarActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putInt("userType", 1);
+            bundle.putString("Personid", talentValueBean.getPersonid() + "");
+            bundle.putInt("Resumeid", talentValueBean.getResumeid());
+//        Toast.makeText(this, talentValueBean.getPersonid()+"", Toast.LENGTH_LONG).show();
+            intent.putExtras(bundle);
+            startActivity(intent);
+//        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_not);
+        }
+
     }
 
     public void back(View v) {

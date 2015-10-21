@@ -258,5 +258,19 @@
         android:paddingLeft="20dp"
         android:onClick="back"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="邀约"
+        android:textColor="#F2F2F0"
+        android:textSize="17sp"
+        android:background="@color/home_more"
+        android:paddingTop="18dp"
+        android:paddingBottom="18dp"
+        android:onClick="call_for"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>
 
