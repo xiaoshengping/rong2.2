@@ -187,7 +187,7 @@
             android:name=".uilt.ApplicationsListActivity"
             android:label="@string/title_activity_applications_list" >
         </activity>
-        <activity android:name="com.jeremy.Customer.PagesActivity" />
+
         <activity android:name=".uilt.MerchantParticularsActivity" />
 
         <activity android:name=".PagesActivity"></activity>
