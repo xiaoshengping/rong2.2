@@ -189,7 +189,7 @@
         </activity>
         <activity android:name="com.jeremy.Customer.PagesActivity" />
         <activity android:name=".uilt.MerchantParticularsActivity" />
-
+        <activity android:name=".uilt.AddMerchantActivity" />
     </application>
 
 </manifest>
