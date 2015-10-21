@@ -1,6 +1,7 @@
 package com.jeremy.Customer.uilt;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -53,6 +54,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
 
     private OneselfInformationFragment oneselfInformationFragment;
     private OneselfProductionFragment oneselfProductionFragment;
+    private ResumeValueBean resumeValueBeans;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +82,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         oneselfProductionFragment=new OneselfProductionFragment();
         listFragment.add(oneselfInformationFragment);
         listFragment.add(oneselfProductionFragment);
-        ResumeValueBean resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
+        resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
         FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ResumeParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup,resumeValueBeans);
         MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), customImageView, MyAppliction.RoundedOptions);
         resumeZhNameTv.setText(resumeValueBeans.getResumeZhName());
@@ -103,7 +105,9 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
                finish();
                 break;
             case R.id.cpmpile_resume_tv:
-
+                Intent intent=new Intent(ResumeParticularsActivity.this,ModificationResumeActivity.class);
+                intent.putExtra("resumeValueBeans",resumeValueBeans);
+                startActivity(intent);
                 break;
 
 
