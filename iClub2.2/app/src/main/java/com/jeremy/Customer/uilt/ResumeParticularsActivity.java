@@ -4,6 +4,7 @@ package com.jeremy.Customer.uilt;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,7 +24,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResumeParticularsActivity extends ActionBarActivity  {
+public class ResumeParticularsActivity extends ActionBarActivity  implements View.OnClickListener {
 
     @ViewInject(R.id.usericon_background_iv)
     private CustomImageView customImageView;
@@ -41,6 +42,13 @@ public class ResumeParticularsActivity extends ActionBarActivity  {
     private TextView resumeWorkPlaceTv;
     @ViewInject(R.id.resumeJobName_isd_tv)
     private TextView resumeJobNameIsdTv;
+    @ViewInject(R.id.talen_back_iv)
+    private ImageView talenBackIv;
+    @ViewInject(R.id.cpmpile_resume_tv)
+    private TextView cpmpileResumeTv;
+    @ViewInject(R.id.browse_number_tv)
+    private TextView browseNumberTv;
+
 
 
     private OneselfInformationFragment oneselfInformationFragment;
@@ -65,8 +73,9 @@ public class ResumeParticularsActivity extends ActionBarActivity  {
 
     private void initView() {
         oneselfInformactionRb.setChecked(true);
+        talenBackIv.setOnClickListener(this);
+        cpmpileResumeTv.setOnClickListener(this);
          List<Fragment> listFragment=new ArrayList<>();
-
         oneselfInformationFragment=new OneselfInformationFragment();
         oneselfProductionFragment=new OneselfProductionFragment();
         listFragment.add(oneselfInformationFragment);
@@ -83,8 +92,22 @@ public class ResumeParticularsActivity extends ActionBarActivity  {
         resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
         resumeWorkPlaceTv.setText(resumeValueBeans.getResumeWorkPlace());
         resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobName());
+        browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.talen_back_iv:
+               finish();
+                break;
+            case R.id.cpmpile_resume_tv:
 
+                break;
+
+
+
+        }
+    }
 }
