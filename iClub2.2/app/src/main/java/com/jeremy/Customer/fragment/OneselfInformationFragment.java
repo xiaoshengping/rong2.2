@@ -3,7 +3,6 @@ package com.jeremy.Customer.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
-import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.bean.mine.ResumeParticularsValueBean;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -73,8 +72,19 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
         experienceMoreLayout.setOnClickListener(this);
         oneselfMoreLayout.setOnClickListener(this);
         resumeInfoTv.setOnClickListener(this);
+        ResumeParticularsValueBean  resumeParticularsValueBean=new ResumeParticularsValueBean();
+        resumeInfoTv.setText(resumeParticularsValueBean.getResumeInfo());
+        if (resumeInfoTv.getLineCount()>0&&resumeInfoTv.getLineCount()<=4){
+            oneselfMoreLayout.setVisibility(View.GONE);
+            resumeInfoTv.setLines(resumeInfoTv.getLineCount());
+        }
+        resumeExperienceTv.setText(resumeParticularsValueBean.getResumeWorkExperience());
+        if (resumeExperienceTv.getLineCount()>0&&resumeExperienceTv.getLineCount()<=4){
+            experienceMoreLayout.setVisibility(View.GONE);
+            resumeExperienceTv.setLines(resumeExperienceTv.getLineCount());
+        }
 
-        Bundle bundle=getArguments();
+        /*Bundle bundle=getArguments();
         ResumeValueBean resumeValueBeans= (ResumeValueBean) bundle.getSerializable("resumeValueBeans");
        if (resumeValueBeans!=null){
            resumeInfoTv.setText(resumeValueBeans.getResumeInfo());
@@ -95,7 +105,7 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
            integrityTv.setText(resumeValueBeans.getIntegrity()+"");
            transactionRecordTv.setText(resumeValueBeans.getTransactionRecord()+"");
            commentCountTv.setText(resumeValueBeans.getCommentCount()+"位商家评论过");
-       }
+       }*/
 
     }
 

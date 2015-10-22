@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
-import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
@@ -52,12 +50,12 @@ public class OneselfProductionFragment extends Fragment {
     }
 
     private void initView() {
-        Bundle bundle=getArguments();
+        /*Bundle bundle=getArguments();
         ResumeValueBean resumeValueBeans= (ResumeValueBean) bundle.getSerializable("resumeValueBeans");
         Log.e("hdhfhffjfjf",resumeValueBeans.getResumeEmail());
         if (resumeValueBeans!=null){
-            /*showVideoResumeIv.setImageBitmap(getVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getResumeMovie().get(0).getPath(), 1700, 1000,
-                    MediaStore.Images.Thumbnails.MINI_KIND));*/
+            *//*showVideoResumeIv.setImageBitmap(getVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getResumeMovie().get(0).getPath(), 1700, 1000,
+                    MediaStore.Images.Thumbnails.MINI_KIND));*//*
             if (resumeValueBeans.getResumeMusic().size()!=0){
                 showMusicResumeTv.setText(resumeValueBeans.getResumeMusic().get(0).getTitle());
                 if (resumeValueBeans.getResumeMusic().size()>=2){
@@ -65,7 +63,7 @@ public class OneselfProductionFragment extends Fragment {
                 }
             }
 
-        }
+        }*/
 
     }
 

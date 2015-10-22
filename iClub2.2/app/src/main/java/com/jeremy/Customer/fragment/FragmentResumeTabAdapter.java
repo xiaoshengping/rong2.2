@@ -1,6 +1,5 @@
 package com.jeremy.Customer.fragment;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -9,7 +8,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
-import com.jeremy.Customer.bean.mine.ResumeValueBean;
 
 import java.util.List;
 
@@ -28,21 +26,21 @@ public class FragmentResumeTabAdapter implements RadioGroup.OnCheckedChangeListe
     private int currentTab; // 当前Tab页面索引
     private TextView home_title_neme_tv;
     private RelativeLayout home_title_bar_rl;
-    private ResumeValueBean resumeValueBeans;
-    private Bundle bundle;
+
+
 
 
     private OnRgsExtraCheckedChangedListener onRgsExtraCheckedChangedListener; // 用于让调用者在切换tab时候增加新的功能
 
-    public FragmentResumeTabAdapter(FragmentActivity fragmentActivity, List<Fragment> fragments, int fragmentContentId, RadioGroup rgs,ResumeValueBean resumeValueBeans) {
+    public FragmentResumeTabAdapter(FragmentActivity fragmentActivity, List<Fragment> fragments, int fragmentContentId, RadioGroup rgs) {
         this.fragments = fragments;
         this.rgs = rgs;
         this.fragmentActivity = fragmentActivity;
         this.fragmentContentId = fragmentContentId;
-        this.resumeValueBeans=resumeValueBeans;
-        bundle=new Bundle();
+
+       /* bundle=new Bundle();
         bundle.putSerializable("resumeValueBeans", resumeValueBeans);
-        fragments.get(currentTab).setArguments(bundle);
+        fragments.get(currentTab).setArguments(bundle);*/
         home_title_neme_tv = (TextView) fragmentActivity.findViewById(R.id.home_title_neme_tv);
         home_title_bar_rl = (RelativeLayout)fragmentActivity.findViewById(R.id.home_title_bar_rl);
         // 默认显示第一页

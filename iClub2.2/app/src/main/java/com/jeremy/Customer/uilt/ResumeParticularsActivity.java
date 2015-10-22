@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.mine.ResumeParticularsValueBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.fragment.FragmentResumeTabAdapter;
 import com.jeremy.Customer.fragment.OneselfInformationFragment;
@@ -54,6 +55,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
 
     private OneselfInformationFragment oneselfInformationFragment;
     private OneselfProductionFragment oneselfProductionFragment;
+    private ResumeParticularsValueBean resumeParticularsValueBean;
     private ResumeValueBean resumeValueBeans;
 
     @Override
@@ -83,18 +85,33 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         listFragment.add(oneselfInformationFragment);
         listFragment.add(oneselfProductionFragment);
         resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
-        FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ResumeParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup,resumeValueBeans);
-        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), customImageView, MyAppliction.RoundedOptions);
-        resumeZhNameTv.setText(resumeValueBeans.getResumeZhName());
-         if (resumeValueBeans.getResumeSex()==0){
+        resumeParticularsValueBean=new ResumeParticularsValueBean();
+        resumeParticularsValueBean.setUsericon(resumeValueBeans.getUsericon());
+        resumeParticularsValueBean.setResumeZhName(resumeValueBeans.getResumeZhName());
+        resumeParticularsValueBean.setResumeSex(resumeValueBeans.getResumeSex());
+        resumeParticularsValueBean.setResumeAge(resumeValueBeans.getResumeAge());
+        resumeParticularsValueBean.setResumeWorkPlace(resumeValueBeans.getResumeWorkPlace());
+        resumeParticularsValueBean.setResumeInfo(resumeValueBeans.getResumeInfo());
+        resumeParticularsValueBean.setResumeJobCategoryName(resumeValueBeans.getResumeJobCategoryName());
+        resumeParticularsValueBean.setResumeWorkExperience(resumeValueBeans.getResumeWorkExperience());
+        resumeParticularsValueBean.setResumeQq(resumeValueBeans.getResumeQq());
+        resumeParticularsValueBean.setResumeEmail(resumeValueBeans.getResumeEmail());
+        resumeParticularsValueBean.setResumeMobile(resumeValueBeans.getResumeMobile());
+        resumeParticularsValueBean.setIntegrity(resumeValueBeans.getIntegrity());
+        resumeParticularsValueBean.setAuthenticity(resumeValueBeans.getAuthenticity());
+
+        FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ResumeParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
+        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeParticularsValueBean.getUsericon(), customImageView, MyAppliction.RoundedOptions);
+        resumeZhNameTv.setText(resumeParticularsValueBean.getResumeZhName());
+         if (resumeParticularsValueBean.getResumeSex()==0){
              resumeSexIv.setBackgroundResource(R.mipmap.man_icon);
-         }else if (resumeValueBeans.getResumeSex()==1){
+         }else if (resumeParticularsValueBean.getResumeSex()==1){
              resumeSexIv.setBackgroundResource(R.mipmap.woman_icon);
          }
-        resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
-        resumeWorkPlaceTv.setText(resumeValueBeans.getResumeWorkPlace());
-        resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobName());
-        browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
+        resumeAgeTv.setText(resumeParticularsValueBean.getResumeAge()+"");
+        resumeWorkPlaceTv.setText(resumeParticularsValueBean.getResumeWorkPlace());
+        resumeJobNameIsdTv.setText(resumeParticularsValueBean.getResumeJobCategoryName());
+       // browseNumberTv.setText(resumeParticularsValueBean.getCommentCount()+"");
     }
 
 
@@ -106,7 +123,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
                 break;
             case R.id.cpmpile_resume_tv:
                 Intent intent=new Intent(ResumeParticularsActivity.this,ModificationResumeActivity.class);
-                intent.putExtra("resumeValueBeans",resumeValueBeans);
+                //intent.putExtra("resumeValueBeans",resumeValueBeans);
                 startActivity(intent);
                 break;
 
