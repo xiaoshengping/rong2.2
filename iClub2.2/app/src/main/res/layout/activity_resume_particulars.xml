@@ -15,15 +15,14 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         >
-
         <ImageView
-
             android:id="@+id/talen_back_iv"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:src="@mipmap/resume_background_icon"
             android:scaleType="centerCrop"
             />
+
 
         <com.jeremy.Customer.view.CustomImageView
 
@@ -217,17 +216,41 @@
             android:layout_width="10dp"
             android:layout_height="20dp" />
         <TextView
+            android:id="@+id/cpmpile_resume_tv"
             android:layout_alignParentRight="true"
             android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
             android:background="@mipmap/modification_icon"
             android:layout_width="20dp"
-            android:layout_height="20dp" />
+            android:layout_height="20dp"
+            />
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="110dp"
+            android:layout_marginRight="23dp"
+            android:gravity="center"
+            android:text="浏览量"
+            android:textSize="@dimen/textSize12"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/browse_number_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="125dp"
+            android:layout_marginRight="15dp"
+            android:gravity="center"
+            android:text="10"
+            android:textSize="@dimen/textSize12"
+            android:textColor="@color/white"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
         <TextView
             android:layout_alignParentRight="true"
             android:layout_marginTop="100dp"
             android:layout_marginRight="20dp"
-            android:text="浏览量"
+            android:gravity="center"
+            android:background="@mipmap/invite_number_icon"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

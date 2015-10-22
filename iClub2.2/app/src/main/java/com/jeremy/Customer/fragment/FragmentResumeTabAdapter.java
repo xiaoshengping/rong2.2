@@ -59,6 +59,7 @@ public class FragmentResumeTabAdapter implements RadioGroup.OnCheckedChangeListe
         for (int i = 0; i < rgs.getChildCount(); i++)
             if (rgs.getChildAt(i).getId() == checkedId) {
 
+
 //                Toast.makeText(this.fragmentActivity, "" + i, Toast.LENGTH_LONG).show();
 
                 Fragment fragment = fragments.get(i);
@@ -71,11 +72,11 @@ public class FragmentResumeTabAdapter implements RadioGroup.OnCheckedChangeListe
 //                    fragment.onStart(); // 启动目标tab的onStart()
                     fragment.onResume(); // 启动目标tab的onResume()
                 } else {
+
                     ft.add(fragmentContentId, fragment);
+
                 }
                 showTab(i); // 显示目标tab
-                bundle.putSerializable("resumeValueBeans", resumeValueBeans);
-                fragments.get(currentTab).setArguments(bundle);
                 ft.commit();
 
                 // 如果设置了切换tab额外功能功能接口
@@ -130,9 +131,10 @@ public class FragmentResumeTabAdapter implements RadioGroup.OnCheckedChangeListe
     }
 
     public Fragment getCurrentFragment() {
+
+
         return fragments.get(currentTab);
     }
-
     public OnRgsExtraCheckedChangedListener getOnRgsExtraCheckedChangedListener() {
         return onRgsExtraCheckedChangedListener;
     }

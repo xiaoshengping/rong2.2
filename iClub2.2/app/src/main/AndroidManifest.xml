@@ -187,9 +187,13 @@
             android:name=".uilt.ApplicationsListActivity"
             android:label="@string/title_activity_applications_list" >
         </activity>
-
+        <activity android:name="com.jeremy.Customer.PagesActivity" />
         <activity android:name=".uilt.MerchantParticularsActivity" />
         <activity android:name=".uilt.AddMerchantActivity" />
+        <activity
+            android:name=".uilt.ModificationResumeActivity"
+            android:label="@string/title_activity_modification_resume" >
+        </activity>
 
         <activity android:name=".PagesActivity"></activity>
         <activity android:name=".calendar.CalendarActivity"></activity>
