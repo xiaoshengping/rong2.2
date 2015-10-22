@@ -7,6 +7,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.fragment.FragmentResumeTabAdapter;
 import com.jeremy.Customer.fragment.OneselfInformationFragment;
 import com.jeremy.Customer.fragment.OneselfProductionFragment;
@@ -48,7 +49,7 @@ public class ModificationResumeActivity extends ActionBarActivity {
         oneselfProductionFragment=new OneselfProductionFragment();
         listFragment.add(oneselfInformationFragment);
         listFragment.add(oneselfProductionFragment);
-        //ResumeValueBean resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
+        ResumeValueBean resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
         FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ModificationResumeActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
 
 

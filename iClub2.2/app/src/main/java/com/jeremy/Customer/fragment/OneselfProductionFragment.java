@@ -1,19 +1,37 @@
 package com.jeremy.Customer.fragment;
 
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.media.ThumbnailUtils;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.ArtistParme;
+import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.uilt.ResumeParticularsActivity;
+import com.jeremy.Customer.uilt.SQLhelper;
+import com.jeremy.Customer.url.AppUtilsUrl;
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -50,20 +68,65 @@ public class OneselfProductionFragment extends Fragment {
     }
 
     private void initView() {
-        /*Bundle bundle=getArguments();
-        ResumeValueBean resumeValueBeans= (ResumeValueBean) bundle.getSerializable("resumeValueBeans");
-        Log.e("hdhfhffjfjf",resumeValueBeans.getResumeEmail());
-        if (resumeValueBeans!=null){
-            *//*showVideoResumeIv.setImageBitmap(getVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getResumeMovie().get(0).getPath(), 1700, 1000,
-                    MediaStore.Images.Thumbnails.MINI_KIND));*//*
-            if (resumeValueBeans.getResumeMusic().size()!=0){
-                showMusicResumeTv.setText(resumeValueBeans.getResumeMusic().get(0).getTitle());
-                if (resumeValueBeans.getResumeMusic().size()>=2){
-                    showMusicResumeTwo.setText(resumeValueBeans.getResumeMusic().get(1).getTitle());
+        intiResumeListData();
+
+
+    }
+
+    private void intiResumeListData() {
+        HttpUtils httpUtils=new HttpUtils();
+        SQLhelper sqLhelper=new SQLhelper(getActivity());
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        String uid=null;
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+
+        }
+        String resumeListUrl= AppUtilsUrl.getResumeLista(uid);
+        httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result=responseInfo.result;
+                if (result!=null){
+                    ArtistParme<ResumeValueBean> artistParme= JSONObject.parseObject(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
+                    });
+                    if (artistParme.getState().equals("success")){
+                      List<ResumeValueBean> resumeValueBeans= artistParme.getValue();
+                        ResumeValueBean resumeValueBean=  resumeValueBeans.get(Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition()));
+                        if (resumeValueBean!=null){
+                            if (resumeValueBean.getResumeMovie().size()!=0){
+                                showVideoResumeIv.setImageBitmap(getVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(), 1700, 1000,
+                                        MediaStore.Images.Thumbnails.MINI_KIND));
+                            }
+                            if (resumeValueBean.getResumeMusic().size()!=0){
+                                showMusicResumeTv.setText(resumeValueBean.getResumeMusic().get(0).getTitle());
+                                if (resumeValueBean.getResumeMusic().size()>=2){
+                                    showMusicResumeTwo.setText(resumeValueBean.getResumeMusic().get(1).getTitle());
+                                }
+                            }
+
+                        }
+                    }
+
+
+
+
+
                 }
+
+
             }
 
-        }*/
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure.......", s);
+            }
+        });
+
+
+
+
 
     }
 

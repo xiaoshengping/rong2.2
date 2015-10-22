@@ -106,12 +106,11 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Log.e("jsdjhfhfhf", resumeValueBeans.size() + "");
 
                 if (resumeValueBeans.size()!=0){
-
                     Intent intent = new Intent(ResumeActivity.this, ResumeParticularsActivity.class);
                     intent.putExtra("resumeValueBeans", resumeValueBeans.get(position-1));
+                    intent.putExtra("position",(position-1)+"");
                     startActivity(intent);
                 }
 

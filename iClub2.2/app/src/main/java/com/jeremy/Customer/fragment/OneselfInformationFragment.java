@@ -1,18 +1,34 @@
 package com.jeremy.Customer.fragment;
 
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
-import com.jeremy.Customer.bean.mine.ResumeParticularsValueBean;
+import com.jeremy.Customer.bean.ArtistParme;
+import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.uilt.ResumeParticularsActivity;
+import com.jeremy.Customer.uilt.SQLhelper;
+import com.jeremy.Customer.url.AppUtilsUrl;
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,6 +62,8 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
     @ViewInject(R.id.commentCount_tv)
     private TextView commentCountTv;
 
+    private List<ResumeValueBean> resumeValueBeans;
+
 
     public OneselfInformationFragment() {
 
@@ -63,6 +81,7 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
     }
 
     private void init() {
+        intiResumeListData();
         initView();
 
 
@@ -72,42 +91,23 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
         experienceMoreLayout.setOnClickListener(this);
         oneselfMoreLayout.setOnClickListener(this);
         resumeInfoTv.setOnClickListener(this);
-        ResumeParticularsValueBean  resumeParticularsValueBean=new ResumeParticularsValueBean();
-        resumeInfoTv.setText(resumeParticularsValueBean.getResumeInfo());
+
+
         if (resumeInfoTv.getLineCount()>0&&resumeInfoTv.getLineCount()<=4){
             oneselfMoreLayout.setVisibility(View.GONE);
             resumeInfoTv.setLines(resumeInfoTv.getLineCount());
         }
-        resumeExperienceTv.setText(resumeParticularsValueBean.getResumeWorkExperience());
         if (resumeExperienceTv.getLineCount()>0&&resumeExperienceTv.getLineCount()<=4){
             experienceMoreLayout.setVisibility(View.GONE);
             resumeExperienceTv.setLines(resumeExperienceTv.getLineCount());
         }
 
-        /*Bundle bundle=getArguments();
-        ResumeValueBean resumeValueBeans= (ResumeValueBean) bundle.getSerializable("resumeValueBeans");
-       if (resumeValueBeans!=null){
-           resumeInfoTv.setText(resumeValueBeans.getResumeInfo());
-           Log.e("hdhfhfkfk",resumeInfoTv.getLineCount()+"");
-           if (resumeInfoTv.getLineCount()>0&&resumeInfoTv.getLineCount()<=4){
-               oneselfMoreLayout.setVisibility(View.GONE);
-               resumeInfoTv.setLines(resumeInfoTv.getLineCount());
-           }
-           resumeExperienceTv.setText(resumeValueBeans.getResumeWorkExperience());
-           if (resumeExperienceTv.getLineCount()>0&&resumeExperienceTv.getLineCount()<=4){
-               experienceMoreLayout.setVisibility(View.GONE);
-               resumeExperienceTv.setLines(resumeExperienceTv.getLineCount());
-           }
-           resumeQqTv.setText(resumeValueBeans.getResumeQq());
-           resumeEmailTv.setText(resumeValueBeans.getResumeEmail());
-           resumeMobileTv.setText(resumeValueBeans.getResumeMobile());
-           authenticityTv.setText(resumeValueBeans.getAuthenticity()+"");
-           integrityTv.setText(resumeValueBeans.getIntegrity()+"");
-           transactionRecordTv.setText(resumeValueBeans.getTransactionRecord()+"");
-           commentCountTv.setText(resumeValueBeans.getCommentCount()+"位商家评论过");
-       }*/
 
-    }
+
+       }
+
+
+
 
 
     @Override
@@ -130,4 +130,57 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
 
         }
     }
+
+    private void intiResumeListData() {
+        HttpUtils  httpUtils=new HttpUtils();
+        SQLhelper sqLhelper=new SQLhelper(getActivity());
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        String uid=null;
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+
+        }
+        String resumeListUrl= AppUtilsUrl.getResumeLista(uid);
+        httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result=responseInfo.result;
+                if (result!=null){
+                    ArtistParme<ResumeValueBean>   artistParme= JSONObject.parseObject(result,new TypeReference<ArtistParme<ResumeValueBean>>(){});
+                    if (artistParme.getState().equals("success")){
+                        resumeValueBeans= artistParme.getValue();
+                        ResumeValueBean resumeValueBean=  resumeValueBeans.get(Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition()));
+                        resumeInfoTv.setText(resumeValueBean.getResumeInfo());
+                        resumeExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
+                        resumeQqTv.setText(resumeValueBean.getResumeQq());
+                        resumeEmailTv.setText(resumeValueBean.getResumeEmail());
+                        resumeMobileTv.setText(resumeValueBean.getResumeMobile());
+                        authenticityTv.setText(resumeValueBean.getAuthenticity()+"");
+                        integrityTv.setText(resumeValueBean.getIntegrity()+"");
+                        transactionRecordTv.setText(resumeValueBean.getTransactionRecord()+"");
+                        commentCountTv.setText(resumeValueBean.getCommentCount()+"位商家评论过");
+                    }
+
+
+
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure.......", s);
+            }
+        });
+
+
+
+
+
+    }
+
 }
