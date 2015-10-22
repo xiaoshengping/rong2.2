@@ -79,13 +79,22 @@
 
             </RadioGroup>
 
+               <LinearLayout
+                  android:visibility="gone"
+                   android:orientation="vertical"
+                   android:id="@+id/message_layout"
+                   android:layout_below="@+id/resume_radioGroup"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
+
+
 
 
             <LinearLayout
                 android:layout_marginTop="10dp"
                 android:id="@+id/name_layout"
                 android:gravity="center_vertical"
-                android:layout_below="@+id/resume_radioGroup"
+
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
@@ -299,7 +308,7 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-
+               </LinearLayout>
         </RelativeLayout>
 
         <LinearLayout

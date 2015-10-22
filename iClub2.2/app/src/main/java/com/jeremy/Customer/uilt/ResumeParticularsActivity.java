@@ -58,6 +58,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
     private ResumeValueBean resumeValueBeans;
 
     public String  position;//个数
+    private String  positions;
 
 
     @Override
@@ -87,7 +88,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         listFragment.add(oneselfInformationFragment);
         listFragment.add(oneselfProductionFragment);
         resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
-        String  positions= getIntent().getStringExtra("position");
+         positions= getIntent().getStringExtra("position");
         ResumeParticularsActivity.this.setPosition(positions);
         FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ResumeParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
         if (resumeValueBeans!=null){
@@ -115,6 +116,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
             case R.id.cpmpile_resume_tv:
                 Intent intent=new Intent(ResumeParticularsActivity.this,ModificationResumeActivity.class);
                 intent.putExtra("resumeValueBeans",resumeValueBeans);
+                intent.putExtra("position",positions);
                 startActivity(intent);
                 break;
 
