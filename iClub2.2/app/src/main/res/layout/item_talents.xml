@@ -16,7 +16,7 @@
         android:id="@+id/item_talents_head"
         android:layout_width="@dimen/home_talents_headportrait"
         android:layout_height="@dimen/home_talents_headportrait"
-        android:layout_margin="15dp"
+        android:layout_margin="14dp"
         android:background="@mipmap/mine_head_default"
         android:scaleType="centerCrop"
         app:roundHeight="@dimen/home_talents_headportrait_radius"

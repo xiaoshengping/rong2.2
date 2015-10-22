@@ -35,14 +35,20 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#C6C6C6"/>
     <LinearLayout
         android:gravity="center"
         android:id="@+id/home_rido_layout"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#f8f8f8"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="7dp"
+        android:paddingBottom="6dp">
 
         <RadioGroup
             android:id="@+id/iclub_home_rg"
@@ -62,7 +68,7 @@
                 android:text="首页"
 
                 android:textColor="@color/home_color_seletor"
-                android:textSize="@dimen/textSize15" />
+                android:textSize="@dimen/home_text" />
 
             <RadioButton
                 style="@style/paren_radiogrud"
@@ -70,9 +76,9 @@
                 android:background="#00000000"
                 android:drawableTop="@drawable/home_recruitment_selector"
                 android:gravity="center"
-                android:text="演艺招聘"
+                android:text="找工作"
                 android:textColor="@color/home_color_seletor"
-                android:textSize="@dimen/textSize15"
+                android:textSize="@dimen/home_text"
 
                 />
 
@@ -82,9 +88,9 @@
                 android:background="#00000000"
                 android:drawableTop="@drawable/home_talents_selector"
                 android:gravity="center"
-                android:text="演艺人才"
+                android:text="找人才"
                 android:textColor="@color/home_color_seletor"
-                android:textSize="@dimen/textSize15"
+                android:textSize="@dimen/home_text"
 
                 />
 
@@ -97,7 +103,7 @@
                 android:gravity="center"
                 android:text="我的"
                 android:textColor="@color/home_color_seletor"
-                android:textSize="@dimen/textSize15"
+                android:textSize="@dimen/home_text"
 
                 />
 

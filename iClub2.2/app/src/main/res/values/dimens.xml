@@ -31,5 +31,6 @@
     <dimen name="talents_details_back">230dp</dimen><!--人才详情背景高-->
     <dimen name="job_choice_hear">18sp</dimen><!--职位选择标题-->
     <dimen name="job_choice_name">16sp</dimen><!--职位选择-->
+    <dimen name="home_text">13dp</dimen><!--主页底下导航栏字体高度-->
     
 </resources>

@@ -186,7 +186,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         }
         talents_age_tv.setText(talentValueBean.getResumeAge()+"");
         talents_site_tv.setText(talentValueBean.getResumeWorkPlace());
-        talents_profession_tv.setText(talentValueBean.getResumeJobName());
+        talents_profession_tv.setText(talentValueBean.getResumeJobCategoryName());
         talents_self_introduction_tv.setText(talentValueBean.getResumeInfo());
         talents_work_experience_tv.setText(talentValueBean.getResumeWorkExperience());
         talents_reputation_tv.setText(talentValueBean.getIntegrity()+"\n"+talentValueBean.getAuthenticity()+"\n"+talentValueBean.getTransactionRecord());
