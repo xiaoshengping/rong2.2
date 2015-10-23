@@ -123,6 +123,11 @@ public class AppUtilsUrl  {
         return BaseUrl+"getResumeListByUid.action?"+"uid="+uid+"&offset="+offset+"&limit=10";
 
     }
+    public static String getResumeLista(String uid){
+        //getResumeListByUid.action?uid=13800138000
+        return BaseUrl+"getResumeListByUid.action?"+"uid="+uid;
+
+    }
     //公告信息
     public static String getInformationList(String offset,String limit){
         //getMsgListIOS?offset=0&limit=10

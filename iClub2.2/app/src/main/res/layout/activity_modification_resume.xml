@@ -79,13 +79,19 @@
 
             </RadioGroup>
 
-
+               <LinearLayout
+                   android:visibility="gone"
+                   android:orientation="vertical"
+                   android:id="@+id/message_layout"
+                   android:layout_below="@+id/resume_radioGroup"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_marginTop="10dp"
                 android:id="@+id/name_layout"
                 android:gravity="center_vertical"
-                android:layout_below="@+id/resume_radioGroup"
+
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="50dp">
@@ -93,12 +99,13 @@
                     android:id="@+id/resumeZhName_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="姓       名"
+                    android:text="姓        名"
                     android:layout_marginLeft="20dp"
                     android:textSize="@dimen/textSize16"
                     android:layout_below="@+id/talen_back_iv"
                     android:layout_toRightOf="@+id/usericon_background_iv"/>
                      <EditText
+                         android:id="@+id/resumeZhName_Et"
                          android:textColorHint="@color/editTextPromptColor"
                          android:hint="请输入你的昵称"
                          android:paddingLeft="30dp"
@@ -126,14 +133,13 @@
                     android:id="@+id/resume_sex_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="性       别"
+                    android:text="性        别"
                     android:layout_marginLeft="20dp"
                     android:textSize="@dimen/textSize16"
                     android:layout_below="@+id/talen_back_iv"
                     android:layout_toRightOf="@+id/usericon_background_iv"/>
                 <RadioGroup
                     android:gravity="center_vertical"
-
                     android:id="@+id/sex_radio_group"
                     android:orientation="horizontal"
                     android:layout_marginLeft="30dp"
@@ -193,6 +199,7 @@
                     android:layout_below="@+id/talen_back_iv"
                     android:layout_toRightOf="@+id/usericon_background_iv"/>
                 <EditText
+                    android:id="@+id/resume_age_et"
                     android:textColorHint="@color/editTextPromptColor"
                     android:hint="请输入你的年龄"
                     android:paddingLeft="30dp"
@@ -226,6 +233,7 @@
                     android:layout_below="@+id/talen_back_iv"
                     android:layout_toRightOf="@+id/usericon_background_iv"/>
                 <EditText
+                    android:id="@+id/job_category_et"
                     android:textColorHint="@color/editTextPromptColor"
                     android:hint="请输入职业类别"
                     android:paddingLeft="30dp"
@@ -258,6 +266,7 @@
                     android:layout_below="@+id/talen_back_iv"
                     android:layout_toRightOf="@+id/usericon_background_iv"/>
                 <EditText
+                    android:id="@+id/job_category_name_et"
                     android:textColorHint="@color/editTextPromptColor"
                     android:hint="请输入职业名称"
                     android:paddingLeft="30dp"
@@ -291,6 +300,7 @@
                     android:layout_below="@+id/talen_back_iv"
                     android:layout_toRightOf="@+id/usericon_background_iv"/>
                 <EditText
+                    android:id="@+id/resume_address_et"
                     android:textColorHint="@color/editTextPromptColor"
                     android:hint="请输入工作地点"
                     android:paddingLeft="30dp"
@@ -299,7 +309,12 @@
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
-
+                   <ImageView
+                       android:layout_below="@+id/address_layout"
+                       android:src="@color/lineColor"
+                       android:layout_width="match_parent"
+                       android:layout_height="1dp" />
+               </LinearLayout>
         </RelativeLayout>
 
         <LinearLayout
@@ -311,13 +326,14 @@
 
         </LinearLayout>
         <TextView
+            android:id="@+id/return_tv"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:background="@mipmap/return_icon"
             android:layout_width="10dp"
             android:layout_height="20dp" />
         <TextView
-            android:id="@+id/cpmpile_resume_tv"
+            android:id="@+id/save_resume_tv"
             android:layout_alignParentRight="true"
             android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"

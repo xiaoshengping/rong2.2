@@ -3,9 +3,9 @@ package com.jeremy.Customer.fragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 
@@ -17,32 +17,30 @@ import java.util.List;
  * Date: 13-10-10
  * Time: 上午9:25
  */
-public class FragmentResumeTabAdapter implements RadioGroup.OnCheckedChangeListener {
+public class ModificationResumeTabAdapter implements RadioGroup.OnCheckedChangeListener {
     private List<Fragment> fragments; // 一个tab页面对应一个Fragment
     private RadioGroup rgs; // 用于切换tab
     private FragmentActivity fragmentActivity; // Fragment所属的Activity
     private int fragmentContentId; // Activity中所要被替换的区域的id
 
     private int currentTab; // 当前Tab页面索引
-    private TextView home_title_neme_tv;
-    private RelativeLayout home_title_bar_rl;
+    private LinearLayout messageLayout;
+
 
 
 
 
     private OnRgsExtraCheckedChangedListener onRgsExtraCheckedChangedListener; // 用于让调用者在切换tab时候增加新的功能
 
-    public FragmentResumeTabAdapter(FragmentActivity fragmentActivity, List<Fragment> fragments, int fragmentContentId, RadioGroup rgs) {
+    public ModificationResumeTabAdapter(FragmentActivity fragmentActivity, List<Fragment> fragments, int fragmentContentId, RadioGroup rgs) {
         this.fragments = fragments;
         this.rgs = rgs;
         this.fragmentActivity = fragmentActivity;
         this.fragmentContentId = fragmentContentId;
 
-       /* bundle=new Bundle();
-        bundle.putSerializable("resumeValueBeans", resumeValueBeans);
-        fragments.get(currentTab).setArguments(bundle);*/
-        home_title_neme_tv = (TextView) fragmentActivity.findViewById(R.id.home_title_neme_tv);
-        home_title_bar_rl = (RelativeLayout)fragmentActivity.findViewById(R.id.home_title_bar_rl);
+
+        messageLayout = (LinearLayout) fragmentActivity.findViewById(R.id.message_layout);
+
         // 默认显示第一页
         FragmentTransaction ft = fragmentActivity.getSupportFragmentManager().beginTransaction();
         ft.add(fragmentContentId, fragments.get(0));
@@ -59,6 +57,12 @@ public class FragmentResumeTabAdapter implements RadioGroup.OnCheckedChangeListe
 
 
 //                Toast.makeText(this.fragmentActivity, "" + i, Toast.LENGTH_LONG).show();
+
+                if (rgs.getChildAt(i).getId()==R.id.oneself_production_rb){
+                    messageLayout.setVisibility(View.GONE);
+                }else if (rgs.getChildAt(i).getId()==R.id.oneself_informaction_rb){
+                    messageLayout.setVisibility(View.VISIBLE);
+                }
 
                 Fragment fragment = fragments.get(i);
                 FragmentTransaction ft = obtainFragmentTransaction(i);

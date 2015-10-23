@@ -27,6 +27,7 @@ import java.util.List;
 
 public class ResumeParticularsActivity extends ActionBarActivity  implements View.OnClickListener {
 
+
     @ViewInject(R.id.usericon_background_iv)
     private CustomImageView customImageView;
     @ViewInject(R.id.resume_radioGroup)
@@ -49,12 +50,18 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
     private TextView cpmpileResumeTv;
     @ViewInject(R.id.browse_number_tv)
     private TextView browseNumberTv;
+    @ViewInject(R.id.return_tv)
+    private TextView returnTv;
 
 
 
     private OneselfInformationFragment oneselfInformationFragment;
     private OneselfProductionFragment oneselfProductionFragment;
     private ResumeValueBean resumeValueBeans;
+
+    public String  position;//个数
+    private String  positions;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +84,17 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         oneselfInformactionRb.setChecked(true);
         talenBackIv.setOnClickListener(this);
         cpmpileResumeTv.setOnClickListener(this);
+        returnTv.setOnClickListener(this);
          List<Fragment> listFragment=new ArrayList<>();
         oneselfInformationFragment=new OneselfInformationFragment();
         oneselfProductionFragment=new OneselfProductionFragment();
         listFragment.add(oneselfInformationFragment);
         listFragment.add(oneselfProductionFragment);
         resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
-        FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ResumeParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup,resumeValueBeans);
+         positions= getIntent().getStringExtra("position");
+        ResumeParticularsActivity.this.setPosition(positions);
+        FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ResumeParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
+        if (resumeValueBeans!=null){
         MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), customImageView, MyAppliction.RoundedOptions);
         resumeZhNameTv.setText(resumeValueBeans.getResumeZhName());
          if (resumeValueBeans.getResumeSex()==0){
@@ -93,25 +104,35 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
          }
         resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
         resumeWorkPlaceTv.setText(resumeValueBeans.getResumeWorkPlace());
-        resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobName());
+        resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobCategoryName());
         browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
+        }
     }
 
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.talen_back_iv:
+            case R.id.return_tv:
                finish();
                 break;
             case R.id.cpmpile_resume_tv:
                 Intent intent=new Intent(ResumeParticularsActivity.this,ModificationResumeActivity.class);
                 intent.putExtra("resumeValueBeans",resumeValueBeans);
+                intent.putExtra("position",positions);
                 startActivity(intent);
                 break;
 
 
 
         }
+    }
+
+    public  String getPosition() {
+        return position;
+    }
+
+    public  void setPosition(String position) {
+        this.position = position;
     }
 }

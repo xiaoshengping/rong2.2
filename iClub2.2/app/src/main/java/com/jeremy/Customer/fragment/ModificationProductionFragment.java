@@ -20,7 +20,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
-import com.jeremy.Customer.uilt.ResumeParticularsActivity;
+import com.jeremy.Customer.uilt.ModificationResumeActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -36,8 +36,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OneselfProductionFragment extends Fragment {
-
+public class ModificationProductionFragment extends Fragment {
 
     @ViewInject(R.id.show_video_resume_iv)
     private ImageView showVideoResumeIv;
@@ -45,8 +44,7 @@ public class OneselfProductionFragment extends Fragment {
     private TextView showMusicResumeTv;
     @ViewInject(R.id.show_music_resume_two)
     private TextView showMusicResumeTwo;
-
-    public OneselfProductionFragment() {
+    public ModificationProductionFragment() {
         // Required empty public constructor
     }
 
@@ -55,10 +53,9 @@ public class OneselfProductionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_oneself_production, container, false);
+        View view=inflater.inflate(R.layout.fragment_modification_production, container, false);
         ViewUtils.inject(this,view);
         init();
-
         return view;
     }
 
@@ -92,8 +89,8 @@ public class OneselfProductionFragment extends Fragment {
                     ArtistParme<ResumeValueBean> artistParme= JSONObject.parseObject(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
                     });
                     if (artistParme.getState().equals("success")){
-                      List<ResumeValueBean> resumeValueBeans= artistParme.getValue();
-                        ResumeValueBean resumeValueBean=  resumeValueBeans.get(Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition()));
+                        List<ResumeValueBean> resumeValueBeans= artistParme.getValue();
+                        ResumeValueBean resumeValueBean=  resumeValueBeans.get(Integer.valueOf(((ModificationResumeActivity) getActivity()).getPosition()));
                         if (resumeValueBean!=null){
                             if (resumeValueBean.getResumeMovie().size()!=0){
                                 showVideoResumeIv.setImageBitmap(getVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(), 1700, 1000,
