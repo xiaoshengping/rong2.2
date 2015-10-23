@@ -60,4 +60,5 @@
     <string name="title_activity_add_merchant">AddMerchantActivity</string>
     <string name="title_activity_merchant_particulars">MerchantParticularsActivity</string>
     <string name="title_activity_modification_resume">ModificationResumeActivity</string>
+    <string name="title_activity_contact_information">ContactInformationActivity</string>
 </resources>

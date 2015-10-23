@@ -194,6 +194,10 @@
             android:name=".uilt.ModificationResumeActivity"
             android:label="@string/title_activity_modification_resume" >
         </activity>
+        <activity
+            android:name=".uilt.ContactInformationActivity"
+            android:label="@string/title_activity_contact_information" >
+        </activity>
     </application>
 
 </manifest>
