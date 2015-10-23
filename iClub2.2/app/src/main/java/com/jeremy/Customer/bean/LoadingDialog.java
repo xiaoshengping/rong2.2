@@ -30,14 +30,30 @@ public class LoadingDialog extends Dialog {
         this.msg = msg;
         createLoadingDialog();
     }
+
     public LoadingDialog(Context context) {
         super(context, R.style.loading_dialog);
         this.setCancelable(false);
         this.context = context;
-//        this.msg = msg;
-//        createLoadingDialog();
     }
 
+    public LoadingDialog(Context context,int w) {
+        super(context, R.style.loading_dialog);
+        this.setCancelable(false);
+        this.context = context;
+        Start();
+    }
+
+    //启动页
+    private void Start() {
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(R.mipmap.icon);
+        imageView.setBackgroundColor(0xff000000);
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        super.setContentView(imageView);
+    }
+
+    //一般加载界面
     private void createLoadingDialog() {
 
         LayoutInflater inflater = LayoutInflater.from(context);

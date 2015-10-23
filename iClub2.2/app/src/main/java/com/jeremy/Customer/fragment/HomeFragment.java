@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -57,11 +58,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private LinearLayout item_position_ll1,item_position_ll2,item_position_ll3;
 
+    private ScrollView scrollView;
+
     private BitmapUtils bitmapUtils;
 
     private ArtistParme<RecruitmentListBean> recruitmentListBean;
     private ArtistParme<TalentValueBean> talentValueBean;
     private ArtistParme<ActivityBean> activityBean;
+
+    private static int start = 0;
+
+    public static void setStart(int start) {
+        HomeFragment.start = start;
+    }
+
+    public static int getStart() {
+        return start;
+    }
 
     public HomeFragment() {
         // Required empty public constructor
@@ -122,6 +135,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         item_position_ll2 = (LinearLayout)view.findViewById(R.id.item_position_ll2);
         item_position_ll3 = (LinearLayout)view.findViewById(R.id.item_position_ll3);
 
+        scrollView = (ScrollView)view.findViewById(R.id.scrollView);
+
         home_more1.setOnClickListener(this);
         home_more2.setOnClickListener(this);
         home_more3.setOnClickListener(this);
@@ -136,8 +151,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         item_position_ll3.setOnClickListener(this);
         activity_picture_riv1.setOnClickListener(this);
         activity_picture_riv2.setOnClickListener(this);
-    }
 
+        scrollView.setVisibility(View.GONE);
+
+    }
 
     //初始化广告栏
     private void initAdvertisement() {
@@ -157,6 +174,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         layoutParams.setMargins(0, 0, 0, 0);
                         ssv.setLayoutParams(layoutParams);
 
+                        start++;
+                        if(start%4 ==0) {
+                            scrollView.setVisibility(View.VISIBLE);
+                        }
+
                     }
 
                 }
@@ -168,6 +190,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
+                start = -10;
             }
         });
 
@@ -195,6 +218,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 }
 
+                start++;
+                if(start%4 ==0) {
+                    scrollView.setVisibility(View.VISIBLE);
+                }
 
             }
 
@@ -202,6 +229,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
+                start = -10;
             }
         });
     }
@@ -239,6 +267,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 }
 
+                start++;
+                if(start%4 ==0) {
+                    scrollView.setVisibility(View.VISIBLE);
+                }
 
             }
 
@@ -246,6 +278,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
+                start = -10;
             }
         });
     }
@@ -355,6 +388,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 }
 
+                start++;
+                if(start%4 ==0) {
+                    scrollView.setVisibility(View.VISIBLE);
+                }
 
             }
 
@@ -362,6 +399,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
+                start = -10;
             }
         });
     }

@@ -9,10 +9,12 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="paren_layout_width_horgrivity" parent="paren_layout_width">
         <item name="android:gravity">center</item>
         <item name="android:orientation">horizontal</item>
     </style>
+
     <style name="paren_layout_width_vergrivity" parent="paren_layout_width">
         <item name="android:gravity">center</item>
         <item name="android:orientation">vertical</item>
@@ -22,11 +24,13 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="paren_layout_match_horgrivity" parent="paren_layout_match">
 
         <item name="android:gravity">center</item>
         <item name="android:orientation">horizontal</item>
     </style>
+
     <style name="paren_layout_match_vertirivity" parent="paren_layout_match">
         <item name="android:gravity">center</item>
         <item name="android:orientation">vertical</item>
@@ -36,6 +40,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="paren_radiogrud" parent="radiogroy_paren_layout_match">
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
@@ -49,6 +54,7 @@
         <item name="android:layout_width">80dp</item>
         <item name="android:layout_height">80dp</item>
     </style>
+
     <style name="image_paren1">
         <item name="android:scaleType">fitXY</item>
         <item name="android:layout_width">60dp</item>
@@ -76,6 +82,7 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="MMFriendListItem">
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
@@ -86,6 +93,7 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="MMListCatalog">
         <item name="android:textSize">14.0dip</item>
         <item name="android:textStyle">bold</item>
@@ -99,6 +107,7 @@
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
+
     <style name="ChoicePreferenceButton">
         <item name="android:textColor">#ff595c61</item>
         <item name="android:gravity">center</item>
@@ -107,6 +116,7 @@
         <item name="android:button">@null</item>
         <item name="android:minWidth">60.0dip</item>
     </style>
+
     <style name="MMFontTitleInList">
         <item name="android:textSize">16.0dip</item>
         <item name="android:textColor">#ff595c61</item>
@@ -116,6 +126,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:singleLine">true</item>
     </style>
+
     <style name="MMFontTipInList">
         <item name="android:textSize">14.0dip</item>
         <item name="android:textColor">#ffffffff</item>

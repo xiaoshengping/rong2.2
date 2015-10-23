@@ -5,10 +5,15 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
 import android.view.KeyEvent;
+import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.jeremy.Customer.bean.Identification;
+import com.jeremy.Customer.bean.LoadingDialog;
+import com.jeremy.Customer.bean.MyDialog;
 import com.jeremy.Customer.fragment.FragmentTabAdapter;
 import com.jeremy.Customer.fragment.HomeFragment;
 import com.jeremy.Customer.fragment.MineFragment;
@@ -16,13 +21,18 @@ import com.jeremy.Customer.fragment.RecruitmentFragment;
 import com.jeremy.Customer.fragment.TalentFragment;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class HomeActivity extends ActionBarActivity {
     private ArrayList<Fragment> fragments=new ArrayList<Fragment>();
     private RadioGroup homeRG;
-    private Boolean isFirstIn = false;
+    public Boolean isFirstIn = false;
     private long mExitTime;
+    private LoadingDialog loadingDialog;
+    Timer timer = new Timer();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,10 +44,63 @@ public class HomeActivity extends ActionBarActivity {
             Intent intent = new Intent().setClass(HomeActivity.this,PagesActivity.class);
             startActivity(intent);
         }
-
+        HomeFragment.setStart(0);
+        startPage();
         init();
 
     }
+
+    //初始化启动页
+    private void startPage(){
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int screenWidth = dm.widthPixels;
+        int screenHeigh = dm.heightPixels;
+
+        loadingDialog = new LoadingDialog(this,1);
+        loadingDialog.show();
+        loadingDialog.getWindow().setLayout(screenWidth, screenHeigh);
+
+        timer.schedule(task, 2000, 1000);       // timeTask
+
+    }
+    TimerTask task = new TimerTask() {
+        @Override
+        public void run() {
+
+            runOnUiThread(new Runnable() {      // UI thread
+                @Override
+                public void run() {
+                    if(HomeFragment.getStart()%4 ==0){
+                        timer.cancel();
+                        loadingDialog.dismiss();
+
+                    }else if(HomeFragment.getStart() < 0){
+                        timer.cancel();
+                        loadingDialog.dismiss();
+                        dialog();
+                    }
+
+                }
+            });
+        }
+    };
+    private MyDialog dialog2;
+
+    //提示框
+    private void dialog() {
+        dialog2 = new MyDialog(this, Identification.TOOLTIP, Identification.NETWORKANOMALY);
+        dialog2.setDetermine(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                recommend_list.setVisibility(View.GONE);
+                dialog2.dismiss();
+            }
+        });
+
+        dialog2.show();
+    }
+
     private void init() {
         intiRadioGroup();
         addFragment();

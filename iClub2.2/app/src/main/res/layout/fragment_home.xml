@@ -5,9 +5,17 @@
     android:background="#EBECF0"
     tools:context="com.jeremy.Customer.fragment.RecruitmentFragment">
 
-    <ScrollView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:src="@mipmap/icon"
+        android:scaleType="center"/>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#EBECF0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,4 +37,5 @@
 
         </LinearLayout>
     </ScrollView>
+
 </FrameLayout>
