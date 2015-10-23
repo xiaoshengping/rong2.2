@@ -40,7 +40,7 @@ public class ModificationResumeTabAdapter implements RadioGroup.OnCheckedChangeL
 
 
         messageLayout = (LinearLayout) fragmentActivity.findViewById(R.id.message_layout);
-
+        messageLayout.setVisibility(View.VISIBLE);
         // 默认显示第一页
         FragmentTransaction ft = fragmentActivity.getSupportFragmentManager().beginTransaction();
         ft.add(fragmentContentId, fragments.get(0));

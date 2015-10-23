@@ -19,6 +19,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.uilt.ContactInformationActivity;
 import com.jeremy.Customer.uilt.ModificationResumeActivity;
 import com.jeremy.Customer.uilt.OneselfExperienceActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
@@ -77,6 +78,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
     private List<ResumeValueBean> resumeValueBeans;
     private static final int INFOLT_HINT_DATA=7;//自我介绍
     private static final int EXPERIENCE_HINT_DATA=8;//工作经验
+    private ResumeValueBean resumeValueBean;
 
     public ModificationInformationFragment() {
         // Required empty public constructor
@@ -88,7 +90,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=inflater.inflate(R.layout.fragment_modification_information, container, false);
-        ViewUtils.inject(this,view);
+        ViewUtils.inject(this, view);
          init();
         return view;
     }
@@ -98,6 +100,12 @@ public class ModificationInformationFragment extends Fragment implements View.On
         initView();
 
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        intiResumeListData();
     }
 
     private void initView() {
@@ -160,6 +168,10 @@ public class ModificationInformationFragment extends Fragment implements View.On
 
                 break;
             case R.id.modification_contact:
+                Intent intent=new Intent(getActivity(), ContactInformationActivity.class);
+                intent.putExtra("resumeValueBean",resumeValueBean);
+                startActivity(intent);
+
 
                 break;
 
@@ -244,7 +256,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
                     });
                     if (artistParme.getState().equals("success")) {
                         resumeValueBeans = artistParme.getValue();
-                        ResumeValueBean resumeValueBean = resumeValueBeans.get(Integer.valueOf(((ModificationResumeActivity) getActivity()).getPosition()));
+                        resumeValueBean = resumeValueBeans.get(Integer.valueOf(((ModificationResumeActivity) getActivity()).getPosition()));
                         resumeInfoTv.setText(resumeValueBean.getResumeInfo());
                         resumeExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
                         resumeQqTv.setText(resumeValueBean.getResumeQq());
