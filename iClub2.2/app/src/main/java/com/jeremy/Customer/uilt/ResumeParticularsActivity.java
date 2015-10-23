@@ -50,6 +50,8 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
     private TextView cpmpileResumeTv;
     @ViewInject(R.id.browse_number_tv)
     private TextView browseNumberTv;
+    @ViewInject(R.id.return_tv)
+    private TextView returnTv;
 
 
 
@@ -82,6 +84,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         oneselfInformactionRb.setChecked(true);
         talenBackIv.setOnClickListener(this);
         cpmpileResumeTv.setOnClickListener(this);
+        returnTv.setOnClickListener(this);
          List<Fragment> listFragment=new ArrayList<>();
         oneselfInformationFragment=new OneselfInformationFragment();
         oneselfProductionFragment=new OneselfProductionFragment();
@@ -110,7 +113,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.talen_back_iv:
+            case R.id.return_tv:
                finish();
                 break;
             case R.id.cpmpile_resume_tv:

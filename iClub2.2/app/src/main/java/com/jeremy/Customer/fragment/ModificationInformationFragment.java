@@ -1,10 +1,12 @@
 package com.jeremy.Customer.fragment;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.uilt.ModificationResumeActivity;
+import com.jeremy.Customer.uilt.OneselfExperienceActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -61,8 +64,20 @@ public class ModificationInformationFragment extends Fragment implements View.On
     private TextView transactionRecordTv;
     @ViewInject(R.id.commentCount_tv)
     private TextView commentCountTv;
+    @ViewInject(R.id.modification_contact)
+    private TextView modificationContact;
+    @ViewInject(R.id.modification_work_tv)
+    private TextView modificationWorkTv;
+    @ViewInject(R.id.modification_oneself_tv)
+    private TextView modificationOneselfTv;
+
+
+
 
     private List<ResumeValueBean> resumeValueBeans;
+    private static final int INFOLT_HINT_DATA=7;//自我介绍
+    private static final int EXPERIENCE_HINT_DATA=8;//工作经验
+
     public ModificationInformationFragment() {
         // Required empty public constructor
     }
@@ -89,7 +104,9 @@ public class ModificationInformationFragment extends Fragment implements View.On
         experienceMoreLayout.setOnClickListener(this);
         oneselfMoreLayout.setOnClickListener(this);
         resumeInfoTv.setOnClickListener(this);
-
+        modificationContact.setOnClickListener(this);
+        modificationWorkTv.setOnClickListener(this);
+        modificationOneselfTv.setOnClickListener(this);
 
         if (resumeInfoTv.getLineCount()>0&&resumeInfoTv.getLineCount()<=4){
             oneselfMoreLayout.setVisibility(View.GONE);
@@ -124,8 +141,86 @@ public class ModificationInformationFragment extends Fragment implements View.On
                     experienceMoreLayout.setVisibility(View.GONE);
                 }
                 break;
+            case R.id.modification_oneself_tv:
+                Intent infoIntent = new Intent(getActivity(), OneselfExperienceActivity.class);  //方法1
+                infoIntent.putExtra("hintData","infoIntent");
+                if (!TextUtils.isEmpty(resumeInfoTv.getText().toString())){
+                    infoIntent.putExtra("content",resumeInfoTv.getText().toString());
+                }
+                startActivityForResult(infoIntent, INFOLT_HINT_DATA);
+
+                break;
+            case R.id.modification_work_tv:
+                Intent workIntent = new Intent(getActivity(), OneselfExperienceActivity.class);  //方法1
+                workIntent.putExtra("hintData","workIntent");
+                if (!TextUtils.isEmpty(resumeExperienceTv.getText().toString())){
+                    workIntent.putExtra("content",resumeExperienceTv.getText().toString());
+                }
+                startActivityForResult(workIntent, EXPERIENCE_HINT_DATA);
+
+                break;
+            case R.id.modification_contact:
+
+                break;
 
 
+
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case INFOLT_HINT_DATA:
+                if (data.getStringExtra("infoIntent").toString().equals("notData")){
+                    if (resumeInfoTv.getText().toString().equals("介绍一下自己")){
+                        resumeInfoTv.setText("介绍一下自己");
+                        resumeInfoTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        resumeInfoTv.setText(resumeInfoTv.getText().toString());
+                        resumeInfoTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else if (data.getStringExtra("infoIntent").toString().equals("data")){
+                    if (resumeInfoTv.getText().toString().equals("介绍一下自己")){
+                        resumeInfoTv.setText("介绍一下自己");
+                        resumeInfoTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        resumeInfoTv.setText(resumeInfoTv.getText().toString());
+                        resumeInfoTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else {
+                    resumeInfoTv.setText(data.getStringExtra("infoIntent").toString());
+                    resumeInfoTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                }
+
+                break;
+            case EXPERIENCE_HINT_DATA:
+                if (data.getStringExtra("workIntent").toString().equals("notData")){
+                    if (resumeExperienceTv.getText().toString().equals("分享一下自己工作经验")){
+                        resumeExperienceTv.setText("分享一下自己工作经验");
+                        resumeExperienceTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        resumeExperienceTv.setText(resumeExperienceTv.getText().toString());
+                        resumeExperienceTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+                }else if (data.getStringExtra("workIntent").toString().equals("data")){
+                    if (resumeExperienceTv.getText().toString().equals("分享一下自己工作经验")){
+                        resumeExperienceTv.setText("分享一下自己工作经验");
+                        resumeExperienceTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        resumeExperienceTv.setText(resumeExperienceTv.getText().toString());
+                        resumeExperienceTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else {
+                    resumeExperienceTv.setText(data.getStringExtra("workIntent").toString());
+                    resumeExperienceTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                }
+
+                break;
         }
     }
 

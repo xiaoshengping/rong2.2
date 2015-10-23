@@ -216,6 +216,12 @@
             android:layout_width="10dp"
             android:layout_height="20dp" />
         <TextView
+            android:id="@+id/return_tv"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="20dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+        <TextView
             android:id="@+id/cpmpile_resume_tv"
             android:layout_alignParentRight="true"
             android:layout_marginTop="30dp"

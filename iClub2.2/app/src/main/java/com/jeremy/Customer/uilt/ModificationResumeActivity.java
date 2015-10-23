@@ -95,9 +95,10 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
            if (resumeValueBeans!=null){
                MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBeans.getUsericon(),customImageView,MyAppliction.RoundedOptions);
                resumeZhNameEt.setText(resumeValueBeans.getResumeZhName());
-               if (resumeValueBeans.getResumeSex().equals("0")){
+
+               if (resumeValueBeans.getResumeSex().equals(0)){
                    boyRadioButton.setChecked(true);
-               }else if(resumeValueBeans.getResumeSex().equals("1")){
+               }else if(resumeValueBeans.getResumeSex().equals(1)){
                    girlRadioButton.setChecked(true);
                }
                resumeAgeEt.setText(resumeValueBeans.getResumeAge()+"");
