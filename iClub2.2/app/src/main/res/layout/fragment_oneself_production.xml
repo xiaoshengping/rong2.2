@@ -141,7 +141,7 @@
             android:layout_marginLeft="30dp"
             android:scaleType="fitXY"
             android:src="@mipmap/resume_background_icon"
-            android:layout_width="80dp"
+            android:layout_width="75dp"
             android:layout_height="80dp" />
         <ImageView
             android:id="@+id/show_picture_resume_two"
@@ -149,10 +149,10 @@
             android:layout_toRightOf="@+id/show_picture_resume_one"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:scaleType="fitXY"
             android:src="@mipmap/resume_background_icon"
-            android:layout_width="80dp"
+            android:layout_width="75dp"
             android:layout_height="80dp" />
         <ImageView
             android:id="@+id/show_picture_resume_three"
@@ -160,12 +160,22 @@
             android:layout_toRightOf="@+id/show_picture_resume_two"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:scaleType="fitXY"
             android:src="@mipmap/resume_background_icon"
-            android:layout_width="80dp"
+            android:layout_width="75dp"
             android:layout_height="80dp" />
-
+        <ImageView
+            android:id="@+id/show_picture_resume_four"
+            android:layout_below="@+id/picture_tailt_tv"
+            android:layout_toRightOf="@+id/show_picture_resume_three"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/resume_background_icon"
+            android:layout_width="75dp"
+            android:layout_height="80dp" />
 
     </RelativeLayout>
 
