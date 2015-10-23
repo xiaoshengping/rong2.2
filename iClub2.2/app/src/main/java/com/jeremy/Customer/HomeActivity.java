@@ -72,9 +72,9 @@ public class HomeActivity extends ActionBarActivity {
                 @Override
                 public void run() {
                     if(HomeFragment.getStart()%4 ==0){
+                        HomeFragment.setSV();
                         timer.cancel();
                         loadingDialog.dismiss();
-
                     }else if(HomeFragment.getStart() < 0){
                         timer.cancel();
                         loadingDialog.dismiss();

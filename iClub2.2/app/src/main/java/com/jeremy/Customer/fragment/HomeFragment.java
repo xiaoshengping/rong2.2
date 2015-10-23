@@ -58,7 +58,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private LinearLayout item_position_ll1,item_position_ll2,item_position_ll3;
 
-    private ScrollView scrollView;
+    private static ScrollView scrollView;
 
     private BitmapUtils bitmapUtils;
 
@@ -74,6 +74,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public static int getStart() {
         return start;
+    }
+
+    public static void setSV(){
+        scrollView.setVisibility(View.VISIBLE);
     }
 
     public HomeFragment() {
@@ -175,9 +179,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         ssv.setLayoutParams(layoutParams);
 
                         start++;
-                        if(start%4 ==0) {
-                            scrollView.setVisibility(View.VISIBLE);
-                        }
 
                     }
 
@@ -219,9 +220,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
 
                 start++;
-                if(start%4 ==0) {
-                    scrollView.setVisibility(View.VISIBLE);
-                }
 
             }
 
@@ -268,9 +266,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
 
                 start++;
-                if(start%4 ==0) {
-                    scrollView.setVisibility(View.VISIBLE);
-                }
 
             }
 
@@ -389,9 +384,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 }
 
                 start++;
-                if(start%4 ==0) {
-                    scrollView.setVisibility(View.VISIBLE);
-                }
 
             }
 
@@ -483,5 +475,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         intent.putExtra("Ident", ident);
         startActivity(intent);
     }
+
 
 }
