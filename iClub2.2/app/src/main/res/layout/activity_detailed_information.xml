@@ -3,7 +3,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.jeremy.Customer.uilt.DetailedInformationActivity">
-<include layout="@layout/app_tailt_layout"/>
+<include layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <LinearLayout
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
@@ -39,9 +43,9 @@
         <ImageView
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@mipmap/weil_one_icon"
+            android:background="@color/lineColor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="1dp" />
         <TextView
             android:id="@+id/particular_content_tv"
             android:layout_weight="1"

@@ -36,7 +36,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:drawableLeft="@mipmap/login_code_icon"
+            android:drawableLeft="@mipmap/psw_icon"
             android:drawablePadding="10dp"
             android:hint="密码"
             android:paddingLeft="10dp"

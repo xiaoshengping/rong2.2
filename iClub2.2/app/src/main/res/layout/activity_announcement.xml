@@ -2,8 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.AnnouncementMessageActivity">
-     <include layout="@layout/app_tailt_layout"/>
+     <include layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <ListView
         android:dividerHeight="3dp"
         android:id="@+id/information_lv"

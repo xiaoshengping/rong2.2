@@ -69,10 +69,15 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
     }
 
-    @Override
+  /*  @Override
     protected void onResume() {
         super.onResume();
+        resumeListLv.setRefreshing();
+    }*/
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
         resumeListLv.setRefreshing();
     }
 

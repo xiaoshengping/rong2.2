@@ -5,7 +5,7 @@
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.ResumeActivity">
 
-    <include layout="@layout/app_tailt_layout"/>
+    <include layout="@layout/app_white_tailt_layout"/>
     <TextView
         android:visibility="gone"
         android:id="@+id/not_resume_tv"
