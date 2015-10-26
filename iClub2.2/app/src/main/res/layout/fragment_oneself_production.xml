@@ -23,6 +23,7 @@
             android:textSize="15sp"
             />
         <TextView
+            android:id="@+id/more_video_tv"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
@@ -65,7 +66,7 @@
             android:textSize="15sp"
             />
         <TextView
-
+              android:id="@+id/more_music_tv"
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
             android:text="更多"
@@ -126,6 +127,7 @@
             android:textSize="15sp"
             />
         <TextView
+            android:id="@+id/more_picture_tv"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"

@@ -1,39 +1,31 @@
 package com.jeremy.Customer.uilt;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.app.ActionBarActivity;
+import android.widget.ListView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.adapter.ResumeMusicAdapter;
+import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.view.annotation.ViewInject;
 
 public class MoreMucisActivity extends ActionBarActivity {
-
+    @ViewInject(R.id.show_music_lv)
+    private ListView showMusicLv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_more_mucis);
+        ViewUtils.inject(this);
+        ResumeValueBean resumeValueBean= (ResumeValueBean) getIntent().getSerializableExtra("MoreMucisActivity");
+        ResumeMusicAdapter resumeMusicAdapter=new ResumeMusicAdapter(resumeValueBean.getResumeMusic(),MoreMucisActivity.this);
+        showMusicLv.setAdapter(resumeMusicAdapter);
+        resumeMusicAdapter.notifyDataSetChanged();
+
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_more_mucis, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
-        return super.onOptionsItemSelected(item);
-    }
 }

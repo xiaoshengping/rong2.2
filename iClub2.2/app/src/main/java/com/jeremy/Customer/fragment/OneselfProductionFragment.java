@@ -1,6 +1,7 @@
 package com.jeremy.Customer.fragment;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -23,6 +24,9 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.MyAppliction;
+import com.jeremy.Customer.uilt.MoreMucisActivity;
+import com.jeremy.Customer.uilt.MorePictureActivity;
+import com.jeremy.Customer.uilt.MoreVideoActivity;
 import com.jeremy.Customer.uilt.ResumeParticularsActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -40,7 +44,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OneselfProductionFragment extends Fragment {
+public class OneselfProductionFragment extends Fragment implements View.OnClickListener {
 
 
     @ViewInject(R.id.show_video_resume_iv)
@@ -58,7 +62,14 @@ public class OneselfProductionFragment extends Fragment {
     private ImageView showPictureResumeThree;
     @ViewInject(R.id.show_picture_resume_four)
     private ImageView showPictureResumeFour;
+    @ViewInject(R.id.more_picture_tv)
+    private TextView morePictureTv;
+    @ViewInject(R.id.more_music_tv)
+    private TextView moreMusicTv;
+    @ViewInject(R.id.more_video_tv)
+    private TextView moreVideoTv;
 
+    private  ResumeValueBean resumeValueBean;
     public OneselfProductionFragment() {
         // Required empty public constructor
     }
@@ -81,6 +92,9 @@ public class OneselfProductionFragment extends Fragment {
     }
 
     private void initView() {
+        moreVideoTv.setOnClickListener(this);
+        moreMusicTv.setOnClickListener(this);
+        morePictureTv.setOnClickListener(this);
         intiResumeListData();
 
 
@@ -106,7 +120,7 @@ public class OneselfProductionFragment extends Fragment {
                     });
                     if (artistParme.getState().equals("success")){
                       List<ResumeValueBean> resumeValueBeans= artistParme.getValue();
-                        ResumeValueBean resumeValueBean=  resumeValueBeans.get(Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition()));
+                        resumeValueBean=  resumeValueBeans.get(Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition()));
                         if (resumeValueBean!=null){
                             if (resumeValueBean.getResumeMovie().size()!=0){
                                 showVideoResumeIv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(),10,10));
@@ -191,5 +205,30 @@ public class OneselfProductionFragment extends Fragment {
                     ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
         }
         return bitmap;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.more_video_tv:
+                Intent intent=new Intent(getActivity(), MoreVideoActivity.class);
+                intent.putExtra("MoreVideoActivity",resumeValueBean);
+                startActivity(intent);
+                break;
+            case R.id.more_music_tv:
+                Intent musicIntent=new Intent(getActivity(), MoreMucisActivity.class);
+                musicIntent.putExtra("MoreMucisActivity",resumeValueBean);
+                startActivity(musicIntent);
+                break;
+            case R.id.more_picture_tv:
+                Intent pictureIntent=new Intent(getActivity(), MorePictureActivity.class);
+                pictureIntent.putExtra("MorePictureActivity",resumeValueBean);
+                startActivity(pictureIntent);
+                break;
+
+
+
+
+        }
     }
 }
