@@ -24,5 +24,12 @@
         android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <ListView
+        android:layout_marginTop="10dp"
+        android:id="@+id/show_music_lv"
+        android:dividerHeight="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
 
 </LinearLayout>

@@ -16,9 +16,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.adapter.ResumeVideoAdapter;
+import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -43,9 +46,11 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
     private ImageView showVideoIv;
     @ViewInject(R.id.add_video_bt)
     private Button  addVideoBt;
+    @ViewInject(R.id.show_video_lv)
+    private ListView showVideoLv;
 
 
-    private String resumeid;
+    private ResumeValueBean resumeValueBean;
     private  String videoPath;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,14 +67,16 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
     }
 
     private void initView() {
-        resumeid= getIntent().getStringExtra("resumeid");
+        resumeValueBean= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBean");
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("添加图片");
         saveText.setVisibility(View.VISIBLE);
         saveText.setOnClickListener(this);
         saveText.setText("上传");
         addVideoBt.setOnClickListener(this);
-
+        ResumeVideoAdapter resumeVideoAdapter=new ResumeVideoAdapter(resumeValueBean.getResumeMovie(),AddVideoActivity.this);
+        showVideoLv.setAdapter(resumeVideoAdapter);
+        resumeVideoAdapter.notifyDataSetChanged();
     }
 
 
@@ -81,8 +88,8 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
                 break;
             case R.id.save_text:
 
-                if (!TextUtils.isEmpty(resumeid)||!TextUtils.isEmpty(videoPath)){
-                    addVideoData(resumeid,videoPath);
+                if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"")||!TextUtils.isEmpty(videoPath)){
+                    addVideoData(resumeValueBean.getResumeid()+"",videoPath);
                 }else {
                     MyAppliction.showExitGameAlert("你还没有选择照片", AddVideoActivity.this);
                 }

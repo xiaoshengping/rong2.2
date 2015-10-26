@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.adapter.ResumePictureAdapter;
+import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -44,7 +46,11 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
     @ViewInject(R.id.save_text)
     private TextView saveText;
 
-    private String resumeid;
+    @ViewInject(R.id.show_picture_gridview)
+    private GridView showPictureGridView;
+
+
+    private ResumeValueBean resumeValueBean;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,12 +69,21 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
     }
 
     private void initView() {
-        resumeid= getIntent().getStringExtra("resumeid");
+        resumeValueBean= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBean");
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("添加图片");
         saveText.setVisibility(View.VISIBLE);
         saveText.setOnClickListener(this);
         saveText.setText("上传");
+        if (resumeValueBean!=null){
+            showPictureGridView.setVisibility(View.VISIBLE);
+            ResumePictureAdapter resumePictureAdapter=new ResumePictureAdapter(resumeValueBean.getResumePicture(),this);
+            showPictureGridView.setAdapter(resumePictureAdapter);
+            resumePictureAdapter.notifyDataSetChanged();
+        }
+
+
+
 
     }
 
@@ -93,6 +108,7 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
+            gridview.setVisibility(View.VISIBLE);
             selectedPicture = (ArrayList<String>) data
                     .getSerializableExtra(SelectPictureActivity.INTENT_SELECTED_PICTURE);
             adapter.notifyDataSetChanged();
@@ -107,9 +123,9 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
                 break;
             case R.id.save_text:
 
-                if (!TextUtils.isEmpty(resumeid)&&selectedPicture.size()!=0){
+                if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"")&&selectedPicture.size()!=0){
                     for (int i = 0; i <selectedPicture.size() ; i++) {
-                        savePictureData(resumeid,selectedPicture.get(i));
+                        savePictureData(resumeValueBean.getResumeid()+"",selectedPicture.get(i));
                     }
                 }else {
                     MyAppliction.showExitGameAlert("你还没有选择照片", AddPictureActivity.this);
@@ -168,6 +184,7 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
                 ((ImageView) convertView).setScaleType(ImageView.ScaleType.CENTER_CROP);
                 convertView.setLayoutParams(params);
             }
+
             ImageLoader.getInstance().displayImage("file://" + selectedPicture.get(position),
                     (ImageView) convertView);
             return convertView;

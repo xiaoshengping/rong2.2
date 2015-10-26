@@ -200,17 +200,17 @@ public class ModificationProductionFragment extends Fragment implements View.OnC
         switch (v.getId()){
             case R.id.modification_video_tv:
                 Intent videoIntent=new Intent(getActivity(),AddVideoActivity.class);
-                videoIntent.putExtra("resumeid", resumeValueBean.getResumeid());
+                videoIntent.putExtra("resumeValueBean", resumeValueBean);
                 startActivity(videoIntent);
                 break;
             case R.id.modification_music_tv:
                 Intent musicIntent=new Intent(getActivity(),AddMusicActivity.class);
-                musicIntent.putExtra("resumeid", resumeValueBean.getResumeid());
+                musicIntent.putExtra("resumeValueBean", resumeValueBean);
                 startActivity(musicIntent);
                 break;
             case R.id.modification_picture_tv:
                 Intent picturnIntent=new Intent(getActivity(),AddPictureActivity.class);
-                picturnIntent.putExtra("resumeid",resumeValueBean.getResumeid() );
+                picturnIntent.putExtra("resumeValueBean",resumeValueBean );
                 startActivity(picturnIntent);
                 break;
 

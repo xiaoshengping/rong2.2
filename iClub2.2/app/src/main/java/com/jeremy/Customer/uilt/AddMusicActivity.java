@@ -7,9 +7,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.adapter.ResumeMusicAdapter;
+import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -34,8 +37,10 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
     private Button addMusicBt;
     @ViewInject(R.id.show_music_data_tv)
     private TextView showMusicDataTv;
+    @ViewInject(R.id.show_music_lv)
+    private ListView showMusicLv;
 
-    private String resumeid;
+    private ResumeValueBean resumeValueBean;
     private String musicPath;
     private String musicName;
 
@@ -55,13 +60,16 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
     }
 
     private void initView() {
-        resumeid= getIntent().getStringExtra("resumeid");
+        resumeValueBean= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBean");
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("添加音乐");
         saveText.setVisibility(View.VISIBLE);
         saveText.setOnClickListener(this);
         saveText.setText("上传");
         addMusicBt.setOnClickListener(this);
+        ResumeMusicAdapter resumeMusicAdapter=new ResumeMusicAdapter(resumeValueBean.getResumeMusic(),AddMusicActivity.this);
+        showMusicLv.setAdapter(resumeMusicAdapter);
+        resumeMusicAdapter.notifyDataSetChanged();
 
     }
 
@@ -73,9 +81,9 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.save_text:
-             if (!TextUtils.isEmpty(resumeid)&&!TextUtils.isEmpty(musicName)&&
+             if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"")&&!TextUtils.isEmpty(musicName)&&
                         !TextUtils.isEmpty(musicPath)){
-                     saveMusicData(resumeid,musicName,musicPath);
+                     saveMusicData(resumeValueBean.getResumeid()+"",musicName,musicPath);
                 }else {
                     MyAppliction.showToast("你还没有音频文件");
                 }
