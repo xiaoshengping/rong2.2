@@ -197,9 +197,20 @@
             android:name=".uilt.ContactInformationActivity"
             android:label="@string/title_activity_contact_information" >
         </activity>
-
-        <activity android:name=".PagesActivity"></activity>
-        <activity android:name=".calendar.CalendarActivity"></activity>
+        <activity android:name=".PagesActivity" />
+        <activity android:name=".calendar.CalendarActivity" />
+        <activity
+            android:name=".uilt.MoreVideoActivity"
+            android:label="@string/title_activity_more_video" >
+        </activity>
+        <activity
+            android:name=".uilt.MoreMucisActivity"
+            android:label="@string/title_activity_more_mucis" >
+        </activity>
+        <activity
+            android:name=".uilt.MorePictureActivity"
+            android:label="@string/title_activity_more_picture" >
+        </activity>
     </application>
 
 </manifest>

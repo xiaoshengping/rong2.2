@@ -69,4 +69,7 @@
     <string name="thursday">四</string>
     <string name="friday">五</string>
     <string name="saturday">六</string>
+    <string name="title_activity_more_video">MoreVideoActivity</string>
+    <string name="title_activity_more_mucis">MoreMucisActivity</string>
+    <string name="title_activity_more_picture">MorePictureActivity</string>
 </resources>
