@@ -72,4 +72,5 @@
     <string name="title_activity_more_video">MoreVideoActivity</string>
     <string name="title_activity_more_mucis">MoreMucisActivity</string>
     <string name="title_activity_more_picture">MorePictureActivity</string>
+    <string name="title_activity_image_pager">ImagePagerActivity</string>
 </resources>
