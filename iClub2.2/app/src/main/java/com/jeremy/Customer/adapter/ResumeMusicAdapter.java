@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.mine.ResumeMusic;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -13,7 +14,6 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import java.util.List;
 
 import static com.jeremy.Customer.R.id;
-import static com.jeremy.Customer.R.layout;
 
 /**
  * Created by xiaoshengping on 2015/7/16.
@@ -28,7 +28,7 @@ public class ResumeMusicAdapter extends AppBaseAdapter<ResumeMusic> {
     @Override
     public View createView(int position, View convertView, ViewGroup parent) {
         if (convertView==null){
-            convertView= LayoutInflater.from(context).inflate(layout.resume_music_adapter_layout,null);
+            convertView= LayoutInflater.from(context).inflate(R.layout.resume_music_adapter_layout,null);
             viewHodle=new ViewHodle(convertView) ;
             convertView.setTag(viewHodle);
 

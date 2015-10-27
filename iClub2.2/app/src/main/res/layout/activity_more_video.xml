@@ -1,14 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jeremy.Customer.uilt.MoreVideoActivity">
-
+  <include layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <ListView
-        android:layout_marginTop="10dp"
         android:id="@+id/show_video_lv"
-        android:dividerHeight="2dp"
+        android:dividerHeight="1dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
 
-</RelativeLayout>
+</LinearLayout>

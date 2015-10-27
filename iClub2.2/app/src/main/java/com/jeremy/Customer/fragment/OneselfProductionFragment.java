@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -96,6 +97,7 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
         moreMusicTv.setOnClickListener(this);
         morePictureTv.setOnClickListener(this);
         intiResumeListData();
+        showVideoResumeIv.setOnClickListener(this);
 
 
     }
@@ -108,7 +110,6 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
         String uid=null;
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
-
         }
         String resumeListUrl= AppUtilsUrl.getResumeLista(uid);
         httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
@@ -124,28 +125,35 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                         if (resumeValueBean!=null){
                             if (resumeValueBean.getResumeMovie().size()!=0){
                                 showVideoResumeIv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(),10,10));
+                            }else {
+                                showVideoResumeIv.setVisibility(View.GONE);
                             }
                             if (resumeValueBean.getResumeMusic().size()!=0){
                                 showMusicResumeTv.setText(resumeValueBean.getResumeMusic().get(0).getTitle());
                                 if (resumeValueBean.getResumeMusic().size()>=2){
                                     showMusicResumeTwo.setText(resumeValueBean.getResumeMusic().get(1).getTitle());
+                                }else {
+                                    showMusicResumeTwo.setVisibility(View.GONE);
                                 }
-                                if (resumeValueBean.getResumePicture().size()!=0){
-                                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumePicture().get(0).getPath(),showPictureResumeOne,MyAppliction.options);
-                                    if (resumeValueBean.getResumePicture().size()>1){
-                                        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumePicture().get(1).getPath(),showPictureResumeTwo,MyAppliction.options);
-                                        if (resumeValueBean.getResumePicture().size()>2){
-                                            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumePicture().get(2).getPath(),showPictureResumeThree,MyAppliction.options);
-                                            if (resumeValueBean.getResumePicture().size()>3){
-                                                MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumePicture().get(3).getPath(),showPictureResumeFour,MyAppliction.options);
+                            }else {
+                               showVideoResumeIv.setVisibility(View.GONE);
+                                showMusicResumeTwo.setVisibility(View.GONE);
+                            }
+                            if (resumeValueBean.getResumePicture().size()!=0){
+                                MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(0).getPath(), showPictureResumeOne, MyAppliction.options);
+                                if (resumeValueBean.getResumePicture().size()>1){
+                                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(1).getPath(), showPictureResumeTwo, MyAppliction.options);
+                                    if (resumeValueBean.getResumePicture().size()>2){
+                                        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumePicture().get(2).getPath(),showPictureResumeThree,MyAppliction.options);
+                                        if (resumeValueBean.getResumePicture().size()>3){
+                                            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumePicture().get(3).getPath(),showPictureResumeFour,MyAppliction.options);
 
-                                            }
                                         }
                                     }
-
                                 }
 
                             }
+
                         }
 
 
@@ -224,6 +232,12 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                 Intent pictureIntent=new Intent(getActivity(), MorePictureActivity.class);
                 pictureIntent.putExtra("MorePictureActivity",resumeValueBean);
                 startActivity(pictureIntent);
+                break;
+            case R.id.show_video_resume_iv:
+                Intent videoIntent = new Intent(Intent.ACTION_VIEW);
+                Uri videoUri = Uri.parse(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath());
+                videoIntent.setDataAndType(videoUri, "video/mp4");
+                startActivity(videoIntent);
                 break;
 
 

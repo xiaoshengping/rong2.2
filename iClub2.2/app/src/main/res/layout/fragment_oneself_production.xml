@@ -84,9 +84,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp"
-
-            android:scaleType="fitXY"
-            android:src="@mipmap/resume_background_icon"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
         <TextView
@@ -99,9 +96,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp"
-
-            android:scaleType="fitXY"
-            android:src="@mipmap/resume_background_icon"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 

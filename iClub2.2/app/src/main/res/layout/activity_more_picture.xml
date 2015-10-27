@@ -10,12 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="1dp" />
     <GridView
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:id="@+id/show_picture_gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:verticalSpacing="5dp"
         android:numColumns="4" />
 
 </LinearLayout>
