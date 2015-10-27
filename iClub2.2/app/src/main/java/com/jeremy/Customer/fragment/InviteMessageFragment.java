@@ -46,11 +46,13 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
     //private ListView inviteMessageLv;
     private PullToRefreshListView inviteMessageLv;
 
+
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private List<InviteMessgaeListValueBean> inviteMessgaeListValueBeans;
     private InviteMessageListAdapter inviteMessagelistAdapter;
     private int offset=0;
+
     public InviteMessageFragment() {
         // Required empty public constructor
     }
@@ -178,4 +180,6 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
         offset=offset+10;
         intiData(offset);
     }
+
+
 }

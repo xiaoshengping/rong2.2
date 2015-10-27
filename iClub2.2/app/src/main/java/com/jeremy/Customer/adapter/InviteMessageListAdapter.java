@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -109,6 +108,7 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
             viewHold.acceptButtonTv.setText("评论");
             viewHold.refuseButtonTv.setText("删除");
         }
+        //viewHold.invitePalyTv.setText(data.get(position));
         viewHold.inviteTripTimeTv.setText(data.get(position).getTripTime());
         viewHold.InviteJobCategoryTv.setText(data.get(position).getInviteResume().getResumeWorkPlace());
         viewHold.InviteCompanyNameTv.setText(data.get(position).getInvitePerson().getBEcompanyName());
@@ -250,10 +250,12 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
         private Button refuseButtonTv;
         @ViewInject(R.id.delete_button_tv)
         private Button deleteButtonTv;
-        @ViewInject(R.id.popup_button)
-        private CheckBox popupButton;
+       /* @ViewInject(R.id.popup_button)
+        private CheckBox popupButton;*/
         @ViewInject(R.id.accept_refuse_layout)
         private RelativeLayout acceptRefuseLayout;
+        @ViewInject(R.id.invite_paly_tv)
+        private TextView invitePalyTv;
 
         public ViewHold(View view) {
             ViewUtils.inject(this, view);

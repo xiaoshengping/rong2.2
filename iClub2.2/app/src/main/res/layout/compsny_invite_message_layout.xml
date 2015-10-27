@@ -37,7 +37,6 @@
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="20dp"
                         android:text="职业"
-                        android:textColor="@color/whiteOne"
                         android:textSize="@dimen/textSize15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -62,7 +61,6 @@
                     <TextView
                         android:layout_marginLeft="20dp"
                         android:text="邀约日期"
-                        android:textColor="@color/whiteOne"
                         android:textSize="@dimen/textSize15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -109,8 +107,6 @@
                         android:layout_marginLeft="25dp"
                         android:layout_marginBottom="10dp"
                         android:text="网址"
-
-                        android:textColor="@color/whiteOne"
                         android:textSize="@dimen/textSize15"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content" />
@@ -138,7 +134,6 @@
                         android:layout_marginLeft="25dp"
                         android:layout_marginBottom="10dp"
                         android:text="电话"
-                        android:textColor="@color/whiteOne"
                         android:textSize="@dimen/textSize15"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content" />
@@ -167,8 +162,6 @@
                         android:layout_marginBottom="10dp"
                         android:text="邮箱"
                         android:drawablePadding="20dp"
-
-                        android:textColor="@color/whiteOne"
                         android:textSize="@dimen/textSize15"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content" />
@@ -197,8 +190,6 @@
                         android:layout_marginBottom="10dp"
                         android:text="地址"
                         android:drawablePadding="20dp"
-
-                        android:textColor="@color/whiteOne"
                         android:textSize="@dimen/textSize15"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content" />
@@ -234,7 +225,7 @@
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
                         android:text="诚信度"
-                        android:textColor="@color/whiteOne"
+
                         android:textSize="@dimen/textSize15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -266,12 +257,10 @@
                     android:layout_height="wrap_content"
                     >
                     <TextView
-
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
                         android:text="真实性"
                         android:gravity="center"
-                        android:textColor="@color/whiteOne"
                         android:textSize="@dimen/textSize15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -307,7 +296,6 @@
                         android:layout_marginTop="10dp"
                         android:text="合作数次"
                         android:gravity="center"
-                        android:textColor="@color/whiteOne"
                         android:textSize="@dimen/textSize15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

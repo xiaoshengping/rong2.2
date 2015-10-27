@@ -15,7 +15,7 @@
         <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            layout="@layout/app_tailt_layout"/>
+            layout="@layout/app_white_tailt_layout"/>
         <com.handmark.pulltorefresh.library.PullToRefreshListView
             android:id="@+id/comment_listview"
             android:dividerHeight="1dp"
