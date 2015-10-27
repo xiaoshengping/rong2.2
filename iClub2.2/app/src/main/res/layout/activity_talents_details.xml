@@ -3,186 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:gravity="center_horizontal">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="374dp"
-        android:background="#ffffff"
-        android:visibility="visible">
 
-        <ImageView
-            android:id="@+id/talents_back_iv"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/talents_details_back"
-            android:background="@drawable/acb"
-            android:scaleType="centerCrop"
-            android:src="@drawable/acb" />
-
-        <TextView
-            android:id="@+id/invite_a_few_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="18dp"
-            android:layout_marginTop="76dp"
-            android:background="@mipmap/page_view"
-            android:gravity="center"
-            android:text="邀约数\n1236"
-            android:textColor="#ffffff"
-            android:textSize="12dp" />
-
-        <TextView
-            android:id="@+id/talents_back_baffle_tv"
-            android:layout_width="match_parent"
-            android:layout_height="156dp"
-            android:layout_below="@+id/talents_back_iv"
-            android:background="#ffffff" />
-
-        <RelativeLayout
-            android:id="@+id/talents_basics_rl"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/talents_back_iv"
-            android:layout_marginTop="-50dp"
-            android:paddingBottom="6dp">
-
-            <com.jeremy.Customer.view.RoundAngleImageView xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
-                android:id="@+id/talents_hear_iv"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop"
-                android:background="@mipmap/mine_head_default"
-
-                app:roundHeight="50dp"
-                app:roundWidth="50dp" />
-
-            <TextView
-                android:id="@+id/talents_name_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/talents_hear_iv"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="2dp"
-                android:background="#00ffffff"
-                android:padding="5dp"
-                android:text="啦啦啦"
-                android:textColor="@color/home_talents_item_name"
-                android:textSize="18dp" />
-            <ImageView
-                android:id="@+id/talents_sex_iv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/talents_name_tv"
-                android:src="@mipmap/man_big"
-                android:layout_alignTop="@+id/talents_name_tv"
-                android:layout_alignBottom="@+id/talents_name_tv"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/talents_name_tv"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="10dp"
-                android:background="#0000eee0"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="0dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="年龄"
-                    android:textColor="#7A7A7C"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:id="@+id/talents_age_tv"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="23"
-                    android:textColor="@color/home_talents_item_name"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:layout_width="1px"
-                    android:layout_height="17dp"
-                    android:background="#9E4A7A" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="地点"
-                    android:textColor="#7A7A7C"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:id="@+id/talents_site_tv"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="广州"
-                    android:textColor="@color/home_talents_item_name"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:layout_width="1px"
-                    android:layout_height="17dp"
-                    android:background="#9E4A7A" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:text="职业"
-                    android:textColor="#7A7A7C"
-                    android:textSize="14dp" />
-
-                <TextView
-                    android:id="@+id/talents_profession_tv"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:text="歌手讽德诵功"
-                    android:textColor="@color/home_talents_item_name"
-                    android:textSize="15dp" />
-
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:layout_alignParentBottom="true"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="#EBE9EA" />
-        </RelativeLayout>
-    </RelativeLayout>
-
-    <com.jeremy.Customer.view.MyScrollView
+    <!--<com.jeremy.Customer.view.MyScrollView
         android:id="@+id/talents_detail_msv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:overScrollMode="never">
+        android:overScrollMode="never">-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="324dp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -192,26 +27,35 @@
 
                 <include layout="@layout/item_talents_details_button"></include>
 
-                <RelativeLayout
-                    android:id="@+id/hz_main_rl"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/hz_main_rl"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
 
-                    <include layout="@layout/item_talents_personal_data"></include>
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/vtPager"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1.0"
+                        android:background="#00000000"
+                        android:flipInterval="30"
+                        android:persistentDrawingCache="animation" />
+
+                    <!--<include layout="@layout/item_talents_personal_data"></include>
 
                     <include layout="@layout/item_talents_personage_production"></include>
-
-                </RelativeLayout>
+-->
+                <!--</RelativeLayout>-->
 
             </LinearLayout>
         </LinearLayout>
-    </com.jeremy.Customer.view.MyScrollView>
+    <!--</com.jeremy.Customer.view.MyScrollView>-->
 
     <LinearLayout
         android:id="@+id/floating_collar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/talents_detail_msv"
         android:background="@color/background"
         android:orientation="horizontal"
         android:visibility="gone">
@@ -251,26 +95,26 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="返回"
         android:background="#00ffffff"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
+        android:onClick="back"
         android:paddingLeft="20dp"
-        android:onClick="back"/>
+        android:text="返回"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/home_more"
         android:gravity="center"
+        android:onClick="call_for"
+        android:paddingBottom="18dp"
+        android:paddingTop="18dp"
         android:text="邀约"
         android:textColor="#F2F2F0"
-        android:textSize="17sp"
-        android:background="@color/home_more"
-        android:paddingTop="18dp"
-        android:paddingBottom="18dp"
-        android:onClick="call_for"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"/>
+        android:textSize="17sp" />
 
 </RelativeLayout>
 

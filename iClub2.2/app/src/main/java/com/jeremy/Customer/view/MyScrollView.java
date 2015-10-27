@@ -17,6 +17,9 @@ public class MyScrollView extends ScrollView {
 	 * 主要是用在用户手指离开MyScrollView，MyScrollView还在继续滑动，我们用来保存Y的距离，然后做比较
 	 */
 	private int lastScrollY;
+
+	// 滑动距离及坐标
+	private float xDistance, yDistance, xLast, yLast;
 	
 	public MyScrollView(Context context) {
 		this(context, null);
@@ -96,12 +99,38 @@ public class MyScrollView extends ScrollView {
 		public void onScroll(int scrollY);
 	}
 
+	@Override
+	public boolean onInterceptTouchEvent(MotionEvent ev) {
+//		switch (ev.getAction()) {
+//			case MotionEvent.ACTION_DOWN:
+//				xDistance = yDistance = 0f;
+//				xLast = ev.getX();
+//				yLast = ev.getY();
+//				break;
+//			case MotionEvent.ACTION_MOVE:
+//				final float curX = ev.getX();
+//				final float curY = ev.getY();
+//
+//				xDistance += Math.abs(curX - xLast);
+//				yDistance += Math.abs(curY - yLast);
+//				xLast = curX;
+//				yLast = curY;
+//
+//				if(xDistance > yDistance){
+//					return false;
+//				}
+//				return false;
+//		}
+
+		return super.onInterceptTouchEvent(ev);
+	}
+
 	/**
-	 * 滑动事件
-	 */
+         * 滑动事件
+         */
 	@Override
 	public void fling(int velocityY) {
-		super.fling(velocityY / 3);
+		super.fling(velocityY / 2);
 	}
 
 }

@@ -1,23 +1,29 @@
 package com.jeremy.Customer.uilt;
 
+import android.animation.ArgbEvaluator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.Parcelable;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
@@ -31,6 +37,7 @@ import com.jeremy.Customer.bean.mine.ResumeMovie;
 import com.jeremy.Customer.bean.mine.ResumeMusic;
 import com.jeremy.Customer.bean.mine.ResumePicture;
 import com.jeremy.Customer.calendar.CalendarActivity;
+import com.jeremy.Customer.myActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.MusicActivity;
 import com.jeremy.Customer.view.MyGridView;
@@ -47,11 +54,11 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private ListView video_production_list, music_production_list;
     private MyGridView picture_production_list;
     private TextView invite_a_few_tv;
-    private RelativeLayout talents_basics_rl;
+//    private RelativeLayout talents_basics_rl;
     private ImageView talents_back_iv;
-    private TextView talents_back_baffle_tv;
+//    private TextView talents_back_baffle_tv;
     private LinearLayout floating_collar;
-    private MyScrollView myScrollView;
+//    private MyScrollView myScrollView;
     private TextView personal_data_button_tv, individual_works_button_tv;
     private TextView personal_data_button_tv1, individual_works_button_tv1;
     private LinearLayout individual_works_ll, personal_data_ll;
@@ -78,6 +85,13 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
     private String states = null;//用户类型
 
+    private ViewPager mPager;//页卡内容
+    private List<View> listViews; // Tab页面列表
+//    private TextView job_details_tv, company_details_tv;// 页卡头标
+    private int currIndex = 0;// 当前页卡编号
+
+    private TextView tooltips_tv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,15 +99,190 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
         bitmapUtils=new BitmapUtils(this);
         talentValueBean = (TalentValueBean) getIntent().getSerializableExtra("Detail");
-        init();
-        initTitleAnimation();
-        initVideoProduction();
-        initMusicProduction();
-        initPictureProduction();
+
+        InitTextView();
+        InitViewPager();
+
     }
 
+    /**
+     * 初始化头标
+     */
+    private float w;
+    private int width;
+    private int tooltips_width;
+    private void InitTextView() {
+        personal_data_button_tv = (TextView) findViewById(R.id.personal_data_button_tv);
+        individual_works_button_tv = (TextView) findViewById(R.id.individual_works_button_tv);
+        tooltips_tv = (TextView)findViewById(R.id.tooltips_tv);
+
+        WindowManager wm = this.getWindowManager();
+        width = wm.getDefaultDisplay().getWidth();
+        ViewTreeObserver vto = tooltips_tv.getViewTreeObserver();
+        vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            public boolean onPreDraw() {
+                tooltips_width = tooltips_tv.getMeasuredWidth();
+//                tooltips_tv.setText(tooltips_width + "");
+                w = (width - (tooltips_tv.getMeasuredWidth() * 2)) / 4;
+                tooltips_tv.setTranslationX(w);
+                return true;
+            }
+        });
+
+
+        personal_data_button_tv.setOnClickListener(new MyOnClickListener(0));
+        individual_works_button_tv.setOnClickListener(new MyOnClickListener(1));
+
+    }
+
+
+    public class MyOnClickListener implements View.OnClickListener {
+        private int index = 0;
+
+        public MyOnClickListener(int i) {
+            index = i;
+        }
+
+        @Override
+        public void onClick(View v) {
+            mPager.setCurrentItem(index);
+        }
+    }
+
+    /**
+     * * 初始化ViewPager
+     */
+    private void InitViewPager() {
+        mPager = (ViewPager) findViewById(R.id.vtPager);
+        listViews = new ArrayList<View>();
+        LayoutInflater mInflater = getLayoutInflater();
+        View item_talents_personal_data = mInflater.inflate(R.layout.item_talents_personal_data, null);
+        View item_talents_personage_production = mInflater.inflate(R.layout.item_talents_personage_production, null);
+        listViews.add(item_talents_personal_data);
+        listViews.add(item_talents_personage_production);
+        mPager.setAdapter(new MyPagerAdapter(listViews));
+        mPager.setCurrentItem(0);
+        mPager.setOnPageChangeListener(new MyOnPageChangeListener());
+
+        init(item_talents_personal_data , item_talents_personage_production);
+        initVideoProduction(item_talents_personage_production);
+        initMusicProduction(item_talents_personage_production);
+        initPictureProduction(item_talents_personage_production);
+
+    }
+
+    /**
+     * ViewPager适配器
+     */
+    public class MyPagerAdapter extends PagerAdapter {
+        public List<View> mListViews;
+
+        public MyPagerAdapter(List<View> mListViews) {
+            this.mListViews = mListViews;
+        }
+
+        @Override
+        public void destroyItem(View arg0, int arg1, Object arg2) {
+            ((ViewPager) arg0).removeView(mListViews.get(arg1));
+        }
+
+        @Override
+        public void finishUpdate(View arg0) {
+        }
+
+        @Override
+        public int getCount() {
+            return mListViews.size();
+        }
+
+        @Override
+        public Object instantiateItem(View arg0, int arg1) {
+            ((ViewPager) arg0).addView(mListViews.get(arg1), 0);
+            return mListViews.get(arg1);
+        }
+
+        @Override
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            return arg0 == (arg1);
+        }
+
+        @Override
+        public void restoreState(Parcelable arg0, ClassLoader arg1) {
+        }
+
+        @Override
+        public Parcelable saveState() {
+            return null;
+        }
+
+        @Override
+        public void startUpdate(View arg0) {
+        }
+    }
+
+    /**
+     * 页卡切换监听
+     */
+    public class MyOnPageChangeListener implements ViewPager.OnPageChangeListener {
+
+        //        int one = offset * 2 + bmpW;// 页卡1 -> 页卡2 偏移量
+//        int two = one * 2;// 页卡1 -> 页卡3 偏移量
+        int one = (int)w;
+        int two = (int)w;
+
+        @Override
+        public void onPageSelected(int arg0) {
+            Animation animation = null;
+            switch (arg0) {
+                case 0:
+//                    if (currIndex == 1) {
+//                        animation = new TranslateAnimation(one, 0, 0, 0);
+//                    } else if (currIndex == 2) {
+//                        animation = new TranslateAnimation(two, 0, 0, 0);
+//                    }
+                    animation = new TranslateAnimation((tooltips_width+(2*w)), one, 0, 0);
+                    break;
+                case 1:
+                        animation = new TranslateAnimation( one,(tooltips_width+(2*w)), 0, 0);
+                    break;
+            }
+            currIndex = arg0;
+            animation.setFillAfter(true);// True:图片停在动画结束位置
+            animation.setDuration(300);
+            tooltips_tv.startAnimation(animation);
+        }
+
+        @Override
+        public void onPageScrolled(int arg0, float arg1, int arg2) {
+            ArgbEvaluator evaluator = new ArgbEvaluator();
+//            if(arg1!=0) {
+//                tooltips_tv.setTranslationX((float)((tooltips_width+(2*w))*arg1)+w).setFillAfter(true);
+
+//                tooltips_tv.setText(((tooltips_width + (float) (2 * w)) * arg1 + w)+"");
+//                int evaluate = (Integer) evaluator.evaluate(arg1, 0XFF8744ad, 0XFF777778);
+//                job_details_tv.setTextColor(evaluate);
+//                job_details_tv.setTextSize(18-(arg1*2));
+//                int evaluates = (Integer) evaluator.evaluate(arg1, 0XFF777778, 0XFF8744ad);
+//                company_details_tv.setTextSize(16+(arg1*2));
+//                company_details_tv.setTextColor(evaluates);
+//            }
+
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int arg0) {
+        }
+    }
+
+
+
+
+
+
+
+
     //初始化界面
-    private void init() {
+    private void init(View a , View b) {
 
         //获取登录状态
         SQLhelper sqLhelper=new SQLhelper(this);
@@ -105,31 +294,28 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
         }
 
-
-        myScrollView = (MyScrollView) findViewById(R.id.talents_detail_msv);
-        myScrollView.setOnScrollListener(this);
-        personal_data_button_tv = (TextView) findViewById(R.id.personal_data_button_tv);
-        individual_works_button_tv = (TextView) findViewById(R.id.individual_works_button_tv);
+//        personal_data_button_tv = (TextView) findViewById(R.id.personal_data_button_tv);
+//        individual_works_button_tv = (TextView) findViewById(R.id.individual_works_button_tv);
         personal_data_button_tv1 = (TextView) findViewById(R.id.personal_data_button_tv1);
         individual_works_button_tv1 = (TextView) findViewById(R.id.individual_works_button_tv1);
-        individual_works_ll = (LinearLayout) findViewById(R.id.individual_works_ll);
-        personal_data_ll = (LinearLayout) findViewById(R.id.personal_data_ll);
+        individual_works_ll = (LinearLayout) b.findViewById(R.id.individual_works_ll);
+        personal_data_ll = (LinearLayout) a.findViewById(R.id.personal_data_ll);
         talents_hear_iv = (ImageView)findViewById(R.id.talents_hear_iv);
         talents_name_tv = (TextView)findViewById(R.id.talents_name_tv);
         talents_sex_iv = (ImageView)findViewById(R.id.talents_sex_iv);
         talents_age_tv = (TextView)findViewById(R.id.talents_age_tv);
         talents_site_tv = (TextView)findViewById(R.id.talents_site_tv);
         talents_profession_tv = (TextView)findViewById(R.id.talents_profession_tv);
-        talents_self_introduction_tv = (TextView)findViewById(R.id.talents_self_introduction_tv);
-        talents_work_experience_tv = (TextView)findViewById(R.id.talents_work_experience_tv);
-        talents_reputation_tv = (TextView)findViewById(R.id.talents_reputation_tv);
+        talents_self_introduction_tv = (TextView) a.findViewById(R.id.talents_self_introduction_tv);
+        talents_work_experience_tv = (TextView) a.findViewById(R.id.talents_work_experience_tv);
+        talents_reputation_tv = (TextView) a.findViewById(R.id.talents_reputation_tv);
         invite_a_few_tv = (TextView)findViewById(R.id.invite_a_few_tv);
-        self_introduction_button_tv = (TextView)findViewById(R.id.self_introduction_button_tv);
-        work_experience_button_tv = (TextView)findViewById(R.id.work_experience_button_tv);
-        comment_button_tv = (TextView)findViewById(R.id.comment_button_tv);
+        self_introduction_button_tv = (TextView) a.findViewById(R.id.self_introduction_button_tv);
+        work_experience_button_tv = (TextView) a.findViewById(R.id.work_experience_button_tv);
+        comment_button_tv = (TextView) a.findViewById(R.id.comment_button_tv);
 
-        personal_data_button_tv.setOnClickListener(this);
-        individual_works_button_tv.setOnClickListener(this);
+//        personal_data_button_tv.setOnClickListener(this);
+//        individual_works_button_tv.setOnClickListener(this);
         personal_data_button_tv1.setOnClickListener(this);
         individual_works_button_tv1.setOnClickListener(this);
         self_introduction_button_tv.setOnClickListener(this);
@@ -196,18 +382,18 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     //初始化标题栏动画
     private void initTitleAnimation() {
         invite_a_few_tv = (TextView) findViewById(R.id.invite_a_few_tv);
-        talents_basics_rl = (RelativeLayout) findViewById(R.id.talents_basics_rl);
+//        talents_basics_rl = (RelativeLayout) findViewById(R.id.talents_basics_rl);
         talents_back_iv = (ImageView) findViewById(R.id.talents_back_iv);
-        talents_back_baffle_tv = (TextView) findViewById(R.id.talents_back_baffle_tv);
+//        talents_back_baffle_tv = (TextView) findViewById(R.id.talents_back_baffle_tv);
         floating_collar = (LinearLayout) findViewById(R.id.floating_collar);
 
 
-        bitmap = ((BitmapDrawable) talents_back_iv.getDrawable()).getBitmap();
+//        bitmap = ((BitmapDrawable) talents_back_iv.getDrawable()).getBitmap();
     }
 
     //初始化视频作品
-    private void initVideoProduction() {
-        video_production_list = (ListView) findViewById(R.id.video_production_list);
+    private void initVideoProduction(View b) {
+        video_production_list = (ListView) b.findViewById(R.id.video_production_list);
         List<ResumeMovie> resumeMovieData = talentValueBean.getResumeMovie();
         VideoAdapter videoAdapter = new VideoAdapter(this,resumeMovieData);
         video_production_list.setAdapter(videoAdapter);
@@ -215,8 +401,8 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     }
 
     //初始化音乐作品
-    private void initMusicProduction() {
-        music_production_list = (ListView) findViewById(R.id.music_production_list);
+    private void initMusicProduction(View b) {
+        music_production_list = (ListView) b.findViewById(R.id.music_production_list);
         List<ResumeMusic> resumeMusic = talentValueBean.getResumeMusic();
         MusicAdapter musicAdapter = new MusicAdapter(this,resumeMusic);
         music_production_list.setAdapter(musicAdapter);
@@ -239,8 +425,8 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private List<ResumePicture> resumePicture;
 
     //初始化图片作品
-    private void initPictureProduction() {
-        picture_production_list = (MyGridView) findViewById(R.id.picture_production_list);
+    private void initPictureProduction(View b) {
+        picture_production_list = (MyGridView) b.findViewById(R.id.picture_production_list);
         resumePicture = talentValueBean.getResumePicture();
         PictureAdapter pictureAdapter = new PictureAdapter(this,resumePicture);
         picture_production_list.setAdapter(pictureAdapter);
@@ -346,8 +532,8 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        personal_data_ll.setVisibility(View.GONE);
-        individual_works_ll.setVisibility(View.GONE);
+//        personal_data_ll.setVisibility(View.GONE);
+//        individual_works_ll.setVisibility(View.GONE);
 
         boolean a = false;
 
@@ -382,7 +568,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 break;
         }
 
-        buttonView(a);
+//        buttonView(a);
 
     }
 
@@ -398,7 +584,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
             personal_data_button_tv.setTextColor(0xff282a31);
             personal_data_button_tv1.setTextColor(0xff282a31);
 
-            myScrollView.smoothScrollTo(0, mScrollY);
+//            myScrollView.smoothScrollTo(0, mScrollY);
             individual_works_ll.setVisibility(View.VISIBLE);
         } else {
             individual_works_button_tv.setBackgroundColor(0xffffffff);
@@ -458,6 +644,10 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
     //邀约
     public void call_for(View v){
+
+        Intent intent1 = new Intent(TalentsDetailsActivity.this, myActivity.class);
+        startActivity(intent1);
+
 
         if (TextUtils.isEmpty(states)||states.equals("1")){
 //            Toast.makeText(TalendDetailsActivity.this, "非登录状态或非商家类型", Toast.LENGTH_LONG).show();

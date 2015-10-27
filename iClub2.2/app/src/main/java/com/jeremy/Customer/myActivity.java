@@ -163,7 +163,7 @@ public class myActivity extends Activity implements View.OnClickListener {
         mPager = (ViewPager) findViewById(R.id.vPager);
         listViews = new ArrayList<View>();
         LayoutInflater mInflater = getLayoutInflater();
-        listViews.add(mInflater.inflate(R.layout.item_talents, null));
+        listViews.add(mInflater.inflate(R.layout.item_talents_personal_data, null));
         listViews.add(mInflater.inflate(R.layout.item_position, null));
         listViews.add(mInflater.inflate(R.layout.item_activity, null));
         mPager.setAdapter(new MyPagerAdapter(listViews));

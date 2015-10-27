@@ -3,12 +3,151 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/background">
+    android:background="#F2F2F2">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:paddingBottom="28dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/talents_back_iv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/acb"
+            android:scaleType="centerCrop"
+            android:src="#000000" />
+
+        <TextView
+            android:id="@+id/invite_a_few_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="58dp"
+            android:background="@mipmap/page_view"
+            android:gravity="center"
+            android:text="邀约数\n1236"
+            android:textColor="#ffffff"
+            android:textSize="12dp" />
+
+        <com.jeremy.Customer.view.RoundAngleImageView
+            xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+            android:id="@+id/talents_hear_iv"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:background="@mipmap/mine_head_default"
+            android:scaleType="centerCrop"
+            android:src="#ffffff"
+            app:roundHeight="38dp"
+            app:roundWidth="38dp" />
+
+        <TextView
+            android:id="@+id/talents_name_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/talents_hear_iv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="#00ffffff"
+            android:padding="5dp"
+            android:text="啦啦啦"
+            android:textColor="#ffffff"
+            android:textSize="18dp" />
+
+        <ImageView
+            android:id="@+id/talents_sex_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/talents_name_tv"
+            android:layout_alignTop="@+id/talents_name_tv"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/talents_name_tv"
+            android:src="@mipmap/man_big" />
+
+        <TextView
+            android:id="@+id/talents_age_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="7dp"
+            android:text="23"
+            android:textColor="#ffffff"
+            android:textSize="13dp"
+            android:layout_alignBottom="@+id/talents_name_tv"
+            android:layout_alignTop="@+id/talents_name_tv"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/talents_sex_iv" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/talents_name_tv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:background="#0000eee0"
+            android:orientation="horizontal"
+            android:padding="0dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toLeftOf="@+id/talents_site_tv"
+                android:text="地点"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/talents_site_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_toLeftOf="@+id/zhong"
+                android:gravity="center_horizontal"
+                android:text="广州"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/zhong"
+                android:layout_width="1.5px"
+                android:layout_height="17dp"
+                android:layout_centerHorizontal="true"
+                android:background="#ffffff" />
+
+            <TextView
+                android:id="@+id/you"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_toRightOf="@id/zhong"
+                android:text="职业"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/talents_profession_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/you"
+                android:gravity="center_horizontal"
+                android:text="歌手讽德诵功"
+                android:textColor="#ffffff"
+                android:textSize="15dp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:background="@drawable/talents_details_button_shape"
+        android:background="#F2F2F2"
         android:orientation="horizontal">
 
         <TextView
@@ -16,12 +155,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/talents_details_button_l_shape"
             android:gravity="center"
-            android:padding="6dp"
+            android:padding="18dp"
             android:text="个人资料"
-            android:textColor="#ffffff"
-            android:textSize="16sp" />
+            android:textColor="@color/home_more"
+            android:textSize="16sp"
+            />
 
         <TextView
             android:id="@+id/individual_works_button_tv"
@@ -29,10 +168,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="6dp"
+            android:padding="18dp"
             android:text="个人作品"
             android:textColor="@color/home_talents_item_name"
             android:textSize="16sp" />
     </LinearLayout>
+    <TextView
+        android:id="@+id/tooltips_tv"
+        android:layout_width="90dp"
+        android:layout_height="1dp"
+        android:background="@color/home_more"
+        android:layout_marginLeft="0dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#E1E2E3"/>
 
 </LinearLayout>
