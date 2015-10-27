@@ -149,11 +149,6 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
                         }else {
                             companyAdressTv.setText("********");
                         }
-                        if (!TextUtils.isEmpty(bMerchantValueBean.getBEaddress())){
-                            companyAdressTv.setText(bMerchantValueBean.getBEaddress());
-                        }else {
-                            companyAdressTv.setText("********");
-                        }
 
                         if (!TextUtils.isEmpty(bMerchantValueBean.getBEcompanyInfo())){
                             merchantInfoTv.setText(bMerchantValueBean.getBEcompanyInfo());

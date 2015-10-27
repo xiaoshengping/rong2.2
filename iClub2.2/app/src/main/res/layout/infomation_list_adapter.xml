@@ -2,14 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
      android:gravity="center"
-    android:background="#3Affffff"
+    android:background="@color/white"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="20dp"
         android:scaleType="fitXY"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:src="@mipmap/message_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

@@ -2,17 +2,21 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/layoutBackground"
-    tools:context="com.jeremy.Customer.uilt.AnnouncementMessageActivity">
-     <include layout="@layout/app_white_tailt_layout"/>
+    tools:context="com.jeremy.Customer.uilt.MorePictureActivity">
+
+    <include layout="@layout/app_white_tailt_layout"/>
     <ImageView
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
-    <ListView
-        android:dividerHeight="3dp"
-        android:id="@+id/information_lv"
+    <GridView
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:id="@+id/show_picture_gridview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:verticalSpacing="5dp"
+        android:numColumns="4" />
 
 </LinearLayout>

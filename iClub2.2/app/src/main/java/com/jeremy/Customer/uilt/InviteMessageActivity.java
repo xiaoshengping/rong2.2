@@ -3,6 +3,7 @@ package com.jeremy.Customer.uilt;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -49,5 +50,11 @@ public class InviteMessageActivity extends ActionBarActivity {
         fragments.add(new AcceptInviteFragment());
         fragments.add(new TalentSucceedFragment());
     }
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

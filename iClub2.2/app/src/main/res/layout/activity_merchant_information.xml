@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp">
             <TextView
-                android:text="公司名称"
+                android:text="商家名称"
                 android:paddingLeft="20dp"
                 android:textSize="@dimen/textSize15"
                 android:layout_width="wrap_content"
@@ -179,7 +179,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         <TextView
-            android:text="公司介绍"
+            android:text="商家介绍"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:textSize="@dimen/textSize15"

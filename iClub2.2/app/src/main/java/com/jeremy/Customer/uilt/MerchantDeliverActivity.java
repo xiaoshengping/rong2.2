@@ -123,6 +123,8 @@ public class MerchantDeliverActivity extends ActionBarActivity implements View.O
 
             @Override
             public void onFailure(HttpException e, String s) {
+
+                informationListv.onRefreshComplete();
                 Log.e("onFailure", s);
             }
         });

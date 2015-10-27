@@ -198,7 +198,7 @@
                     android:textSize="@dimen/textSize16"
                     android:layout_below="@+id/talen_back_iv"
                     android:layout_toRightOf="@+id/usericon_background_iv"/>
-                <EditText
+                <TextView
                     android:id="@+id/resume_age_et"
                     android:textColorHint="@color/editTextPromptColor"
                     android:hint="请输入你的年龄"

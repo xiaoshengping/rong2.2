@@ -1,14 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/reole_background_icon"
     android:orientation="vertical"
+
     tools:context="com.jeremy.Customer.uilt.RoleRegisterActivity">
 
     <TextView
         android:id="@+id/talents_user_tv"
         android:text="人才用户"
         android:gravity="center"
-        android:background="#ccc"
+        android:background="@mipmap/roel_icon"
         android:layout_marginTop="120dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
@@ -18,7 +20,7 @@
         android:id="@+id/merchant_user_tv"
         android:text="商家用户"
         android:gravity="center"
-        android:background="#ccc"
+        android:background="@mipmap/roel_icon"
         android:layout_marginTop="120dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"

@@ -1,10 +1,14 @@
 package com.jeremy.Customer.fragment;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
@@ -20,6 +24,10 @@ import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.http.MyAppliction;
+import com.jeremy.Customer.uilt.MoreMucisActivity;
+import com.jeremy.Customer.uilt.MorePictureActivity;
+import com.jeremy.Customer.uilt.MoreVideoActivity;
 import com.jeremy.Customer.uilt.ResumeParticularsActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -31,12 +39,13 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OneselfProductionFragment extends Fragment {
+public class OneselfProductionFragment extends Fragment implements View.OnClickListener {
 
 
     @ViewInject(R.id.show_video_resume_iv)
@@ -46,6 +55,22 @@ public class OneselfProductionFragment extends Fragment {
     @ViewInject(R.id.show_music_resume_two)
     private TextView showMusicResumeTwo;
 
+    @ViewInject(R.id.show_picture_resume_one)
+    private ImageView showPictureResumeOne;
+    @ViewInject(R.id.show_picture_resume_two)
+    private ImageView showPictureResumeTwo;
+    @ViewInject(R.id.show_picture_resume_three)
+    private ImageView showPictureResumeThree;
+    @ViewInject(R.id.show_picture_resume_four)
+    private ImageView showPictureResumeFour;
+    @ViewInject(R.id.more_picture_tv)
+    private TextView morePictureTv;
+    @ViewInject(R.id.more_music_tv)
+    private TextView moreMusicTv;
+    @ViewInject(R.id.more_video_tv)
+    private TextView moreVideoTv;
+
+    private  ResumeValueBean resumeValueBean;
     public OneselfProductionFragment() {
         // Required empty public constructor
     }
@@ -68,7 +93,11 @@ public class OneselfProductionFragment extends Fragment {
     }
 
     private void initView() {
+        moreVideoTv.setOnClickListener(this);
+        moreMusicTv.setOnClickListener(this);
+        morePictureTv.setOnClickListener(this);
         intiResumeListData();
+        showVideoResumeIv.setOnClickListener(this);
 
 
     }
@@ -81,7 +110,6 @@ public class OneselfProductionFragment extends Fragment {
         String uid=null;
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
-
         }
         String resumeListUrl= AppUtilsUrl.getResumeLista(uid);
         httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
@@ -93,30 +121,58 @@ public class OneselfProductionFragment extends Fragment {
                     });
                     if (artistParme.getState().equals("success")){
                       List<ResumeValueBean> resumeValueBeans= artistParme.getValue();
-                        ResumeValueBean resumeValueBean=  resumeValueBeans.get(Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition()));
+                        resumeValueBean=  resumeValueBeans.get(Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition()));
                         if (resumeValueBean!=null){
                             if (resumeValueBean.getResumeMovie().size()!=0){
-                                showVideoResumeIv.setImageBitmap(getVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(), 1700, 1000,
-                                        MediaStore.Images.Thumbnails.MINI_KIND));
+                                showVideoResumeIv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(),10,10));
+                            }else {
+                                showVideoResumeIv.setVisibility(View.GONE);
                             }
                             if (resumeValueBean.getResumeMusic().size()!=0){
                                 showMusicResumeTv.setText(resumeValueBean.getResumeMusic().get(0).getTitle());
                                 if (resumeValueBean.getResumeMusic().size()>=2){
                                     showMusicResumeTwo.setText(resumeValueBean.getResumeMusic().get(1).getTitle());
+                                }else {
+                                    showMusicResumeTwo.setVisibility(View.GONE);
                                 }
+                            }else {
+                               showVideoResumeIv.setVisibility(View.GONE);
+                                showMusicResumeTwo.setVisibility(View.GONE);
+                            }
+                            if (resumeValueBean.getResumePicture().size()!=0){
+                                MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(0).getPath(), showPictureResumeOne, MyAppliction.options);
+                                if (resumeValueBean.getResumePicture().size()>1){
+                                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(1).getPath(), showPictureResumeTwo, MyAppliction.options);
+                                    if (resumeValueBean.getResumePicture().size()>2){
+                                        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumePicture().get(2).getPath(),showPictureResumeThree,MyAppliction.options);
+                                        if (resumeValueBean.getResumePicture().size()>3){
+                                            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBean.getResumePicture().get(3).getPath(),showPictureResumeFour,MyAppliction.options);
+
+                                        }
+                                    }
+                                }
+
                             }
 
                         }
+
+
                     }
 
 
+                            }
+
+                        }
 
 
 
-                }
 
 
-            }
+
+
+
+
+
 
             @Override
             public void onFailure(HttpException e, String s) {
@@ -130,26 +186,63 @@ public class OneselfProductionFragment extends Fragment {
 
     }
 
-    /**
-     * 获取视频的缩略图
-     * 先通过ThumbnailUtils来创建一个视频的缩略图，然后再利用ThumbnailUtils来生成指定大小的缩略图。
-     * 如果想要的缩略图的宽和高都小于MICRO_KIND，则类型要使用MICRO_KIND作为kind的值，这样会节省内存。
-     * @param videoPath 视频的路径
-     * @param width 指定输出视频缩略图的宽度
-     * @param height 指定输出视频缩略图的高度度
-     * @param kind 参照MediaStore.Images.Thumbnails类中的常量MINI_KIND和MICRO_KIND。
-     *            其中，MINI_KIND: 512 x 384，MICRO_KIND: 96 x 96
-     * @return 指定大小的视频缩略图
-     */
-    private Bitmap getVideoThumbnail(String videoPath, int width, int height,
-                                     int kind) {
+    private Bitmap createVideoThumbnail(String url, int width, int height) {
         Bitmap bitmap = null;
-        // 获取视频的缩略图
-        bitmap = ThumbnailUtils.createVideoThumbnail(videoPath, kind);
-        //System.out.println("w"+bitmap.getWidth());
-        //System.out.println("h"+bitmap.getHeight());
-        bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height,
-                ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        int kind = MediaStore.Video.Thumbnails.MINI_KIND;
+        try {
+            if (Build.VERSION.SDK_INT >= 14) {
+                retriever.setDataSource(url, new HashMap<String, String>());
+            } else {
+                retriever.setDataSource(url);
+            }
+            bitmap = retriever.getFrameAtTime();
+        } catch (IllegalArgumentException ex) {
+            // Assume this is a corrupt video file
+        } catch (RuntimeException ex) {
+            // Assume this is a corrupt video file.
+        } finally {
+            try {
+                retriever.release();
+            } catch (RuntimeException ex) {
+                // Ignore failures while cleaning up.
+            }
+        }
+        if (kind == MediaStore.Images.Thumbnails.MICRO_KIND && bitmap != null) {
+            bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height,
+                    ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
+        }
         return bitmap;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.more_video_tv:
+                Intent intent=new Intent(getActivity(), MoreVideoActivity.class);
+                intent.putExtra("MoreVideoActivity",resumeValueBean);
+                startActivity(intent);
+                break;
+            case R.id.more_music_tv:
+                Intent musicIntent=new Intent(getActivity(), MoreMucisActivity.class);
+                musicIntent.putExtra("MoreMucisActivity",resumeValueBean);
+                startActivity(musicIntent);
+                break;
+            case R.id.more_picture_tv:
+                Intent pictureIntent=new Intent(getActivity(), MorePictureActivity.class);
+                pictureIntent.putExtra("MorePictureActivity",resumeValueBean);
+                startActivity(pictureIntent);
+                break;
+            case R.id.show_video_resume_iv:
+                Intent videoIntent = new Intent(Intent.ACTION_VIEW);
+                Uri videoUri = Uri.parse(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath());
+                videoIntent.setDataAndType(videoUri, "video/mp4");
+                startActivity(videoIntent);
+                break;
+
+
+
+
+        }
     }
 }

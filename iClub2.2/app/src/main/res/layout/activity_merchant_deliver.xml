@@ -9,6 +9,10 @@
 
 
         <include layout="@layout/app_white_tailt_layout"></include>
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
         <com.handmark.pulltorefresh.library.PullToRefreshListView
             android:id="@+id/merchant_message_lv"
             android:dividerHeight="3dp"
