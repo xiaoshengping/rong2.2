@@ -126,7 +126,7 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
 
     private void intiListView() {
         inviteMessgaeListValueBeans=new ArrayList<InviteMessgaeListValueBean>();
-        inviteMessagelistAdapter=new InviteMessageListAdapter(inviteMessgaeListValueBeans,getActivity());
+        inviteMessagelistAdapter=new InviteMessageListAdapter(inviteMessgaeListValueBeans,getActivity(),accpetListLv);
         accpetListLv.setAdapter(inviteMessagelistAdapter);
         accpetListLv.setMode(PullToRefreshBase.Mode.BOTH);
         accpetListLv.setOnRefreshListener(this);

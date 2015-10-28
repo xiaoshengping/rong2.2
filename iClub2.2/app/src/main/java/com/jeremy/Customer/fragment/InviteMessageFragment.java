@@ -107,7 +107,7 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
      */
     public void intiListData(){
         inviteMessgaeListValueBeans= new ArrayList<InviteMessgaeListValueBean>();
-        inviteMessagelistAdapter=new InviteMessageListAdapter(inviteMessgaeListValueBeans,getActivity());
+        inviteMessagelistAdapter=new InviteMessageListAdapter(inviteMessgaeListValueBeans,getActivity(),inviteMessageLv);
         inviteMessageLv.setAdapter(inviteMessagelistAdapter);
 
     }

@@ -131,7 +131,7 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
 
     private void intiListView( ) {
         inviteMessgaeListValueBeans=new ArrayList<InviteMessgaeListValueBean>();
-        inviteMessagelistAdapter=new InviteMessageListAdapter(inviteMessgaeListValueBeans,getActivity());
+        inviteMessagelistAdapter=new InviteMessageListAdapter(inviteMessgaeListValueBeans,getActivity(),inviteSuccessfulListLv);
         inviteSuccessfulListLv.setAdapter(inviteMessagelistAdapter);
         inviteSuccessfulListLv.setMode(PullToRefreshBase.Mode.BOTH);
         inviteSuccessfulListLv.setOnRefreshListener(this);
@@ -165,55 +165,6 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
         });
 
     }
-
-   /* //对话框
-    private void showExitGameAlert(final int position) {
-        final AlertDialog dlg = new AlertDialog.Builder(getActivity()).create();
-        dlg.show();
-        Window window = dlg.getWindow();
-        // *** 主要就是在这里实现这种效果的.
-        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
-        window.setContentView(R.layout.shrew_exit_dialog);
-        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
-        tailte.setText("双方合作情况");
-        // 为确认按钮添加事件,执行退出应用操作
-        TextView ok = (TextView) window.findViewById(R.id.btn_ok);
-        ok.setText("失败");
-        ok.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FailureCommentActivity.class);
-                intent.putExtra("inviteMessgaeListValueBeans", (Serializable) inviteMessgaeListValueBeans.get(position - 1));
-                intent.putExtra("falgeData", "SuccessfulInviteFragment");
-                startActivity(intent);
-
-                dlg.cancel();
-            }
-        });
-
-        // 关闭alert对话框架
-        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
-        cancel.setText("成功");
-        cancel.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getActivity(), CooperationCommentActivity.class);
-                intent.putExtra("inviteMessgaeListValueBeans", (Serializable) inviteMessgaeListValueBeans.get(position - 1));
-                intent.putExtra("falgeData", "SuccessfulInviteFragment");
-                startActivity(intent);
-                dlg.cancel();
-            }
-        });
-    }*/
-
-
-
-
-
-
-
-
-
-
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
