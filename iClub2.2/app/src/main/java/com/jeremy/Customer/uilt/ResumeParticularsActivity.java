@@ -2,9 +2,12 @@ package com.jeremy.Customer.uilt;
 
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,7 +15,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.fragment.FragmentResumeTabAdapter;
 import com.jeremy.Customer.fragment.OneselfInformationFragment;
@@ -20,7 +26,12 @@ import com.jeremy.Customer.fragment.OneselfProductionFragment;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.CustomImageView;
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -108,6 +119,67 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobCategoryName());
         browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
         }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        intiResumeListData();
+    }
+
+    private void intiResumeListData() {
+        HttpUtils httpUtils=new HttpUtils();
+        SQLhelper sqLhelper=new SQLhelper(this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        String uid=null;
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+
+        }
+        String resumeListUrl= AppUtilsUrl.getResumeLista(uid);
+        httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result = responseInfo.result;
+                if (result != null) {
+                    ArtistParme<ResumeValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
+                    });
+                    if (artistParme.getState().equals("success")) {
+
+                        ResumeValueBean  resumeValueBeans = artistParme.getValue().get(Integer.valueOf(positions));
+                        if (resumeValueBeans!=null){
+                            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), customImageView, MyAppliction.RoundedOptions);
+                            resumeZhNameTv.setText(resumeValueBeans.getResumeZhName());
+                            if (resumeValueBeans.getResumeSex()==0){
+                                resumeSexIv.setBackgroundResource(R.mipmap.man_icon);
+                            }else if (resumeValueBeans.getResumeSex()==1){
+                                resumeSexIv.setBackgroundResource(R.mipmap.woman_icon);
+                            }
+                            resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
+                            resumeWorkPlaceTv.setText(resumeValueBeans.getResumeWorkPlace());
+                            resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobCategoryName());
+                            browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
+                        }
+                    }
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure.......", s);
+            }
+        });
+
+
+
+
+
     }
 
 

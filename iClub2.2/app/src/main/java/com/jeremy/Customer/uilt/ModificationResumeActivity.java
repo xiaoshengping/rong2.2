@@ -111,6 +111,7 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
     private  int dayOfMonth;
     private String  age;
     private DatePickerDialog datePickerDialog;
+    private  String positions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,7 +143,7 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
         listFragment.add(modificationInformationFragment);
         listFragment.add(modificationProductionFragment);
         resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
-        String positions=getIntent().getStringExtra("position");
+        positions=getIntent().getStringExtra("position");
         ModificationResumeActivity.this.setPosition(positions);
         ModificationResumeTabAdapter fragmentInviteTabAdapter=new ModificationResumeTabAdapter(ModificationResumeActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
            if (resumeValueBeans!=null){
@@ -208,7 +209,6 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
 
         }
     }
-
     private void saveData() {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();

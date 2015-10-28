@@ -25,7 +25,7 @@
             android:id="@+id/oneself_experrience_edit"
             android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="180dp" />
 
     </LinearLayout>
 

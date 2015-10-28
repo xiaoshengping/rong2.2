@@ -1,9 +1,10 @@
 package com.jeremy.Customer.uilt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,8 +39,8 @@ public class ContactInformationActivity extends ActionBarActivity implements Vie
     private EditText resumeMobileEt;
 
     private ResumeValueBean resumeValueBean;
-
-
+    private Intent intent;
+    private static  int CONCATIONINFO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,13 +61,15 @@ public class ContactInformationActivity extends ActionBarActivity implements Vie
     }
 
     private void initView() {
+          intent=getIntent();
+          String QQ=intent.getStringExtra("QQ");
+          String Emial=intent.getStringExtra("Email");
+          String mobile=intent.getStringExtra("mobile");
 
-         resumeValueBean= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBean");
-        if (resumeValueBean!=null){
-            resumeQqEv.setText(resumeValueBean.getResumeQq());
-            resumeEmailEt.setText(resumeValueBean.getResumeEmail());
-            resumeMobileEt.setText(resumeValueBean.getResumeMobile());
-        }
+            resumeQqEv.setText(QQ);
+            resumeEmailEt.setText(Emial);
+            resumeMobileEt.setText(mobile);
+
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("修改联系方式");
         saveText.setText("保存");
@@ -82,6 +85,7 @@ public class ContactInformationActivity extends ActionBarActivity implements Vie
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tailt_return_tv:
+                setResult(CONCATIONINFO, intent);
                 finish();
                 break;
             case R.id.save_text:
@@ -103,8 +107,8 @@ public class ContactInformationActivity extends ActionBarActivity implements Vie
         String resumeEmail=resumeEmailEt.getText().toString();
         String resumeMobile=resumeMobileEt.getText().toString();
 
-          if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"")){
-              requestParams.addBodyParameter("resumeid",resumeValueBean.getResumeid()+"");
+          if (!TextUtils.isEmpty(intent.getStringExtra("resumeid"))){
+              requestParams.addBodyParameter("resumeid",intent.getStringExtra("resumeid"));
         if (!TextUtils.isEmpty(resumeQq)){
             requestParams.addBodyParameter("resumeQq",resumeQq);
           if (!TextUtils.isEmpty(resumeEmail)){
@@ -114,8 +118,12 @@ public class ContactInformationActivity extends ActionBarActivity implements Vie
                   httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(),requestParams, new RequestCallBack<String>() {
                       @Override
                       public void onSuccess(ResponseInfo<String> responseInfo) {
-                          Log.e("kdkkfkkfk",responseInfo.result);
+                          //Log.e("kdkkfkkfk",responseInfo.result);
                           if (responseInfo.result!=null){
+                              intent.putExtra("QQ", resumeQqEv.getText().toString());
+                              intent.putExtra("Email", resumeEmailEt.getText().toString());
+                              intent.putExtra("mobile", resumeMobileEt.getText().toString());
+                              setResult(CONCATIONINFO, intent);
                               finish();
 
                           }
@@ -145,5 +153,14 @@ public class ContactInformationActivity extends ActionBarActivity implements Vie
           }
 
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode==KeyEvent.KEYCODE_BACK){
+            setResult(CONCATIONINFO, intent);
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 }

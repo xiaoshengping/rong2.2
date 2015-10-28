@@ -48,6 +48,10 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
 
     @ViewInject(R.id.show_picture_gridview)
     private GridView showPictureGridView;
+    @ViewInject(R.id.show_picture_text)
+    private TextView showPcitureText;
+    @ViewInject(R.id.show_pciture_text_one)
+    private TextView showPcitureTextOne;
 
 
     private ResumeValueBean resumeValueBean;
@@ -76,10 +80,14 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
         saveText.setOnClickListener(this);
         saveText.setText("上传");
         if (resumeValueBean!=null){
-            showPictureGridView.setVisibility(View.VISIBLE);
+
             ResumePictureAdapter resumePictureAdapter=new ResumePictureAdapter(resumeValueBean.getResumePicture(),this);
             showPictureGridView.setAdapter(resumePictureAdapter);
             resumePictureAdapter.notifyDataSetChanged();
+            if (resumeValueBean.getResumePicture().size()!=0){
+                showPcitureTextOne.setVisibility(View.VISIBLE);
+            }
+
         }
 
 
@@ -108,7 +116,7 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-            gridview.setVisibility(View.VISIBLE);
+            showPcitureText.setVisibility(View.VISIBLE);
             selectedPicture = (ArrayList<String>) data
                     .getSerializableExtra(SelectPictureActivity.INTENT_SELECTED_PICTURE);
             adapter.notifyDataSetChanged();

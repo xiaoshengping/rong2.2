@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -70,6 +71,11 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
     private TextView moreMusicTv;
     @ViewInject(R.id.more_video_tv)
     private TextView moreVideoTv;
+
+    @ViewInject(R.id.show_video_layout)
+    private RelativeLayout showVideoLayout;
+    @ViewInject(R.id.no_viseo_layout)
+    private RelativeLayout noVideoLayout;
 
     private  ResumeValueBean resumeValueBean;
     public OneselfProductionFragment() {
@@ -130,7 +136,8 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                             if (resumeValueBean.getResumeMovie().size() != 0) {
                                 showVideoResumeIv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(), 10, 10));
                             } else {
-                                showVideoResumeIv.setVisibility(View.GONE);
+                                showVideoLayout.setVisibility(View.GONE);
+                                noVideoLayout.setVisibility(View.VISIBLE);
                             }
                             if (resumeValueBean.getResumeMusic().size() != 0) {
                                 showMusicResumeTv.setText(resumeValueBean.getResumeMusic().get(0).getTitle());
@@ -140,7 +147,7 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                                     showMusicResumeTwo.setVisibility(View.GONE);
                                 }
                             } else {
-                                showVideoResumeIv.setVisibility(View.GONE);
+                                showMusicResumeTv.setVisibility(View.GONE);
                                 showMusicResumeTwo.setVisibility(View.GONE);
                             }
                             if (resumeValueBean.getResumePicture().size() != 0) {
@@ -152,10 +159,24 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                                         if (resumeValueBean.getResumePicture().size() > 3) {
                                             MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(3).getPath(), showPictureResumeFour, MyAppliction.options);
 
+                                        }else {
+                                            showPictureResumeFour.setVisibility(View.GONE);
                                         }
+                                    }else {
+                                        showPictureResumeThree.setVisibility(View.GONE);
+                                        showPictureResumeFour.setVisibility(View.GONE);
                                     }
+                                }else {
+                                    showPictureResumeTwo.setVisibility(View.GONE);
+                                    showPictureResumeThree.setVisibility(View.GONE);
+                                    showPictureResumeFour.setVisibility(View.GONE);
                                 }
 
+                            }else {
+                                showPictureResumeOne.setVisibility(View.GONE);
+                                showPictureResumeTwo.setVisibility(View.GONE);
+                                showPictureResumeThree.setVisibility(View.GONE);
+                                showPictureResumeFour.setVisibility(View.GONE);
                             }
 
                         }

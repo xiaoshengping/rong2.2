@@ -27,6 +27,7 @@ import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
@@ -78,6 +79,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
     private List<ResumeValueBean> resumeValueBeans;
     private static final int INFOLT_HINT_DATA=7;//自我介绍
     private static final int EXPERIENCE_HINT_DATA=8;//工作经验
+    private static final int CONCATIONINFO=9;//联系方式
     private ResumeValueBean resumeValueBean;
 
     public ModificationInformationFragment() {
@@ -96,17 +98,12 @@ public class ModificationInformationFragment extends Fragment implements View.On
     }
 
     private void init() {
-        intiResumeListData();
         initView();
-
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         intiResumeListData();
+
     }
+
+
 
     private void initView() {
         experienceMoreLayout.setOnClickListener(this);
@@ -151,7 +148,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
                 break;
             case R.id.modification_oneself_tv:
                 Intent infoIntent = new Intent(getActivity(), OneselfExperienceActivity.class);  //方法1
-                infoIntent.putExtra("hintData","infoIntent");
+                infoIntent.putExtra("hintData","modificationInfoIntent");
                 if (!TextUtils.isEmpty(resumeInfoTv.getText().toString())){
                     infoIntent.putExtra("content",resumeInfoTv.getText().toString());
                 }
@@ -160,7 +157,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
                 break;
             case R.id.modification_work_tv:
                 Intent workIntent = new Intent(getActivity(), OneselfExperienceActivity.class);  //方法1
-                workIntent.putExtra("hintData","workIntent");
+                workIntent.putExtra("hintData","modificationWorkIntent");
                 if (!TextUtils.isEmpty(resumeExperienceTv.getText().toString())){
                     workIntent.putExtra("content",resumeExperienceTv.getText().toString());
                 }
@@ -169,8 +166,16 @@ public class ModificationInformationFragment extends Fragment implements View.On
                 break;
             case R.id.modification_contact:
                 Intent intent=new Intent(getActivity(), ContactInformationActivity.class);
-                intent.putExtra("resumeValueBean",resumeValueBean);
-                startActivity(intent);
+
+                    intent.putExtra("QQ",resumeQqTv.getText().toString());
+
+
+                    intent.putExtra("Email",resumeEmailTv.getText().toString());
+
+
+                    intent.putExtra("mobile",resumeMobileTv.getText().toString());
+                  intent.putExtra("resumeid",resumeValueBean.getResumeid()+"");
+                startActivityForResult(intent, CONCATIONINFO);
 
 
                 break;
@@ -185,7 +190,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case INFOLT_HINT_DATA:
-                if (data.getStringExtra("infoIntent").toString().equals("notData")){
+                if (data.getStringExtra("modificationInfoIntent").toString().equals("notData")){
                     if (resumeInfoTv.getText().toString().equals("介绍一下自己")){
                         resumeInfoTv.setText("介绍一下自己");
                         resumeInfoTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
@@ -194,7 +199,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
                         resumeInfoTv.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
 
-                }else if (data.getStringExtra("infoIntent").toString().equals("data")){
+                }else if (data.getStringExtra("modificationInfoIntent").toString().equals("data")){
                     if (resumeInfoTv.getText().toString().equals("介绍一下自己")){
                         resumeInfoTv.setText("介绍一下自己");
                         resumeInfoTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
@@ -202,15 +207,15 @@ public class ModificationInformationFragment extends Fragment implements View.On
                         resumeInfoTv.setText(resumeInfoTv.getText().toString());
                         resumeInfoTv.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
-
                 }else {
-                    resumeInfoTv.setText(data.getStringExtra("infoIntent").toString());
+                    resumeInfoTv.setText(data.getStringExtra("modificationInfoIntent").toString());
                     resumeInfoTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    initInfoData(resumeValueBean.getResumeid() + "", "modificationInfoIntent", data.getStringExtra("modificationInfoIntent").toString());
                 }
 
                 break;
             case EXPERIENCE_HINT_DATA:
-                if (data.getStringExtra("workIntent").toString().equals("notData")){
+                if (data.getStringExtra("modificationWorkIntent").toString().equals("notData")){
                     if (resumeExperienceTv.getText().toString().equals("分享一下自己工作经验")){
                         resumeExperienceTv.setText("分享一下自己工作经验");
                         resumeExperienceTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
@@ -218,7 +223,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
                         resumeExperienceTv.setText(resumeExperienceTv.getText().toString());
                         resumeExperienceTv.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
-                }else if (data.getStringExtra("workIntent").toString().equals("data")){
+                }else if (data.getStringExtra("modificationWorkIntent").toString().equals("data")){
                     if (resumeExperienceTv.getText().toString().equals("分享一下自己工作经验")){
                         resumeExperienceTv.setText("分享一下自己工作经验");
                         resumeExperienceTv.setTextColor(getResources().getColor(R.color.editTextPromptColor));
@@ -228,12 +233,45 @@ public class ModificationInformationFragment extends Fragment implements View.On
                     }
 
                 }else {
-                    resumeExperienceTv.setText(data.getStringExtra("workIntent").toString());
+                    resumeExperienceTv.setText(data.getStringExtra("modificationWorkIntent").toString());
                     resumeExperienceTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    initInfoData(resumeValueBean.getResumeid() + "", "modificationWorkIntent", data.getStringExtra("modificationWorkIntent").toString());
                 }
 
                 break;
+            case CONCATIONINFO:
+                resumeQqTv.setText(data.getStringExtra("QQ").toString());
+                resumeEmailTv.setText(data.getStringExtra("Email").toString());
+                resumeMobileTv.setText(data.getStringExtra("mobile").toString());
+
+                break;
         }
+    }
+
+    private void initInfoData(String resumeId,String text,String info) {
+        HttpUtils httpUtils=new HttpUtils();
+        RequestParams requestParams=new RequestParams();
+        requestParams.addBodyParameter("resumeid", resumeId);
+        if (text.equals("modificationInfoIntent")){
+            requestParams.addBodyParameter("resumeInfo",info);
+        }else if (text.equals("modificationWorkIntent")){
+            requestParams.addBodyParameter("resumeWorkExperience",info);
+        }
+
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(), requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+
+            }
+        });
+
+
+
     }
 
     private void intiResumeListData() {
