@@ -1,0 +1,214 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/layoutBackground"
+    android:layout_marginBottom="30dp"
+    tools:context="com.jeremy.Customer.fragment.OneselfProductionFragment">
+    <RelativeLayout
+        android:background="@color/white"
+        android:id="@+id/video_layout"
+
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/video_tailt_tv"
+            android:textColor="@color/hunTextColor"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@mipmap/neself_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="视频展示"
+            android:layout_marginLeft="20dp"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/more_video_tv"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_alignParentRight="true"
+            android:text="更多"
+            android:textColor="@color/redTextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:id="@+id/show_video_layout"
+            android:layout_below="@+id/video_tailt_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/show_video_resume_iv"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="20dp"
+                android:src="@mipmap/resume_background_icon"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/no_viseo_layout"
+            android:visibility="gone"
+            android:layout_below="@+id/video_tailt_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="暂无视频"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="20dp"
+                android:src="@mipmap/resume_background_icon"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/music_layout"
+        android:layout_below="@+id/video_layout"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="180dp">
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/music_tailt_tv"
+            android:textColor="@color/hunTextColor"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@mipmap/neself_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="音乐作品"
+            android:layout_marginLeft="20dp"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/more_music_tv"
+            android:layout_marginRight="30dp"
+            android:layout_alignParentRight="true"
+            android:text="更多"
+            android:textColor="@color/redTextColor"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:background="@color/layoutBackground"
+            android:gravity="center_vertical"
+            android:text="我的小苹果"
+            android:paddingLeft="30dp"
+            android:id="@+id/show_music_resume_tv"
+            android:layout_below="@+id/music_tailt_tv"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <TextView
+            android:background="@color/layoutBackground"
+            android:gravity="center_vertical"
+            android:text="我的小苹果"
+            android:paddingLeft="30dp"
+            android:id="@+id/show_music_resume_two"
+            android:layout_below="@+id/show_music_resume_tv"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/music_layout"
+        android:background="@color/white"
+        android:id="@+id/picture_layout"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+        <TextView
+            android:layout_marginTop="20dp"
+            android:id="@+id/picture_tailt_tv"
+            android:textColor="@color/hunTextColor"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@mipmap/neself_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="图片介绍"
+            android:layout_marginLeft="20dp"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/more_picture_tv"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_alignParentRight="true"
+            android:text="更多"
+            android:textColor="@color/redTextColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/show_picture_resume_one"
+            android:layout_below="@+id/picture_tailt_tv"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="30dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/resume_background_icon"
+            android:layout_width="75dp"
+            android:layout_height="80dp" />
+        <ImageView
+            android:id="@+id/show_picture_resume_two"
+            android:layout_below="@+id/picture_tailt_tv"
+            android:layout_toRightOf="@+id/show_picture_resume_one"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/resume_background_icon"
+            android:layout_width="75dp"
+            android:layout_height="80dp" />
+        <ImageView
+            android:id="@+id/show_picture_resume_three"
+            android:layout_below="@+id/picture_tailt_tv"
+            android:layout_toRightOf="@+id/show_picture_resume_two"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/resume_background_icon"
+            android:layout_width="75dp"
+            android:layout_height="80dp" />
+        <ImageView
+            android:id="@+id/show_picture_resume_four"
+            android:layout_below="@+id/picture_tailt_tv"
+            android:layout_toRightOf="@+id/show_picture_resume_three"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/resume_background_icon"
+            android:layout_width="75dp"
+            android:layout_height="80dp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

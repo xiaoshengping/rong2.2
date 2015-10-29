@@ -22,7 +22,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.MerchantInviteListAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.MerchantInviteValueBean;
-import com.jeremy.Customer.uilt.ResumeParticularsActivity;
+import com.jeremy.Customer.uilt.MercharInviteParticularsActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
@@ -134,10 +134,8 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
         merchantInviteMessageLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), ResumeParticularsActivity.class);
-               // intent.putExtra("flage", "MerchantAcceptInviteFragment");
+                Intent intent=new Intent(getActivity(),MercharInviteParticularsActivity.class);
                 intent.putExtra("resumeValueBeans", merchantInviteValueBeans.get(position-1).getInviteResume());
-                intent.putExtra("position",(position-1)+"");
                 startActivity(intent);
             }
         });
