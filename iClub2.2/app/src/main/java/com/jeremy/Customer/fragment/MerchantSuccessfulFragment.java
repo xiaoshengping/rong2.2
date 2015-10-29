@@ -146,8 +146,9 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
                 if (merchantInviteValueBeans.get(position-1).getBeStatus().equals("3")
                         ||merchantInviteValueBeans.get(position-1).getBeStatus().equals("4")){
                     Intent intent = new Intent(getActivity(), ResumeParticularsActivity.class);
-                    intent.putExtra("resumeValueBeans", merchantInviteValueBeans.get(position-1).getInviteResume());
+                    intent.putExtra("resumeValueBeans", merchantInviteValueBeans.get(position - 1).getInviteResume());
                     //intent.putExtra("flage", "MerchantAcceptInviteFragment");
+                    intent.putExtra("position",(position-1)+"");
                     startActivity(intent);
                 }
 

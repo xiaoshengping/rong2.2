@@ -4,31 +4,50 @@
     android:orientation="vertical"
     android:background="#cccccc"
     tools:context="com.jeremy.Customer.uilt.MineMoreActivity">
-     <include layout="@layout/app_tailt_layout"/>
+     <include layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <TextView
         android:id="@+id/modification_psw_tv"
-        android:layout_marginTop="10dp"
-        android:background="#ffffff"
+
+        android:background="@color/white"
        android:paddingTop="20dp"
         android:paddingLeft="10dp"
         android:text="修改密码"
         android:layout_width="match_parent"
         android:layout_height="60dp" />
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
     <TextView
-        android:layout_marginTop="2dp"
-        android:background="#ffffff"
+        android:background="@color/white"
         android:paddingTop="20dp"
         android:paddingLeft="10dp"
         android:text="关于iClub"
         android:layout_width="match_parent"
         android:layout_height="60dp" />
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
     <TextView
         android:id="@+id/feedback_tv"
-        android:layout_marginTop="2dp"
-        android:background="#ffffff"
+        android:background="@color/white"
         android:paddingTop="20dp"
         android:paddingLeft="10dp"
         android:text="反馈"
         android:layout_width="match_parent"
         android:layout_height="60dp" />
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 </LinearLayout>

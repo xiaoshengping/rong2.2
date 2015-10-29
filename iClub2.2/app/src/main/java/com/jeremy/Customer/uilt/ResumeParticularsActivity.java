@@ -103,7 +103,9 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         listFragment.add(oneselfInformationFragment);
         listFragment.add(oneselfProductionFragment);
         resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
+
          positions= getIntent().getStringExtra("position");
+        Log.e("positions",positions);
         ResumeParticularsActivity.this.setPosition(positions);
         FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ResumeParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
         if (resumeValueBeans!=null){
@@ -208,7 +210,6 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
     public  void setPosition(String position) {
         this.position = position;
     }
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK){

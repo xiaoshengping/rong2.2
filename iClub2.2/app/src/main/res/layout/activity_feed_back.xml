@@ -4,12 +4,23 @@
     android:orientation="vertical"
     android:background="#cccccc"
     tools:context="com.jeremy.Customer.uilt.FeedBackActivity">
-    <include layout="@layout/app_tailt_layout"/>
-    <EditText
+    <include layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 
-        android:background="#ffffff"
-        android:gravity="top"
+    <ImageView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <EditText
+        android:background="@color/white"
+        android:gravity="top"
+
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="@dimen/textSize15"
@@ -17,13 +28,20 @@
         android:id="@+id/about_idea_edit"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
+    <ImageView
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <Button
         android:id="@+id/feedback_finist_button"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"
+        android:background="@mipmap/red_button_icon"
         android:text="提交" />
 </LinearLayout>

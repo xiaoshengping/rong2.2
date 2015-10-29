@@ -91,9 +91,8 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
-                Log.e("inviteintiData", result);
+               // Log.e("inviteintiData", result);
                 if (!TextUtils.isEmpty(result)) {
-
 
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<MerchantInviteValueBean>>() {
                     }, merchantInviteValueBeans, inviteMessagelistAdapter);
@@ -136,8 +135,9 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), ResumeParticularsActivity.class);
-                intent.putExtra("resumeValueBeans", merchantInviteValueBeans.get(position-1).getInviteResume());
                // intent.putExtra("flage", "MerchantAcceptInviteFragment");
+                intent.putExtra("resumeValueBeans", merchantInviteValueBeans.get(position-1).getInviteResume());
+                intent.putExtra("position",(position-1)+"");
                 startActivity(intent);
             }
         });

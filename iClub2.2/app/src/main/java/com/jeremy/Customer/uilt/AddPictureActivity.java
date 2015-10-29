@@ -115,7 +115,7 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
+        if (resultCode == 0) {
             showPcitureText.setVisibility(View.VISIBLE);
             selectedPicture = (ArrayList<String>) data
                     .getSerializableExtra(SelectPictureActivity.INTENT_SELECTED_PICTURE);

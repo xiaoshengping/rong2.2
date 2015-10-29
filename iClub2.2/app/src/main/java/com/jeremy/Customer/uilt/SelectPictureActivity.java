@@ -136,7 +136,7 @@ public class SelectPictureActivity extends Activity {
     public void ok(View v) {
         Intent data = new Intent();
         data.putExtra(INTENT_SELECTED_PICTURE, selectedPicture);
-        setResult(RESULT_OK, data);
+        setResult(0, data);
         this.finish();
     }
 
