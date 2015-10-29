@@ -5,97 +5,40 @@
     android:background="@color/background"
     android:gravity="center_horizontal">
 
-
-    <!--<com.jeremy.Customer.view.MyScrollView
-        android:id="@+id/talents_detail_msv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never">-->
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/background"
-                android:orientation="vertical">
-
-                <include layout="@layout/item_talents_details_button"></include>
-
-                <!--<RelativeLayout-->
-                    <!--android:id="@+id/hz_main_rl"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content">-->
-
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/vtPager"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1.0"
-                        android:background="#00000000"
-                        android:flipInterval="30"
-                        android:persistentDrawingCache="animation" />
-
-                    <!--<include layout="@layout/item_talents_personal_data"></include>
-
-                    <include layout="@layout/item_talents_personage_production"></include>
--->
-                <!--</RelativeLayout>-->
-
-            </LinearLayout>
-        </LinearLayout>
-    <!--</com.jeremy.Customer.view.MyScrollView>-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vtPager"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1.0"
+        android:background="#00000000"
+        android:flipInterval="30"
+        android:persistentDrawingCache="animation" />
 
     <LinearLayout
-        android:id="@+id/floating_collar"
+        android:id="@+id/head_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background"
-        android:orientation="horizontal"
-        android:visibility="gone">
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="12dp"
-            android:background="@drawable/talents_details_button_shape"
-            android:orientation="horizontal">
+        <include layout="@layout/item_talents_details_button"></include>
 
-            <TextView
-                android:id="@+id/personal_data_button_tv1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/talents_details_button_l_shape"
-                android:gravity="center"
-                android:padding="6dp"
-                android:text="个人资料"
-                android:textColor="#ffffff"
-                android:textSize="16sp" />
-
-            <TextView
-                android:id="@+id/individual_works_button_tv1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="6dp"
-                android:text="个人作品"
-                android:textColor="@color/home_talents_item_name"
-                android:textSize="16sp" />
-        </LinearLayout>
     </LinearLayout>
 
     <Button
+        android:id="@+id/fanhui_b"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ff000fff"
+        android:paddingLeft="20dp"
+        android:text=""
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+    <Button
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00ffffff"
+        android:layout_height="50dp"
+        android:background="#00000fff"
         android:onClick="back"
         android:paddingLeft="20dp"
         android:text="返回"
