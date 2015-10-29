@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
@@ -41,6 +42,10 @@ public class MerchantParticularsActivity extends ActionBarActivity implements Vi
     private TextView resumeInfoTv;
     @ViewInject(R.id.resume_WorkExperience_tv)
     private TextView workExperienceTv;
+    @ViewInject(R.id.oneself_more_layout)
+    private LinearLayout oneselfMoreLayout;
+    @ViewInject(R.id.experience_more_layout)
+    private LinearLayout experienceMoreLayout;
 
 
     private  RecruitmentHistoryValueBean recruitmentHistoryValueBean;
@@ -71,6 +76,8 @@ public class MerchantParticularsActivity extends ActionBarActivity implements Vi
         saveText.setVisibility(View.VISIBLE);
         saveText.setText("修改");
         saveText.setOnClickListener(this);
+        oneselfMoreLayout.setOnClickListener(this);
+        experienceMoreLayout.setOnClickListener(this);
          recruitmentHistoryValueBean= (RecruitmentHistoryValueBean) getIntent().getSerializableExtra("recruitmentHistoryValueBean");
           if (recruitmentHistoryValueBean!=null){
               //jobNameTv.setText(recruitmentHistoryValueBean.get);
@@ -84,7 +91,27 @@ public class MerchantParticularsActivity extends ActionBarActivity implements Vi
               applicationNumberTv.setText(recruitmentHistoryValueBean.getRecruitingNumbers());
               resumeInfoTv.setText(recruitmentHistoryValueBean.getJobRequirements());
               workExperienceTv.setText(recruitmentHistoryValueBean.getJobInfo());
+
           }
+        workExperienceTv.post(new Runnable() {
+            @Override
+            public void run() {
+                if (workExperienceTv.getLineCount()>4){
+                    workExperienceTv.setLines(4);
+                }
+
+            }
+        });
+
+        resumeInfoTv.post(new Runnable() {
+            @Override
+            public void run() {
+                if (resumeInfoTv.getLineCount()>4){
+                    resumeInfoTv.setLines(4);
+                }
+
+            }
+        });
 
 
     }
@@ -99,9 +126,32 @@ public class MerchantParticularsActivity extends ActionBarActivity implements Vi
             case R.id.save_text:
                 Intent intent=new Intent(MerchantParticularsActivity.this,AddMerchantActivity.class);
                 intent.putExtra("recruitmentHistoryValueBean", recruitmentHistoryValueBean);
+                intent.putExtra("fagle","editMerchant");
                 startActivity(intent);
                 break;
+            case R.id.oneself_more_layout:
+                resumeInfoTv.post(new Runnable() {
+                    @Override
+                    public void run() {
 
+                        resumeInfoTv.setLines(resumeInfoTv.getLineCount());
+                    }
+                });
+
+                oneselfMoreLayout.setVisibility(View.GONE);
+                break;
+            case R.id.experience_more_layout:
+
+                workExperienceTv.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        workExperienceTv.setLines(workExperienceTv.getLineCount());
+
+                    }
+                });
+
+                experienceMoreLayout.setVisibility(View.GONE);
+                break;
 
 
         }

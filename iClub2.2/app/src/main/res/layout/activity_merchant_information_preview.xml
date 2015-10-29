@@ -146,7 +146,6 @@
             android:text="仅仅是接电话都或多或少都好的好的好的好的不烦不烦烦不烦部分恢复恢复很好合适的好的好的哈哈就是减肥减肥减肥就是的加减法好的好的好的基督教 就是觉得就是减肥就是减肥的减肥减肥还是说睡觉睡觉jjjsdfjjjs记得减肥解决方法解决决定将发挥发挥发挥北京时间附加费很舒服恢复和范冰冰"
             />
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/oneself_more_layout"
             android:layout_marginBottom="20dp"
             android:gravity="center"

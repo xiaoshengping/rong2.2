@@ -112,15 +112,25 @@ public class ModificationInformationFragment extends Fragment implements View.On
         modificationContact.setOnClickListener(this);
         modificationWorkTv.setOnClickListener(this);
         modificationOneselfTv.setOnClickListener(this);
+        resumeInfoTv.post(new Runnable() {
+            @Override
+            public void run() {
+                if (resumeInfoTv.getLineCount() > 4) {
+                    resumeInfoTv.setLines(4);
+                }
 
-        if (resumeInfoTv.getLineCount()>0&&resumeInfoTv.getLineCount()<=4){
-            oneselfMoreLayout.setVisibility(View.GONE);
-            resumeInfoTv.setLines(resumeInfoTv.getLineCount());
-        }
-        if (resumeExperienceTv.getLineCount()>0&&resumeExperienceTv.getLineCount()<=4){
-            experienceMoreLayout.setVisibility(View.GONE);
-            resumeExperienceTv.setLines(resumeExperienceTv.getLineCount());
-        }
+            }
+        });
+        resumeExperienceTv.post(new Runnable() {
+            @Override
+            public void run() {
+                if (resumeExperienceTv.getLineCount() > 4) {
+                    resumeExperienceTv.setLines(4);
+                }
+
+            }
+        });
+
 
 
 
@@ -134,17 +144,25 @@ public class ModificationInformationFragment extends Fragment implements View.On
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.oneself_more_layout:
-                if (resumeInfoTv.getLineCount()>=4){
-                    resumeInfoTv.setLines(resumeInfoTv.getLineCount());
-                    oneselfMoreLayout.setVisibility(View.GONE);
-                }
+                resumeInfoTv.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        resumeInfoTv.setLines(resumeInfoTv.getLineCount());
+                        oneselfMoreLayout.setVisibility(View.GONE);
+                    }
+                });
+
 
                 break;
             case R.id.experience_more_layout:
-                if (resumeExperienceTv.getLineCount()>=4){
-                    resumeExperienceTv.setLines(resumeExperienceTv.getLineCount());
-                    experienceMoreLayout.setVisibility(View.GONE);
-                }
+                resumeExperienceTv.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        resumeExperienceTv.setLines(resumeExperienceTv.getLineCount());
+                        experienceMoreLayout.setVisibility(View.GONE);
+                    }
+                });
+
                 break;
             case R.id.modification_oneself_tv:
                 Intent infoIntent = new Intent(getActivity(), OneselfExperienceActivity.class);  //方法1

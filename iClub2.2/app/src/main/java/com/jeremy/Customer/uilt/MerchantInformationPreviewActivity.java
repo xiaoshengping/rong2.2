@@ -89,20 +89,22 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
         showPictureTwo.setOnClickListener(this);
         showPictureThree.setOnClickListener(this);
         showPictureFour.setOnClickListener(this);
+        MerchantMoreLayout.setOnClickListener(this);
         selectDatabase();
         if (!TextUtils.isEmpty(uid)){
             initData(uid);
         }
-        if (merchantInfoTv.getLineCount()>0&&merchantInfoTv.getLineCount()<=4){
-            MerchantMoreLayout.setVisibility(View.GONE);
-            merchantInfoTv.setLines(merchantInfoTv.getLineCount());
-        }else if (merchantInfoTv.getLineCount()==0){
-            MerchantMoreLayout.setVisibility(View.GONE);
-            merchantInfoTv.setText("暂无公司介绍");
-        }else {
-            MerchantMoreLayout.setVisibility(View.VISIBLE);
-            merchantInfoTv.setLines(4);
-        }
+
+        merchantInfoTv.post(new Runnable() {
+            @Override
+            public void run() {
+                if (merchantInfoTv.getLineCount()>4){
+                    merchantInfoTv.setLines(4);
+                }
+
+            }
+        });
+
 
 
     }
@@ -236,7 +238,14 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
                 startActivity(merchantIntent);
                 break;
             case R.id.oneself_more_tv:
-                merchantInfoTv.setLines(merchantInfoTv.getLineCount());
+                merchantInfoTv.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        merchantInfoTv.setLines(merchantInfoTv.getLineCount());
+
+                    }
+                });
+                MerchantMoreLayout.setVisibility(View.GONE);
                 break;
             case R.id.show_merchant_picture_one:
 

@@ -96,6 +96,9 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
             resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobCategoryName());
             browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
         }
+
+
+
     }
 
 

@@ -129,11 +129,12 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             }
             workingTimeEdit.setText(recruitmentHistoryValueBean.getWorkingTime());
             workingHoursEdit.setText(recruitmentHistoryValueBean.getWorkingHours());
-            merchantWork=recruitmentHistoryValueBean.getJobRequirements();
-            merchantInfo=recruitmentHistoryValueBean.getJobInfo();
+
             workPayEdit.setText(recruitmentHistoryValueBean.getWorkPay());
             recruitingNumbersEdit.setText(recruitmentHistoryValueBean.getRecruitingNumbers());
         }
+
+
 
 
     }
@@ -158,7 +159,12 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 startActivityForResult(workIntent, EXPERIENCE_HINT_DATA);
                 break;
             case R.id.save_text:
-                intiData();
+                if (getIntent().getStringExtra("fagle").equals("addMerchant")){
+                    intiData();
+                }else if (getIntent().getStringExtra("fagle").equals("editMerchant")){
+                    intiEditData();
+                }
+
                 break;
             case R.id.tailt_return_tv:
                 finish();
@@ -235,16 +241,16 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         String workPay=workPayEdit.getText().toString();
         String recruitingNumbers=recruitingNumbersEdit.getText().toString();
         if (!TextUtils.isEmpty(position)&&!TextUtils.isEmpty(workPay)&&!TextUtils.isEmpty(recruitingNumbers)
-                &&!TextUtils.isEmpty(merchantWork)
-                &&!TextUtils.isEmpty(merchantInfo)){
+                &&!TextUtils.isEmpty(workDescribeTv.getText().toString())
+                &&!TextUtils.isEmpty(experienceRequireTv.getText().toString())){
             requestParams.addBodyParameter("jobid",recruitmentHistoryValueBean.getJobId()+"");
-            //requestParams.addBodyParameter("jobCategory",job_classfite_num+"");
-            //requestParams.addBodyParameter("cityid",job_city_num+"");
+            requestParams.addBodyParameter("jobCategory",1+"");
+            requestParams.addBodyParameter("cityid",2+"");
             requestParams.addBodyParameter("position",position);
             requestParams.addBodyParameter("workPay",workPay);
-            requestParams.addBodyParameter("recruitingNumbers",recruitingNumbers);
-            requestParams.addBodyParameter("jobRequirements",merchantWork);
-            requestParams.addBodyParameter("jobInfo", merchantInfo);
+            requestParams.addBodyParameter("recruitingNumbers", recruitingNumbers);
+            requestParams.addBodyParameter("jobRequirements", workDescribeTv.getText().toString());
+            requestParams.addBodyParameter("jobInfo", experienceRequireTv.getText().toString());
             MyAppliction.showToast("正在保存数据......");
 
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getEditJod(),requestParams, new RequestCallBack<String>() {
@@ -253,6 +259,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                     // Log.e("result",responseInfo.result);
                     if (responseInfo.result!=null){
                         MyAppliction.showToast("保存数据成功");
+                        finish();
                     }
 
                 }
@@ -289,8 +296,8 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         if (!TextUtils.isEmpty(position) && !TextUtils.isEmpty(workPay) && !TextUtils.isEmpty(merchantWork)
                 && !TextUtils.isEmpty(merchantInfo) && !TextUtils.isEmpty(recruitingNumbers)) {
             requestParams.addBodyParameter("uid", uid);
-            //requestParams.addBodyParameter("jobCategory", job_classfite_num + "");
-            //requestParams.addBodyParameter("cityid", job_city_num + "");
+            requestParams.addBodyParameter("jobCategory", 2 + "");
+            requestParams.addBodyParameter("cityid", 1+"");
             requestParams.addBodyParameter("position", position);
             requestParams.addBodyParameter("workPay", workPay);
             requestParams.addBodyParameter("recruitingNumbers", recruitingNumbers);
