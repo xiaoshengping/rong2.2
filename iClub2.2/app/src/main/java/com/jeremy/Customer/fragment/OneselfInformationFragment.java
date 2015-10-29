@@ -150,6 +150,7 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
                     ArtistParme<ResumeValueBean>   artistParme= JSONObject.parseObject(result,new TypeReference<ArtistParme<ResumeValueBean>>(){});
                     if (artistParme.getState().equals("success")){
                         resumeValueBeans= artistParme.getValue();
+                       // Log.e("dddddff",Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition())+"");
                         ResumeValueBean resumeValueBean=  resumeValueBeans.get(Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition()));
                         resumeInfoTv.setText(resumeValueBean.getResumeInfo());
                         resumeExperienceTv.setText(resumeValueBean.getResumeWorkExperience());

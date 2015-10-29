@@ -22,7 +22,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.MerchantInviteListAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.MerchantInviteValueBean;
-import com.jeremy.Customer.uilt.ResumeParticularsActivity;
+import com.jeremy.Customer.uilt.MercharInviteParticularsActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
@@ -91,9 +91,8 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
-                Log.e("inviteintiData", result);
+               // Log.e("inviteintiData", result);
                 if (!TextUtils.isEmpty(result)) {
-
 
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<MerchantInviteValueBean>>() {
                     }, merchantInviteValueBeans, inviteMessagelistAdapter);
@@ -135,9 +134,8 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
         merchantInviteMessageLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), ResumeParticularsActivity.class);
+                Intent intent=new Intent(getActivity(),MercharInviteParticularsActivity.class);
                 intent.putExtra("resumeValueBeans", merchantInviteValueBeans.get(position-1).getInviteResume());
-               // intent.putExtra("flage", "MerchantAcceptInviteFragment");
                 startActivity(intent);
             }
         });

@@ -149,7 +149,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
                 saveData();
                 break;
             case R.id.add_company_image:
-                startActivityForResult(new Intent(this, SelectPictureActivity.class), REQUEST_PICK);
+                startActivityForResult(new Intent(MerchantInformationActivity.this, SelectPictureActivity.class), REQUEST_PICK);
                 break;
             case R.id.oneself_known_layout:
                 Intent infoIntent = new Intent(MerchantInformationActivity.this, OneselfExperienceActivity.class);  //方法1
@@ -191,32 +191,38 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
                                 httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getUpdateMerchant(), requestParams, new RequestCallBack<String>() {
                                     @Override
                                     public void onSuccess(ResponseInfo<String> responseInfo) {
-                                        //Log.e("添加商家信息",responseInfo.result);
-                                       if (selectedPicture.size()!=0){
-                                           HttpUtils httpUtils1=new HttpUtils();
-                                           RequestParams requestParams1=new RequestParams();
-                                           for (int i = 0; i <selectedPicture.size() ; i++) {
-                                               requestParams1.addBodyParameter("BEicon_file",new File(selectedPicture.get(i)));
-                                               httpUtils1.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getUpdateMerchant(), requestParams1, new RequestCallBack<String>() {
-                                                   @Override
-                                                   public void onSuccess(ResponseInfo<String> responseInfo) {
-                                                       MyAppliction.showToast("保存成功");
-                                                       finish();
 
-                                                   }
-                                                   @Override
-                                                   public void onFailure(HttpException e, String s) {
-                                                       Log.e("添加商家信息onFailure", s);
-                                                   }
-                                               });
-                                           }
+                                         if (selectedPicture.size()!=0){
+                                             Log.e("添加商家信息", selectedPicture.size() + "");
 
-                                       }else {
-                                           MyAppliction.showToast("保存成功");
-                                           finish();
+                                             for (int i = 0; i <selectedPicture.size() ; i++) {
+                                                 HttpUtils httpUtils=new HttpUtils();
+                                                 RequestParams requestParams1=new RequestParams();
+                                                 requestParams1.addBodyParameter("uid",uid);
+                                                 requestParams1.addBodyParameter("BEicon_file",new File(selectedPicture.get(i)));
 
-                                       }
+                                                 httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getUpdateMerchant(), requestParams1, new RequestCallBack<String>() {
+                                                     @Override
+                                                     public void onSuccess(ResponseInfo<String> responseInfo) {
+                                                         Log.e("添加商家信息", responseInfo.result);
+                                                         MyAppliction.showToast("保存成功");
+                                                         finish();
+                                                     }
 
+                                                     @Override
+                                                     public void onFailure(HttpException e, String s) {
+
+                                                     }
+                                                 });
+
+
+                                             }
+
+
+                                         }else {
+                                             MyAppliction.showToast("保存成功");
+                                             finish();
+                                         }
                                     }
 
                                     @Override
@@ -263,43 +269,37 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
-            case INFOLT_HINT_DATA:
-                if (data.getStringExtra("infoIntent").toString().equals("notData")){
-                    if (userOnselfText.getText().toString().equals("介绍一下自己")){
-                        userOnselfText.setText("介绍一下自己");
-                        userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
-                    }else {
-                        userOnselfText.setText(userOnselfText.getText().toString());
-                        userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
-                    }
-
-                }else if (data.getStringExtra("infoIntent").toString().equals("data")){
-                    if (userOnselfText.getText().toString().equals("介绍一下自己")){
-                        userOnselfText.setText("介绍一下自己");
-                        userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
-                    }else {
-                        userOnselfText.setText(userOnselfText.getText().toString());
-                        userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
-                    }
-
+        if (requestCode==0){
+            selectedPicture = (ArrayList<String>) data
+                    .getSerializableExtra(SelectPictureActivity.INTENT_SELECTED_PICTURE);
+            adapter.notifyDataSetChanged();
+            Log.e("selectedPicture",selectedPicture.size()+"");
+        }else if (requestCode==INFOLT_HINT_DATA){
+            if (data.getStringExtra("infoIntent").toString().equals("notData")){
+                if (userOnselfText.getText().toString().equals("介绍一下自己")){
+                    userOnselfText.setText("介绍一下自己");
+                    userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
                 }else {
-                    userOnselfText.setText(data.getStringExtra("infoIntent").toString());
+                    userOnselfText.setText(userOnselfText.getText().toString());
                     userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
                 }
-                break;
-            case RESULT_OK:
-                selectedPicture = (ArrayList<String>) data
-                        .getSerializableExtra(SelectPictureActivity.INTENT_SELECTED_PICTURE);
-                adapter.notifyDataSetChanged();
-                if (selectedPicture.size()!=0){
-                    gridview.setVisibility(View.VISIBLE);
+
+            }else if (data.getStringExtra("infoIntent").toString().equals("data")){
+                if (userOnselfText.getText().toString().equals("介绍一下自己")){
+                    userOnselfText.setText("介绍一下自己");
+                    userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                }else {
+                    userOnselfText.setText(userOnselfText.getText().toString());
+                    userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
                 }
 
-           break;
-
+            }else {
+                userOnselfText.setText(data.getStringExtra("infoIntent").toString());
+                userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
+            }
 
         }
+
     }
     class GridAdapter extends BaseAdapter {
         AbsListView.LayoutParams params = new AbsListView.LayoutParams(250, 250);

@@ -7,10 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.mine.InviteMessgaeListValueBean;
 import com.jeremy.Customer.http.MyAppliction;
@@ -28,6 +28,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by xiaoshengping on 2015/7/2.
@@ -38,10 +39,14 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
     private String status;
     private int positions;
     private String inviteid;
-    private static HashMap<Integer, Boolean> isSelected = new HashMap<Integer, Boolean>();
+    private PullToRefreshListView inviteMessageLv;
 
-    public InviteMessageListAdapter(List<InviteMessgaeListValueBean> data, Context context) {
+    // 用来记录按钮状态的Map
+    public static Map<Integer, Boolean> isChecked;
+
+    public InviteMessageListAdapter(List<InviteMessgaeListValueBean> data, Context context,PullToRefreshListView inviteMessageLv) {
         super(data, context);
+        this.inviteMessageLv=inviteMessageLv;
     }
 
     @Override
@@ -59,10 +64,19 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
 
         positions=position;
         inti(position);
+
         return convertView;
     }
 
+    private void initButton() {
+        // 初使化操作，默认都是false
+        isChecked = new HashMap<Integer, Boolean>();
+        for (int i = 0; i < data.size(); i++){
+            isChecked.put(i, false);
+        }
+    }
     private void inti(final int position) {
+        initButton();
         viewHold.InviteResumeJobNameTv.setText(data.get(position).getInviteResume().getResumeJobName());
         status=data.get(position).getStatus();
         inviteid=data.get(position).getInviteid();
@@ -79,6 +93,7 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
            // viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
             viewHold.acceptButtonTv.setVisibility(View.GONE);
             viewHold.refuseButtonTv.setVisibility(View.GONE);
+            viewHold.deleteButtonTv.setVisibility(View.VISIBLE);
 
         }else if (status.equals("6")){
             viewHold.InviteStatusTv.setText("过期");
@@ -86,6 +101,7 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
             //viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
             viewHold.acceptButtonTv.setVisibility(View.GONE);
             viewHold.refuseButtonTv.setVisibility(View.GONE);
+            viewHold.deleteButtonTv.setVisibility(View.VISIBLE);
         }else if (status.equals("5")){
             viewHold.InviteStatusTv.setText("完成");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
@@ -109,24 +125,19 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
             viewHold.acceptButtonTv.setText("评论");
             viewHold.refuseButtonTv.setText("删除");
         }
+        //viewHold.invitePalyTv.setText(data.get(position));
         viewHold.inviteTripTimeTv.setText(data.get(position).getTripTime());
         viewHold.InviteJobCategoryTv.setText(data.get(position).getInviteResume().getResumeWorkPlace());
         viewHold.InviteCompanyNameTv.setText(data.get(position).getInvitePerson().getBEcompanyName());
-       /* viewHold.popupButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+
+        viewHold.acceptButtonTv.setOnClickListener(new moreButtonClick(position));
 
 
-                }else {
 
 
-                }
-            }
-        });*/
 
 
-        viewHold.acceptButtonTv.setOnClickListener(new View.OnClickListener() {
+        /*viewHold.acceptButtonTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (data.get(position).getStatus().equals("1")) {
@@ -139,12 +150,12 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
                     intent.putExtra("inviteMessgaeListValueBeans", (Serializable) data.get(position));
                     intent.putExtra("falgeData", "SuccessfulInviteFragment");
                     context.startActivity(intent);
-                    MyAppliction.showToast("成功接受");
+                    //MyAppliction.showToast("成功接受");
                 }
 
-                MyAppliction.showToast(position+"kkkkkk"+data.get(position).getStatus());
+                MyAppliction.showToast(position + "kkkkkk" + data.get(position).getStatus());
             }
-        });
+        });*/
 
         viewHold.refuseButtonTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,60 +167,70 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
                     adoptData("2");
 
                 }else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
-                    // Intent intent=new Intent(context,);
-
-                    MyAppliction.showToast("成功接受");
+                    adoptData("998");
+                    MyAppliction.showToast(position + "kkkkkk" + data.get(position).getStatus());
                 }
-                MyAppliction.showToast("jsjfhfhfss");
+
+            }
+        });
+        viewHold.deleteButtonTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adoptData("998");
             }
         });
 
     }
-    public static HashMap<Integer, Boolean> getIsSelected() {
-        return isSelected;
-    }
 
-    public static void setIsSelected(HashMap<Integer, Boolean> isSelected) {
-        InviteMessageListAdapter.isSelected = isSelected;
-    }
-    /*@Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.accept_button_tv:
-                if (data.get(positions).getStatus().equals("1")){
-                    adoptData("3");
+    /*
+         * 此为listview条目中的moreButtonClick按钮点击事件的写法
+         */
+    class moreButtonClick implements View.OnClickListener {
 
-                }else if (status.equals("0")){
-                    adoptData("1");
-                }else if (status.equals("3")||status.equals("4")){
-                   // Intent intent=new Intent(context,);
-                    MyAppliction.showToast("成功接受");
+        private int position;
+
+        public moreButtonClick(int pos){  // 在构造时将position传给它这样就知道点击的是哪个条目的按钮
+            this.position = pos;
+        }
+        @Override
+        public void onClick(View v) {
+            int vid=v.getId();
+            if (vid == viewHold.acceptButtonTv.getId()){
+                if (isChecked.get(position) == false){
+                    isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
+                    if (data.get(position).getStatus().equals("1")) {
+                        adoptData("3");
+
+                    } else if (data.get(position).getStatus().equals("0")) {
+                        adoptData("1");
+                    } else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
+                        Intent intent=new Intent(context, CommentGradeActivity.class);
+                        intent.putExtra("inviteMessgaeListValueBeans", (Serializable) data.get(position));
+                        intent.putExtra("falgeData", "SuccessfulInviteFragment");
+                        context.startActivity(intent);
+                        //MyAppliction.showToast("成功接受");
+                    }
+
+                    MyAppliction.showToast(position + "kkkkkk" + data.get(position).getStatus());
+                    //Log.e("steta________", position + "");
+                } else if (isChecked.get(position) == true){
+                    isChecked.put(position, false);  // 根据点击的情况来将其位置和相应的状态存入
+
                 }
-
-                MyAppliction.showToast(status);
-                break;
-            case R.id.refuse_button_tv:
-                if (status.equals("1")){
-                    adoptData("4");
-
-                }else if (status.equals("0")){
-                    adoptData("2");
-
-                }
-                MyAppliction.showToast("jsjfhfhfss");
-                break;
-
+                notifyDataSetChanged();
+            }
         }
 
+    }
 
 
 
-    }*/
 
 
     private void adoptData(String status) {
         HttpUtils httpUtils =new HttpUtils();
         RequestParams requestParams=new RequestParams();
+        Log.e("inviteid",inviteid);
         requestParams.addBodyParameter("inviteid",inviteid );
         requestParams.addBodyParameter("status", status);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAdoptAndRefuse(), requestParams, new RequestCallBack<String>() {
@@ -217,10 +238,7 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 // Log.e("responseInfo",responseInfo.result);
                 if (responseInfo.result != null) {
-                    /*MyAppliction.showToast("成功接受");
-                    viewHold.acceptButtonTv.setVisibility(View.GONE);
-                    viewHold.refuseButtonTv.setVisibility(View.GONE);
-                    viewHold.deleteButtonTv.setVisibility(View.VISIBLE);*/
+                    inviteMessageLv.setRefreshing();
                 }
             }
 
@@ -250,10 +268,10 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
         private Button refuseButtonTv;
         @ViewInject(R.id.delete_button_tv)
         private Button deleteButtonTv;
-        @ViewInject(R.id.popup_button)
-        private CheckBox popupButton;
         @ViewInject(R.id.accept_refuse_layout)
         private RelativeLayout acceptRefuseLayout;
+        @ViewInject(R.id.invite_paly_tv)
+        private TextView invitePalyTv;
 
         public ViewHold(View view) {
             ViewUtils.inject(this, view);

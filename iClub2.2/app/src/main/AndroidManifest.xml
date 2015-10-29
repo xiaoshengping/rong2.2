@@ -211,7 +211,14 @@
             android:name=".uilt.MorePictureActivity"
             android:label="@string/title_activity_more_picture" >
         </activity>
-
+        <activity
+            android:name=".uilt.ImagePagerActivity"
+            android:label="@string/title_activity_image_pager" >
+        </activity>
+        <activity
+            android:name=".uilt.MercharInviteParticularsActivity"
+            android:label="@string/title_activity_merchar_invite_particulars" >
+        </activity>
     </application>
 
 </manifest>

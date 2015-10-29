@@ -27,10 +27,10 @@ import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.uilt.ImagePagerActivity;
+import com.jeremy.Customer.uilt.MercharInviteParticularsActivity;
 import com.jeremy.Customer.uilt.MoreMucisActivity;
 import com.jeremy.Customer.uilt.MorePictureActivity;
 import com.jeremy.Customer.uilt.MoreVideoActivity;
-import com.jeremy.Customer.uilt.ResumeParticularsActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -47,7 +47,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OneselfProductionFragment extends Fragment implements View.OnClickListener {
+public class InviteproductionFragment extends Fragment implements View.OnClickListener {
 
 
     @ViewInject(R.id.show_video_resume_iv)
@@ -77,8 +77,9 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
     @ViewInject(R.id.no_viseo_layout)
     private RelativeLayout noVideoLayout;
 
-    private  ResumeValueBean resumeValueBean;
-    public OneselfProductionFragment() {
+    private ResumeValueBean resumeValueBean;
+
+    public InviteproductionFragment() {
         // Required empty public constructor
     }
 
@@ -87,10 +88,9 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_oneself_production, container, false);
-        ViewUtils.inject(this,view);
+        View view=inflater.inflate(R.layout.fragment_inviteproduction, container, false);
+        ViewUtils.inject(this, view);
         init();
-
         return view;
     }
 
@@ -103,12 +103,63 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
         moreVideoTv.setOnClickListener(this);
         moreMusicTv.setOnClickListener(this);
         morePictureTv.setOnClickListener(this);
-        intiResumeListData();
+        //intiResumeListData();
         showVideoResumeIv.setOnClickListener(this);
         showPictureResumeOne.setOnClickListener(this);
         showPictureResumeTwo.setOnClickListener(this);
         showPictureResumeThree.setOnClickListener(this);
         showPictureResumeFour.setOnClickListener(this);
+
+
+        resumeValueBean = ((MercharInviteParticularsActivity) getActivity()).getResumeValueBean();
+        if (resumeValueBean != null) {
+            if (resumeValueBean.getResumeMovie().size() != 0) {
+                showVideoResumeIv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(), 10, 10));
+            } else {
+                showVideoLayout.setVisibility(View.GONE);
+                noVideoLayout.setVisibility(View.VISIBLE);
+            }
+            if (resumeValueBean.getResumeMusic().size() != 0) {
+                showMusicResumeTv.setText(resumeValueBean.getResumeMusic().get(0).getTitle());
+                if (resumeValueBean.getResumeMusic().size() >= 2) {
+                    showMusicResumeTwo.setText(resumeValueBean.getResumeMusic().get(1).getTitle());
+                } else {
+                    showMusicResumeTwo.setVisibility(View.GONE);
+                }
+            } else {
+                showMusicResumeTv.setVisibility(View.GONE);
+                showMusicResumeTwo.setVisibility(View.GONE);
+            }
+            if (resumeValueBean.getResumePicture().size() != 0) {
+                MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(0).getPath(), showPictureResumeOne, MyAppliction.options);
+                if (resumeValueBean.getResumePicture().size() > 1) {
+                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(1).getPath(), showPictureResumeTwo, MyAppliction.options);
+                    if (resumeValueBean.getResumePicture().size() > 2) {
+                        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(2).getPath(), showPictureResumeThree, MyAppliction.options);
+                        if (resumeValueBean.getResumePicture().size() > 3) {
+                            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(3).getPath(), showPictureResumeFour, MyAppliction.options);
+
+                        }else {
+                            showPictureResumeFour.setVisibility(View.GONE);
+                        }
+                    }else {
+                        showPictureResumeThree.setVisibility(View.GONE);
+                        showPictureResumeFour.setVisibility(View.GONE);
+                    }
+                }else {
+                    showPictureResumeTwo.setVisibility(View.GONE);
+                    showPictureResumeThree.setVisibility(View.GONE);
+                    showPictureResumeFour.setVisibility(View.GONE);
+                }
+
+            }else {
+                showPictureResumeOne.setVisibility(View.GONE);
+                showPictureResumeTwo.setVisibility(View.GONE);
+                showPictureResumeThree.setVisibility(View.GONE);
+                showPictureResumeFour.setVisibility(View.GONE);
+            }
+
+        }
 
     }
 
@@ -131,55 +182,7 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                     });
                     if (artistParme.getState().equals("success")) {
                         List<ResumeValueBean> resumeValueBeans = artistParme.getValue();
-                        resumeValueBean = resumeValueBeans.get(Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition()));
-                        if (resumeValueBean != null) {
-                            if (resumeValueBean.getResumeMovie().size() != 0) {
-                                showVideoResumeIv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(), 10, 10));
-                            } else {
-                                showVideoLayout.setVisibility(View.GONE);
-                                noVideoLayout.setVisibility(View.VISIBLE);
-                            }
-                            if (resumeValueBean.getResumeMusic().size() != 0) {
-                                showMusicResumeTv.setText(resumeValueBean.getResumeMusic().get(0).getTitle());
-                                if (resumeValueBean.getResumeMusic().size() >= 2) {
-                                    showMusicResumeTwo.setText(resumeValueBean.getResumeMusic().get(1).getTitle());
-                                } else {
-                                    showMusicResumeTwo.setVisibility(View.GONE);
-                                }
-                            } else {
-                                showMusicResumeTv.setVisibility(View.GONE);
-                                showMusicResumeTwo.setVisibility(View.GONE);
-                            }
-                            if (resumeValueBean.getResumePicture().size() != 0) {
-                                MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(0).getPath(), showPictureResumeOne, MyAppliction.options);
-                                if (resumeValueBean.getResumePicture().size() > 1) {
-                                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(1).getPath(), showPictureResumeTwo, MyAppliction.options);
-                                    if (resumeValueBean.getResumePicture().size() > 2) {
-                                        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(2).getPath(), showPictureResumeThree, MyAppliction.options);
-                                        if (resumeValueBean.getResumePicture().size() > 3) {
-                                            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(3).getPath(), showPictureResumeFour, MyAppliction.options);
 
-                                        }else {
-                                            showPictureResumeFour.setVisibility(View.GONE);
-                                        }
-                                    }else {
-                                        showPictureResumeThree.setVisibility(View.GONE);
-                                        showPictureResumeFour.setVisibility(View.GONE);
-                                    }
-                                }else {
-                                    showPictureResumeTwo.setVisibility(View.GONE);
-                                    showPictureResumeThree.setVisibility(View.GONE);
-                                    showPictureResumeFour.setVisibility(View.GONE);
-                                }
-
-                            }else {
-                                showPictureResumeOne.setVisibility(View.GONE);
-                                showPictureResumeTwo.setVisibility(View.GONE);
-                                showPictureResumeThree.setVisibility(View.GONE);
-                                showPictureResumeFour.setVisibility(View.GONE);
-                            }
-
-                        }
 
 
                     }

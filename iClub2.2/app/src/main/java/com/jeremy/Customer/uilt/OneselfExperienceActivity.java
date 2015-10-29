@@ -49,11 +49,6 @@ public class OneselfExperienceActivity extends ActionBarActivity implements View
        intent=getIntent();
         hintData=getIntent().getStringExtra("hintData");
         content= getIntent().getStringExtra("content").toString();
-       /* if (hintData.equals("infoIntent")){
-            oneselfExperrienceEdit.setHint("介绍一下自己");
-        }else if(hintData.equals("workIntent")){
-            oneselfExperrienceEdit.setHint("分享一下自己的工作经验");
-        }*/
         if (!TextUtils.isEmpty(content)){
             if (content.equals("介绍一下自己")){
                 oneselfExperrienceEdit.setHint("介绍一下自己");
@@ -94,6 +89,24 @@ public class OneselfExperienceActivity extends ActionBarActivity implements View
                         intent.putExtra("workIntent", "data");
                         setResult(EXPERIENCE_HINT_DATA, intent);
                     }
+                }else if (hintData.equals("modificationInfoIntent")){
+                    if (TextUtils.isEmpty(oneselfExperrienceEdit.getText().toString())||oneselfExperrienceEdit.getText().toString().equals("分享一下自己的工作经验")){
+                        intent.putExtra("modificationInfoIntent", "notData");
+                        setResult(EXPERIENCE_HINT_DATA, intent);
+                    }else {
+                        intent.putExtra("modificationInfoIntent", "data");
+                        setResult(EXPERIENCE_HINT_DATA, intent);
+                    }
+
+                }else if (hintData.equals("modificationWorkIntent")){
+                    if (TextUtils.isEmpty(oneselfExperrienceEdit.getText().toString())||oneselfExperrienceEdit.getText().toString().equals("分享一下自己的工作经验")){
+                        intent.putExtra("modificationWorkIntent", "notData");
+                        setResult(EXPERIENCE_HINT_DATA, intent);
+                    }else {
+                        intent.putExtra("modificationWorkIntent", "data");
+                        setResult(EXPERIENCE_HINT_DATA, intent);
+                    }
+
                 }
                 finish();
                 break;
@@ -102,15 +115,25 @@ public class OneselfExperienceActivity extends ActionBarActivity implements View
                 if (hintData.equals("infoIntent")){
                         intent.putExtra("infoIntent", oneselfExperrienceEdit.getText().toString());
                         setResult(INFOLT_HINT_DATA, intent);
-
+                    finish();
                 }else if(hintData.equals("workIntent")){
 
                         intent.putExtra("workIntent", oneselfExperrienceEdit.getText().toString());
                         setResult(EXPERIENCE_HINT_DATA, intent);
+                    finish();
+
+                }else if (hintData.equals("modificationInfoIntent")){
+                    intent.putExtra("modificationInfoIntent", oneselfExperrienceEdit.getText().toString());
+                    setResult(INFOLT_HINT_DATA, intent);
+
+
+                }else if (hintData.equals("modificationWorkIntent")){
+                    intent.putExtra("modificationWorkIntent", oneselfExperrienceEdit.getText().toString());
+                    setResult(EXPERIENCE_HINT_DATA, intent);
 
 
                 }
-                    finish();
+                  finish();
                 }else {
                     MyAppliction.showExitGameAlert("你还没有填写内容", OneselfExperienceActivity.this);
                 }
@@ -140,6 +163,24 @@ public class OneselfExperienceActivity extends ActionBarActivity implements View
                     intent.putExtra("workIntent", "data");
                     setResult(EXPERIENCE_HINT_DATA, intent);
                 }
+            }else if (hintData.equals("modificationInfoIntent")){
+                if (TextUtils.isEmpty(oneselfExperrienceEdit.getText().toString())||oneselfExperrienceEdit.getText().toString().equals("分享一下自己的工作经验")){
+                    intent.putExtra("modificationInfoIntent", "notData");
+                    setResult(EXPERIENCE_HINT_DATA, intent);
+                }else {
+                    intent.putExtra("modificationInfoIntent", "data");
+                    setResult(EXPERIENCE_HINT_DATA, intent);
+                }
+
+            }else if (hintData.equals("modificationWorkIntent")){
+                if (TextUtils.isEmpty(oneselfExperrienceEdit.getText().toString())||oneselfExperrienceEdit.getText().toString().equals("分享一下自己的工作经验")){
+                    intent.putExtra("modificationWorkIntent", "notData");
+                    setResult(EXPERIENCE_HINT_DATA, intent);
+                }else {
+                    intent.putExtra("modificationWorkIntent", "data");
+                    setResult(EXPERIENCE_HINT_DATA, intent);
+                }
+
             }
         }
 

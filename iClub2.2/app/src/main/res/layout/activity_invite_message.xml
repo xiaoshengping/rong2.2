@@ -3,15 +3,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.administrator.iclub21.util.ResumeActivity">
-
+    <include layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <RadioGroup
         android:id="@+id/invite_radio_rg"
         android:gravity="center"
-
-
+        android:background="@color/white"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="43dp">
         <RadioButton
             android:id="@+id/resume_radio_bt"
             android:text="邀约历史"
@@ -54,8 +57,12 @@
 <ImageView
     android:src="@color/lineColor"
     android:layout_width="match_parent"
-    android:layout_height="2dp" />
-
+    android:layout_height="1dp" />
+    <ImageView
+        android:layout_marginTop="9dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
    <LinearLayout
         android:orientation="vertical"
         android:id="@+id/invite_fragment_layout"

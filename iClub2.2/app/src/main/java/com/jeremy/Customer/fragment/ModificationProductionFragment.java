@@ -92,11 +92,16 @@ public class ModificationProductionFragment extends Fragment implements View.OnC
     }
 
     private void initView() {
-        intiResumeListData();
         modificationVideoTv.setOnClickListener(this);
         modificationMusicTv.setOnClickListener(this);
         modificationPictureTv.setOnClickListener(this);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        intiResumeListData();
     }
 
     private void intiResumeListData() {

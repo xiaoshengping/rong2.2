@@ -4,7 +4,6 @@
     tools:context="com.jeremy.Customer.fragment.AcceptInviteFragment">
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/accept_invite_list_lv"
-        android:dividerHeight="3dp"
         android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

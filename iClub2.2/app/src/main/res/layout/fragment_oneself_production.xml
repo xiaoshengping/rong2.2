@@ -31,19 +31,55 @@
             android:textColor="@color/redTextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/show_video_resume_iv"
+        <RelativeLayout
+            android:id="@+id/show_video_layout"
             android:layout_below="@+id/video_tailt_tv"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            android:scaleType="fitXY"
-            android:layout_marginBottom="20dp"
-            android:src="@mipmap/resume_background_icon"
             android:layout_width="match_parent"
-            android:layout_height="150dp" />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/show_video_resume_iv"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="20dp"
+                android:src="@mipmap/resume_background_icon"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
 
 
+        <RelativeLayout
+            android:id="@+id/no_viseo_layout"
+            android:visibility="gone"
+            android:layout_below="@+id/video_tailt_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="暂无视频"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="20dp"
+                android:src="@mipmap/resume_background_icon"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout

@@ -23,27 +23,63 @@
             android:textSize="15sp"
             />
         <TextView
-            android:id="@+id/modification_video_tv"
+            android:id="@+id/more_video_tv"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
-            android:text="编辑"
+            android:text="更多"
             android:textColor="@color/redTextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <ImageView
-            android:id="@+id/show_video_resume_iv"
+        <RelativeLayout
+            android:id="@+id/show_video_layout"
             android:layout_below="@+id/video_tailt_tv"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
-            android:scaleType="centerCrop"
-            android:layout_marginBottom="20dp"
-            android:src="@mipmap/resume_background_icon"
             android:layout_width="match_parent"
-            android:layout_height="150dp" />
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/show_video_resume_iv"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="20dp"
+                android:src="@mipmap/resume_background_icon"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
 
 
+        <RelativeLayout
+            android:id="@+id/no_viseo_layout"
+            android:visibility="gone"
+            android:layout_below="@+id/video_tailt_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="暂无视频"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="20dp"
+                android:src="@mipmap/resume_background_icon"
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+
+            <ImageView
+                android:src="@mipmap/ic_launcher"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -66,16 +102,15 @@
             android:textSize="15sp"
             />
         <TextView
-            android:id="@+id/modification_music_tv"
+            android:id="@+id/more_music_tv"
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
-            android:text="编辑"
+            android:text="更多"
             android:textColor="@color/redTextColor"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-
             android:background="@color/layoutBackground"
             android:gravity="center_vertical"
             android:text="我的小苹果"
@@ -85,9 +120,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp"
-
-            android:scaleType="fitXY"
-            android:src="@mipmap/resume_background_icon"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
         <TextView
@@ -100,9 +132,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp"
-
-            android:scaleType="fitXY"
-            android:src="@mipmap/resume_background_icon"
             android:layout_width="match_parent"
             android:layout_height="50dp" />
 
@@ -128,11 +157,11 @@
             android:textSize="15sp"
             />
         <TextView
-            android:id="@+id/modification_picture_tv"
+            android:id="@+id/more_picture_tv"
             android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
-            android:text="编辑"
+            android:text="更多"
             android:textColor="@color/redTextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -168,7 +197,6 @@
             android:src="@mipmap/resume_background_icon"
             android:layout_width="75dp"
             android:layout_height="80dp" />
-
         <ImageView
             android:id="@+id/show_picture_resume_four"
             android:layout_below="@+id/picture_tailt_tv"
@@ -180,6 +208,7 @@
             android:src="@mipmap/resume_background_icon"
             android:layout_width="75dp"
             android:layout_height="80dp" />
+
     </RelativeLayout>
 
 </RelativeLayout>

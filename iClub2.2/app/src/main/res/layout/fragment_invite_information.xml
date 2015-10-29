@@ -2,29 +2,26 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="20dp"
+    android:layout_marginTop="20dp"
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.fragment.OneselfInformationFragment">
-    <ImageView
-        android:layout_below="@+id/address_layout"
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="0dp"
         android:orientation="vertical"
         android:background="@color/white"
-       >
-        <RelativeLayout
+        android:layout_marginTop="7dp">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="14dp"
             android:layout_marginLeft="14dp"
             android:layout_marginRight="14dp">
+
+
             <TextView
                 android:textColor="@color/hunTextColor"
                 android:layout_width="wrap_content"
@@ -35,19 +32,8 @@
                 android:layout_marginLeft="5dp"
                 android:textSize="15sp"
                 />
-            <TextView
-                android:id="@+id/modification_oneself_tv"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/redTextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="编辑"
-                android:drawablePadding="10dp"
-                android:layout_marginRight="20dp"
-                android:textSize="15sp"
-                />
 
-        </RelativeLayout>
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -89,11 +75,6 @@
 
 
     </LinearLayout>
-    <ImageView
-        android:layout_below="@+id/address_layout"
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,14 +82,10 @@
         android:orientation="vertical"
         android:background="@color/white"
         android:layout_marginTop="7dp">
-        <ImageView
-            android:layout_below="@+id/address_layout"
-            android:src="@color/lineColor"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:layout_marginBottom="10dp"
             android:layout_marginTop="14dp"
             android:layout_marginLeft="14dp"
@@ -118,7 +95,7 @@
 
             <TextView
                 android:textColor="@color/hunTextColor"
-                android:drawablePadding="10dp"
+                android:drawablePadding="5dp"
                 android:drawableLeft="@mipmap/neself_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -126,18 +103,8 @@
                 android:layout_marginLeft="10dp"
                 android:textSize="15sp"
                 />
-            <TextView
-                android:id="@+id/modification_work_tv"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/redTextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="编辑"
-                android:drawablePadding="10dp"
-                android:layout_marginRight="20dp"
-                android:textSize="15sp"
-                />
-        </RelativeLayout>
+
+        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -179,27 +146,12 @@
         </LinearLayout>
 
     </LinearLayout>
-    <ImageView
-        android:layout_below="@+id/address_layout"
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/white"
         android:layout_marginTop="7dp">
-        <ImageView
-            android:layout_below="@+id/address_layout"
-            android:src="@color/lineColor"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
         <TextView
             android:textColor="@color/hunTextColor"
             android:layout_marginTop="10dp"
@@ -208,24 +160,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="联系方式"
-            android:layout_marginLeft="25dp"
+            android:layout_marginLeft="20dp"
             android:textSize="15sp"
             />
 
-            <TextView
-                android:id="@+id/modification_contact"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/redTextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="编辑"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="35dp"
-                android:textSize="15sp"
-                />
-
-
-        </RelativeLayout>
 
         <LinearLayout
             android:layout_marginTop="5dp"
@@ -300,11 +238,7 @@
         android:orientation="vertical"
         android:background="@color/white"
         android:layout_marginTop="7dp">
-        <ImageView
-            android:layout_below="@+id/address_layout"
-            android:src="@color/lineColor"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
+
 
         <LinearLayout
             android:layout_marginTop="20dp"
@@ -394,9 +328,5 @@
         android:text="100位商家评论过"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
-    <ImageView
-        android:layout_below="@+id/address_layout"
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
+
 </LinearLayout>

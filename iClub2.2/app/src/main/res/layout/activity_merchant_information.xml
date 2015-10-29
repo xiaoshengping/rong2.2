@@ -7,7 +7,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
     <include
         android:id="@+id/tailt_layout"
         layout="@layout/app_white_tailt_layout"/>
@@ -208,7 +208,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-
+        android:layout_marginBottom="20dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
@@ -234,8 +234,8 @@
             android:layout_marginLeft="20dp"
             android:layout_width="80dp"
             android:layout_height="80dp" />
+
         <GridView
-            android:visibility="gone"
             android:layout_marginRight="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="10dp"
@@ -243,8 +243,7 @@
             android:verticalSpacing="5dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:numColumns="4" >
-        </GridView>
+            android:numColumns="4" />
     </LinearLayout>
     </RelativeLayout>
 </ScrollView>

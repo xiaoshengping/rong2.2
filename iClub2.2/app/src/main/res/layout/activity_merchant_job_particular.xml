@@ -1,17 +1,17 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="@color/layoutBackground"
     tools:context="com.example.administrator.iclub21.util.MerchantJobParticularActivity">
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include layout="@layout/app_tailt_layout"/>
+        <include layout="@layout/app_white_tailt_layout"/>
 
 
         <LinearLayout
-            android:layout_marginLeft="20dp"
+            android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -22,7 +22,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/position_text_view"
-
+                    android:layout_marginLeft="20dp"
                     android:layout_weight="2"
 
                     android:textSize="@dimen/textSize18"
@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/time_text_view"
-
+                    android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:textColor="@color/textColorc979a8"
                     android:textSize="@dimen/textSize14"
@@ -62,7 +62,8 @@
 
         </LinearLayout>
         <LinearLayout
-            android:background="#3fffffff"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -117,7 +118,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:text="工作地点:"
-                    android:textColor="@color/whiteOne"
+
                     android:textSize="@dimen/textSize15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -137,7 +138,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:text="招聘人数:"
-                    android:textColor="@color/whiteOne"
+
                     android:textSize="@dimen/textSize15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -153,8 +154,8 @@
 
         <LinearLayout
 
-            android:layout_marginTop="5dp"
-            android:background="#3fffffff"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -162,7 +163,7 @@
                 android:text="经验要求"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
-                android:textColor="@color/whiteOne"
+
                 android:textSize="@dimen/textSize15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -180,8 +181,8 @@
 
         <LinearLayout
 
-            android:layout_marginTop="5dp"
-            android:background="#3fffffff"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -189,7 +190,7 @@
                 android:text="职位描述"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="20dp"
-                android:textColor="@color/whiteOne"
+
                 android:textSize="@dimen/textSize15"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
@@ -206,8 +207,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginTop="5dp"
-            android:background="#3fffffff"
+            android:layout_marginTop="2dp"
+            android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -220,7 +221,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:text="电  话:"
-                    android:textColor="@color/whiteOne"
+
                     android:textSize="@dimen/textSize15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -241,7 +242,7 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:text="Email:"
-                    android:textColor="@color/whiteOne"
+
                     android:textSize="@dimen/textSize15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -262,7 +263,6 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:text="官 网:"
-                    android:textColor="@color/whiteOne"
                     android:textSize="@dimen/textSize15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
@@ -284,8 +284,6 @@
                 android:layout_height="wrap_content">
                 <TextView
                     android:text="地 址:"
-
-                    android:textColor="@color/whiteOne"
                     android:textSize="@dimen/textSize15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

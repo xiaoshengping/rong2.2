@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,15 +55,17 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
         if (status.equals("0")){
             viewHodle.talentStateTv.setText("new");
             viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor9a4274));
-
+            viewHodle.acceptMerchantBt.setVisibility(View.GONE);
 
         }else if (status.equals("2")){
             viewHodle.talentStateTv.setText("拒绝");
             viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHodle.acceptMerchantBt.setVisibility(View.GONE);
 
         }else if (status.equals("6")){
             viewHodle.talentStateTv.setText("过期");
             viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHodle.acceptMerchantBt.setVisibility(View.GONE);
 
         }else if (status.equals("5")){
             viewHodle.talentStateTv.setText("完成");
@@ -71,14 +74,17 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
         }else if (status.equals("1")){
             viewHodle.talentStateTv.setText("接受");
             viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHodle.rejectMerchantBt.setText("失败");
 
         }else if (status.equals("3")){
             viewHodle.talentStateTv.setText("成功");
             viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHodle.acceptMerchantBt.setText("评论");
 
         }else if (status.equals("4")){
             viewHodle.talentStateTv.setText("失败");
             viewHodle.talentStateTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
+            viewHodle.acceptMerchantBt.setText("评论");
 
         }
 
@@ -109,6 +115,11 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
         private TextView talentTime;
         @ViewInject(R.id.talent_state_tv)
         private TextView talentStateTv;
+        @ViewInject(R.id.accept_merchant_bt)
+        private Button acceptMerchantBt;
+        @ViewInject(R.id.reject_merchant_bt)
+        private Button rejectMerchantBt;
+
 
         public ViewHodle(View view) {
             ViewUtils.inject(this, view);
