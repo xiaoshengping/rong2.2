@@ -95,9 +95,12 @@ public class CommentGradeActivity extends ActionBarActivity implements RadioGrou
             uid = cursor.getString(0);
 
         }
-        inviteMessgaeListValueBeans= (InviteMessgaeListValueBean) getIntent().getSerializableExtra("inviteMessgaeListValueBeans");
-        merchantInviteValueBeans= (MerchantInviteValueBean) getIntent().getSerializableExtra("MerchantInviteValueBean");
+        if (falge.equals("SuccessfulInviteFragment")){
+            inviteMessgaeListValueBeans= (InviteMessgaeListValueBean) getIntent().getSerializableExtra("inviteMessgaeListValueBeans");
 
+        }else if (falge.equals("merchantSuccessfulInviteFragment")){
+            merchantInviteValueBeans= (MerchantInviteValueBean) getIntent().getSerializableExtra("inviteMessgaeListValueBeans");
+        }
         gradeRadiogroup.setOnCheckedChangeListener(this);
         honestyRradeRg.setOnCheckedChangeListener(this);
         commitCommentTv.setOnClickListener(this);
@@ -188,19 +191,14 @@ public class CommentGradeActivity extends ActionBarActivity implements RadioGrou
                     if (!TextUtils.isEmpty(commentContextEt.getText().toString())&&!TextUtils.isEmpty(authenticity)&&!TextUtils.isEmpty(integrity)){
                         commentContentData("resumeid", inviteMessgaeListValueBeans.getInviteResume().getResumeid(), "beid", inviteMessgaeListValueBeans.getInvitePerson().getId(), AppUtilsUrl.getCommentCommit());
                         commentGradeData(inviteMessgaeListValueBeans.getInvitePerson().getId());
-                       // adoptData(AppUtilsUrl.getModificationResume(), "3", inviteMessgaeListValueBeans.getInviteid());
+
                     }else {
                         MyAppliction.showExitGameAlert("您还没有输入评论内容或者分数", CommentGradeActivity.this);
                     }
-
-
-                }else if (falge.equals("MerchantSuccessfulInviteFragment")){
-
-
+                }else if (falge.equals("merchantSuccessfulInviteFragment")){
                     if (!TextUtils.isEmpty(commentContextEt.getText().toString())&&!TextUtils.isEmpty(authenticity)&&!TextUtils.isEmpty(integrity)){
-                        commentContentData("uid", uid, "resumeid", merchantInviteValueBeans.getInviteResume().getResumeid()+"", AppUtilsUrl.getCommentResume());
+                        commentContentData("uid", uid, "resumeid", merchantInviteValueBeans.getInviteResume().getResumeid() + "", AppUtilsUrl.getCommentResume());
                         commentGradeData(merchantInviteValueBeans.getInviteResume().getPersonid() + "");
-                       // adoptData(AppUtilsUrl.getModificationMerchant(), "3", merchantInviteValueBeans.getInviteid());
                     }else {
                         MyAppliction.showExitGameAlert("您还没有输入评论内容或者分数", CommentGradeActivity.this);
                     }

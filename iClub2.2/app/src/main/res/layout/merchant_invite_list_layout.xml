@@ -3,7 +3,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="130dp"
     >
 
       <RelativeLayout
@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/talent_job"
-            android:textColor="@color/textColor9a4274"
+            android:textColor="@color/hunTextColor"
             android:textSize="@dimen/textSize13"
             android:text="zwei"
             style="@style/textview_paren_width"
@@ -74,7 +74,7 @@
 
         <TextView
             android:id="@+id/talent_time"
-            android:textColor="@color/textColor9a4274"
+            android:textColor="@color/hunTextColor"
             android:textSize="@dimen/textSize13"
             android:text="city"
             android:layout_marginTop="3dp"
@@ -100,7 +100,7 @@
 
     <ImageView
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="15dp"
         android:id="@+id/line_iv"
         android:layout_below="@+id/nrong_layout"
         android:src="@color/editTextPromptColor"

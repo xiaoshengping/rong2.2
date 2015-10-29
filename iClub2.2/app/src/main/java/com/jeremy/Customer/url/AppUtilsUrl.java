@@ -215,8 +215,8 @@ public class AppUtilsUrl  {
     }
     //获取商家信息
     public static String getAcquireMerchant(){
-        //getBeInfo.action
-        return BaseUrl+"getBeInfo.action";
+        //getBeInfo_V2_2.action
+        return BaseUrl+"getBeInfo_V2_2.action";
 
     }
 
@@ -270,7 +270,7 @@ public class AppUtilsUrl  {
     }
     //商家--修改邀约状态
     public static String getModificationMerchant(){
-        // modifyInviteByPerson.action
+        //modifyInviteByBusiness.action?
         return BaseUrl+"modifyInviteByBusiness.action";
 
     }
@@ -308,6 +308,13 @@ public class AppUtilsUrl  {
     }
 
 
+
+    //添加公司图片
+    public static String getAddBePicture(){
+        // addBePicture.action
+        return BaseUrl+"addBePicture.action";
+
+    }
 
 
     //商家--来自人才的评论

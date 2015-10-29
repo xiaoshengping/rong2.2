@@ -105,7 +105,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
 
          positions= getIntent().getStringExtra("position");
-        Log.e("positions",positions);
+        //Log.e("positions",positions);
         ResumeParticularsActivity.this.setPosition(positions);
         FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ResumeParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
         if (resumeValueBeans!=null){

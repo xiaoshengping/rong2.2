@@ -317,8 +317,9 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
                         }else if (data.get(position).getState().equals(0)){
                             viewHolde.resumeStateTv.setText("公开");
                         }
+                        data.clear();
                         notifyDataSetChanged();
-                        //resumeListLv.setRefreshing();
+                        resumeListLv.setRefreshing();
                     }else {
                         MyAppliction.showToast("简历保存失败");
 
@@ -346,10 +347,10 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 ParmeBean<MessageBean> parmeBean= JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
-               // Log.e("jfjfjfj",responseInfo.result);
                 if (parmeBean.getState().equals("success")){
                     if (parmeBean.getValue().getMessage().equals("success")){
                         MyAppliction.showToast("刷新简历成功");
+                        data.clear();
                         resumeListLv.setRefreshing();
                     }else {
                         MyAppliction.showToast("刷新简历失败");
