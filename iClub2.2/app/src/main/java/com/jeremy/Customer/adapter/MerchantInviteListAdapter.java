@@ -113,7 +113,7 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
         }
         viewHodle.talentAgeTv.setText(data.get(position).getInviteResume().getResumeAge() + "岁");
         viewHodle.acceptMerchantBt.setOnClickListener(new apoctButtonClick(position));
-
+        viewHodle.rejectMerchantBt.setOnClickListener(new deleteButtonClick(position));
 
 
 
@@ -127,6 +127,49 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
             isChecked.put(i, false);
         }
     }
+    /*
+        * 此为listview条目中的apoctButtonClick按钮点击事件的写法
+        */
+    class deleteButtonClick implements View.OnClickListener {
+
+        private int position;
+
+        public deleteButtonClick(int pos){  // 在构造时将position传给它这样就知道点击的是哪个条目的按钮
+            this.position = pos;
+        }
+        @Override
+        public void onClick(View v) {
+            int vid=v.getId();
+            if (vid == viewHodle.rejectMerchantBt.getId()){
+                if (isChecked.get(position) == false){
+                    isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
+                    if (data.get(position).getBeStatus().equals("6")) {
+                        adoptData(data.get(position).getInviteid(),"998");
+
+                    } else if (data.get(position).getBeStatus().equals("2")) {
+                        adoptData(data.get(position).getInviteid(),"998");
+                    } else if (data.get(position).getBeStatus().equals("3") || data.get(position).getBeStatus().equals("4")) {
+                        adoptData(data.get(position).getInviteid(),"998");
+                        //MyAppliction.showToast("成功接受");
+                    }else if (data.get(position).getBeStatus().equals("1")){
+                        adoptData(data.get(position).getInviteid(),"4");
+                    }else if (data.get(position).getBeStatus().equals("0")){
+                        adoptData(data.get(position).getInviteid(),"998");
+                    }
+
+                    MyAppliction.showToast(position + "kkkkkk" + data.get(position).getInviteid());
+                    //Log.e("steta________", position + "");
+                } else if (isChecked.get(position) == true){
+                    isChecked.put(position, false);  // 根据点击的情况来将其位置和相应的状态存入
+
+                }
+                notifyDataSetChanged();
+            }
+        }
+
+    }
+
+
     /*
           * 此为listview条目中的apoctButtonClick按钮点击事件的写法
           */
@@ -144,10 +187,10 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
                 if (isChecked.get(position) == false){
                     isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
                     if (data.get(position).getBeStatus().equals("1")) {
-                        adoptData("3");
+                        adoptData(data.get(position).getInviteid(),"3");
 
                     } else if (data.get(position).getBeStatus().equals("0")) {
-                        adoptData("1");
+                        adoptData(data.get(position).getInviteid(),"1");
                     } else if (data.get(position).getBeStatus().equals("3") || data.get(position).getBeStatus().equals("4")) {
                         Intent intent=new Intent(context, CommentGradeActivity.class);
                         intent.putExtra("inviteMessgaeListValueBeans",data.get(position) );
@@ -168,7 +211,7 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
 
     }
 
-    private void adoptData(String status) {
+    private void adoptData(String invite, String status) {
         HttpUtils httpUtils =new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("inviteid",invite);
