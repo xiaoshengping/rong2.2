@@ -19,6 +19,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.uilt.CommentCountActivity;
 import com.jeremy.Customer.uilt.ContactInformationActivity;
 import com.jeremy.Customer.uilt.ModificationResumeActivity;
 import com.jeremy.Customer.uilt.OneselfExperienceActivity;
@@ -112,6 +113,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
         modificationContact.setOnClickListener(this);
         modificationWorkTv.setOnClickListener(this);
         modificationOneselfTv.setOnClickListener(this);
+        commentCountTv.setOnClickListener(this);
         resumeInfoTv.post(new Runnable() {
             @Override
             public void run() {
@@ -195,6 +197,11 @@ public class ModificationInformationFragment extends Fragment implements View.On
                   intent.putExtra("resumeid",resumeValueBean.getResumeid()+"");
                 startActivityForResult(intent, CONCATIONINFO);
 
+
+                break;
+            case R.id.commentCount_tv:
+                Intent commentIntent =new Intent(getActivity(), CommentCountActivity.class);
+                startActivity(commentIntent);
 
                 break;
 

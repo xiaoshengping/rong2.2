@@ -1,6 +1,7 @@
 package com.jeremy.Customer.fragment;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.uilt.CommentCountActivity;
 import com.jeremy.Customer.uilt.ResumeParticularsActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -129,9 +131,8 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
                 experienceMoreLayout.setVisibility(View.GONE);
                 break;
             case R.id.commentCount_tv:
-
-                /*Intent intent =new Intent(getActivity(),);
-                startActivity(intent);*/
+                Intent intent =new Intent(getActivity(), CommentCountActivity.class);
+                startActivity(intent);
 
                 break;
 

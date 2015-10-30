@@ -323,6 +323,12 @@ public class AppUtilsUrl  {
         return BaseUrl+"getCommentByBePerson.action?personid="+personid+"&offset="+offset+"&limit=10";
 
     }
+
+    public static String getCommentByPersonUid(String uid,int offset){
+        // getCommentByBePerson.action
+        return BaseUrl+"getCommentByPersonUid.action?uid="+uid+"&offset="+offset+"&limit=10";
+
+    }
     //商家邀约列表
     public static String getMerchantInvite(String uid,String value,int offset){
         // inviteListByBusiness.action

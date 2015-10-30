@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/comment_neirong_tv"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/textSize16"
+        android:text="hdhfhffhffjfjfjfnfsnfbnf fnxbxcbcbxbxbbxb
+        jfjjjjjjjjjjjjjjjjffffffffffffffffffffffffffffffff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <RelativeLayout
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+      android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/comment_be_tv"
+            android:textColor="@color/hunTextColor"
+            android:textSize="@dimen/textSize14"
+            android:text="来自广州贸易公司"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/comment_time_tv"
+            android:textColor="@color/hunTextColor"
+            android:layout_alignParentRight="true"
+            android:textSize="@dimen/textSize14"
+            android:text="5个小时前"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+  <ImageView
+      android:src="@color/lineColor"
+      android:layout_width="match_parent"
+      android:layout_height="2dp" />
+
+</LinearLayout>
