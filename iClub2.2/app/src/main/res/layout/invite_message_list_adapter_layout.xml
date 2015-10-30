@@ -113,18 +113,7 @@
             android:layout_marginTop="5dp"
             android:layout_width="80dp"
             android:layout_height="33dp" />
-        <Button
-            android:layout_marginTop="5dp"
-            android:background="@mipmap/invite_button_icon"
-            android:visibility="gone"
-            android:focusable="false"
-            android:layout_marginRight="10dp"
-            android:id="@+id/delete_button_tv"
-            android:layout_alignParentRight="true"
-            android:gravity="center"
-            android:text="删除"
-            android:layout_width="100dp"
-            android:layout_height="33dp" />
+
     </RelativeLayout>
     <ImageView
         android:src="@color/lineColor"

@@ -37,32 +37,28 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
 
     private ViewHold viewHold;
     private String status;
-    private int positions;
-    private String inviteid;
     private PullToRefreshListView inviteMessageLv;
 
     // 用来记录按钮状态的Map
     public static Map<Integer, Boolean> isChecked;
 
-    public InviteMessageListAdapter(List<InviteMessgaeListValueBean> data, Context context,PullToRefreshListView inviteMessageLv) {
+    public InviteMessageListAdapter(List<InviteMessgaeListValueBean> data, Context context, PullToRefreshListView inviteMessageLv) {
         super(data, context);
-        this.inviteMessageLv=inviteMessageLv;
+        this.inviteMessageLv = inviteMessageLv;
     }
 
     @Override
     public View createView(int position, View convertView, ViewGroup parent) {
 
-        if (convertView==null){
-            convertView= LayoutInflater.from(context).inflate(R.layout.invite_message_list_adapter_layout,parent,false);
-            viewHold=new ViewHold(convertView) ;
-           convertView.setTag(viewHold);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.invite_message_list_adapter_layout, parent, false);
+            viewHold = new ViewHold(convertView);
+            convertView.setTag(viewHold);
 
-        }else {
-            viewHold= (ViewHold) convertView.getTag();
+        } else {
+            viewHold = (ViewHold) convertView.getTag();
 
         }
-
-        positions=position;
         inti(position);
 
         return convertView;
@@ -71,54 +67,50 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
     private void initButton() {
         // 初使化操作，默认都是false
         isChecked = new HashMap<Integer, Boolean>();
-        for (int i = 0; i < data.size(); i++){
+        for (int i = 0; i < data.size(); i++) {
             isChecked.put(i, false);
         }
     }
+
     private void inti(final int position) {
         initButton();
         viewHold.InviteResumeJobNameTv.setText(data.get(position).getInviteResume().getResumeJobName());
-        status=data.get(position).getStatus();
-        inviteid=data.get(position).getInviteid();
-        if (status.equals("0")){
+        status = data.get(position).getStatus();
+        if (status.equals("0")) {
             viewHold.InviteStatusTv.setText("new");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor9a4274));
-           // viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_icon);
-            viewHold.acceptButtonTv.setText("接受");
-            viewHold.refuseButtonTv.setText("拒绝");
-
-        }else if (status.equals("2")){
+            // viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_icon);
+        } else if (status.equals("2")) {
             viewHold.InviteStatusTv.setText("拒绝");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
-           // viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
+            // viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
             viewHold.acceptButtonTv.setVisibility(View.GONE);
-            viewHold.refuseButtonTv.setVisibility(View.GONE);
-            viewHold.deleteButtonTv.setVisibility(View.VISIBLE);
+            viewHold.refuseButtonTv.setText("删除");
 
-        }else if (status.equals("6")){
+
+        } else if (status.equals("6")) {
             viewHold.InviteStatusTv.setText("过期");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
             //viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
             viewHold.acceptButtonTv.setVisibility(View.GONE);
-            viewHold.refuseButtonTv.setVisibility(View.GONE);
-            viewHold.deleteButtonTv.setVisibility(View.VISIBLE);
-        }else if (status.equals("5")){
+            viewHold.refuseButtonTv.setText("删除");
+        } else if (status.equals("5")) {
             viewHold.InviteStatusTv.setText("完成");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
             //viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
-        }else if (status.equals("1")){
+        } else if (status.equals("1")) {
             viewHold.InviteStatusTv.setText("接受");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
-           // viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
+            // viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
             viewHold.acceptButtonTv.setText("成功");
             viewHold.refuseButtonTv.setText("失败");
-        }else if (status.equals("3")){
+        } else if (status.equals("3")) {
             viewHold.InviteStatusTv.setText("成功");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
             //viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
             viewHold.acceptButtonTv.setText("评论");
             viewHold.refuseButtonTv.setText("删除");
-        }else if (status.equals("4")){
+        } else if (status.equals("4")) {
             viewHold.InviteStatusTv.setText("失败");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
             //viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_one_icon);
@@ -130,81 +122,82 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
         viewHold.InviteJobCategoryTv.setText(data.get(position).getInviteResume().getResumeWorkPlace());
         viewHold.InviteCompanyNameTv.setText(data.get(position).getInvitePerson().getBEcompanyName());
 
-        viewHold.acceptButtonTv.setOnClickListener(new moreButtonClick(position));
+        viewHold.acceptButtonTv.setOnClickListener(new acceptButtonClick(position));
 
 
+        viewHold.refuseButtonTv.setOnClickListener(new refuseButtonClick(position));
 
-
-
-
-        /*viewHold.acceptButtonTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (data.get(position).getStatus().equals("1")) {
-                    adoptData("3");
-
-                } else if (data.get(position).getStatus().equals("0")) {
-                    adoptData("1");
-                } else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
-                    Intent intent=new Intent(context, CommentGradeActivity.class);
-                    intent.putExtra("inviteMessgaeListValueBeans", (Serializable) data.get(position));
-                    intent.putExtra("falgeData", "SuccessfulInviteFragment");
-                    context.startActivity(intent);
-                    //MyAppliction.showToast("成功接受");
-                }
-
-                MyAppliction.showToast(position + "kkkkkk" + data.get(position).getStatus());
-            }
-        });*/
-
-        viewHold.refuseButtonTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (data.get(position).getStatus().equals("1")) {
-                    adoptData("4");
-
-                } else if (data.get(position).getStatus().equals("0")) {
-                    adoptData("2");
-
-                }else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
-                    adoptData("998");
-                    MyAppliction.showToast(position + "kkkkkk" + data.get(position).getStatus());
-                }
-
-            }
-        });
-        viewHold.deleteButtonTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                adoptData("998");
-            }
-        });
 
     }
 
+
     /*
-         * 此为listview条目中的moreButtonClick按钮点击事件的写法
-         */
-    class moreButtonClick implements View.OnClickListener {
+        * 此为listview条目中的acceptButtonClick按钮点击事件的写法
+        */
+    class refuseButtonClick implements View.OnClickListener {
 
         private int position;
 
-        public moreButtonClick(int pos){  // 在构造时将position传给它这样就知道点击的是哪个条目的按钮
+        public refuseButtonClick(int pos){  // 在构造时将position传给它这样就知道点击的是哪个条目的按钮
             this.position = pos;
         }
         @Override
         public void onClick(View v) {
             int vid=v.getId();
-            if (vid == viewHold.acceptButtonTv.getId()){
+            if (vid == viewHold.refuseButtonTv.getId()){
                 if (isChecked.get(position) == false){
                     isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
                     if (data.get(position).getStatus().equals("1")) {
-                        adoptData("3");
+                        adoptData(data.get(position).getInviteid(),"4");
 
                     } else if (data.get(position).getStatus().equals("0")) {
-                        adoptData("1");
+                        adoptData(data.get(position).getInviteid(),"2");
+
+                    }else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
+                        adoptData(data.get(position).getInviteid(),"998");
+                        MyAppliction.showToast(position + "kkkkkk" + data.get(position).getStatus());
+                    }else if (data.get(position).getStatus().equals("2")){
+                        adoptData(data.get(position).getInviteid(),"998");
+                    }else if (data.get(position).getStatus().equals("6")){
+                        adoptData(data.get(position).getInviteid(),"998");
+                    }
+
+
+                } else if (isChecked.get(position) == true){
+                    isChecked.put(position, false);  // 根据点击的情况来将其位置和相应的状态存入
+
+                }
+                notifyDataSetChanged();
+            }
+        }
+
+    }
+
+
+    /*
+         * 此为listview条目中的acceptButtonClick按钮点击事件的写法
+         */
+    class acceptButtonClick implements View.OnClickListener {
+
+        private int position;
+
+        public acceptButtonClick(int pos) {  // 在构造时将position传给它这样就知道点击的是哪个条目的按钮
+            this.position = pos;
+        }
+
+        @Override
+        public void onClick(View v) {
+            int vid = v.getId();
+            if (vid == viewHold.acceptButtonTv.getId()) {
+                if (isChecked.get(position) == false) {
+                    isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
+                    if (data.get(position).getStatus().equals("1")) {
+                        adoptData(data.get(position).getInviteid(), "3");
+
+                    } else if (data.get(position).getStatus().equals("0")) {
+                        adoptData(data.get(position).getInviteid(), "1");
                     } else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
-                        Intent intent=new Intent(context, CommentGradeActivity.class);
+                        Intent intent = new Intent(context, CommentGradeActivity.class);
                         intent.putExtra("inviteMessgaeListValueBeans", (Serializable) data.get(position));
                         intent.putExtra("falgeData", "SuccessfulInviteFragment");
                         context.startActivity(intent);
@@ -213,7 +206,7 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
 
                     MyAppliction.showToast(position + "kkkkkk" + data.get(position).getStatus());
                     //Log.e("steta________", position + "");
-                } else if (isChecked.get(position) == true){
+                } else if (isChecked.get(position) == true) {
                     isChecked.put(position, false);  // 根据点击的情况来将其位置和相应的状态存入
 
                 }
@@ -227,7 +220,7 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
 
 
 
-    private void adoptData(String status) {
+    private void adoptData(String inviteid, String status) {
         HttpUtils httpUtils =new HttpUtils();
         RequestParams requestParams=new RequestParams();
         Log.e("inviteid",inviteid);
@@ -266,8 +259,6 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
         private TextView acceptButtonTv;
         @ViewInject(R.id.refuse_button_tv)
         private Button refuseButtonTv;
-        @ViewInject(R.id.delete_button_tv)
-        private Button deleteButtonTv;
         @ViewInject(R.id.accept_refuse_layout)
         private RelativeLayout acceptRefuseLayout;
         @ViewInject(R.id.invite_paly_tv)
