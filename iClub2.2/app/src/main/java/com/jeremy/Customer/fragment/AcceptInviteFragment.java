@@ -104,11 +104,6 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
                     }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
                     accpetListLv.onRefreshComplete();
-                    /*if (inviteMessgaeListValueBeans.size()==0){
-                        accpetListLv.setVisibility(View.GONE);
-                        messageTv.setVisibility(View.VISIBLE);
-                    }*/
-
                 }
 
 

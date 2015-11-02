@@ -100,7 +100,7 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ApplicationsListActivity.this, MerchantParticularsActivity.class);
                 intent.putExtra("recruitmentHistoryValueBean", recruitmentHistoryValueBean.get(position - 1));
-                //intent.putExtra("falgeData", "RecruitmentHistoryFragment");
+                intent.putExtra("position", (position-1)+"");
                 startActivity(intent);
             }
         });

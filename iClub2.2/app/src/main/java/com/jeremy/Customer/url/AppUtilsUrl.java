@@ -193,6 +193,12 @@ public class AppUtilsUrl  {
         return BaseUrl+"getHistoryJobList.action?"+"uid="+uid+"&offset="+offset+"&limit=10";
 
     }
+    //招聘历史
+    public static String getRecruitmentHistoryListOne(){
+        //getHistoryJobList.action
+        return BaseUrl+"getHistoryJobList.action";
+
+    }
 
     //添加招聘
     public static String getAddJod(){

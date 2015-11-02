@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.mine.InviteMessgaeListValueBean;
-import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.uilt.CommentGradeActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -80,6 +79,8 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
             viewHold.InviteStatusTv.setText("new");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor9a4274));
             // viewHold.InviteStatusTv.setBackgroundResource(R.mipmap.new_icon);
+            viewHold.acceptButtonTv.setText("接受");
+            viewHold.refuseButtonTv.setText("拒绝");
         } else if (status.equals("2")) {
             viewHold.InviteStatusTv.setText("拒绝");
             viewHold.InviteStatusTv.setTextColor(context.getResources().getColor(R.color.textColor2f967a));
@@ -155,7 +156,6 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
 
                     }else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
                         adoptData(data.get(position).getInviteid(),"998");
-                        MyAppliction.showToast(position + "kkkkkk" + data.get(position).getStatus());
                     }else if (data.get(position).getStatus().equals("2")){
                         adoptData(data.get(position).getInviteid(),"998");
                     }else if (data.get(position).getStatus().equals("6")){
@@ -201,11 +201,10 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
                         intent.putExtra("inviteMessgaeListValueBeans", (Serializable) data.get(position));
                         intent.putExtra("falgeData", "SuccessfulInviteFragment");
                         context.startActivity(intent);
-                        //MyAppliction.showToast("成功接受");
+
                     }
 
-                    MyAppliction.showToast(position + "kkkkkk" + data.get(position).getStatus());
-                    //Log.e("steta________", position + "");
+
                 } else if (isChecked.get(position) == true) {
                     isChecked.put(position, false);  // 根据点击的情况来将其位置和相应的状态存入
 
