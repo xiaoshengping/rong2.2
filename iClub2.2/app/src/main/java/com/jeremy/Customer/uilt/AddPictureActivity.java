@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.ResumePictureAdapter;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -55,6 +56,8 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
 
 
     private ResumeValueBean resumeValueBean;
+    private LoadingDialog loadingDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +76,7 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this,"正在更新数据……");
         resumeValueBean= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBean");
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("添加图片");
@@ -130,14 +134,25 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
                 finish();
                 break;
             case R.id.save_text:
-
-                if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"")&&selectedPicture.size()!=0){
-                    for (int i = 0; i <selectedPicture.size() ; i++) {
-                        savePictureData(resumeValueBean.getResumeid()+"",selectedPicture.get(i));
+                if (getIntent().getSerializableExtra("fagle").equals("modifactionResume")){
+                    if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"")&&selectedPicture.size()!=0){
+                        for (int i = 0; i <selectedPicture.size() ; i++) {
+                            savePictureData(resumeValueBean.getResumeid()+"",selectedPicture.get(i));
+                        }
+                    }else {
+                        MyAppliction.showExitGameAlert("你还没有选择照片", AddPictureActivity.this);
                     }
-                }else {
-                    MyAppliction.showExitGameAlert("你还没有选择照片", AddPictureActivity.this);
+
+                }else if (getIntent().getSerializableExtra("fagle").equals("productionResume")){
+                    if (!TextUtils.isEmpty(getIntent().getStringExtra("resumeid").toString())&&selectedPicture.size()!=0){
+                        for (int i = 0; i <selectedPicture.size() ; i++) {
+                            savePictureData(getIntent().getStringExtra("resumeid").toString(),selectedPicture.get(i));
+                        }
+                    }else {
+                        MyAppliction.showExitGameAlert("你还没有选择照片", AddPictureActivity.this);
+                    }
                 }
+
 
                 break;
         }
@@ -148,9 +163,11 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid",resumeid);
         requestParams.addBodyParameter("picture",new File(pictureFile));
+        loadingDialog.show();
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddPicture(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
+                loadingDialog.dismiss();
                 finish();
 
 

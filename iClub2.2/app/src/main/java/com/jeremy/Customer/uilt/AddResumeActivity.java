@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.bean.mine.SaveResumeValueBean;
@@ -141,7 +142,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private int selectYear;
     private int selectMonthOfYear;
     private int selectDayOfMonth;
-
+    private LoadingDialog loadingDialog;
 
 
 
@@ -162,6 +163,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     }
 
     private void intiView() {
+        loadingDialog = new LoadingDialog(this,"正在更新数据……");
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("添加简历");
         requestParams = new RequestParams();
@@ -223,6 +225,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 break;
             case R.id.next_resume_tv:
                 intiSaveData();
+
                 break;
 
 
@@ -258,7 +261,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 //requestParams.addBodyParameter("resumeCityId", job_city_num);
                 requestParams.addBodyParameter("resumeMobile", mobile);
                 requestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
-
+                loadingDialog.show();
                 httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddResume(), requestParams, new RequestCallBack<String>() {
                     @Override
                     public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -269,15 +272,18 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                             });
                             if (parmeBean.getState().equals("success")) {
                                 SaveResumeValueBean saveValueBean = parmeBean.getValue();
-                                if (saveValueBean.getMessage().equals("success")) {
+                                if (saveValueBean.getMessage().equals("提交数据成功")) {
+                                    Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
+                                    intent.putExtra("resumeid", saveValueBean.getResumeid());
+                                    startActivity(intent);
+                                    finish();
                                     MyAppliction.showToast("提交数据成功");
+                                    loadingDialog.dismiss();
                                 } else {
                                     MyAppliction.showToast(saveValueBean.getMessage());
+                                    loadingDialog.dismiss();
                                 }
-                                Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
-                                intent.putExtra("resumeid", saveValueBean.getResumeid());
-                                startActivity(intent);
-                                finish();
+
 
 
 
@@ -292,7 +298,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                     public void onFailure(HttpException e, String s) {
 
                         MyAppliction.showToast("网络出错了");
-
+                        loadingDialog.dismiss();
                     }
                 });
             }

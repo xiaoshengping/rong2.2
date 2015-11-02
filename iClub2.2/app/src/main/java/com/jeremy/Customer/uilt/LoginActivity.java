@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.mine.LoginValueBean;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.http.MyAppliction;
@@ -59,9 +60,12 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     private ImageView qq_login;
     @ViewInject(R.id.weibo_login)
     private ImageView weibo_login;
+    private LoadingDialog loadingDialog;
 
     private HttpUtils httpUtils;
     private  UMSocialService mController ;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +88,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     }
 
     private void intiView() {
+        loadingDialog=new LoadingDialog(this,"正在登录......");
         returnTV.setOnClickListener(this);
         loginButton.setOnClickListener(this);
         RegisterTv.setOnClickListener(this);
@@ -104,7 +109,6 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             case R.id.login_button:
                 String uid=  phoneEdit.getText().toString();
                 String  psw=MD5Uutils.MD5(pswEdit.getText().toString());
-
                 try {
                     intiLoginData(uid,psw);
                 } catch (NoSuchAlgorithmException e) {
@@ -256,7 +260,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         super.onActivityResult(requestCode, resultCode, data);
         /**使用SSO授权必须添加如下代码 */
         UMSsoHandler ssoHandler = mController.getConfig().getSsoHandler(requestCode);
-        if(ssoHandler != null){
+        if(ssoHandler!= null){
             ssoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
     }
@@ -267,6 +271,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             if (uid.length()==11){
                 if (!TextUtils.isEmpty(pswEdit.getText().toString())){
                     if (pswEdit.getText().toString().length()>=6){
+                        loadingDialog.show();
                         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getLoginData(uid, psw) , new RequestCallBack<String>() {
                             @Override
                             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -283,7 +288,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                                         insertData(sqLhelper, loginValueBean.getUid(), loginValueBean.getUserName(), loginValueBean.getUserIcon(), loginValueBean.getState(),
                                                 loginValueBean.getMobile(), loginValueBean.getPersonId(), loginValueBean.getCompanyName());
                                         finish();
-
+                                        loadingDialog.dismiss();
 
                                     }else {
 

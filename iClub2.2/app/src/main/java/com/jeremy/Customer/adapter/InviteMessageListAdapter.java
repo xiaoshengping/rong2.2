@@ -150,7 +150,6 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
                     isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
                     if (data.get(position).getStatus().equals("1")) {
                         adoptData(data.get(position).getInviteid(),"4");
-
                     } else if (data.get(position).getStatus().equals("0")) {
                         adoptData(data.get(position).getInviteid(),"2");
 
@@ -193,7 +192,6 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
                     isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
                     if (data.get(position).getStatus().equals("1")) {
                         adoptData(data.get(position).getInviteid(), "3");
-
                     } else if (data.get(position).getStatus().equals("0")) {
                         adoptData(data.get(position).getInviteid(), "1");
                     } else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
@@ -222,7 +220,6 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
     private void adoptData(String inviteid, String status) {
         HttpUtils httpUtils =new HttpUtils();
         RequestParams requestParams=new RequestParams();
-        Log.e("inviteid",inviteid);
         requestParams.addBodyParameter("inviteid",inviteid );
         requestParams.addBodyParameter("status", status);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAdoptAndRefuse(), requestParams, new RequestCallBack<String>() {

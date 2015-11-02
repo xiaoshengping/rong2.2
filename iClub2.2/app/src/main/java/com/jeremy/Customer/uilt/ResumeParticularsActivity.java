@@ -2,12 +2,9 @@ package com.jeremy.Customer.uilt;
 
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,10 +12,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
-import com.jeremy.Customer.bean.ArtistParme;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.fragment.FragmentResumeTabAdapter;
 import com.jeremy.Customer.fragment.OneselfInformationFragment;
@@ -26,12 +21,7 @@ import com.jeremy.Customer.fragment.OneselfProductionFragment;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.CustomImageView;
-import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.ArrayList;
@@ -73,6 +63,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
 
     public String  position;//个数
     private String  positions;
+    private LoadingDialog loadingDialog;
 
 
     @Override
@@ -93,6 +84,8 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this,"正在更新数据……");
+        loadingDialog.show();
         oneselfInformactionRb.setChecked(true);
         talenBackIv.setOnClickListener(this);
         cpmpileResumeTv.setOnClickListener(this);
@@ -109,6 +102,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         ResumeParticularsActivity.this.setPosition(positions);
         FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ResumeParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
         if (resumeValueBeans!=null){
+
         MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), customImageView, MyAppliction.RoundedOptions);
         resumeZhNameTv.setText(resumeValueBeans.getResumeZhName());
          if (resumeValueBeans.getResumeSex()==0){
@@ -120,17 +114,10 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         resumeWorkPlaceTv.setText(resumeValueBeans.getResumeWorkPlace());
         resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobCategoryName());
         browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
+        loadingDialog.dismiss();
         }
     }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        intiResumeListData();
-    }
-
-    private void intiResumeListData() {
+   /* private void intiResumeListData() {
         HttpUtils httpUtils=new HttpUtils();
         SQLhelper sqLhelper=new SQLhelper(this);
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
@@ -149,9 +136,9 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
                     ArtistParme<ResumeValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
                     });
                     if (artistParme.getState().equals("success")) {
-
                         ResumeValueBean  resumeValueBeans = artistParme.getValue().get(Integer.valueOf(positions));
                         if (resumeValueBeans!=null){
+                            Log.e("jsjjdjdjdj",resumeValueBeans.getResumeInfo());
                             MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), customImageView, MyAppliction.RoundedOptions);
                             resumeZhNameTv.setText(resumeValueBeans.getResumeZhName());
                             if (resumeValueBeans.getResumeSex()==0){
@@ -182,7 +169,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
 
 
 
-    }
+    }*/
 
 
     @Override

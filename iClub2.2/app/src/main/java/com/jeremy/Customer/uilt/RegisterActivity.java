@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.RegisterValueBean;
 import com.jeremy.Customer.http.MyAppliction;
@@ -49,7 +50,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
 
     private TimeCount time;
     private HttpUtils httpUtils;
-
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
     }
 
     private void intiView() {
+        loadingDialog=new LoadingDialog(this,"正在注册.....");
         httpUtils=new HttpUtils();
        userType =getIntent().getStringExtra("falge");
         time = new TimeCount(60000, 1000);//构造CountDownTimer对象
@@ -131,6 +133,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                                             }else if(userType.equals("merchantUser")){
                                                 requestParams.addBodyParameter("state","3");
                                             }
+                                            loadingDialog.show();
                                             httpUtils.send(HttpRequest.HttpMethod.POST, url, requestParams, new RequestCallBack<String>() {
                                                 @Override
                                                 public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -144,11 +147,12 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
 
                                                             //showExitGameAlert(text);
                                                             finish();
+                                                            loadingDialog.dismiss();
 
                                                         } else {
 
                                                             MyAppliction.showExitGameAlert("注册失败",RegisterActivity.this);
-
+                                                            loadingDialog.dismiss();
 
                                                         }
                                                     }
@@ -157,7 +161,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                                                 @Override
                                                 public void onFailure(HttpException e, String s) {
                                                     Toast.makeText(RegisterActivity.this, s, Toast.LENGTH_LONG).show();
-
+                                                    loadingDialog.dismiss();
                                                 }
                                             });
 

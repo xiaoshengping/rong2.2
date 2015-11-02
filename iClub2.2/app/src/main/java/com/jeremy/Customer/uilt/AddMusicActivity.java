@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.ResumeMusicAdapter;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -43,7 +44,7 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
     private ResumeValueBean resumeValueBean;
     private String musicPath;
     private String musicName;
-
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,7 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this,"正在更新数据……");
         resumeValueBean= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBean");
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("添加音乐");
@@ -67,9 +69,12 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
         saveText.setOnClickListener(this);
         saveText.setText("上传");
         addMusicBt.setOnClickListener(this);
-        ResumeMusicAdapter resumeMusicAdapter=new ResumeMusicAdapter(resumeValueBean.getResumeMusic(),AddMusicActivity.this);
-        showMusicLv.setAdapter(resumeMusicAdapter);
-        resumeMusicAdapter.notifyDataSetChanged();
+        if (resumeValueBean!=null){
+            ResumeMusicAdapter resumeMusicAdapter=new ResumeMusicAdapter(resumeValueBean.getResumeMusic(),AddMusicActivity.this);
+            showMusicLv.setAdapter(resumeMusicAdapter);
+            resumeMusicAdapter.notifyDataSetChanged();
+        }
+
 
     }
 
@@ -81,11 +86,21 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.save_text:
-             if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"")&&!TextUtils.isEmpty(musicName)&&
+                if (getIntent().getSerializableExtra("fagle").equals("modifactionResume")){
+                       if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"")&&!TextUtils.isEmpty(musicName)&&
                         !TextUtils.isEmpty(musicPath)){
                      saveMusicData(resumeValueBean.getResumeid()+"",musicName,musicPath);
                 }else {
                     MyAppliction.showToast("你还没有音频文件");
+                }
+                }else if (getIntent().getSerializableExtra("fagle").equals("productionResume")){
+                    if (!TextUtils.isEmpty(getIntent().getStringExtra("resumeid").toString())&&!TextUtils.isEmpty(musicName)&&
+                            !TextUtils.isEmpty(musicPath)){
+                        saveMusicData(getIntent().getStringExtra("resumeid").toString(),musicName,musicPath);
+                    }else {
+                        MyAppliction.showToast("你还没有音频文件");
+                    }
+                    
                 }
                 break;
             case R.id.add_music_bt:
@@ -124,16 +139,18 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
         requestParams.addBodyParameter("resumeid",resumeid);
         requestParams.addBodyParameter("musicName",musicName);
         requestParams.addBodyParameter("music",new File(musicPath));
+        loadingDialog.show();
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddMusic(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-
+                loadingDialog.dismiss();
                 finish();
             }
 
             @Override
             public void onFailure(HttpException e, String s) {
                 Log.e("上传音乐onFailure",s);
+                loadingDialog.dismiss();
             }
         });
 
