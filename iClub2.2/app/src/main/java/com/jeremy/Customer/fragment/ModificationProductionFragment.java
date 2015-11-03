@@ -206,16 +206,19 @@ public class ModificationProductionFragment extends Fragment implements View.OnC
             case R.id.modification_video_tv:
                 Intent videoIntent=new Intent(getActivity(),AddVideoActivity.class);
                 videoIntent.putExtra("resumeValueBean", resumeValueBean);
+                videoIntent.putExtra("fagle","modifactionResume");
                 startActivity(videoIntent);
                 break;
             case R.id.modification_music_tv:
                 Intent musicIntent=new Intent(getActivity(),AddMusicActivity.class);
                 musicIntent.putExtra("resumeValueBean", resumeValueBean);
+                musicIntent.putExtra("fagle","modifactionResume");
                 startActivity(musicIntent);
                 break;
             case R.id.modification_picture_tv:
                 Intent picturnIntent=new Intent(getActivity(),AddPictureActivity.class);
                 picturnIntent.putExtra("resumeValueBean",resumeValueBean );
+                picturnIntent.putExtra("fagle","modifactionResume");
                 startActivity(picturnIntent);
                 break;
 

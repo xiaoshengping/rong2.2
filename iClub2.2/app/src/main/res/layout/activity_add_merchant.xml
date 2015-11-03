@@ -2,6 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:background="@color/layoutBackground"
     tools:context="com.example.administrator.iclub21.util.AddRecruitmentActivity">
     <include layout="@layout/app_white_tailt_layout"

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
@@ -16,6 +17,10 @@ public class RoleRegisterActivity extends ActionBarActivity implements View.OnCl
     private TextView talentsUserTv;
     @ViewInject(R.id.merchant_user_tv)
     private TextView merchantUserTv;
+    @ViewInject(R.id.tailt_return_iv)
+    private ImageView tailtReturnIv;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +30,6 @@ public class RoleRegisterActivity extends ActionBarActivity implements View.OnCl
     }
 
     private void inti() {
-
         intiView();
 
     }
@@ -33,6 +37,8 @@ public class RoleRegisterActivity extends ActionBarActivity implements View.OnCl
     private void intiView() {
         talentsUserTv.setOnClickListener(this);
         merchantUserTv.setOnClickListener(this);
+        tailtReturnIv.setOnClickListener(this);
+
 
     }
 
@@ -50,6 +56,9 @@ public class RoleRegisterActivity extends ActionBarActivity implements View.OnCl
                 Intent merchantRegisterIntent=new Intent(RoleRegisterActivity.this,RegisterActivity.class);
                 merchantRegisterIntent.putExtra("falge","merchantUser");
                 startActivity(merchantRegisterIntent);
+                break;
+            case R.id.tailt_return_iv:
+                finish();
                 break;
         }
     }

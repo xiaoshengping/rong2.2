@@ -114,7 +114,7 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
 
     private void intiListView() {
         merchantInviteValueBeans=new ArrayList<MerchantInviteValueBean>();
-        inviteMessagelistAdapter=new MerchantInviteListAdapter(merchantInviteValueBeans,getActivity());
+        inviteMessagelistAdapter=new MerchantInviteListAdapter(merchantInviteValueBeans,getActivity(),merchantInviteMessageLv);
         merchantInviteMessageLv.setAdapter(inviteMessagelistAdapter);
         merchantInviteMessageLv.setMode(PullToRefreshBase.Mode.BOTH);
         merchantInviteMessageLv.setOnRefreshListener(this);

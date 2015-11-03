@@ -71,7 +71,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
 
     private static final int INFOLT_HINT_DATA=7;//公司介绍
     private String uid;
-
+    private String pid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +129,8 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
         Cursor cursor = db.query("user", null, null, null, null, null, null);
 
         while (cursor.moveToNext()) {
-            uid = cursor.getString(0);
+            pid = cursor.getString(1);
+            uid=cursor.getString(0);
 
         }
 
@@ -198,10 +199,10 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
                                              for (int i = 0; i <selectedPicture.size() ; i++) {
                                                  HttpUtils httpUtils=new HttpUtils();
                                                  RequestParams requestParams1=new RequestParams();
-                                                 requestParams1.addBodyParameter("uid",uid);
+                                                 requestParams1.addBodyParameter("pid",pid);
                                                  requestParams1.addBodyParameter("BEicon_file",new File(selectedPicture.get(i)));
 
-                                                 httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getUpdateMerchant(), requestParams1, new RequestCallBack<String>() {
+                                                 httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddBePicture(), requestParams1, new RequestCallBack<String>() {
                                                      @Override
                                                      public void onSuccess(ResponseInfo<String> responseInfo) {
                                                          Log.e("添加商家信息", responseInfo.result);

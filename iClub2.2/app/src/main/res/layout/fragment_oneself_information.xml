@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="10dp"
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.fragment.OneselfInformationFragment">
     <LinearLayout
@@ -323,10 +323,15 @@
         android:textColor="@color/hunTextColor"
         android:paddingLeft="30dp"
         android:paddingRight="20dp"
+
         android:gravity="center_vertical"
         android:background="@color/white"
         android:text="100位商家评论过"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
-
+    <ImageView
+        android:layout_marginBottom="20dp"
+        android:src="@color/editTextPromptColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
 </LinearLayout>

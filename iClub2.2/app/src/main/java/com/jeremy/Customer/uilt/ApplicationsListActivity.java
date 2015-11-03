@@ -71,7 +71,7 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
 
     }
     private void intiListView() {
-        View addView= LayoutInflater.from(this).inflate(R.layout.add_resume_layout,null);
+        View addView= LayoutInflater.from(this).inflate(R.layout.add_resume_layout, null);
         addResumeTv= (TextView) addView.findViewById(R.id.add_resume_tv);
         ListView listView=recruitmentHistoryLv.getRefreshableView();
         listView.addFooterView(addView);
@@ -98,15 +98,17 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
         recruitmentHistoryLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-              Intent intent = new Intent(ApplicationsListActivity.this, MerchantParticularsActivity.class);
+                Intent intent = new Intent(ApplicationsListActivity.this, MerchantParticularsActivity.class);
                 intent.putExtra("recruitmentHistoryValueBean", recruitmentHistoryValueBean.get(position - 1));
-                //intent.putExtra("falgeData", "RecruitmentHistoryFragment");
+                intent.putExtra("position", (position-1)+"");
                 startActivity(intent);
             }
         });
 
         intitData();
-
+        if (recruitmentHistoryValueBean.size()!=0){
+            addResumeTv.setText("继续添加招聘");
+        }
 
     }
 
@@ -179,6 +181,7 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
             case R.id.add_resume_tv:
                 if (!TextUtils.isEmpty(bdName)){
                     Intent intent=new Intent(ApplicationsListActivity.this,AddMerchantActivity.class);
+                    intent.putExtra("fagle","addMerchant");
                     startActivity(intent);
                 }else {
                     Intent intent=new Intent(ApplicationsListActivity.this,MerchantInformationActivity.class);

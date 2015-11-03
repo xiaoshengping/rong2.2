@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.ResumeVideoAdapter;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -52,6 +53,8 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
 
     private ResumeValueBean resumeValueBean;
     private  String videoPath;
+    private LoadingDialog loadingDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +70,7 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
     }
 
     private void initView() {
+        loadingDialog = new LoadingDialog(this,"正在更新数据……");
         resumeValueBean= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBean");
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("添加图片");
@@ -74,9 +78,13 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
         saveText.setOnClickListener(this);
         saveText.setText("上传");
         addVideoBt.setOnClickListener(this);
-        ResumeVideoAdapter resumeVideoAdapter=new ResumeVideoAdapter(resumeValueBean.getResumeMovie(),AddVideoActivity.this);
-        showVideoLv.setAdapter(resumeVideoAdapter);
-        resumeVideoAdapter.notifyDataSetChanged();
+        if (resumeValueBean!=null){
+            ResumeVideoAdapter resumeVideoAdapter=new ResumeVideoAdapter(resumeValueBean.getResumeMovie(),AddVideoActivity.this);
+            showVideoLv.setAdapter(resumeVideoAdapter);
+            resumeVideoAdapter.notifyDataSetChanged();
+        }
+
+
     }
 
 
@@ -87,14 +95,21 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.save_text:
-
+                if (getIntent().getSerializableExtra("fagle").equals("modifactionResume")){
                 if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"")||!TextUtils.isEmpty(videoPath)){
                     addVideoData(resumeValueBean.getResumeid()+"",videoPath);
                 }else {
                     MyAppliction.showExitGameAlert("你还没有选择照片", AddVideoActivity.this);
                 }
+                }else if (getIntent().getSerializableExtra("fagle").equals("productionResume")){
+                    if (!TextUtils.isEmpty(getIntent().getStringExtra("resumeid").toString())||!TextUtils.isEmpty(videoPath)){
+                        addVideoData(getIntent().getStringExtra("resumeid").toString(),videoPath);
+                    }else {
+                        MyAppliction.showExitGameAlert("你还没有选择照片", AddVideoActivity.this);
+                    }
 
-                break;
+                }
+                    break;
             case R.id.add_video_bt:
                 showDialog();
                 break;
@@ -106,15 +121,17 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid",resumeid);
         requestParams.addBodyParameter("movie", new File(moviePath));
+        loadingDialog.show();
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddMovie(),requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
+                loadingDialog.dismiss();
                 finish();
             }
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                loadingDialog.dismiss();
             }
         });
 

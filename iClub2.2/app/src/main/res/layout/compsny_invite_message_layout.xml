@@ -182,7 +182,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     >
-
                     <TextView
 
                         android:layout_marginTop="10dp"
@@ -330,7 +329,7 @@
             android:text="合作评论"
             android:gravity="center"
             android:drawablePadding="15dp"
-            android:drawableLeft="@mipmap/ic_launcher"
+            android:drawableLeft="@mipmap/message_icon"
             android:textSize="@dimen/textSize15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

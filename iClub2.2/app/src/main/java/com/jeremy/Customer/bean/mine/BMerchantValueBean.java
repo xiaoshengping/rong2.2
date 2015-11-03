@@ -1,6 +1,7 @@
 package com.jeremy.Customer.bean.mine;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by xiaoshengping on 2015/6/19.
@@ -12,7 +13,16 @@ public class BMerchantValueBean implements Serializable {
     private String BEweb;
     private String BEaddress;
     private String BEcompanyInfo;
-    private String BEicon;
+    private List<BEpicture> BEpicture;
+
+
+    public List<BEpicture> getBEpicture() {
+        return BEpicture;
+    }
+
+    public void setBEpicture(List<BEpicture> BEpicture) {
+        this.BEpicture = BEpicture;
+    }
 
     public String getBEcompanyInfo() {
         return BEcompanyInfo;
@@ -21,15 +31,6 @@ public class BMerchantValueBean implements Serializable {
     public void setBEcompanyInfo(String BEcompanyInfo) {
         this.BEcompanyInfo = BEcompanyInfo;
     }
-
-    public String getBEicon() {
-        return BEicon;
-    }
-
-    public void setBEicon(String BEicon) {
-        this.BEicon = BEicon;
-    }
-
     public String getBEcompanyName() {
         return BEcompanyName;
     }
@@ -79,7 +80,7 @@ public class BMerchantValueBean implements Serializable {
                 ", BEweb='" + BEweb + '\'' +
                 ", BEaddress='" + BEaddress + '\'' +
                 ", BEcompanyInfo='" + BEcompanyInfo + '\'' +
-                ", BEicon='" + BEicon + '\'' +
+                ", BEpicture=" + BEpicture +
                 '}';
     }
 }

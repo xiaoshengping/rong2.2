@@ -122,7 +122,7 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
 
     private void intiListView() {
         merchantInviteValueBeans=new ArrayList<>();
-        inviteMessagelistAdapter=new MerchantInviteListAdapter(merchantInviteValueBeans,getActivity());
+        inviteMessagelistAdapter=new MerchantInviteListAdapter(merchantInviteValueBeans,getActivity(),merchantInviteMessageLv);
         merchantInviteMessageLv.setAdapter(inviteMessagelistAdapter);
         merchantInviteMessageLv.setMode(PullToRefreshBase.Mode.BOTH);
         merchantInviteMessageLv.setOnRefreshListener(this);

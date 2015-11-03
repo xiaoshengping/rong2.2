@@ -15,6 +15,6 @@
         android:background="@mipmap/red_button_icon"
         android:textColor="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="35dp" />
+        android:layout_height="45dp" />
 
 </LinearLayout>

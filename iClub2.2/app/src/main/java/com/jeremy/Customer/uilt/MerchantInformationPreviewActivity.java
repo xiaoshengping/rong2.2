@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,8 @@ import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.BMerchantValueBean;
+import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -50,6 +53,14 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
     private LinearLayout MerchantMoreLayout;
     @ViewInject(R.id.oneself_more_tv)
     private TextView MerchantMoreTv;
+    @ViewInject(R.id.show_merchant_picture_one)
+    private ImageView showPictureOne;
+    @ViewInject(R.id.show_merchant_picture_two)
+    private ImageView showPictureTwo;
+    @ViewInject(R.id.show_merchant_picture_three)
+    private ImageView showPictureThree;
+    @ViewInject(R.id.show_merchant_picture_four)
+    private ImageView showPictureFour;
 
     private String uid;
     private BMerchantValueBean bMerchantValueBean;
@@ -74,21 +85,26 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
         saveText.setText("编辑");
         saveText.setOnClickListener(this);
         MerchantMoreTv.setOnClickListener(this);
+        showPictureOne.setOnClickListener(this);
+        showPictureTwo.setOnClickListener(this);
+        showPictureThree.setOnClickListener(this);
+        showPictureFour.setOnClickListener(this);
+        MerchantMoreLayout.setOnClickListener(this);
         selectDatabase();
         if (!TextUtils.isEmpty(uid)){
             initData(uid);
         }
-        //Log.e("lines.......",merchantInfoTv.getLineCount()+"");
-        if (merchantInfoTv.getLineCount()>0&&merchantInfoTv.getLineCount()<=4){
-            MerchantMoreLayout.setVisibility(View.GONE);
-            merchantInfoTv.setLines(merchantInfoTv.getLineCount());
-        }else if (merchantInfoTv.getLineCount()==0){
-            MerchantMoreLayout.setVisibility(View.GONE);
-            merchantInfoTv.setText("暂无公司介绍");
-        }else {
-            MerchantMoreLayout.setVisibility(View.VISIBLE);
-            merchantInfoTv.setLines(4);
-        }
+
+        merchantInfoTv.post(new Runnable() {
+            @Override
+            public void run() {
+                if (merchantInfoTv.getLineCount()>4){
+                    merchantInfoTv.setLines(4);
+                }
+
+            }
+        });
+
 
 
     }
@@ -120,49 +136,80 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
     private void initData(String uid) {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
-        requestParams.addBodyParameter("uid",uid);
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAcquireMerchant(),requestParams, new RequestCallBack<String>() {
+        requestParams.addBodyParameter("uid", uid);
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAcquireMerchant(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                ParmeBean<BMerchantValueBean> parmeBean= JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<BMerchantValueBean>>(){});
-                if ( parmeBean.getState().equals("success")){
-                  bMerchantValueBean=parmeBean.getValue();
-                    if (bMerchantValueBean!=null){
+                ParmeBean<BMerchantValueBean> parmeBean = JSONObject.parseObject(responseInfo.result, new TypeReference<ParmeBean<BMerchantValueBean>>() {
+                });
+                if (parmeBean.getState().equals("success")) {
+                    bMerchantValueBean = parmeBean.getValue();
+                    if (bMerchantValueBean != null) {
                         companyNmeTv.setText(bMerchantValueBean.getBEcompanyName());
-                        if (!TextUtils.isEmpty(bMerchantValueBean.getBEphone())){
+                        if (!TextUtils.isEmpty(bMerchantValueBean.getBEphone())) {
                             companyPhoneTv.setText(bMerchantValueBean.getBEphone());
-                        }else {
+                        } else {
                             companyPhoneTv.setText("********");
                         }
-                        if (!TextUtils.isEmpty(bMerchantValueBean.getBEemail())){
+                        if (!TextUtils.isEmpty(bMerchantValueBean.getBEemail())) {
                             companyEmailTv.setText(bMerchantValueBean.getBEemail());
-                        }else {
+                        } else {
                             companyEmailTv.setText("********");
                         }
-                        if (!TextUtils.isEmpty(bMerchantValueBean.getBEweb())){
+                        if (!TextUtils.isEmpty(bMerchantValueBean.getBEweb())) {
                             companyHttpTv.setText(bMerchantValueBean.getBEweb());
-                        }else {
+                        } else {
                             companyHttpTv.setText("********");
                         }
-                        if (!TextUtils.isEmpty(bMerchantValueBean.getBEaddress())){
+                        if (!TextUtils.isEmpty(bMerchantValueBean.getBEaddress())) {
                             companyAdressTv.setText(bMerchantValueBean.getBEaddress());
-                        }else {
+                        } else {
                             companyAdressTv.setText("********");
                         }
 
-                        if (!TextUtils.isEmpty(bMerchantValueBean.getBEcompanyInfo())){
+                        if (!TextUtils.isEmpty(bMerchantValueBean.getBEcompanyInfo())) {
                             merchantInfoTv.setText(bMerchantValueBean.getBEcompanyInfo());
-                        }else {
+                        } else {
                             companyAdressTv.setText("********");
+                        }
+                        if (bMerchantValueBean.getBEpicture().size() != 0) {
+                            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + bMerchantValueBean.getBEpicture().get(0).getPath(), showPictureOne, MyAppliction.options);
+                            if (bMerchantValueBean.getBEpicture().size() > 1) {
+                                MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + bMerchantValueBean.getBEpicture().get(1).getPath(), showPictureTwo, MyAppliction.options);
+                                if (bMerchantValueBean.getBEpicture().size() > 2) {
+                                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + bMerchantValueBean.getBEpicture().get(2).getPath(), showPictureThree, MyAppliction.options);
+                                    if (bMerchantValueBean.getBEpicture().size() > 3) {
+                                        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + bMerchantValueBean.getBEpicture().get(3).getPath(), showPictureFour, MyAppliction.options);
+
+
+                                    } else {
+                                        showPictureFour.setVisibility(View.GONE);
+                                    }
+
+                                } else {
+                                    showPictureThree.setVisibility(View.GONE);
+                                    showPictureFour.setVisibility(View.GONE);
+                                }
+
+                            } else {
+                                showPictureTwo.setVisibility(View.GONE);
+                                showPictureThree.setVisibility(View.GONE);
+                                showPictureFour.setVisibility(View.GONE);
+                            }
+
+
+                        } else {
+                            showPictureOne.setVisibility(View.GONE);
+                            showPictureTwo.setVisibility(View.GONE);
+                            showPictureThree.setVisibility(View.GONE);
+                            showPictureFour.setVisibility(View.GONE);
                         }
 
 
                     }
 
 
-
                 }
-
 
 
             }
@@ -191,9 +238,27 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
                 startActivity(merchantIntent);
                 break;
             case R.id.oneself_more_tv:
-                merchantInfoTv.setLines(merchantInfoTv.getLineCount());
-                break;
+                merchantInfoTv.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        merchantInfoTv.setLines(merchantInfoTv.getLineCount());
 
+                    }
+                });
+                MerchantMoreLayout.setVisibility(View.GONE);
+                break;
+            case R.id.show_merchant_picture_one:
+
+                break;
+            case R.id.show_merchant_picture_two:
+
+                break;
+            case R.id.show_merchant_picture_three:
+
+                break;
+            case R.id.show_merchant_picture_four:
+
+                break;
 
 
         }
@@ -201,4 +266,13 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
 
 
     }
+
+    private void imageBrower(int position,ResumeValueBean urls) {
+        Intent intent = new Intent(MerchantInformationPreviewActivity.this, ImagePagerActivity.class);
+        // 图片url,为了演示这里使用常量，一般从数据库中或网络中获取
+        intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_URLS, urls);
+        intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_INDEX, position);
+        startActivity(intent);
+    }
+
 }

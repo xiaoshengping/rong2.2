@@ -75,4 +75,5 @@
     <string name="title_activity_image_pager">ImagePagerActivity</string>
     <string name="title_activity_merchar_invite_particulars">MercharInviteParticularsActivity
     </string>
+    <string name="title_activity_comment_count">CommentCountActivity</string>
 </resources>

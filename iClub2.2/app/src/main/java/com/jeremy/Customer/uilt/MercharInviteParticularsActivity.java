@@ -1,6 +1,5 @@
 package com.jeremy.Customer.uilt;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -44,8 +43,6 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
     private TextView resumeJobNameIsdTv;
     @ViewInject(R.id.talen_back_iv)
     private ImageView talenBackIv;
-    @ViewInject(R.id.cpmpile_resume_tv)
-    private TextView cpmpileResumeTv;
     @ViewInject(R.id.browse_number_tv)
     private TextView browseNumberTv;
     @ViewInject(R.id.return_tv)
@@ -76,7 +73,7 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
     private void initView() {
         oneselfInformactionRb.setChecked(true);
         talenBackIv.setOnClickListener(this);
-        cpmpileResumeTv.setOnClickListener(this);
+
         returnTv.setOnClickListener(this);
         List<Fragment> listFragment=new ArrayList<>();
         inviteInformationFragment=new InviteInformationFragment();
@@ -99,6 +96,9 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
             resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobCategoryName());
             browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
         }
+
+
+
     }
 
 
@@ -112,14 +112,6 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
             case R.id.return_tv:
                 finish();
                 break;
-            case R.id.cpmpile_resume_tv:
-                Intent intent=new Intent(MercharInviteParticularsActivity.this,ModificationResumeActivity.class);
-                intent.putExtra("resumeValueBeans",resumeValueBeans);
-                intent.putExtra("position",positions);
-                startActivity(intent);
-                break;
-
-
 
         }
     }

@@ -1,6 +1,7 @@
 package com.jeremy.Customer.fragment;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.uilt.CommentCountActivity;
 import com.jeremy.Customer.uilt.ResumeParticularsActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -91,16 +93,10 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
         experienceMoreLayout.setOnClickListener(this);
         oneselfMoreLayout.setOnClickListener(this);
         resumeInfoTv.setOnClickListener(this);
+        commentCountTv.setOnClickListener(this);
 
 
-        if (resumeInfoTv.getLineCount()>0&&resumeInfoTv.getLineCount()<=4){
-            oneselfMoreLayout.setVisibility(View.GONE);
-            resumeInfoTv.setLines(resumeInfoTv.getLineCount());
-        }
-        if (resumeExperienceTv.getLineCount()>0&&resumeExperienceTv.getLineCount()<=4){
-            experienceMoreLayout.setVisibility(View.GONE);
-            resumeExperienceTv.setLines(resumeExperienceTv.getLineCount());
-        }
+
 
 
 
@@ -114,17 +110,30 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.oneself_more_layout:
-                if (resumeInfoTv.getLineCount()>=4){
-                    resumeInfoTv.setLines(resumeInfoTv.getLineCount());
-                    oneselfMoreLayout.setVisibility(View.GONE);
-                }
+                resumeInfoTv.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        resumeInfoTv.setLines(resumeInfoTv.getLineCount());
 
+
+                    }
+                });
+                oneselfMoreLayout.setVisibility(View.GONE);
                 break;
             case R.id.experience_more_layout:
-                if (resumeExperienceTv.getLineCount()>=4){
-                    resumeExperienceTv.setLines(resumeExperienceTv.getLineCount());
-                    experienceMoreLayout.setVisibility(View.GONE);
-                }
+
+                resumeExperienceTv.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        resumeExperienceTv.setLines(resumeExperienceTv.getLineCount());
+                    }
+                });
+                experienceMoreLayout.setVisibility(View.GONE);
+                break;
+            case R.id.commentCount_tv:
+                Intent intent =new Intent(getActivity(), CommentCountActivity.class);
+                startActivity(intent);
+
                 break;
 
 
@@ -161,6 +170,27 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
                         integrityTv.setText(resumeValueBean.getIntegrity()+"");
                         transactionRecordTv.setText(resumeValueBean.getTransactionRecord()+"");
                         commentCountTv.setText(resumeValueBean.getCommentCount()+"位商家评论过");
+
+                        resumeInfoTv.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (resumeInfoTv.getLineCount() > 4) {
+                                    resumeInfoTv.setLines(4);
+                                }
+
+                            }
+                        });
+                        resumeExperienceTv.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (resumeExperienceTv.getLineCount() > 4) {
+                                    resumeExperienceTv.setLines(4);
+                                }
+
+                            }
+                        });
+
+
                     }
 
 

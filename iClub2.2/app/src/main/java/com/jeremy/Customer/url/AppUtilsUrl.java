@@ -193,6 +193,12 @@ public class AppUtilsUrl  {
         return BaseUrl+"getHistoryJobList.action?"+"uid="+uid+"&offset="+offset+"&limit=10";
 
     }
+    //招聘历史
+    public static String getRecruitmentHistoryListOne(){
+        //getHistoryJobList.action
+        return BaseUrl+"getHistoryJobList.action";
+
+    }
 
     //添加招聘
     public static String getAddJod(){
@@ -215,8 +221,8 @@ public class AppUtilsUrl  {
     }
     //获取商家信息
     public static String getAcquireMerchant(){
-        //getBeInfo.action
-        return BaseUrl+"getBeInfo.action";
+        //getBeInfo_V2_2.action
+        return BaseUrl+"getBeInfo_V2_2.action";
 
     }
 
@@ -270,7 +276,7 @@ public class AppUtilsUrl  {
     }
     //商家--修改邀约状态
     public static String getModificationMerchant(){
-        // modifyInviteByPerson.action
+        //modifyInviteByBusiness.action?
         return BaseUrl+"modifyInviteByBusiness.action";
 
     }
@@ -309,11 +315,24 @@ public class AppUtilsUrl  {
 
 
 
+    //添加公司图片
+    public static String getAddBePicture(){
+        // addBePicture.action
+        return BaseUrl+"addBePicture.action";
+
+    }
+
 
     //商家--来自人才的评论
     public static String getResumeCommentData(String personid,int offset){
         // getCommentByBePerson.action
         return BaseUrl+"getCommentByBePerson.action?personid="+personid+"&offset="+offset+"&limit=10";
+
+    }
+
+    public static String getCommentByPersonUid(String uid,int offset){
+        // getCommentByBePerson.action
+        return BaseUrl+"getCommentByPersonUid.action?uid="+uid+"&offset="+offset+"&limit=10";
 
     }
     //商家邀约列表

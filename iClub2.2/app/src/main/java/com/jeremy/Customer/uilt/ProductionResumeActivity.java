@@ -69,16 +69,19 @@ public class ProductionResumeActivity extends ActionBarActivity implements View.
             case R.id.add_picture_tv:
                 Intent picturnIntent=new Intent(ProductionResumeActivity.this,AddPictureActivity.class);
                 picturnIntent.putExtra("resumeid", resumeid);
+                picturnIntent.putExtra("fagle","productionResume");
                 startActivity(picturnIntent);
                 break;
             case R.id.add_video_tv:
                 Intent videoIntent=new Intent(ProductionResumeActivity.this,AddVideoActivity.class);
                 videoIntent.putExtra("resumeid", resumeid);
+                videoIntent.putExtra("fagle","productionResume");
                 startActivity(videoIntent);
                 break;
             case R.id.add_music_tv:
                 Intent musicIntent=new Intent(ProductionResumeActivity.this,AddMusicActivity.class);
                 musicIntent.putExtra("resumeid", resumeid);
+                musicIntent.putExtra("fagle","productionResume");
                 startActivity(musicIntent);
                 break;
 

@@ -11,7 +11,6 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -231,7 +230,7 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
                         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(),requestParams, new RequestCallBack<String >() {
                             @Override
                             public void onSuccess(ResponseInfo<String> responseInfo) {
-                                Log.e("jjdjjff",responseInfo.result);
+                               // Log.e("jjdjjff",responseInfo.result);
                                 finish();
                             }
 
