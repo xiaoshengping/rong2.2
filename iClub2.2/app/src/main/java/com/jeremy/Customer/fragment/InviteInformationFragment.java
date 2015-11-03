@@ -1,6 +1,7 @@
 package com.jeremy.Customer.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.uilt.CommentCountActivity;
 import com.jeremy.Customer.uilt.MercharInviteParticularsActivity;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -50,7 +52,7 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
     private TextView commentCountTv;
 
     private List<ResumeValueBean> resumeValueBeans;
-
+    private ResumeValueBean resumeValueBean;
 
     public InviteInformationFragment() {
         // Required empty public constructor
@@ -79,7 +81,8 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
         experienceMoreLayout.setOnClickListener(this);
         oneselfMoreLayout.setOnClickListener(this);
         resumeInfoTv.setOnClickListener(this);
-        ResumeValueBean resumeValueBean = ((MercharInviteParticularsActivity) getActivity()).getResumeValueBean();
+        commentCountTv.setOnClickListener(this);
+       resumeValueBean = ((MercharInviteParticularsActivity) getActivity()).getResumeValueBean();
            if (resumeValueBean!=null){
 
         resumeInfoTv.setText(resumeValueBean.getResumeInfo());
@@ -147,6 +150,12 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
                 });
 
                 break;
+            case R.id.commentCount_tv:
+                Intent intent =new Intent(getActivity(), CommentCountActivity.class);
+                intent.putExtra("falge","merchar");
+                startActivity(intent);
+                break;
+
 
 
         }

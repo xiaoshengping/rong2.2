@@ -106,9 +106,7 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
         });
 
         intitData();
-        if (recruitmentHistoryValueBean.size()!=0){
-            addResumeTv.setText("继续添加招聘");
-        }
+
 
     }
 
@@ -152,6 +150,10 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
                     if (result!=null){
                         HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<RecruitmentHistoryValueBean>>() {
                         }, recruitmentHistoryValueBean, recruitmentHistoryAdapter);
+
+                        if (recruitmentHistoryValueBean.size()!=0){
+                            addResumeTv.setText("继续添加招聘");
+                        }
                         recruitmentHistoryLv.onRefreshComplete();
                     }
                 }

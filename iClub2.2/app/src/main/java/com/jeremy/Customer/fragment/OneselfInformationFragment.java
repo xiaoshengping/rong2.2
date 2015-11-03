@@ -132,6 +132,7 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
                 break;
             case R.id.commentCount_tv:
                 Intent intent =new Intent(getActivity(), CommentCountActivity.class);
+                intent.putExtra("falge","resume");
                 startActivity(intent);
 
                 break;
