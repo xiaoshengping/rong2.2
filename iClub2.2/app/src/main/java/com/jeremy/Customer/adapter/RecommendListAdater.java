@@ -228,18 +228,18 @@ public class RecommendListAdater extends BaseAdapter {
                 viewPosition.item_position_salary_tv.setText(recruitmentListData.get(position).getWorkPay());
             }
         }
-        if (recruitmentListData.get(position).getWorkingTime() == null) {
+        if (recruitmentListData.get(position).getPuttime() == null) {
         } else {
-            if (recruitmentListData.get(position).getWorkingTime().equals("")) {
+            if (recruitmentListData.get(position).getPuttime().equals("")) {
             } else {
-                viewPosition.item_position_time_tv.setText("工作时间  " + recruitmentListData.get(position).getWorkingTime());
+                viewPosition.item_position_time_tv.setText(recruitmentListData.get(position).getPuttime().toString().substring(5,10));
             }
         }
         if (recruitmentListData.get(position).getWorkPlace() == null) {
         } else {
             if (recruitmentListData.get(position).getWorkPlace().equals("")) {
             } else {
-                viewPosition.item_position_site_tv.setText("地点   " + recruitmentListData.get(position).getWorkPlace());
+                viewPosition.item_position_site_tv.setText(recruitmentListData.get(position).getWorkPlace());
             }
         }
 //        }
