@@ -1,5 +1,6 @@
 package com.jeremy.Customer.uilt;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,6 +25,8 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
+
+import java.util.Calendar;
 
 public class AddMerchantActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -49,9 +53,9 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     @ViewInject(R.id.work_describe_tv)
     private TextView  workDescribeTv;
     @ViewInject(R.id.working_Hours_edit)
-    private EditText workingHoursEdit;
+    private TextView workingHoursEdit;
     @ViewInject(R.id.working_Time_edit)
-    private EditText workingTimeEdit;
+    private TextView workingTimeTt;
 
     @ViewInject(R.id.jobRequirements_layout)
     private LinearLayout jobRequirementsLayout;
@@ -71,7 +75,14 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     /*private AreaBean areaBean = new AreaBean();
     private int job_classfite_num = -1;//职业类别
     private int job_city_num = -1;//工作地点*/
-
+    private DatePickerDialog datePickerDialog;
+    private  int year1;
+    private  int monthOfYear;
+    private  int dayOfMonth;
+    private String  age;
+    private int selectYear;
+    private int selectMonthOfYear;
+    private int selectDayOfMonth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -127,12 +138,27 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 workDescribeTv.setText("写一下职位描述哦(必填)");
                 workDescribeTv.setTextColor(getResources().getColor(R.color.hunTextColor));
             }
-            workingTimeEdit.setText(recruitmentHistoryValueBean.getWorkingTime());
+            workingTimeTt.setOnClickListener(this);
+            workingTimeTt.setText(recruitmentHistoryValueBean.getWorkingTime());
             workingHoursEdit.setText(recruitmentHistoryValueBean.getWorkingHours());
-
             workPayEdit.setText(recruitmentHistoryValueBean.getWorkPay());
             recruitingNumbersEdit.setText(recruitmentHistoryValueBean.getRecruitingNumbers());
         }
+        //获取系统时间
+        Calendar calendar = Calendar.getInstance();
+        year1 = calendar.get(Calendar.YEAR);
+        monthOfYear = calendar.get(Calendar.MONTH);
+        dayOfMonth = calendar.get(Calendar.DATE);
+
+        if (selectYear!=0&&selectMonthOfYear!=0&&selectDayOfMonth!=0){
+            workingTimeTt.setText(selectYear+"-"+(selectMonthOfYear+1)+"-"+selectDayOfMonth);
+            workingTimeTt.setTextColor(getResources().getColor(R.color.textColor242424));
+
+        }else {
+            workingTimeTt.setText(year1+"-"+monthOfYear+"-"+dayOfMonth);
+            workingTimeTt.setTextColor(getResources().getColor(R.color.textColor242424));
+        }
+
 
 
 
@@ -177,7 +203,31 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
 
 
                 break;
+            case R.id.working_Time_edit:
+                datePickerDialogData().show();
+                break;
+
         }
+    }
+
+
+    //日期
+    public DatePickerDialog datePickerDialogData() {
+
+
+        datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                workingTimeTt.setText(year+"-"+(monthOfYear+1)+"-"+dayOfMonth);
+                workingTimeTt.setTextColor(getResources().getColor(R.color.textColor242424));
+
+                selectYear=year;
+                selectMonthOfYear=monthOfYear;
+                selectDayOfMonth =dayOfMonth;
+            }
+        }, year1, monthOfYear, dayOfMonth);
+        return datePickerDialog;
+
     }
 
     @Override

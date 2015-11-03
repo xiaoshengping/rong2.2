@@ -1,6 +1,7 @@
 package com.jeremy.Customer.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,12 @@ public class CommentCountAdapter extends AppBaseAdapter<CommentcountValueBean> {
     private void init(int position) {
 
         viewHolde.commentNeirongTv.setText(data.get(position).getBody());
-        viewHolde.commentBeTv.setText("来自"+data.get(position).getCompanyName());
+        if (!TextUtils.isEmpty(data.get(position).getCompanyName())){
+            viewHolde.commentBeTv.setText("来自"+data.get(position).getCompanyName());
+        }else {
+            viewHolde.commentBeTv.setText("来自无知");
+        }
+
         viewHolde.commentTimeTv.setText(data.get(position).getTime());
 
     }

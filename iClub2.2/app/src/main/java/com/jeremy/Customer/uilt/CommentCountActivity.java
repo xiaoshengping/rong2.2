@@ -80,11 +80,19 @@ public class CommentCountActivity extends ActionBarActivity implements View.OnCl
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         String uid=null;
+        String persoinId=null;
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
-
+            persoinId=cursor.getString(1);
         }
-        String url= AppUtilsUrl.getCommentByPersonUid(uid,offset);
+        String url=null;
+        if (getIntent().getStringExtra("falge").equals("resume")){
+            url= AppUtilsUrl.getCommentByPersonUid(uid,offset);
+        }else if(getIntent().getStringExtra("falge").equals("merchar")){
+            url= AppUtilsUrl.getResumeCommentData(persoinId,offset);
+        }
+
+
         httpUtils.send(HttpRequest.HttpMethod.GET, url, new RequestCallBack<String >() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
