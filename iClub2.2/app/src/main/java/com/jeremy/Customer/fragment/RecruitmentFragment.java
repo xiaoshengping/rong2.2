@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -48,6 +49,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
     private RecommendListAdater adater;
 
     private Button selected_city, selected_position;
+    private ImageButton selected_city_cancel, selected_position_cancel;
     private int citynum = 0;//城市id
     private int jobnum = 0;//城市id
 
@@ -76,6 +78,11 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
         selected_city = (Button) view.findViewById(R.id.selected_city);
         selected_position = (Button) view.findViewById(R.id.selected_position);
 
+        selected_city_cancel = (ImageButton) view.findViewById(R.id.selected_city_cancel);
+        selected_position_cancel = (ImageButton) view.findViewById(R.id.selected_position_cancel);
+        selected_city_cancel.setVisibility(View.GONE);
+        selected_position_cancel.setVisibility(View.GONE);
+
         selected_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +95,40 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), JobChoiceActivity.class);  //方法1
                 startActivityForResult(intent, 0);
+            }
+        });
+        selected_city_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                if(selected_city.getText().toString().equals("选择城市")){
+//                    Intent intent = new Intent(getActivity(), CitySelectionActivity.class);  //方法1
+//                    startActivityForResult(intent, 0);
+//                }else {
+                selected_city.setText("选择城市");
+                selected_city_cancel.setVisibility(View.GONE);
+                citynum = 0;
+                offset = 0;
+                recruitmentListData.clear();
+                recommend_list.onRefreshComplete();
+                recommend_list.setRefreshing(true);
+//                }
+            }
+        });
+        selected_position_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                if(selected_position.getText().toString().equals("选择职位")){
+//                    Intent intent = new Intent(getActivity(), CitySelectionActivity.class);  //方法1
+//                    startActivityForResult(intent, 0);
+//                }else {
+                selected_position.setText("选择职位");
+                selected_position_cancel.setVisibility(View.GONE);
+                jobnum = 0;
+                offset = 0;
+                recruitmentListData.clear();
+                recommend_list.onRefreshComplete();
+                recommend_list.setRefreshing(true);
+//                }
             }
         });
 
@@ -220,10 +261,12 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
             if (city >= 0) {
                 if (city != 0) {
                     selected_city.setText(cName);
+                    selected_city_cancel.setVisibility(View.VISIBLE);
                 } else {
                     selected_city.setText("选择城市");
                 }
                 citynum = city;
+                offset = 0;
                 recruitmentListData.clear();
 
 //                recommend_list.setRefreshing(true);
@@ -235,11 +278,13 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 //        if(job>=0&&job!=10){
             if (job != 0) {
                 selected_position.setText(pName);
+                selected_position_cancel.setVisibility(View.VISIBLE);
             } else {
 
                 selected_position.setText("选择职位");
             }
             jobnum = job;
+            offset = 0;
             recruitmentListData.clear();
         }
 

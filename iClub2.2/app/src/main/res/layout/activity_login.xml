@@ -25,7 +25,6 @@
             android:hint="手机号码"
             android:paddingLeft="10dp"
             android:background="@color/white"
-            android:phoneNumber="true"
             />
 
         <EditText

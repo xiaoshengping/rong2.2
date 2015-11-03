@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,13 +42,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView>{
+public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView> {
 
     private PullToRefreshListView recommend_list;
     private List<TalentValueBean> talentValueBean = new ArrayList<>();
     private RecommendListAdater adater;
 
     private Button selected_city, selected_position;
+    private ImageButton selected_city_cancel, selected_position_cancel;
     private int citynum = 0;//城市id
     private int jobnum = 0;//城市id
 
@@ -75,6 +77,11 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
         selected_city = (Button) view.findViewById(R.id.selected_city);
         selected_position = (Button) view.findViewById(R.id.selected_position);
 
+        selected_city_cancel = (ImageButton) view.findViewById(R.id.selected_city_cancel);
+        selected_position_cancel = (ImageButton) view.findViewById(R.id.selected_position_cancel);
+        selected_city_cancel.setVisibility(View.GONE);
+        selected_position_cancel.setVisibility(View.GONE);
+
         selected_city.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +94,40 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), JobChoiceActivity.class);  //方法1
                 startActivityForResult(intent, 0);
+            }
+        });
+        selected_city_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                if(selected_city.getText().toString().equals("选择城市")){
+//                    Intent intent = new Intent(getActivity(), CitySelectionActivity.class);  //方法1
+//                    startActivityForResult(intent, 0);
+//                }else {
+                selected_city.setText("选择城市");
+                selected_city_cancel.setVisibility(View.GONE);
+                citynum = 0;
+                offset = 0;
+                talentValueBean.clear();
+                recommend_list.onRefreshComplete();
+                recommend_list.setRefreshing(true);
+//                }
+            }
+        });
+        selected_position_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                if(selected_position.getText().toString().equals("选择职位")){
+//                    Intent intent = new Intent(getActivity(), CitySelectionActivity.class);  //方法1
+//                    startActivityForResult(intent, 0);
+//                }else {
+                selected_position.setText("选择职位");
+                selected_position_cancel.setVisibility(View.GONE);
+                jobnum = 0;
+                offset = 0;
+                talentValueBean.clear();
+                recommend_list.onRefreshComplete();
+                recommend_list.setRefreshing(true);
+//                }
             }
         });
 
@@ -118,7 +159,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
 
                 Intent intent = new Intent(getActivity(), TalentsDetailsActivity.class);  //方法1
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("Detail", talentValueBean.get(position-1));
+                bundle.putSerializable("Detail", talentValueBean.get(position - 1));
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -143,12 +184,12 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                     });
                     if (talentValue.getState().equals("success")) {
 
-                        if(talentValue.getTotal()>talentValueBean.size()) {
+                        if (talentValue.getTotal() > talentValueBean.size()) {
                             talentValueBean.addAll(talentValue.getValue());
                             adater.setTalentValueBean(talentValueBean);
                             adater.notifyDataSetChanged();
-                        }else {
-                            Toast.makeText(getActivity(), "以上已为全部内容", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(getActivity(), "以加载全部内容", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -217,30 +258,34 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
             if (city >= 0) {
                 if (city != 0) {
                     selected_city.setText(cName);
+                    selected_city_cancel.setVisibility(View.VISIBLE);
                 } else {
                     selected_city.setText("选择城市");
                 }
                 citynum = city;
+                offset = 0;
                 talentValueBean.clear();
 
 //                recommend_list.setRefreshing(true);
 
             }
-        } else if(resultCode == Identification.JOBCHOICE){
+        } else if (resultCode == Identification.JOBCHOICE) {
             int job = bundle.getInt("Job");
             String pName = bundle.getString("JobName");
 //        if(job>=0&&job!=10){
             if (job != 0) {
                 selected_position.setText(pName);
+                selected_position_cancel.setVisibility(View.VISIBLE);
             } else {
 
                 selected_position.setText("选择职位");
             }
             jobnum = job;
+            offset = 0;
             talentValueBean.clear();
         }
 
-        if(resultCode != Identification.RETURN) {
+        if (resultCode != Identification.RETURN) {
             recommend_list.onRefreshComplete();
             recommend_list.setRefreshing(true);
         }

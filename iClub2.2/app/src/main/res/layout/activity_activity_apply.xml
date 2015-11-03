@@ -22,6 +22,7 @@
 
         <com.jeremy.Customer.view.MyInputBox
             xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+            android:id="@+id/activity_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:input_box_text="名字"
@@ -32,6 +33,7 @@
             android:background="#E9E9E9"/>
         <com.jeremy.Customer.view.MyInputBox
             xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+            android:id="@+id/activity_age"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:input_box_text="年龄"
@@ -42,6 +44,7 @@
             android:background="#E9E9E9"/>
         <com.jeremy.Customer.view.MyInputBox
             xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+            android:id="@+id/activity_sex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:input_box_text="性别"
@@ -52,6 +55,7 @@
             android:background="#E9E9E9"/>
         <com.jeremy.Customer.view.MyInputBox
             xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+            android:id="@+id/activity_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:input_box_text="电话"
@@ -62,6 +66,7 @@
             android:background="#E9E9E9"/>
         <com.jeremy.Customer.view.MyInputBox
             xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+            android:id="@+id/activity_mailbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:input_box_text="邮箱"
@@ -75,6 +80,7 @@
         android:text="完成"
         android:textSize="16sp"
         android:textColor="#ffffff"
-        android:background="@drawable/apply_button_shape"/>
+        android:background="@drawable/apply_button_shape"
+        android:onClick="apply_button"/>
 
 </LinearLayout>

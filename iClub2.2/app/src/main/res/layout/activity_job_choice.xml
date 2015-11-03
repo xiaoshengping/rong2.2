@@ -5,6 +5,17 @@
     android:background="@color/background"
     android:orientation="vertical">
 
+    <com.jeremy.Customer.view.MyTitleBar
+        xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+        android:id="@+id/mytitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_name_text = "选择职业"></com.jeremy.Customer.view.MyTitleBar>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#B9B9B9"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

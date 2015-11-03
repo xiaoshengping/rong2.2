@@ -213,6 +213,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             bitmapUtils.display(activity_picture_riv2, AppUtilsUrl.ImageBaseUrl + activityBean.getValue().get(1).getImage());
                             activity_name_tv1.setText(activityBean.getValue().get(0).getTitle());
                             activity_name_tv2.setText(activityBean.getValue().get(1).getTitle());
+
+//                            AssetManager mgr=getActivity().getAssets();//得到AssetManager
+//                            Typeface tf=Typeface.createFromAsset(mgr, "fonts/asdfa.otf");//根据路径得到Typeface
+//                            activity_name_tv1.setTypeface(tf);//设置字体
+
                         }
 
                     }

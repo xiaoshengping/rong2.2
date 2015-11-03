@@ -48,6 +48,7 @@ public class ActivityDetailActivity extends Activity {
     public void immediately_attend(View v) {
         Intent intent = new Intent();
         intent.setClass(ActivityDetailActivity.this, ActivityApplyActivity.class);
+        intent.putExtra("ActivityId", activityBean.getActivitieid());
         startActivity(intent);
     }
 

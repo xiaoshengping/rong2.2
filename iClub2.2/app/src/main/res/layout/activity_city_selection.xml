@@ -5,6 +5,18 @@
     android:orientation="vertical"
     android:background="#F2F2F2">
 
+    <com.jeremy.Customer.view.MyTitleBar
+        xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+        android:id="@+id/mytitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_name_text = "选择城市"></com.jeremy.Customer.view.MyTitleBar>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#B9B9B9"/>
+
     <LinearLayout
         android:id="@+id/seek_ll"
         android:layout_width="match_parent"

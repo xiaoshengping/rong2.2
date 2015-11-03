@@ -2,7 +2,12 @@ package com.jeremy.Customer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.Build;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +19,7 @@ import com.jeremy.Customer.bean.mine.ResumeMovie;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.BitmapUtils;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -60,7 +66,7 @@ public class VideoAdapter extends BaseAdapter {
         } else {
             viewVideo = (ViewVideo) convertView.getTag();
         }
-
+//        viewVideo.talents_video_button_iv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeMovie.get(position).getPath(),10,10));
 //        bitmapUtils.display(viewVideo.talents_video_back_iv, AppUtilsUrl.ImageBaseUrl + resumeMovie.get);
         viewVideo.talents_video_button_iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +80,39 @@ public class VideoAdapter extends BaseAdapter {
 
         return convertView;
     }
+    private Bitmap createVideoThumbnail(String url, int width, int height) {
+        Bitmap bitmap = null;
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        int kind = MediaStore.Video.Thumbnails.MINI_KIND;
+        try {
+            if (Build.VERSION.SDK_INT >= 14) {
+                retriever.setDataSource(url, new HashMap<String, String>());
+            } else {
+                retriever.setDataSource(url);
+            }
+            bitmap = retriever.getFrameAtTime();
+        } catch (IllegalArgumentException ex) {
+            // Assume this is a corrupt video file
+        } catch (RuntimeException ex) {
+            // Assume this is a corrupt video file.
+        } finally {
+            try {
+                retriever.release();
+            } catch (RuntimeException ex) {
+                // Ignore failures while cleaning up.
+            }
+        }
+        if (kind == MediaStore.Images.Thumbnails.MICRO_KIND && bitmap != null) {
+            bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height,
+                    ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
+        }
+        return bitmap;
+    }
+
+
+
+
+
 
     public class ViewVideo{
 

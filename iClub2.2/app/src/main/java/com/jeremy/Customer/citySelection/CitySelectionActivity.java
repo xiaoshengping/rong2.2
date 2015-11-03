@@ -286,4 +286,13 @@ public class CitySelectionActivity extends Activity implements View.OnClickListe
 
     }
 
+    public void back(View v) {
+        Intent intent = new Intent();
+        intent.putExtra("City", -1);
+        intent.putExtra("CityName", "无");
+                        /*给上一个Activity返回结果*/
+        CitySelectionActivity.this.setResult(Identification.RETURN, intent);
+        CitySelectionActivity.this.finish();
+    }
+
 }

@@ -247,5 +247,14 @@ public class JobChoiceActivity extends Activity implements View.OnClickListener 
 
     }
 
+    public void back(View v) {
+        Intent intent = new Intent();
+        intent.putExtra("City", -1);
+        intent.putExtra("CityName", "无");
+                        /*给上一个Activity返回结果*/
+        JobChoiceActivity.this.setResult(Identification.RETURN, intent);
+        JobChoiceActivity.this.finish();
+    }
+
 }
 

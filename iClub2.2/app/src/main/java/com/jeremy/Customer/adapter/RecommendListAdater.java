@@ -203,6 +203,7 @@ public class RecommendListAdater extends BaseAdapter {
             viewPosition.item_position_salary_tv = (TextView) view.findViewById(R.id.item_position_salary_tv);
             viewPosition.item_position_time_tv = (TextView) view.findViewById(R.id.item_position_time_tv);
             viewPosition.item_position_site_tv = (TextView) view.findViewById(R.id.item_position_site_tv);
+            viewPosition.item_company_name_tv = (TextView)view.findViewById(R.id.item_company_name_tv);
 
             view.setTag(viewPosition);
         } else {
@@ -210,6 +211,8 @@ public class RecommendListAdater extends BaseAdapter {
         }
 
 //        if(position<recruitmentListData.size()) {
+
+        viewPosition.item_company_name_tv.setText(recruitmentListData.get(position).getCompanyName());
 
         if (recruitmentListData.get(position).getPosition() == null) {
         } else {
@@ -281,7 +284,7 @@ public class RecommendListAdater extends BaseAdapter {
     }
 
     public class ViewPosition {
-        private TextView item_position_name_tv, item_position_salary_tv, item_position_time_tv, item_position_site_tv;
+        private TextView item_position_name_tv, item_position_salary_tv, item_position_time_tv, item_position_site_tv,item_company_name_tv;
 
     }
     public class ViewComment {
