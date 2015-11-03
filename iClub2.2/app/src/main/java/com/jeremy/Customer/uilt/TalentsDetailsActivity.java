@@ -40,7 +40,6 @@ import com.jeremy.Customer.bean.mine.ResumeMovie;
 import com.jeremy.Customer.bean.mine.ResumeMusic;
 import com.jeremy.Customer.bean.mine.ResumePicture;
 import com.jeremy.Customer.calendar.CalendarActivity;
-import com.jeremy.Customer.myActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.MusicActivity;
 import com.jeremy.Customer.view.MyGridView;
@@ -106,7 +105,8 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private int head_height;
     private int button_height;
 
-    private Button fanhui_b;
+    private Button fanhui_b, yaoyue_b;
+    private LinearLayout yaoyue_ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +155,6 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
     }
 */
-
 
 
     /**
@@ -355,7 +354,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         individual_works_ll = (LinearLayout) b.findViewById(R.id.individual_works_ll);
         personal_data_ll = (LinearLayout) a.findViewById(R.id.personal_data_ll);
         talents_hear_iv = (ImageView) findViewById(R.id.talents_hear_iv);
-        talents_back_iv = (ImageView)findViewById(R.id.talents_back_iv);
+        talents_back_iv = (ImageView) findViewById(R.id.talents_back_iv);
         talents_name_tv = (TextView) findViewById(R.id.talents_name_tv);
         talents_sex_iv = (ImageView) findViewById(R.id.talents_sex_iv);
         talents_age_tv = (TextView) findViewById(R.id.talents_age_tv);
@@ -374,6 +373,8 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         interspace2_tv = (TextView) b.findViewById(R.id.interspace2_tv);
         head_ll = (LinearLayout) findViewById(R.id.head_ll);
         fanhui_b = (Button) findViewById(R.id.fanhui_b);
+        yaoyue_b = (Button) findViewById(R.id.yaoyue_b);
+        yaoyue_ll = (LinearLayout)findViewById(R.id.yaoyue_ll);
 
         myScrollView1.setOnScrollListener(this);
         myScrollView2.setOnScrollListener(this);
@@ -468,9 +469,11 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         bitmapUtils.display(talents_hear_iv, AppUtilsUrl.ImageBaseUrl + talentValueBean.getUsericon());
         talents_name_tv.setText(talentValueBean.getResumeZhName());
         if (talentValueBean.getResumeSex() == 0) {
-            talents_sex_iv.setImageResource(R.mipmap.man_big);
+            talents_sex_iv.setImageResource(R.mipmap.man);
+            talents_age_tv.setTextColor(0xff0299FE);
         } else {
-            talents_sex_iv.setImageResource(R.mipmap.woman_big);
+            talents_sex_iv.setImageResource(R.mipmap.woman);
+            talents_age_tv.setTextColor(0xffF56F94);
         }
         talents_age_tv.setText(talentValueBean.getResumeAge() + "");
         talents_site_tv.setText(talentValueBean.getResumeWorkPlace());
@@ -488,6 +491,13 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 talents_back_iv.setImageBitmap(Identification.fastblur(TalentsDetailsActivity.this, bitmap, 30));
             }
         }, 300);
+
+//        Animation animation = null;
+//        animation = new TranslateAnimation(0, 0, Identification.dip2px(this, 45), Identification.dip2px(this, 45));
+//        animation.setDuration(100);
+//        animation.setFillAfter(true);
+//        yaoyue_b.setAnimation(animation);
+        yaoyue_b.setVisibility(View.GONE);
 
     }
 
@@ -553,6 +563,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private int ss;
     private int s;
     private boolean ing = false;
+    private boolean yaoyue = false;
 
     @Override
     public void onScroll(int scrollY) {//监听ScrollView滚动进度
@@ -591,10 +602,10 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
             fanhui_b.setAlpha((float) scrollY / (float) button_height);
 
 //            if (mScrollY1 < button_height) {
-                myScrollView1.scrollTo(0, scrollY);
+            myScrollView1.scrollTo(0, scrollY);
 //            }
 //            if (mScrollY2 < button_height) {
-                myScrollView2.scrollTo(0, scrollY);
+            myScrollView2.scrollTo(0, scrollY);
 //            }
             head_move = false;
             head_top = false;
@@ -603,12 +614,77 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
             head_ll.setTranslationY(-button_height);
             fanhui_b.setAlpha(1);
 //            if (mScrollY1 < button_height) {
-                myScrollView1.scrollTo(0, button_height);
+            myScrollView1.scrollTo(0, button_height);
 //            }
 //            if (mScrollY2 < button_height) {
-                myScrollView2.scrollTo(0, button_height);
+            myScrollView2.scrollTo(0, button_height);
 //            }
         }
+
+        //邀约动画
+        if (ss - scrollY > 20) {//向下
+            ss = scrollY;
+            if (!yaoyue && !ing) {
+                ing = true;
+                yaoyue_b.setVisibility(View.VISIBLE);
+                Animation animation = null;
+                animation = new TranslateAnimation(0, 0, Identification.dip2px(this, 45),0);
+                animation.setDuration(100);
+                animation.setFillAfter(true);
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        ing = false;
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                yaoyue_ll.startAnimation(animation);
+
+            }
+            yaoyue = true;
+        } else {
+            if (scrollY - ss > 20) {//向上
+                ss = scrollY;
+                if (yaoyue && !ing) {
+                    ing = true;
+                    Animation animation = null;
+                    animation = new TranslateAnimation(0, 0, 0, Identification.dip2px(this, 45));
+                    animation.setDuration(100);
+                    animation.setFillAfter(true);
+                    animation.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            ing = false;
+                            yaoyue_b.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+
+                        }
+                    });
+
+                    yaoyue_ll.startAnimation(animation);
+                }
+                yaoyue = false;
+            }
+        }
+
+
         /*if (head_top && oldScrollY - scrollY - oldScrollY1 <= 0) {
             s = oldScrollY - scrollY - oldScrollY1;
             head_ll.setTranslationY(s);
@@ -782,8 +858,8 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     //邀约
     public void call_for(View v) {
 
-        Intent intent1 = new Intent(TalentsDetailsActivity.this, myActivity.class);
-        startActivity(intent1);
+//        Intent intent1 = new Intent(TalentsDetailsActivity.this, myActivity.class);
+//        startActivity(intent1);
 
 
         if (TextUtils.isEmpty(states) || states.equals("1")) {

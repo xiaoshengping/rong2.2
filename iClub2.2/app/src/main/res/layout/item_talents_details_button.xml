@@ -3,8 +3,9 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="#F2F2F2">
+    android:background="#F2F2F2"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,27 +17,26 @@
             android:id="@+id/talents_back_iv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/re"
+            android:layout_alignParentTop="true"
             android:background="@drawable/acb"
             android:scaleType="centerCrop"
-            android:src="@drawable/acb"
-            android:layout_alignBottom="@+id/re"
-            android:layout_alignParentTop="true"/>
+            android:src="@mipmap/talents_back" />
 
         <TextView
             android:id="@+id/invite_a_few_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="16dp"
-            android:layout_marginTop="58dp"
+            android:layout_marginRight="22dp"
+            android:layout_marginTop="72dp"
             android:background="@mipmap/page_view"
             android:gravity="center"
             android:text="邀约数\n1236"
             android:textColor="#ffffff"
-            android:textSize="12dp" />
+            android:textSize="9dp" />
 
-        <com.jeremy.Customer.view.RoundAngleImageView
-            xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+        <com.jeremy.Customer.view.RoundAngleImageView xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
             android:id="@+id/talents_hear_iv"
             android:layout_width="76dp"
             android:layout_height="76dp"
@@ -44,7 +44,7 @@
             android:layout_marginTop="50dp"
             android:background="@mipmap/mine_head_default"
             android:scaleType="centerCrop"
-            android:src="@drawable/acb"
+            android:src="@mipmap/default_tvatar"
             app:roundHeight="38dp"
             app:roundWidth="38dp" />
 
@@ -61,28 +61,46 @@
             android:textColor="#ffffff"
             android:textSize="18dp" />
 
-        <ImageView
-            android:id="@+id/talents_sex_iv"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/talents_name_tv"
             android:layout_alignTop="@+id/talents_name_tv"
             android:layout_marginLeft="3dp"
             android:layout_toRightOf="@+id/talents_name_tv"
-            android:src="@mipmap/man_big" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/talents_age_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="7dp"
-            android:text="23"
-            android:textColor="#ffffff"
-            android:textSize="13dp"
-            android:layout_alignBottom="@+id/talents_name_tv"
-            android:layout_alignTop="@+id/talents_name_tv"
-            android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@+id/talents_sex_iv" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/grey_circular_shape"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp">
+
+                <ImageView
+                    android:id="@+id/talents_sex_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:src="@mipmap/man" />
+
+                <TextView
+                    android:id="@+id/talents_age_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/talents_name_tv"
+                    android:layout_alignTop="@+id/talents_name_tv"
+                    android:layout_marginLeft="2dp"
+                    android:layout_toRightOf="@+id/talents_sex_iv"
+                    android:paddingTop="0dp"
+                    android:text="23"
+                    android:textColor="#ffffff"
+                    android:textSize="11dp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/re"
@@ -102,7 +120,7 @@
                 android:layout_toLeftOf="@+id/talents_site_tv"
                 android:text="地点"
                 android:textColor="#ffffff"
-                android:textSize="15dp"/>
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/talents_site_tv"
@@ -112,10 +130,10 @@
                 android:layout_marginRight="16dp"
                 android:layout_toLeftOf="@+id/zhong"
                 android:gravity="center_horizontal"
+                android:paddingBottom="28dp"
                 android:text="广州"
                 android:textColor="#ffffff"
-                android:textSize="15dp"
-                android:paddingBottom="28dp"/>
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/zhong"
@@ -148,6 +166,7 @@
         </RelativeLayout>
 
     </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -160,11 +179,10 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="18dp"
+            android:padding="10dp"
             android:text="个人资料"
             android:textColor="@color/home_more"
-            android:textSize="16sp"
-            />
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/individual_works_button_tv"
@@ -172,20 +190,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:padding="18dp"
+            android:padding="10dp"
             android:text="个人作品"
             android:textColor="@color/home_talents_item_name"
             android:textSize="16sp" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/tooltips_tv"
         android:layout_width="90dp"
-        android:layout_height="1dp"
-        android:background="@color/home_more"
-        android:layout_marginLeft="0dp"/>
+        android:layout_height="2dp"
+        android:layout_marginLeft="0dp"
+        android:background="#8744AD" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="#E1E2E3"/>
+        android:background="#E1E2E3" />
 
 </LinearLayout>
