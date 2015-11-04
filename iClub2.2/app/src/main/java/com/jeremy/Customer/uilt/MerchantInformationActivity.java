@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.mine.BMerchantValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -72,6 +73,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
     private static final int INFOLT_HINT_DATA=7;//公司介绍
     private String uid;
     private String pid;
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
     }
 
     private void initView() {
+        loadingDialog=new LoadingDialog(this,"保存数据.....");
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("添加商家信息");
         saveText.setVisibility(View.VISIBLE);
@@ -189,12 +192,13 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
                             requestParams.addBodyParameter("BEaddress",companyAddress);
                             if (!TextUtils.isEmpty(userOnself)){
                                 requestParams.addBodyParameter("BEcompanyInfo", userOnself);
+                                loadingDialog.show();
                                 httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getUpdateMerchant(), requestParams, new RequestCallBack<String>() {
                                     @Override
                                     public void onSuccess(ResponseInfo<String> responseInfo) {
 
                                          if (selectedPicture.size()!=0){
-                                             Log.e("添加商家信息", selectedPicture.size() + "");
+                                            // Log.e("添加商家信息", selectedPicture.size() + "");
 
                                              for (int i = 0; i <selectedPicture.size() ; i++) {
                                                  HttpUtils httpUtils=new HttpUtils();
@@ -207,12 +211,13 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
                                                      public void onSuccess(ResponseInfo<String> responseInfo) {
                                                          Log.e("添加商家信息", responseInfo.result);
                                                          MyAppliction.showToast("保存成功");
+                                                         loadingDialog.dismiss();
                                                          finish();
                                                      }
 
                                                      @Override
                                                      public void onFailure(HttpException e, String s) {
-
+                                                         loadingDialog.dismiss();
                                                      }
                                                  });
 
@@ -271,10 +276,14 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==0){
-            selectedPicture = (ArrayList<String>) data
-                    .getSerializableExtra(SelectPictureActivity.INTENT_SELECTED_PICTURE);
-            adapter.notifyDataSetChanged();
-            Log.e("selectedPicture",selectedPicture.size()+"");
+           ArrayList<String> list= ((ArrayList<String>)data.getSerializableExtra(SelectPictureActivity.INTENT_SELECTED_PICTURE));
+            if (list!=null&&list.size()!=0){
+                selectedPicture = (ArrayList<String>) data
+                        .getSerializableExtra(SelectPictureActivity.INTENT_SELECTED_PICTURE);
+                adapter.notifyDataSetChanged();
+            }
+
+            //Log.e("selectedPicture",selectedPicture.size()+"");
         }else if (requestCode==INFOLT_HINT_DATA){
             if (data.getStringExtra("infoIntent").toString().equals("notData")){
                 if (userOnselfText.getText().toString().equals("介绍一下自己")){

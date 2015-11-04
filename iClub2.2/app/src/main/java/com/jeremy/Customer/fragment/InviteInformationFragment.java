@@ -4,6 +4,7 @@ package com.jeremy.Customer.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,16 +85,38 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
         commentCountTv.setOnClickListener(this);
        resumeValueBean = ((MercharInviteParticularsActivity) getActivity()).getResumeValueBean();
            if (resumeValueBean!=null){
-
         resumeInfoTv.setText(resumeValueBean.getResumeInfo());
         resumeExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
         resumeQqTv.setText(resumeValueBean.getResumeQq());
         resumeEmailTv.setText(resumeValueBean.getResumeEmail());
         resumeMobileTv.setText(resumeValueBean.getResumeMobile());
-        authenticityTv.setText(resumeValueBean.getAuthenticity() + "");
-        integrityTv.setText(resumeValueBean.getIntegrity() + "");
-        transactionRecordTv.setText(resumeValueBean.getTransactionRecord() + "");
-        commentCountTv.setText(resumeValueBean.getCommentCount() + "位商家评论过");
+
+
+
+
+               if (!TextUtils.isEmpty(resumeValueBean.getTransactionRecord() + "")){
+                   transactionRecordTv.setText(resumeValueBean.getTransactionRecord() + "");
+               }else {
+                   transactionRecordTv.setText("0");
+               }
+
+         if (!TextUtils.isEmpty(resumeValueBean.getIntegrity() + "")){
+                   integrityTv.setText(resumeValueBean.getIntegrity() + "");
+               }else {
+                   integrityTv.setText("0");
+               }
+
+      if (!TextUtils.isEmpty(resumeValueBean.getAuthenticity() + "")){
+          authenticityTv.setText(resumeValueBean.getAuthenticity() + "");
+      }else {
+          authenticityTv.setText("0");
+      }
+       if (!TextUtils.isEmpty(resumeValueBean.getCommentCount()+"")){
+           commentCountTv.setText(resumeValueBean.getCommentCount() + "位商家评论过");
+       }else {
+           commentCountTv.setText("0位商家评论过");
+       }
+
 
            }
         resumeInfoTv.post(new Runnable() {
