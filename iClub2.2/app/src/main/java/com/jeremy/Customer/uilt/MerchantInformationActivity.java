@@ -6,13 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView;
-import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,20 +25,10 @@ import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-
-import java.io.File;
-import java.util.ArrayList;
 
 public class MerchantInformationActivity extends ActionBarActivity implements View.OnClickListener {
 
-    private static final int REQUEST_PICK = 0;
-    private GridView gridview;
-    private GridAdapter adapter;
-    private ArrayList<String> selectedPicture = new ArrayList<String>();
+
 
 
     @ViewInject(R.id.tailt_return_tv)
@@ -74,6 +59,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
     private String uid;
     private String pid;
     private LoadingDialog loadingDialog;
+    private BMerchantValueBean bMerchantValueBean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,9 +86,9 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
         addCompanyImage.setOnClickListener(this);
         oneselfKnownLayout.setOnClickListener(this);
         selectDatabase();
-        intiPictureView();
+
         if (getIntent().getStringExtra("merchantFalg").equals("previewMerchant")){
-          BMerchantValueBean bMerchantValueBean= (BMerchantValueBean) getIntent().getSerializableExtra("bMerchantValueBean");
+         bMerchantValueBean= (BMerchantValueBean) getIntent().getSerializableExtra("bMerchantValueBean");
            if (bMerchantValueBean!=null){
                companyNameEt.setText(bMerchantValueBean.getBEcompanyName());
                companyPhoneEv.setText(bMerchantValueBean.getBEphone());
@@ -115,16 +101,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
 
         }
     }
-    private void intiPictureView() {
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
-                .threadPriority(Thread.NORM_PRIORITY - 2).denyCacheImageMultipleSizesInMemory()
-                .diskCacheFileNameGenerator(new Md5FileNameGenerator()).diskCacheSize(100 * 1024 * 1024)
-                .diskCacheFileCount(300).tasksProcessingOrder(QueueProcessingType.LIFO).build();
-        ImageLoader.getInstance().init(config);
-        gridview = (GridView) findViewById(R.id.gridview);
-        adapter = new GridAdapter();
-        gridview.setAdapter(adapter);
-    }
+
     //查询数据库
     private void selectDatabase() {
         SQLhelper sqLhelper = new SQLhelper(this);
@@ -153,7 +130,15 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
                 saveData();
                 break;
             case R.id.add_company_image:
-                startActivityForResult(new Intent(MerchantInformationActivity.this, SelectPictureActivity.class), REQUEST_PICK);
+                Intent intent=new Intent(MerchantInformationActivity.this,MerchantAddPictrueActivity.class);
+                if (getIntent().getStringExtra("merchantFalg").equals("previewMerchant")){
+                    if (bMerchantValueBean!=null){
+                        intent.putExtra("merchantPictrue",bMerchantValueBean);
+                    }
+
+                }
+
+                startActivity(intent);
                 break;
             case R.id.oneself_known_layout:
                 Intent infoIntent = new Intent(MerchantInformationActivity.this, OneselfExperienceActivity.class);  //方法1
@@ -179,7 +164,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
         String userOnself=userOnselfText.getText().toString();
 
         if (!TextUtils.isEmpty(uid)){
-           requestParams.addBodyParameter("uid",uid);
+           requestParams.addBodyParameter("uid", uid);
             if (!TextUtils.isEmpty(companyName)){
                 requestParams.addBodyParameter("BEcompanyName", companyName);
             if (!TextUtils.isEmpty(companyPhone)){
@@ -197,43 +182,16 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
                                     @Override
                                     public void onSuccess(ResponseInfo<String> responseInfo) {
 
-                                         if (selectedPicture.size()!=0){
-                                            // Log.e("添加商家信息", selectedPicture.size() + "");
 
-                                             for (int i = 0; i <selectedPicture.size() ; i++) {
-                                                 HttpUtils httpUtils=new HttpUtils();
-                                                 RequestParams requestParams1=new RequestParams();
-                                                 requestParams1.addBodyParameter("pid",pid);
-                                                 requestParams1.addBodyParameter("BEicon_file",new File(selectedPicture.get(i)));
+                                        MyAppliction.showToast("保存成功");
+                                        loadingDialog.dismiss();
+                                        finish();
 
-                                                 httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddBePicture(), requestParams1, new RequestCallBack<String>() {
-                                                     @Override
-                                                     public void onSuccess(ResponseInfo<String> responseInfo) {
-                                                         Log.e("添加商家信息", responseInfo.result);
-                                                         MyAppliction.showToast("保存成功");
-                                                         loadingDialog.dismiss();
-                                                         finish();
-                                                     }
-
-                                                     @Override
-                                                     public void onFailure(HttpException e, String s) {
-                                                         loadingDialog.dismiss();
-                                                     }
-                                                 });
-
-
-                                             }
-
-
-                                         }else {
-                                             MyAppliction.showToast("保存成功");
-                                             finish();
-                                         }
                                     }
 
                                     @Override
                                     public void onFailure(HttpException e, String s) {
-                                        Log.e("添加商家信息onFailure", s);
+                                        loadingDialog.dismiss();
                                     }
                                 });
                             }else {
@@ -275,7 +233,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==0){
+       /* if (requestCode==0){
            ArrayList<String> list= ((ArrayList<String>)data.getSerializableExtra(SelectPictureActivity.INTENT_SELECTED_PICTURE));
             if (list!=null&&list.size()!=0){
                 selectedPicture = (ArrayList<String>) data
@@ -284,7 +242,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
             }
 
             //Log.e("selectedPicture",selectedPicture.size()+"");
-        }else if (requestCode==INFOLT_HINT_DATA){
+        }else*/ if (requestCode==INFOLT_HINT_DATA){
             if (data.getStringExtra("infoIntent").toString().equals("notData")){
                 if (userOnselfText.getText().toString().equals("介绍一下自己")){
                     userOnselfText.setText("介绍一下自己");
@@ -311,36 +269,6 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
         }
 
     }
-    class GridAdapter extends BaseAdapter {
-        AbsListView.LayoutParams params = new AbsListView.LayoutParams(250, 250);
 
-        @Override
-        public int getCount() {
-            return selectedPicture.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView = new ImageView(MerchantInformationActivity.this);
-                ((ImageView) convertView).setScaleType(ImageView.ScaleType.CENTER_CROP);
-                convertView.setLayoutParams(params);
-            }
-            ImageLoader.getInstance().displayImage("file://" + selectedPicture.get(position),
-                    (ImageView) convertView);
-            return convertView;
-        }
-
-    }
 
 }

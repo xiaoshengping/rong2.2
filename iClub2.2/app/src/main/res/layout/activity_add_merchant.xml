@@ -153,9 +153,9 @@
                             android:textSize="@dimen/textSize14"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
-                        <TextView
+                          <TextView
                             android:id="@+id/working_Hours_edit"
-                            android:hint="必填"
+                            android:hint="选择工作时长"
                             android:drawableRight="@mipmap/downward_icon"
                             android:paddingRight="30dp"
                             android:textColorHint="@color/editTextPromptColor"
@@ -249,10 +249,10 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="20dp"
                         android:textColor="@color/editTextPromptColor"
                         android:textSize="@dimen/textSize15"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <ImageView
                         android:src="@color/lineColor"
@@ -283,14 +283,14 @@
                         android:layout_height="wrap_content" />
                     <TextView
                         android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="20dp"
                         android:id="@+id/work_describe_tv"
                         android:text="写一下职位描述哦(必填)"
                         android:textColor="@color/editTextPromptColor"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"
                         android:textSize="@dimen/textSize15"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
                     <ImageView
                         android:src="@color/lineColor"

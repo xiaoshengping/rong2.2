@@ -8,12 +8,16 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bigkoo.alertview.AlertView;
+import com.bigkoo.alertview.OnItemClickListener;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.mine.RecruitmentHistoryValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -26,7 +30,9 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class AddMerchantActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -62,8 +68,10 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     @ViewInject(R.id.jobInfo_layout)
     private LinearLayout jobInfoLayout;
 
-    private  String merchantWork;
-    private String merchantInfo;
+
+    private List<String> data_list;
+    private ArrayAdapter<String> arr_adapter;
+
 
     private RecruitmentHistoryValueBean recruitmentHistoryValueBean;
     private  String uid=null;
@@ -83,6 +91,10 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     private int selectYear;
     private int selectMonthOfYear;
     private int selectDayOfMonth;
+
+    private String workingHours;
+    private String workingTime;
+    private LoadingDialog loadingDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,10 +116,25 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         }
         cursor.close();
         db.close();
-
+        initSpinnt();
 
     }
+
+   private void initSpinnt() {
+        //数据
+        data_list = new ArrayList<String>();
+        data_list.add("全职");
+        data_list.add("1天内");
+        data_list.add("3天内");
+        data_list.add("5天内");
+        data_list.add("7天内");
+        data_list.add("15天内");
+        data_list.add("30天内");
+        data_list.add("30天以上");
+    }
+
     private void intiView() {
+        loadingDialog=new LoadingDialog(this,"保存数据.....");
         httpUtils=new HttpUtils();
         intent=getIntent();
         tailtReturnTv.setOnClickListener(this);
@@ -119,6 +146,8 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         jobInfoLayout.setOnClickListener(this);
         professionClassfitionTv.setOnClickListener(this);
         workAddressTv.setOnClickListener(this);
+        workingHoursEdit.setOnClickListener(this);
+        workingTimeTt.setOnClickListener(this);
         recruitmentHistoryValueBean= (RecruitmentHistoryValueBean) intent.getSerializableExtra("recruitmentHistoryValueBean");
         if (recruitmentHistoryValueBean!=null){
             workAddressTv.setText(recruitmentHistoryValueBean.getWorkPlace());
@@ -138,7 +167,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 workDescribeTv.setText("写一下职位描述哦(必填)");
                 workDescribeTv.setTextColor(getResources().getColor(R.color.hunTextColor));
             }
-            workingTimeTt.setOnClickListener(this);
+
             workingTimeTt.setText(recruitmentHistoryValueBean.getWorkingTime());
             workingHoursEdit.setText(recruitmentHistoryValueBean.getWorkingHours());
             workPayEdit.setText(recruitmentHistoryValueBean.getWorkPay());
@@ -205,6 +234,17 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 break;
             case R.id.working_Time_edit:
                 datePickerDialogData().show();
+                break;
+            case R.id.working_Hours_edit:
+                new AlertView(null, null, null, null,new String[]{"全职", "1天内", "3天内", "5天内", "7天内", "15天内",
+                                "30天内", "30天内以上"},
+                        this, AlertView.Style.Alert, new OnItemClickListener(){
+                    public void onItemClick(Object o,int position){
+                        workingHours= data_list.get(position);
+                        workingHoursEdit.setText(data_list.get(position));
+                    }
+
+                    }).show();
                 break;
 
         }
@@ -287,6 +327,12 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
 
     private void intiEditData() {
         RequestParams requestParams=new RequestParams();
+        if (!TextUtils.isEmpty(selectYear+"")&&!TextUtils.isEmpty(selectMonthOfYear+"")&&!TextUtils.isEmpty(selectDayOfMonth+"")){
+            workingTime=selectYear+"-"+selectMonthOfYear+"-"+selectDayOfMonth;
+        }else {
+            workingTime=recruitmentHistoryValueBean.getWorkingTime();
+        }
+
         String position=positionEdit.getText().toString();
         String workPay=workPayEdit.getText().toString();
         String recruitingNumbers=recruitingNumbersEdit.getText().toString();
@@ -301,14 +347,16 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             requestParams.addBodyParameter("recruitingNumbers", recruitingNumbers);
             requestParams.addBodyParameter("jobRequirements", workDescribeTv.getText().toString());
             requestParams.addBodyParameter("jobInfo", experienceRequireTv.getText().toString());
-            MyAppliction.showToast("正在保存数据......");
-
+            requestParams.addBodyParameter("workingHours", workingHours);
+            requestParams.addBodyParameter("workingTime", workingTime);
+            loadingDialog.show();
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getEditJod(),requestParams, new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
                     // Log.e("result",responseInfo.result);
                     if (responseInfo.result!=null){
                         MyAppliction.showToast("保存数据成功");
+                        loadingDialog.dismiss();
                         finish();
                     }
 
@@ -318,6 +366,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 public void onFailure(HttpException e, String s) {
 
                     MyAppliction.showToast("网络请求超时");
+                    loadingDialog.dismiss();
                 }
             });
 
@@ -338,6 +387,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
 
     private void intiData() {
         RequestParams requestParams = new RequestParams();
+        workingTime=selectYear+"-"+selectMonthOfYear+"-"+selectDayOfMonth;
         String position = positionEdit.getText().toString();
         String workPay = workPayEdit.getText().toString();
         String recruitingNumbers = recruitingNumbersEdit.getText().toString();
@@ -345,7 +395,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         String merchantWork=workDescribeTv.getText().toString();
         if (!TextUtils.isEmpty(position) && !TextUtils.isEmpty(workPay) && !TextUtils.isEmpty(merchantWork)
                 && !TextUtils.isEmpty(merchantInfo) && !TextUtils.isEmpty(recruitingNumbers)) {
-            requestParams.addBodyParameter("uid", uid);
+
             requestParams.addBodyParameter("jobCategory", 2 + "");
             requestParams.addBodyParameter("cityid", 1+"");
             requestParams.addBodyParameter("position", position);
@@ -353,21 +403,24 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             requestParams.addBodyParameter("recruitingNumbers", recruitingNumbers);
             requestParams.addBodyParameter("jobRequirements", merchantWork);
             requestParams.addBodyParameter("jobInfo", merchantInfo);
-            MyAppliction.showToast("正在保存数据......");
-
+            requestParams.addBodyParameter("workingHours", workingHours);
+            requestParams.addBodyParameter("workingTime", workingTime);
+            loadingDialog.show();
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddJod(), requestParams, new RequestCallBack<String>() {
                 @Override
                 public void onSuccess(ResponseInfo<String> responseInfo) {
                     if (responseInfo.result != null) {
                         MyAppliction.showToast("保存数据成功");
+                        loadingDialog.dismiss();
                         finish();
+
                     }
 
                 }
 
                 @Override
                 public void onFailure(HttpException e, String s) {
-
+                    loadingDialog.dismiss();
 
                 }
             });
@@ -380,4 +433,6 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         }
     }
 
-    }
+
+
+}
