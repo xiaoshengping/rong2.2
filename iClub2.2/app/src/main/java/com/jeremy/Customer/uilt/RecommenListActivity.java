@@ -119,9 +119,9 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
         recommend_list.setOnRefreshListener(this);
         ILoadingLayout endLabels = recommend_list
                 .getLoadingLayoutProxy(false, true);
-        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
-        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
-        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        endLabels.setPullLabel("上拉加载...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在加载...");// 刷新时
+        endLabels.setReleaseLabel("放开加载...");// 下来达到一定距离时，显示的提示
         ILoadingLayout startLabels = recommend_list
                 .getLoadingLayoutProxy(true, false);
         startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
@@ -152,7 +152,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                                 adater.setActivityBean(activityData);
                                 adater.notifyDataSetChanged();
                             } else {
-                                Toast.makeText(RecommenListActivity.this, "以上已为全部内容", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RecommenListActivity.this, "已加载全部内容", Toast.LENGTH_LONG).show();
                             }
 
                         }
@@ -189,9 +189,9 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
         recommend_list.setOnRefreshListener(this);
         ILoadingLayout endLabels = recommend_list
                 .getLoadingLayoutProxy(false, true);
-        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
-        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
-        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        endLabels.setPullLabel("上拉加载...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在加载...");// 刷新时
+        endLabels.setReleaseLabel("放开加载...");// 下来达到一定距离时，显示的提示
         ILoadingLayout startLabels = recommend_list
                 .getLoadingLayoutProxy(true, false);
         startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
@@ -226,7 +226,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                             adater.setTalentValueBean(talentValueBean);
                             adater.notifyDataSetChanged();
                         } else {
-                            Toast.makeText(RecommenListActivity.this, "以上已为全部内容", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RecommenListActivity.this, "已加载全部内容", Toast.LENGTH_LONG).show();
                         }
 
                     }
@@ -262,9 +262,9 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
         recommend_list.setOnRefreshListener(this);
         ILoadingLayout endLabels = recommend_list
                 .getLoadingLayoutProxy(false, true);
-        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
-        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
-        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        endLabels.setPullLabel("上拉加载...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在加载...");// 刷新时
+        endLabels.setReleaseLabel("放开加载...");// 下来达到一定距离时，显示的提示
         ILoadingLayout startLabels = recommend_list
                 .getLoadingLayoutProxy(true, false);
         startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
@@ -298,7 +298,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                             adater.setCommentBean(commentDate);
                             adater.notifyDataSetChanged();
                         } else {
-                            Toast.makeText(RecommenListActivity.this, "以上已为全部内容", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RecommenListActivity.this, "已加载全部内容", Toast.LENGTH_LONG).show();
                         }
 
 
@@ -368,9 +368,9 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
         recommend_list.setOnRefreshListener(this);
         ILoadingLayout endLabels = recommend_list
                 .getLoadingLayoutProxy(false, true);
-        endLabels.setPullLabel("上拉刷新...");// 刚下拉时，显示的提示
-        endLabels.setRefreshingLabel("正在刷新...");// 刷新时
-        endLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
+        endLabels.setPullLabel("上拉加载...");// 刚下拉时，显示的提示
+        endLabels.setRefreshingLabel("正在加载...");// 刷新时
+        endLabels.setReleaseLabel("放开加载...");// 下来达到一定距离时，显示的提示
         ILoadingLayout startLabels = recommend_list
                 .getLoadingLayoutProxy(true, false);
         startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
@@ -419,7 +419,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                             adater.setRecruitmentListData(recruitmentListData);
                             adater.notifyDataSetChanged();
                         } else {
-                            Toast.makeText(RecommenListActivity.this, "以上已为全部内容", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RecommenListActivity.this, "已加载全部内容", Toast.LENGTH_LONG).show();
                         }
 
                     }

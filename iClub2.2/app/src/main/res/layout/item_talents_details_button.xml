@@ -19,9 +19,8 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/re"
             android:layout_alignParentTop="true"
-            android:background="@drawable/acb"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/talents_back" />
+            android:background="@mipmap/talents_back"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/invite_a_few_tv"

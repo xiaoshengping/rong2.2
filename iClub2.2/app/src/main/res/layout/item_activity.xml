@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_height2"
         android:layout_marginTop="0dp"
-        android:background="#000000"
+        android:background="@mipmap/huodongmore"
         app:roundHeight="0dp"
         app:roundWidth="0dp" />
 

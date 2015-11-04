@@ -37,6 +37,7 @@
             android:textSize="@dimen/home_more" />
     </LinearLayout>
 
+
     <LinearLayout
         android:id="@+id/item_position_ll1"
         android:layout_width="match_parent"
@@ -85,7 +86,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="工作时间  09-02  10:00"
+                android:text="工作时间  待定"
                 android:textColor="@color/position_item_rest"
                 android:textSize="@dimen/position_item_rest" />
 
@@ -147,7 +148,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="工作时间  09-02  10:00"
+                android:text="工作时间  待定"
                 android:textColor="@color/position_item_rest"
                 android:textSize="@dimen/position_item_rest" />
 
@@ -209,7 +210,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="工作时间  09-02  10:00"
+                android:text="工作时间  待定"
                 android:textColor="@color/position_item_rest"
                 android:textSize="@dimen/position_item_rest" />
 
@@ -222,6 +223,128 @@
                 android:textSize="@dimen/position_item_rest" />
         </LinearLayout>
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/item_position_ll4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="#FDFBFC"
+        android:orientation="vertical"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_position_name_tv4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_weight="1"
+                android:text="酒吧singer"
+                android:textColor="@color/position_item_name"
+                android:textSize="@dimen/position_item_name" />
+
+            <TextView
+                android:id="@+id/item_position_salary_tv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6000-8000元"
+                android:textColor="@color/position_item_salary"
+                android:textSize="@dimen/position_item_salary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_position_time_tv4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="工作时间  待定"
+                android:textColor="@color/position_item_rest"
+                android:textSize="@dimen/position_item_rest" />
+
+            <TextView
+                android:id="@+id/item_position_site_tv4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="地点  广州"
+                android:textColor="@color/position_item_rest"
+                android:textSize="@dimen/position_item_rest" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/item_position_ll5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1px"
+        android:background="#FDFBFC"
+        android:orientation="vertical"
+        android:paddingBottom="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="15dp"
+        android:paddingTop="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_position_name_tv5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp"
+                android:layout_weight="1"
+                android:text="酒吧singer"
+                android:textColor="@color/position_item_name"
+                android:textSize="@dimen/position_item_name" />
+
+            <TextView
+                android:id="@+id/item_position_salary_tv5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="6000-8000元"
+                android:textColor="@color/position_item_salary"
+                android:textSize="@dimen/position_item_salary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_position_time_tv5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="工作时间  待定"
+                android:textColor="@color/position_item_rest"
+                android:textSize="@dimen/position_item_rest" />
+
+            <TextView
+                android:id="@+id/item_position_site_tv5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="地点  广州"
+                android:textColor="@color/position_item_rest"
+                android:textSize="@dimen/position_item_rest" />
+        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

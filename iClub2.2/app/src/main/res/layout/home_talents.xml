@@ -53,16 +53,17 @@
                 android:id="@+id/recommend_the_virtuous_and_able_riv1"
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="#000000"
+                android:background="@mipmap/default_tvatar"
                 app:roundWidth = "@dimen/home_talents_headportrait_radius"
                 app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:scaleType="centerCrop"
                 android:layout_marginTop="3dp"
                 android:layout_margin="6dp"/>
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="啦啦啦"
+                android:text=""
                 android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
                 android:layout_marginBottom="5dp"/>
@@ -71,16 +72,17 @@
                 android:id="@+id/recommend_the_virtuous_and_able_riv4"
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="#000000"
+                android:background="@mipmap/default_tvatar"
                 app:roundWidth = "@dimen/home_talents_headportrait_radius"
                 app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:scaleType="centerCrop"
                 android:layout_marginTop="3dp"
                 android:layout_margin="6dp"/>
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="啦啦啦"
+                android:text=""
                 android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
                 android:layout_marginBottom="5dp"/>
@@ -96,16 +98,17 @@
                 android:id="@+id/recommend_the_virtuous_and_able_riv2"
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="#000000"
+                android:background="@mipmap/default_tvatar"
                 app:roundWidth = "@dimen/home_talents_headportrait_radius"
                 app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:scaleType="centerCrop"
                 android:layout_marginTop="3dp"
                 android:layout_margin="6dp"/>
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="啦啦啦"
+                android:text=""
                 android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
                 android:layout_marginBottom="5dp"/>
@@ -114,16 +117,17 @@
                 android:id="@+id/recommend_the_virtuous_and_able_riv5"
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="#000000"
+                android:background="@mipmap/default_tvatar"
                 app:roundWidth = "@dimen/home_talents_headportrait_radius"
                 app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:scaleType="centerCrop"
                 android:layout_marginTop="3dp"
                 android:layout_margin="6dp"/>
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="啦啦啦"
+                android:text=""
                 android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
                 android:layout_marginBottom="5dp"/>
@@ -139,16 +143,17 @@
                 android:id="@+id/recommend_the_virtuous_and_able_riv3"
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="#000000"
+                android:background="@mipmap/default_tvatar"
                 app:roundWidth = "@dimen/home_talents_headportrait_radius"
                 app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:scaleType="centerCrop"
                 android:layout_marginTop="3dp"
                 android:layout_margin="6dp"/>
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="啦啦啦"
+                android:text=""
                 android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
                 android:layout_marginBottom="5dp"/>
@@ -157,16 +162,17 @@
                 android:id="@+id/recommend_the_virtuous_and_able_riv6"
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="#000000"
+                android:background="@mipmap/default_tvatar"
                 app:roundWidth = "@dimen/home_talents_headportrait_radius"
                 app:roundHeight = "@dimen/home_talents_headportrait_radius"
+                android:scaleType="centerCrop"
                 android:layout_marginTop="3dp"
                 android:layout_margin="6dp"/>
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="啦啦啦"
+                android:text=""
                 android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
                 android:layout_marginBottom="5dp"/>

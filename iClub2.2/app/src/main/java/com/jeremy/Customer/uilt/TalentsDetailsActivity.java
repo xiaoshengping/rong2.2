@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -29,10 +30,14 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.MusicAdapter;
 import com.jeremy.Customer.adapter.PictureAdapter;
 import com.jeremy.Customer.adapter.VideoAdapter;
+import com.jeremy.Customer.bean.ArtistParme;
+import com.jeremy.Customer.bean.CommentBean;
 import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.TalentValueBean;
 import com.jeremy.Customer.bean.Utility;
@@ -46,9 +51,15 @@ import com.jeremy.Customer.view.MyGridView;
 import com.jeremy.Customer.view.MyScrollView;
 import com.jeremy.Customer.view.SpaceImageDetailActivity;
 import com.lidroid.xutils.BitmapUtils;
+import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 
 public class TalentsDetailsActivity extends Activity implements View.OnClickListener, MyScrollView.OnScrollListener {
@@ -107,6 +118,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
     private Button fanhui_b, yaoyue_b;
     private LinearLayout yaoyue_ll;
+    Timer timer = new Timer();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -374,7 +386,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         head_ll = (LinearLayout) findViewById(R.id.head_ll);
         fanhui_b = (Button) findViewById(R.id.fanhui_b);
         yaoyue_b = (Button) findViewById(R.id.yaoyue_b);
-        yaoyue_ll = (LinearLayout)findViewById(R.id.yaoyue_ll);
+        yaoyue_ll = (LinearLayout) findViewById(R.id.yaoyue_ll);
 
         myScrollView1.setOnScrollListener(this);
         myScrollView2.setOnScrollListener(this);
@@ -382,7 +394,6 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 //        individual_works_button_tv1.setOnClickListener(this);
         self_introduction_button_tv.setOnClickListener(this);
         work_experience_button_tv.setOnClickListener(this);
-        comment_button_tv.setOnClickListener(this);
 
         fanhui_b.setAlpha(0);
 
@@ -407,9 +418,12 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         ViewTreeObserver vto1 = personal_data_ll.getViewTreeObserver();
         vto1.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             public boolean onPreDraw() {
+                Rect frame = new Rect();
+                getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+                int statusBarHeight = frame.top;
                 int h = personal_data_ll.getMeasuredHeight();
-                if (h < height) {
-                    personal_data_ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height));
+                if (h < height + button_height - head_height - statusBarHeight) {
+                    personal_data_ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height + button_height - head_height - statusBarHeight));
                 }
                 return true;
             }
@@ -417,9 +431,12 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         ViewTreeObserver vto2 = individual_works_ll.getViewTreeObserver();
         vto2.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             public boolean onPreDraw() {
+                Rect frame = new Rect();
+                getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+                int statusBarHeight = frame.top;
                 int h = individual_works_ll.getMeasuredHeight();
-                if (h < height) {
-                    individual_works_ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (height)));
+                if (h < height + button_height - head_height - statusBarHeight) {
+                    individual_works_ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (height + button_height - head_height - statusBarHeight)));
                 }
                 return true;
             }
@@ -464,9 +481,12 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         });
 
         //加载数据
-        bitmapUtils.display(talents_back_iv, AppUtilsUrl.ImageBaseUrl + talentValueBean.getUsericon());
+        if(talentValueBean.getUsericon().equals("")) {}else {
+            bitmapUtils.display(talents_back_iv, AppUtilsUrl.ImageBaseUrl + talentValueBean.getUsericon());
+            bitmapUtils.display(talents_hear_iv, AppUtilsUrl.ImageBaseUrl + talentValueBean.getUsericon());
+            maoboli();
+        }
         invite_a_few_tv.setText("邀约数\n" + talentValueBean.getInviteCount());
-        bitmapUtils.display(talents_hear_iv, AppUtilsUrl.ImageBaseUrl + talentValueBean.getUsericon());
         talents_name_tv.setText(talentValueBean.getResumeZhName());
         if (talentValueBean.getResumeSex() == 0) {
             talents_sex_iv.setImageResource(R.mipmap.man);
@@ -483,15 +503,6 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         talents_reputation_tv.setText(talentValueBean.getIntegrity() + "\n" + talentValueBean.getAuthenticity() + "\n" + talentValueBean.getTransactionRecord());
 
 
-        new Handler().postDelayed(new Runnable() {
-            public void run() {
-                //execute the task
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) talents_back_iv.getDrawable();
-                bitmap = bitmapDrawable.getBitmap();
-                talents_back_iv.setImageBitmap(Identification.fastblur(TalentsDetailsActivity.this, bitmap, 30));
-            }
-        }, 300);
-
 //        Animation animation = null;
 //        animation = new TranslateAnimation(0, 0, Identification.dip2px(this, 45), Identification.dip2px(this, 45));
 //        animation.setDuration(100);
@@ -499,7 +510,91 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 //        yaoyue_b.setAnimation(animation);
         yaoyue_b.setVisibility(View.GONE);
 
+        //获取评论
+        HttpUtils httpUtils = new HttpUtils();
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(talentValueBean.getResumeid(), "getCommentByPerson.action?resumeid=", 0), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result = responseInfo.result;
+                if (result != null) {
+                    ArtistParme<CommentBean> commentBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<CommentBean>>() {
+                    });
+                    if (commentBean.getState().equals("success")) {
+                        if (commentBean.getTotal() > 0) {
+                            comment_button_tv.setText(commentBean.getTotal() + "位商家评论过");
+                            comment_button_tv.setOnClickListener(TalentsDetailsActivity.this);
+                        } else {
+                            comment_button_tv.setText("还没有商家进行评论哦~");
+                            comment_button_tv.setTextColor(0xff777778);
+                        }
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+//                reputation_tipe_tv.setTextColor(0xffDEDDE2);
+//                reputation_tipe_tv.setText("网路异常，请稍后再试！");
+            }
+        });
+
+
     }
+
+    private void maoboli() {
+        new Handler().postDelayed(new Runnable() {
+            public void run() {
+                try {
+                    BitmapDrawable bitmapDrawable = (BitmapDrawable) talents_back_iv.getDrawable();
+                    bitmap = bitmapDrawable.getBitmap();
+                    talents_back_iv.setImageBitmap(Identification.fastblur(TalentsDetailsActivity.this, bitmap, 30));
+//                        timer.cancel();
+                } catch (Exception e) {
+                    maoboli();
+                }
+//                BitmapDrawable bitmapDrawable = (BitmapDrawable) talents_back_iv.getDrawable();
+//                bitmap = bitmapDrawable.getBitmap();
+//                talents_back_iv.setImageBitmap(Identification.fastblur(TalentsDetailsActivity.this, bitmap, 30));
+            }
+        }, 100);
+    }
+
+//    TimerTask task = new TimerTask() {
+//        @Override
+//        public void run() {
+//
+//            runOnUiThread(new Runnable() {      // UI thread
+//                @Override
+//                public void run() {
+////                    fdgsdfg
+////                    if (talents_back_iv.getDrawable() != null) {
+//                    try{
+//                        BitmapDrawable bitmapDrawable = (BitmapDrawable) talents_back_iv.getDrawable();
+//                        bitmap = bitmapDrawable.getBitmap();
+//                        talents_back_iv.setImageBitmap(Identification.fastblur(TalentsDetailsActivity.this, bitmap, 30));
+//                        timer.cancel();
+//                    }catch(Exception e){
+//
+//                    }
+//
+////                    }
+////                    if(HomeFragment.getStart()%4 ==0){
+////                        HomeFragment.setSV();
+//
+////                        loadingDialog.dismiss();
+////                    }else if(HomeFragment.getStart() < 0){
+////                        timer.cancel();
+////                        loadingDialog.dismiss();
+////                        dialog();
+////                    }
+//
+//                }
+//            });
+//        }
+//    };
 
 
     //初始化视频作品
@@ -539,7 +634,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private void initPictureProduction(View b) {
         picture_production_list = (MyGridView) b.findViewById(R.id.picture_production_list);
         resumePicture = talentValueBean.getResumePicture();
-        PictureAdapter pictureAdapter = new PictureAdapter(this, resumePicture);
+        PictureAdapter pictureAdapter = new PictureAdapter(this, resumePicture, (int) (width / 3) - Identification.dip2px(this, 6));
         picture_production_list.setAdapter(pictureAdapter);
 
         picture_production_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -548,7 +643,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 Intent intent = new Intent(TalentsDetailsActivity.this, SpaceImageDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putParcelableArrayList("list", (ArrayList) resumePicture);
-                bundle.putInt("num", 2);
+                bundle.putInt("num", position);
                 bundle.putInt("MaxNum", resumePicture.size());
                 intent.putExtras(bundle);
                 startActivity(intent);
@@ -628,7 +723,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 ing = true;
                 yaoyue_b.setVisibility(View.VISIBLE);
                 Animation animation = null;
-                animation = new TranslateAnimation(0, 0, Identification.dip2px(this, 45),0);
+                animation = new TranslateAnimation(0, 0, Identification.dip2px(this, 45), 0);
                 animation.setDuration(100);
                 animation.setFillAfter(true);
                 animation.setAnimationListener(new Animation.AnimationListener() {

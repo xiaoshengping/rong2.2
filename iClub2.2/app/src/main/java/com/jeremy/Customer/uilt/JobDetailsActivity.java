@@ -18,6 +18,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -254,7 +255,9 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
         company_picture_production_list = (MyGridView) view.findViewById(R.id.company_picture_production_list);
         resumePicture = recruitmentListBean.getBEpicture();
 //        Toast.makeText(this,"asdff", Toast.LENGTH_LONG).show();
-        PictureAdapter pictureAdapter = new PictureAdapter(this,resumePicture);
+        WindowManager wm = this.getWindowManager();
+        int width = wm.getDefaultDisplay().getWidth();
+        PictureAdapter pictureAdapter = new PictureAdapter(this,resumePicture,(int)(width/3)-Identification.dip2px(this,6));
         company_picture_production_list.setAdapter(pictureAdapter);
         company_picture_production_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

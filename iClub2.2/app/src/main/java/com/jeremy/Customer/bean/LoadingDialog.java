@@ -47,7 +47,7 @@ public class LoadingDialog extends Dialog {
     //启动页
     private void Start() {
         ImageView imageView = new ImageView(context);
-        imageView.setImageResource(R.mipmap.icon);
+        imageView.setImageResource(R.mipmap.startpage);
         imageView.setBackgroundColor(0xff000000);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         super.setContentView(imageView);

@@ -134,6 +134,8 @@ public class RecommendListAdater extends BaseAdapter {
         } else if (identi == Identification.PROSITION) {
 //            Toast.makeText(context, "PROSITION", Toast.LENGTH_LONG).show();
             return position(convertView, position);
+        }else if(identi == Identification.COMMENT){
+            return comment(convertView,position);
         }
 
         return convertView;
@@ -247,9 +249,10 @@ public class RecommendListAdater extends BaseAdapter {
         return view;
     }
 
+    //评价
     private View comment(View view, int position){
         if (view == null) {
-            view = mInflater.inflate(R.layout.item_talents, null);
+            view = mInflater.inflate(R.layout.item_comment, null);
             viewComment = new ViewComment();
             viewComment.comment_text_tv = (TextView)view.findViewById(R.id.comment_text_tv);
             viewComment.comment_unit_tv = (TextView)view.findViewById(R.id.comment_unit_tv);

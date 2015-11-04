@@ -51,12 +51,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private RoundAngleImageView recommend_the_virtuous_and_able_riv1, recommend_the_virtuous_and_able_riv2, recommend_the_virtuous_and_able_riv3, recommend_the_virtuous_and_able_riv4, recommend_the_virtuous_and_able_riv5, recommend_the_virtuous_and_able_riv6;
     private TextView recommend_the_virtuous_and_able_tv1, recommend_the_virtuous_and_able_tv2, recommend_the_virtuous_and_able_tv3, recommend_the_virtuous_and_able_tv4, recommend_the_virtuous_and_able_tv5, recommend_the_virtuous_and_able_tv6;
 
-    private TextView item_position_name_tv1, item_position_name_tv2, item_position_name_tv3;
-    private TextView item_position_salary_tv1, item_position_salary_tv2, item_position_salary_tv3;
-    private TextView item_position_time_tv1, item_position_time_tv2, item_position_time_tv3;
-    private TextView item_position_site_tv1, item_position_site_tv2, item_position_site_tv3;
+    private TextView item_position_name_tv1, item_position_name_tv2, item_position_name_tv3,item_position_name_tv4, item_position_name_tv5;
+    private TextView item_position_salary_tv1, item_position_salary_tv2, item_position_salary_tv3,item_position_salary_tv4, item_position_salary_tv5;
+    private TextView item_position_time_tv1, item_position_time_tv2, item_position_time_tv3,item_position_time_tv4, item_position_time_tv5;
+    private TextView item_position_site_tv1, item_position_site_tv2, item_position_site_tv3,item_position_site_tv4, item_position_site_tv5;
 
-    private LinearLayout item_position_ll1,item_position_ll2,item_position_ll3;
+    private LinearLayout item_position_ll1,item_position_ll2,item_position_ll3,item_position_ll4,item_position_ll5;
 
     private static ScrollView scrollView;
 
@@ -135,9 +135,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         item_position_time_tv3 = (TextView) view.findViewById(R.id.item_position_time_tv3);
         item_position_site_tv3 = (TextView) view.findViewById(R.id.item_position_site_tv3);
 
+        item_position_name_tv4 = (TextView) view.findViewById(R.id.item_position_name_tv4);
+        item_position_salary_tv4 = (TextView) view.findViewById(R.id.item_position_salary_tv4);
+        item_position_time_tv4 = (TextView) view.findViewById(R.id.item_position_time_tv4);
+        item_position_site_tv4 = (TextView) view.findViewById(R.id.item_position_site_tv4);
+
+        item_position_name_tv5 = (TextView) view.findViewById(R.id.item_position_name_tv5);
+        item_position_salary_tv5 = (TextView) view.findViewById(R.id.item_position_salary_tv5);
+        item_position_time_tv5 = (TextView) view.findViewById(R.id.item_position_time_tv5);
+        item_position_site_tv5 = (TextView) view.findViewById(R.id.item_position_site_tv5);
+
         item_position_ll1 = (LinearLayout)view.findViewById(R.id.item_position_ll1);
         item_position_ll2 = (LinearLayout)view.findViewById(R.id.item_position_ll2);
         item_position_ll3 = (LinearLayout)view.findViewById(R.id.item_position_ll3);
+        item_position_ll4 = (LinearLayout)view.findViewById(R.id.item_position_ll4);
+        item_position_ll5 = (LinearLayout)view.findViewById(R.id.item_position_ll5);
 
         scrollView = (ScrollView)view.findViewById(R.id.scrollView);
 
@@ -153,6 +165,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         item_position_ll1.setOnClickListener(this);
         item_position_ll2.setOnClickListener(this);
         item_position_ll3.setOnClickListener(this);
+        item_position_ll4.setOnClickListener(this);
+        item_position_ll5.setOnClickListener(this);
         activity_picture_riv1.setOnClickListener(this);
         activity_picture_riv2.setOnClickListener(this);
 
@@ -323,7 +337,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                 item_position_site_tv1.setText("地点   " + recruitmentListBean.getValue().get(0).getWorkPlace());
                             }
                         }
-
+                        //
                         if (recruitmentListBean.getValue().get(1).getPosition() == null) {
                         } else {
                             if (recruitmentListBean.getValue().get(1).getPosition().equals("")) {
@@ -352,7 +366,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                                 item_position_site_tv2.setText("地点   " + recruitmentListBean.getValue().get(1).getWorkPlace());
                             }
                         }
-
 
                         if (recruitmentListBean.getValue().get(2).getPosition() == null) {
                         } else {
@@ -383,6 +396,63 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                             }
                         }
 
+                        if (recruitmentListBean.getValue().get(3).getPosition() == null) {
+                        } else {
+                            if (recruitmentListBean.getValue().get(3).getPosition().equals("")) {
+                            } else {
+                                item_position_name_tv4.setText(recruitmentListBean.getValue().get(3).getPosition());
+                            }
+                        }
+                        if (recruitmentListBean.getValue().get(3).getWorkPay() == null) {
+                        } else {
+                            if (recruitmentListBean.getValue().get(3).getWorkPay().equals("")) {
+                            } else {
+                                item_position_salary_tv4.setText(recruitmentListBean.getValue().get(3).getWorkPay());
+                            }
+                        }
+                        if (recruitmentListBean.getValue().get(3).getWorkingTime() == null) {
+                        } else {
+                            if (recruitmentListBean.getValue().get(3).getWorkingTime().equals("")) {
+                            } else {
+                                item_position_time_tv4.setText("工作时间  " + recruitmentListBean.getValue().get(3).getWorkingTime());
+                            }
+                        }
+                        if (recruitmentListBean.getValue().get(3).getWorkPlace() == null) {
+                        } else {
+                            if (recruitmentListBean.getValue().get(3).getWorkPlace().equals("")) {
+                            } else {
+                                item_position_site_tv4.setText("地点   " + recruitmentListBean.getValue().get(3).getWorkPlace());
+                            }
+                        }
+
+                        if (recruitmentListBean.getValue().get(4).getPosition() == null) {
+                        } else {
+                            if (recruitmentListBean.getValue().get(4).getPosition().equals("")) {
+                            } else {
+                                item_position_name_tv5.setText(recruitmentListBean.getValue().get(4).getPosition());
+                            }
+                        }
+                        if (recruitmentListBean.getValue().get(4).getWorkPay() == null) {
+                        } else {
+                            if (recruitmentListBean.getValue().get(4).getWorkPay().equals("")) {
+                            } else {
+                                item_position_salary_tv5.setText(recruitmentListBean.getValue().get(4).getWorkPay());
+                            }
+                        }
+                        if (recruitmentListBean.getValue().get(4).getWorkingTime() == null) {
+                        } else {
+                            if (recruitmentListBean.getValue().get(4).getWorkingTime().equals("")) {
+                            } else {
+                                item_position_time_tv5.setText("工作时间  " + recruitmentListBean.getValue().get(4).getWorkingTime());
+                            }
+                        }
+                        if (recruitmentListBean.getValue().get(4).getWorkPlace() == null) {
+                        } else {
+                            if (recruitmentListBean.getValue().get(4).getWorkPlace().equals("")) {
+                            } else {
+                                item_position_site_tv5.setText("地点   " + recruitmentListBean.getValue().get(4).getWorkPlace());
+                            }
+                        }
 
                     }
 
@@ -400,6 +470,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
     }
+
 
     @Override
     public void onClick(View v) {
@@ -439,6 +510,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.item_position_ll3:
                 Position(2);
+                break;
+            case R.id.item_position_ll4:
+                Position(3);
+                break;
+            case R.id.item_position_ll5:
+                Position(4);
                 break;
             case R.id.activity_picture_riv1:
                 Activity(0);

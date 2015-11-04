@@ -453,7 +453,7 @@ public class AppUtilsUrl  {
         return BaseUrl+"getListByRecommend.action?offset="+offset+"&limit=10";
     }
     public static String getRecommendedWork(){
-        return BaseUrl+"getJobList_V2_2_By_Recommend.action?offset=0&limit=3";
+        return BaseUrl+"getJobList_V2_2_By_Recommend.action?offset=0&limit=5";
     }
     public static String getRecommendedWork(int offset){
         return BaseUrl+"getJobList_V2_2_By_Recommend.action?offset="+offset+"&limit=10";
