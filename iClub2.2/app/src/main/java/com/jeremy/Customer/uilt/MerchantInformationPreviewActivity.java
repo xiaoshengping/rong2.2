@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.BMerchantValueBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
@@ -64,6 +65,7 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
 
     private String uid;
     private BMerchantValueBean bMerchantValueBean;
+    private LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +92,7 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
         showPictureThree.setOnClickListener(this);
         showPictureFour.setOnClickListener(this);
         MerchantMoreLayout.setOnClickListener(this);
+        loadingDialog=new LoadingDialog(this,"正在加载.....");
         selectDatabase();
         if (!TextUtils.isEmpty(uid)){
             initData(uid);
@@ -137,6 +140,7 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("uid", uid);
+        loadingDialog.show();
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAcquireMerchant(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -204,6 +208,7 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
                             showPictureThree.setVisibility(View.GONE);
                             showPictureFour.setVisibility(View.GONE);
                         }
+                        loadingDialog.dismiss();
 
 
                     }
@@ -216,7 +221,7 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                loadingDialog.dismiss();
             }
         });
 

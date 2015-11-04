@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jeremy.Customer.uilt.AddPictureActivity">
+    <include layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <Button
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/red_button_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="selectPicture"
+        android:textColor="@color/white"
+        android:text="添加照片" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/show_picture_text"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="你上传已经选择的照片"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <GridView
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/gridview"
+        android:verticalSpacing="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="4" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/show_pciture_text_one"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="你已经上传的照片(长按可以删除)"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <GridView
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/show_picture_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:numColumns="4" />
+</LinearLayout>

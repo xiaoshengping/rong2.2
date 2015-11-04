@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -74,6 +75,9 @@ public class SelectPictureActivity extends Activity {
     private ArrayList<String> selectedPicture = new ArrayList<String>();
     private String cameraPath = null;
 
+    private Intent data2;
+    private Intent data;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -134,7 +138,7 @@ public class SelectPictureActivity extends Activity {
      * @param v
      */
     public void ok(View v) {
-        Intent data = new Intent();
+        data = new Intent();
         data.putExtra(INTENT_SELECTED_PICTURE, selectedPicture);
         setResult(0, data);
         this.finish();
@@ -224,7 +228,7 @@ public class SelectPictureActivity extends Activity {
         // super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && cameraPath != null) {
             selectedPicture.add(cameraPath);
-            Intent data2 = new Intent();
+           data2 = new Intent();
             data2.putExtra(INTENT_SELECTED_PICTURE, selectedPicture);
             setResult(RESULT_OK, data2);
             this.finish();
@@ -232,7 +236,23 @@ public class SelectPictureActivity extends Activity {
     }
 
     public void back(View v) {
-        onBackPressed();
+       // onBackPressed();
+        ArrayList<String> list=new ArrayList<>();
+        data = new Intent();
+        data.putExtra(INTENT_SELECTED_PICTURE, list);
+        setResult(0, data);
+        this.finish();
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            ArrayList<String> list=new ArrayList<>();
+            data = new Intent();
+            data.putExtra(INTENT_SELECTED_PICTURE, list);
+            setResult(0, data);
+            this.finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     class PictureAdapter extends BaseAdapter {

@@ -4,7 +4,8 @@
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.MerchantInformationActivity">
 
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_width="match_parent"
@@ -212,7 +213,7 @@
         android:layout_marginBottom="20dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="160dp" >
         <TextView
             android:text="图片介绍"
             android:layout_marginTop="10dp"
@@ -246,5 +247,5 @@
             android:layout_height="match_parent"
             android:numColumns="4" />
     </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>
