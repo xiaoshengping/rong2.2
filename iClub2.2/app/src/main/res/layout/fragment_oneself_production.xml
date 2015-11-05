@@ -81,11 +81,22 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:id="@+id/music_layout"
+    <ImageView
         android:layout_below="@+id/video_layout"
+        android:id="@+id/video_iv"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
+        android:id="@+id/video_iv_one"
+        android:layout_below="@+id/video_iv"
+        android:layout_marginTop="10dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <RelativeLayout
+        android:id="@+id/music_layout"
+        android:layout_below="@+id/video_iv_one"
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="180dp">
@@ -136,10 +147,21 @@
             android:layout_height="50dp" />
 
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_marginTop="10dp"
+    <ImageView
         android:layout_below="@+id/music_layout"
+        android:id="@+id/music_iv"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
+        android:id="@+id/music_iv_one"
+        android:layout_below="@+id/music_iv"
+        android:layout_marginTop="10dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <RelativeLayout
+        android:layout_below="@+id/music_iv_one"
         android:background="@color/white"
         android:id="@+id/picture_layout"
         android:layout_width="match_parent"
@@ -210,5 +232,11 @@
             android:layout_height="80dp" />
 
     </RelativeLayout>
+    <ImageView
+        android:layout_below="@+id/picture_layout"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
 
 </RelativeLayout>

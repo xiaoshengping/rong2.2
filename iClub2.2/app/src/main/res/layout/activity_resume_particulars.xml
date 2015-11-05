@@ -175,15 +175,12 @@
         <RadioGroup
             android:gravity="center"
             android:id="@+id/resume_radioGroup"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+
             android:background="@color/white"
             android:layout_below="@+id/tailt_layout"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="43dp">
             <RadioButton
                 android:id="@+id/oneself_informaction_rb"
                 android:text="个人资料"
@@ -191,7 +188,6 @@
                 android:button="@null"
                 android:gravity="center"
                 android:textColor="@color/resume_sex_color_seletor"
-                android:background="@drawable/oneself_data_button_selector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <RadioButton
@@ -201,15 +197,27 @@
                 android:button="@null"
                 android:gravity="center"
                 android:textColor="@color/resume_sex_color_seletor"
-                android:background="@drawable/oneself_data_1_button_selector"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
         </RadioGroup>
+        <ImageView
+            android:layout_below="@+id/resume_radioGroup"
+            android:id="@+id/resume_line"
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <ImageView
+            android:id="@+id/resume_line_one"
+            android:layout_below="@+id/resume_line"
+            android:layout_marginTop="10dp"
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
         <LinearLayout
         android:orientation="vertical"
         android:id="@+id/resume_fragment_layout"
-        android:layout_below="@+id/resume_radioGroup"
+        android:layout_below="@+id/resume_line_one"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

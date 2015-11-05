@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="10dp"
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.fragment.OneselfInformationFragment">
     <LinearLayout
@@ -10,8 +9,7 @@
         android:layout_height="wrap_content"
         android:padding="0dp"
         android:orientation="vertical"
-        android:background="@color/white"
-        android:layout_marginTop="7dp">
+        android:background="@color/white">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -75,13 +73,22 @@
 
 
     </LinearLayout>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="0dp"
         android:orientation="vertical"
         android:background="@color/white"
-        android:layout_marginTop="7dp">
+       >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -146,12 +153,21 @@
         </LinearLayout>
 
     </LinearLayout>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/white"
-        android:layout_marginTop="7dp">
+       >
             <TextView
                 android:textColor="@color/hunTextColor"
                 android:layout_marginTop="10dp"
@@ -232,12 +248,22 @@
 
         </LinearLayout>
     </LinearLayout>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/white"
-        android:layout_marginTop="7dp">
+       >
 
 
         <LinearLayout
