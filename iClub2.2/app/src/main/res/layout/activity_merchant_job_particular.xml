@@ -8,7 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <include layout="@layout/app_white_tailt_layout"/>
-
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
 
         <LinearLayout
             android:background="@color/white"
@@ -61,8 +64,11 @@
             </LinearLayout>
 
         </LinearLayout>
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
         <LinearLayout
-            android:layout_marginTop="2dp"
             android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -151,10 +157,11 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
-
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
         <LinearLayout
-
-            android:layout_marginTop="2dp"
             android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -178,10 +185,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
         <LinearLayout
-
-            android:layout_marginTop="2dp"
             android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -205,9 +213,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
         <LinearLayout
-            android:layout_marginTop="2dp"
+            android:layout_marginBottom="20dp"
             android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -296,6 +307,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
             </LinearLayout>
+            <ImageView
+                android:src="@color/lineColor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

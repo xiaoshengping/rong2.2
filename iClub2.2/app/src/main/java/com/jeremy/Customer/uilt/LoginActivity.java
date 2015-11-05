@@ -293,7 +293,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                                     }else {
 
                                         MyAppliction.showExitGameAlert("用户名或密码错误",LoginActivity.this);
-
+                                        loadingDialog.dismiss();
                                     }
                                 }
 
@@ -303,7 +303,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                             @Override
                             public void onFailure(HttpException e, String s) {
                                 MyAppliction.showExitGameAlert("网络出错了",LoginActivity.this);
-
+                                loadingDialog.dismiss();
 
                             }
                         });

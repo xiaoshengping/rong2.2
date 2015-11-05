@@ -134,6 +134,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     }
 
     private void intiView() {
+        workingTimeTt.setOnClickListener(this);
         loadingDialog=new LoadingDialog(this,"保存数据.....");
         httpUtils=new HttpUtils();
         intent=getIntent();
@@ -147,7 +148,6 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         professionClassfitionTv.setOnClickListener(this);
         workAddressTv.setOnClickListener(this);
         workingHoursEdit.setOnClickListener(this);
-        workingTimeTt.setOnClickListener(this);
         recruitmentHistoryValueBean= (RecruitmentHistoryValueBean) intent.getSerializableExtra("recruitmentHistoryValueBean");
         if (recruitmentHistoryValueBean!=null){
             workAddressTv.setText(recruitmentHistoryValueBean.getWorkPlace());
@@ -347,7 +347,11 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             requestParams.addBodyParameter("recruitingNumbers", recruitingNumbers);
             requestParams.addBodyParameter("jobRequirements", workDescribeTv.getText().toString());
             requestParams.addBodyParameter("jobInfo", experienceRequireTv.getText().toString());
-            requestParams.addBodyParameter("workingHours", workingHours);
+            if (!TextUtils.isEmpty(workingHours)){
+                requestParams.addBodyParameter("workingHours", workingHours);
+            }else {
+                requestParams.addBodyParameter("workingHours", recruitmentHistoryValueBean.getWorkingHours());
+            }
             requestParams.addBodyParameter("workingTime", workingTime);
             loadingDialog.show();
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getEditJod(),requestParams, new RequestCallBack<String>() {
@@ -371,7 +375,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             });
 
 
-        }else{
+        } else {
             MyAppliction.showExitGameAlert("您输入的内容不全", AddMerchantActivity.this);
 
         }
@@ -388,6 +392,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     private void intiData() {
         RequestParams requestParams = new RequestParams();
         workingTime=selectYear+"-"+selectMonthOfYear+"-"+selectDayOfMonth;
+
         String position = positionEdit.getText().toString();
         String workPay = workPayEdit.getText().toString();
         String recruitingNumbers = recruitingNumbersEdit.getText().toString();
@@ -395,7 +400,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         String merchantWork=workDescribeTv.getText().toString();
         if (!TextUtils.isEmpty(position) && !TextUtils.isEmpty(workPay) && !TextUtils.isEmpty(merchantWork)
                 && !TextUtils.isEmpty(merchantInfo) && !TextUtils.isEmpty(recruitingNumbers)) {
-
+            requestParams.addBodyParameter("uid",uid);
             requestParams.addBodyParameter("jobCategory", 2 + "");
             requestParams.addBodyParameter("cityid", 1+"");
             requestParams.addBodyParameter("position", position);
@@ -404,7 +409,12 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             requestParams.addBodyParameter("jobRequirements", merchantWork);
             requestParams.addBodyParameter("jobInfo", merchantInfo);
             requestParams.addBodyParameter("workingHours", workingHours);
-            requestParams.addBodyParameter("workingTime", workingTime);
+            if (!TextUtils.isEmpty(workingTime)){
+                requestParams.addBodyParameter("workingTime", workingTime);
+            }else {
+                requestParams.addBodyParameter("workingTime", year1+"-"+monthOfYear+"-"+dayOfMonth);
+            }
+
             loadingDialog.show();
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddJod(), requestParams, new RequestCallBack<String>() {
                 @Override

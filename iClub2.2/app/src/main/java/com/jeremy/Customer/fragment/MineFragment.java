@@ -108,6 +108,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     private LinearLayout mineLayout;
     @ViewInject(R.id.more_mine_tv)
     private TextView moreMineTv;
+    @ViewInject(R.id.eixt_login_layout)
+    private LinearLayout eixtLoginLayout;
 
 
 
@@ -339,7 +341,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         }
             if (!TextUtils.isEmpty(state)){
                 mineLayout.setVisibility(View.VISIBLE);
-                exitLoginTv.setVisibility(View.VISIBLE);
+                eixtLoginLayout.setVisibility(View.VISIBLE);
                 touXiangIv.setVisibility(View.VISIBLE);
                 touXiang1Tv.setVisibility(View.GONE);
                 petname1Tv.setVisibility(View.GONE);
@@ -391,7 +393,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
             }else {
                 mineLayout.setVisibility(View.GONE);
-                exitLoginTv.setVisibility(View.GONE);
+                eixtLoginLayout.setVisibility(View.GONE);
                 //petNameTv.setText("点击头像登录");
                 touXiang1Tv.setVisibility(View.VISIBLE);
                 petname1Tv.setVisibility(View.VISIBLE);
@@ -617,7 +619,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         ok.setText("确定");
         ok.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                exitLoginTv.setVisibility(View.GONE);
+                eixtLoginLayout.setVisibility(View.GONE);
                 mineLayout.setVisibility(View.GONE);
                 petNameTv.setVisibility(View.GONE);
                 petname1Tv.setVisibility(View.VISIBLE);

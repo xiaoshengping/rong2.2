@@ -170,7 +170,7 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         inviteMessgaeListValueBeans.clear();
-        offset=0;
+       int offset=0;
         intiData(offset);
     }
 
