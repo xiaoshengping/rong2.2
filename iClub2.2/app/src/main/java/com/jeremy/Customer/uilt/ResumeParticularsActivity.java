@@ -117,6 +117,9 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         loadingDialog.dismiss();
         }
     }
+
+
+
    /* private void intiResumeListData() {
         HttpUtils httpUtils=new HttpUtils();
         SQLhelper sqLhelper=new SQLhelper(this);

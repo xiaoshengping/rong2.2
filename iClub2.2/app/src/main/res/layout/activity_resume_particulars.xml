@@ -28,13 +28,13 @@
         <com.jeremy.Customer.view.CustomImageView
 
             android:id="@+id/usericon_background_iv"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
 
             android:scaleType="fitXY"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="18dp"
-            android:layout_marginTop="-200dp"
+            android:layout_marginTop="-170dp"
             android:layout_below="@+id/talen_back_iv"/>
         <LinearLayout
             android:layout_marginTop="10dp"
@@ -217,23 +217,37 @@
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
-            android:background="@mipmap/return_icon"
-            android:layout_width="10dp"
-            android:layout_height="20dp" />
+            android:text="返回"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/return_tv"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
-            android:layout_width="50dp"
+            android:layout_width="80dp"
             android:layout_height="50dp" />
         <TextView
-            android:id="@+id/cpmpile_resume_tv"
+
             android:layout_alignParentRight="true"
             android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
-            android:background="@mipmap/modification_icon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:text="编辑"
+            android:textSize="@dimen/textSize18"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/cpmpile_resume_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="5dp"
+
+            android:textColor="@color/white"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
             />
         <TextView
             android:layout_alignParentRight="true"

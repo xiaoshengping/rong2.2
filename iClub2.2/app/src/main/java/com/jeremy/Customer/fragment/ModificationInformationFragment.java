@@ -201,6 +201,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
                 break;
             case R.id.commentCount_tv:
                 Intent commentIntent =new Intent(getActivity(), CommentCountActivity.class);
+                commentIntent.putExtra("falge","resume");
                 startActivity(commentIntent);
 
                 break;

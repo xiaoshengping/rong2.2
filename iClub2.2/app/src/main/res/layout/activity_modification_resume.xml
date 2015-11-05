@@ -24,17 +24,7 @@
                 android:scaleType="centerCrop"
                 />
 
-            <TextView
 
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="60dp"
-                android:layout_marginRight="23dp"
-                android:gravity="center"
-                android:text="点击更换背景"
-                android:textSize="@dimen/textSize18"
-                android:textColor="@color/white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
             <com.jeremy.Customer.view.CustomImageView
 
                 android:id="@+id/usericon_background_iv"
@@ -329,14 +319,22 @@
 
         </LinearLayout>
         <TextView
-            android:id="@+id/return_tv"
+
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
-            android:background="@mipmap/return_icon"
-            android:layout_width="10dp"
-            android:layout_height="20dp" />
+           android:text="返回"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
         <TextView
-            android:id="@+id/save_resume_tv"
+            android:id="@+id/return_tv"
+            android:layout_marginTop="15dp"
+
+            android:layout_width="80dp"
+            android:layout_height="50dp" />
+        <TextView
+
             android:layout_alignParentRight="true"
             android:layout_marginTop="30dp"
             android:layout_marginRight="20dp"
@@ -345,6 +343,15 @@
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/save_resume_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:textSize="@dimen/textSize18"
+            android:textColor="@color/white"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
             />
 
 
