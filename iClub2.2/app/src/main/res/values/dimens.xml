@@ -14,7 +14,7 @@
     <dimen name="textSize11">11sp</dimen>
     <dimen name="textSize10">10sp</dimen>
 
-    <dimen name="advertisement_height">160dp</dimen><!--首页广告栏高-->
+    <dimen name="advertisement_height">167dp</dimen><!--首页广告栏高-->
     <dimen name="home_module_name">16sp</dimen><!--首页模块头部名-->
     <dimen name="home_more">15sp</dimen><!--首页更多-->
     <dimen name="activity_item_name">17sp</dimen><!--活动item名-->

@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/dialog_view"
-    android:layout_width="140dp"
-    android:layout_height="140dp"
-    android:background="@mipmap/loading_bg"
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+
     android:gravity="center"
-    android:minHeight="60dp"
-    android:minWidth="180dp"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="140dp"
-        android:layout_height="140dp"
+    <RelativeLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:orientation="vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:background="@mipmap/loading_bg">
 
         <ImageView
             android:id="@+id/img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginTop="30dp" />
+            android:layout_centerInParent="true"
+            android:scaleType="center"/>
 
         <TextView
             android:id="@+id/tipTextView"
@@ -33,6 +32,7 @@
             android:paddingRight="6dp"
             android:text="数据按时发嘎嘎发加载中……"
             android:textColor="#BCBCBC"
-            android:textSize="14sp" />
-    </LinearLayout>
+            android:textSize="14sp"
+            android:visibility="gone"/>
+    </RelativeLayout>
 </LinearLayout>  

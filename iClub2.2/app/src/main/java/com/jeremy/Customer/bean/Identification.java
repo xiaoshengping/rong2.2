@@ -23,8 +23,14 @@ public class Identification {
 
     //提示框种类
     public static int TOOLTIP = 1;//提示框（单个按钮）
+    public static int LOGINPROMPT = 2;//双选提示框（带登录按钮）
+    public static int AFFIRM = 3;//双选提示框
+    public static int MAINTAINORREMOVE = 4;//双选提示框(留在此页面，或离开)
     //提示框信息
     public static int NETWORKANOMALY = 1;//网络异常
+    public static int LOGINPROMPTMERCHANT = 2;//提示登录为商家
+    public static int OFFER = 3;//确认邀约信息
+
 
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)

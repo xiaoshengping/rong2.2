@@ -32,17 +32,27 @@ public class MyDialog extends Dialog {
 
         if(markedWords == Identification.NETWORKANOMALY){
             tisp = "网络异常，请稍后重试！";
+        }else if(markedWords == Identification.LOGINPROMPTMERCHANT){
+            tisp = "请先注册或登录成为商家用户~";
+        }else if(markedWords == Identification.OFFER){
+            tisp = "邀约成功";
         }
 
         if (type == Identification.TOOLTIP){
             cancel.setVisibility(View.GONE);
             parting_line.setVisibility(View.GONE);
             determine.setText("确认");
-            if(markedWords == Identification.NETWORKANOMALY){
-                hint.setText(tisp);
-            }
-        }
+//            if(markedWords == Identification.NETWORKANOMALY){
 
+//            }
+        }else if(type == Identification.LOGINPROMPT){
+            determine.setText("现在登录");
+            cancel.setText("稍后登录");
+        }else if(type == Identification.MAINTAINORREMOVE){
+            determine.setText("返回上一页");
+            cancel.setText("留在此页面");
+        }
+        hint.setText(tisp);
         super.setContentView(mView);
     }
 

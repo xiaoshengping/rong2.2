@@ -14,78 +14,78 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:gravity="right|center_vertical"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="8dp">
 
         <View
             android:id="@+id/v_dot1"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
             android:background="#00ffffff"
             android:visibility="gone" />
 
         <View
             android:id="@+id/v_dot2"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="7dp"
             android:background="#00ffffff"
             android:visibility="gone" />
 
         <View
             android:id="@+id/v_dot3"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="7dp"
             android:background="#00ffffff"
             android:visibility="gone" />
 
         <View
             android:id="@+id/v_dot4"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="7dp"
             android:background="#00ffffff"
             android:visibility="gone" />
 
         <View
             android:id="@+id/v_dot5"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="7dp"
             android:background="#00ffffff"
             android:visibility="gone" />
 
         <View
             android:id="@+id/v_dot6"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="7dp"
             android:background="#00ffffff"
             android:visibility="gone" />
 
         <View
             android:id="@+id/v_dot7"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="7dp"
             android:background="#00ffffff"
             android:visibility="gone" />
 
         <View
             android:id="@+id/v_dot8"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="7dp"
             android:background="#00ffffff"
             android:visibility="gone" />
 
         <View
             android:id="@+id/v_dot9"
-            android:layout_width="8dp"
-            android:layout_height="8dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="9dp"
+            android:layout_height="9dp"
+            android:layout_marginLeft="7dp"
             android:background="#00ffffff"
             android:visibility="gone" />
 

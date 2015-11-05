@@ -187,11 +187,17 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                     });
                     if (recruitmentListBean.getState().equals("success")) {
 
-                        if(recruitmentListBean.getTotal()>recruitmentListData.size()) {
-                            recruitmentListData.addAll(recruitmentListBean.getValue());
-                            adater.setRecruitmentListData(recruitmentListData);
-                            adater.notifyDataSetChanged();
-                        }else {
+                        if (recruitmentListBean.getTotal() > recruitmentListData.size()) {
+                            if (recruitmentListData.size() == 0) {
+                                recruitmentListData.addAll(recruitmentListBean.getValue());
+                                adater = new RecommendListAdater(getActivity(), Identification.PROSITION, recruitmentListData);
+                                recommend_list.setAdapter(adater);
+                            } else {
+                                recruitmentListData.addAll(recruitmentListBean.getValue());
+                                adater.setRecruitmentListData(recruitmentListData);
+                                adater.notifyDataSetChanged();
+                            }
+                        } else {
                             Toast.makeText(getActivity(), "以上已为全部内容", Toast.LENGTH_LONG).show();
                         }
 

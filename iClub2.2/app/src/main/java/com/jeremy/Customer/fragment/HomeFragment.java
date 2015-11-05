@@ -474,6 +474,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        try {
+
+
         switch (v.getId()) {
             case R.id.home_more1:
                 TouchMore(Identification.ACTIVITY);
@@ -523,6 +526,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.activity_picture_riv2:
                 Activity(1);
                 break;
+        }
+        }catch (Exception e){
+
         }
     }
 

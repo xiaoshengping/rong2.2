@@ -185,9 +185,17 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                     if (talentValue.getState().equals("success")) {
 
                         if (talentValue.getTotal() > talentValueBean.size()) {
-                            talentValueBean.addAll(talentValue.getValue());
-                            adater.setTalentValueBean(talentValueBean);
-                            adater.notifyDataSetChanged();
+
+                            if (talentValueBean.size() == 0 ) {
+                                talentValueBean.addAll(talentValue.getValue());
+                                adater = new RecommendListAdater(getActivity(), talentValueBean, Identification.TALENTS);
+                                recommend_list.setAdapter(adater);
+                            } else {
+                                talentValueBean.addAll(talentValue.getValue());
+                                adater.setTalentValueBean(talentValueBean);
+                                adater.notifyDataSetChanged();
+                            }
+
                         } else {
                             Toast.makeText(getActivity(), "以加载全部内容", Toast.LENGTH_LONG).show();
                         }
@@ -223,6 +231,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
         talentValueBean.clear();
         offset = 0;
         initRecruitmentListData(citynum, jobnum, offset);
+
     }
 
     @Override

@@ -39,6 +39,7 @@ import com.jeremy.Customer.adapter.VideoAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.CommentBean;
 import com.jeremy.Customer.bean.Identification;
+import com.jeremy.Customer.bean.MyDialog;
 import com.jeremy.Customer.bean.TalentValueBean;
 import com.jeremy.Customer.bean.Utility;
 import com.jeremy.Customer.bean.mine.ResumeMovie;
@@ -352,14 +353,14 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private void init(View a, View b) {
 
         //获取登录状态
-        SQLhelper sqLhelper = new SQLhelper(this);
-        SQLiteDatabase db = sqLhelper.getWritableDatabase();
-        Cursor cursor = db.query("user", null, null, null, null, null, null);
-        states = null;
-        while (cursor.moveToNext()) {
-            states = cursor.getString(4);
-
-        }
+//        SQLhelper sqLhelper = new SQLhelper(this);
+//        SQLiteDatabase db = sqLhelper.getWritableDatabase();
+//        Cursor cursor = db.query("user", null, null, null, null, null, null);
+//        states = null;
+//        while (cursor.moveToNext()) {
+//            states = cursor.getString(4);
+//
+//        }
 
 //        personal_data_button_tv1 = (TextView) findViewById(R.id.personal_data_button_tv1);
 //        individual_works_button_tv1 = (TextView) findViewById(R.id.individual_works_button_tv1);
@@ -481,7 +482,8 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         });
 
         //加载数据
-        if(talentValueBean.getUsericon().equals("")) {}else {
+        if (talentValueBean.getUsericon().equals("")) {
+        } else {
             bitmapUtils.display(talents_back_iv, AppUtilsUrl.ImageBaseUrl + talentValueBean.getUsericon());
             bitmapUtils.display(talents_hear_iv, AppUtilsUrl.ImageBaseUrl + talentValueBean.getUsericon());
             maoboli();
@@ -953,13 +955,25 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     //邀约
     public void call_for(View v) {
 
+        //获取登录状态
+        SQLhelper sqLhelper = new SQLhelper(this);
+        SQLiteDatabase db = sqLhelper.getWritableDatabase();
+        Cursor cursor = db.query("user", null, null, null, null, null, null);
+        states = null;
+        while (cursor.moveToNext()) {
+            states = cursor.getString(4);
+
+        }
+
 //        Intent intent1 = new Intent(TalentsDetailsActivity.this, myActivity.class);
 //        startActivity(intent1);
 
 
         if (TextUtils.isEmpty(states) || states.equals("1")) {
+            dialog();
 //            Toast.makeText(TalendDetailsActivity.this, "非登录状态或非商家类型", Toast.LENGTH_LONG).show();
         } else if (states.equals("2")) {
+            dialog();
 //            Toast.makeText(TalendDetailsActivity.this, "非商家类型", Toast.LENGTH_LONG).show();
         } else if (states.equals("3")) {
             Intent intent = new Intent(TalentsDetailsActivity.this, CalendarActivity.class);
@@ -973,6 +987,30 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 //        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_not);
         }
 
+    }
+
+    private MyDialog dialog2;
+
+    //提示框
+    private void dialog() {
+        dialog2 = new MyDialog(this, Identification.LOGINPROMPT, Identification.LOGINPROMPTMERCHANT);
+        dialog2.setDetermine(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TalentsDetailsActivity.this, LoginActivity.class);
+                startActivity(intent);
+//                recommend_list.setVisibility(View.GONE);
+                dialog2.dismiss();
+            }
+        });
+        dialog2.setCancel(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog2.dismiss();
+            }
+        });
+
+        dialog2.show();
     }
 
     public void back(View v) {

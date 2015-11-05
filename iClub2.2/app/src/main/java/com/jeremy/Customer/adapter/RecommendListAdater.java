@@ -89,6 +89,8 @@ public class RecommendListAdater extends BaseAdapter {
 //        Toast.makeText(context, data.size() + "", Toast.LENGTH_LONG).show();
     }
 
+
+
     public void setActivityBean(List<ActivityBean> datas){
         activityData = datas;
         maxNumber = datas.size();

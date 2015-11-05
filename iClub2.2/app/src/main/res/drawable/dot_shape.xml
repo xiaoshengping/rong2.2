@@ -5,9 +5,9 @@
 xmlns:android= "http://schemas.android.com/apk/res/android"
     android:shape= "oval"
     android:useLevel= "false" >
-    <solid android:color= "#00ABA6A6" />
+    <solid android:color= "#504D4A" />
     <stroke
         android:width= "1px"
-        android:color= "#80ABA6A6" />
+        android:color= "#00ABA6A6" />
 
     </shape>
