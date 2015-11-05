@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -56,6 +57,11 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
     private String uid;
     private String bdName;
     private TextView addResumeTv;
+
+    @ViewInject(R.id.add_application_layout)
+    private LinearLayout addApplicationLayout;
+    @ViewInject(R.id.add_application_tv)
+    private TextView addApplicationTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +77,7 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
 
     }
     private void intiListView() {
+        addApplicationTv.setOnClickListener(this);
         View addView= LayoutInflater.from(this).inflate(R.layout.add_resume_layout, null);
         addResumeTv= (TextView) addView.findViewById(R.id.add_resume_tv);
         ListView listView=recruitmentHistoryLv.getRefreshableView();
@@ -78,6 +85,7 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
         addResumeTv.setOnClickListener(this);
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("我的招聘");
+        addResumeTv.setText("继续添加招聘");
         requestParams=new RequestParams();
         recruitmentHistoryValueBean=new ArrayList<RecruitmentHistoryValueBean>();
         recruitmentHistoryAdapter=new RecruitmentHistoryAdapter(recruitmentHistoryValueBean,this,recruitmentHistoryLv);
@@ -125,6 +133,19 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
         }
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        SQLhelper sqLhelper=new SQLhelper(this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+            bdName=cursor.getString(6);
+        }
+        recruitmentHistoryLv.setRefreshing();
+    }
 
     private void initView() {
         SQLhelper sqLhelper=new SQLhelper(this);
@@ -153,6 +174,10 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
 
                         if (recruitmentHistoryValueBean.size()!=0){
                             addResumeTv.setText("继续添加招聘");
+                            recruitmentHistoryLv.setVisibility(View.VISIBLE);
+                        }else {
+                            recruitmentHistoryLv.setVisibility(View.GONE);
+                            addApplicationLayout.setVisibility(View.VISIBLE);
                         }
                         recruitmentHistoryLv.onRefreshComplete();
                     }
@@ -181,6 +206,17 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
                 finish();
                 break;
             case R.id.add_resume_tv:
+                if (!TextUtils.isEmpty(bdName)){
+                    Intent intent=new Intent(ApplicationsListActivity.this,AddMerchantActivity.class);
+                    intent.putExtra("fagle","addMerchant");
+                    startActivity(intent);
+                }else {
+                    Intent intent=new Intent(ApplicationsListActivity.this,MerchantInformationActivity.class);
+                    startActivity(intent);
+
+                }
+                break;
+            case R.id.add_application_tv:
                 if (!TextUtils.isEmpty(bdName)){
                     Intent intent=new Intent(ApplicationsListActivity.this,AddMerchantActivity.class);
                     intent.putExtra("fagle","addMerchant");

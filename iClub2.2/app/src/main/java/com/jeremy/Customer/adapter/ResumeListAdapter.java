@@ -317,8 +317,6 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
                         }else if (data.get(position).getState().equals(0)){
                             viewHolde.resumeStateTv.setText("公开");
                         }
-                        data.clear();
-                        notifyDataSetChanged();
                         resumeListLv.setRefreshing();
                     }else {
                         MyAppliction.showToast("简历保存失败");
@@ -343,6 +341,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid",resumeId);
+        MyAppliction.showToast(resumeId);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getRefreshResume(), requestParams,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -350,7 +349,6 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
                 if (parmeBean.getState().equals("success")){
                     if (parmeBean.getValue().getMessage().equals("success")){
                         MyAppliction.showToast("刷新简历成功");
-                        data.clear();
                         resumeListLv.setRefreshing();
                     }else {
                         MyAppliction.showToast("刷新简历失败");

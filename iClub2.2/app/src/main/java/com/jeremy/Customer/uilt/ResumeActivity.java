@@ -42,11 +42,13 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
     @ViewInject(R.id.not_resume_tv)
     private TextView notResumeTv;
     private TextView addResumeTv;
+    @ViewInject(R.id.resume_list_lv)
     private PullToRefreshListView resumeListLv;
     private HttpUtils httpUtils;
     private List<ResumeValueBean> resumeValueBeans;
     private ResumeListAdapter resumeListAdapter;
     private int offset=0;
+    private String uid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,44 +58,49 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
     }
 
     private void inti() {
+        intiView();
         intiListView();
 
-        intiView();
+
     }
 
     private void intiView() {
         tailtText.setText("我的简历");
+        SQLhelper sqLhelper=new SQLhelper(ResumeActivity.this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
 
-
-
-
+        }
     }
-
-  /*  @Override
-    protected void onResume() {
-        super.onResume();
-        resumeListLv.setRefreshing();
-    }*/
-
     @Override
     protected void onRestart() {
         super.onRestart();
+        SQLhelper sqLhelper=new SQLhelper(ResumeActivity.this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+
+        }
+
         resumeListLv.setRefreshing();
     }
 
     private void intiListView() {
-        View addView= LayoutInflater.from(this).inflate(R.layout.add_resume_layout,null);
+        View addView= LayoutInflater.from(this).inflate(R.layout.add_resume_layout, null);
         addResumeTv= (TextView) addView.findViewById(R.id.add_resume_tv);
-        //retrunTv= (TextView) view.findViewById(R.id.role_retrun_tv);
-        resumeListLv= (PullToRefreshListView) findViewById(R.id.resume_list_lv);
         ListView listView=resumeListLv.getRefreshableView();
         listView.addFooterView(addView);
         addResumeTv.setOnClickListener(this);
         tailtReturnTv.setOnClickListener(this);
+        tailtText.setText("我的招聘");
+        addResumeTv.setText("继续添加招聘");
 
         resumeValueBeans=new ArrayList<ResumeValueBean>();
-        resumeListAdapter=new ResumeListAdapter(resumeValueBeans,ResumeActivity.this,resumeListLv);
-        listView.setAdapter(resumeListAdapter);
+        resumeListAdapter=new ResumeListAdapter(resumeValueBeans,this,resumeListLv);
+        resumeListLv.setAdapter(resumeListAdapter);
         resumeListLv.setMode(PullToRefreshBase.Mode.BOTH);
         resumeListLv.setOnRefreshListener(this);
         ILoadingLayout endLabels  = resumeListLv
@@ -129,14 +136,6 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
     private void intiResumeListData(int offset) {
         httpUtils=new HttpUtils();
-        SQLhelper sqLhelper=new SQLhelper(ResumeActivity.this);
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
-        String uid=null;
-        while (cursor.moveToNext()) {
-            uid = cursor.getString(0);
-
-        }
         String resumeListUrl= AppUtilsUrl.getResumeList(uid, offset);
         httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
             @Override

@@ -95,9 +95,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-
-    <TextView
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
         android:layout_marginTop="5dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <TextView
         android:background="#ffffff"
         android:drawableLeft="@mipmap/announement_icon"
         android:id="@+id/announcement_message_tv"
@@ -111,9 +118,13 @@
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <TextView
         android:background="#ffffff"
-        android:layout_marginTop="1dp"
         android:drawableLeft="@mipmap/share_icon"
         android:id="@+id/share_tv"
         android:text="分享"
@@ -128,7 +139,7 @@
         android:layout_height="1dp" />
     <TextView
         android:background="#ffffff"
-        android:layout_marginTop="1dp"
+
         android:paddingLeft="10dp"
         android:id="@+id/more_mine_tv"
         android:text="更多"
@@ -137,13 +148,33 @@
         android:drawableLeft="@mipmap/more_icon"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:id="@+id/eixt_login_layout"
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <TextView
-        android:layout_marginTop="10dp"
+
         android:background="#ffffff"
         android:id="@+id/exit_login"
         android:text="退出登录"
         android:gravity="center"
-         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+    </LinearLayout>
 </LinearLayout>

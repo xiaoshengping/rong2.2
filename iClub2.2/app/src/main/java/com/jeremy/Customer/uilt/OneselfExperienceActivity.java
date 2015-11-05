@@ -54,6 +54,10 @@ public class OneselfExperienceActivity extends ActionBarActivity implements View
                 oneselfExperrienceEdit.setHint("介绍一下自己");
             }else if (content.equals("分享一下自己工作经验")){
                 oneselfExperrienceEdit.setHint("分享一下自己工作经验");
+            }else if (content.equals("写一下经验要求哦(必填)")){
+                oneselfExperrienceEdit.setHint("写一下经验要求哦(必填)");
+            }else if (content.equals("写一下职位描述哦(必填)")){
+                oneselfExperrienceEdit.setHint("写一下职位描述哦(必填)");
             }else {
                 oneselfExperrienceEdit.setText(content);
             }
