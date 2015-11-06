@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -238,7 +237,7 @@ public class RecruitmentHistoryAdapter extends AppBaseAdapter<RecruitmentHistory
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("jobid",jobid);
         requestParams.addBodyParameter("state",state);
-        Log.e("jobid", jobid);
+       // Log.e("jobid", jobid);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getSaveStateMerchant(), requestParams,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {

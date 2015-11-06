@@ -121,7 +121,9 @@
         <activity android:name=".uilt.ActivityDetailActivity" />
         <activity android:name=".uilt.TalentsDetailsActivity" />
         <activity android:name=".uilt.ActivityApplyActivity" />
-        <activity android:name=".uilt.InviteMessageActivity" />
+        <activity android:name=".uilt.InviteMessageActivity"
+            android:theme="@style/StyledIndicators"
+            />
         <activity android:name=".uilt.NickNameActivity" />
         <activity android:name=".uilt.SelectPictureActivity" />
         <activity

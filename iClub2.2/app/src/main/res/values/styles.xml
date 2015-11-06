@@ -61,16 +61,40 @@
         <item name="android:layout_height">60dp</item>
     </style>
 
-    <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
-        <item name="android:background">@color/white</item>
-        <item name="android:textColor">@drawable/invite_rediao_selecotr</item>
-        <item name="android:textSize">18sp</item>
+    <!--<style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
+
+        <item name="android:textColor">@color/resume_sex_color_seletor</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:drawableBottom">@drawable/home_artist_selector</item>
         <item name="android:showDividers">middle</item>
         <item name="android:paddingLeft">30dp</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:fadingEdge">horizontal</item>
         <item name="android:fadingEdgeLength">8dp</item>
+    </style>-->
+
+    <style name="StyledIndicators" parent="@style/AppTheme">
+        <item name="vpiTabPageIndicatorStyle">@style/CustomTabPageIndicator</item>
     </style>
+
+    <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
+        <item name="android:background">@color/white</item>
+
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
+        <item name="android:dividerPadding">8dp</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">8dp</item>
+    </style>
+
+    <style name="CustomTabPageIndicator.Text" parent="android:TextAppearance.Medium">
+        <item name="android:typeface">monospace</item>
+        <item name="android:textColor">@color/invite_color_seletor</item>
+    </style>
+
 
     <style name="textview_paren_width" parent="paren_layout_width">
         <item name="android:padding">2dp</item>

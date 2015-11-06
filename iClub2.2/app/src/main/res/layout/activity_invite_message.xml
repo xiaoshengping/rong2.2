@@ -8,56 +8,9 @@
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
-   <!-- <RadioGroup
-        android:id="@+id/invite_radio_rg"
-        android:gravity="center"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="43dp">
-        <RadioButton
-            android:id="@+id/resume_radio_bt"
-            android:text="邀约历史"
-            android:textSize="@dimen/textSize16"
-            android:checked="true"
-            android:layout_weight="1"
-            android:textColor="@color/home_color_seletor"
-            android:drawableBottom="@drawable/invite_rediao_selecotr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:button="@null"
 
-            />
-        <RadioButton
-            android:id="@+id/nvite_radio_bt"
-            android:text="接受邀约"
-            android:textSize="@dimen/textSize16"
-            android:layout_weight="1"
-            android:textColor="@color/home_color_seletor"
-            android:drawableBottom="@drawable/invite_rediao_selecotr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:button="@null"
-            />
-        <RadioButton
-            android:id="@+id/reputation_radio_bt"
-            android:text="合作成功"
-            android:layout_weight="1"
-            android:textSize="@dimen/textSize16"
-            android:textColor="@color/home_color_seletor"
-            android:drawableBottom="@drawable/invite_rediao_selecotr"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:button="@null"
-            />
-    </RadioGroup>-->
     <com.viewpagerindicator.TabPageIndicator
-        android:background="@color/white"
         android:id="@+id/main_tabpager"
-        style="@style/CustomTabPageIndicator"
         android:layout_width="match_parent"
         android:layout_height="43dp" />
 <ImageView
