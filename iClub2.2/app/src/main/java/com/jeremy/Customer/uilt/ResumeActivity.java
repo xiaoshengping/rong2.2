@@ -48,7 +48,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
     private List<ResumeValueBean> resumeValueBeans;
     private ResumeListAdapter resumeListAdapter;
     private int offset=0;
-    private String uid;
+    private String pid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +70,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            uid = cursor.getString(0);
+            pid = cursor.getString(1);
 
         }
     }
@@ -81,7 +81,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            uid = cursor.getString(0);
+            pid = cursor.getString(1);
 
         }
 
@@ -136,7 +136,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
     private void intiResumeListData(int offset) {
         httpUtils=new HttpUtils();
-        String resumeListUrl= AppUtilsUrl.getResumeList(uid, offset);
+        String resumeListUrl= AppUtilsUrl.getResumeList(pid, offset);
         httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -201,7 +201,6 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-        resumeValueBeans.clear();
         offset=offset+10;
         intiResumeListData(offset);
     }

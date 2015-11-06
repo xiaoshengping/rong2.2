@@ -8,7 +8,7 @@
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
-    <RadioGroup
+   <!-- <RadioGroup
         android:id="@+id/invite_radio_rg"
         android:gravity="center"
         android:background="@color/white"
@@ -53,7 +53,13 @@
             android:gravity="center"
             android:button="@null"
             />
-    </RadioGroup>
+    </RadioGroup>-->
+    <com.viewpagerindicator.TabPageIndicator
+        android:background="@color/white"
+        android:id="@+id/main_tabpager"
+        style="@style/CustomTabPageIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="43dp" />
 <ImageView
     android:src="@color/lineColor"
     android:layout_width="match_parent"
@@ -63,12 +69,25 @@
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
-   <LinearLayout
+  <!--<LinearLayout
         android:orientation="vertical"
         android:id="@+id/invite_fragment_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/resume_radio_rg" />
+        android:layout_above="@+id/resume_radio_rg" >
+      <android.support.v4.view.ViewPager
+          android:id="@+id/resume_pager"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          />-->
+
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/resume_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
 
 

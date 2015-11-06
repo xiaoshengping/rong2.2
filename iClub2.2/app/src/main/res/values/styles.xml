@@ -61,6 +61,17 @@
         <item name="android:layout_height">60dp</item>
     </style>
 
+    <style name="CustomTabPageIndicator" parent="Widget.TabPageIndicator">
+        <item name="android:background">@color/white</item>
+        <item name="android:textColor">@drawable/invite_rediao_selecotr</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:showDividers">middle</item>
+        <item name="android:paddingLeft">30dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">8dp</item>
+    </style>
+
     <style name="textview_paren_width" parent="paren_layout_width">
         <item name="android:padding">2dp</item>
     </style>

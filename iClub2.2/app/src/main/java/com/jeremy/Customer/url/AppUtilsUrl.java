@@ -118,9 +118,9 @@ public class AppUtilsUrl  {
 
     }
     //简历列表
-    public static String getResumeList(String uid,int offset){
+    public static String getResumeList(String pid,int offset){
         //getResumeListByUid.action?uid=13800138000
-        return BaseUrl+"getResumeListByUid.action?"+"uid="+uid+"&offset="+offset+"&limit=10";
+        return BaseUrl+"getResumeListByUid.action?"+"pid="+pid+"&offset="+offset+"&limit=10";
 
     }
     public static String getResumeLista(String uid){
