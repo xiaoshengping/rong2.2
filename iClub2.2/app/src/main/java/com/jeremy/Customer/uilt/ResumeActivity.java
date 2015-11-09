@@ -66,6 +66,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
     private void intiView() {
         tailtText.setText("我的简历");
+        tailtReturnTv.setOnClickListener(this);
         SQLhelper sqLhelper=new SQLhelper(ResumeActivity.this);
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
@@ -94,9 +95,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
         ListView listView=resumeListLv.getRefreshableView();
         listView.addFooterView(addView);
         addResumeTv.setOnClickListener(this);
-        tailtReturnTv.setOnClickListener(this);
-        tailtText.setText("我的招聘");
-        addResumeTv.setText("继续添加招聘");
+        addResumeTv.setText("继续添加简历");
 
         resumeValueBeans=new ArrayList<ResumeValueBean>();
         resumeListAdapter=new ResumeListAdapter(resumeValueBeans,this,resumeListLv);

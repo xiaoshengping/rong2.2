@@ -17,27 +17,9 @@
     android:src="@color/lineColor"
     android:layout_width="match_parent"
     android:layout_height="1dp" />
-    <ImageView
-        android:layout_marginTop="9dp"
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-  <!--<LinearLayout
-        android:orientation="vertical"
-        android:id="@+id/invite_fragment_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/resume_radio_rg" >
-      <android.support.v4.view.ViewPager
-          android:id="@+id/resume_pager"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          />-->
-
-
-
     <android.support.v4.view.ViewPager
         android:id="@+id/resume_pager"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

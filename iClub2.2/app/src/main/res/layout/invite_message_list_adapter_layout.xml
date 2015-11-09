@@ -3,7 +3,10 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="wrap_content">
-
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
      <RelativeLayout
          android:layout_width="match_parent"
          android:layout_height="wrap_content"
@@ -18,7 +21,7 @@
            android:layout_height="wrap_content" />
          <TextView
              android:id="@+id/invite_status_tv"
-             android:layout_marginTop="5dp"
+             android:layout_marginTop="10dp"
              android:text="状态"
              android:padding="2dp"
              android:gravity="center"
@@ -79,6 +82,7 @@
     </RelativeLayout>
     <ImageView
         android:background="#cccccc"
+        android:layout_marginLeft="20dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
     <RelativeLayout
@@ -88,7 +92,7 @@
         android:layout_marginBottom="5dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp">
         <Button
             android:id="@+id/accept_button_tv"
             android:background="@mipmap/invite_button_icon"
@@ -96,7 +100,7 @@
             android:gravity="center"
             android:text="接受"
             android:focusable="false"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="5dp"
             android:layout_marginRight="15dp"
             android:layout_width="80dp"
@@ -110,7 +114,7 @@
             android:layout_alignParentRight="true"
             android:gravity="center"
             android:text="拒绝"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_width="80dp"
             android:layout_height="33dp" />
 
@@ -118,6 +122,6 @@
     <ImageView
         android:src="@color/lineColor"
         android:layout_width="match_parent"
-        android:layout_height="5dp" />
+        android:layout_height="1dp" />
 
 </LinearLayout>
