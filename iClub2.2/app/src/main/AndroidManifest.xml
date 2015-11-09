@@ -196,7 +196,9 @@
         <activity android:name=".uilt.AddMerchantActivity" />
         <activity
             android:name=".uilt.ModificationResumeActivity"
-            android:label="@string/title_activity_modification_resume" >
+            android:label="@string/title_activity_modification_resume"
+            android:theme="@style/StyledIndicators"
+            >
         </activity>
         <activity
             android:name=".uilt.ContactInformationActivity"

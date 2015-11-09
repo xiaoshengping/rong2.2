@@ -119,7 +119,7 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         String uid=null;
         while (cursor.moveToNext()) {
-            uid = cursor.getString(0);
+            uid = cursor.getString(1);
         }
         String resumeListUrl= AppUtilsUrl.getResumeLista(uid);
         httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {

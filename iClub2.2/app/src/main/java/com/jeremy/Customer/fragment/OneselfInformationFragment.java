@@ -148,7 +148,7 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         String uid=null;
         while (cursor.moveToNext()) {
-            uid = cursor.getString(0);
+            uid = cursor.getString(1);
 
         }
         String resumeListUrl= AppUtilsUrl.getResumeLista(uid);

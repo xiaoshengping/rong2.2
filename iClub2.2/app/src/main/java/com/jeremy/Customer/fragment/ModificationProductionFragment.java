@@ -1,9 +1,6 @@
 package com.jeremy.Customer.fragment;
 
 
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
@@ -11,65 +8,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
-import com.jeremy.Customer.bean.ArtistParme;
-import com.jeremy.Customer.bean.mine.ResumeValueBean;
-import com.jeremy.Customer.http.MyAppliction;
-import com.jeremy.Customer.uilt.AddMusicActivity;
-import com.jeremy.Customer.uilt.AddPictureActivity;
-import com.jeremy.Customer.uilt.AddVideoActivity;
-import com.jeremy.Customer.uilt.ModificationResumeActivity;
-import com.jeremy.Customer.uilt.SQLhelper;
-import com.jeremy.Customer.url.AppUtilsUrl;
-import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
-import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ModificationProductionFragment extends Fragment implements View.OnClickListener {
 
-    @ViewInject(R.id.show_video_resume_iv)
-    private ImageView showVideoResumeIv;
-    @ViewInject(R.id.show_music_resume_tv)
-    private TextView showMusicResumeTv;
-    @ViewInject(R.id.show_music_resume_two)
-    private TextView showMusicResumeTwo;
 
-    @ViewInject(R.id.show_picture_resume_one)
-    private ImageView showPictureResumeOne;
-    @ViewInject(R.id.show_picture_resume_two)
-    private ImageView showPictureResumeTwo;
-    @ViewInject(R.id.show_picture_resume_three)
-    private ImageView showPictureResumeThree;
-    @ViewInject(R.id.show_picture_resume_four)
-    private ImageView showPictureResumeFour;
-
-    @ViewInject(R.id.modification_picture_tv)
-    private TextView modificationPictureTv;
-    @ViewInject(R.id.modification_music_tv)
-    private TextView modificationMusicTv;
-    @ViewInject(R.id.modification_video_tv)
-    private TextView modificationVideoTv;
-
-    private  ResumeValueBean resumeValueBean;
 
     public ModificationProductionFragment() {
         // Required empty public constructor
@@ -92,19 +45,17 @@ public class ModificationProductionFragment extends Fragment implements View.OnC
     }
 
     private void initView() {
-        modificationVideoTv.setOnClickListener(this);
-        modificationMusicTv.setOnClickListener(this);
-        modificationPictureTv.setOnClickListener(this);
+
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        intiResumeListData();
+        //intiResumeListData();
     }
 
-    private void intiResumeListData() {
+   /* private void intiResumeListData() {
         HttpUtils httpUtils=new HttpUtils();
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
@@ -169,7 +120,7 @@ public class ModificationProductionFragment extends Fragment implements View.OnC
 
 
 
-    }
+    }*/
 
     private Bitmap createVideoThumbnail(String url, int width, int height) {
         Bitmap bitmap = null;
@@ -202,7 +153,7 @@ public class ModificationProductionFragment extends Fragment implements View.OnC
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        /*switch (v.getId()){
             case R.id.modification_video_tv:
                 Intent videoIntent=new Intent(getActivity(),AddVideoActivity.class);
                 videoIntent.putExtra("resumeValueBean", resumeValueBean);
@@ -225,6 +176,6 @@ public class ModificationProductionFragment extends Fragment implements View.OnC
 
 
 
-        }
+        }*/
     }
 }

@@ -4,7 +4,6 @@ package com.jeremy.Customer.uilt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -20,6 +19,7 @@ import com.jeremy.Customer.fragment.OneselfProductionFragment;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.CustomImageView;
+import com.jeremy.Customer.view.CustomViewPager;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.viewpagerindicator.TabPageIndicator;
@@ -66,7 +66,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
     private LoadingDialog loadingDialog;
 
     @ViewInject(R.id.resume_pager)
-    private ViewPager invitePager;
+    private CustomViewPager invitePager;
     @ViewInject(R.id.main_tabpager)
     TabPageIndicator tabPageIndicator;
     private ResumePagerAdapter adapter;
