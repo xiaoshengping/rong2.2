@@ -6,14 +6,7 @@
     tools:context="com.jeremy.Customer.uilt.AddResumeActivity"
     >
     <include layout="@layout/app_white_tailt_layout"/>
-    <ImageView
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-
     <LinearLayout
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -28,15 +21,7 @@
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:background="@color/lineColor"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent" />
+
                 <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -55,12 +40,12 @@
                         <ImageView
                             android:scaleType="fitXY"
                             android:id="@+id/touxiang_image"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginBottom="5dp"
                             android:src="@mipmap/resume_touxiang_icon"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp" />
+                            android:layout_width="60dp"
+                            android:layout_height="60dp" />
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
@@ -83,6 +68,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="1dp" />
                             <RadioGroup
+                                android:layout_marginBottom="10dp"
                                 android:layout_marginTop="5dp"
                                 android:id="@+id/sex_radio_group"
                                 android:orientation="horizontal"
@@ -120,13 +106,14 @@
                         </LinearLayout>
                     </LinearLayout>
                     <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"
                         android:background="@color/lineColor"
                         android:layout_width="match_parent"
                         android:layout_height="1dp" />
                     <LinearLayout
                         android:orientation="vertical"
                         android:background="@color/white"
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -137,7 +124,6 @@
                             android:layout_height="50dp" >
                             <TextView
                                 android:text="年龄"
-
                                 android:layout_marginLeft="20dp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
@@ -152,7 +138,8 @@
                                 android:layout_height="20dp" />
                         </LinearLayout>
                         <ImageView
-
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
                             android:background="@color/lineColor"
                             android:layout_width="match_parent"
                             android:layout_height="1dp" />
@@ -183,6 +170,8 @@
 
                         </LinearLayout>
                         <ImageView
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
                             android:background="@color/lineColor"
                             android:layout_width="match_parent"
                             android:layout_height="1dp" />
@@ -211,7 +200,8 @@
 
                         </LinearLayout>
                         <ImageView
-
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="15dp"
                             android:background="@color/lineColor"
                             android:layout_width="match_parent"
                             android:layout_height="1dp" />
@@ -248,23 +238,11 @@
                     </LinearLayout>
 
                 </LinearLayout>
-                    <ImageView
-                        android:src="@color/lineColor"
-                        android:layout_width="3dp"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
 
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:background="@color/lineColor"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent" />
+
+
                     <LinearLayout
-
+                        android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -297,7 +275,8 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <ImageView
-
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/lineColor"
                     android:layout_width="match_parent"
                     android:layout_height="1dp" />
@@ -318,7 +297,7 @@
                         android:background="@null"
                         android:textSize="@dimen/textSize15"
                         android:inputType="textEmailAddress"
-                        android:hint="请输入Emial"
+                        android:hint="请输入电子邮箱(必填)"
                         android:textColorHint="@color/editTextPromptColor"
                         android:layout_marginLeft="40dp"
                         android:layout_width="match_parent"
@@ -326,7 +305,8 @@
 
                 </LinearLayout>
                 <ImageView
-
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
                     android:background="@color/lineColor"
                     android:layout_width="match_parent"
                     android:layout_height="1dp" />
@@ -358,14 +338,13 @@
                 </LinearLayout>
 
                 </LinearLayout>
+                <ImageView
+                    android:background="@color/lineColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
 
-                    <ImageView
-                        android:background="@color/lineColor"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent" />
-
-                </LinearLayout>
                 <include
+                    android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     layout="@layout/experience_layout"/>
