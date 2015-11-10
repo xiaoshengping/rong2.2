@@ -21,6 +21,12 @@ public class MyDialog extends Dialog {
         super(context, R.style.MyDialog);
         setCustomDialog(type, markedWords);
     }
+    public MyDialog(Context context,int type,int markedWords,String s) {
+        super(context, R.style.MyDialog);
+        tisp = s;
+        setCustomDialog(type, markedWords);
+
+    }
 
     //
     private void setCustomDialog(int type,int markedWords) {
@@ -36,6 +42,8 @@ public class MyDialog extends Dialog {
             tisp = "请先注册或登录成为商家用户~";
         }else if(markedWords == Identification.OFFER){
             tisp = "邀约成功";
+        }else if(markedWords == Identification.LOGONTOTHETALENT){
+            tisp = "请先注册或登录成为人才用户~";
         }
 
         if (type == Identification.TOOLTIP){

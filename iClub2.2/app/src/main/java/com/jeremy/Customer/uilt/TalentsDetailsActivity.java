@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
@@ -920,8 +921,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
             dialog();
 //            Toast.makeText(TalendDetailsActivity.this, "非登录状态或非商家类型", Toast.LENGTH_LONG).show();
         } else if (states.equals("2")) {
-            dialog();
-//            Toast.makeText(TalendDetailsActivity.this, "非商家类型", Toast.LENGTH_LONG).show();
+            Toast.makeText(TalentsDetailsActivity.this, "此账号为非商家用户，无法进行邀约操作", Toast.LENGTH_LONG).show();
         } else if (states.equals("3")) {
             Intent intent = new Intent(TalentsDetailsActivity.this, CalendarActivity.class);
             Bundle bundle = new Bundle();

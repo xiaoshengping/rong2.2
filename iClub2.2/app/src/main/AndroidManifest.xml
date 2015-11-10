@@ -234,6 +234,7 @@
             android:name=".uilt.MerchantAddPictrueActivity"
             android:label="@string/title_activity_merchant_add_pictrue" >
         </activity>
+        <activity android:name=".uilt.ChooseAResumeActivity"></activity>
     </application>
 
 </manifest>

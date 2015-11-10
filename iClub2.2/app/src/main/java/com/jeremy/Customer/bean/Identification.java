@@ -29,7 +29,9 @@ public class Identification {
     //提示框信息
     public static int NETWORKANOMALY = 1;//网络异常
     public static int LOGINPROMPTMERCHANT = 2;//提示登录为商家
-    public static int OFFER = 3;//确认邀约信息
+    public static int OFFER = 3;//确认邀约、投递信息
+    public static int LOGONTOTHETALENT = 4;//提示登录为人才
+    public static int FREEDOM = 5;//自由填写
 
 
     /**

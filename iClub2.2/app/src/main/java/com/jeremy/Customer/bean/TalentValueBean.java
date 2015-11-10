@@ -33,12 +33,31 @@ public class TalentValueBean implements Serializable {
     private String resumeWorkPlace;// "广州",城市
     private String resumeZhName;//昵称
     private int resumeid;//简历ID 通过这个简历ID调用浏览数增加的接口
-    private int state;
+//    private int state;
     private String usericon;//个人图像
     private String inviteCount;//"200", 邀约数
     private String authenticity;//"80" // 真实性
     private String integrity;//80" // 诚信度
     private String transactionRecord;//合作记录
+
+    private String createTime;//创建时间
+    private Integer state;//状态
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
 
     public String getAuthenticity() {
         return authenticity;
@@ -262,14 +281,6 @@ public class TalentValueBean implements Serializable {
 
     public void setResumeid(int resumeid) {
         this.resumeid = resumeid;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
     }
 
     public String getUsericon() {
