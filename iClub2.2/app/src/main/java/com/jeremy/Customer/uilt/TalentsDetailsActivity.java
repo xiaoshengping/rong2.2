@@ -914,7 +914,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         }
 
 //        Intent intent1 = new Intent(TalentsDetailsActivity.this, myActivity.class);
-//        startActivity(intent1);
+//        startActivity(intent1);afdfasd
 
 
         if (TextUtils.isEmpty(states) || states.equals("1")) {
