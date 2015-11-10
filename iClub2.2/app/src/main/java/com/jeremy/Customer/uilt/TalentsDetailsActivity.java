@@ -804,6 +804,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 }else if(unfold3_tv.getText().toString().equals("收起")){
                     unfold3_tv.setText("展开");
                 }
+                //jlk,mmmjpo
                 if(unfold3_tv.getText().toString().equals("")){}else {
                     pictureAdapter.setMaxNum();
                     pictureAdapter.notifyDataSetChanged();
