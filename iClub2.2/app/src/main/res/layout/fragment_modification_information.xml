@@ -26,10 +26,6 @@
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:background="@color/lineColor"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp" />
                     <LinearLayout
                         android:id="@+id/updata_image"
                         android:background="@color/white"
@@ -44,8 +40,8 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginBottom="5dp"
                             android:src="@mipmap/resume_touxiang_icon"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp" />
+                            android:layout_width="70dp"
+                            android:layout_height="70dp" />
                         <LinearLayout
                             android:orientation="vertical"
                             android:layout_width="match_parent"
@@ -131,7 +127,8 @@
                                 android:id="@+id/resume_age_tv"
                                 android:textColor="@color/editTextPromptColor"
                                 android:text="请选择出生年份(必填)"
-
+                                android:drawableRight="@mipmap/downward_icon"
+                                android:paddingRight="50dp"
                                 android:textSize="@dimen/textSize15"
                                 android:layout_marginLeft="50dp"
                                 android:layout_width="match_parent"
@@ -159,7 +156,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                             <TextView
-
+                                android:drawableRight="@mipmap/downward_icon"
+                                android:paddingRight="50dp"
                                 android:id="@+id/job_classfite_tv"
                                 android:text="请选择职位类别(必填)"
                                 android:textSize="@dimen/textSize15"
@@ -219,7 +217,8 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content" />
                             <TextView
-
+                                android:drawableRight="@mipmap/downward_icon"
+                                android:paddingRight="50dp"
                                 android:id="@+id/job_city_tv"
                                 android:text="请选择工作地点(必填)"
                                 android:textColor="@color/editTextPromptColor"
@@ -351,9 +350,9 @@
 
 
 
-              <!--  <TextView
+                <TextView
 
-                    android:text="下一步"
+                    android:text="完成"
                     android:gravity="center"
                     android:textColor="@color/white"
                     android:textSize="@dimen/textSize15"
@@ -364,7 +363,7 @@
                     android:layout_marginBottom="30dp"
                     android:background="@mipmap/red_button_icon"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />-->
+                    android:layout_height="wrap_content" />
             </LinearLayout>
 
         </ScrollView>

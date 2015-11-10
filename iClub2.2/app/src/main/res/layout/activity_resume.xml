@@ -6,6 +6,10 @@
     tools:context="com.jeremy.Customer.uilt.ResumeActivity">
 
     <include layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <TextView
         android:visibility="gone"
         android:id="@+id/not_resume_tv"

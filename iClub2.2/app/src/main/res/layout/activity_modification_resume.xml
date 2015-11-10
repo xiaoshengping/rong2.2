@@ -1,378 +1,50 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.AddResumeActivity"
     >
-    <include layout="@layout/app_white_tailt_layout"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <ScrollView
-            android:scrollbars="none"
-            android:id="@+id/compile_zliao_tv"
+        <include layout="@layout/app_white_tailt_layout"/>
+        <ImageView
+            android:id="@+id/resume_line"
+            android:src="@color/lineColor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:id="@+id/compile_tv"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:background="@color/lineColor"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp" />
-                    <LinearLayout
-                        android:id="@+id/updata_image"
-                        android:background="@color/white"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        >
-                        <ImageView
-                            android:scaleType="fitXY"
-                            android:id="@+id/touxiang_image"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="5dp"
-                            android:src="@mipmap/resume_touxiang_icon"
-                            android:layout_width="70dp"
-                            android:layout_height="70dp" />
-                        <LinearLayout
-                            android:orientation="vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <EditText
-                                android:maxLength="7"
-                                android:layout_marginTop="10dp"
-                                android:id="@+id/resumeZhName_et"
-                                android:background="@null"
-                                android:hint="请输入姓名"
-                                android:textColorHint="@color/editTextPromptColor"
-                                android:textSize="@dimen/textSize15"
-                                android:layout_marginLeft="20dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="30dp" />
-                            <ImageView
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="10dp"
-                                android:background="@color/lineColor"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp" />
-                            <RadioGroup
-                                android:layout_marginBottom="10dp"
-                                android:layout_marginTop="5dp"
-                                android:id="@+id/sex_radio_group"
-                                android:orientation="horizontal"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginRight="10dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="30dp">
-                                <RadioButton
-                                    android:id="@+id/boy_radio_button"
-                                    android:text="男"
-                                    android:gravity="center"
-                                    android:textSize="@dimen/textSize15"
-                                    android:background="@drawable/resume_sex_selector"
-                                    android:textColor="@color/resume_sex_color_seletor"
-                                    android:layout_weight="1"
-                                    android:button="@null"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    />
-                                <RadioButton
-                                    android:id="@+id/girl_radio_button"
-                                    android:text="女"
-                                    android:textSize="@dimen/textSize15"
-                                    android:gravity="center"
-                                    android:background="@drawable/resume_sex_selector"
-                                    android:textColor="@color/resume_sex_color_seletor"
-                                    android:layout_weight="1"
-                                    android:button="@null"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-
-                                    />
-
-                            </RadioGroup>
-                        </LinearLayout>
-                    </LinearLayout>
-                    <ImageView
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@color/lineColor"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp" />
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:background="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-
-                        <LinearLayout
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp" >
-                            <TextView
-                                android:text="年龄"
-                                android:layout_marginLeft="20dp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                            <TextView
-                                android:id="@+id/resume_age_tv"
-                                android:textColor="@color/editTextPromptColor"
-                                android:text="请选择出生年份(必填)"
-                                android:drawableRight="@mipmap/downward_icon"
-                                android:paddingRight="50dp"
-                                android:textSize="@dimen/textSize15"
-                                android:layout_marginLeft="50dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="20dp" />
-                        </LinearLayout>
-                        <ImageView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@color/lineColor"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp" />
-
-                        <LinearLayout
-                            android:gravity="center"
-                            android:id="@+id/job_classfite_layout"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp" >
-                            <TextView
+            android:layout_height="1dp" />
+        <com.viewpagerindicator.TabPageIndicator
+            android:id="@+id/main_tabpager"
+            android:layout_below="@+id/tailt_layout"
+            android:layout_width="match_parent"
+            android:layout_height="43dp" />
+        <ImageView
 
 
-                                android:text="职业类别"
-                                android:layout_marginLeft="20dp"
-
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                            <TextView
-                                android:drawableRight="@mipmap/downward_icon"
-                                android:paddingRight="50dp"
-                                android:id="@+id/job_classfite_tv"
-                                android:text="请选择职位类别(必填)"
-                                android:textSize="@dimen/textSize15"
-                                android:textColor="@color/editTextPromptColor"
-                                android:layout_marginLeft="20dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                        </LinearLayout>
-                        <ImageView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="10dp"
-                            android:background="@color/lineColor"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp" />
-                        <LinearLayout
-                            android:gravity="center"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp" >
-                            <TextView
-
-                                android:text="职业名称"
-                                android:layout_marginLeft="20dp"
-
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                            <EditText
-
-                                android:id="@+id/resumeJobName_et"
-                                android:background="@null"
-                                android:textSize="@dimen/textSize15"
-                                android:hint="请输入职位名称(必填)"
-                                android:textColorHint="@color/editTextPromptColor"
-                                android:layout_marginLeft="20dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                        </LinearLayout>
-                        <ImageView
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginRight="15dp"
-                            android:background="@color/lineColor"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp" />
-                        <LinearLayout
-                            android:gravity="center"
-                            android:id="@+id/job_city_layout"
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="50dp" >
-                            <TextView
-
-                                android:text="工作地点"
-                                android:layout_marginLeft="20dp"
-
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content" />
-                            <TextView
-                                android:drawableRight="@mipmap/downward_icon"
-                                android:paddingRight="50dp"
-                                android:id="@+id/job_city_tv"
-                                android:text="请选择工作地点(必填)"
-                                android:textColor="@color/editTextPromptColor"
-                                android:textSize="@dimen/textSize15"
-                                android:layout_marginLeft="20dp"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-
-                        </LinearLayout>
-                        <ImageView
-
-                            android:background="@color/lineColor"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
 
 
+        <ImageView
+            android:id="@+id/resume_line_one"
+            android:layout_below="@+id/resume_line"
+            android:layout_marginTop="10dp"
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
 
-                <LinearLayout
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <ImageView
-                        android:background="@color/lineColor"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp" />
-                    <LinearLayout
-
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp" >
-                        <TextView
-                            android:text="QQ"
-                            android:layout_marginLeft="20dp"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <EditText
-                            android:id="@+id/resumeQq_et"
-                            android:inputType="number"
-                            android:background="@null"
-                            android:textSize="@dimen/textSize15"
-                            android:hint="请输入QQ号码(必填)"
-                            android:textColorHint="@color/editTextPromptColor"
-                            android:layout_marginLeft="55dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                    <ImageView
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@color/lineColor"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp" />
-                    <LinearLayout
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp" >
-                        <TextView
-
-                            android:text="Email"
-                            android:layout_marginLeft="20dp"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <EditText
-                            android:id="@+id/resumeEmail_et"
-                            android:background="@null"
-                            android:textSize="@dimen/textSize15"
-                            android:inputType="textEmailAddress"
-                            android:hint="请输入电子邮箱(必填)"
-                            android:textColorHint="@color/editTextPromptColor"
-                            android:layout_marginLeft="40dp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-                    <ImageView
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@color/lineColor"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp" />
-                    <LinearLayout
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp" >
-                        <TextView
-
-
-                            android:text="手机号码"
-                            android:layout_marginLeft="20dp"
-
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-
-                        <TextView
-
-                            android:id="@+id/phone_textView_tv"
-                            android:layout_marginLeft="20dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-                <ImageView
-                    android:background="@color/lineColor"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp" />
-
-                <include
-                    android:layout_marginTop="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    layout="@layout/experience_layout"/>
-
-
-
-                <TextView
-
-                    android:text="完成"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/textSize15"
-                    android:id="@+id/next_resume_tv"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@mipmap/red_button_icon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-        </ScrollView>
+        <com.jeremy.Customer.view.CustomViewPager
+            android:id="@+id/resume_pager"
+            android:layout_below="@+id/resume_line_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
 
-</LinearLayout>
+
+
+</ScrollView>
