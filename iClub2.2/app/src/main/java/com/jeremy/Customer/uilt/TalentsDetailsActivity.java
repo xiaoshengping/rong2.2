@@ -82,6 +82,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private TextView talents_age_tv, talents_site_tv, talents_profession_tv;
     private TextView talents_self_introduction_tv, talents_work_experience_tv, talents_reputation_tv;
     private TextView comment_button_tv;
+    private TextView unfold1_tv,unfold2_tv,unfold3_tv,unfold4_tv;
 
     private int mScrollY = 0;
     private int mScrollY1 = 0;
@@ -120,6 +121,10 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private Button fanhui_b, yaoyue_b;
     private LinearLayout yaoyue_ll;
     Timer timer = new Timer();
+    private int statusBarHeight;
+    private int floatingCollarH1,floatingCollarH2;
+    private LinearLayout floating_collar_ll;
+    private TextView floating_collar_name_tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,40 +140,6 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         InitViewPager();
 
     }
-
-/*
-
-
-    public static Bitmap getHttpBitmap(String url){
-        URL myFileURL;
-        Bitmap bitmap=null;
-        try{
-            myFileURL = new URL(url);
-            //获得连接
-            HttpURLConnection conn=(HttpURLConnection)myFileURL.openConnection();
-            //设置超时时间为6000毫秒，conn.setConnectionTiem(0);表示没有时间限制
-            conn.setConnectTimeout(6000);
-            //连接设置获得数据流
-            conn.setDoInput(true);
-            //不使用缓存
-            conn.setUseCaches(false);
-            //这句可有可无，没有影响
-            //conn.connect();
-            //得到数据流
-            InputStream is = conn.getInputStream();
-            //解析得到图片
-            bitmap = BitmapFactory.decodeStream(is);
-            //关闭数据流
-            is.close();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return bitmap;
-
-    }
-*/
-
 
     /**
      * 初始化头标
@@ -352,18 +323,6 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     //初始化界面
     private void init(View a, View b) {
 
-        //获取登录状态
-//        SQLhelper sqLhelper = new SQLhelper(this);
-//        SQLiteDatabase db = sqLhelper.getWritableDatabase();
-//        Cursor cursor = db.query("user", null, null, null, null, null, null);
-//        states = null;
-//        while (cursor.moveToNext()) {
-//            states = cursor.getString(4);
-//
-//        }
-
-//        personal_data_button_tv1 = (TextView) findViewById(R.id.personal_data_button_tv1);
-//        individual_works_button_tv1 = (TextView) findViewById(R.id.individual_works_button_tv1);
         individual_works_ll = (LinearLayout) b.findViewById(R.id.individual_works_ll);
         personal_data_ll = (LinearLayout) a.findViewById(R.id.personal_data_ll);
         talents_hear_iv = (ImageView) findViewById(R.id.talents_hear_iv);
@@ -388,6 +347,13 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         fanhui_b = (Button) findViewById(R.id.fanhui_b);
         yaoyue_b = (Button) findViewById(R.id.yaoyue_b);
         yaoyue_ll = (LinearLayout) findViewById(R.id.yaoyue_ll);
+        unfold1_tv = (TextView) b.findViewById(R.id.unfold1_tv);
+        unfold2_tv = (TextView) b.findViewById(R.id.unfold2_tv);
+        unfold3_tv = (TextView) b.findViewById(R.id.unfold3_tv);
+        unfold4_tv = (TextView) b.findViewById(R.id.unfold4_tv);
+        floating_collar_ll = (LinearLayout)b.findViewById(R.id.floating_collar_ll);
+        floating_collar_name_tv = (TextView)b.findViewById(R.id.floating_collar_name_tv);
+        floating_collar_ll.setVisibility(View.GONE);
 
         myScrollView1.setOnScrollListener(this);
         myScrollView2.setOnScrollListener(this);
@@ -395,6 +361,10 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 //        individual_works_button_tv1.setOnClickListener(this);
         self_introduction_button_tv.setOnClickListener(this);
         work_experience_button_tv.setOnClickListener(this);
+        unfold1_tv.setOnClickListener(this);
+        unfold2_tv.setOnClickListener(this);
+        unfold3_tv.setOnClickListener(this);
+        unfold4_tv.setOnClickListener(this);
 
         fanhui_b.setAlpha(0);
 
@@ -411,7 +381,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         ViewTreeObserver vto3 = personal_data_button_tv.getViewTreeObserver();
         vto3.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             public boolean onPreDraw() {
-                button_height = head_height - personal_data_button_tv.getMeasuredHeight() - Identification.dip2px(TalentsDetailsActivity.this, (float) 50);
+                button_height = head_height - personal_data_button_tv.getMeasuredHeight() - Identification.dip2px(TalentsDetailsActivity.this, (float) 45);
                 return true;
             }
         });
@@ -421,7 +391,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
             public boolean onPreDraw() {
                 Rect frame = new Rect();
                 getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-                int statusBarHeight = frame.top;
+                statusBarHeight = frame.top;
                 int h = personal_data_ll.getMeasuredHeight();
                 if (h < height + button_height - head_height - statusBarHeight) {
                     personal_data_ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, height + button_height - head_height - statusBarHeight));
@@ -432,13 +402,25 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         ViewTreeObserver vto2 = individual_works_ll.getViewTreeObserver();
         vto2.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             public boolean onPreDraw() {
-                Rect frame = new Rect();
-                getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
-                int statusBarHeight = frame.top;
+//                Rect frame = new Rect();
+//                getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+//                statusBarHeight = frame.top;
                 int h = individual_works_ll.getMeasuredHeight();
                 if (h < height + button_height - head_height - statusBarHeight) {
                     individual_works_ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (height + button_height - head_height - statusBarHeight)));
                 }
+                floatingCollarH1 = head_height + statusBarHeight - button_height;
+                return true;
+            }
+        });
+
+
+
+        ViewTreeObserver vto5 = floating_collar_ll.getViewTreeObserver();
+        vto5.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            public boolean onPreDraw() {
+                floatingCollarH2 = floatingCollarH1+personal_data_button_tv.getMeasuredHeight();
+
                 return true;
             }
         });
@@ -504,12 +486,6 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         talents_work_experience_tv.setText(talentValueBean.getResumeWorkExperience());
         talents_reputation_tv.setText(talentValueBean.getIntegrity() + "\n" + talentValueBean.getAuthenticity() + "\n" + talentValueBean.getTransactionRecord());
 
-
-//        Animation animation = null;
-//        animation = new TranslateAnimation(0, 0, Identification.dip2px(this, 45), Identification.dip2px(this, 45));
-//        animation.setDuration(100);
-//        animation.setFillAfter(true);
-//        yaoyue_b.setAnimation(animation);
         yaoyue_b.setVisibility(View.GONE);
 
         //获取评论
@@ -543,7 +519,6 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
             }
         });
 
-
     }
 
     private void maoboli() {
@@ -564,57 +539,31 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         }, 100);
     }
 
-//    TimerTask task = new TimerTask() {
-//        @Override
-//        public void run() {
-//
-//            runOnUiThread(new Runnable() {      // UI thread
-//                @Override
-//                public void run() {
-////                    fdgsdfg
-////                    if (talents_back_iv.getDrawable() != null) {
-//                    try{
-//                        BitmapDrawable bitmapDrawable = (BitmapDrawable) talents_back_iv.getDrawable();
-//                        bitmap = bitmapDrawable.getBitmap();
-//                        talents_back_iv.setImageBitmap(Identification.fastblur(TalentsDetailsActivity.this, bitmap, 30));
-//                        timer.cancel();
-//                    }catch(Exception e){
-//
-//                    }
-//
-////                    }
-////                    if(HomeFragment.getStart()%4 ==0){
-////                        HomeFragment.setSV();
-//
-////                        loadingDialog.dismiss();
-////                    }else if(HomeFragment.getStart() < 0){
-////                        timer.cancel();
-////                        loadingDialog.dismiss();
-////                        dialog();
-////                    }
-//
-//                }
-//            });
-//        }
-//    };
-
+    private VideoAdapter videoAdapter;
 
     //初始化视频作品
     private void initVideoProduction(View b) {
         video_production_list = (ListView) b.findViewById(R.id.video_production_list);
         List<ResumeMovie> resumeMovieData = talentValueBean.getResumeMovie();
-        VideoAdapter videoAdapter = new VideoAdapter(this, resumeMovieData);
+        videoAdapter = new VideoAdapter(this, resumeMovieData);
         video_production_list.setAdapter(videoAdapter);
         Utility.setListViewHeightBasedOnChildren(video_production_list);
+        if(resumeMovieData.size()==0){
+            unfold1_tv.setText("");
+        }
     }
 
+    private MusicAdapter musicAdapter;
     //初始化音乐作品
     private void initMusicProduction(View b) {
         music_production_list = (ListView) b.findViewById(R.id.music_production_list);
         List<ResumeMusic> resumeMusic = talentValueBean.getResumeMusic();
-        MusicAdapter musicAdapter = new MusicAdapter(this, resumeMusic);
+        musicAdapter = new MusicAdapter(this, resumeMusic);
         music_production_list.setAdapter(musicAdapter);
         Utility.setListViewHeightBasedOnChildren(music_production_list);
+        if(resumeMusic.size()==0){
+            unfold2_tv.setText("");
+        }
 
         music_production_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -631,13 +580,16 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     }
 
     private List<ResumePicture> resumePicture;
-
+    private PictureAdapter pictureAdapter;
     //初始化图片作品
     private void initPictureProduction(View b) {
         picture_production_list = (MyGridView) b.findViewById(R.id.picture_production_list);
         resumePicture = talentValueBean.getResumePicture();
-        PictureAdapter pictureAdapter = new PictureAdapter(this, resumePicture, (int) (width / 3) - Identification.dip2px(this, 6));
+        pictureAdapter = new PictureAdapter(this, resumePicture, (int) (width / 3) - Identification.dip2px(this, 6));
         picture_production_list.setAdapter(pictureAdapter);
+        if(resumePicture.size()==0){
+            unfold3_tv.setText("");
+        }
 
         picture_production_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -664,58 +616,21 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
     @Override
     public void onScroll(int scrollY) {//监听ScrollView滚动进度
-
-
-//        talents_profession_tv.setText(head_ll.getTranslationY()+"//"+button_height);
         mScrollY = scrollY;
-
-        /*if(head_ll.getTranslationY()==-button_height){
-            Animation animation = null;
-            animation = new AlphaAnimation(0, 1);
-//                    animation.setFillAfter(true);// True:图片停在动画结束位置
-            animation.setDuration(100);
-            animation.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    ing = false;
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-
-                }
-            });
-            fanhui_b.startAnimation(animation);
-        }*/
-
         if (scrollY <= button_height && !head_move && !head_top) {
             head_move = true;
             head_ll.setTranslationY(-scrollY);
             fanhui_b.setAlpha((float) scrollY / (float) button_height);
-
-//            if (mScrollY1 < button_height) {
             myScrollView1.scrollTo(0, scrollY);
-//            }
-//            if (mScrollY2 < button_height) {
             myScrollView2.scrollTo(0, scrollY);
-//            }
             head_move = false;
             head_top = false;
         }
         if (scrollY > button_height && !head_top && head_ll.getTranslationY() > (-button_height)) {
             head_ll.setTranslationY(-button_height);
             fanhui_b.setAlpha(1);
-//            if (mScrollY1 < button_height) {
             myScrollView1.scrollTo(0, button_height);
-//            }
-//            if (mScrollY2 < button_height) {
             myScrollView2.scrollTo(0, button_height);
-//            }
         }
 
         //邀约动画
@@ -780,109 +695,59 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 yaoyue = false;
             }
         }
-
-
-        /*if (head_top && oldScrollY - scrollY - oldScrollY1 <= 0) {
-            s = oldScrollY - scrollY - oldScrollY1;
-            head_ll.setTranslationY(s);
-            fanhui_b.setAlpha((float) (-s) / (float) button_height);
-            if (mScrollY1 < button_height) {
-                myScrollView1.scrollTo(0, -s);
-            }
-            if (mScrollY2 < button_height) {
-                myScrollView2.scrollTo(0, -s);
-            }
-
-            if(ss-scrollY >10){//向下
-                ss=scrollY;
+        unfold1_tv.getLocationOnScreen(location1);
+        unfold2_tv.getLocationOnScreen(location2);
+        unfold3_tv.getLocationOnScreen(location3);
+        if(location21==0&&location11==0&&location31==0){
+            location11 = location1[1];
+            location21 = location2[1];
+            location31 = location3[1];
+        }
+        if(floating_collar_name_tv.getText().toString().equals(" 视频作品")) {
+            if(location1[1] < floatingCollarH1) {
+                floating_collar_ll.setVisibility(View.VISIBLE);
+                unfold4_tv.setText(unfold1_tv.getText().toString());
+                floating_collar_ll.setTranslationY((float) (floatingCollarH1 - statusBarHeight));
+                if(location2[1]<floatingCollarH2){
+                    floating_collar_ll.setTranslationY((float) (floatingCollarH1 - statusBarHeight) - (scrollY - location21 + floatingCollarH2));
+                }
             }else {
-                if (scrollY - ss > 10&&!ing) {//向上
-                    ing = true;
-                    Animation animation = null;
-                    int t = button_height - scrollY;
-                    if (t < 0) t = 0;
-                    animation = new TranslateAnimation(0, 0, 0, -button_height - s + t);
-                    animation.setDuration(100);
-                    animation.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                            if (mScrollY <= button_height) {
-                                head_ll.setTranslationY(-mScrollY);
-//                                fanhui_b.setAlpha((float) mScrollY / (float) button_height);
-                            }else {
-                                head_ll.setTranslationY(-button_height);
-//                                fanhui_b.setAlpha(1);
-                            }
-                            if (mScrollY1 < button_height) {
-                                myScrollView1.scrollTo(0, button_height);
-                            }
-                            if (mScrollY2 < button_height) {
-                                myScrollView2.scrollTo(0, button_height);
-                            }
-                            head_top = false;
-                            ing = false;
-
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-
-                        }
-                    });
-                    head_ll.startAnimation(animation);
-
-                }
+                floating_collar_ll.setVisibility(View.GONE);
             }
+            if(location2[1]<floatingCollarH1){
+                floating_collar_name_tv.setText(" 音乐作品");
+                unfold4_tv.setText(unfold2_tv.getText().toString());
+                floating_collar_ll.setTranslationY((float) (floatingCollarH1 - statusBarHeight));
 
-        } else if (head_ll.getTranslationY() <= 0 && head_top && oldScrollY - scrollY - oldScrollY1 > 0&&!ing) {
-            head_ll.setTranslationY(0);
-            ing = true;
-            Animation animation = null;
-            int t = button_height-scrollY;
-            if(t<0) t=0;
-            animation = new TranslateAnimation(0, 0, 0, -button_height+t);
-//            animation.setFillAfter(true);// True:图片停在动画结束位置
-            animation.setDuration(100);
-            animation.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-
-                }
-
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    if (mScrollY <= button_height) {
-                        head_ll.setTranslationY(-mScrollY);
-                    }else {
-                        head_ll.setTranslationY(-button_height);
-                    }
-                    if (mScrollY1 < button_height) {
-                        myScrollView1.scrollTo(0, button_height);
-                    }
-                    if (mScrollY2 < button_height) {
-                        myScrollView2.scrollTo(0, button_height);
-                    }
-                    head_top = false;
-                    ing = false;
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-
-                }
-            });
-            head_ll.startAnimation(animation);
-//            head_top = false;
-
-
-        }*/
+            }
+        }else if(floating_collar_name_tv.getText().toString().equals(" 音乐作品")){
+            if(location3[1]<floatingCollarH2){
+                floating_collar_ll.setTranslationY((float) (floatingCollarH1 - statusBarHeight) - (scrollY - location31 + floatingCollarH2));
+            }
+            if(location3[1]<floatingCollarH1){
+                floating_collar_name_tv.setText(" 图片作品");
+                unfold4_tv.setText(unfold3_tv.getText().toString());
+                floating_collar_ll.setTranslationY((float) (floatingCollarH1 - statusBarHeight));
+            }
+            if(location2[1]>floatingCollarH1){
+                floating_collar_name_tv.setText(" 视频作品");
+                unfold4_tv.setText(unfold1_tv.getText().toString());
+            }
+        }else if(floating_collar_name_tv.getText().toString().equals(" 图片作品")){
+            if(location3[1]>floatingCollarH1){
+                floating_collar_name_tv.setText(" 音乐作品");
+                unfold4_tv.setText(unfold2_tv.getText().toString());
+            }
+        }
 
     }
+
+    private int[] location1 = {0,0};
+    private int[] location2 = {0,0};
+    private int[] location3 = {0,0};
+    private int location11 = 0;
+    private int location21 = 0;
+    private int location31 = 0;
 
 
     @Override
@@ -907,8 +772,90 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 intent.putExtra("ID", talentValueBean.getResumeid());
                 startActivity(intent);
                 break;
+            case R.id.unfold1_tv:
+                if(unfold1_tv.getText().toString().equals("展开")){
+                    unfold1_tv.setText("收起");
+                }else if(unfold1_tv.getText().toString().equals("收起")){
+                    unfold1_tv.setText("展开");
+                }
+                if(unfold1_tv.getText().toString().equals("")){}else {
+                    videoAdapter.setMaxNum();
+                    videoAdapter.notifyDataSetChanged();
+                    Utility.setListViewHeightBasedOnChildren(video_production_list);
+                    initWorksHeight();
+                }
+                break;
+            case R.id.unfold2_tv:
+                if(unfold2_tv.getText().toString().equals("展开")){
+                    unfold2_tv.setText("收起");
+                }else if(unfold2_tv.getText().toString().equals("收起")){
+                    unfold2_tv.setText("展开");
+                }
+                if(unfold2_tv.getText().toString().equals("")){}else {
+                    musicAdapter.setMaxNum();
+                    musicAdapter.notifyDataSetChanged();
+                    Utility.setListViewHeightBasedOnChildren(music_production_list);
+                    initWorksHeight();
+                }
+                break;
+            case R.id.unfold3_tv:
+                if(unfold3_tv.getText().toString().equals("展开")){
+                    unfold3_tv.setText("收起");
+                }else if(unfold3_tv.getText().toString().equals("收起")){
+                    unfold3_tv.setText("展开");
+                }
+                if(unfold3_tv.getText().toString().equals("")){}else {
+                    pictureAdapter.setMaxNum();
+                    pictureAdapter.notifyDataSetChanged();
+                    initWorksHeight();
+                }
+                break;
+            case R.id.unfold4_tv:
+                if(unfold4_tv.getText().toString().equals("展开")){
+                    unfold4_tv.setText("收起");
+                }else if(unfold4_tv.getText().toString().equals("收起")){
+                    unfold4_tv.setText("展开");
+                }
+                if(floating_collar_name_tv.getText().toString().equals(" 视频作品")){
+                    unfold1_tv.setText(unfold4_tv.getText().toString());
+                    videoAdapter.setMaxNum();
+                    videoAdapter.notifyDataSetChanged();
+                    Utility.setListViewHeightBasedOnChildren(video_production_list);
+                    initWorksHeight();
+                }else if(floating_collar_name_tv.getText().toString().equals(" 音乐作品")){
+                    unfold2_tv.setText(unfold4_tv.getText().toString());
+                    musicAdapter.setMaxNum();
+                    musicAdapter.notifyDataSetChanged();
+                    Utility.setListViewHeightBasedOnChildren(music_production_list);
+                    initWorksHeight();
+                }else if(floating_collar_name_tv.getText().toString().equals(" 图片作品")){
+                    unfold3_tv.setText(unfold4_tv.getText().toString());
+                    pictureAdapter.setMaxNum();
+                    pictureAdapter.notifyDataSetChanged();
+                    initWorksHeight();
+                }
+                break;
         }
 
+    }
+
+    private void initWorksHeight(){
+        individual_works_ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        ViewTreeObserver vto2 = individual_works_ll.getViewTreeObserver();
+        vto2.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            public boolean onPreDraw() {
+                Rect frame = new Rect();
+                getWindow().getDecorView().getWindowVisibleDisplayFrame(frame);
+                int statusBarHeight = frame.top;
+                int h = individual_works_ll.getMeasuredHeight();
+                if (h < height + button_height - head_height - statusBarHeight) {
+                    individual_works_ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, (int) (height + button_height - head_height - statusBarHeight)));
+                    head_ll.setTranslationY(0);
+                    fanhui_b.setAlpha(0);
+                }
+                return true;
+            }
+        });
     }
 
     /**

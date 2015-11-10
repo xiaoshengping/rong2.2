@@ -11,6 +11,15 @@ public class ActivityBean implements Serializable {
     private String date;
     private String image;
     private String title;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getActivitieid() {
         return activitieid;

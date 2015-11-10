@@ -33,12 +33,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:paddingBottom="3dp"
+                android:paddingBottom="15dp"
                 android:paddingTop="15dp"
                 android:paddingRight="40dp"
                 android:text="玩使命“敢于挑战，超越梦想”微电影大赛asdfasfsdf"
                 android:textSize="18sp"
-                android:textColor="@color/position_item_name"
+                android:textColor="#212121"
                 android:background="#ffffff"/>
 
             <TextView
@@ -47,17 +47,37 @@
                 android:layout_height="match_parent"
                 android:text="2015-08-31至2015-09-31"
                 android:textSize="14sp"
-                android:textColor="@color/position_item_name"
+                android:textColor="#777777"
                 android:paddingLeft="8dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
+                android:paddingRight="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="#ffffff"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:background="#ffffff"
+                android:src="#E8E7E7"/>
+            <TextView
+                android:id="@+id/activity_address_tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="广州天河区"
+                android:textSize="14sp"
+                android:textColor="#777777"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:background="#ffffff"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18sp"
-                android:textColor="@color/position_item_rest"
+                android:textColor="#262A33"
                 android:text="活动介绍"
                 android:paddingLeft="6dp"
                 android:paddingTop="10dp"
@@ -69,9 +89,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="本次大赛主题是《Dare to do，dream comes ture》意为：敢做，梦想才能成真，灵感来源1980年代初期著名电影《浮生如梦-the Dream Merchants》，故事描述以为早期电影制作人20世纪初带着梦想来到好莱坞，经历种种磨难最后成为出色的电影制作人的励志故事"
-                android:textColor="@color/position_item_name"
+                android:textColor="#787677"
                 android:textSize="16sp"
                 android:padding="5dp"
+                android:layout_marginTop="1dp"
                 android:lineSpacingMultiplier="1.1"
                 android:background="#ffffff"/>
 
@@ -80,9 +101,10 @@
     </ScrollView>
 
     <Button
+        android:id="@+id/immediately_attend_b"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#3DA5DA"
+        android:background="#9D7FEF"
         android:text="立即参与"
         android:textColor="#ffffff"
         android:textSize="18sp"

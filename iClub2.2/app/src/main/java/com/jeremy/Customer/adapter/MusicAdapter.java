@@ -21,16 +21,32 @@ public class MusicAdapter extends BaseAdapter {
     private LayoutInflater mInflater;
     private List<ResumeMusic> resumeMusic;
     private Context mContext;
+    private int maxNum = 0;
 
     public MusicAdapter(Context context,List<ResumeMusic> resumeMusic){
         this.mInflater = LayoutInflater.from(context);
         this.resumeMusic = resumeMusic;
         mContext = context;
+        if (resumeMusic.size() > 2) {
+            maxNum = 2;
+        } else {
+            maxNum = resumeMusic.size();
+        }
+    }
+
+    public void setMaxNum() {
+        if (maxNum == 2) {
+            maxNum = resumeMusic.size();
+        } else if (resumeMusic.size() > 2) {
+            maxNum = 2;
+        } else {
+            maxNum = resumeMusic.size();
+        }
     }
 
     @Override
     public int getCount() {
-        return resumeMusic.size();
+        return maxNum;
     }
 
     @Override

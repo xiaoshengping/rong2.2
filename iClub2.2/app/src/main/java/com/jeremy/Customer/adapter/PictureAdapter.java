@@ -27,6 +27,7 @@ public class PictureAdapter extends BaseAdapter {
     private int wi;
 
     private BitmapUtils bitmapUtils;
+    private int maxNum = 0;
 
     public PictureAdapter(Context context,List<ResumePicture> resumePicture,int w){
         this.mInflater = LayoutInflater.from(context);
@@ -34,6 +35,11 @@ public class PictureAdapter extends BaseAdapter {
         bitmapUtils=new BitmapUtils(context);
         mContext = context;
         wi = w;
+        if (resumePicture.size() > 3) {
+            maxNum = 3;
+        } else {
+            maxNum = resumePicture.size();
+        }
     }
     public PictureAdapter(Context context){
         this.mInflater = LayoutInflater.from(context);
@@ -41,9 +47,19 @@ public class PictureAdapter extends BaseAdapter {
         bitmapUtils=new BitmapUtils(context);
     }
 
+    public void setMaxNum() {
+        if (maxNum == 3) {
+            maxNum = resumePicture.size();
+        } else if (resumePicture.size() > 3) {
+            maxNum = 3;
+        } else {
+            maxNum = resumePicture.size();
+        }
+    }
+
     @Override
     public int getCount() {
-        return resumePicture.size();
+        return maxNum;
     }
 
     @Override

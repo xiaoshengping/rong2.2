@@ -32,17 +32,34 @@ public class VideoAdapter extends BaseAdapter {
     private List<ResumeMovie> resumeMovie;
     private BitmapUtils bitmapUtils;
     private Context mContext;
+    private int maxNum = 0;
 
-    public VideoAdapter(Context context,List<ResumeMovie> resumeMovie){
+    public VideoAdapter(Context context, List<ResumeMovie> resumeMovie) {
         mContext = context;
         this.mInflater = LayoutInflater.from(context);
         this.resumeMovie = resumeMovie;
-        bitmapUtils=new BitmapUtils(context);
+        bitmapUtils = new BitmapUtils(context);
+        if (resumeMovie.size() > 1) {
+            maxNum = 1;
+        } else {
+            maxNum = resumeMovie.size();
+        }
     }
+
+    public void setMaxNum() {
+        if (maxNum == 1) {
+            maxNum = resumeMovie.size();
+        } else if (resumeMovie.size() > 1) {
+            maxNum = 1;
+        } else {
+            maxNum = resumeMovie.size();
+        }
+    }
+
 
     @Override
     public int getCount() {
-        return resumeMovie.size();
+        return maxNum;
     }
 
     @Override
@@ -61,7 +78,7 @@ public class VideoAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.item_video, null);
             viewVideo = new ViewVideo();
 //            viewVideo.talents_video_back_iv = (ImageView)convertView.findViewById(R.id.talents_video_back_iv);
-            viewVideo.talents_video_button_iv = (ImageView)convertView.findViewById(R.id.talents_video_button_iv);
+            viewVideo.talents_video_button_iv = (ImageView) convertView.findViewById(R.id.talents_video_button_iv);
             convertView.setTag(viewVideo);
         } else {
             viewVideo = (ViewVideo) convertView.getTag();
@@ -80,6 +97,7 @@ public class VideoAdapter extends BaseAdapter {
 
         return convertView;
     }
+
     private Bitmap createVideoThumbnail(String url, int width, int height) {
         Bitmap bitmap = null;
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
@@ -110,15 +128,11 @@ public class VideoAdapter extends BaseAdapter {
     }
 
 
+public class ViewVideo {
 
+    private ImageView talents_video_back_iv;
+    private ImageView talents_video_button_iv;
 
-
-
-    public class ViewVideo{
-
-        private ImageView talents_video_back_iv;
-        private ImageView talents_video_button_iv;
-
-    }
+}
 
 }

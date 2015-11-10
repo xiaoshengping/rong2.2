@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:visibility="visible">
 
     <com.jeremy.Customer.view.MyScrollView
@@ -48,15 +47,16 @@
                             android:paddingRight="12dp"
                             android:paddingTop="10dp"
                             android:text=" 视频作品"
-                            android:textColor="#888888"
-                            android:textSize="15sp" />
+                            android:textColor="#292931"
+                            android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/unfold1_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dp"
                             android:padding="10dp"
-                            android:text="更多"
+                            android:text="展开"
                             android:textColor="@color/home_more"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -96,15 +96,16 @@
                             android:paddingRight="12dp"
                             android:paddingTop="10dp"
                             android:text=" 音乐作品"
-                            android:textColor="#888888"
-                            android:textSize="15sp" />
+                            android:textColor="#292931"
+                            android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/unfold2_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dp"
                             android:padding="10dp"
-                            android:text="更多"
+                            android:text="展开"
                             android:textColor="@color/home_more"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -144,15 +145,16 @@
                             android:paddingRight="12dp"
                             android:paddingTop="10dp"
                             android:text=" 图片作品"
-                            android:textColor="#888888"
-                            android:textSize="15sp" />
+                            android:textColor="#292931"
+                            android:textSize="16sp" />
 
                         <TextView
+                            android:id="@+id/unfold3_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dp"
                             android:padding="10dp"
-                            android:text="更多"
+                            android:text="展开"
                             android:textColor="@color/home_more"
                             android:textSize="16sp" />
                     </LinearLayout>
@@ -177,5 +179,37 @@
         </LinearLayout>
     </com.jeremy.Customer.view.MyScrollView>
 
+    <LinearLayout
+        android:id="@+id/floating_collar_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@drawable/apply_back_shape">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/floating_collar_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/vertical_bar"
+            android:paddingBottom="10dp"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:paddingTop="10dp"
+            android:text=" 视频作品"
+            android:textColor="#292931"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/unfold4_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:padding="10dp"
+            android:text="展开"
+            android:textColor="@color/home_more"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</RelativeLayout>
