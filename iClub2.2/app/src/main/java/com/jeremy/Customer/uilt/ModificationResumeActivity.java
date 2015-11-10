@@ -8,8 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,20 +17,27 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jeremy.Customer.R;
-import com.jeremy.Customer.adapter.ResumePagerAdapter;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
-import com.jeremy.Customer.fragment.ModificationInformationFragment;
-import com.jeremy.Customer.fragment.ModificationProductionFragment;
 import com.jeremy.Customer.http.ImageUtil;
-import com.jeremy.Customer.view.CustomViewPager;
+import com.jeremy.Customer.http.MyAppliction;
+import com.jeremy.Customer.url.AppUtilsUrl;
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.RequestParams;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
-import com.viewpagerindicator.TabPageIndicator;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -38,7 +45,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -46,12 +52,7 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
 
 
 
-    @ViewInject(R.id.modification_resume_pager)
-    private CustomViewPager invitePager;
-    @ViewInject(R.id.main_tabpager)
-    private TabPageIndicator tabPageIndicator;
-    private ResumePagerAdapter resumePagerAdapter;
-    private ArrayList<Fragment> fragments=new ArrayList<Fragment>();
+
 
 
     @ViewInject(R.id.tailt_return_tv)
@@ -61,14 +62,56 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
     @ViewInject(R.id.save_text)
     private TextView saveText;
 
+    //上传头像
+    @ViewInject(R.id.updata_image)
+    private LinearLayout updataImage;
+    @ViewInject(R.id.touxiang_image)
+    private ImageView usericonIV;
+    //自我介绍
+    @ViewInject(R.id.oneself_known_layout)
+    private LinearLayout oneselfLayout;
+    private String userInfo;
+    @ViewInject(R.id.onself_text_tv)
+    private TextView userOnselfText;
+
+    //工作经历
+    @ViewInject(R.id.work_experience_layout)
+    private LinearLayout workLayout;
+    private String userWork;
+    @ViewInject(R.id.work_experience_text_tv)
+    private TextView workExpexteText;
+
+    //个人信息
+    @ViewInject(R.id.resumeZhName_et)
+    private EditText resumeZhName;
+    @ViewInject(R.id.resumeJobName_et)
+    private EditText resumeJobName;
+    @ViewInject(R.id.resumeQq_et)
+    private EditText resumeQq;
+    @ViewInject(R.id.resumeEmail_et)
+    private EditText resumeEmail;
+
+    @ViewInject(R.id.phone_textView_tv)
+    private TextView phoneTextView;
+    @ViewInject(R.id.touxiang_image)
+    private ImageView touXiangIv;
+    @ViewInject(R.id.resume_age_tv)
+    private TextView resumeAgeTv;
+    @ViewInject(R.id.job_city_tv)
+    private TextView jobCityTv;
+
+    @ViewInject(R.id.sex_radio_group)
+    private RadioGroup sexRadioGroup;
+    @ViewInject(R.id.boy_radio_button)
+    private RadioButton boyRadioButton;
+    @ViewInject(R.id.girl_radio_button)
+    private RadioButton girlRadioButton;
+    @ViewInject(R.id.next_resume_tv)
+    private TextView nextResumeTv;
 
 
 
 
-
-
-
-    private String position;
     private File tempFile = new File(Environment.getExternalStorageDirectory(),
             getPhotoFileName());
     private File screenshotFile = new File(Environment.getExternalStorageDirectory(),
@@ -76,6 +119,9 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
     private static final int PHOTO_REQUEST_TAKEPHOTO = 1;// 拍照
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
+
+    private static final int INFOLT_HINT_DATA=7;//自我介绍
+    private static final int EXPERIENCE_HINT_DATA=8;//工作经验
 
     private ResumeValueBean resumeValueBeans;
     private String sex;
@@ -107,30 +153,22 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
 
     private void initView() {
         tailtReturnTv.setOnClickListener(this);
-        tailtText.setText("修改简历");
+        tailtText.setText("编辑简历");
         saveText.setVisibility(View.VISIBLE);
-        saveText.setText("保存");
+        saveText.setText("编辑作品");
         saveText.setOnClickListener(this);
-        /*resumeRadioGroup.setOnCheckedChangeListener(this);
-        oneselfInformactionRb.setChecked(true);
-        returnTv.setOnClickListener(this);
-        customImageView.setOnClickListener(this);
-        sexRadioGroup.setOnCheckedChangeListener(this);
-
+        updataImage.setOnClickListener(this);
+        oneselfLayout.setOnClickListener(this);
+        workLayout.setOnClickListener(this);
         resumeAgeTv.setOnClickListener(this);
-        saveResumeTv.setOnClickListener(this);*/
-        addFragment();
-        resumePagerAdapter = new ResumePagerAdapter(fragments, getSupportFragmentManager());
-        invitePager.setAdapter(resumePagerAdapter);
-        tabPageIndicator.setViewPager(invitePager);
+        sexRadioGroup.setOnCheckedChangeListener(this);
+        nextResumeTv.setOnClickListener(this);
 
         resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
-        positions=getIntent().getStringExtra("position");
-        ModificationResumeActivity.this.setPosition(positions);
-       // ModificationResumeTabAdapter fragmentInviteTabAdapter=new ModificationResumeTabAdapter(ModificationResumeActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
-           /*if (resumeValueBeans!=null){
-               MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+resumeValueBeans.getUsericon(),customImageView,MyAppliction.RoundedOptions);
-               resumeZhNameEt.setText(resumeValueBeans.getResumeZhName());
+
+           if (resumeValueBeans!=null){
+               MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), usericonIV, MyAppliction.RoundedOptions);
+               resumeZhName.setText(resumeValueBeans.getResumeZhName());
 
                if (resumeValueBeans.getResumeSex().equals(0)){
                    boyRadioButton.setChecked(true);
@@ -138,10 +176,17 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
                    girlRadioButton.setChecked(true);
                }
                resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
-               //jobCategoryEt.setText(resumeValueBeans.getResumeJobCategory());
-               jobCategoryNameEt.setText(resumeValueBeans.getResumeJobCategoryName());
-               resumeAddressEt.setText(resumeValueBeans.getResumeWorkPlace());
-           }*/
+               resumeAgeTv.setTextColor(getResources().getColor(R.color.textColor242424));
+               resumeJobName.setText(resumeValueBeans.getResumeJobCategoryName());
+               jobCityTv.setText(resumeValueBeans.getResumeWorkPlace());
+               phoneTextView.setText(resumeValueBeans.getResumeMobile());
+               resumeQq.setText(resumeValueBeans.getResumeQq());
+               resumeEmail.setText(resumeValueBeans.getResumeEmail());
+               userOnselfText.setText(resumeValueBeans.getResumeInfo());
+               userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
+               workExpexteText.setText(resumeValueBeans.getResumeWorkExperience());
+               workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
+           }
         //获取系统时间
         Calendar calendar = Calendar.getInstance();
         year1 = calendar.get(Calendar.YEAR);
@@ -150,21 +195,6 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
 
     }
 
-    private void addFragment() {
-        fragments.add(new ModificationInformationFragment());
-        fragments.add(new ModificationProductionFragment());
-
-    }
-
-
-
-    public String getPosition() {
-        return position;
-    }
-
-    public void setPosition(String position) {
-        this.position = position;
-    }
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -186,15 +216,52 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
                 finish();
                 break;
             case R.id.save_text:
-
+                Intent intent = new Intent(ModificationResumeActivity.this, ProductionResumeActivity.class);
+                intent.putExtra("resumeid", resumeValueBeans.getResumeid()+"");
+                startActivity(intent);
                 break;
+           case R.id.resume_age_tv:
+               datePickerDialogData().show();
+               break;
+           case R.id.updata_image:
+               showDialog();
+               break;
+           case R.id.oneself_known_layout:
+               Intent infoIntent = new Intent(ModificationResumeActivity.this, OneselfExperienceActivity.class);  //方法1
+               infoIntent.putExtra("hintData","infoIntent");
+               if (!TextUtils.isEmpty(userOnselfText.getText().toString())){
+                   infoIntent.putExtra("content",userOnselfText.getText().toString());
+               }
+               startActivityForResult(infoIntent, INFOLT_HINT_DATA);
+               break;
+           case R.id.work_experience_layout:
+               Intent workIntent = new Intent(ModificationResumeActivity.this, OneselfExperienceActivity.class);  //方法1
+               workIntent.putExtra("hintData","workIntent");
+               if (!TextUtils.isEmpty(workExpexteText.getText().toString())){
+                   workIntent.putExtra("content",workExpexteText.getText().toString());
+               }
+               startActivityForResult(workIntent, EXPERIENCE_HINT_DATA);
+               break;
+
+
+
+           case R.id.job_classfite_layout:
+
+
+               break;
+           case R.id.job_city_layout:
+
+               break;
+           case R.id.next_resume_tv:
+               saveData();
+               break;
 
 
 
 
         }
     }
-   /* private void saveData() {
+ private void saveData() {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         String  touXiangPath = screenshotFile.getAbsolutePath();
@@ -203,15 +270,15 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
              if (screenshotFile.exists()){
                  requestParams.addBodyParameter("usericon",new File(touXiangPath));
              }
-            if (!TextUtils.isEmpty(resumeZhNameEt.getText().toString())){
-                requestParams.addBodyParameter("resumeZhName",resumeZhNameEt.getText().toString());
+            if (!TextUtils.isEmpty(resumeZhName.getText().toString())){
+                requestParams.addBodyParameter("resumeZhName",resumeZhName.getText().toString());
                if (!TextUtils.isEmpty(sex)){
                    requestParams.addBodyParameter("resumeSex",sex);
                    if (selectYear!=0&&selectMonthOfYear!=0&&selectDayOfMonth!=0){
                        requestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
                    }
-                    if (!TextUtils.isEmpty(jobCategoryNameEt.getText().toString())){
-                        requestParams.addBodyParameter("resumeJobName",jobCategoryNameEt.getText().toString());
+                    if (!TextUtils.isEmpty(resumeJobName.getText().toString())){
+                        requestParams.addBodyParameter("resumeJobName",resumeJobName.getText().toString());
 
                         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(),requestParams, new RequestCallBack<String >() {
                             @Override
@@ -241,7 +308,7 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
 
 
 
-    }*/
+    }
 
     //日期
     public DatePickerDialog datePickerDialogData() {
@@ -254,7 +321,7 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
                 age = (year1 - year)+"";
                 //Log.e("age00000",age+"");
                 if (Integer.valueOf(age)>0){
-                    //resumeAgeTv.setText(age);
+                    resumeAgeTv.setText(age);
                 }else {
                     Toast.makeText(ModificationResumeActivity.this, "亲,您设置的年龄要大于0哦!", Toast.LENGTH_LONG).show();
                 }
@@ -343,19 +410,17 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
         if (bundle != null) {
             Bitmap photo = bundle.getParcelable("data");
             if (photo == null) {
-                //customImageView.setImageResource(R.mipmap.ic_launcher);
+                usericonIV.setImageResource(R.mipmap.ic_launcher);
             } else {
                 Bitmap zoomBitmap = ImageUtil.zoomBitmap(photo, 100, 100);
                 //获取圆角图片
                 Bitmap roundBitmap = ImageUtil.getRoundedCornerBitmap(zoomBitmap, 200.0f);
                 //获取倒影图片
                 //Bitmap reflectBitmap = ImageUtil.createReflectionImageWithOrigin(roundBitmap);
-                //customImageView.setImageBitmap(roundBitmap);
+                usericonIV.setImageBitmap(roundBitmap);
 //                设置文本内容为    图片绝对路径和名字
                 //text.setText(tempFile.getAbsolutePath());
                 //Log.e("tempFile",tempFile.getAbsolutePath());
-
-
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(screenshotFile);
@@ -419,6 +484,55 @@ public class ModificationResumeActivity extends ActionBarActivity implements Rad
                 if (data != null)
                     // setPicToView(data);
                     sentPicToNext(data);
+                break;
+            case INFOLT_HINT_DATA:
+                if (data.getStringExtra("infoIntent").toString().equals("notData")){
+                    if (userOnselfText.getText().toString().equals("介绍一下自己")){
+                        userOnselfText.setText("介绍一下自己");
+                        userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        userOnselfText.setText(userOnselfText.getText().toString());
+                        userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else if (data.getStringExtra("infoIntent").toString().equals("data")){
+                    if (userOnselfText.getText().toString().equals("介绍一下自己")){
+                        userOnselfText.setText("介绍一下自己");
+                        userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        userOnselfText.setText(userOnselfText.getText().toString());
+                        userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else {
+                    userOnselfText.setText(data.getStringExtra("infoIntent").toString());
+                    userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
+                }
+
+                break;
+            case EXPERIENCE_HINT_DATA:
+                if (data.getStringExtra("workIntent").toString().equals("notData")){
+                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")){
+                        workExpexteText.setText("分享一下自己工作经验");
+                        workExpexteText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        workExpexteText.setText(workExpexteText.getText().toString());
+                        workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+                }else if (data.getStringExtra("workIntent").toString().equals("data")){
+                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")){
+                        workExpexteText.setText("分享一下自己工作经验");
+                        workExpexteText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
+                    }else {
+                        workExpexteText.setText(workExpexteText.getText().toString());
+                        workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else {
+                    workExpexteText.setText(data.getStringExtra("workIntent").toString());
+                    workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
+                }
+
                 break;
 
         }

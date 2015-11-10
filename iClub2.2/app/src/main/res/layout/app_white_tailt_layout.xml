@@ -22,7 +22,7 @@
          android:id="@+id/tailt_text"
          android:layout_marginTop="15dp"
          android:text="登录"
-         android:textSize="@dimen/textSize18"
+         android:textSize="@dimen/textSize16"
          android:layout_centerHorizontal="true"
          style="@style/paren_layout_width"
          />
@@ -33,7 +33,7 @@
         android:visibility="gone"
         android:textSize="@dimen/textSize18"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
+        android:layout_marginRight="20dp"
         style="@style/paren_layout_width"
         />
 </RelativeLayout>

@@ -76,7 +76,7 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
     }
 
     private void initView() {
-        loadingDialog = new LoadingDialog(this,"正在更新数据……");
+        loadingDialog = new LoadingDialog(this,"正在上传图片……");
         resumeValueBean= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBean");
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("添加图片");
