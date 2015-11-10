@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -120,7 +119,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
                     intent.putExtra("resumeValueBeans",data.get(position));
                     intent.putExtra("position", position+"");
                     context.startActivity(intent);
-                    Log.e("steta________", position + "");
+                    //Log.e("steta________", position + "");
                 } else if (isChecked.get(position) == true){
                     isChecked.put(position, false);  // 根据点击的情况来将其位置和相应的状态存入
 
@@ -147,7 +146,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
                 if (isChecked.get(position) == false){
                     isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
                     showDialog(position);
-                    Log.e("steta________", position + "");
+                    //Log.e("steta________", position + "");
                 } else if (isChecked.get(position) == true){
                     isChecked.put(position, false);  // 根据点击的情况来将其位置和相应的状态存入
 
@@ -176,7 +175,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
                         if (!TextUtils.isEmpty(Integer.toString(data.get(position).getResumeid()))){
                             refreshResumeData(Integer.toString(data.get(position).getResumeid()));
 
-                            Log.e("refresh_button", "--------" + data.get(position).getResumeid());
+                           // Log.e("refresh_button", "--------" + data.get(position).getResumeid());
                         }
 
                 } else if (isChecked.get(position) == true){
@@ -230,11 +229,13 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
             @Override
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(resumeId+"")||!TextUtils.isEmpty(data.get(position).getState()+"")){
-                     Log.e("dhhfhfhfh-----",data.get(position).getState()+"");
+                     //Log.e("dhhfhfhfh-----",data.get(position).getState()+"");
                     if (data.get(position).getState().equals(0)){
+
                         stateSaveData("简历已保密", "1", data.get(position).getResumeid() + "",position);
                     }else if (data.get(position).getState().equals(1)){
                         stateSaveData("简历已公开","0" ,  data.get(position).getResumeid() + "",position);
+
                     }
 
                 }
@@ -304,17 +305,18 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid",resumeId);
         requestParams.addBodyParameter("state",state);
+        MyAppliction.showToast(resumeId);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getSaveStateResume(), requestParams,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 ParmeBean<MessageBean> parmeBean= JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
-                Log.e("jfjfjfj",responseInfo.result);
+                //Log.e("jfjfjfj",responseInfo.result);
                 if (parmeBean.getState().equals("success")){
                     if (parmeBean.getValue().getMessage().equals("success")){
                         MyAppliction.showToast(text);
-                        if (data.get(position).getState().equals(1)){
+                        if (text.equals("简历已保密")){
                                 viewHolde.resumeStateTv.setText("保密");
-                        }else if (data.get(position).getState().equals(0)){
+                        }else if (text.equals("简历已公开")){
                             viewHolde.resumeStateTv.setText("公开");
                         }
                         resumeListLv.setRefreshing();

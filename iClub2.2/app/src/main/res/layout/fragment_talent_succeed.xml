@@ -5,6 +5,7 @@
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/invite_successful_list_lv"
+        android:dividerHeight="3dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

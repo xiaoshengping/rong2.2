@@ -2,401 +2,375 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="20dp"
     android:background="@color/layoutBackground"
-    tools:context="com.jeremy.Customer.fragment.OneselfInformationFragment">
-    <ImageView
-        android:layout_below="@+id/address_layout"
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
+    tools:context="com.jeremy.Customer.uilt.AddResumeActivity"
+    >
+
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="0dp"
         android:orientation="vertical"
-        android:background="@color/white"
-       >
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="14dp">
-            <TextView
-                android:textColor="@color/hunTextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="自我介绍"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@mipmap/neself_icon"
-                android:layout_marginLeft="5dp"
-                android:textSize="15sp"
-                />
-            <TextView
-                android:id="@+id/modification_oneself_tv"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/redTextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="编辑"
-                android:drawablePadding="10dp"
-                android:layout_marginRight="20dp"
-                android:textSize="15sp"
-                />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        </RelativeLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#08ffffff"/>
-
-        <TextView
-            android:id="@+id/resumeInfo_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/jobRequirements"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:textSize="@dimen/textSize15"
-            android:lineSpacingMultiplier="1.5"
-            android:text="仅仅是接电话都或多或少都好的好的好的好的不烦不烦烦不烦部分恢复恢复很好合适的好的好的哈哈就是减肥减肥减肥就是的加减法好的好的好的基督教 就是觉得就是减肥就是减肥的减肥减肥还是说睡觉睡觉jjjsdfjjjs记得减肥解决方法解决决定将发挥发挥发挥北京时间附加费很舒服恢复和范冰冰"
-            />
-        <LinearLayout
-            android:id="@+id/oneself_more_layout"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
-            android:orientation="horizontal"
+        <ScrollView
+            android:scrollbars="none"
+            android:id="@+id/compile_zliao_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/oneself_more_tv"
-                android:textColor="@color/redTextColor"
-                android:gravity="center"
-                android:text="查看更多"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:layout_marginLeft="3dp"
-                android:src="@mipmap/below_return_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+            <LinearLayout
+                android:id="@+id/compile_tv"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:background="@color/lineColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+                    <LinearLayout
+                        android:id="@+id/updata_image"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <ImageView
+                            android:scaleType="fitXY"
+                            android:id="@+id/touxiang_image"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:src="@mipmap/resume_touxiang_icon"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp" />
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <EditText
+                                android:maxLength="7"
+                                android:layout_marginTop="10dp"
+                                android:id="@+id/resumeZhName_et"
+                                android:background="@null"
+                                android:hint="请输入姓名"
+                                android:textColorHint="@color/editTextPromptColor"
+                                android:textSize="@dimen/textSize15"
+                                android:layout_marginLeft="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp" />
+                            <ImageView
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="10dp"
+                                android:background="@color/lineColor"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp" />
+                            <RadioGroup
+                                android:layout_marginBottom="10dp"
+                                android:layout_marginTop="5dp"
+                                android:id="@+id/sex_radio_group"
+                                android:orientation="horizontal"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="30dp">
+                                <RadioButton
+                                    android:id="@+id/boy_radio_button"
+                                    android:text="男"
+                                    android:gravity="center"
+                                    android:textSize="@dimen/textSize15"
+                                    android:background="@drawable/resume_sex_selector"
+                                    android:textColor="@color/resume_sex_color_seletor"
+                                    android:layout_weight="1"
+                                    android:button="@null"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    />
+                                <RadioButton
+                                    android:id="@+id/girl_radio_button"
+                                    android:text="女"
+                                    android:textSize="@dimen/textSize15"
+                                    android:gravity="center"
+                                    android:background="@drawable/resume_sex_selector"
+                                    android:textColor="@color/resume_sex_color_seletor"
+                                    android:layout_weight="1"
+                                    android:button="@null"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    />
+
+                            </RadioGroup>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/lineColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:background="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp" >
+                            <TextView
+                                android:text="年龄"
+                                android:layout_marginLeft="20dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+                                android:id="@+id/resume_age_tv"
+                                android:textColor="@color/editTextPromptColor"
+                                android:text="请选择出生年份(必填)"
+
+                                android:textSize="@dimen/textSize15"
+                                android:layout_marginLeft="50dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="20dp" />
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/lineColor"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp" />
+
+                        <LinearLayout
+                            android:gravity="center"
+                            android:id="@+id/job_classfite_layout"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp" >
+                            <TextView
+
+
+                                android:text="职业类别"
+                                android:layout_marginLeft="20dp"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+
+                                android:id="@+id/job_classfite_tv"
+                                android:text="请选择职位类别(必填)"
+                                android:textSize="@dimen/textSize15"
+                                android:textColor="@color/editTextPromptColor"
+                                android:layout_marginLeft="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@color/lineColor"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp" />
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp" >
+                            <TextView
+
+                                android:text="职业名称"
+                                android:layout_marginLeft="20dp"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <EditText
+
+                                android:id="@+id/resumeJobName_et"
+                                android:background="@null"
+                                android:textSize="@dimen/textSize15"
+                                android:hint="请输入职位名称(必填)"
+                                android:textColorHint="@color/editTextPromptColor"
+                                android:layout_marginLeft="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="15dp"
+                            android:background="@color/lineColor"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp" />
+                        <LinearLayout
+                            android:gravity="center"
+                            android:id="@+id/job_city_layout"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp" >
+                            <TextView
+
+                                android:text="工作地点"
+                                android:layout_marginLeft="20dp"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" />
+                            <TextView
+
+                                android:id="@+id/job_city_tv"
+                                android:text="请选择工作地点(必填)"
+                                android:textColor="@color/editTextPromptColor"
+                                android:textSize="@dimen/textSize15"
+                                android:layout_marginLeft="20dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" />
+
+                        </LinearLayout>
+                        <ImageView
+
+                            android:background="@color/lineColor"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:background="@color/lineColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+                    <LinearLayout
+
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp" >
+                        <TextView
+                            android:text="QQ"
+                            android:layout_marginLeft="20dp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <EditText
+                            android:id="@+id/resumeQq_et"
+                            android:inputType="number"
+                            android:background="@null"
+                            android:textSize="@dimen/textSize15"
+                            android:hint="请输入QQ号码(必填)"
+                            android:textColorHint="@color/editTextPromptColor"
+                            android:layout_marginLeft="55dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/lineColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+                    <LinearLayout
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp" >
+                        <TextView
+
+                            android:text="Email"
+                            android:layout_marginLeft="20dp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <EditText
+                            android:id="@+id/resumeEmail_et"
+                            android:background="@null"
+                            android:textSize="@dimen/textSize15"
+                            android:inputType="textEmailAddress"
+                            android:hint="请输入电子邮箱(必填)"
+                            android:textColorHint="@color/editTextPromptColor"
+                            android:layout_marginLeft="40dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/lineColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp" />
+                    <LinearLayout
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp" >
+                        <TextView
+
+
+                            android:text="手机号码"
+                            android:layout_marginLeft="20dp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+
+                        <TextView
+
+                            android:id="@+id/phone_textView_tv"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <ImageView
+                    android:background="@color/lineColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp" />
+
+                <include
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    layout="@layout/experience_layout"/>
+
+
+
+              <!--  <TextView
+
+                    android:text="下一步"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/textSize15"
+                    android:id="@+id/next_resume_tv"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@mipmap/red_button_icon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />-->
+            </LinearLayout>
+
+        </ScrollView>
 
     </LinearLayout>
-    <ImageView
-        android:layout_below="@+id/address_layout"
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="0dp"
-        android:orientation="vertical"
-        android:background="@color/white"
-        android:layout_marginTop="7dp">
-        <ImageView
-            android:layout_below="@+id/address_layout"
-            android:src="@color/lineColor"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="14dp"
-            android:layout_marginLeft="14dp"
-            android:layout_marginRight="14dp">
 
 
-
-            <TextView
-                android:textColor="@color/hunTextColor"
-                android:drawablePadding="10dp"
-                android:drawableLeft="@mipmap/neself_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="工作经历"
-                android:layout_marginLeft="10dp"
-                android:textSize="15sp"
-                />
-            <TextView
-                android:id="@+id/modification_work_tv"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/redTextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="编辑"
-                android:drawablePadding="10dp"
-                android:layout_marginRight="20dp"
-                android:textSize="15sp"
-                />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#08ffffff"/>
-
-        <TextView
-            android:id="@+id/resume_WorkExperience_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/jobRequirements"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:textSize="@dimen/textSize15"
-            android:lineSpacingMultiplier="1.5"
-            android:text="手机都几点几点睡觉的交话费呵呵啥时候回家睡觉睡觉是技术监督局大家说的很多很多很多话就是减肥减肥减肥就是的加减法好的好的好的基督教 就是觉得就是减肥就是减肥的减肥减肥还是说睡觉睡觉jjjsdfjjjs记得减肥解决方法解决决定将发挥发挥发挥北京时间附加费很舒服恢复和范冰冰"
-            />
-        <LinearLayout
-            android:id="@+id/experience_more_layout"
-            android:layout_marginBottom="20dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/experience_more_tv"
-                android:textColor="@color/redTextColor"
-                android:gravity="center"
-                android:text="查看更多"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:layout_marginLeft="3dp"
-                android:src="@mipmap/below_return_icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-    </LinearLayout>
-    <ImageView
-        android:layout_below="@+id/address_layout"
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white"
-        android:layout_marginTop="7dp">
-        <ImageView
-            android:layout_below="@+id/address_layout"
-            android:src="@color/lineColor"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-        <TextView
-            android:textColor="@color/hunTextColor"
-            android:layout_marginTop="10dp"
-            android:drawablePadding="10dp"
-            android:drawableLeft="@mipmap/neself_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="联系方式"
-            android:layout_marginLeft="25dp"
-            android:textSize="15sp"
-            />
-
-            <TextView
-                android:id="@+id/modification_contact"
-                android:layout_alignParentRight="true"
-                android:textColor="@color/redTextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="编辑"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="35dp"
-                android:textSize="15sp"
-                />
-
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="QQ"
-                android:layout_marginLeft="10dp"
-                android:textSize="@dimen/textSize14"
-                android:paddingLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/resumeQq_tv"
-                android:text="QQ___"
-                android:layout_marginLeft="47dp"
-                android:textSize="@dimen/textSize14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="Email"
-                android:layout_marginLeft="10dp"
-                android:textSize="@dimen/textSize14"
-                android:paddingLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/resumeEmail_tv"
-                android:text="Email"
-                android:layout_marginLeft="32dp"
-                android:textSize="@dimen/textSize14"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="手机号码"
-                android:layout_marginLeft="15dp"
-                android:textSize="@dimen/textSize14"
-                android:paddingLeft="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/resumeMobile_tv"
-                android:text="手机号码"
-                android:layout_marginLeft="10dp"
-                android:textSize="@dimen/textSize14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white"
-        android:layout_marginTop="7dp">
-        <ImageView
-            android:layout_below="@+id/address_layout"
-            android:src="@color/lineColor"
-            android:layout_width="match_parent"
-            android:layout_height="1dp" />
-
-        <LinearLayout
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:textColor="@color/hunTextColor"
-                android:text="信誉值"
-                android:layout_marginLeft="10dp"
-                android:textSize="@dimen/textSize14"
-                android:paddingLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/integrity_tv"
-                android:text="100"
-                android:textColor="@color/redTextColor"
-                android:layout_marginLeft="25dp"
-                android:textSize="@dimen/textSize14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:textColor="@color/hunTextColor"
-                android:text="真实性"
-                android:layout_marginLeft="10dp"
-                android:textSize="@dimen/textSize14"
-                android:paddingLeft="20dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/authenticity_tv"
-                android:text="100"
-                android:layout_marginLeft="25dp"
-                android:textSize="@dimen/textSize14"
-                android:textColor="@color/redTextColor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-        <LinearLayout
-
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:textColor="@color/hunTextColor"
-                android:text="合作次数"
-                android:layout_marginLeft="15dp"
-                android:textSize="@dimen/textSize14"
-                android:paddingLeft="15dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:textColor="@color/redTextColor"
-                android:id="@+id/transactionRecord_tv"
-                android:text="100"
-                android:layout_marginLeft="10dp"
-                android:textSize="@dimen/textSize14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-    </LinearLayout>
-    <ImageView
-        android:src="@color/editTextPromptColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
-    <TextView
-        android:id="@+id/commentCount_tv"
-        android:drawableRight="@mipmap/right_return_icon"
-        android:textColor="@color/hunTextColor"
-        android:paddingLeft="30dp"
-        android:paddingRight="20dp"
-        android:gravity="center_vertical"
-        android:background="@color/white"
-        android:text="100位商家评论过"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
-    <ImageView
-        android:layout_below="@+id/address_layout"
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
 </LinearLayout>
+

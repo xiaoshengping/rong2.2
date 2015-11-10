@@ -121,7 +121,9 @@
         <activity android:name=".uilt.ActivityDetailActivity" />
         <activity android:name=".uilt.TalentsDetailsActivity" />
         <activity android:name=".uilt.ActivityApplyActivity" />
-        <activity android:name=".uilt.InviteMessageActivity" />
+        <activity android:name=".uilt.InviteMessageActivity"
+            android:theme="@style/StyledIndicators"
+            />
         <activity android:name=".uilt.NickNameActivity" />
         <activity android:name=".uilt.SelectPictureActivity" />
         <activity
@@ -162,10 +164,12 @@
             android:label="@string/title_activity_add_music_production" />
         <activity
             android:name=".uilt.ResumeParticularsActivity"
-            android:label="@string/title_activity_resume_particulars" />
+            android:label="@string/title_activity_resume_particulars"
+            android:theme="@style/StyledIndicators"
+            />
         <activity
             android:name=".view.MusicActivity"
-            android:theme="@android:style/Theme.Translucent" />
+           />
         <activity android:name=".view.SpaceImageDetailActivity" />
         <activity
             android:name=".uilt.MerchantDeliverActivity"
@@ -173,6 +177,7 @@
         </activity>
         <activity
             android:name=".uilt.MerchantInviteActivity"
+            android:theme="@style/StyledIndicators"
             android:label="@string/title_activity_merchant_invite" >
         </activity>
         <activity
@@ -191,7 +196,9 @@
         <activity android:name=".uilt.AddMerchantActivity" />
         <activity
             android:name=".uilt.ModificationResumeActivity"
-            android:label="@string/title_activity_modification_resume" >
+            android:label="@string/title_activity_modification_resume"
+            android:theme="@style/StyledIndicators"
+            >
         </activity>
         <activity
             android:name=".uilt.ContactInformationActivity"

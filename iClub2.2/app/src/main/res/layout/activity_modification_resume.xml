@@ -2,10 +2,37 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layoutBackground"
-
     tools:context="com.jeremy.Customer.uilt.ResumeParticularsActivity">
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        >
+        <include layout="@layout/app_white_tailt_layout"/>
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+        <com.viewpagerindicator.TabPageIndicator
+            android:id="@+id/main_tabpager"
+            android:layout_width="match_parent"
+            android:layout_height="43dp" />
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <com.jeremy.Customer.view.CustomViewPager
+            android:id="@+id/modification_resume_pager"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -356,5 +383,5 @@
 
 
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 </ScrollView>
