@@ -741,7 +741,6 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         }
 
     }
-//dsfafsasdfa
     private int[] location1 = {0,0};
     private int[] location2 = {0,0};
     private int[] location3 = {0,0};
