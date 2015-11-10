@@ -89,7 +89,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
     }
 
     private void initView() {
-        loadingDialog = new LoadingDialog(this,"正在更新数据……");
+        loadingDialog = new LoadingDialog(this,"正在加载数据……");
         loadingDialog.show();
         //oneselfInformactionRb.setChecked(true);
         talenBackIv.setOnClickListener(this);
