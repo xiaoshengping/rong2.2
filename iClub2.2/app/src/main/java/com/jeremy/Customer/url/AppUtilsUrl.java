@@ -321,7 +321,11 @@ public class AppUtilsUrl  {
         return BaseUrl+"addBePicture.action";
 
     }
+    public static String getDeleteBePicture(){
+        // delBePicture.action
+        return BaseUrl+"delBePicture.action";
 
+    }
 
     //商家--来自人才的评论
     public static String getResumeCommentData(String personid,int offset){

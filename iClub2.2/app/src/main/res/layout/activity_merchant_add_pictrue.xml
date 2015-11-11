@@ -47,6 +47,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
+        android:verticalSpacing="7dp"
         android:id="@+id/show_picture_gridview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

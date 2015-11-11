@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -59,6 +60,7 @@ public class MerchantAddPictrueActivity extends ActionBarActivity implements Vie
     private LoadingDialog loadingDialog;
     private String pid;
     private BMerchantValueBean bMerchantValueBean;
+    private boolean isShowDelete;
 
 
     @Override
@@ -88,13 +90,24 @@ public class MerchantAddPictrueActivity extends ActionBarActivity implements Vie
         selectDatabase();
         bMerchantValueBean= (BMerchantValueBean) getIntent().getSerializableExtra("merchantPictrue");
         if (bMerchantValueBean!=null){
-            MerchantPicyureAdapter resumePictureAdapter=new MerchantPicyureAdapter(bMerchantValueBean.getBEpicture(),this);
+            final MerchantPicyureAdapter resumePictureAdapter=new MerchantPicyureAdapter(bMerchantValueBean.getBEpicture(),this);
             showPictureGridview.setAdapter(resumePictureAdapter);
             resumePictureAdapter.notifyDataSetChanged();
             if (bMerchantValueBean.getBEpicture().size()!=0){
                 showPictureTextOne.setVisibility(View.VISIBLE);
             }
-
+            showPictureGridview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (isShowDelete) {
+                        isShowDelete = false;
+                    } else {
+                        isShowDelete = true;
+                    }
+                    resumePictureAdapter.setIsShowDelete(isShowDelete);
+                    return  true;
+                }
+            });
 
         }
 
