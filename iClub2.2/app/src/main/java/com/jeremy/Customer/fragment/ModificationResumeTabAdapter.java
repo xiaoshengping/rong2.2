@@ -58,11 +58,11 @@ public class ModificationResumeTabAdapter implements RadioGroup.OnCheckedChangeL
 
 //                Toast.makeText(this.fragmentActivity, "" + i, Toast.LENGTH_LONG).show();
 
-                if (rgs.getChildAt(i).getId()==R.id.oneself_production_rb){
+             /*   if (rgs.getChildAt(i).getId()==R.id.oneself_production_rb){
                     messageLayout.setVisibility(View.GONE);
                 }else if (rgs.getChildAt(i).getId()==R.id.oneself_informaction_rb){
                     messageLayout.setVisibility(View.VISIBLE);
-                }
+                }*/
 
                 Fragment fragment = fragments.get(i);
                 FragmentTransaction ft = obtainFragmentTransaction(i);

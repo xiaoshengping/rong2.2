@@ -7,7 +7,7 @@
     tools:context="com.jeremy.Customer.fragment.MineFragment"
     >
     <RelativeLayout
-        android:background="@mipmap/mine_tailt_icon"
+        android:background="#9373ee"
         android:layout_width="match_parent"
         android:layout_height="180dp">
 
