@@ -4,10 +4,7 @@
      android:gravity="center"
     android:background="@color/white"
     android:layout_height="wrap_content">
-  <!--  <ImageView
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />-->
+
     <TextView
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -112,10 +109,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <ImageView
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
     <ImageView
         android:src="@color/layoutBackground"
         android:layout_width="match_parent"

@@ -89,6 +89,12 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        intiResumeListData();
+    }
+
     private void initView() {
         experienceMoreLayout.setOnClickListener(this);
         oneselfMoreLayout.setOnClickListener(this);

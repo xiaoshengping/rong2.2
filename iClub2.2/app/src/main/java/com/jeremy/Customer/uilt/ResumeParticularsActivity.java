@@ -88,6 +88,8 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
 
     }
 
+
+
     private void initView() {
         loadingDialog = new LoadingDialog(this,"正在加载数据……");
         loadingDialog.show();
@@ -142,7 +144,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
             case R.id.cpmpile_resume_tv:
                     Intent intent=new Intent(ResumeParticularsActivity.this,ModificationResumeActivity.class);
                     intent.putExtra("positions",positions);
-                   startActivity(intent);
+                   startActivityForResult(intent,13);
 
                 break;
 

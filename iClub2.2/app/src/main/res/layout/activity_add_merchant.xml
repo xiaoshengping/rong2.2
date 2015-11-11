@@ -34,7 +34,7 @@
                     <ImageView
                         android:src="@color/lineColor"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="1dp" />
                     <LinearLayout
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
@@ -218,7 +218,7 @@
                     <ImageView
                         android:src="@color/lineColor"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="1dp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -231,7 +231,7 @@
                     <ImageView
                         android:src="@color/lineColor"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="1dp" />
                     <TextView
                         android:layout_marginLeft="20dp"
                         android:text="经验要求"
@@ -257,7 +257,7 @@
                     <ImageView
                         android:src="@color/lineColor"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="1dp" />
                 </LinearLayout>
                 <LinearLayout
                     android:background="@color/white"
@@ -269,7 +269,7 @@
                     <ImageView
                         android:src="@color/lineColor"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="1dp" />
                     <TextView
                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="20dp"
@@ -295,7 +295,7 @@
                     <ImageView
                         android:src="@color/lineColor"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="1dp" />
                 </LinearLayout>
 
             </LinearLayout>

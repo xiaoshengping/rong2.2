@@ -32,6 +32,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ArtistParme;
+import com.jeremy.Customer.bean.LoadingDialog;
+import com.jeremy.Customer.bean.MessageBean;
+import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.ImageUtil;
 import com.jeremy.Customer.http.MyAppliction;
@@ -137,6 +140,8 @@ public class ModificationInformationFragment extends Fragment implements View.On
     private DatePickerDialog datePickerDialog;
 
     private ResumeValueBean resumeValueBeans;
+    private LoadingDialog loadingDialog;
+    private LoadingDialog loadingDialogOne;
 
 
     public ModificationInformationFragment() {
@@ -169,7 +174,8 @@ public class ModificationInformationFragment extends Fragment implements View.On
         resumeAgeTv.setOnClickListener(this);
         sexRadioGroup.setOnCheckedChangeListener(this);
         nextResumeTv.setOnClickListener(this);
-
+         loadingDialog=new LoadingDialog(getActivity(),"正在保存数据......");
+        loadingDialogOne=new LoadingDialog(getActivity(),"正在加载数据......");
 
         //获取系统时间
         Calendar calendar = Calendar.getInstance();
@@ -186,8 +192,6 @@ public class ModificationInformationFragment extends Fragment implements View.On
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-
-
             case R.id.resume_age_tv:
                 datePickerDialogData().show();
                 break;
@@ -241,6 +245,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
 
         }
         String resumeListUrl= AppUtilsUrl.getResumeLista(uid);
+        loadingDialogOne.show();
         httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -269,6 +274,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
                         userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
                         workExpexteText.setText(resumeValueBeans.getResumeWorkExperience());
                         workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
+                        loadingDialogOne.dismiss();
                     }
 
 
@@ -310,20 +316,59 @@ public class ModificationInformationFragment extends Fragment implements View.On
                         requestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
                     }
                     if (!TextUtils.isEmpty(resumeJobName.getText().toString())){
-                        requestParams.addBodyParameter("resumeJobName",resumeJobName.getText().toString());
+                        requestParams.addBodyParameter("resumeJobName", resumeJobName.getText().toString());
+                        if (!TextUtils.isEmpty(resumeQq.getText().toString())){
+                            requestParams.addBodyParameter("resumeQq", resumeQq.getText().toString());
+                            if (!TextUtils.isEmpty(resumeEmail.getText().toString())){
+                                requestParams.addBodyParameter("resumeEmail", resumeEmail.getText().toString());
+                               if (!TextUtils.isEmpty(userOnselfText.getText().toString())){
+                                   requestParams.addBodyParameter("resumeInfo", userOnselfText.getText().toString());
+                               if (!TextUtils.isEmpty(workExpexteText.getText().toString())){
+                                       requestParams.addBodyParameter("resumeWorkExperience", workExpexteText.getText().toString());
+                                   loadingDialog.show();
+                                   httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(), requestParams, new RequestCallBack<String>() {
+                                       @Override
+                                       public void onSuccess(ResponseInfo<String> responseInfo) {
+                                           if (!TextUtils.isEmpty(responseInfo.result)){
+                                               ParmeBean<MessageBean> parmeBean=JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
+                                               if (parmeBean.getState().equals("success")){
+                                                   if (parmeBean.getValue().getMessage().equals("success")){
+                                                       loadingDialog.dismiss();
+                                                       getActivity().finish();
 
-                        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(),requestParams, new RequestCallBack<String >() {
-                            @Override
-                            public void onSuccess(ResponseInfo<String> responseInfo) {
-                                // Log.e("jjdjjff",responseInfo.result);
-                                getActivity().finish();
+                                                   }
+
+                                               }
+                                           }
+
+
+
+                                       }
+
+                                       @Override
+                                       public void onFailure(HttpException e, String s) {
+
+                                       }
+                                   });
+
+
+                                   }else {
+                                   MyAppliction.showToast("请输入工作经验");
+                               }
+
+                               }else {
+                                   MyAppliction.showToast("请介绍一下自己");
+                               }
+
+
+                            }else {
+                                MyAppliction.showToast("请输入电子邮箱");
                             }
 
-                            @Override
-                            public void onFailure(HttpException e, String s) {
+                        }else {
+                            MyAppliction.showToast("请输入QQ号码");
+                        }
 
-                            }
-                        });
                     }else {
                         MyAppliction.showToast("请输入职业名称");
 
