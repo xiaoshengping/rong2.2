@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -114,7 +115,8 @@ public class InviteproductionFragment extends Fragment implements View.OnClickLi
         resumeValueBean = ((MercharInviteParticularsActivity) getActivity()).getResumeValueBean();
         if (resumeValueBean != null) {
             if (resumeValueBean.getResumeMovie().size() != 0) {
-                showVideoResumeIv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(), 10, 10));
+                   new InviteProductionAsynctack(showVideoResumeIv, AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath()).execute();
+
             } else {
                 showVideoLayout.setVisibility(View.GONE);
                 noVideoLayout.setVisibility(View.VISIBLE);
@@ -161,6 +163,30 @@ public class InviteproductionFragment extends Fragment implements View.OnClickLi
 
         }
 
+    }
+
+
+    class InviteProductionAsynctack extends AsyncTask<String, Void, Bitmap> {
+        private ImageView imgView;
+        private String path;
+
+        public InviteProductionAsynctack(ImageView imageView,String path) {
+            this.imgView = imageView;
+            this.path = path;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            //这里的创建缩略图方法是调用VideoUtil类的方法，也是通过 android中提供的 ThumbnailUtils.createVideoThumbnail(vidioPath, kind);
+           Bitmap bitmap= createVideoThumbnail(path, 10, 10);
+            return bitmap;
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+
+                imgView.setImageBitmap(bitmap);
+
+        }
     }
 
     private void intiResumeListData() {

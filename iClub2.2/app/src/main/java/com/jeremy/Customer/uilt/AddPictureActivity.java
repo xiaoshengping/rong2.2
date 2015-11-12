@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -57,6 +58,7 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
 
     private ResumeValueBean resumeValueBean;
     private LoadingDialog loadingDialog;
+    private boolean isShowDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,13 +87,24 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
         saveText.setText("上传");
         if (resumeValueBean!=null){
 
-            ResumePictureAdapter resumePictureAdapter=new ResumePictureAdapter(resumeValueBean.getResumePicture(),this);
+            final ResumePictureAdapter resumePictureAdapter=new ResumePictureAdapter(resumeValueBean.getResumePicture(),this);
             showPictureGridView.setAdapter(resumePictureAdapter);
             resumePictureAdapter.notifyDataSetChanged();
             if (resumeValueBean.getResumePicture().size()!=0){
                 showPcitureTextOne.setVisibility(View.VISIBLE);
             }
-
+            showPictureGridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (isShowDelete) {
+                        isShowDelete = false;
+                    } else {
+                        isShowDelete = true;
+                    }
+                    resumePictureAdapter.setIsShowDelete(isShowDelete);
+                    return  true;
+                }
+            });
         }
 
 

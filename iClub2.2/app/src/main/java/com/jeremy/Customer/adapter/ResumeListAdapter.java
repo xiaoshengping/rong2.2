@@ -116,7 +116,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
                 if (isChecked.get(position) == false){
                     isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
                     Intent intent=new Intent(context,ModificationResumeActivity.class);
-                    intent.putExtra("positions",position+"");
+                    intent.putExtra("resumeValueBean",data.get(position));
                     context.startActivity(intent);
                     //Log.e("steta________", position + "");
                 } else if (isChecked.get(position) == true){

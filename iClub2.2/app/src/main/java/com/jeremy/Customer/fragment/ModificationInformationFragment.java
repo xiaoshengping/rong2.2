@@ -4,8 +4,6 @@ package com.jeremy.Customer.fragment;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,7 +11,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +28,6 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
-import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.MessageBean;
 import com.jeremy.Customer.bean.ParmeBean;
@@ -40,7 +36,6 @@ import com.jeremy.Customer.http.ImageUtil;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.uilt.ModificationResumeActivity;
 import com.jeremy.Customer.uilt.OneselfExperienceActivity;
-import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -182,7 +177,30 @@ public class ModificationInformationFragment extends Fragment implements View.On
         year1 = calendar.get(Calendar.YEAR);
         monthOfYear = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DATE);
-        intiResumeListData();
+       resumeValueBeans=((ModificationResumeActivity) getActivity()).getResumeValueBeans();
+        if (resumeValueBeans!=null){
+            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), usericonIV, MyAppliction.RoundedOptions);
+            resumeZhName.setText(resumeValueBeans.getResumeZhName());
+
+            if (resumeValueBeans.getResumeSex().equals(0)){
+                boyRadioButton.setChecked(true);
+            }else if(resumeValueBeans.getResumeSex().equals(1)){
+                girlRadioButton.setChecked(true);
+            }
+            resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
+            resumeAgeTv.setTextColor(getResources().getColor(R.color.textColor242424));
+            resumeJobName.setText(resumeValueBeans.getResumeJobCategoryName());
+            jobCityTv.setText(resumeValueBeans.getResumeWorkPlace());
+            phoneTextView.setText(resumeValueBeans.getResumeMobile());
+            resumeQq.setText(resumeValueBeans.getResumeQq());
+            resumeEmail.setText(resumeValueBeans.getResumeEmail());
+            userOnselfText.setText(resumeValueBeans.getResumeInfo());
+            userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
+            workExpexteText.setText(resumeValueBeans.getResumeWorkExperience());
+            workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
+            loadingDialogOne.dismiss();
+        }
+
     }
 
 
@@ -234,69 +252,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
         }
     }
 
-    private void intiResumeListData() {
-        HttpUtils  httpUtils=new HttpUtils();
-        SQLhelper sqLhelper=new SQLhelper(getActivity());
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
-        String uid=null;
-        while (cursor.moveToNext()) {
-            uid = cursor.getString(1);
 
-        }
-        String resumeListUrl= AppUtilsUrl.getResumeLista(uid);
-        loadingDialogOne.show();
-        httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                String result=responseInfo.result;
-                if (result!=null){
-                    ArtistParme<ResumeValueBean> artistParme= JSONObject.parseObject(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
-                    });
-                   resumeValueBeans=artistParme.getValue().get(Integer.valueOf(((ModificationResumeActivity) getActivity()).getPosition()));
-                    if (resumeValueBeans!=null){
-                        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), usericonIV, MyAppliction.RoundedOptions);
-                        resumeZhName.setText(resumeValueBeans.getResumeZhName());
-
-                        if (resumeValueBeans.getResumeSex().equals(0)){
-                            boyRadioButton.setChecked(true);
-                        }else if(resumeValueBeans.getResumeSex().equals(1)){
-                            girlRadioButton.setChecked(true);
-                        }
-                        resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
-                        resumeAgeTv.setTextColor(getResources().getColor(R.color.textColor242424));
-                        resumeJobName.setText(resumeValueBeans.getResumeJobCategoryName());
-                        jobCityTv.setText(resumeValueBeans.getResumeWorkPlace());
-                        phoneTextView.setText(resumeValueBeans.getResumeMobile());
-                        resumeQq.setText(resumeValueBeans.getResumeQq());
-                        resumeEmail.setText(resumeValueBeans.getResumeEmail());
-                        userOnselfText.setText(resumeValueBeans.getResumeInfo());
-                        userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
-                        workExpexteText.setText(resumeValueBeans.getResumeWorkExperience());
-                        workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
-                        loadingDialogOne.dismiss();
-                    }
-
-
-
-
-
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(HttpException e, String s) {
-                Log.e("onFailure.......", s);
-            }
-        });
-
-
-
-
-
-    }
 
 
     private void saveData() {

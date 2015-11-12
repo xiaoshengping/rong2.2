@@ -42,8 +42,7 @@ public class ModificationResumeActivity extends ActionBarActivity implements Vie
 
     private ResumeValueBean resumeValueBeans;
 
-    private  String position;
-    private String positions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,9 +63,10 @@ public class ModificationResumeActivity extends ActionBarActivity implements Vie
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("编辑简历");
 
-        positions=  getIntent().getStringExtra("positions");
-        ModificationResumeActivity.this.setPosition(positions);
-
+        resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBean");
+        if (resumeValueBeans!=null){
+            ModificationResumeActivity.this.setResumeValueBeans(resumeValueBeans);
+        }
         addFragment();
         adapter = new ResumePagerAdapter(fragments, getSupportFragmentManager());
         invitePager.setAdapter(adapter);
@@ -80,13 +80,7 @@ public class ModificationResumeActivity extends ActionBarActivity implements Vie
 
     }
 
-    public String getPosition() {
-        return position;
-    }
 
-    public void setPosition(String position) {
-        this.position = position;
-    }
 
     @Override
     public void onClick(View v) {
@@ -109,8 +103,13 @@ public class ModificationResumeActivity extends ActionBarActivity implements Vie
         }
     }
 
+    public ResumeValueBean getResumeValueBeans() {
+        return resumeValueBeans;
+    }
 
-
+    public void setResumeValueBeans(ResumeValueBean resumeValueBeans) {
+        this.resumeValueBeans = resumeValueBeans;
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
