@@ -50,7 +50,7 @@ public class ResumePictureAdapter extends AppBaseAdapter<ResumePicture> {
         viewHodle.daleteMarkView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deletePictrueData(data.get(position).getResumeid()+"", position);
+                deletePictrueData(data.get(position).getResumeid()+"", position,data.get(position).getId());
 
             }
         });
@@ -58,10 +58,11 @@ public class ResumePictureAdapter extends AppBaseAdapter<ResumePicture> {
         return convertView;
     }
 
-    private void deletePictrueData(String resumeid, final int position) {
+    private void deletePictrueData(String resumeid, final int position,String pictureId) {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid", resumeid);
+        requestParams.addBodyParameter("id", pictureId);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeletePicture(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {

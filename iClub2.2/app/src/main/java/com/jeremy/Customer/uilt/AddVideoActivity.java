@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -49,11 +50,14 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
     private Button  addVideoBt;
     @ViewInject(R.id.show_video_lv)
     private ListView showVideoLv;
+    @ViewInject(R.id.selete_video_text)
+    private TextView seleteVideoText;
 
 
     private ResumeValueBean resumeValueBean;
     private  String videoPath;
     private LoadingDialog loadingDialog;
+    private boolean isShowDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,9 +83,24 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
         saveText.setText("上传");
         addVideoBt.setOnClickListener(this);
         if (resumeValueBean!=null){
-            ResumeVideoAdapter resumeVideoAdapter=new ResumeVideoAdapter(resumeValueBean.getResumeMovie(),AddVideoActivity.this);
+            final ResumeVideoAdapter resumeVideoAdapter=new ResumeVideoAdapter(resumeValueBean.getResumeMovie(),AddVideoActivity.this);
             showVideoLv.setAdapter(resumeVideoAdapter);
             resumeVideoAdapter.notifyDataSetChanged();
+            if (resumeValueBean.getResumeMovie().size()!=0){
+                seleteVideoText.setVisibility(View.VISIBLE);
+            }
+            showVideoLv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                    if (isShowDelete) {
+                        isShowDelete = false;
+                    } else {
+                        isShowDelete = true;
+                    }
+                    resumeVideoAdapter.setIsShowDelete(isShowDelete);
+                    return  true;
+                }
+            });
         }
 
 
@@ -99,13 +118,13 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
                 if (!TextUtils.isEmpty(resumeValueBean.getResumeid()+"")||!TextUtils.isEmpty(videoPath)){
                     addVideoData(resumeValueBean.getResumeid()+"",videoPath);
                 }else {
-                    MyAppliction.showExitGameAlert("你还没有选择照片", AddVideoActivity.this);
+                    MyAppliction.showExitGameAlert("你还没有选择视频", AddVideoActivity.this);
                 }
                 }else if (getIntent().getSerializableExtra("fagle").equals("productionResume")){
                     if (!TextUtils.isEmpty(getIntent().getStringExtra("resumeid").toString())||!TextUtils.isEmpty(videoPath)){
                         addVideoData(getIntent().getStringExtra("resumeid").toString(),videoPath);
                     }else {
-                        MyAppliction.showExitGameAlert("你还没有选择照片", AddVideoActivity.this);
+                        MyAppliction.showExitGameAlert("你还没有选择视频", AddVideoActivity.this);
                     }
 
                 }
