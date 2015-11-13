@@ -9,10 +9,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
+import android.media.MediaMetadataRetriever;
+import android.media.ThumbnailUtils;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Parcelable;
+import android.provider.MediaStore;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
@@ -51,6 +55,7 @@ import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.MusicActivity;
 import com.jeremy.Customer.view.MyGridView;
 import com.jeremy.Customer.view.MyScrollView;
+import com.jeremy.Customer.view.MyTitleBar;
 import com.jeremy.Customer.view.SpaceImageDetailActivity;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
@@ -60,8 +65,11 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Timer;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 
 public class TalentsDetailsActivity extends Activity implements View.OnClickListener, MyScrollView.OnScrollListener {
@@ -83,7 +91,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     private TextView talents_age_tv, talents_site_tv, talents_profession_tv;
     private TextView talents_self_introduction_tv, talents_work_experience_tv, talents_reputation_tv;
     private TextView comment_button_tv;
-    private TextView unfold1_tv,unfold2_tv,unfold3_tv,unfold4_tv;
+    private TextView unfold1_tv, unfold2_tv, unfold3_tv, unfold4_tv;
 
     private int mScrollY = 0;
     private int mScrollY1 = 0;
@@ -118,12 +126,12 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
     private int head_height;
     private int button_height;
-
-    private Button fanhui_b, yaoyue_b;
+    private MyTitleBar fanhui_b;
+    private Button yaoyue_b;
     private LinearLayout yaoyue_ll;
     Timer timer = new Timer();
     private int statusBarHeight;
-    private int floatingCollarH1,floatingCollarH2;
+    private int floatingCollarH1, floatingCollarH2;
     private LinearLayout floating_collar_ll;
     private TextView floating_collar_name_tv;
 
@@ -345,15 +353,16 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         interspace1_tv = (TextView) a.findViewById(R.id.interspace1_tv);
         interspace2_tv = (TextView) b.findViewById(R.id.interspace2_tv);
         head_ll = (LinearLayout) findViewById(R.id.head_ll);
-        fanhui_b = (Button) findViewById(R.id.fanhui_b);
+        fanhui_b = (MyTitleBar) findViewById(R.id.fanhui_b);
         yaoyue_b = (Button) findViewById(R.id.yaoyue_b);
         yaoyue_ll = (LinearLayout) findViewById(R.id.yaoyue_ll);
+        yaoyue_ll.setVisibility(View.GONE);
         unfold1_tv = (TextView) b.findViewById(R.id.unfold1_tv);
         unfold2_tv = (TextView) b.findViewById(R.id.unfold2_tv);
         unfold3_tv = (TextView) b.findViewById(R.id.unfold3_tv);
         unfold4_tv = (TextView) b.findViewById(R.id.unfold4_tv);
-        floating_collar_ll = (LinearLayout)b.findViewById(R.id.floating_collar_ll);
-        floating_collar_name_tv = (TextView)b.findViewById(R.id.floating_collar_name_tv);
+        floating_collar_ll = (LinearLayout) b.findViewById(R.id.floating_collar_ll);
+        floating_collar_name_tv = (TextView) b.findViewById(R.id.floating_collar_name_tv);
         floating_collar_ll.setVisibility(View.GONE);
 
         myScrollView1.setOnScrollListener(this);
@@ -416,11 +425,10 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         });
 
 
-
         ViewTreeObserver vto5 = floating_collar_ll.getViewTreeObserver();
         vto5.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             public boolean onPreDraw() {
-                floatingCollarH2 = floatingCollarH1+personal_data_button_tv.getMeasuredHeight();
+                floatingCollarH2 = floatingCollarH1 + personal_data_button_tv.getMeasuredHeight();
 
                 return true;
             }
@@ -541,6 +549,8 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
     }
 
     private VideoAdapter videoAdapter;
+    private Bitmap[] bitmaps = new Bitmap[3];//talentValueBean.getResumeMovie().size()];
+//    private int bitNum;
 
     //初始化视频作品
     private void initVideoProduction(View b) {
@@ -549,12 +559,67 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         videoAdapter = new VideoAdapter(this, resumeMovieData);
         video_production_list.setAdapter(videoAdapter);
         Utility.setListViewHeightBasedOnChildren(video_production_list);
-        if(resumeMovieData.size()==0){
+        if (resumeMovieData.size() == 0) {
             unfold1_tv.setText("");
+        }
+
+        ExecutorService service = Executors.newFixedThreadPool(3);
+        for (int i = 0; i < resumeMovieData.size(); i++) {
+            Thread run = new MyThread(i);
+            service.execute(run);
+        }
+
+    }
+
+    private class MyThread extends Thread {
+        int bitNum;
+
+        public MyThread(int i) {
+            bitNum = i;
+        }
+
+        public void run() {
+            bitmaps[bitNum] = createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + talentValueBean.getResumeMovie().get(bitNum).getPath());
+            if(bitmaps[bitNum]==null){
+                BitmapDrawable b = (BitmapDrawable)getResources().getDrawable(R.mipmap.talents_back);
+                bitmaps[bitNum] = b.getBitmap();
+            }
+            videoAdapter.setBitmap(bitmaps);
+            videoAdapter.notifyDataSetChanged();
         }
     }
 
+    private Bitmap createVideoThumbnail(String url) {
+        Bitmap bitmap = null;
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        int kind = MediaStore.Video.Thumbnails.MINI_KIND;
+        try {
+            if (Build.VERSION.SDK_INT >= 14) {
+                retriever.setDataSource(url, new HashMap<String, String>());
+            } else {
+                retriever.setDataSource(url);
+            }
+            bitmap = retriever.getFrameAtTime();
+        } catch (IllegalArgumentException ex) {
+            // Assume this is a corrupt video file
+        } catch (RuntimeException ex) {
+            // Assume this is a corrupt video file.
+        } finally {
+            try {
+                retriever.release();
+            } catch (RuntimeException ex) {
+                // Ignore failures while cleaning up.
+            }
+        }
+        if (kind == MediaStore.Images.Thumbnails.MICRO_KIND && bitmap != null) {
+            bitmap = ThumbnailUtils.extractThumbnail(bitmap, 10, 10,
+                    ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
+        }
+        return bitmap;
+    }
+
     private MusicAdapter musicAdapter;
+
     //初始化音乐作品
     private void initMusicProduction(View b) {
         music_production_list = (ListView) b.findViewById(R.id.music_production_list);
@@ -562,7 +627,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         musicAdapter = new MusicAdapter(this, resumeMusic);
         music_production_list.setAdapter(musicAdapter);
         Utility.setListViewHeightBasedOnChildren(music_production_list);
-        if(resumeMusic.size()==0){
+        if (resumeMusic.size() == 0) {
             unfold2_tv.setText("");
         }
 
@@ -582,13 +647,14 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
     private List<ResumePicture> resumePicture;
     private PictureAdapter pictureAdapter;
+
     //初始化图片作品
     private void initPictureProduction(View b) {
         picture_production_list = (MyGridView) b.findViewById(R.id.picture_production_list);
         resumePicture = talentValueBean.getResumePicture();
         pictureAdapter = new PictureAdapter(this, resumePicture, (int) (width / 3) - Identification.dip2px(this, 6));
         picture_production_list.setAdapter(pictureAdapter);
-        if(resumePicture.size()==0){
+        if (resumePicture.size() == 0) {
             unfold3_tv.setText("");
         }
 
@@ -640,8 +706,9 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
             if (!yaoyue && !ing) {
                 ing = true;
                 yaoyue_b.setVisibility(View.VISIBLE);
+                yaoyue_ll.setVisibility(View.VISIBLE);
                 Animation animation = null;
-                animation = new TranslateAnimation(0, 0, Identification.dip2px(this, 45), 0);
+                animation = new TranslateAnimation(0, 0, Identification.dip2px(this, 60), 0);
                 animation.setDuration(100);
                 animation.setFillAfter(true);
                 animation.setAnimationListener(new Animation.AnimationListener() {
@@ -670,7 +737,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 if (yaoyue && !ing) {
                     ing = true;
                     Animation animation = null;
-                    animation = new TranslateAnimation(0, 0, 0, Identification.dip2px(this, 45));
+                    animation = new TranslateAnimation(0, 0, 0, Identification.dip2px(this, 60));
                     animation.setDuration(100);
                     animation.setFillAfter(true);
                     animation.setAnimationListener(new Animation.AnimationListener() {
@@ -699,52 +766,53 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         unfold1_tv.getLocationOnScreen(location1);
         unfold2_tv.getLocationOnScreen(location2);
         unfold3_tv.getLocationOnScreen(location3);
-        if(location21==0&&location11==0&&location31==0){
+        if (location21 == 0 && location11 == 0 && location31 == 0) {
             location11 = location1[1];
             location21 = location2[1];
             location31 = location3[1];
         }
-        if(floating_collar_name_tv.getText().toString().equals(" 视频作品")) {
-            if(location1[1] < floatingCollarH1) {
+        if (floating_collar_name_tv.getText().toString().equals(" 视频作品")) {
+            if (location1[1] < floatingCollarH1) {
                 floating_collar_ll.setVisibility(View.VISIBLE);
                 unfold4_tv.setText(unfold1_tv.getText().toString());
                 floating_collar_ll.setTranslationY((float) (floatingCollarH1 - statusBarHeight));
-                if(location2[1]<floatingCollarH2){
+                if (location2[1] < floatingCollarH2) {
                     floating_collar_ll.setTranslationY((float) (floatingCollarH1 - statusBarHeight) - (scrollY - location21 + floatingCollarH2));
                 }
-            }else {
+            } else {
                 floating_collar_ll.setVisibility(View.GONE);
             }
-            if(location2[1]<floatingCollarH1){
+            if (location2[1] < floatingCollarH1) {
                 floating_collar_name_tv.setText(" 音乐作品");
                 unfold4_tv.setText(unfold2_tv.getText().toString());
                 floating_collar_ll.setTranslationY((float) (floatingCollarH1 - statusBarHeight));
 
             }
-        }else if(floating_collar_name_tv.getText().toString().equals(" 音乐作品")){
-            if(location3[1]<floatingCollarH2){
+        } else if (floating_collar_name_tv.getText().toString().equals(" 音乐作品")) {
+            if (location3[1] < floatingCollarH2) {
                 floating_collar_ll.setTranslationY((float) (floatingCollarH1 - statusBarHeight) - (scrollY - location31 + floatingCollarH2));
             }
-            if(location3[1]<floatingCollarH1){
+            if (location3[1] < floatingCollarH1) {
                 floating_collar_name_tv.setText(" 图片作品");
                 unfold4_tv.setText(unfold3_tv.getText().toString());
                 floating_collar_ll.setTranslationY((float) (floatingCollarH1 - statusBarHeight));
             }
-            if(location2[1]>floatingCollarH1){
+            if (location2[1] > floatingCollarH1) {
                 floating_collar_name_tv.setText(" 视频作品");
                 unfold4_tv.setText(unfold1_tv.getText().toString());
             }
-        }else if(floating_collar_name_tv.getText().toString().equals(" 图片作品")){
-            if(location3[1]>floatingCollarH1){
+        } else if (floating_collar_name_tv.getText().toString().equals(" 图片作品")) {
+            if (location3[1] > floatingCollarH1) {
                 floating_collar_name_tv.setText(" 音乐作品");
                 unfold4_tv.setText(unfold2_tv.getText().toString());
             }
         }
 
     }
-    private int[] location1 = {0,0};
-    private int[] location2 = {0,0};
-    private int[] location3 = {0,0};
+
+    private int[] location1 = {0, 0};
+    private int[] location2 = {0, 0};
+    private int[] location3 = {0, 0};
     private int location11 = 0;
     private int location21 = 0;
     private int location31 = 0;
@@ -773,12 +841,13 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 startActivity(intent);
                 break;
             case R.id.unfold1_tv:
-                if(unfold1_tv.getText().toString().equals("展开")){
+                if (unfold1_tv.getText().toString().equals("展开")) {
                     unfold1_tv.setText("收起");
-                }else if(unfold1_tv.getText().toString().equals("收起")){
+                } else if (unfold1_tv.getText().toString().equals("收起")) {
                     unfold1_tv.setText("展开");
                 }
-                if(unfold1_tv.getText().toString().equals("")){}else {
+                if (unfold1_tv.getText().toString().equals("")) {
+                } else {
                     videoAdapter.setMaxNum();
                     videoAdapter.notifyDataSetChanged();
                     Utility.setListViewHeightBasedOnChildren(video_production_list);
@@ -786,12 +855,13 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 }
                 break;
             case R.id.unfold2_tv:
-                if(unfold2_tv.getText().toString().equals("展开")){
+                if (unfold2_tv.getText().toString().equals("展开")) {
                     unfold2_tv.setText("收起");
-                }else if(unfold2_tv.getText().toString().equals("收起")){
+                } else if (unfold2_tv.getText().toString().equals("收起")) {
                     unfold2_tv.setText("展开");
                 }
-                if(unfold2_tv.getText().toString().equals("")){}else {
+                if (unfold2_tv.getText().toString().equals("")) {
+                } else {
                     musicAdapter.setMaxNum();
                     musicAdapter.notifyDataSetChanged();
                     Utility.setListViewHeightBasedOnChildren(music_production_list);
@@ -799,37 +869,38 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 }
                 break;
             case R.id.unfold3_tv:
-                if(unfold3_tv.getText().toString().equals("展开")){
+                if (unfold3_tv.getText().toString().equals("展开")) {
                     unfold3_tv.setText("收起");
-                }else if(unfold3_tv.getText().toString().equals("收起")){
+                } else if (unfold3_tv.getText().toString().equals("收起")) {
                     unfold3_tv.setText("展开");
                 }
                 //jlk,mmmjpo
-                if(unfold3_tv.getText().toString().equals("")){}else {
+                if (unfold3_tv.getText().toString().equals("")) {
+                } else {
                     pictureAdapter.setMaxNum();
                     pictureAdapter.notifyDataSetChanged();
                     initWorksHeight();
                 }
                 break;
             case R.id.unfold4_tv:
-                if(unfold4_tv.getText().toString().equals("展开")){
+                if (unfold4_tv.getText().toString().equals("展开")) {
                     unfold4_tv.setText("收起");
-                }else if(unfold4_tv.getText().toString().equals("收起")){
+                } else if (unfold4_tv.getText().toString().equals("收起")) {
                     unfold4_tv.setText("展开");
                 }
-                if(floating_collar_name_tv.getText().toString().equals(" 视频作品")){
+                if (floating_collar_name_tv.getText().toString().equals(" 视频作品")) {
                     unfold1_tv.setText(unfold4_tv.getText().toString());
                     videoAdapter.setMaxNum();
                     videoAdapter.notifyDataSetChanged();
                     Utility.setListViewHeightBasedOnChildren(video_production_list);
                     initWorksHeight();
-                }else if(floating_collar_name_tv.getText().toString().equals(" 音乐作品")){
+                } else if (floating_collar_name_tv.getText().toString().equals(" 音乐作品")) {
                     unfold2_tv.setText(unfold4_tv.getText().toString());
                     musicAdapter.setMaxNum();
                     musicAdapter.notifyDataSetChanged();
                     Utility.setListViewHeightBasedOnChildren(music_production_list);
                     initWorksHeight();
-                }else if(floating_collar_name_tv.getText().toString().equals(" 图片作品")){
+                } else if (floating_collar_name_tv.getText().toString().equals(" 图片作品")) {
                     unfold3_tv.setText(unfold4_tv.getText().toString());
                     pictureAdapter.setMaxNum();
                     pictureAdapter.notifyDataSetChanged();
@@ -840,7 +911,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
     }
 
-    private void initWorksHeight(){
+    private void initWorksHeight() {
         individual_works_ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         ViewTreeObserver vto2 = individual_works_ll.getViewTreeObserver();
         vto2.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {

@@ -48,16 +48,17 @@ public class ActivityDetailActivity extends Activity {
 
         bitmapUtils.display(activity_poster_iv, AppUtilsUrl.ImageBaseUrl + activityBean.getImage());
         activity_name_tv.setText(activityBean.getTitle());
-        activity_time_tv.setText("截止日期：" + activityBean.getDate());
+        activity_time_tv.setText("  截止日期：" + activityBean.getDate());
         activity_content_tv.setText(activityBean.getContent());
-        activity_address_tv.setText(activityBean.getAddress());
+        activity_address_tv.setText(" "+activityBean.getAddress());
 
         Time time = new Time("GMT+8");
         time.setToNow();
         int year = time.year;
-        int month = time.month;
+        int month = time.month+1;
         int day = time.monthDay;
         String[] s = activityBean.getDate().split("-");
+//        activity_name_tv.setText(year+"-"+month+"-"+day);
         if(Integer.parseInt(s[0])==year){
             if(Integer.parseInt(s[1])==month){
                 if(Integer.parseInt(s[2])>=day){

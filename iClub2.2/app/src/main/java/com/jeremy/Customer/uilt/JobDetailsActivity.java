@@ -53,6 +53,8 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.view.View.GONE;
+
 
 public class JobDetailsActivity extends Activity implements View.OnClickListener, MyScrollView.OnScrollListener {
 
@@ -96,8 +98,9 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
 
         yaoyue_b = (Button) findViewById(R.id.yaoyue_b);
         yaoyue_ll = (LinearLayout) findViewById(R.id.yaoyue_ll);
+        yaoyue_ll.setVisibility(GONE);
 
-        yaoyue_b.setVisibility(View.GONE);
+        yaoyue_b.setVisibility(GONE);
 
         InitTextView();
         InitViewPager();
@@ -499,9 +502,10 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
             ss = scrollY;
             if (!yaoyue && !ing) {
                 ing = true;
+                yaoyue_ll.setVisibility(View.VISIBLE);
                 yaoyue_b.setVisibility(View.VISIBLE);
                 Animation animation = null;
-                animation = new TranslateAnimation(0, 0, Identification.dip2px(this, 45), 0);
+                animation = new TranslateAnimation(0, 0, Identification.dip2px(this, 60), 0);
                 animation.setDuration(100);
                 animation.setFillAfter(true);
                 animation.setAnimationListener(new Animation.AnimationListener() {
@@ -530,7 +534,7 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
                 if (yaoyue && !ing) {
                     ing = true;
                     Animation animation = null;
-                    animation = new TranslateAnimation(0, 0, 0, Identification.dip2px(this, 45));
+                    animation = new TranslateAnimation(0, 0, 0, Identification.dip2px(this, 60));
                     animation.setDuration(100);
                     animation.setFillAfter(true);
                     animation.setAnimationListener(new Animation.AnimationListener() {
@@ -542,7 +546,7 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
                         @Override
                         public void onAnimationEnd(Animation animation) {
                             ing = false;
-                            yaoyue_b.setVisibility(View.GONE);
+                            yaoyue_b.setVisibility(GONE);
                         }
 
                         @Override
@@ -563,15 +567,15 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.describe_button_tv:
-                describe_button_tv.setVisibility(View.GONE);
+                describe_button_tv.setVisibility(GONE);
                 toggle(describe_tv);
                 break;
             case R.id.require_button_tv:
-                require_button_tv.setVisibility(View.GONE);
+                require_button_tv.setVisibility(GONE);
                 toggle(require_tv);
                 break;
             case R.id.company_introduce_button_tv:
-                company_introduce_button_tv.setVisibility(View.GONE);
+                company_introduce_button_tv.setVisibility(GONE);
                 toggle(company_introduce_tv);
                 break;
             case R.id.evaluate_tv:

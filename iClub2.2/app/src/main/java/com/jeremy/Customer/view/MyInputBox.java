@@ -27,7 +27,7 @@ public class MyInputBox extends LinearLayout{
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.MyInputBox);
         String title_name_text = array.getString(R.styleable.MyInputBox_input_box_text);
         String input_box_edit = array.getString(R.styleable.MyInputBox_input_box_edit);
-        textView.setText(title_name_text.substring(0,1)+"     "+title_name_text.substring(1));
+        textView.setText(title_name_text.substring(0, 1) + "     " + title_name_text.substring(1));
         editText.setHint(input_box_edit);
     }
 
@@ -37,5 +37,6 @@ public class MyInputBox extends LinearLayout{
     public String getEditText() {
         return editText.getText().toString();
     }
+
 
 }

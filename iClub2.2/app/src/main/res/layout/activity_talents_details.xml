@@ -26,38 +26,36 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/fanhui_b"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="#ff000fff"
-        android:paddingLeft="20dp"
-        android:text=""
-        android:textColor="#ffffff"
-        android:textSize="18sp" />
-
-    <Button
-        android:layout_width="wrap_content"
+    <ImageButton
+        android:layout_width="45dp"
         android:layout_height="45dp"
         android:background="#00000fff"
         android:onClick="back"
-        android:paddingLeft="20dp"
-        android:text="返回"
-        android:textColor="#ffffff"
-        android:textSize="18sp" />
+        android:src="@mipmap/white_left" />
+
+    <com.jeremy.Customer.view.MyTitleBar xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+        android:id="@+id/fanhui_b"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_name_text="人才简历"></com.jeremy.Customer.view.MyTitleBar>
+
+
 
     <LinearLayout
         android:id="@+id/yaoyue_ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:background="#ffffff">
+
         <Button
             android:id="@+id/yaoyue_b"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:background="#9373EE"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:background="@drawable/yaoyue_shape"
             android:gravity="center"
             android:onClick="call_for"
             android:text="邀约"

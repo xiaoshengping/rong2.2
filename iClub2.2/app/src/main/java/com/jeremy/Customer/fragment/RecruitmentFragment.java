@@ -126,8 +126,9 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                 jobnum = 0;
                 offset = 0;
                 recruitmentListData.clear();
-                recommend_list.onRefreshComplete();
-                recommend_list.setRefreshing(true);
+                initRecruitmentListData(citynum, jobnum, offset);
+//                recommend_list.onRefreshComplete();
+//                recommend_list.setRefreshing(true);
 //                }
             }
         });
@@ -295,8 +296,9 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
         }
 
         if (resultCode != Identification.RETURN) {
-            recommend_list.onRefreshComplete();
-            recommend_list.setRefreshing(true);
+            initRecruitmentListData(citynum, jobnum, offset);
+//            recommend_list.onRefreshComplete();
+//            recommend_list.setRefreshing(true);
         }
 
     }

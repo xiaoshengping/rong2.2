@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.jeremy.Customer.R;
@@ -33,12 +34,14 @@ public class VideoAdapter extends BaseAdapter {
     private BitmapUtils bitmapUtils;
     private Context mContext;
     private int maxNum = 0;
+    private Bitmap[] bitmap;
 
     public VideoAdapter(Context context, List<ResumeMovie> resumeMovie) {
         mContext = context;
         this.mInflater = LayoutInflater.from(context);
         this.resumeMovie = resumeMovie;
         bitmapUtils = new BitmapUtils(context);
+        bitmap = new Bitmap[resumeMovie.size()];
         if (resumeMovie.size() > 1) {
             maxNum = 1;
         } else {
@@ -56,6 +59,9 @@ public class VideoAdapter extends BaseAdapter {
         }
     }
 
+    public void setBitmap(Bitmap[] bitmap) {
+        this.bitmap = bitmap;
+    }
 
     @Override
     public int getCount() {
@@ -79,11 +85,22 @@ public class VideoAdapter extends BaseAdapter {
             viewVideo = new ViewVideo();
 //            viewVideo.talents_video_back_iv = (ImageView)convertView.findViewById(R.id.talents_video_back_iv);
             viewVideo.talents_video_button_iv = (ImageView) convertView.findViewById(R.id.talents_video_button_iv);
+            viewVideo.talents_video_button_ib = (ImageButton)convertView.findViewById(R.id.talents_video_button_ib);
             convertView.setTag(viewVideo);
         } else {
             viewVideo = (ViewVideo) convertView.getTag();
         }
-//        viewVideo.talents_video_button_iv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeMovie.get(position).getPath(),10,10));
+        viewVideo.talents_video_button_ib.setVisibility(View.GONE);
+        try {
+            if(bitmap[position]!=null) {
+                viewVideo.talents_video_button_iv.setImageBitmap(bitmap[position]);//createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeMovie.get(position).getPath(),10,10));
+                viewVideo.talents_video_button_ib.setVisibility(View.VISIBLE);
+            }else {
+                viewVideo.talents_video_button_ib.setVisibility(View.GONE);
+            }
+        } catch (Exception e) {
+//            Toast.makeText(mContext, "错误", Toast.LENGTH_LONG).show();
+        }
 //        bitmapUtils.display(viewVideo.talents_video_back_iv, AppUtilsUrl.ImageBaseUrl + resumeMovie.get);
         viewVideo.talents_video_button_iv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +115,7 @@ public class VideoAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private Bitmap createVideoThumbnail(String url, int width, int height) {
+    private Bitmap createVideoThumbnail(String url) {
         Bitmap bitmap = null;
         MediaMetadataRetriever retriever = new MediaMetadataRetriever();
         int kind = MediaStore.Video.Thumbnails.MINI_KIND;
@@ -121,18 +138,20 @@ public class VideoAdapter extends BaseAdapter {
             }
         }
         if (kind == MediaStore.Images.Thumbnails.MICRO_KIND && bitmap != null) {
-            bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height,
+            bitmap = ThumbnailUtils.extractThumbnail(bitmap, 10, 10,
                     ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
         }
         return bitmap;
     }
 
 
-public class ViewVideo {
 
-    private ImageView talents_video_back_iv;
-    private ImageView talents_video_button_iv;
+    public class ViewVideo {
 
-}
+        private ImageView talents_video_back_iv;
+        private ImageView talents_video_button_iv;
+        private ImageButton talents_video_button_ib;
+
+    }
 
 }

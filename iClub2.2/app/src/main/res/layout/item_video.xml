@@ -14,15 +14,37 @@
         android:layout_marginLeft="25dp"
         android:layout_marginBottom="25dp"
         android:layout_marginRight="25dp"/>-->
-    <ImageView
-        android:id="@+id/talents_video_button_iv"
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#000000"
-        android:src="@mipmap/ic_launcher"
-        android:scaleType="center"
-        android:layout_marginLeft="25dp"
         android:layout_marginBottom="25dp"
-        android:layout_marginRight="25dp"/>
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:background="#000000">
+        <ProgressBar
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/progressBar"
+            android:layout_centerInParent="true"
+            android:layout_gravity="bottom"
+            android:indeterminate="false"
+            android:indeterminateDrawable="@anim/loading"/>
+
+        <ImageView
+            android:id="@+id/talents_video_button_iv"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="center" />
+
+        <ImageButton
+            android:id="@+id/talents_video_button_ib"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="#00fff000"
+            android:scaleType="center"
+            android:src="@mipmap/paly_ideo_icon" />
+    </RelativeLayout>
 
 </LinearLayout>

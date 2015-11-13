@@ -14,10 +14,16 @@
         android:textSize="20dp" />
 
     <ImageButton
-        android:layout_width="50dp"
+        android:layout_width="45dp"
         android:layout_height="match_parent"
-        android:src="@mipmap/back"
+        android:src="@mipmap/black_left"
         android:background="#00ffffff"
         android:onClick="back"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DDDDDD"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

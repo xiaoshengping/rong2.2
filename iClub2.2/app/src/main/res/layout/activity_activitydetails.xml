@@ -32,7 +32,7 @@
                 android:id="@+id/activity_name_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
+                android:paddingLeft="10dp"
                 android:paddingBottom="15dp"
                 android:paddingTop="15dp"
                 android:paddingRight="40dp"
@@ -45,14 +45,15 @@
                 android:id="@+id/activity_time_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="2015-08-31至2015-09-31"
+                android:text=" 2015-08-31至2015-09-31"
                 android:textSize="14sp"
                 android:textColor="#777777"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:background="#ffffff"/>
+                android:background="#ffffff"
+                android:drawableLeft="@mipmap/time"/>
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -64,14 +65,15 @@
                 android:id="@+id/activity_address_tv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="广州天河区"
+                android:text="  广州天河区"
                 android:textSize="14sp"
                 android:textColor="#777777"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:background="#ffffff"/>
+                android:background="#ffffff"
+                android:drawableLeft="@mipmap/site"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -79,7 +81,7 @@
                 android:textSize="18sp"
                 android:textColor="#262A33"
                 android:text="活动介绍"
-                android:paddingLeft="6dp"
+                android:paddingLeft="8dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="5dp"
                 android:layout_marginTop="10dp"
@@ -92,6 +94,8 @@
                 android:textColor="#787677"
                 android:textSize="16sp"
                 android:padding="5dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
                 android:layout_marginTop="1dp"
                 android:lineSpacingMultiplier="1.1"
                 android:background="#ffffff"/>

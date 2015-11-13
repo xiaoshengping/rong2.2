@@ -33,6 +33,7 @@ public class Identification {
     public static int LOGONTOTHETALENT = 4;//提示登录为人才
     public static int FREEDOM = 5;//自由填写
 
+    //注解
 
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)

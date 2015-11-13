@@ -125,8 +125,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                 jobnum = 0;
                 offset = 0;
                 talentValueBean.clear();
-                recommend_list.onRefreshComplete();
-                recommend_list.setRefreshing(true);
+                initRecruitmentListData(citynum, jobnum, offset);
 //                }
             }
         });
@@ -295,8 +294,9 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
         }
 
         if (resultCode != Identification.RETURN) {
-            recommend_list.onRefreshComplete();
-            recommend_list.setRefreshing(true);
+            initRecruitmentListData(citynum, jobnum, offset);
+//            recommend_list.onRefreshComplete();
+//            recommend_list.setRefreshing(true);adsgadga
         }
 
     }

@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             app:input_box_text="邮箱"
             app:input_box_edit="请填写您的邮箱"></com.jeremy.Customer.view.MyInputBox>
+
     </LinearLayout>
 
     <Button
