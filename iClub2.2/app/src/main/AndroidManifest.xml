@@ -192,7 +192,9 @@
             android:name=".uilt.ApplicationsListActivity"
             android:label="@string/title_activity_applications_list" >
         </activity>
-        <activity android:name=".uilt.MerchantParticularsActivity" />
+        <activity android:name=".uilt.MerchantParticularsActivity"
+
+            />
         <activity android:name=".uilt.AddMerchantActivity" />
         <activity
             android:name=".uilt.ModificationResumeActivity"
@@ -224,6 +226,7 @@
         </activity>
         <activity
             android:name=".uilt.MercharInviteParticularsActivity"
+            android:theme="@style/StyledIndicators"
             android:label="@string/title_activity_merchar_invite_particulars" >
         </activity>
         <activity

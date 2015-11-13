@@ -5,9 +5,9 @@
     android:background="@color/white"
     android:layout_height="wrap_content">
     <ImageView
-        android:src="@color/lineColor"
+        android:src="@color/layoutBackground"
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="5dp" />
     <TextView
         android:layout_marginLeft="15dp"
         android:layout_marginTop="10dp"
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/resume_state_tv"
-            android:paddingLeft="30dp"
+            android:paddingLeft="50dp"
             android:layout_marginTop="3dp"
             android:text="公开"
             android:layout_weight="1"
@@ -77,6 +77,10 @@
             android:background="#00000000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="1dp"
+            android:layout_height="43dp" />
         <Button
             android:id="@+id/refresh_button"
             android:drawableLeft="@mipmap/refresh_icon"
@@ -90,6 +94,10 @@
             android:background="#00000000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="1dp"
+            android:layout_height="43dp" />
         <Button
             android:id="@+id/more_button"
             android:gravity="fill_vertical"
@@ -104,10 +112,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
-    <ImageView
-        android:src="@color/lineColor"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
 
 
 </LinearLayout>

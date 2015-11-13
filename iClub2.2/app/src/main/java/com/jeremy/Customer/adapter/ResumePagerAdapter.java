@@ -15,13 +15,17 @@ import java.util.List;
 
 public class ResumePagerAdapter extends PagerAdapter {
 
-    private String[] titles = {"个人资料", "个人作品","kskdkd"};
+    private String[] titles = {"个人资料", "个人作品"};
     private List<Fragment> fragments;
     private FragmentManager manager;
 
+
     public ResumePagerAdapter(List<Fragment> fragments, FragmentManager manager) {
+
         this.fragments = fragments;
         this.manager = manager;
+
+
     }
 
     @Override
@@ -35,7 +39,7 @@ public class ResumePagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
         Fragment fragment = fragments.get(position);
         if (!fragment.isAdded()) {
             FragmentTransaction transaction = manager.beginTransaction();

@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#cccccc"
+    android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.MineMoreActivity">
      <include layout="@layout/app_white_tailt_layout"/>
     <ImageView
@@ -26,7 +26,7 @@
     <ImageView
         android:src="@color/lineColor"
         android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:layout_height="1dp" />
     <TextView
         android:background="@color/white"
         android:paddingTop="20dp"
@@ -37,7 +37,7 @@
     <ImageView
         android:src="@color/lineColor"
         android:layout_width="match_parent"
-        android:layout_height="2dp" />
+        android:layout_height="1dp" />
     <TextView
         android:id="@+id/feedback_tv"
         android:background="@color/white"

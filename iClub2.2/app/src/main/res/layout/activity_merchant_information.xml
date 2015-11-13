@@ -23,12 +23,10 @@
         android:layout_below="@+id/tailt_line_iv"
         android:id="@+id/company_messaage_layout"
         android:orientation="vertical"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:src="@color/lineColor"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
@@ -56,9 +54,11 @@
 
         </LinearLayout>
         <ImageView
-            android:src="@color/lineColor"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/lineColor"
             android:layout_width="match_parent"
-            android:layout_height="1dp" />
+            android:layout_height="0.5dp" />
         <LinearLayout
             android:background="@color/white"
             android:id="@+id/company_phone"
@@ -84,9 +84,11 @@
 
         </LinearLayout>
         <ImageView
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@color/lineColor"
             android:layout_width="match_parent"
-            android:layout_height="1dp" />
+            android:layout_height="0.5dp" />
         <LinearLayout
             android:background="@color/white"
             android:id="@+id/company_email"
@@ -112,9 +114,11 @@
 
         </LinearLayout>
         <ImageView
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@color/lineColor"
             android:layout_width="match_parent"
-            android:layout_height="1dp" />
+            android:layout_height="0.5dp" />
         <LinearLayout
             android:gravity="center_vertical"
             android:background="@color/white"
@@ -140,10 +144,11 @@
 
         </LinearLayout>
         <ImageView
-
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:background="@color/lineColor"
             android:layout_width="match_parent"
-            android:layout_height="1dp" />
+            android:layout_height="0.5dp" />
         <LinearLayout
             android:gravity="center_vertical"
             android:id="@+id/comapny_address"
@@ -169,13 +174,19 @@
 
         </LinearLayout>
     </LinearLayout>
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
 
     <LinearLayout
         android:layout_below="@+id/company_messaage_layout"
         android:background="@color/white"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
         android:id="@+id/oneself_known_layout"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -200,17 +211,23 @@
             android:text="介绍一下你的公司"
             android:textColor="@color/editTextPromptColor"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
     <LinearLayout
         android:id="@+id/image_layout"
         android:layout_below="@+id/oneself_known_layout"
         android:background="@color/white"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="20dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="160dp" >
@@ -237,15 +254,12 @@
             android:layout_width="80dp"
             android:layout_height="80dp" />
 
-        <GridView
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:id="@+id/gridview"
-            android:verticalSpacing="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:numColumns="4" />
+
     </LinearLayout>
+        <ImageView
+            android:layout_marginBottom="20dp"
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
     </LinearLayout>
 </ScrollView>

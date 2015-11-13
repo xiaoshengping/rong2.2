@@ -12,6 +12,8 @@
     <Button
         android:layout_marginTop="10dp"
         android:background="@mipmap/red_button_icon"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/add_video_bt"
@@ -27,7 +29,15 @@
          android:layout_width="match_parent"
          android:layout_height="150dp" />
 
-
+      <TextView
+          android:id="@+id/selete_video_text"
+          android:visibility="gone"
+          android:layout_marginLeft="10dp"
+          android:layout_marginTop="10dp"
+          android:textColor="@color/hunTextColor"
+          android:text="您已经上传的视频(长按可以删除)"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content" />
     <ListView
         android:layout_marginTop="10dp"
         android:id="@+id/show_video_lv"

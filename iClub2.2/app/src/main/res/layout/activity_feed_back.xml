@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#cccccc"
+    android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.FeedBackActivity">
     <include layout="@layout/app_white_tailt_layout"/>
     <ImageView
@@ -20,7 +20,8 @@
     <EditText
         android:background="@color/white"
         android:gravity="top"
-
+         android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textSize="@dimen/textSize15"

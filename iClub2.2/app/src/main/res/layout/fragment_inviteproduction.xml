@@ -1,8 +1,9 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layoutBackground"
     android:layout_marginBottom="30dp"
+    android:orientation="vertical"
     tools:context="com.jeremy.Customer.fragment.OneselfProductionFragment">
     <RelativeLayout
         android:background="@color/white"
@@ -48,7 +49,7 @@
                 android:layout_height="150dp" />
 
             <ImageView
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/paly_ideo_icon"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
@@ -81,9 +82,16 @@
                 android:layout_height="wrap_content" />
         </RelativeLayout>
     </RelativeLayout>
-
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <RelativeLayout
-        android:layout_marginTop="10dp"
         android:id="@+id/music_layout"
         android:layout_below="@+id/video_layout"
         android:background="@color/white"
@@ -111,7 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView
-            android:background="@color/layoutBackground"
+            android:background="@drawable/invite_corners"
             android:gravity="center_vertical"
             android:text="我的小苹果"
             android:paddingLeft="30dp"
@@ -123,7 +131,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp" />
         <TextView
-            android:background="@color/layoutBackground"
+            android:background="@drawable/invite_corners"
             android:gravity="center_vertical"
             android:text="我的小苹果"
             android:paddingLeft="30dp"
@@ -136,9 +144,16 @@
             android:layout_height="50dp" />
 
     </RelativeLayout>
-
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <RelativeLayout
-        android:layout_marginTop="10dp"
         android:layout_below="@+id/music_layout"
         android:background="@color/white"
         android:id="@+id/picture_layout"
@@ -174,7 +189,7 @@
             android:scaleType="fitXY"
             android:src="@mipmap/resume_background_icon"
             android:layout_width="75dp"
-            android:layout_height="80dp" />
+            android:layout_height="75dp" />
         <ImageView
             android:id="@+id/show_picture_resume_two"
             android:layout_below="@+id/picture_tailt_tv"
@@ -185,7 +200,7 @@
             android:scaleType="fitXY"
             android:src="@mipmap/resume_background_icon"
             android:layout_width="75dp"
-            android:layout_height="80dp" />
+            android:layout_height="75dp" />
         <ImageView
             android:id="@+id/show_picture_resume_three"
             android:layout_below="@+id/picture_tailt_tv"
@@ -196,7 +211,7 @@
             android:scaleType="fitXY"
             android:src="@mipmap/resume_background_icon"
             android:layout_width="75dp"
-            android:layout_height="80dp" />
+            android:layout_height="75dp" />
         <ImageView
             android:id="@+id/show_picture_resume_four"
             android:layout_below="@+id/picture_tailt_tv"
@@ -207,8 +222,11 @@
             android:scaleType="fitXY"
             android:src="@mipmap/resume_background_icon"
             android:layout_width="75dp"
-            android:layout_height="80dp" />
+            android:layout_height="75dp" />
 
     </RelativeLayout>
-
-</RelativeLayout>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+</LinearLayout>

@@ -6,20 +6,20 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.adapter.ResumePagerAdapter;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
-import com.jeremy.Customer.fragment.FragmentResumeTabAdapter;
 import com.jeremy.Customer.fragment.InviteInformationFragment;
 import com.jeremy.Customer.fragment.InviteproductionFragment;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.CustomImageView;
+import com.jeremy.Customer.view.CustomViewPager;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.viewpagerindicator.TabPageIndicator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +27,10 @@ import java.util.List;
 public class MercharInviteParticularsActivity extends ActionBarActivity implements View.OnClickListener {
     @ViewInject(R.id.usericon_background_iv)
     private CustomImageView customImageView;
-    @ViewInject(R.id.resume_radioGroup)
+    /*@ViewInject(R.id.resume_radioGroup)
     private RadioGroup resumeRadioGroup;
     @ViewInject(R.id.oneself_informaction_rb)
-    private RadioButton oneselfInformactionRb;
+    private RadioButton oneselfInformactionRb;*/
     @ViewInject(R.id.resumeZhName_tv)
     private TextView resumeZhNameTv;
     @ViewInject(R.id.resumeSex_iv)
@@ -57,6 +57,12 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
 
     public String  position;//个数
     private String  positions;
+    @ViewInject(R.id.resume_pager)
+    private CustomViewPager invitePager;
+    @ViewInject(R.id.main_tabpager)
+    TabPageIndicator tabPageIndicator;
+    private ResumePagerAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,7 +77,7 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
     }
 
     private void initView() {
-        oneselfInformactionRb.setChecked(true);
+        //oneselfInformactionRb.setChecked(true);
         talenBackIv.setOnClickListener(this);
 
         returnTv.setOnClickListener(this);
@@ -80,9 +86,14 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
         inviteproductionFragment=new InviteproductionFragment();
         listFragment.add(inviteInformationFragment);
         listFragment.add(inviteproductionFragment);
+
+
         resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
         MercharInviteParticularsActivity.this.setResumeValueBean(resumeValueBeans);
-        FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(MercharInviteParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
+        adapter = new ResumePagerAdapter(listFragment, getSupportFragmentManager());
+        invitePager.setAdapter(adapter);
+        tabPageIndicator.setViewPager(invitePager);
+        //FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(MercharInviteParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
         if (resumeValueBeans!=null){
             MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), customImageView, MyAppliction.RoundedOptions);
             resumeZhNameTv.setText(resumeValueBeans.getResumeZhName());

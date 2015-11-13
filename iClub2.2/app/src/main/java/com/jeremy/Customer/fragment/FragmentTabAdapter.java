@@ -64,9 +64,6 @@ public class FragmentTabAdapter implements RadioGroup.OnCheckedChangeListener {
                 }else if(i==2) {//找人才
                     home_title_bar_rl.setVisibility(View.VISIBLE);
                     home_title_neme_tv.setText("找人才");
-                }else {//我的
-                    home_title_bar_rl.setVisibility(View.VISIBLE);
-                    home_title_neme_tv.setText("我的");
                 }
 //                Toast.makeText(this.fragmentActivity, "" + i, Toast.LENGTH_LONG).show();
 

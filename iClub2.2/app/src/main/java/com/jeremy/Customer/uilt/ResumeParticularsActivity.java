@@ -60,8 +60,9 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
     private OneselfInformationFragment oneselfInformationFragment;
     private OneselfProductionFragment oneselfProductionFragment;
     private ResumeValueBean resumeValueBeans;
+    private ResumeValueBean resumeValueBean;
 
-    public String  position;//个数
+
     private String  positions;
     private LoadingDialog loadingDialog;
 
@@ -88,6 +89,8 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
 
     }
 
+
+
     private void initView() {
         loadingDialog = new LoadingDialog(this,"正在加载数据……");
         loadingDialog.show();
@@ -103,7 +106,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         tabPageIndicator.setViewPager(invitePager);
         resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
          positions= getIntent().getStringExtra("position");
-        ResumeParticularsActivity.this.setPosition(positions);
+        ResumeParticularsActivity.this.setResumeValueBean(resumeValueBeans);
        // FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ResumeParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
         if (resumeValueBeans!=null){
         MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), customImageView, MyAppliction.RoundedOptions);
@@ -140,10 +143,10 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
                finish();
                 break;
             case R.id.cpmpile_resume_tv:
-                Intent intent=new Intent(ResumeParticularsActivity.this,ModificationResumeActivity.class);
-                intent.putExtra("resumeValueBeans",resumeValueBeans);
-                intent.putExtra("position",positions);
-                startActivity(intent);
+                    Intent intent=new Intent(ResumeParticularsActivity.this,ModificationResumeActivity.class);
+                    intent.putExtra("resumeValueBean",resumeValueBean);
+                   startActivityForResult(intent,13);
+
                 break;
 
 
@@ -151,13 +154,14 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         }
     }
 
-    public  String getPosition() {
-        return position;
+    public ResumeValueBean getResumeValueBean() {
+        return resumeValueBean;
     }
 
-    public  void setPosition(String position) {
-        this.position = position;
+    public void setResumeValueBean(ResumeValueBean resumeValueBean) {
+        this.resumeValueBean = resumeValueBean;
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK){

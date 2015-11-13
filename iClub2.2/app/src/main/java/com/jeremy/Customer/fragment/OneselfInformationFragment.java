@@ -2,32 +2,19 @@ package com.jeremy.Customer.fragment;
 
 
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
-import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
-import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.uilt.CommentCountActivity;
 import com.jeremy.Customer.uilt.ResumeParticularsActivity;
-import com.jeremy.Customer.uilt.SQLhelper;
-import com.jeremy.Customer.url.AppUtilsUrl;
-import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
-import com.lidroid.xutils.exception.HttpException;
-import com.lidroid.xutils.http.ResponseInfo;
-import com.lidroid.xutils.http.callback.RequestCallBack;
-import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.List;
@@ -83,19 +70,52 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
     }
 
     private void init() {
-        intiResumeListData();
+
         initView();
 
 
     }
+
+
 
     private void initView() {
         experienceMoreLayout.setOnClickListener(this);
         oneselfMoreLayout.setOnClickListener(this);
         resumeInfoTv.setOnClickListener(this);
         commentCountTv.setOnClickListener(this);
+       ResumeValueBean resumeValueBean=((ResumeParticularsActivity) getActivity()).getResumeValueBean();
+        if (resumeValueBean!=null){
+            resumeInfoTv.setText(resumeValueBean.getResumeInfo());
+            resumeExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
+            resumeQqTv.setText(resumeValueBean.getResumeQq());
+            resumeEmailTv.setText(resumeValueBean.getResumeEmail());
+            resumeMobileTv.setText(resumeValueBean.getResumeMobile());
+            authenticityTv.setText(resumeValueBean.getAuthenticity()+"");
+            integrityTv.setText(resumeValueBean.getIntegrity()+"");
+            transactionRecordTv.setText(resumeValueBean.getTransactionRecord()+"");
+            commentCountTv.setText(resumeValueBean.getCommentCount()+"位商家评论过");
+
+            resumeInfoTv.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (resumeInfoTv.getLineCount() > 4) {
+                        resumeInfoTv.setLines(4);
+                    }
+
+                }
+            });
+            resumeExperienceTv.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (resumeExperienceTv.getLineCount() > 4) {
+                        resumeExperienceTv.setLines(4);
+                    }
+
+                }
+            });
 
 
+        }
 
 
 
@@ -141,78 +161,6 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
         }
     }
 
-    private void intiResumeListData() {
-        HttpUtils  httpUtils=new HttpUtils();
-        SQLhelper sqLhelper=new SQLhelper(getActivity());
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
-        String uid=null;
-        while (cursor.moveToNext()) {
-            uid = cursor.getString(1);
 
-        }
-        String resumeListUrl= AppUtilsUrl.getResumeLista(uid);
-        httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                String result=responseInfo.result;
-                if (result!=null){
-                    ArtistParme<ResumeValueBean>   artistParme= JSONObject.parseObject(result,new TypeReference<ArtistParme<ResumeValueBean>>(){});
-                    if (artistParme.getState().equals("success")){
-                        resumeValueBeans= artistParme.getValue();
-                       // Log.e("dddddff",Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition())+"");
-                        ResumeValueBean resumeValueBean=  resumeValueBeans.get(Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition()));
-                        resumeInfoTv.setText(resumeValueBean.getResumeInfo());
-                        resumeExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
-                        resumeQqTv.setText(resumeValueBean.getResumeQq());
-                        resumeEmailTv.setText(resumeValueBean.getResumeEmail());
-                        resumeMobileTv.setText(resumeValueBean.getResumeMobile());
-                        authenticityTv.setText(resumeValueBean.getAuthenticity()+"");
-                        integrityTv.setText(resumeValueBean.getIntegrity()+"");
-                        transactionRecordTv.setText(resumeValueBean.getTransactionRecord()+"");
-                        commentCountTv.setText(resumeValueBean.getCommentCount()+"位商家评论过");
-
-                        resumeInfoTv.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (resumeInfoTv.getLineCount() > 4) {
-                                    resumeInfoTv.setLines(4);
-                                }
-
-                            }
-                        });
-                        resumeExperienceTv.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                if (resumeExperienceTv.getLineCount() > 4) {
-                                    resumeExperienceTv.setLines(4);
-                                }
-
-                            }
-                        });
-
-
-                    }
-
-
-
-
-
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(HttpException e, String s) {
-                Log.e("onFailure.......", s);
-            }
-        });
-
-
-
-
-
-    }
 
 }

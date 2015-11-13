@@ -5,6 +5,7 @@
     tools:context="com.jeremy.Customer.uilt.ResumeParticularsActivity">
 
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -18,7 +19,7 @@
             <ImageView
                 android:id="@+id/talen_back_iv"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="250dp"
                 android:src="@mipmap/resume_background_icon"
                 android:scaleType="centerCrop"
                 />
@@ -27,14 +28,13 @@
             <com.jeremy.Customer.view.CustomImageView
 
                 android:id="@+id/usericon_background_iv"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
 
                 android:scaleType="fitXY"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="18dp"
-                android:layout_marginTop="-50dp"
-
+                android:layout_marginTop="-170dp"
                 android:layout_below="@+id/talen_back_iv"/>
             <LinearLayout
                 android:layout_marginTop="10dp"
@@ -50,6 +50,7 @@
                     android:layout_height="wrap_content"
                     android:text="啦啦啦"
                     android:textSize="@dimen/textSize16"
+                    android:textColor="@color/white"
                     android:layout_below="@+id/talen_back_iv"
                     android:layout_toRightOf="@+id/usericon_background_iv"/>
 
@@ -64,7 +65,7 @@
 
 
             <LinearLayout
-                android:background="@color/white"
+
                 android:id="@+id/message_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -84,12 +85,13 @@
                         android:layout_height="wrap_content"
                         android:text="年龄"
                         android:textSize="@dimen/textSize12"
-                        android:textColor="@color/hunTextColor"/>
+                        android:textColor="@color/white"/>
                     <TextView
                         android:id="@+id/resumeAge_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="28"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="5dp"
                         android:textSize="@dimen/textSize14"
                         android:layout_margin="10dp"/>
@@ -98,8 +100,8 @@
 
                 <View
                     android:layout_width="1dp"
-                    android:layout_height="20dp"
-                    android:background="@color/redTextColor"/>
+                    android:layout_height="10dp"
+                    android:background="@color/white"/>
 
                 <LinearLayout
                     android:layout_marginRight="10dp"
@@ -114,12 +116,14 @@
                         android:layout_height="wrap_content"
                         android:text="工作地点"
                         android:textSize="@dimen/textSize12"
-                        android:textColor="@color/hunTextColor"/>
+                        android:textColor="@color/white"
+                        />
                     <TextView
                         android:id="@+id/resume_WorkPlace_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="广州"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="10dp"
                         android:textSize="@dimen/textSize14"
                         />
@@ -127,8 +131,8 @@
                 </LinearLayout>
                 <View
                     android:layout_width="1dp"
-                    android:layout_height="20dp"
-                    android:background="@color/redTextColor"/>
+                    android:layout_height="10dp"
+                    android:background="@color/white"/>
                 <LinearLayout
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
@@ -141,12 +145,13 @@
                         android:layout_height="wrap_content"
                         android:text="职位类别"
                         android:textSize="@dimen/textSize12"
-                        android:textColor="@color/hunTextColor"/>
+                        android:textColor="@color/white"/>
                     <TextView
                         android:id="@+id/resumeJobName_isd_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="酒吧DJ"
+                        android:textColor="@color/white"
                         android:layout_marginLeft="10dp"
                         android:textSize="@dimen/textSize14"
                         />
@@ -154,74 +159,81 @@
                 </LinearLayout>
 
             </LinearLayout>
-            <ImageView
-                android:layout_marginBottom="10dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="30dp"
-                android:layout_below="@+id/message_layout"
-                android:src="@color/layoutBackground"
-                android:layout_width="match_parent"
-                android:layout_height="1dp" />
+            <!--  <ImageView
+                  android:layout_marginBottom="10dp"
+                  android:layout_marginRight="30dp"
+                  android:layout_marginLeft="30dp"
+                  android:layout_below="@+id/message_layout"
+                  android:src="@color/layoutBackground"
+                  android:layout_width="match_parent"
+                  android:layout_height="1dp" />-->
 
 
 
 
         </RelativeLayout>
-        <RadioGroup
-            android:gravity="center"
-            android:id="@+id/resume_radioGroup"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/white"
+
+        <com.viewpagerindicator.TabPageIndicator
+            android:id="@+id/main_tabpager"
             android:layout_below="@+id/tailt_layout"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:id="@+id/oneself_informaction_rb"
-                android:text="个人资料"
-                android:layout_weight="1"
-                android:button="@null"
-                android:gravity="center"
-                android:textColor="@color/resume_sex_color_seletor"
-                android:background="@drawable/oneself_data_button_selector"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <RadioButton
-                android:id="@+id/oneself_production_rb"
-                android:text="个人作品"
-                android:layout_weight="1"
-                android:button="@null"
-                android:gravity="center"
-                android:textColor="@color/resume_sex_color_seletor"
-                android:background="@drawable/oneself_data_1_button_selector"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+            android:layout_height="43dp" />
 
-        </RadioGroup>
-        <LinearLayout
-            android:orientation="vertical"
-            android:id="@+id/resume_fragment_layout"
-            android:layout_below="@+id/resume_radioGroup"
+
+        <ImageView
+            android:layout_below="@+id/main_tabpager"
+            android:id="@+id/resume_line"
+            android:src="@color/lineColor"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="1dp" />
+        <ImageView
+            android:id="@+id/resume_line_one"
+            android:layout_below="@+id/resume_line"
+            android:layout_marginTop="10dp"
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
 
-        </LinearLayout>
+        <com.jeremy.Customer.view.CustomViewPager
+            android:id="@+id/resume_pager"
+            android:layout_below="@+id/resume_line_one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <TextView
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
             android:background="@mipmap/return_icon"
+            android:textSize="@dimen/textSize18"
             android:layout_width="15dp"
             android:layout_height="25dp" />
         <TextView
             android:id="@+id/return_tv"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
-            android:layout_width="50dp"
+            android:layout_width="80dp"
             android:layout_height="50dp" />
+       <!-- <TextView
 
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:text="编辑"
+            android:textSize="@dimen/textSize18"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />-->
+        <TextView
+            android:id="@+id/cpmpile_resume_tv"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="5dp"
+
+            android:textColor="@color/white"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            />
         <TextView
             android:layout_alignParentRight="true"
             android:layout_marginTop="110dp"
