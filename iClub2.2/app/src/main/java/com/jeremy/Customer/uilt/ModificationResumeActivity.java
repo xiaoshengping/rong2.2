@@ -1,5 +1,6 @@
 package com.jeremy.Customer.uilt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
@@ -41,6 +42,7 @@ public class ModificationResumeActivity extends ActionBarActivity implements Vie
     List<Fragment> fragments=new ArrayList<>();
 
     private ResumeValueBean resumeValueBeans;
+    private Intent intent;
 
 
     @Override
@@ -62,8 +64,8 @@ public class ModificationResumeActivity extends ActionBarActivity implements Vie
     private void initView() {
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("编辑简历");
-
-        resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBean");
+        intent=getIntent();
+        resumeValueBeans= (ResumeValueBean)intent.getSerializableExtra("resumeValueBean");
         if (resumeValueBeans!=null){
             ModificationResumeActivity.this.setResumeValueBeans(resumeValueBeans);
         }

@@ -290,6 +290,9 @@ public class ModificationInformationFragment extends Fragment implements View.On
                                                if (parmeBean.getState().equals("success")){
                                                    if (parmeBean.getValue().getMessage().equals("success")){
                                                        loadingDialog.dismiss();
+                                                      /* Bundle bundle=new Bundle();
+                                                       Intent intent=new Intent(getActivity(), ResumeParticularsActivity.class);
+                                                       intent.putExtra("",bundle);*/
                                                        getActivity().finish();
 
                                                    }
