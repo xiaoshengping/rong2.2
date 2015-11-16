@@ -21,6 +21,7 @@
             android:gravity="center"
             android:textColor="@color/home_talents_item_name"
             android:textSize="14sp"
+            android:layout_margin="10dp"
             android:text="确认退出登录吗？"/>
         <TextView
             android:layout_width="match_parent"

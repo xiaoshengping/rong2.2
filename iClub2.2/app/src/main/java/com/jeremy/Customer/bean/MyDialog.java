@@ -57,8 +57,8 @@ public class MyDialog extends Dialog {
             determine.setText("现在登录");
             cancel.setText("稍后登录");
         }else if(type == Identification.MAINTAINORREMOVE){
-            determine.setText("返回上一页");
-            cancel.setText("留在此页面");
+            determine.setText("确认");
+            cancel.setText("取消");
         }
         hint.setText(tisp);
         super.setContentView(mView);

@@ -138,6 +138,8 @@ public class RecommendListAdater extends BaseAdapter {
             return position(convertView, position);
         }else if(identi == Identification.COMMENT){
             return comment(convertView,position);
+        }else if(identi == Identification.HOTJOBS){
+            return hotjobs(convertView, position);
         }
 
         return convertView;
@@ -250,6 +252,58 @@ public class RecommendListAdater extends BaseAdapter {
 
         return view;
     }
+    //热门职位
+    private View hotjobs(View view, int position) {
+        if (view == null) {
+            view = mInflater.inflate(R.layout.item_hotjobs, null);
+            viewPosition = new ViewPosition();
+
+            viewPosition.item_position_name_tv = (TextView) view.findViewById(R.id.item_position_name_tv);
+            viewPosition.item_position_salary_tv = (TextView) view.findViewById(R.id.item_position_salary_tv);
+            viewPosition.item_position_time_tv = (TextView) view.findViewById(R.id.item_position_time_tv);
+            viewPosition.item_position_site_tv = (TextView) view.findViewById(R.id.item_position_site_tv);
+
+            view.setTag(viewPosition);
+        } else {
+            viewPosition = (ViewPosition) view.getTag();
+        }
+
+        if(position<recruitmentListData.size()) {
+
+//        viewPosition.item_company_name_tv.setText(recruitmentListData.get(position).getCompanyName());
+
+        if (recruitmentListData.get(position).getPosition() == null) {
+        } else {
+            if (recruitmentListData.get(position).getPosition().equals("")) {
+            } else {
+                viewPosition.item_position_name_tv.setText(recruitmentListData.get(position).getPosition());
+            }
+        }
+        if (recruitmentListData.get(position).getWorkPay() == null) {
+        } else {
+            if (recruitmentListData.get(position).getWorkPay().equals("")) {
+            } else {
+                viewPosition.item_position_salary_tv.setText(recruitmentListData.get(position).getWorkPay());
+            }
+        }
+        if (recruitmentListData.get(position).getPuttime() == null) {
+        } else {
+            if (recruitmentListData.get(position).getPuttime().equals("")) {
+            } else {
+                viewPosition.item_position_time_tv.setText(recruitmentListData.get(position).getPuttime().toString().substring(5,10));
+            }
+        }
+        if (recruitmentListData.get(position).getWorkPlace() == null) {
+        } else {
+            if (recruitmentListData.get(position).getWorkPlace().equals("")) {
+            } else {
+                viewPosition.item_position_site_tv.setText(recruitmentListData.get(position).getWorkPlace());
+            }
+        }
+        }
+
+        return view;
+    }
 
     //评价
     private View comment(View view, int position){
@@ -292,6 +346,7 @@ public class RecommendListAdater extends BaseAdapter {
         private TextView item_position_name_tv, item_position_salary_tv, item_position_time_tv, item_position_site_tv,item_company_name_tv;
 
     }
+
     public class ViewComment {
         private TextView comment_text_tv, comment_unit_tv, comment_time_tv;
 

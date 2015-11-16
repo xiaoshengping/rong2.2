@@ -34,6 +34,7 @@ import com.jeremy.Customer.adapter.PictureAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.CommentBean;
 import com.jeremy.Customer.bean.Identification;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.MyDialog;
 import com.jeremy.Customer.bean.RecruitmentListBean;
 import com.jeremy.Customer.bean.mine.ResumePicture;
@@ -617,6 +618,7 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
     }
 
     private Bundle bundle;
+    private LoadingDialog loadingDialog;
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -631,6 +633,9 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
 //            intent.putExtras(bundle);
 //            startActivity(intent);
 
+        loadingDialog = new LoadingDialog(this, "");
+        loadingDialog.show();
+
         //投递
         HttpUtils httpUtils = new HttpUtils();
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getSend(recruitmentListBean.getJobId(), bundle.getInt("ResumeId")), new RequestCallBack<String>() {
@@ -640,6 +645,7 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
                 if (result != null) {
                     SendParme<ViewCountBean> viewCountBean = JSONObject.parseObject(result, new TypeReference<SendParme<ViewCountBean>>() {
                     });
+                    loadingDialog.dismiss();
                     if (viewCountBean.getState().equals("success")) {
                         dialog(5);
 //                        if (commentBean.getTotal() > 0) {
@@ -661,6 +667,7 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
             @Override
             public void onFailure(HttpException e, String s) {
                 dialog(6);
+                loadingDialog.dismiss();
 //                reputation_tipe_tv.setTextColor(0xffDEDDE2);
 //                reputation_tipe_tv.setText("网路异常，请稍后再试！");
             }
@@ -675,7 +682,7 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
         switch (tipsTyp) {
 
             case 5://邀约成功
-                dialog2 = new MyDialog(this, Identification.MAINTAINORREMOVE, Identification.FREEDOM,"已成功向商家<"+recruitmentListBean.getCompanyName()+">投递简历<"+bundle.getString("ResumeName")+">");
+                dialog2 = new MyDialog(this, Identification.TOOLTIP, Identification.FREEDOM,"已成功向商家<"+recruitmentListBean.getCompanyName()+">投递简历<"+bundle.getString("ResumeName")+">");
                 dialog2.setDetermine(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -683,12 +690,6 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
 //                        Intent intent = new Intent(CalendarActivity.this, LoginActivity.class);
 //                        startActivity(intent);
 //                recommend_list.setVisibility(View.GONE);
-                        dialog2.dismiss();
-                    }
-                });
-                dialog2.setCancel(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
                         dialog2.dismiss();
                     }
                 });

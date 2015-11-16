@@ -33,7 +33,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChooseAResumeActivity extends ActionBarActivity implements View.OnClickListener,PullToRefreshBase.OnRefreshListener2<ListView>{
+public class ChooseAResumeActivity extends ActionBarActivity implements View.OnClickListener, PullToRefreshBase.OnRefreshListener2<ListView> {
 
     @ViewInject(R.id.tailt_return_tv)
     private TextView tailtReturnTv;
@@ -46,8 +46,9 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
     private HttpUtils httpUtils;
     private List<TalentValueBean> resumeValueBeans;
     private ChooseAResumeAdapter ChooseAResumeAdapter;
-    private int offset=0;
+    private int offset = 0;
     private String pid;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,20 +67,21 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
     private void intiView() {
         tailtText.setText("我的简历");
         tailtReturnTv.setOnClickListener(this);
-        SQLhelper sqLhelper=new SQLhelper(ChooseAResumeActivity.this);
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        SQLhelper sqLhelper = new SQLhelper(ChooseAResumeActivity.this);
+        SQLiteDatabase db = sqLhelper.getWritableDatabase();
+        Cursor cursor = db.query("user", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
             pid = cursor.getString(1);
 
         }
     }
+
     @Override
     protected void onRestart() {
         super.onRestart();
-        SQLhelper sqLhelper=new SQLhelper(ChooseAResumeActivity.this);
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        SQLhelper sqLhelper = new SQLhelper(ChooseAResumeActivity.this);
+        SQLiteDatabase db = sqLhelper.getWritableDatabase();
+        Cursor cursor = db.query("user", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
             pid = cursor.getString(1);
 
@@ -89,19 +91,19 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
     }
 
     private void intiListView() {
-        ListView listView=resumeListLv.getRefreshableView();
+        ListView listView = resumeListLv.getRefreshableView();
 
-        resumeValueBeans=new ArrayList<TalentValueBean>();
-        ChooseAResumeAdapter=new ChooseAResumeAdapter(resumeValueBeans,this,resumeListLv);
+        resumeValueBeans = new ArrayList<TalentValueBean>();
+        ChooseAResumeAdapter = new ChooseAResumeAdapter(resumeValueBeans, this, resumeListLv);
         resumeListLv.setAdapter(ChooseAResumeAdapter);
         resumeListLv.setMode(PullToRefreshBase.Mode.BOTH);
         resumeListLv.setOnRefreshListener(this);
-        ILoadingLayout endLabels  = resumeListLv
+        ILoadingLayout endLabels = resumeListLv
                 .getLoadingLayoutProxy(false, true);
         endLabels.setPullLabel("上拉加载...");// 刚下拉时，显示的提示
         endLabels.setRefreshingLabel("正在加载...");// 刷新时
         endLabels.setReleaseLabel("放开加载...");// 下来达到一定距离时，显示的提示
-        ILoadingLayout startLabels  = resumeListLv
+        ILoadingLayout startLabels = resumeListLv
                 .getLoadingLayoutProxy(true, false);
         startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
         startLabels.setRefreshingLabel("正在刷新...");// 刷新时
@@ -110,7 +112,7 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
 
                 if (resumeValueBeans.size() != 0) {
 //                    Intent intent = new Intent(ChooseAResumeActivity.this, ResumeParticularsActivity.class);
@@ -118,13 +120,29 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
 //                    intent.putExtra("position", (position - 1) + "");
 //                    startActivity(intent);
 
-                    Intent intent = new Intent();
-                    intent.putExtra("ResumeId", resumeValueBeans.get(position - 1).getResumeid());
-                    intent.putExtra("ResumeName", resumeValueBeans.get(position - 1).getResumeJobName());
+                    dialog2 = new MyDialog(ChooseAResumeActivity.this, Identification.MAINTAINORREMOVE, Identification.FREEDOM, "是否确认投递简历："+resumeValueBeans.get(position - 1).getResumeJobName());
+                    dialog2.setDetermine(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent();
+                            intent.putExtra("ResumeId", resumeValueBeans.get(position - 1).getResumeid());
+                            intent.putExtra("ResumeName", resumeValueBeans.get(position - 1).getResumeJobName());
                         /*给上一个Activity返回结果*/
-                    ChooseAResumeActivity.this.setResult(Identification.JOBCHOICE, intent);
+                            ChooseAResumeActivity.this.setResult(Identification.JOBCHOICE, intent);
                         /*结束本Activity*/
-                    ChooseAResumeActivity.this.finish();
+                            ChooseAResumeActivity.this.finish();
+                            dialog2.dismiss();
+                        }
+                    });
+                    dialog2.setCancel(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog2.dismiss();
+                        }
+                    });
+
+                    dialog2.show();
+
                 }
 
 
@@ -133,24 +151,22 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
     }
 
     private void intiResumeListData(int offset) {
-        httpUtils=new HttpUtils();
-        String resumeListUrl= AppUtilsUrl.getResumeList(pid, offset);
+        httpUtils = new HttpUtils();
+        String resumeListUrl = AppUtilsUrl.getResumeList(pid, offset);
         httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                String result=responseInfo.result;
-                if (result!=null){
+                String result = responseInfo.result;
+                if (result != null) {
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<TalentValueBean>>() {
                     }, resumeValueBeans, ChooseAResumeAdapter);
                     resumeListLv.onRefreshComplete();
-                    if (resumeValueBeans.size()!=0){
+                    if (resumeValueBeans.size() != 0) {
                         notResumeTv.setVisibility(View.GONE);
-                    }else {
+                    } else {
                         notResumeTv.setVisibility(View.VISIBLE);
 
                     }
-
-
 
 
                 }
@@ -160,7 +176,7 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
 
             @Override
             public void onFailure(HttpException e, String s) {
-                ChooseAResumeAdapter=new ChooseAResumeAdapter(resumeValueBeans,ChooseAResumeActivity.this,resumeListLv);
+                ChooseAResumeAdapter = new ChooseAResumeAdapter(resumeValueBeans, ChooseAResumeActivity.this, resumeListLv);
                 resumeListLv.setAdapter(ChooseAResumeAdapter);
                 resumeListLv.onRefreshComplete();
                 dialog();
@@ -168,12 +184,10 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
         });
 
 
-
-
-
     }
 
     private MyDialog dialog2;
+
     //提示框
     private void dialog() {
         dialog2 = new MyDialog(ChooseAResumeActivity.this, Identification.TOOLTIP, Identification.NETWORKANOMALY);
@@ -190,7 +204,7 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
 
             case R.id.tailt_return_tv:
                 ChooseAResumeActivity.this.finish();
@@ -204,13 +218,13 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         resumeValueBeans.clear();
-        int offset=0;
+        int offset = 0;
         intiResumeListData(offset);
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-        offset=offset+10;
+        offset = offset + 10;
         intiResumeListData(offset);
     }
 }

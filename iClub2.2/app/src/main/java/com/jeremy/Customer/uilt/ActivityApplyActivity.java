@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.Identification;
+import com.jeremy.Customer.bean.LoadingDialog;
+import com.jeremy.Customer.bean.MyDialog;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.MyInputBox;
 import com.lidroid.xutils.HttpUtils;
@@ -38,6 +41,9 @@ public class ActivityApplyActivity extends Activity {
         httpUtils = new HttpUtils();
     }
 
+    private LoadingDialog loadingDialog;
+    private MyDialog dialog2;
+
     private void intiEditData() {
         RequestParams requestParams = new RequestParams();
         String name = activity_name.getEditText();
@@ -53,20 +59,42 @@ public class ActivityApplyActivity extends Activity {
         requestParams.addBodyParameter("email", email);
         requestParams.addBodyParameter("activityId", activityId);
 
+        loadingDialog = new LoadingDialog(this, "");
+        loadingDialog.show();
+
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getEditJod(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 // Log.e("result",responseInfo.result);
                 if (responseInfo.result != null) {
-                    Toast.makeText(ActivityApplyActivity.this, "报名成功", Toast.LENGTH_LONG).show();
-//                        MyAppliction.showToast("保存数据成功");
+                    loadingDialog.dismiss();
+                    dialog2 = new MyDialog(ActivityApplyActivity.this, Identification.TOOLTIP, Identification.FREEDOM, "报名成功");
+                    dialog2.setDetermine(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            finish();
+                            dialog2.dismiss();
+                        }
+                    });
+
+                    dialog2.show();
                 }
 
             }
 
             @Override
             public void onFailure(HttpException e, String s) {
+                loadingDialog.dismiss();
+                dialog2 = new MyDialog(ActivityApplyActivity.this, Identification.TOOLTIP, Identification.NETWORKANOMALY);
+                dialog2.setDetermine(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                recommend_list.setVisibility(View.GONE);
+                        dialog2.dismiss();
+                    }
+                });
 
+                dialog2.show();
             }
         });
 
@@ -78,7 +106,35 @@ public class ActivityApplyActivity extends Activity {
     }
 
     public void apply_button(View v) {
-        intiEditData();
+        if (activity_name.getEditText().toString().equals("")) {
+            Toast.makeText(ActivityApplyActivity.this, "目前名字信息为空，请将报名信息填写完整", Toast.LENGTH_LONG).show();
+        } else if (activity_age.getEditText().toString().equals("")) {
+            Toast.makeText(ActivityApplyActivity.this, "目前年龄信息为空，请将报名信息填写完整", Toast.LENGTH_LONG).show();
+        } else if (activity_sex.getEditText().toString().equals("")) {
+            Toast.makeText(ActivityApplyActivity.this, "目前性别信息为空，请将报名信息填写完整", Toast.LENGTH_LONG).show();
+        } else if (activity_phone.getEditText().toString().equals("")) {
+            Toast.makeText(ActivityApplyActivity.this, "目前电话信息为空，请将报名信息填写完整", Toast.LENGTH_LONG).show();
+        } else if (activity_mailbox.getEditText().toString().equals("")) {
+            Toast.makeText(ActivityApplyActivity.this, "目前邮箱信息为空，请将报名信息填写完整", Toast.LENGTH_LONG).show();
+        } else {
+            dialog2 = new MyDialog(this,Identification.MAINTAINORREMOVE,Identification.FREEDOM,"是否确认报名");
+            dialog2.setDetermine(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    intiEditData();
+                    dialog2.dismiss();
+                }
+            });
+            dialog2.setCancel(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog2.dismiss();
+                }
+            });
+
+            dialog2.show();
+
+        }
     }
 
     public void back(View v) {
