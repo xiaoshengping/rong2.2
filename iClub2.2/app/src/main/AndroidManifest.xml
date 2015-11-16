@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jeremy.Customer" >
+    package="com.jeremy.Customer">
 
     <!-- ###################声明SDK使用的相关权限###################### -->
     <!-- 友盟 -->
@@ -36,10 +36,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".HomeActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -75,7 +75,7 @@
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -120,10 +120,12 @@
         <activity android:name=".uilt.RecommenListActivity" />
         <activity android:name=".uilt.ActivityDetailActivity" />
         <activity android:name=".uilt.TalentsDetailsActivity" />
-        <activity android:name=".uilt.ActivityApplyActivity" />
-        <activity android:name=".uilt.InviteMessageActivity"
-            android:theme="@style/StyledIndicators"
-            />
+        <activity
+            android:name=".uilt.ActivityApplyActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".uilt.InviteMessageActivity"
+            android:theme="@style/StyledIndicators" />
         <activity android:name=".uilt.NickNameActivity" />
         <activity android:name=".uilt.SelectPictureActivity" />
         <activity
@@ -165,33 +167,27 @@
         <activity
             android:name=".uilt.ResumeParticularsActivity"
             android:label="@string/title_activity_resume_particulars"
-            android:theme="@style/StyledIndicators"
-            />
+            android:theme="@style/StyledIndicators" />
+        <activity android:name=".view.MusicActivity" />
         <activity
-            android:name=".view.MusicActivity"
-           />
-        <activity android:name=".view.SpaceImageDetailActivity" />
+            android:name=".view.SpaceImageDetailActivity"
+            android:theme="@android:style/Theme.Translucent" />
         <activity
             android:name=".uilt.MerchantDeliverActivity"
-            android:label="@string/title_activity_merchant_deliver" >
-        </activity>
+            android:label="@string/title_activity_merchant_deliver"></activity>
         <activity
             android:name=".uilt.MerchantInviteActivity"
-            android:theme="@style/StyledIndicators"
-            android:label="@string/title_activity_merchant_invite" >
-        </activity>
+            android:label="@string/title_activity_merchant_invite"
+            android:theme="@style/StyledIndicators"></activity>
         <activity
             android:name=".uilt.MerchantInformationActivity"
-            android:label="@string/title_activity_merchant_information" >
-        </activity>
+            android:label="@string/title_activity_merchant_information"></activity>
         <activity
             android:name=".uilt.MerchantInformationPreviewActivity"
-            android:label="@string/title_activity_merchant_information_preview" >
-        </activity>
+            android:label="@string/title_activity_merchant_information_preview"></activity>
         <activity
             android:name=".uilt.ApplicationsListActivity"
-            android:label="@string/title_activity_applications_list" >
-        </activity>
+            android:label="@string/title_activity_applications_list"></activity>
         <activity android:name=".uilt.MerchantParticularsActivity"
 
             />
@@ -199,44 +195,34 @@
         <activity
             android:name=".uilt.ModificationResumeActivity"
             android:label="@string/title_activity_modification_resume"
-            android:theme="@style/StyledIndicators"
-            >
-        </activity>
+            android:theme="@style/StyledIndicators"></activity>
         <activity
             android:name=".uilt.ContactInformationActivity"
-            android:label="@string/title_activity_contact_information" >
-        </activity>
+            android:label="@string/title_activity_contact_information"></activity>
         <activity android:name=".PagesActivity" />
         <activity android:name=".calendar.CalendarActivity" />
         <activity
             android:name=".uilt.MoreVideoActivity"
-            android:label="@string/title_activity_more_video" >
-        </activity>
+            android:label="@string/title_activity_more_video"></activity>
         <activity
             android:name=".uilt.MoreMucisActivity"
-            android:label="@string/title_activity_more_mucis" >
-        </activity>
+            android:label="@string/title_activity_more_mucis"></activity>
         <activity
             android:name=".uilt.MorePictureActivity"
-            android:label="@string/title_activity_more_picture" >
-        </activity>
+            android:label="@string/title_activity_more_picture"></activity>
         <activity
             android:name=".uilt.ImagePagerActivity"
-            android:label="@string/title_activity_image_pager" >
-        </activity>
+            android:label="@string/title_activity_image_pager"></activity>
         <activity
             android:name=".uilt.MercharInviteParticularsActivity"
-            android:theme="@style/StyledIndicators"
-            android:label="@string/title_activity_merchar_invite_particulars" >
-        </activity>
+            android:label="@string/title_activity_merchar_invite_particulars"
+            android:theme="@style/StyledIndicators"></activity>
         <activity
             android:name=".uilt.CommentCountActivity"
-            android:label="@string/title_activity_comment_count" >
-        </activity>
+            android:label="@string/title_activity_comment_count"></activity>
         <activity
             android:name=".uilt.MerchantAddPictrueActivity"
-            android:label="@string/title_activity_merchant_add_pictrue" >
-        </activity>
+            android:label="@string/title_activity_merchant_add_pictrue"></activity>
         <activity android:name=".uilt.ChooseAResumeActivity"></activity>
     </application>
 

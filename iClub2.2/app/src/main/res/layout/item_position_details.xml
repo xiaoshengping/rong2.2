@@ -28,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="吉他手"
-                    android:textColor="@color/home_talents_item_name"
+                    android:textColor="#272A31"
                     android:textSize="21sp" />
 
                 <TextView
@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="3000-8000元/月"
-                    android:textColor="@color/position_item_salary"
+                    android:textColor="#FB4E23"
                     android:textSize="18sp" />
 
                 <TextView
@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="发布时间  2014-09-10        投递数量  124"
-                    android:textColor="@color/home_module_name"
+                    android:textColor="#777777"
                     android:textSize="14sp" />
 
             </LinearLayout>
@@ -72,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:lineSpacingMultiplier="1.0"
                         android:text="公司名称"
-                        android:textColor="@color/home_module_name"
+                        android:textColor="#787878"
                         android:textSize="16sp" />
 
                     <TextView
@@ -82,7 +82,7 @@
                         android:layout_marginLeft="15dp"
                         android:lineSpacingMultiplier="1.0"
                         android:text="广州娱乐文化传播有限公司阿斯顿嘎嘎上发生地方大东方"
-                        android:textColor="@color/home_talents_item_name"
+                        android:textColor="#272A31"
                         android:textSize="16sp" />
                 </LinearLayout>
 
@@ -97,7 +97,7 @@
                         android:lineSpacingExtra="9dp"
                         android:lineSpacingMultiplier="1.0"
                         android:text="工作地点\n招聘人数\n工作时间\n工作时长"
-                        android:textColor="@color/home_module_name"
+                        android:textColor="#787878"
                         android:textSize="16sp" />
 
                     <TextView
@@ -108,7 +108,7 @@
                         android:lineSpacingExtra="9dp"
                         android:lineSpacingMultiplier="1.0"
                         android:text="广州-天河\n10人\n9月30日\n1年"
-                        android:textColor="@color/home_talents_item_name"
+                        android:textColor="#272A31"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -130,7 +130,7 @@
                     android:paddingRight="12dp"
                     android:paddingTop="10dp"
                     android:text=" 职位描述"
-                    android:textColor="#888888"
+                    android:textColor="#323232"
                     android:textSize="16sp"
                     android:drawableLeft="@mipmap/vertical_bar"/>
 
@@ -144,7 +144,7 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:text="(1)按照领导的要求，努力完成领导布置的工作任务。\n(2)精通业务，熟练掌握酒吧各种工具、器具的使用方法。\n(3)了解所供酒品的特想及饮用形式，掌握一定的酒品知识。jsalksjfjasdkfasjfjasfjklasjdfladslfdfjaklsjdfkladsklfjasd;fjdkljklajfsdalkflakfj;kajfklajfkjasd;fjadlkfldkf"
-                    android:textColor="@color/home_talents_item_name"
+                    android:textColor="#777777"
                     android:textSize="16sp"
                     android:paddingBottom="15dp"/>
 
@@ -179,7 +179,7 @@
                     android:paddingRight="12dp"
                     android:paddingTop="10dp"
                     android:text=" 任职要求"
-                    android:textColor="#888888"
+                    android:textColor="#333333"
                     android:textSize="16sp"
                     android:drawableLeft="@mipmap/vertical_bar"/>
 
@@ -193,7 +193,7 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:text="(1)按照领导的要求，努力完成领导布置的工作任务。\n(2)精通业务，熟练掌握酒吧各种工具、器具的使用方法。\n(3)了解所供酒品的特想及饮用形式，掌握一定的酒品知识。asdfl;kafjkaljklak;lfjafklfhnsdhfendhfnajljalfljfeflkjdljdrelkfjjdflakksdlfewfljef"
-                    android:textColor="@color/home_talents_item_name"
+                    android:textColor="#787878"
                     android:textSize="16sp"
                     android:paddingBottom="15dp"/>
 
@@ -232,7 +232,7 @@
                         android:lineSpacingExtra="9dp"
                         android:lineSpacingMultiplier="1.0"
                         android:text="电话\n邮箱\n官网"
-                        android:textColor="@color/home_module_name"
+                        android:textColor="#343434"
                         android:textSize="16sp" />
 
                     <TextView
@@ -243,7 +243,7 @@
                         android:lineSpacingExtra="9dp"
                         android:lineSpacingMultiplier="1.0"
                         android:text="**********\n********\n***********"
-                        android:textColor="@color/home_talents_item_name"
+                        android:textColor="#787878"
                         android:textSize="16sp" />
 
                 </LinearLayout>
@@ -260,7 +260,7 @@
                         android:layout_height="wrap_content"
                         android:lineSpacingMultiplier="1.0"
                         android:text="地址"
-                        android:textColor="@color/home_module_name"
+                        android:textColor="#343434"
                         android:textSize="16sp" />
 
                     <TextView
@@ -270,7 +270,7 @@
                         android:layout_marginLeft="15dp"
                         android:lineSpacingMultiplier="1.0"
                         android:text="*************"
-                        android:textColor="@color/home_talents_item_name"
+                        android:textColor="#787878"
                         android:textSize="16sp" />
 
                 </LinearLayout>

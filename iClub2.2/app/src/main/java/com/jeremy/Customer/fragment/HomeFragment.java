@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -18,6 +19,8 @@ import com.jeremy.Customer.bean.ActivityBean;
 import com.jeremy.Customer.bean.ArtistHeadBean;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.Identification;
+import com.jeremy.Customer.bean.LoadingDialog;
+import com.jeremy.Customer.bean.MyDialog;
 import com.jeremy.Customer.bean.RecruitmentListBean;
 import com.jeremy.Customer.bean.TalentValueBean;
 import com.jeremy.Customer.uilt.ActivityDetailActivity;
@@ -59,6 +62,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private LinearLayout item_position_ll1,item_position_ll2,item_position_ll3,item_position_ll4,item_position_ll5;
 
     private static ScrollView scrollView;
+    private static ImageView home_icon_iv;
 
     private BitmapUtils bitmapUtils;
 
@@ -66,18 +70,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ArtistParme<TalentValueBean> talentValueBean;
     private ArtistParme<ActivityBean> activityBean;
 
-    private static int start = 0;
+    private static boolean start = false;
 
-    public static void setStart(int start) {
+    public static void setStart(boolean start) {
         HomeFragment.start = start;
     }
 
-    public static int getStart() {
+    public static boolean getStart() {
         return start;
     }
 
     public static void setSV(){
         scrollView.setVisibility(View.VISIBLE);
+        home_icon_iv.setVisibility(View.GONE);
     }
 
     public HomeFragment() {
@@ -94,9 +99,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         bitmapUtils = new BitmapUtils(getActivity());
         binding(view);
         initAdvertisement();
-        initActivity();
-        initRecommendTheVirtuousAndAble();
-        initRecommendedWork();
+
         return view;
     }
 
@@ -152,6 +155,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         item_position_ll5 = (LinearLayout)view.findViewById(R.id.item_position_ll5);
 
         scrollView = (ScrollView)view.findViewById(R.id.scrollView);
+        home_icon_iv = (ImageView)view.findViewById(R.id.home_icon_iv);
 
         home_more1.setOnClickListener(this);
         home_more2.setOnClickListener(this);
@@ -169,13 +173,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         item_position_ll5.setOnClickListener(this);
         activity_picture_riv1.setOnClickListener(this);
         activity_picture_riv2.setOnClickListener(this);
+        home_icon_iv.setOnClickListener(this);
 
         scrollView.setVisibility(View.GONE);
 
     }
 
+    private LoadingDialog loadingDialog;
+
     //初始化广告栏
     private void initAdvertisement() {
+
+        loadingDialog = new LoadingDialog(getActivity(),"正在更新数据……");
+        loadingDialog.show();
+
         HttpUtils headHttpUtils = new HttpUtils();
         headHttpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getArtistHead(), new RequestCallBack<String>() {
             @Override
@@ -192,7 +203,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         layoutParams.setMargins(0, 0, 0, 0);
                         ssv.setLayoutParams(layoutParams);
 
-                        start++;
+                        initActivity();
 
                     }
 
@@ -205,7 +216,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
-                start = -10;
+                start = false;
+                loadingDialog.dismiss();
             }
         });
 
@@ -238,7 +250,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 }
 
-                start++;
+                initRecommendTheVirtuousAndAble();
+
 
             }
 
@@ -246,7 +259,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
-                start = -10;
+                start = false;
+                loadingDialog.dismiss();
             }
         });
     }
@@ -284,7 +298,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 }
 
-                start++;
+                initRecommendedWork();
 
             }
 
@@ -292,7 +306,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
-                start = -10;
+                start = false;
+                loadingDialog.dismiss();
             }
         });
     }
@@ -458,7 +473,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 }
 
-                start++;
+                start = true;
+                setSV();
+                loadingDialog.dismiss();
 
             }
 
@@ -466,9 +483,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
-                start = -10;
+                start = false;
+                loadingDialog.dismiss();
+                dialog();
             }
         });
+    }
+
+    private MyDialog dialog2;
+    //提示框
+    private void dialog() {
+        dialog2 = new MyDialog(getActivity(), Identification.TOOLTIP, Identification.NETWORKANOMALY);
+        dialog2.setDetermine(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                recommend_list.setVisibility(View.GONE);
+                dialog2.dismiss();
+            }
+        });
+
+        dialog2.show();
     }
 
 
@@ -485,7 +519,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 TouchMore(Identification.TALENTS);
                 break;
             case R.id.home_more3:
-                TouchMore(Identification.PROSITION);
+                TouchMore(Identification.HOTJOBS);
                 break;
             case R.id.recommend_the_virtuous_and_able_riv1:
                 Talents(0);
@@ -526,11 +560,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.activity_picture_riv2:
                 Activity(1);
                 break;
+            case R.id.home_icon_iv:
+                initAdvertisement();
+//                home_icon_iv.setVisibility(View.GONE);
+                break;
         }
         }catch (Exception e){
 
         }
     }
+
+
 
     private void Activity(int i){
         Intent intent = new Intent();

@@ -44,7 +44,7 @@ public class HomeActivity extends ActionBarActivity {
             Intent intent = new Intent().setClass(HomeActivity.this,PagesActivity.class);
             startActivity(intent);
         }
-        HomeFragment.setStart(0);
+        HomeFragment.setStart(false);
         startPage();
         init();
 
@@ -71,11 +71,11 @@ public class HomeActivity extends ActionBarActivity {
             runOnUiThread(new Runnable() {      // UI thread
                 @Override
                 public void run() {
-                    if(HomeFragment.getStart()%4 ==0){
+                    if(HomeFragment.getStart()){
                         HomeFragment.setSV();
                         timer.cancel();
                         loadingDialog.dismiss();
-                    }else if(HomeFragment.getStart() < 0){
+                    }else if(!HomeFragment.getStart()){
                         timer.cancel();
                         loadingDialog.dismiss();
                         dialog();

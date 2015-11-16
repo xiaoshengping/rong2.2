@@ -54,7 +54,7 @@ public class ActivityDetailActivity extends Activity {
 
         Time time = new Time("GMT+8");
         time.setToNow();
-        int year = time.year;
+        int year = time.year-1;
         int month = time.month+1;
         int day = time.monthDay;
         String[] s = activityBean.getDate().split("-");

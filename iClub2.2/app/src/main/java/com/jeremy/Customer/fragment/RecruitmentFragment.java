@@ -215,8 +215,8 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
             @Override
             public void onFailure(HttpException e, String s) {
-                adater = new RecommendListAdater();
-                recommend_list.setAdapter(adater);
+//                adater = new RecommendListAdater();
+//                recommend_list.setAdapter(adater);
                 recommend_list.onRefreshComplete();
                 loadingDialog.dismiss();
 //                recommend_list.setRefreshing(false);
@@ -237,7 +237,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-        offset = offset + 10;
+        offset = recruitmentListData.size();
         initRecruitmentListData(citynum, jobnum, offset);
     }
 

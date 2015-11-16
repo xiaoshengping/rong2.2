@@ -26,6 +26,7 @@ public class ActivityApplyActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_activity_apply);
         activityId = getIntent().getStringExtra("ActivityId");
         activity_name = (MyInputBox) findViewById(R.id.activity_name);
@@ -85,4 +86,18 @@ public class ActivityApplyActivity extends Activity {
     }
 
 
+//    @Override
+//    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//        if (actionId == EditorInfo.IME_ACTION_UNSPECIFIED) {
+////            Toast.makeText(ActivityApplyActivity.this, "你点了软键盘回车按钮",
+////                    Toast.LENGTH_SHORT).show();
+////            switch (v.getId()){
+////                case R.id.activity_name:
+////                    Toast.makeText(ActivityApplyActivity.this, activity_name.getEditText().toString(),
+////                            Toast.LENGTH_SHORT).show();
+////                    break;
+////            }
+//        }
+//        return false;
+//    }
 }

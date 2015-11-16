@@ -31,6 +31,9 @@ public class MyInputBox extends LinearLayout{
         editText.setHint(input_box_edit);
     }
 
+    public void getEd(TextView.OnEditorActionListener ed){
+        editText.setOnEditorActionListener(ed);
+    }
     public void setTextViewText(String text) {
         textView.setText(text);
     }

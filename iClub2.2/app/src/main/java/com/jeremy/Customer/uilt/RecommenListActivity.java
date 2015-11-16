@@ -34,8 +34,6 @@ import com.lidroid.xutils.http.client.HttpRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.jeremy.Customer.bean.Identification.PROSITION;
-
 public class RecommenListActivity extends Activity implements PullToRefreshBase.OnRefreshListener2<ListView> {
 
     private MyTitleBar mytitle;
@@ -75,7 +73,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
             intiActivity();
         } else if (identi == Identification.TALENTS) {
             intiTalents();
-        } else if (identi == Identification.PROSITION) {
+        } else if (identi == Identification.HOTJOBS) {
             intiProsition();
         } else if (identi == Identification.COMMENT) {
             intiComment();
@@ -98,7 +96,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     bundle.putSerializable("Detail", talentValueBean.get(position - 1));
                     intent.putExtras(bundle);
                     startActivity(intent);
-                } else if (identi == Identification.PROSITION) {
+                } else if (identi == Identification.HOTJOBS) {
                     Intent intent = new Intent(RecommenListActivity.this, JobDetailsActivity.class);  //方法1
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("Detail", recruitmentListData.get(position - 1));
@@ -175,8 +173,8 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
 
                 @Override
                 public void onFailure(HttpException e, String s) {
-                    adater = new RecommendListAdater();
-                    recommend_list.setAdapter(adater);
+//                    adater = new RecommendListAdater();
+//                    recommend_list.setAdapter(adater);
                     recommend_list.onRefreshComplete();
                     loadingDialog.dismiss();
 //                recommend_list.setRefreshing(false);
@@ -254,8 +252,8 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
 
             @Override
             public void onFailure(HttpException e, String s) {
-                adater = new RecommendListAdater();
-                recommend_list.setAdapter(adater);
+//                adater = new RecommendListAdater();
+//                recommend_list.setAdapter(adater);
                 recommend_list.onRefreshComplete();
                 loadingDialog.dismiss();
 //                recommend_list.setRefreshing(false);
@@ -347,8 +345,8 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
             @Override
             public void onFailure(HttpException e, String s) {
 
-                adater = new RecommendListAdater();
-                recommend_list.setAdapter(adater);
+//                adater = new RecommendListAdater();
+//                recommend_list.setAdapter(adater);
                 recommend_list.onRefreshComplete();
                 loadingDialog.dismiss();
 
@@ -380,7 +378,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     //初始化职位列表
     private void intiProsition() {
 
-        adater = new RecommendListAdater(RecommenListActivity.this, PROSITION, recruitmentListData);
+        adater = new RecommendListAdater(RecommenListActivity.this, Identification.HOTJOBS, recruitmentListData);
         recommend_list.setAdapter(adater);
 //        Toast.makeText(getActivity(), recruitmentListData.size() + "", Toast.LENGTH_LONG).show();
         recommend_list.setMode(PullToRefreshBase.Mode.BOTH);
@@ -413,7 +411,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
         });
 
 
-        mytitle.setTextViewText("热门职位");
+        mytitle.setTextViewText("热门工作");
 //        RecommendListAdater adater = new RecommendListAdater(this, identi);
 //        recommend_list.setAdapter(adater);
     }
@@ -436,7 +434,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                         if (recruitmentListBean.getTotal()>recruitmentListData.size()) {
                             if(recruitmentListData.size() == 0 ){
                                 recruitmentListData.addAll(recruitmentListBean.getValue());
-                                adater = new RecommendListAdater(RecommenListActivity.this, PROSITION, recruitmentListData);
+                                adater = new RecommendListAdater(RecommenListActivity.this, Identification.HOTJOBS, recruitmentListData);
                                 recommend_list.setAdapter(adater);
                             }else {
                                 recruitmentListData.addAll(recruitmentListBean.getValue());
@@ -459,8 +457,8 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
 
             @Override
             public void onFailure(HttpException e, String s) {
-                adater = new RecommendListAdater();
-                recommend_list.setAdapter(adater);
+//                adater = new RecommendListAdater();
+//                recommend_list.setAdapter(adater);
                 recommend_list.onRefreshComplete();
                 loadingDialog.dismiss();
 //                recommend_list.setRefreshing(false);
@@ -481,14 +479,14 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         if (identi == Identification.ACTIVITY) {
-            talentValueBean.clear();
+            activityData.clear();
             offset = 0;
             initActivityListData(offset);
         } else if (identi == Identification.TALENTS) {
             talentValueBean.clear();
             offset = 0;
             initTalentsListData(0, 0, offset);
-        } else if (identi == Identification.PROSITION) {
+        } else if (identi == Identification.HOTJOBS) {
             recruitmentListData.clear();
             offset = 0;
             initPrositionListData(0, 0, offset);
@@ -504,16 +502,16 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
 
         if (identi == Identification.ACTIVITY) {
-            offset = offset + 10;
+            offset = activityData.size();
             initActivityListData(offset);
         } else if (identi == Identification.TALENTS) {
-            offset = offset + 10;
+            offset = talentValueBean.size();
             initTalentsListData(0, 0, offset);
-        } else if (identi == Identification.PROSITION) {
-            offset = offset + 10;
+        } else if (identi == Identification.HOTJOBS) {
+            offset = recruitmentListData.size();
             initPrositionListData(0, 0, offset);
         } else if (identi == Identification.COMMENT) {
-            offset = offset + 10;
+            offset = commentDate.size();
             initcCollaborateComment(offset);
         }
 

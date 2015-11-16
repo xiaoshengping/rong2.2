@@ -168,7 +168,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
     private LoadingDialog loadingDialog;
 
     //获取人才列表（非搜索）
-    private void initRecruitmentListData(int city, int job, int offset) {
+    private void initRecruitmentListData(int city, int job, final int offset) {
 
         loadingDialog = new LoadingDialog(getActivity());
         loadingDialog.show();
@@ -212,9 +212,12 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
 
             @Override
             public void onFailure(HttpException e, String s) {
-                adater = new RecommendListAdater();
-                recommend_list.setAdapter(adater);
+//                adater = new RecommendListAdater();
+//                recommend_list.setAdapter(adater);
                 recommend_list.onRefreshComplete();
+//                talentValueBean.addAll(null);
+//                adater.setTalentValueBean(talentValueBean);
+//                adater.notifyDataSetChanged();
                 loadingDialog.dismiss();
 //                recommend_list.setRefreshing(false);
 //                recommend_list.on;
@@ -235,8 +238,10 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-        offset = offset + 10;
-        initRecruitmentListData(citynum, jobnum, offset);
+//        if(talentValueBean.size() != 0) {
+            offset = talentValueBean.size();//offset + 10;
+            initRecruitmentListData(citynum, jobnum, offset);
+//        }
     }
 
     private MyDialog dialog2;
