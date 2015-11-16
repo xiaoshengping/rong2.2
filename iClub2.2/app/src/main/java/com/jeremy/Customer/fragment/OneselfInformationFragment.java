@@ -4,17 +4,28 @@ package com.jeremy.Customer.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.uilt.CommentCountActivity;
 import com.jeremy.Customer.uilt.ResumeParticularsActivity;
+import com.jeremy.Customer.url.AppUtilsUrl;
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.List;
@@ -58,7 +69,77 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        MyAppliction.showToast("我是fragment000");
+        intiResumeData();
+    }
+    private void intiResumeData() {
 
+        HttpUtils httpUtils=new HttpUtils();
+        String resumeListUrl= AppUtilsUrl.getResumeLista(((ResumeParticularsActivity) getActivity()).getResumeid());
+        httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result = responseInfo.result;
+                if (result != null) {
+                    ParmeBean<ResumeValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ParmeBean<ResumeValueBean>>() {
+                    });
+                    ResumeValueBean resumeValueBean = artistParme.getValue();
+                    if (resumeValueBean != null) {
+                        MyAppliction.showToast("获取数据成功");
+                        resumeInfoTv.setText(resumeValueBean.getResumeInfo());
+                        resumeExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
+                        resumeQqTv.setText(resumeValueBean.getResumeQq());
+                        resumeEmailTv.setText(resumeValueBean.getResumeEmail());
+                        resumeMobileTv.setText(resumeValueBean.getResumeMobile());
+                        authenticityTv.setText(resumeValueBean.getAuthenticity() + "");
+                        integrityTv.setText(resumeValueBean.getIntegrity() + "");
+                        transactionRecordTv.setText(resumeValueBean.getTransactionRecord() + "");
+                        if (resumeValueBean.getCommentCount() == 0) {
+                            commentCountTv.setText("暂没有商家评论过");
+                        } else {
+                            commentCountTv.setText(resumeValueBean.getCommentCount() + "位商家评论过");
+                        }
+                        resumeInfoTv.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (resumeInfoTv.getLineCount() > 4) {
+                                    resumeInfoTv.setLines(4);
+                                }
+
+                            }
+                        });
+                        resumeExperienceTv.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (resumeExperienceTv.getLineCount() > 4) {
+                                    resumeExperienceTv.setLines(4);
+                                }
+
+                            }
+                        });
+
+
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure.......", s);
+            }
+        });
+
+
+
+
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -83,7 +164,7 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
         oneselfMoreLayout.setOnClickListener(this);
         resumeInfoTv.setOnClickListener(this);
         commentCountTv.setOnClickListener(this);
-       ResumeValueBean resumeValueBean=((ResumeParticularsActivity) getActivity()).getResumeValueBean();
+       /*ResumeValueBean resumeValueBean=((ResumeParticularsActivity) getActivity()).getResumeValueBean();
         if (resumeValueBean!=null){
             resumeInfoTv.setText(resumeValueBean.getResumeInfo());
             resumeExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
@@ -115,8 +196,8 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
             });
 
 
-        }
-
+        }*/
+        intiResumeData();
 
 
 

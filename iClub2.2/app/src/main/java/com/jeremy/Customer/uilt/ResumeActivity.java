@@ -120,8 +120,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
                 if (resumeValueBeans.size()!=0){
                     Intent intent = new Intent(ResumeActivity.this, ResumeParticularsActivity.class);
-                    intent.putExtra("resumeValueBeans", resumeValueBeans.get(position-1));
-                    intent.putExtra("position",(position-1)+"");
+                    intent.putExtra("resumeid", resumeValueBeans.get(position-1).getResumeid()+"");
                     startActivity(intent);
                 }
 

@@ -123,9 +123,9 @@ public class AppUtilsUrl  {
         return BaseUrl+"getResumeListByUid.action?"+"pid="+pid+"&offset="+offset+"&limit=10";
 
     }
-    public static String getResumeLista(String uid){
+    public static String getResumeLista(String resumeid){
         //getResumeListByUid.action?uid=13800138000
-        return BaseUrl+"getResumeListByUid.action?"+"pid="+uid;
+        return BaseUrl+"getResumePreview.action?"+"resumeid="+resumeid;
 
     }
     //公告信息

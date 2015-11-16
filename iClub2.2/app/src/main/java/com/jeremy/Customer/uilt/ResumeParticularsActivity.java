@@ -5,14 +5,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.ResumePagerAdapter;
 import com.jeremy.Customer.bean.LoadingDialog;
+import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.fragment.OneselfInformationFragment;
 import com.jeremy.Customer.fragment.OneselfProductionFragment;
@@ -20,7 +24,12 @@ import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.CustomImageView;
 import com.jeremy.Customer.view.CustomViewPager;
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 import com.viewpagerindicator.TabPageIndicator;
 
@@ -59,11 +68,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
 
     private OneselfInformationFragment oneselfInformationFragment;
     private OneselfProductionFragment oneselfProductionFragment;
-    private ResumeValueBean resumeValueBeans;
     private ResumeValueBean resumeValueBean;
-
-
-    private String  positions;
     private LoadingDialog loadingDialog;
 
     @ViewInject(R.id.resume_pager)
@@ -72,6 +77,9 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
     TabPageIndicator tabPageIndicator;
     private ResumePagerAdapter adapter;
     List<Fragment> fragments=new ArrayList<>();
+    private String resumeid;
+    private String resumeids;
+    private ResumeValueBean resumeValueBeanss;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +98,6 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
     }
 
 
-
     private void initView() {
         loadingDialog = new LoadingDialog(this,"正在加载数据……");
         loadingDialog.show();
@@ -104,31 +111,64 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         adapter = new ResumePagerAdapter(fragments, getSupportFragmentManager());
         invitePager.setAdapter(adapter);
         tabPageIndicator.setViewPager(invitePager);
-        resumeValueBeans= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBeans");
-         positions= getIntent().getStringExtra("position");
-        ResumeParticularsActivity.this.setResumeValueBean(resumeValueBeans);
-       // FragmentResumeTabAdapter fragmentInviteTabAdapter=new FragmentResumeTabAdapter(ResumeParticularsActivity.this,listFragment,R.id.resume_fragment_layout,resumeRadioGroup);
-        if (resumeValueBeans!=null){
-        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), customImageView, MyAppliction.RoundedOptions);
-        resumeZhNameTv.setText(resumeValueBeans.getResumeZhName());
-         if (resumeValueBeans.getResumeSex()==0){
-             resumeSexIv.setBackgroundResource(R.mipmap.man_icon);
-         }else if (resumeValueBeans.getResumeSex()==1){
-             resumeSexIv.setBackgroundResource(R.mipmap.woman_icon);
-         }
-        resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
-        resumeWorkPlaceTv.setText(resumeValueBeans.getResumeWorkPlace());
-        resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobCategoryName());
-        browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
-        loadingDialog.dismiss();
-        }
+
+        resumeids= getIntent().getStringExtra("resumeid");
+        intiResumeData();
+        ResumeParticularsActivity.this.setResumeValueBean(resumeValueBeanss);
+        ResumeParticularsActivity.this.setResumeid(resumeids);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        intiResumeData();
+    }
+
+    private void intiResumeData() {
+
+        HttpUtils httpUtils=new HttpUtils();
+        String resumeListUrl= AppUtilsUrl.getResumeLista(resumeids);
+        httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result = responseInfo.result;
+                if (result != null) {
+                    ParmeBean<ResumeValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ParmeBean<ResumeValueBean>>() {
+                    });
+                   resumeValueBeanss = artistParme.getValue();
+                    if (resumeValueBeanss != null) {
+                        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeanss.getUsericon(), customImageView, MyAppliction.RoundedOptions);
+                            resumeZhNameTv.setText(resumeValueBeanss.getResumeZhName());
+                            if (resumeValueBeanss.getResumeSex()==0){
+                                resumeSexIv.setBackgroundResource(R.mipmap.man_icon);
+                            }else if (resumeValueBeanss.getResumeSex()==1){
+                                resumeSexIv.setBackgroundResource(R.mipmap.woman_icon);
+                            }
+                            resumeAgeTv.setText(resumeValueBeanss.getResumeAge()+"");
+                        resumeWorkPlaceTv.setText(resumeValueBeanss.getResumeWorkPlace());
+                        resumeJobNameIsdTv.setText(resumeValueBeanss.getResumeJobCategoryName());
+                            browseNumberTv.setText(resumeValueBeanss.getCommentCount()+"");
+
+                           loadingDialog.dismiss();
+
+                        }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                Log.e("onFailure.......", s);
+            }
+        });
+
+
 
 
 
     }
-
-
-
 
     private void addFragment() {
         fragments.add(oneselfInformationFragment);
@@ -144,7 +184,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
                 break;
             case R.id.cpmpile_resume_tv:
                     Intent intent=new Intent(ResumeParticularsActivity.this,ModificationResumeActivity.class);
-                    intent.putExtra("resumeValueBean",resumeValueBean);
+                    intent.putExtra("resumeValueBean",resumeValueBeanss);
                    startActivityForResult(intent,13);
 
                 break;
@@ -152,6 +192,14 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
 
 
         }
+    }
+
+    public String getResumeid() {
+        return resumeid;
+    }
+
+    public void setResumeid(String resumeid) {
+        this.resumeid = resumeid;
     }
 
     public ResumeValueBean getResumeValueBean() {
