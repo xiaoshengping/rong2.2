@@ -1,13 +1,16 @@
 package com.jeremy.Customer.uilt;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,8 +21,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.LoadingDialog;
-import com.jeremy.Customer.bean.mine.LoginValueBean;
 import com.jeremy.Customer.bean.ParmeBean;
+import com.jeremy.Customer.bean.mine.LoginValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -142,10 +145,12 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             public void onStart(SHARE_MEDIA platform) {
                 Toast.makeText(LoginActivity.this, "授权开始", Toast.LENGTH_SHORT).show();
             }
+
             @Override
             public void onError(SocializeException e, SHARE_MEDIA platform) {
                 Toast.makeText(LoginActivity.this, "授权错误", Toast.LENGTH_SHORT).show();
             }
+
             @Override
             public void onComplete(Bundle value, SHARE_MEDIA platform) {
                 Toast.makeText(LoginActivity.this, "授权完成", Toast.LENGTH_SHORT).show();
@@ -155,28 +160,30 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                     public void onStart() {
                         Toast.makeText(LoginActivity.this, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
                     }
+
                     @Override
                     public void onComplete(int status, Map<String, Object> info) {
-                        if(status == 200 && info != null){
+                        if (status == 200 && info != null) {
                             StringBuilder sb = new StringBuilder();
                             Set<String> keys = info.keySet();
-                            for(String key : keys){
-                                sb.append(key+"="+info.get(key).toString()+"\r\n");
+                            for (String key : keys) {
+                                sb.append(key + "=" + info.get(key).toString() + "\r\n");
                             }
-                           String qqId= info.get("openid").toString();
+                            String qqId = info.get("openid").toString();
                             qqLoginData(qqId);
-                            Log.d("TestData",sb.toString());
-                        }else{
-                            Log.d("TestData","发生错误："+status);
+                            Log.d("TestData", sb.toString());
+                        } else {
+                            Log.d("TestData", "发生错误：" + status);
                         }
                     }
                 });
             }
+
             @Override
             public void onCancel(SHARE_MEDIA platform) {
                 Toast.makeText(LoginActivity.this, "授权取消", Toast.LENGTH_SHORT).show();
             }
-        } );
+        });
 
     }
 
@@ -184,7 +191,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
        // requestParams.addBodyParameter("");
-        httpUtils.send(HttpRequest.HttpMethod.POST, "",requestParams, new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.POST, "", requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
 
@@ -329,6 +336,24 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
         }
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction()==MotionEvent.ACTION_DOWN){
+            hintKbTwo();
+        }
+
+        return super.onTouchEvent(event);
+    }
+
+    private void hintKbTwo() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 
     public void insertData(SQLhelper sqLhelper,String uid,String userName,String userIcon,String state,String mobile,String personid ,String companyName){

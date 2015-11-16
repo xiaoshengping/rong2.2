@@ -162,7 +162,8 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
             @Override
             public void onFailure(HttpException e, String s) {
-                   Log.e("onFailure.......", s);
+                resumeListLv.onRefreshComplete(); 
+                Log.e("onFailure.......", s);
             }
         });
 

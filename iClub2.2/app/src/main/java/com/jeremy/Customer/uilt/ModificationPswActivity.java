@@ -1,11 +1,14 @@
 package com.jeremy.Customer.uilt;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.PswValueBean;
 import com.jeremy.Customer.http.MyAppliction;
@@ -39,6 +43,8 @@ public class ModificationPswActivity extends ActionBarActivity implements View.O
     private EditText resetPswEdit;
     @ViewInject(R.id.modification_finist_button)
     private Button modificationFinistButton;
+
+    private LoadingDialog loadingDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +63,7 @@ public class ModificationPswActivity extends ActionBarActivity implements View.O
         tailtText.setText("修改密码");
         tailtReturnTv.setOnClickListener(this);
         modificationFinistButton.setOnClickListener(this);
+        loadingDialog=new LoadingDialog(this,"正在保存中......");
 
 
 
@@ -122,11 +129,13 @@ public class ModificationPswActivity extends ActionBarActivity implements View.O
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
         }
+
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("uid",uid);
         requestParams.addBodyParameter("oldpwd", MD5Uutils.MD5(formerPswEdit.getText().toString()));
         requestParams.addBodyParameter("newpwd", MD5Uutils.MD5(newPswEdit.getText().toString()));
+        loadingDialog.show();
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAmendPsw(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -136,11 +145,12 @@ public class ModificationPswActivity extends ActionBarActivity implements View.O
                 if (parmeBean.getState().equals("success")) {
                     if (parmeBean.getValue().getMessage().equals("success")) {
                         MyAppliction.showToast("修改密码成功");
+                        loadingDialog.dismiss();
                           finish();
 
                     } else {
                         MyAppliction.showExitGameAlert("旧密码错误!", ModificationPswActivity.this);
-
+                        loadingDialog.dismiss();
                     }
 
 
@@ -150,9 +160,27 @@ public class ModificationPswActivity extends ActionBarActivity implements View.O
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                loadingDialog.dismiss();
             }
         });
 
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction()==MotionEvent.ACTION_DOWN){
+            hintKbTwo();
+        }
+
+        return super.onTouchEvent(event);
+    }
+
+    private void hintKbTwo() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 }

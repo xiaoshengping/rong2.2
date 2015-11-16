@@ -568,8 +568,6 @@ public class ModificationInformationFragment extends Fragment implements View.On
 
         }
     }
-
-
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId){
@@ -582,4 +580,5 @@ public class ModificationInformationFragment extends Fragment implements View.On
 
         }
     }
+
 }
