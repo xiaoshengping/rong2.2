@@ -15,6 +15,7 @@ public class Identification {
     public static int TALENTS = 2;//人才
     public static int PROSITION = 3;//职位
     public static int COMMENT = 4;//评论
+    public static int HOTJOBS = 5;//热门职位
 
     public static int RETURN = 0;//无返回值
     public static int CITYSELECTION = 1;//选择城市
@@ -25,7 +26,7 @@ public class Identification {
     public static int TOOLTIP = 1;//提示框（单个按钮）
     public static int LOGINPROMPT = 2;//双选提示框（带登录按钮）
     public static int AFFIRM = 3;//双选提示框
-    public static int MAINTAINORREMOVE = 4;//双选提示框(留在此页面，或离开)
+    public static int MAINTAINORREMOVE = 4;//双选提示框(确认、取消)
     //提示框信息
     public static int NETWORKANOMALY = 1;//网络异常
     public static int LOGINPROMPTMERCHANT = 2;//提示登录为商家
