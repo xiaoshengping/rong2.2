@@ -333,75 +333,79 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            uid=cursor.getString(0);
+            uid=cursor.getString(1);
             state = cursor.getString(4);
             userName = cursor.getString(2);
             userIcon=cursor.getString(3);
             companyName=cursor.getString(6);
         }
-            if (!TextUtils.isEmpty(state)){
+        MyAppliction.showToast(uid);
+        if (!TextUtils.isEmpty(uid)) {
+            if (!TextUtils.isEmpty(state)) {
                 mineLayout.setVisibility(View.VISIBLE);
                 eixtLoginLayout.setVisibility(View.VISIBLE);
                 touXiangIv.setVisibility(View.VISIBLE);
                 touXiang1Tv.setVisibility(View.GONE);
                 petname1Tv.setVisibility(View.GONE);
                 petNameTv.setVisibility(View.VISIBLE);
-                if (!TextUtils.isEmpty(userName)){
+                if (!TextUtils.isEmpty(userName)) {
                     petNameTv.setText(userName);
-                }else {
+                } else {
                     petNameTv.setText("请设置昵称");
                 }
-                if (!TextUtils.isEmpty(userIcon)){
-                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+userIcon,touXiangIv,MyAppliction.RoundedOptions);
+                if (!TextUtils.isEmpty(userIcon)) {
+                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + userIcon, touXiangIv, MyAppliction.RoundedOptions);
                 }
-                if (state.equals("2")){
+
+                if (state.equals("2")) {
                     resumeZhaoPingTv.setText("我的简历");
                     inviteMessageTv.setText("邀约消息");
                     journeyMerchantTv.setText("我的行程");
                     deliverMessageTv.setText("投递消息");
-                    Drawable drawableResume= getResources().getDrawable(R.mipmap.resume_icon);
+                    Drawable drawableResume = getResources().getDrawable(R.mipmap.resume_icon);
                     drawableResume.setBounds(0, 0, drawableResume.getMinimumWidth(), drawableResume.getMinimumHeight());
                     resumeZhaoPingTv.setCompoundDrawables(null, drawableResume, null, null);
-                    Drawable drawableInvite= getResources().getDrawable(R.mipmap.invite_icon);
+                    Drawable drawableInvite = getResources().getDrawable(R.mipmap.invite_icon);
                     drawableInvite.setBounds(0, 0, drawableInvite.getMinimumWidth(), drawableInvite.getMinimumHeight());
                     inviteMessageTv.setCompoundDrawables(null, drawableInvite, null, null);
-                    Drawable drawableInviteDater= getResources().getDrawable(R.mipmap.invite_dater_icon);
+                    Drawable drawableInviteDater = getResources().getDrawable(R.mipmap.invite_dater_icon);
                     drawableInviteDater.setBounds(0, 0, drawableInviteDater.getMinimumWidth(), drawableInviteDater.getMinimumHeight());
                     journeyMerchantTv.setCompoundDrawables(null, drawableInviteDater, null, null);
-                    Drawable drawableDeliver= getResources().getDrawable(R.mipmap.deliver_icon);
+                    Drawable drawableDeliver = getResources().getDrawable(R.mipmap.deliver_icon);
                     drawableDeliver.setBounds(0, 0, drawableDeliver.getMinimumWidth(), drawableDeliver.getMinimumHeight());
                     deliverMessageTv.setCompoundDrawables(null, drawableDeliver, null, null);
 
-                }else if (state.equals("3")){
+                } else if (state.equals("3")) {
                     resumeZhaoPingTv.setText("我的招聘");
                     inviteMessageTv.setText("邀约消息");
                     journeyMerchantTv.setText("商家信息");
                     deliverMessageTv.setText("投递消息");
-                    Drawable drawableResume= getResources().getDrawable(R.mipmap.resume_icon);
+                    Drawable drawableResume = getResources().getDrawable(R.mipmap.resume_icon);
                     drawableResume.setBounds(0, 0, drawableResume.getMinimumWidth(), drawableResume.getMinimumHeight());
                     resumeZhaoPingTv.setCompoundDrawables(null, drawableResume, null, null);
-                    Drawable drawableInvite= getResources().getDrawable(R.mipmap.invite_icon);
+                    Drawable drawableInvite = getResources().getDrawable(R.mipmap.invite_icon);
                     drawableInvite.setBounds(0, 0, drawableInvite.getMinimumWidth(), drawableInvite.getMinimumHeight());
                     inviteMessageTv.setCompoundDrawables(null, drawableInvite, null, null);
-                    Drawable drawableInviteDater= getResources().getDrawable(R.mipmap.merchant_message_icon);
+                    Drawable drawableInviteDater = getResources().getDrawable(R.mipmap.merchant_message_icon);
                     drawableInviteDater.setBounds(0, 0, drawableInviteDater.getMinimumWidth(), drawableInviteDater.getMinimumHeight());
                     journeyMerchantTv.setCompoundDrawables(null, drawableInviteDater, null, null);
-                    Drawable drawableDeliver= getResources().getDrawable(R.mipmap.deliver_icon);
+                    Drawable drawableDeliver = getResources().getDrawable(R.mipmap.deliver_icon);
                     drawableDeliver.setBounds(0, 0, drawableDeliver.getMinimumWidth(), drawableDeliver.getMinimumHeight());
                     deliverMessageTv.setCompoundDrawables(null, drawableDeliver, null, null);
                 }
 
-            }else {
-                mineLayout.setVisibility(View.GONE);
-                eixtLoginLayout.setVisibility(View.GONE);
-                //petNameTv.setText("点击头像登录");
-                touXiang1Tv.setVisibility(View.VISIBLE);
-                petname1Tv.setVisibility(View.VISIBLE);
             }
 
-            if (!TextUtils.isEmpty(uid)||tempFile.exists()){
+            if (!TextUtils.isEmpty(uid) || tempFile.exists()) {
                 intiToXiangData();
             }
+        }else {
+            mineLayout.setVisibility(View.GONE);
+            eixtLoginLayout.setVisibility(View.GONE);
+            //petNameTv.setText("点击头像登录");
+            touXiang1Tv.setVisibility(View.VISIBLE);
+            petname1Tv.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -628,11 +632,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
                 SQLhelper sqLhelper = new SQLhelper(getActivity());
                 SQLiteDatabase db = sqLhelper.getWritableDatabase();
-                Cursor cursor = db.query("user", null, null, null, null, null, null);
+
+               Cursor cursor = db.query("user", null, null, null, null, null, null);
                 while (cursor.moveToNext()) {
                     String uid = cursor.getString(0);
-                    if (uid != null) {
-                        db.delete("user", null, null);
+                    if (uid!= null) {
+                     db.delete(SQLhelper.tableName, null, null);
 
                     }
                 }

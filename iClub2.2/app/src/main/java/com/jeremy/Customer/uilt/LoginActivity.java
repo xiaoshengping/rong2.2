@@ -263,6 +263,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         if(ssoHandler!= null){
             ssoHandler.authorizeCallBack(requestCode, resultCode, data);
         }
+
     }
     //app登录
     private void intiLoginData(final String uid,String psw) throws NoSuchAlgorithmException {
@@ -344,4 +345,6 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         db.insert(SQLhelper.tableName, SQLhelper.UID, values);
         db.close();
     }
+
+
 }

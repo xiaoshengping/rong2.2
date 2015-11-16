@@ -1,5 +1,6 @@
 package com.jeremy.Customer.uilt;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
@@ -88,6 +89,15 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tailt_return_tv:
+                if (userType.equals("talentsUser")){
+                    Intent intent =getIntent();
+                    intent.putExtra("colesActivity","noColesActivity");
+                    setResult(14,intent);
+                }else if (userType.equals("merchantUser")){
+                    Intent intent =getIntent();
+                    intent.putExtra("colesActivity","noColesActivity");
+                    setResult(14,intent);
+                }
                 finish();
                 break;
             case R.id.register_finist_button:
@@ -142,10 +152,18 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                                                         ParmeBean<RegisterValueBean> artistParme = JSONObject.parseObject(rerult, new TypeReference<ParmeBean<RegisterValueBean>>() {
                                                         });
                                                         RegisterValueBean registerValueBean = artistParme.getValue();
-                                                        // Log.e("makeText",loginValueBean.getState());
                                                         if ("success".equals(registerValueBean.getMessage())) {
 
                                                             //showExitGameAlert(text);
+                                                           if (userType.equals("talentsUser")){
+                                                               Intent intent =getIntent();
+                                                               intent.putExtra("colesActivity","colesActivity");
+                                                               setResult(14,intent);
+                                                           }else if (userType.equals("merchantUser")){
+                                                               Intent intent =getIntent();
+                                                               intent.putExtra("colesActivity","colesActivity");
+                                                               setResult(14,intent);
+                                                           }
                                                             finish();
                                                             loadingDialog.dismiss();
 
