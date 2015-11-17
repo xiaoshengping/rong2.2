@@ -76,7 +76,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
     private int tipsType;
     private int resumeid;
-    private String uid;
+    private String uid = "13632255697";
     private String companyName;
     private int month = 0;
     private boolean toMonth = true;
@@ -104,36 +104,9 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
         } else {
             initTalentsRoute(DateUtil.getYear() + "-" + (DateUtil.getMonth() > 9 ? DateUtil.getMonth() : ("0" + DateUtil.getMonth())), true);
-            initTalentsRoute(DateUtil.getYear() + "-" + ((DateUtil.getMonth() + 1) > 9 ? (DateUtil.getMonth() + 1) : ("0" + (DateUtil.getMonth() + 1))), false);
+
         }
 
-
-//
-
-//        new Handler().postDelayed(new Runnable(){
-//
-//            public void run() {
-//
-//                CalendarCard[] views = new CalendarCard[3];
-//                for (int i = 0; i < 3; i++) {
-//                    views[i] = new CalendarCard(this, this);
-//                }
-//                adapter = new CalendarViewAdapter<CalendarCard>(views);
-//                setViewPager();
-//
-//            }
-//
-//        }, 300);
-
-//        CalendarCard[] views = new CalendarCard[3];
-//        for (int i = 0; i < 3; i++) {
-//            views[i] = new CalendarCard(this, this);
-//        }
-//        adapter = new CalendarViewAdapter<CalendarCard>(views);
-//        setViewPager();
-
-//        dbu = DbUtils.create(this);
-//        user = new Day(); //这里需要注意的是User对象必须有id属性，或者有通过@ID注解的属性
     }
 
     private void binding() {
@@ -408,6 +381,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     //商家进入初始化日历
     private void initRoute(String yearAndMonth, final boolean tomonth) {
         HttpUtils httpUtils = new HttpUtils();
+        httpUtils.configCurrentHttpCacheExpiry(1000);
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRoute(id, yearAndMonth), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -451,16 +425,6 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
             @Override
             public void onFailure(HttpException e, String s) {
                 loadingDialog.dismiss();
-//                monthText.setText(s);
-//                if (tipsType != BEDEFEATED) {
-//                    CalendarCard[] views = new CalendarCard[3];
-//                    for (int i = 0; i < 3; i++) {
-//                        views[i] = new CalendarCard(CalendarActivity.this, CalendarActivity.this);
-//                    }
-//                    adapter = new CalendarViewAdapter<CalendarCard>(views);
-//                    setViewPager();
-//                    dialog(FAILURE);
-//                }
                 tipsType = BEDEFEATED;
                 dialog(BEDEFEATED);
             }
@@ -468,46 +432,15 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
     }
 
-    //    private static String toresult="";
-//    private static String nextresult="";
     //人才进入初始化日历
     private void initTalentsRoute(String yearAndMonth, final boolean tomon) {
         HttpUtils httpUtils = new HttpUtils();
         httpUtils.configCurrentHttpCacheExpiry(1000);
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getTalentsRoute(id, yearAndMonth), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getTalentsRoute(uid, yearAndMonth), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = null;
-//                if(tomon){
-//                    if(toresult.equals(responseInfo.result)){
-////                        CalendarCard[] views = new CalendarCard[3];
-////                        for (int i = 0; i < 3; i++) {
-////                            views[i] = new CalendarCard(CalendarActivity.this, CalendarActivity.this);
-////                        }
-////                        adapter = new CalendarViewAdapter<CalendarCard>(views);
-////                        setViewPager();
-//                        tipsType = -1;
-//                    }else {
-//                        toresult=responseInfo.result;
-//                        result= responseInfo.result;
-//                    }
-//
-//                }else {
-//                    if(nextresult.equals(responseInfo.result)){
-//
-//                        CalendarCard[] views = new CalendarCard[3];
-//                        for (int i = 0; i < 3; i++) {
-//                            views[i] = new CalendarCard(CalendarActivity.this, CalendarActivity.this);
-//                        }
-//                        adapter = new CalendarViewAdapter<CalendarCard>(views);
-//                        setViewPager();
-//                        tipsType = -1;
-//                    }else {
-//                        nextresult=responseInfo.result;
                 result = responseInfo.result;
-//                    }
-//
-//                }
 
                 if (result != null) {
                     ArtistParme<DayBean> dayBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<DayBean>>() {
@@ -515,6 +448,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
                     if (dayBean.getState().equals("success")) {
                         if (tomon) {
                             todayBeanslist = dayBean.getValue();
+                            initTalentsRoute(DateUtil.getYear() + "-" + ((DateUtil.getMonth() + 1) > 9 ? (DateUtil.getMonth() + 1) : ("0" + (DateUtil.getMonth() + 1))), false);
 //                            oldtodayBeanslist = dayBean.getValue();
                         } else {
                             nextdayBeanslist = dayBean.getValue();
@@ -535,6 +469,8 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
                             }, 300);
 
+                            loadingDialog.dismiss();
+
 //                            CalendarCard[] views = new CalendarCard[3];
 //                            for (int i = 0; i < 3; i++) {
 //                                views[i] = new CalendarCard(CalendarActivity.this, CalendarActivity.this);
@@ -551,39 +487,18 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
                 }
 
-
             }
 
             @Override
             public void onFailure(HttpException e, String s) {
-
-//                monthText.setText(s);
-                if (tipsType != BEDEFEATED) {
-                    new Handler().postDelayed(new Runnable() {
-
-                        public void run() {
-
-                            CalendarCard[] views = new CalendarCard[3];
-                            for (int i = 0; i < 3; i++) {
-                                views[i] = new CalendarCard(CalendarActivity.this, CalendarActivity.this);
-                            }
-                            adapter = new CalendarViewAdapter<CalendarCard>(views);
-                            setViewPager();
-                            tipsType = -1;
-
-                        }
-
-                    }, 300);
-                    dialog(FAILURE);
-                }
-                tipsType = BEDEFEATED;
+                dialog(BEDEFEATED);
             }
         });
 
     }
 
     //人才修改行程
-    private void modificationRoute(String yearAndMonth, boolean tomonmod) {
+    private void modificationRoute(String yearAndMonth, final boolean tomonmod) {
         String s = "";
         if (tomonmod) {
             for (int i = 0; i < todayBeanslist.size(); i++) {
@@ -596,6 +511,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
                 }
             }
+
         } else {
             for (int i = 0; i < nextdayBeanslist.size(); i++) {
                 if (nextdayBeanslist.get(i).getStatus().equals("1")) {
@@ -610,7 +526,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         }
 
         HttpUtils httpUtils = new HttpUtils();
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getModificationRoute(id, s, yearAndMonth), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getModificationRoute(uid, s, yearAndMonth), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -621,11 +537,15 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
                         ViewCountBean viewCountData = JSONObject.parseObject(viewCountBean.getValue(), ViewCountBean.class);
 
                         if (viewCountData.getMessage().equals("success")) {
-                            Toast.makeText(CalendarActivity.this, "成功修改日程", Toast.LENGTH_LONG).show();
+                            if(tomonmod) {
+                                modificationRoute(DateUtil.getYear() + "-" + ((DateUtil.getMonth() + 1) > 9 ? (DateUtil.getMonth() + 1) : ("0" + (DateUtil.getMonth() + 1))), false);
+                            }else {
+                                dialog("日程修改成功");
+                            }
                         } else if (viewCountData.getMessage().equals("failure")) {
-                            Toast.makeText(CalendarActivity.this, "日程修改失败", Toast.LENGTH_LONG).show();
+                            dialog("日程修改失败，请稍后重试");
                         } else {
-                            Toast.makeText(CalendarActivity.this, "日程修改失败", Toast.LENGTH_LONG).show();
+                            dialog("日程修改失败，请稍后重试");
                         }
                     }
 
@@ -636,9 +556,23 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
 
             @Override
             public void onFailure(HttpException e, String s) {
+                dialog(BEDEFEATED);
+            }
+        });
+    }
+    private void dialog(String str) {
+        dialog2 = new MyDialog(this, Identification.TOOLTIP, Identification.FREEDOM,str);
+        dialog2.setDetermine(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+//                recommend_list.setVisibility(View.GONE);
+                dialog2.dismiss();
 
             }
         });
+
+        dialog2.show();
     }
 
     private boolean ing = false;
@@ -698,7 +632,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
                 Toast.makeText(CalendarActivity.this, "此日期已过，请重新选择", Toast.LENGTH_LONG).show();
                 break;
             case 2://邀约
-                dialog2 = new MyDialog(this,Identification.MAINTAINORREMOVE,Identification.FREEDOM,"adfgasdf");
+                dialog2 = new MyDialog(this, Identification.MAINTAINORREMOVE, Identification.FREEDOM, "确定邀约吗？");
                 dialog2.setDetermine(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -818,7 +752,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
                     Toast.makeText(CalendarActivity.this, "未选择邀约日期", Toast.LENGTH_LONG).show();
                 } else {
 //                    if (!ing) {
-                        dialog(OFFER);
+                    dialog(OFFER);
 //                    } else {
 //                        dialog(ING);
 //                    }
@@ -826,8 +760,6 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
                 }
             } else {
                 modificationRoute(DateUtil.getYear() + "-" + (DateUtil.getMonth() > 9 ? DateUtil.getMonth() : ("0" + DateUtil.getMonth())), true);
-                modificationRoute(DateUtil.getYear() + "-" + ((DateUtil.getMonth() + 1) > 9 ? (DateUtil.getMonth() + 1) : ("0" + (DateUtil.getMonth() + 1))), false);
-                finish();
             }
         }
     }

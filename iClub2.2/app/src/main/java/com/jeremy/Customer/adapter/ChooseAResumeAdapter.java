@@ -2,8 +2,6 @@ package com.jeremy.Customer.adapter;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +19,6 @@ import com.jeremy.Customer.bean.MessageBean;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.TalentValueBean;
 import com.jeremy.Customer.http.MyAppliction;
-import com.jeremy.Customer.uilt.TalentsDetailsActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -68,7 +65,7 @@ public class ChooseAResumeAdapter  extends AppBaseAdapter<TalentValueBean>   {
     @Override
     public View createView(int position, View convertView, ViewGroup parent) {
         if (convertView==null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.resume_list_adapter, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_resume_list, parent, false);
             viewHolde=new ViewHolde(convertView);
             convertView.setTag(viewHolde);
         }else {
@@ -94,9 +91,9 @@ public class ChooseAResumeAdapter  extends AppBaseAdapter<TalentValueBean>   {
 //        viewHolde.refreshButton.setOnClickListener(new refreshClick(position) );
 //        viewHolde.moreButton.setOnClickListener(new moreButtonClick(position));
 //        viewHolde.modificationButton.setOnClickListener(new modificationClick(position));
-        viewHolde.modificationButton.setText("预览");
-        viewHolde.moreButton.setTextColor(0xffadfadf);
-        viewHolde.refreshButton.setTextColor(0xffadfadf);
+//        viewHolde.modificationButton.setText("预览");
+//        viewHolde.moreButton.setTextColor(0xffadfadf);
+//        viewHolde.refreshButton.setTextColor(0xffadfadf);
     }
 
 
@@ -113,15 +110,7 @@ public class ChooseAResumeAdapter  extends AppBaseAdapter<TalentValueBean>   {
         @Override
         public void onClick(View v) {
             int vid=v.getId();
-            if (vid == viewHolde.modificationButton.getId()){
 
-                Intent intent = new Intent(context, TalentsDetailsActivity.class);  //方法1
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Detail", data.get(position));
-                intent.putExtras(bundle);
-                context.startActivity(intent);
-
-            }
         }
 
     }
@@ -377,8 +366,7 @@ public class ChooseAResumeAdapter  extends AppBaseAdapter<TalentValueBean>   {
         private TextView updateTimeTv;
         @ViewInject(R.id.resume_state_tv)
         private TextView resumeStateTv;
-        @ViewInject(R.id.modification_button)
-        private Button modificationButton;
+
         @ViewInject(R.id.refresh_button)
         private Button refreshButton;
         @ViewInject(R.id.more_button)

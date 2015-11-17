@@ -102,7 +102,7 @@ public class VideoAdapter extends BaseAdapter {
 //            Toast.makeText(mContext, "错误", Toast.LENGTH_LONG).show();
         }
 //        bitmapUtils.display(viewVideo.talents_video_back_iv, AppUtilsUrl.ImageBaseUrl + resumeMovie.get);
-        viewVideo.talents_video_button_iv.setOnClickListener(new View.OnClickListener() {
+        viewVideo.talents_video_button_ib.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);

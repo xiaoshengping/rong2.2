@@ -996,7 +996,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         } else if (states.equals("3")) {
             Intent intent = new Intent(TalentsDetailsActivity.this, CalendarActivity.class);
             Bundle bundle = new Bundle();
-            bundle.putInt("userType", 1);
+            bundle.putInt("userType", 1);//测试用
             bundle.putString("Personid", talentValueBean.getPersonid() + "");
             bundle.putInt("Resumeid", talentValueBean.getResumeid());
 //        Toast.makeText(this, talentValueBean.getPersonid()+"", Toast.LENGTH_LONG).show();

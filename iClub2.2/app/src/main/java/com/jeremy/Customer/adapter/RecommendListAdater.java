@@ -151,7 +151,7 @@ public class RecommendListAdater extends BaseAdapter {
             view = mInflater.inflate(R.layout.item_activity, null);
             viewActivity = new ViewActivity();
 
-            viewActivity.activity_poster = (RoundAngleImageView) view.findViewById(R.id.activity_poster);
+            viewActivity.activity_poster = (ImageView) view.findViewById(R.id.activity_poster);
             viewActivity.activity_name = (TextView) view.findViewById(R.id.activity_name);
 
             view.setTag(viewActivity);
@@ -332,7 +332,7 @@ public class RecommendListAdater extends BaseAdapter {
     }
 
     public class ViewActivity {
-        private RoundAngleImageView activity_poster;
+        private ImageView activity_poster;
         private TextView activity_name;
     }
 

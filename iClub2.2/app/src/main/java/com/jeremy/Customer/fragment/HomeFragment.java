@@ -54,12 +54,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private RoundAngleImageView recommend_the_virtuous_and_able_riv1, recommend_the_virtuous_and_able_riv2, recommend_the_virtuous_and_able_riv3, recommend_the_virtuous_and_able_riv4, recommend_the_virtuous_and_able_riv5, recommend_the_virtuous_and_able_riv6;
     private TextView recommend_the_virtuous_and_able_tv1, recommend_the_virtuous_and_able_tv2, recommend_the_virtuous_and_able_tv3, recommend_the_virtuous_and_able_tv4, recommend_the_virtuous_and_able_tv5, recommend_the_virtuous_and_able_tv6;
 
-    private TextView item_position_name_tv1, item_position_name_tv2, item_position_name_tv3,item_position_name_tv4, item_position_name_tv5;
-    private TextView item_position_salary_tv1, item_position_salary_tv2, item_position_salary_tv3,item_position_salary_tv4, item_position_salary_tv5;
-    private TextView item_position_time_tv1, item_position_time_tv2, item_position_time_tv3,item_position_time_tv4, item_position_time_tv5;
-    private TextView item_position_site_tv1, item_position_site_tv2, item_position_site_tv3,item_position_site_tv4, item_position_site_tv5;
+    private TextView item_position_name_tv1, item_position_name_tv2, item_position_name_tv3, item_position_name_tv4, item_position_name_tv5;
+    private TextView item_position_salary_tv1, item_position_salary_tv2, item_position_salary_tv3, item_position_salary_tv4, item_position_salary_tv5;
+    private TextView item_position_time_tv1, item_position_time_tv2, item_position_time_tv3, item_position_time_tv4, item_position_time_tv5;
+    private TextView item_position_site_tv1, item_position_site_tv2, item_position_site_tv3, item_position_site_tv4, item_position_site_tv5;
 
-    private LinearLayout item_position_ll1,item_position_ll2,item_position_ll3,item_position_ll4,item_position_ll5;
+    private LinearLayout item_position_ll1, item_position_ll2, item_position_ll3, item_position_ll4, item_position_ll5;
 
     private static ScrollView scrollView;
     private static ImageView home_icon_iv;
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ArtistParme<TalentValueBean> talentValueBean;
     private ArtistParme<ActivityBean> activityBean;
 
-    private static boolean start = false;
+    private static boolean start;
 
     public static void setStart(boolean start) {
         HomeFragment.start = start;
@@ -80,7 +80,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return start;
     }
 
-    public static void setSV(){
+    public static void setSV() {
         scrollView.setVisibility(View.VISIBLE);
         home_icon_iv.setVisibility(View.GONE);
     }
@@ -148,14 +148,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         item_position_time_tv5 = (TextView) view.findViewById(R.id.item_position_time_tv5);
         item_position_site_tv5 = (TextView) view.findViewById(R.id.item_position_site_tv5);
 
-        item_position_ll1 = (LinearLayout)view.findViewById(R.id.item_position_ll1);
-        item_position_ll2 = (LinearLayout)view.findViewById(R.id.item_position_ll2);
-        item_position_ll3 = (LinearLayout)view.findViewById(R.id.item_position_ll3);
-        item_position_ll4 = (LinearLayout)view.findViewById(R.id.item_position_ll4);
-        item_position_ll5 = (LinearLayout)view.findViewById(R.id.item_position_ll5);
+        item_position_ll1 = (LinearLayout) view.findViewById(R.id.item_position_ll1);
+        item_position_ll2 = (LinearLayout) view.findViewById(R.id.item_position_ll2);
+        item_position_ll3 = (LinearLayout) view.findViewById(R.id.item_position_ll3);
+        item_position_ll4 = (LinearLayout) view.findViewById(R.id.item_position_ll4);
+        item_position_ll5 = (LinearLayout) view.findViewById(R.id.item_position_ll5);
 
-        scrollView = (ScrollView)view.findViewById(R.id.scrollView);
-        home_icon_iv = (ImageView)view.findViewById(R.id.home_icon_iv);
+        scrollView = (ScrollView) view.findViewById(R.id.scrollView);
+        home_icon_iv = (ImageView) view.findViewById(R.id.home_icon_iv);
 
         home_more1.setOnClickListener(this);
         home_more2.setOnClickListener(this);
@@ -183,9 +183,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     //初始化广告栏
     private void initAdvertisement() {
-
-        loadingDialog = new LoadingDialog(getActivity(),"正在更新数据……");
-        loadingDialog.show();
 
         HttpUtils headHttpUtils = new HttpUtils();
         headHttpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getArtistHead(), new RequestCallBack<String>() {
@@ -217,7 +214,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
                 start = false;
-                loadingDialog.dismiss();
+                try {
+                    loadingDialog.dismiss();
+                }catch (Exception a){
+
+                }
             }
         });
 
@@ -260,7 +261,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
                 start = false;
-                loadingDialog.dismiss();
+                try {
+                    loadingDialog.dismiss();
+                }catch (Exception a){
+
+                }
             }
         });
     }
@@ -307,7 +312,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
                 start = false;
-                loadingDialog.dismiss();
+                try {
+                    loadingDialog.dismiss();
+                }catch (Exception a){
+
+                }
             }
         });
     }
@@ -475,7 +484,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 start = true;
                 setSV();
-                loadingDialog.dismiss();
+                try {
+                    loadingDialog.dismiss();
+                }catch (Exception a){
+
+                }
 
             }
 
@@ -484,13 +497,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
                 start = false;
-                loadingDialog.dismiss();
+                try {
+                    loadingDialog.dismiss();
+                }catch (Exception a){
+
+                }
+
                 dialog();
             }
         });
     }
 
     private MyDialog dialog2;
+
     //提示框
     private void dialog() {
         dialog2 = new MyDialog(getActivity(), Identification.TOOLTIP, Identification.NETWORKANOMALY);
@@ -511,68 +530,69 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         try {
 
 
-        switch (v.getId()) {
-            case R.id.home_more1:
-                TouchMore(Identification.ACTIVITY);
-                break;
-            case R.id.home_more2:
-                TouchMore(Identification.TALENTS);
-                break;
-            case R.id.home_more3:
-                TouchMore(Identification.HOTJOBS);
-                break;
-            case R.id.recommend_the_virtuous_and_able_riv1:
-                Talents(0);
-                break;
-            case R.id.recommend_the_virtuous_and_able_riv2:
-                Talents(1);
-                break;
-            case R.id.recommend_the_virtuous_and_able_riv3:
-                Talents(2);
-                break;
-            case R.id.recommend_the_virtuous_and_able_riv4:
-                Talents(3);
-                break;
-            case R.id.recommend_the_virtuous_and_able_riv5:
-                Talents(4);
-                break;
-            case R.id.recommend_the_virtuous_and_able_riv6:
-                Talents(5);
-                break;
-            case R.id.item_position_ll1:
-                Position(0);
-                break;
-            case R.id.item_position_ll2:
-                Position(1);
-                break;
-            case R.id.item_position_ll3:
-                Position(2);
-                break;
-            case R.id.item_position_ll4:
-                Position(3);
-                break;
-            case R.id.item_position_ll5:
-                Position(4);
-                break;
-            case R.id.activity_picture_riv1:
-                Activity(0);
-                break;
-            case R.id.activity_picture_riv2:
-                Activity(1);
-                break;
-            case R.id.home_icon_iv:
-                initAdvertisement();
+            switch (v.getId()) {
+                case R.id.home_more1:
+                    TouchMore(Identification.ACTIVITY);
+                    break;
+                case R.id.home_more2:
+                    TouchMore(Identification.TALENTS);
+                    break;
+                case R.id.home_more3:
+                    TouchMore(Identification.HOTJOBS);
+                    break;
+                case R.id.recommend_the_virtuous_and_able_riv1:
+                    Talents(0);
+                    break;
+                case R.id.recommend_the_virtuous_and_able_riv2:
+                    Talents(1);
+                    break;
+                case R.id.recommend_the_virtuous_and_able_riv3:
+                    Talents(2);
+                    break;
+                case R.id.recommend_the_virtuous_and_able_riv4:
+                    Talents(3);
+                    break;
+                case R.id.recommend_the_virtuous_and_able_riv5:
+                    Talents(4);
+                    break;
+                case R.id.recommend_the_virtuous_and_able_riv6:
+                    Talents(5);
+                    break;
+                case R.id.item_position_ll1:
+                    Position(0);
+                    break;
+                case R.id.item_position_ll2:
+                    Position(1);
+                    break;
+                case R.id.item_position_ll3:
+                    Position(2);
+                    break;
+                case R.id.item_position_ll4:
+                    Position(3);
+                    break;
+                case R.id.item_position_ll5:
+                    Position(4);
+                    break;
+                case R.id.activity_picture_riv1:
+                    Activity(0);
+                    break;
+                case R.id.activity_picture_riv2:
+                    Activity(1);
+                    break;
+                case R.id.home_icon_iv:
+                    loadingDialog = new LoadingDialog(getActivity(), "正在更新数据……");
+                    loadingDialog.show();
+                    initAdvertisement();
 //                home_icon_iv.setVisibility(View.GONE);
-                break;
-        }
-        }catch (Exception e){
+                    break;
+            }
+        } catch (Exception e) {
 
         }
     }
 
 
-
-    private void Activity(int i){
+    private void Activity(int i) {
         Intent intent = new Intent();
         intent.setClass(getActivity(), ActivityDetailActivity.class);
         Bundle bundle = new Bundle();
@@ -581,7 +601,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         startActivity(intent);
     }
 
-    private void Position(int i){
+    private void Position(int i) {
         Intent intent = new Intent(getActivity(), JobDetailsActivity.class);  //方法1
         Bundle bundle = new Bundle();
         bundle.putSerializable("Detail", recruitmentListBean.getValue().get(i));

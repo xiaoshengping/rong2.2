@@ -25,7 +25,7 @@
 
     <color name="home_module_name">#777778</color><!--首页模块头部名-->
     <color name="home_more">#9373ee</color><!--首页更多-->
-    <color name="activity_item_name">#777778</color><!--活动item名-->
+    <color name="activity_item_name">#333333</color><!--活动item名-->
     <color name="home_talents_item_name">#282a31</color><!--首页人才item名-->
     <color name="position_item_name">#282a31</color><!--职位item名-->
     <color name="position_item_salary">#e13430</color><!--职位item工资-->

@@ -120,7 +120,8 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/apply_back_shape"
                 android:orientation="vertical"
-                android:visibility="visible">
+                android:visibility="visible"
+                android:paddingBottom="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -143,25 +144,22 @@
                     android:lineSpacingMultiplier="1.3"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
-                    android:text="(1)按照领导的要求，努力完成领导布置的工作任务。\n(2)精通业务，熟练掌握酒吧各种工具、器具的使用方法。\n(3)了解所供酒品的特想及饮用形式，掌握一定的酒品知识。jsalksjfjasdkfasjfjasfjklasjdfladslfdfjaklsjdfkladsklfjasd;fjdkljklajfsdalkflakfj;kajfklajfkjasd;fjadlkfldkf"
+                    android:text="(1)按照领导的要求，努力完成领导布置的工作任务。\n(2)精通业务，熟练掌握酒吧各种工具、器具的使用方法。\n(3)了解所供酒品的特想及饮用形式，掌握一定的酒品知识。"
                     android:textColor="#777777"
-                    android:textSize="16sp"
-                    android:paddingBottom="15dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/describe_button_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="15dp"
-                    android:text="查看全部"
+                    android:text="查看全部..."
                     android:textColor="#9373EE"
                     android:textSize="16sp"
-                    android:background="@drawable/see_all_back_shape"
-                    android:paddingLeft="8dp"
+                    android:layout_marginLeft="15dp"
+                    android:paddingLeft="0dp"
                     android:paddingRight="8dp"
-                    android:paddingTop="7dp"
-                    android:paddingBottom="7dp"/>
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -169,7 +167,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/apply_back_shape"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingBottom="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -194,23 +193,20 @@
                     android:paddingRight="15dp"
                     android:text="(1)按照领导的要求，努力完成领导布置的工作任务。\n(2)精通业务，熟练掌握酒吧各种工具、器具的使用方法。\n(3)了解所供酒品的特想及饮用形式，掌握一定的酒品知识。asdfl;kafjkaljklak;lfjafklfhnsdhfendhfnajljalfljfeflkjdljdrelkfjjdflakksdlfewfljef"
                     android:textColor="#787878"
-                    android:textSize="16sp"
-                    android:paddingBottom="15dp"/>
+                    android:textSize="16sp"/>
 
                 <TextView
                     android:id="@+id/require_button_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="15dp"
-                    android:text="查看全部"
+                    android:text="查看全部..."
                     android:textColor="#9373EE"
                     android:textSize="16sp"
-                    android:background="@drawable/see_all_back_shape"
-                    android:paddingLeft="8dp"
+                    android:layout_marginLeft="15dp"
+                    android:paddingLeft="0dp"
                     android:paddingRight="8dp"
-                    android:paddingTop="7dp"
-                    android:paddingBottom="7dp"/>
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"/>
             </LinearLayout>
 
             <LinearLayout

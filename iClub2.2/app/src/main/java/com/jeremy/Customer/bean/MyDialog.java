@@ -41,7 +41,7 @@ public class MyDialog extends Dialog {
         }else if(markedWords == Identification.LOGINPROMPTMERCHANT){
             tisp = "请先注册或登录成为商家用户~";
         }else if(markedWords == Identification.OFFER){
-            tisp = "邀约成功";
+            tisp = "邀约成功，邀约信息已以短信形式发送到人才手机中";
         }else if(markedWords == Identification.LOGONTOTHETALENT){
             tisp = "请先注册或登录成为人才用户~";
         }

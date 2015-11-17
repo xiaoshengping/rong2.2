@@ -181,8 +181,16 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
         c = recruitmentListBean.getWorkingTime().equals("") ? "待定" : recruitmentListBean.getWorkingTime();
         d = recruitmentListBean.getWorkingHours().equals("") ? "待定" : recruitmentListBean.getWorkingHours();
         job_informantion_tv.setText(a + "\n" + b + "\n" + c + "\n" + d);
-        describe_tv.setText(recruitmentListBean.getJobInfo());
-        require_tv.setText(recruitmentListBean.getJobRequirements());
+        if(recruitmentListBean.getJobInfo().toString().equals("")) {
+            describe_tv.setText("商家暂未填写相关信息");
+        } else {
+            describe_tv.setText(recruitmentListBean.getJobInfo());
+        }
+        if(recruitmentListBean.getJobRequirements().toString().equals("")){
+            require_tv.setText("商家暂未填写相关信息");
+        }else {
+            require_tv.setText(recruitmentListBean.getJobRequirements());
+        }
         reputation_value_tv.setText(recruitmentListBean.getIntegrity() + "\n" + recruitmentListBean.getAuthenticity() + "\n" + recruitmentListBean.getTransactionRecord());
 
         //初始化职位描述高度

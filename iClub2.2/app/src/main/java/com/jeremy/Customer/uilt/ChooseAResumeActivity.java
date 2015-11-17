@@ -35,8 +35,7 @@ import java.util.List;
 
 public class ChooseAResumeActivity extends ActionBarActivity implements View.OnClickListener, PullToRefreshBase.OnRefreshListener2<ListView> {
 
-    @ViewInject(R.id.tailt_return_tv)
-    private TextView tailtReturnTv;
+
     @ViewInject(R.id.tailt_text)
     private TextView tailtText;
     @ViewInject(R.id.not_resume_tv)
@@ -65,8 +64,7 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
     }
 
     private void intiView() {
-        tailtText.setText("我的简历");
-        tailtReturnTv.setOnClickListener(this);
+//        tailtReturnTv.setOnClickListener(this);
         SQLhelper sqLhelper = new SQLhelper(ChooseAResumeActivity.this);
         SQLiteDatabase db = sqLhelper.getWritableDatabase();
         Cursor cursor = db.query("user", null, null, null, null, null, null);
@@ -226,5 +224,9 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
         offset = offset + 10;
         intiResumeListData(offset);
+    }
+
+    public void back(View v) {
+        finish();
     }
 }
