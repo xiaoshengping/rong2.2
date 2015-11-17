@@ -291,8 +291,23 @@ public class ModificationInformationFragment extends Fragment implements View.On
                                                    if (parmeBean.getValue().getMessage().equals("success")){
                                                        loadingDialog.dismiss();
                                                       /* Bundle bundle=new Bundle();
+                                                       bundle.putString("resumeid",resumeValueBeans.getResumeid()+"");
+                                                       bundle.putString("resumeZhName",resumeJobName.getText().toString());
+                                                       bundle.putString("resumeSex",sex);
+                                                       if (selectYear!=0&&selectMonthOfYear!=0&&selectDayOfMonth!=0){
+                                                           bundle.putString("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
+
+                                                       }else {
+                                                           bundle.putString("birthday",resumeValueBeans.getBirthday());
+                                                       }
+                                                       bundle.putString("resumeJobName",resumeJobName.getText().toString());
+                                                       bundle.putString("resumeQq",resumeQq.getText().toString());
+                                                       bundle.putString("resumeEmail",resumeEmail.getText().toString());
+                                                       bundle.putString("resumeInfo",userOnselfText.getText().toString());
+                                                       bundle.putString("resumeWorkExperience",workExpexteText.getText().toString());
                                                        Intent intent=new Intent(getActivity(), ResumeParticularsActivity.class);
-                                                       intent.putExtra("",bundle);*/
+                                                       intent.putExtra("modifiationData",bundle);
+                                                       startActivity(intent);*/
                                                        getActivity().finish();
 
                                                    }
@@ -568,8 +583,6 @@ public class ModificationInformationFragment extends Fragment implements View.On
 
         }
     }
-
-
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId){
@@ -582,4 +595,5 @@ public class ModificationInformationFragment extends Fragment implements View.On
 
         }
     }
+
 }

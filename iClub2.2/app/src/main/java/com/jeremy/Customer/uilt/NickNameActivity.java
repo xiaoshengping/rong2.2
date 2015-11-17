@@ -1,12 +1,15 @@
 package com.jeremy.Customer.uilt;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -38,8 +41,8 @@ public class NickNameActivity extends ActionBarActivity  implements View.OnClick
     private TextView tailtText;
     @ViewInject(R.id.save_text)
     private TextView saveText;
-    @ViewInject(R.id.edit_text_size)
-    private TextView editTextSize;
+    /*@ViewInject(R.id.edit_text_size)
+    private TextView editTextSize;*/
 
     private  String uid;
     private SQLiteDatabase db;
@@ -69,8 +72,8 @@ public class NickNameActivity extends ActionBarActivity  implements View.OnClick
         saveText.setVisibility(View.VISIBLE);
         saveText.setOnClickListener(this);
         nickNamrEdti.setText(getIntent().getStringExtra("userName"));
-        editTextSize.setText(nickNamrEdti.getText().length()+"/8");
-
+        //editTextSize.setText(nickNamrEdti.getText().length()+"/8");
+        nickNamrEdti.setSelection(nickNamrEdti.getText().toString().length());
         SQLhelper sqLhelper=new SQLhelper(this);
         db= sqLhelper.getWritableDatabase();
         cursor=db.query("user", null, null, null, null, null, null);
@@ -82,7 +85,7 @@ public class NickNameActivity extends ActionBarActivity  implements View.OnClick
     @Override
     protected void onResume() {
         super.onResume();
-        editTextSize.setText(nickNamrEdti.getText().length()+"/8");
+        //editTextSize.setText(nickNamrEdti.getText().length()+"/8");
 
     }
 
@@ -165,5 +168,22 @@ public class NickNameActivity extends ActionBarActivity  implements View.OnClick
         cursor.close();
         db.close();
 
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction()==MotionEvent.ACTION_DOWN){
+            hintKbTwo();
+        }
+
+        return super.onTouchEvent(event);
+    }
+
+    private void hintKbTwo() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
     }
 }

@@ -49,17 +49,27 @@ public class RoleRegisterActivity extends ActionBarActivity implements View.OnCl
             case R.id.talents_user_tv:
                 Intent talentsRegisterIntent=new Intent(RoleRegisterActivity.this,RegisterActivity.class);
                 talentsRegisterIntent.putExtra("falge","talentsUser");
-                startActivity(talentsRegisterIntent);
+                startActivityForResult(talentsRegisterIntent, 14);
                 break;
 
             case R.id.merchant_user_tv:
                 Intent merchantRegisterIntent=new Intent(RoleRegisterActivity.this,RegisterActivity.class);
                 merchantRegisterIntent.putExtra("falge","merchantUser");
-                startActivity(merchantRegisterIntent);
+                startActivityForResult(merchantRegisterIntent,14);
                 break;
             case R.id.tailt_return_iv:
                 finish();
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==14){
+            if (data.getStringExtra("colesActivity").equals("colesActivity")){
+                finish();
+            }
         }
     }
 }

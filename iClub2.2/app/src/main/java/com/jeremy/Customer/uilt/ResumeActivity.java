@@ -85,7 +85,6 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
             pid = cursor.getString(1);
 
         }
-
         resumeListLv.setRefreshing();
     }
 
@@ -96,7 +95,6 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
         listView.addFooterView(addView);
         addResumeTv.setOnClickListener(this);
         addResumeTv.setText("继续添加简历");
-
         resumeValueBeans=new ArrayList<ResumeValueBean>();
         resumeListAdapter=new ResumeListAdapter(resumeValueBeans,this,resumeListLv);
         resumeListLv.setAdapter(resumeListAdapter);
@@ -162,7 +160,8 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
             @Override
             public void onFailure(HttpException e, String s) {
-                   Log.e("onFailure.......", s);
+                resumeListLv.onRefreshComplete(); 
+                Log.e("onFailure.......", s);
             }
         });
 

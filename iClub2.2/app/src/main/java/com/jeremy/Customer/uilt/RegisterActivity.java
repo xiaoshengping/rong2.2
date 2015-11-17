@@ -1,11 +1,15 @@
 package com.jeremy.Customer.uilt;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -88,6 +92,15 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tailt_return_tv:
+                if (userType.equals("talentsUser")){
+                    Intent intent =getIntent();
+                    intent.putExtra("colesActivity","noColesActivity");
+                    setResult(14,intent);
+                }else if (userType.equals("merchantUser")){
+                    Intent intent =getIntent();
+                    intent.putExtra("colesActivity","noColesActivity");
+                    setResult(14,intent);
+                }
                 finish();
                 break;
             case R.id.register_finist_button:
@@ -142,10 +155,18 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
                                                         ParmeBean<RegisterValueBean> artistParme = JSONObject.parseObject(rerult, new TypeReference<ParmeBean<RegisterValueBean>>() {
                                                         });
                                                         RegisterValueBean registerValueBean = artistParme.getValue();
-                                                        // Log.e("makeText",loginValueBean.getState());
                                                         if ("success".equals(registerValueBean.getMessage())) {
 
                                                             //showExitGameAlert(text);
+                                                           if (userType.equals("talentsUser")){
+                                                               Intent intent =getIntent();
+                                                               intent.putExtra("colesActivity","colesActivity");
+                                                               setResult(14,intent);
+                                                           }else if (userType.equals("merchantUser")){
+                                                               Intent intent =getIntent();
+                                                               intent.putExtra("colesActivity","colesActivity");
+                                                               setResult(14,intent);
+                                                           }
                                                             finish();
                                                             loadingDialog.dismiss();
 
@@ -259,4 +280,23 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
         }
 
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction()==MotionEvent.ACTION_DOWN){
+            hintKbTwo();
+        }
+
+        return super.onTouchEvent(event);
+    }
+
+    private void hintKbTwo() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
+
 }

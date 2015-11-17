@@ -15,7 +15,7 @@
             android:layout_marginTop="130dp"
             android:id="@+id/edit_phone"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:textColorHint="@color/editTextPromptColor"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
@@ -23,15 +23,15 @@
             android:drawablePadding="10dp"
             android:textSize="@dimen/textSize14"
             android:hint="手机号码"
+            android:phoneNumber="true"
             android:paddingLeft="10dp"
-            android:background="@color/white"
+            android:background="@drawable/loing_edit_corners"
             />
 
         <EditText
             android:id="@+id/edit_psw"
-
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
@@ -39,7 +39,7 @@
             android:drawablePadding="10dp"
             android:hint="密码"
             android:paddingLeft="10dp"
-            android:background="@color/white"
+            android:background="@drawable/loing_edit_corners"
             android:textSize="@dimen/textSize14"
             android:password="true"
             android:textColorHint="@color/editTextPromptColor" />
@@ -47,7 +47,7 @@
         <Button
             android:id="@+id/login_button"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginTop="20dp"
