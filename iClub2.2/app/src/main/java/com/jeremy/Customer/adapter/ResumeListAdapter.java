@@ -41,8 +41,6 @@ import java.util.Map;
 public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
 
     private  ViewHolde viewHolde;
-    private int resumeId;
-    private String state;
     private Button stateDialogButton;
     private PullToRefreshListView resumeListLv;
 
@@ -84,7 +82,6 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
         viewHolde.resumeJobNameTv.setText(data.get(position).getResumeJobName());
         viewHolde.createTimeTv.setText(data.get(position).getCreateTime());
         viewHolde.updateTimeTv.setText("浏览量: " + data.get(position).getResumeViewCount());
-         state=data.get(position).getState()+"";
         if (data.get(position).getState().equals(0)){
              viewHolde.resumeStateTv.setText("公开");
          }else if (data.get(position).getState().equals(1)){
@@ -227,7 +224,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
         stateDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!TextUtils.isEmpty(resumeId+"")||!TextUtils.isEmpty(data.get(position).getState()+"")){
+                if (!TextUtils.isEmpty(data.get(position).getResumeid() + "")||!TextUtils.isEmpty(data.get(position).getState()+"")){
                      //Log.e("dhhfhfhfh-----",data.get(position).getState()+"");
                     if (data.get(position).getState().equals(0)){
 
@@ -245,7 +242,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
         deleteDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteResumeData(data.get(position).getResumeid()+"");
+                deleteResumeData(data.get(position).getResumeid()+"",position);
                 //Log.e("deleteDialogButton", "--------" + positions);
                 dialog.dismiss();
             }
@@ -260,7 +257,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
 
     }
     //删除简历
-    private void deleteResumeData(String resumeId) {
+    private void deleteResumeData(String resumeId, final int position) {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid",resumeId);
@@ -273,6 +270,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
                     if (parmeBean.getValue().getMessage().equals("success")){
                         MyAppliction.showToast("删除简历成功");
                         //notifyDataSetChanged();
+                        data.remove(position);
                         resumeListLv.setRefreshing();
                     }else {
                         MyAppliction.showToast("删除简历失败");

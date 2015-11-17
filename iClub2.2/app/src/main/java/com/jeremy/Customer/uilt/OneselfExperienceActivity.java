@@ -1,11 +1,14 @@
 package com.jeremy.Customer.uilt;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
@@ -68,7 +71,8 @@ public class OneselfExperienceActivity extends ActionBarActivity implements View
         saveText.setOnClickListener(this);
         saveText.setVisibility(View.VISIBLE);
         saveText.setText("完成");
-
+        oneselfExperrienceEdit.setCursorVisible(true);
+        oneselfExperrienceEdit.setSelection(oneselfExperrienceEdit.getText().toString().length());
     }
 
 
@@ -190,4 +194,24 @@ public class OneselfExperienceActivity extends ActionBarActivity implements View
 
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction()==MotionEvent.ACTION_DOWN){
+            hintKbTwo();
+        }
+
+        return super.onTouchEvent(event);
+    }
+
+    private void hintKbTwo() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getCurrentFocus()!=null){
+            if (getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
+
+
 }

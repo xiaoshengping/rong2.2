@@ -21,6 +21,8 @@
         <com.jeremy.Customer.view.EditTextWithDel
             android:paddingLeft="20dp"
             android:layout_marginRight="10dp"
+            android:textCursorDrawable="@color/textColor242424"
+
             android:textColorHint="@color/editTextPromptColor"
             android:id="@+id/oneself_experrience_edit"
             android:background="@color/white"

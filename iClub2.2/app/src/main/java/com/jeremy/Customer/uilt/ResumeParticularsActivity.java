@@ -116,6 +116,8 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
         intiResumeData();
         ResumeParticularsActivity.this.setResumeValueBean(resumeValueBeanss);
         ResumeParticularsActivity.this.setResumeid(resumeids);
+
+
     }
 
     @Override
@@ -145,8 +147,8 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
                                 resumeSexIv.setBackgroundResource(R.mipmap.woman_icon);
                             }
                             resumeAgeTv.setText(resumeValueBeanss.getResumeAge()+"");
-                        resumeWorkPlaceTv.setText(resumeValueBeanss.getResumeWorkPlace());
-                        resumeJobNameIsdTv.setText(resumeValueBeanss.getResumeJobCategoryName());
+                            resumeWorkPlaceTv.setText(resumeValueBeanss.getResumeWorkPlace());
+                            resumeJobNameIsdTv.setText(resumeValueBeanss.getResumeJobCategoryName());
                             browseNumberTv.setText(resumeValueBeanss.getCommentCount()+"");
 
                            loadingDialog.dismiss();
@@ -160,6 +162,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
 
             @Override
             public void onFailure(HttpException e, String s) {
+                loadingDialog.dismiss();
                 Log.e("onFailure.......", s);
             }
         });
@@ -185,7 +188,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
             case R.id.cpmpile_resume_tv:
                     Intent intent=new Intent(ResumeParticularsActivity.this,ModificationResumeActivity.class);
                     intent.putExtra("resumeValueBean",resumeValueBeanss);
-                   startActivityForResult(intent,13);
+                startActivity(intent);
 
                 break;
 

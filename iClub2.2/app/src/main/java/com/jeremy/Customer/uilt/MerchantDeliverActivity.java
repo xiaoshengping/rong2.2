@@ -147,7 +147,7 @@ public class MerchantDeliverActivity extends ActionBarActivity implements View.O
                     ParmeBean<ResumeValueBean> artistParme= JSONObject.parseObject(result, new TypeReference<ParmeBean<ResumeValueBean>>() {
                     });
                     ResumeValueBean resumeValueBeans=    artistParme.getValue();
-                    Intent intent = new Intent(MerchantDeliverActivity.this, ResumeParticularsActivity.class);
+                    Intent intent=new Intent(MerchantDeliverActivity.this,MercharInviteParticularsActivity.class);
                     intent.putExtra("resumeValueBeans", resumeValueBeans);
                     startActivity(intent);
                 }

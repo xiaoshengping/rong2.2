@@ -339,7 +339,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             userIcon=cursor.getString(3);
             companyName=cursor.getString(6);
         }
-        MyAppliction.showToast(uid);
+        MyAppliction.showToast(uid+""+state+".."+userName+userIcon+companyName);
         if (!TextUtils.isEmpty(uid)) {
             if (!TextUtils.isEmpty(state)) {
                 mineLayout.setVisibility(View.VISIBLE);
