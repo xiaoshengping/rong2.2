@@ -50,7 +50,7 @@ public class ResumePictureAdapter extends AppBaseAdapter<ResumePicture> {
         viewHodle.daleteMarkView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deletePictrueData(data.get(position).getResumeid()+"", position,data.get(position).getId());
+                deletePictrueData(data.get(position).getResumeid()+"", position,data.get(position).getResumepictureid()+"");
 
             }
         });

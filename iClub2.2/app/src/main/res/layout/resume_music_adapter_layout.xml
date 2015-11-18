@@ -1,35 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/white"
-    android:layout_height="65dp">
-   <!-- <TextView
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="35dp" />-->
-   <!-- <TextView
-        android:id="@+id/show_music_tv"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="10dp"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:textSize="@dimen/textSize13"
-        android:drawableRight="@mipmap/music_button_icon"
-        android:background="@color/hunTextColor"
-        android:layout_width="match_parent"
-        android:layout_height="35dp" />-->
+    android:layout_height="70dp">
+
     <TextView
         android:background="@drawable/invite_corners"
         android:gravity="center_vertical"
         android:text="我的小苹果"
         android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:drawableRight="@mipmap/paly_musin_icon"
         android:id="@+id/show_music_tv"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
@@ -38,4 +19,4 @@
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
-</RelativeLayout>
+</LinearLayout>

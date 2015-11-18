@@ -9,7 +9,7 @@
         android:id="@+id/video_layout"
 
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="250dp">
         <TextView
             android:layout_marginTop="20dp"
             android:id="@+id/video_tailt_tv"
@@ -31,7 +31,9 @@
             android:textColor="@color/redTextColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+
         <RelativeLayout
+
             android:id="@+id/show_video_layout"
             android:layout_below="@+id/video_tailt_tv"
             android:layout_width="match_parent"
@@ -45,7 +47,7 @@
                 android:layout_marginBottom="20dp"
                 android:src="@mipmap/resume_background_icon"
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="200dp" />
 
             <ImageView
                 android:src="@mipmap/paly_ideo_icon"
@@ -57,24 +59,25 @@
 
 
         <RelativeLayout
+            android:layout_marginBottom="10dp"
             android:id="@+id/no_viseo_layout"
             android:visibility="gone"
             android:layout_below="@+id/video_tailt_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
-                android:text="暂无视频"
+
+
+            <ImageView
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
-                android:scaleType="centerCrop"
-                android:layout_marginBottom="20dp"
-                android:src="@mipmap/resume_background_icon"
+                android:src="@color/lineColor"
+
                 android:layout_width="match_parent"
                 android:layout_height="150dp" />
-
-            <ImageView
-                android:src="@mipmap/ic_launcher"
+            <TextView
+                android:text="亲,没有视频,赶紧上传视频吧!"
+                android:textColor="@color/textColor242424"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
@@ -99,7 +102,7 @@
         android:layout_below="@+id/video_iv_one"
         android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="180dp">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_marginTop="20dp"
             android:id="@+id/music_tailt_tv"
@@ -121,32 +124,69 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-        <TextView
-            android:background="@drawable/invite_corners"
-            android:gravity="center_vertical"
-            android:text="我的小苹果"
-            android:paddingLeft="30dp"
-            android:id="@+id/show_music_resume_tv"
+           <LinearLayout
             android:layout_below="@+id/music_tailt_tv"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
-        <TextView
-            android:background="@drawable/invite_corners"
-            android:gravity="center_vertical"
-            android:text="我的小苹果"
-            android:paddingLeft="30dp"
-            android:id="@+id/show_music_resume_two"
-            android:layout_below="@+id/show_music_resume_tv"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:background="@drawable/invite_corners"
+                android:gravity="center_vertical"
+                android:text="我的小苹果"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:drawableRight="@mipmap/paly_musin_icon"
+                android:id="@+id/show_music_resume_tv"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+            <TextView
+                android:background="@drawable/invite_corners"
+                android:gravity="center_vertical"
+                android:text="我的小苹果"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:drawableRight="@mipmap/paly_musin_icon"
+                android:id="@+id/show_music_resume_two"
+
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_marginBottom="10dp"
+            android:id="@+id/no_misume_layout"
+            android:visibility="gone"
+            android:layout_below="@+id/music_tailt_tv"
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:src="@color/lineColor"
+
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+            <TextView
+                android:text="亲,还没有音乐,赶紧上传音乐吧!"
+                android:textColor="@color/textColor242424"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
 
     </RelativeLayout>
+
     <ImageView
         android:layout_below="@+id/music_layout"
         android:id="@+id/music_iv"
@@ -230,7 +270,31 @@
             android:src="@mipmap/resume_background_icon"
             android:layout_width="75dp"
             android:layout_height="80dp" />
+        <RelativeLayout
+            android:layout_marginBottom="10dp"
+            android:id="@+id/no_picture_layout"
+            android:visibility="gone"
+            android:layout_below="@+id/picture_tailt_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:src="@color/lineColor"
+
+                android:layout_width="match_parent"
+                android:layout_height="150dp" />
+            <TextView
+                android:text="亲,还没有图片,赶紧上传图片吧!"
+                android:textColor="@color/textColor242424"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     </RelativeLayout>
     <ImageView
         android:layout_below="@+id/picture_layout"
