@@ -207,7 +207,9 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                                 adater.setRecruitmentListData(recruitmentListData);
                                 adater.notifyDataSetChanged();
                             }
-                        } else {
+                        } else if(recruitmentListBean.getTotal() == 0) {
+                            Toast.makeText(getActivity(), "暂无相关工作", Toast.LENGTH_LONG).show();
+                        }else {
                             Toast.makeText(getActivity(), "以上已为全部内容", Toast.LENGTH_LONG).show();
                         }
 
