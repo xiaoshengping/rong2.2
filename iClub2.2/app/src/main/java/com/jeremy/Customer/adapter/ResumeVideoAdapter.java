@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.text.TextUtils;
@@ -56,31 +57,41 @@ public class ResumeVideoAdapter extends AppBaseAdapter<ResumeMovie> {
 
     private void inti(final int position) {
 
-        viewHodle.showVideoImage.setBackgroundResource(R.mipmap.resume_background_icon);
+        //viewHodle.showVideoImage.setBackgroundResource(R.mipmap.resume_background_icon);
         viewHodle.daleteMarkView.setVisibility(isShowDelete ? View.VISIBLE : View.GONE);//设置删除按钮是否显示
         viewHodle.daleteMarkView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteVideoData(data.get(position).getResumeid() + "", position,data.get(position).getResumemovieid()+"");
+                deleteVideoData(data.get(position).getResumeid() + "", position, data.get(position).getResumemovieid() + "");
 
             }
         });
-        /*new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String imagpath= AppUtilsUrl.ImageBaseUrl+data.get(position).getPath();
-                Bitmap bitmap=createVideoThumbnail(imagpath, 10, 10);
-                viewHodle.showVideoImage.setImageBitmap(bitmap);
-            }
-        }).start();*/
-
-
-       /* String imagpath= AppUtilsUrl.ImageBaseUrl+data.get(position).getPath();
-        Bitmap bitmap=createVideoThumbnail(imagpath, 10, 10);
-          viewHodle.showVideoImage.setImageBitmap(bitmap);*/
+        new OneselfProductionAsynctack(viewHodle.showVideoImage,AppUtilsUrl.ImageBaseUrl + data.get(position).getPath()).execute();
 
 
 
+    }
+    class OneselfProductionAsynctack extends AsyncTask<String, Void, Bitmap> {
+        private ImageView imgView;
+        private String path;
+
+        public OneselfProductionAsynctack(ImageView imageView,String path) {
+            this.imgView = imageView;
+            this.path = path;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... params) {
+            //这里的创建缩略图方法是调用VideoUtil类的方法，也是通过 android中提供的 ThumbnailUtils.createVideoThumbnail(vidioPath, kind);
+            Bitmap bitmap= createVideoThumbnail(path, 10, 10);
+            return bitmap;
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap) {
+
+            imgView.setImageBitmap(bitmap);
+
+        }
     }
     private Bitmap createVideoThumbnail(String url, int width, int height) {
         Bitmap bitmap = null;

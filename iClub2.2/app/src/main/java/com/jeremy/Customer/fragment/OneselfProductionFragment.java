@@ -53,6 +53,8 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
     private TextView showMusicResumeTv;
     @ViewInject(R.id.show_music_resume_two)
     private TextView showMusicResumeTwo;
+    @ViewInject(R.id.no_misume_layout)
+    private RelativeLayout noMisumeLayout;
 
     @ViewInject(R.id.show_picture_resume_one)
     private ImageView showPictureResumeOne;
@@ -62,12 +64,17 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
     private ImageView showPictureResumeThree;
     @ViewInject(R.id.show_picture_resume_four)
     private ImageView showPictureResumeFour;
+    @ViewInject(R.id.no_picture_layout)
+    private  RelativeLayout noPictureLayout;
+
     @ViewInject(R.id.more_picture_tv)
     private TextView morePictureTv;
     @ViewInject(R.id.more_music_tv)
     private TextView moreMusicTv;
     @ViewInject(R.id.more_video_tv)
     private TextView moreVideoTv;
+
+
 
     @ViewInject(R.id.show_video_layout)
     private RelativeLayout showVideoLayout;
@@ -82,7 +89,6 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
     @Override
     public void onResume() {
         super.onResume();
-        MyAppliction.showToast("我是fragment1111");
         intiResumeData();
     }
 
@@ -118,6 +124,7 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                         } else {
                             showMusicResumeTv.setVisibility(View.GONE);
                             showMusicResumeTwo.setVisibility(View.GONE);
+                            noMisumeLayout.setVisibility(View.VISIBLE);
                         }
                         if (resumeValueBean.getResumePicture().size() != 0) {
                             MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(0).getPath(), showPictureResumeOne, MyAppliction.options);
@@ -146,6 +153,7 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                             showPictureResumeTwo.setVisibility(View.GONE);
                             showPictureResumeThree.setVisibility(View.GONE);
                             showPictureResumeFour.setVisibility(View.GONE);
+                            noPictureLayout.setVisibility(View.VISIBLE);
                         }
 
 
