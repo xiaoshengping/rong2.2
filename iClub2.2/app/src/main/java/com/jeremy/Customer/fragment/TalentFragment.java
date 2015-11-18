@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
@@ -50,6 +51,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
 
     private Button selected_city, selected_position;
     private ImageButton selected_city_cancel, selected_position_cancel;
+    private TextView network_hint;
     private int citynum = 0;//城市id
     private int jobnum = 0;//城市id
 
@@ -76,11 +78,13 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
     private void conditionsSelected(View view) {
         selected_city = (Button) view.findViewById(R.id.selected_city);
         selected_position = (Button) view.findViewById(R.id.selected_position);
+        network_hint = (TextView) view.findViewById(R.id.network_hint);
 
         selected_city_cancel = (ImageButton) view.findViewById(R.id.selected_city_cancel);
         selected_position_cancel = (ImageButton) view.findViewById(R.id.selected_position_cancel);
         selected_city_cancel.setVisibility(View.GONE);
         selected_position_cancel.setVisibility(View.GONE);
+        network_hint.setVisibility(View.GONE);
 
         selected_city.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,12 +172,13 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
     private LoadingDialog loadingDialog;
 
     //获取人才列表（非搜索）
-    private void initRecruitmentListData(int city, int job, final int offset) {
+    private void initRecruitmentListData(int city, int job, int offsett) {
 
         loadingDialog = new LoadingDialog(getActivity());
         loadingDialog.show();
 
         HttpUtils httpUtils = new HttpUtils();
+        httpUtils.configCurrentHttpCacheExpiry(1000);
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getTalent(city, job, offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -183,9 +188,13 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                     });
                     if (talentValue.getState().equals("success")) {
 
+                        if (offset == 0) {
+                            talentValueBean.clear();
+                        }
+
                         if (talentValue.getTotal() > talentValueBean.size()) {
 
-                            if (talentValueBean.size() == 0 ) {
+                            if (talentValueBean.size() == 0) {
                                 talentValueBean.addAll(talentValue.getValue());
                                 adater = new RecommendListAdater(getActivity(), talentValueBean, Identification.TALENTS);
                                 recommend_list.setAdapter(adater);
@@ -230,8 +239,8 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-        talentValueBean.clear();
         offset = 0;
+        network_hint.setVisibility(View.GONE);
         initRecruitmentListData(citynum, jobnum, offset);
 
     }
@@ -239,8 +248,9 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
 //        if(talentValueBean.size() != 0) {
-            offset = talentValueBean.size();//offset + 10;
-            initRecruitmentListData(citynum, jobnum, offset);
+        offset = talentValueBean.size();//offset + 10;
+        network_hint.setVisibility(View.GONE);
+        initRecruitmentListData(citynum, jobnum, offset);
 //        }
     }
 
@@ -248,16 +258,17 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
 
     //提示框
     private void dialog() {
-        dialog2 = new MyDialog(getActivity(), Identification.TOOLTIP, Identification.NETWORKANOMALY);
-        dialog2.setDetermine(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                recommend_list.setVisibility(View.GONE);
-                dialog2.dismiss();
-            }
-        });
-
-        dialog2.show();
+        network_hint.setVisibility(View.VISIBLE);
+//        dialog2 = new MyDialog(getActivity(), Identification.TOOLTIP, Identification.NETWORKANOMALY);
+//        dialog2.setDetermine(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                recommend_list.setVisibility(View.GONE);
+//                dialog2.dismiss();
+//            }
+//        });
+//
+//        dialog2.show();
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

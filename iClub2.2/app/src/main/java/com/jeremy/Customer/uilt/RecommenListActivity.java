@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
@@ -41,6 +42,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     private int identi = 1;
 
     private PullToRefreshListView recommend_list;
+    private TextView network_hint;
     private List<ActivityBean> activityData = new ArrayList<>();
     private List<TalentValueBean> talentValueBean = new ArrayList<>();
     private List<RecruitmentListBean> recruitmentListData = new ArrayList<>();
@@ -64,6 +66,8 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
 
         mytitle = (MyTitleBar) findViewById(R.id.mytitle);
         recommend_list = (PullToRefreshListView) findViewById(R.id.recommend_list);
+        network_hint = (TextView)findViewById(R.id.network_hint);
+        network_hint.setVisibility(View.GONE);
 
         Bundle bundle = this.getIntent().getExtras();
         identi = bundle.getInt("Ident");
@@ -131,12 +135,13 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     }
 
     //获取活动列表
-    private void initActivityListData(int offset) {
+    private void initActivityListData(int offsett) {
 
         loadingDialog = new LoadingDialog(this);
         loadingDialog.show();
 
         HttpUtils headHttpUtils = new HttpUtils();
+        headHttpUtils.configCurrentHttpCacheExpiry(1000);
         headHttpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getActivity(offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -145,6 +150,11 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     ArtistParme<ActivityBean> activityBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<ActivityBean>>() {
                     });
                     if ("success".equals(activityBean.getState())) {
+
+                        if(offset == 0){
+                            activityData.clear();
+                        }
+
 //                        if (activityBean.getValue().size() != 0) {
                             if (activityBean.getTotal()>activityData.size()) {
                                 if(activityData.size() == 0 ){
@@ -212,12 +222,13 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     private LoadingDialog loadingDialog;
 
     //获取人才列表（非搜索）
-    private void initTalentsListData(int city, int job, int offset) {
+    private void initTalentsListData(int city, int job, int offsett) {
 
         loadingDialog = new LoadingDialog(this);
         loadingDialog.show();
 
         HttpUtils httpUtils = new HttpUtils();
+        httpUtils.configCurrentHttpCacheExpiry(1000);
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRecommendTheVirtuousAndAble(offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -226,6 +237,11 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     ArtistParme<TalentValueBean> talentValue = JSONObject.parseObject(result, new TypeReference<ArtistParme<TalentValueBean>>() {
                     });
                     if (talentValue.getState().equals("success")) {
+
+                        if(offset == 0){
+                            talentValueBean.clear();
+                        }
+
                         if (talentValue.getTotal()>talentValueBean.size()) {
                             if(talentValueBean.size() == 0 ){
                                 talentValueBean.addAll(talentValue.getValue());
@@ -289,12 +305,13 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     }
 
     //初始化合作评论
-    private void initcCollaborateComment(int offset) {
+    private void initcCollaborateComment(int offsett) {
 
         loadingDialog = new LoadingDialog(this);
         loadingDialog.show();
 
         HttpUtils httpUtils = new HttpUtils();
+        httpUtils.configCurrentHttpCacheExpiry(1000);
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(id, url,offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -303,6 +320,10 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     ArtistParme<CommentBean> commentBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<CommentBean>>() {
                     });
                     if (commentBean.getState().equals("success")) {
+
+                        if(offset == 0){
+                            commentDate.clear();
+                        }
 
                         if (commentBean.getTotal()>commentDate.size()) {
                             if(commentDate.size() == 0 ){
@@ -362,16 +383,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
 
     //提示框
     private void dialog() {
-        dialog2 = new MyDialog(this, Identification.TOOLTIP, Identification.NETWORKANOMALY);
-        dialog2.setDetermine(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                recommend_list.setVisibility(View.GONE);
-                dialog2.dismiss();
-            }
-        });
-
-        dialog2.show();
+        network_hint.setVisibility(View.VISIBLE);
     }
 
 
@@ -417,12 +429,13 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     }
 
     //获取招聘列表（非搜索）
-    private void initPrositionListData(int city, int job, int offset) {
+    private void initPrositionListData(int city, int job, int offsett) {
 
         loadingDialog = new LoadingDialog(this);
         loadingDialog.show();
 
         HttpUtils httpUtils = new HttpUtils();
+        httpUtils.configCurrentHttpCacheExpiry(1000);
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRecommendedWork(offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -431,6 +444,11 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
                     });
                     if (recruitmentListBean.getState().equals("success")) {
+
+                        if(offset == 0){
+                            recruitmentListData.clear();
+                        }
+
                         if (recruitmentListBean.getTotal()>recruitmentListData.size()) {
                             if(recruitmentListData.size() == 0 ){
                                 recruitmentListData.addAll(recruitmentListBean.getValue());
@@ -478,20 +496,17 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+        network_hint.setVisibility(View.GONE);
         if (identi == Identification.ACTIVITY) {
-            activityData.clear();
             offset = 0;
             initActivityListData(offset);
         } else if (identi == Identification.TALENTS) {
-            talentValueBean.clear();
             offset = 0;
             initTalentsListData(0, 0, offset);
         } else if (identi == Identification.HOTJOBS) {
-            recruitmentListData.clear();
             offset = 0;
             initPrositionListData(0, 0, offset);
         } else if (identi == Identification.COMMENT) {
-            commentDate.clear();
             offset = 0;
             initcCollaborateComment(offset);
         }
@@ -500,7 +515,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-
+        network_hint.setVisibility(View.GONE);
         if (identi == Identification.ACTIVITY) {
             offset = activityData.size();
             initActivityListData(offset);

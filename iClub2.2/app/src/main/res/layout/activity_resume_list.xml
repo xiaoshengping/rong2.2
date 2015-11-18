@@ -5,7 +5,12 @@
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.ResumeActivity">
 
-    <include layout="@layout/app_white_tailt_layout"/>
+    <com.jeremy.Customer.view.MyTitleBar
+        xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
+        android:id="@+id/mytitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title_name_text = "选择简历"></com.jeremy.Customer.view.MyTitleBar>
     <ImageView
         android:src="@color/lineColor"
         android:layout_width="match_parent"

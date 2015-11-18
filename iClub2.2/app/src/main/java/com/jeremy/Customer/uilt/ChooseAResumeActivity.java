@@ -51,7 +51,7 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_resume);
+        setContentView(R.layout.activity_resume_list);
         ViewUtils.inject(this);
         inti();
     }
@@ -118,7 +118,7 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
 //                    intent.putExtra("position", (position - 1) + "");
 //                    startActivity(intent);
 
-                    dialog2 = new MyDialog(ChooseAResumeActivity.this, Identification.MAINTAINORREMOVE, Identification.FREEDOM, "是否确认投递简历："+resumeValueBeans.get(position - 1).getResumeJobName());
+                    dialog2 = new MyDialog(ChooseAResumeActivity.this, Identification.MAINTAINORREMOVE, Identification.FREEDOM, "是否确认投递简历：" + resumeValueBeans.get(position - 1).getResumeJobName());
                     dialog2.setDetermine(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -193,6 +193,13 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
             @Override
             public void onClick(View v) {
 //                recommend_list.setVisibility(View.GONE);
+                Intent intent = new Intent();
+                intent.putExtra("ResumeId", 0);
+                intent.putExtra("ResumeName", "");
+                        /*给上一个Activity返回结果*/
+                ChooseAResumeActivity.this.setResult(Identification.JOBCHOICE, intent);
+                        /*结束本Activity*/
+                ChooseAResumeActivity.this.finish();
                 dialog2.dismiss();
             }
         });
@@ -227,6 +234,12 @@ public class ChooseAResumeActivity extends ActionBarActivity implements View.OnC
     }
 
     public void back(View v) {
-        finish();
+        Intent intent = new Intent();
+        intent.putExtra("ResumeId", 0);
+        intent.putExtra("ResumeName", "");
+                        /*给上一个Activity返回结果*/
+        ChooseAResumeActivity.this.setResult(Identification.JOBCHOICE, intent);
+                        /*结束本Activity*/
+        ChooseAResumeActivity.this.finish();
     }
 }

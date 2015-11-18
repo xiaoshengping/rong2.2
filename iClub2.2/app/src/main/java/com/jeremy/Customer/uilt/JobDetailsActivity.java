@@ -181,14 +181,14 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
         c = recruitmentListBean.getWorkingTime().equals("") ? "待定" : recruitmentListBean.getWorkingTime();
         d = recruitmentListBean.getWorkingHours().equals("") ? "待定" : recruitmentListBean.getWorkingHours();
         job_informantion_tv.setText(a + "\n" + b + "\n" + c + "\n" + d);
-        if(recruitmentListBean.getJobInfo().toString().equals("")) {
+        if (recruitmentListBean.getJobInfo().toString().equals("")) {
             describe_tv.setText("商家暂未填写相关信息");
         } else {
             describe_tv.setText(recruitmentListBean.getJobInfo());
         }
-        if(recruitmentListBean.getJobRequirements().toString().equals("")){
+        if (recruitmentListBean.getJobRequirements().toString().equals("")) {
             require_tv.setText("商家暂未填写相关信息");
-        }else {
+        } else {
             require_tv.setText(recruitmentListBean.getJobRequirements());
         }
         reputation_value_tv.setText(recruitmentListBean.getIntegrity() + "\n" + recruitmentListBean.getAuthenticity() + "\n" + recruitmentListBean.getTransactionRecord());
@@ -241,10 +241,10 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
                     });
                     if (commentBean.getState().equals("success")) {
                         if (commentBean.getTotal() > 0) {
-                            evaluate_tv.setText(commentBean.getTotal() + "位商家评论过");
+                            evaluate_tv.setText(commentBean.getTotal() + "位人才评论过");
                             evaluate_tv.setOnClickListener(JobDetailsActivity.this);
                         } else {
-                            evaluate_tv.setText("还没有商家进行评论哦~");
+                            evaluate_tv.setText("还没有人才进行评论哦~");
                             evaluate_tv.setTextColor(0xff777778);
                         }
                     }
@@ -622,7 +622,6 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
         }
 
 
-
     }
 
     private Bundle bundle;
@@ -631,31 +630,22 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         bundle = data.getExtras();
+        if (bundle.getInt("ResumeId") != 0) {
+            loadingDialog = new LoadingDialog(this, "");
+            loadingDialog.show();
 
-//        Bundle bundle = new Bu/ndle();
-//            bundle.putInt("UserType",2);
-//            bundle.putInt("Personid", recruitmentListBean.getPersonid());
-//            bundle.putSerializable("Detail", recruitmentListBean);
-//        bundle.putInt("Resumeid",talentValueBean.getResumeid());
-//        Toast.makeText(this, talentValueBean.getPersonid() + "", Toast.LENGTH_LONG).show();
-//            intent.putExtras(bundle);
-//            startActivity(intent);
-
-        loadingDialog = new LoadingDialog(this, "");
-        loadingDialog.show();
-
-        //投递
-        HttpUtils httpUtils = new HttpUtils();
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getSend(recruitmentListBean.getJobId(), bundle.getInt("ResumeId")), new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                String result = responseInfo.result;
-                if (result != null) {
-                    SendParme<ViewCountBean> viewCountBean = JSONObject.parseObject(result, new TypeReference<SendParme<ViewCountBean>>() {
-                    });
-                    loadingDialog.dismiss();
-                    if (viewCountBean.getState().equals("success")) {
-                        dialog(5);
+            //投递
+            HttpUtils httpUtils = new HttpUtils();
+            httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getSend(recruitmentListBean.getJobId(), bundle.getInt("ResumeId")), new RequestCallBack<String>() {
+                @Override
+                public void onSuccess(ResponseInfo<String> responseInfo) {
+                    String result = responseInfo.result;
+                    if (result != null) {
+                        SendParme<ViewCountBean> viewCountBean = JSONObject.parseObject(result, new TypeReference<SendParme<ViewCountBean>>() {
+                        });
+                        loadingDialog.dismiss();
+                        if (viewCountBean.getState().equals("success")) {
+                            dialog(5);
 //                        if (commentBean.getTotal() > 0) {
 //                            comment_button_tv.setText(commentBean.getTotal() + "位商家评论过");
 //                            comment_button_tv.setOnClickListener(TalentsDetailsActivity.this);
@@ -663,23 +653,26 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
 //                            comment_button_tv.setText("还没有商家进行评论哦~");
 //                            comment_button_tv.setTextColor(0xff777778);
 //                        }
-                    }else {
-                        dialog(6);
+                        } else {
+                            dialog(6);
+                        }
+
                     }
+
 
                 }
 
-
-            }
-
-            @Override
-            public void onFailure(HttpException e, String s) {
-                dialog(6);
-                loadingDialog.dismiss();
+                @Override
+                public void onFailure(HttpException e, String s) {
+                    dialog(6);
+                    loadingDialog.dismiss();
 //                reputation_tipe_tv.setTextColor(0xffDEDDE2);
 //                reputation_tipe_tv.setText("网路异常，请稍后再试！");
-            }
-        });
+                }
+            });
+        }else {
+//            Toast.makeText(JobDetailsActivity.this, "已取消投递", Toast.LENGTH_LONG).show();
+        }
 
 
     }
@@ -690,7 +683,7 @@ public class JobDetailsActivity extends Activity implements View.OnClickListener
         switch (tipsTyp) {
 
             case 5://邀约成功
-                dialog2 = new MyDialog(this, Identification.TOOLTIP, Identification.FREEDOM,"已成功向商家<"+recruitmentListBean.getCompanyName()+">投递简历<"+bundle.getString("ResumeName")+">");
+                dialog2 = new MyDialog(this, Identification.TOOLTIP, Identification.FREEDOM, "已成功向商家<" + recruitmentListBean.getCompanyName() + ">投递简历<" + bundle.getString("ResumeName") + ">");
                 dialog2.setDetermine(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

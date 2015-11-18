@@ -168,7 +168,9 @@
             android:name=".uilt.ResumeParticularsActivity"
             android:label="@string/title_activity_resume_particulars"
             android:theme="@style/StyledIndicators" />
-        <activity android:name=".view.MusicActivity" />
+        <activity
+            android:name=".view.MusicActivity"
+            android:theme="@android:style/Theme.Translucent" />
         <activity
             android:name=".view.SpaceImageDetailActivity"
             android:theme="@android:style/Theme.Translucent" />

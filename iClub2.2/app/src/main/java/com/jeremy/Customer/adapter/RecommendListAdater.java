@@ -158,9 +158,11 @@ public class RecommendListAdater extends BaseAdapter {
         } else {
             viewActivity = (ViewActivity) view.getTag();
         }
+        try {
+            bitmapUtils.display(viewActivity.activity_poster, AppUtilsUrl.ImageBaseUrl + activityData.get(position).getImage());
+            viewActivity.activity_name.setText(activityData.get(position).getTitle());
+        }catch (Exception e) {}
 
-        bitmapUtils.display(viewActivity.activity_poster, AppUtilsUrl.ImageBaseUrl + activityData.get(position).getImage());
-        viewActivity.activity_name.setText(activityData.get(position).getTitle());
 
         return view;
     }

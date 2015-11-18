@@ -25,6 +25,7 @@ import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.MyDialog;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
+import com.jeremy.Customer.view.MyTitleBar;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -55,6 +56,7 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
     private TextView calendar_tips_tv, calendar_tips_tips_tv;
     private LinearLayout calendar_tips_ll;
     private Button calendar_confirm_b;
+    private MyTitleBar mytitle;
 
     private DbUtils dbu;
     private Day user;
@@ -95,14 +97,18 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         id = bundle.getString("Personid");
         resumeid = bundle.getInt("Resumeid");
 
+        mytitle = (MyTitleBar)findViewById(R.id.mytitle);
+
         //初始化界面状态
         init();
         loadingDialog = new LoadingDialog(this, "");
         loadingDialog.show();
         if (userType == 1) {
+            mytitle.setTextViewText("邀约日程");
             initRoute(DateUtil.getYear() + "-" + (DateUtil.getMonth() > 9 ? DateUtil.getMonth() : ("0" + DateUtil.getMonth())), true);
 
         } else {
+            mytitle.setTextViewText("修改日程");
             initTalentsRoute(DateUtil.getYear() + "-" + (DateUtil.getMonth() > 9 ? DateUtil.getMonth() : ("0" + DateUtil.getMonth())), true);
 
         }
@@ -795,6 +801,10 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
         }
         return false;
 
+    }
+
+    public void back(View v) {
+        CalendarActivity.this.finish();
     }
 
 

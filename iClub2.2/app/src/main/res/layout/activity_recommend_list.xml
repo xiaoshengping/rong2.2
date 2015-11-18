@@ -17,6 +17,14 @@
         android:layout_height="1dp"
         android:background="#DDDDDD"/>
 
+    <TextView
+        android:id="@+id/network_hint"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="#FFF2CC"
+        android:text="加载失败，请稍后重试!"
+        android:gravity="center"/>
+
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         ptr:ptrHeaderTextColor="#000000"

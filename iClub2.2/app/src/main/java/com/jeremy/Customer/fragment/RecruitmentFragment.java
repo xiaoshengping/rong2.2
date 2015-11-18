@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
@@ -50,6 +51,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
     private Button selected_city, selected_position;
     private ImageButton selected_city_cancel, selected_position_cancel;
+    private TextView network_hint;
     private int citynum = 0;//城市id
     private int jobnum = 0;//城市id
 
@@ -77,11 +79,13 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
     private void conditionsSelected(View view) {
         selected_city = (Button) view.findViewById(R.id.selected_city);
         selected_position = (Button) view.findViewById(R.id.selected_position);
+        network_hint = (TextView)view.findViewById(R.id.network_hint);
 
         selected_city_cancel = (ImageButton) view.findViewById(R.id.selected_city_cancel);
         selected_position_cancel = (ImageButton) view.findViewById(R.id.selected_position_cancel);
         selected_city_cancel.setVisibility(View.GONE);
         selected_position_cancel.setVisibility(View.GONE);
+        network_hint.setVisibility(View.GONE);
 
         selected_city.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,12 +177,13 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
     private LoadingDialog loadingDialog;
 
     //获取招聘列表（非搜索）
-    private void initRecruitmentListData(int city, int job, int offset) {
+    private void initRecruitmentListData(int city, int job, int offsett) {
 
         loadingDialog = new LoadingDialog(getActivity());
         loadingDialog.show();
 
         HttpUtils httpUtils = new HttpUtils();
+        httpUtils.configCurrentHttpCacheExpiry(1000);
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getRecruitmentList(city, job, offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -187,6 +192,10 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                     ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
                     });
                     if (recruitmentListBean.getState().equals("success")) {
+
+                        if (offset == 0) {
+                            recruitmentListData.clear();
+                        }
 
                         if (recruitmentListBean.getTotal() > recruitmentListData.size()) {
                             if (recruitmentListData.size() == 0) {
@@ -230,14 +239,15 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-        recruitmentListData.clear();
         offset = 0;
+        network_hint.setVisibility(View.GONE);
         initRecruitmentListData(citynum, jobnum, offset);
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
         offset = recruitmentListData.size();
+        network_hint.setVisibility(View.GONE);
         initRecruitmentListData(citynum, jobnum, offset);
     }
 
@@ -245,16 +255,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
 
     //提示框
     private void dialog() {
-        dialog2 = new MyDialog(getActivity(), Identification.TOOLTIP, Identification.NETWORKANOMALY);
-        dialog2.setDetermine(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                recommend_list.setVisibility(View.GONE);
-                dialog2.dismiss();
-            }
-        });
-
-        dialog2.show();
+        network_hint.setVisibility(View.VISIBLE);
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

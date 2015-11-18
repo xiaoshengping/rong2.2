@@ -70,13 +70,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private ArtistParme<TalentValueBean> talentValueBean;
     private ArtistParme<ActivityBean> activityBean;
 
-    private static boolean start;
+    private static int start = 0;
 
-    public static void setStart(boolean start) {
+    public static void setStart(int start) {
         HomeFragment.start = start;
     }
 
-    public static boolean getStart() {
+    public static int getStart() {
         return start;
     }
 
@@ -213,7 +213,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
-                start = false;
+                start = 1;
                 try {
                     loadingDialog.dismiss();
                 }catch (Exception a){
@@ -260,7 +260,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
-                start = false;
+                start = 1;
                 try {
                     loadingDialog.dismiss();
                 }catch (Exception a){
@@ -311,7 +311,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
-                start = false;
+                start = 1;
                 try {
                     loadingDialog.dismiss();
                 }catch (Exception a){
@@ -482,7 +482,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 }
 
-                start = true;
+                start = 2;
                 setSV();
                 try {
                     loadingDialog.dismiss();
@@ -496,7 +496,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             public void onFailure(HttpException e, String s) {
 //                progressbar.setVisibility(View.GONE);
 //                londing_tip.setVisibility(View.VISIBLE);
-                start = false;
+                start = 1;
                 try {
                     loadingDialog.dismiss();
                 }catch (Exception a){
