@@ -77,4 +77,5 @@
     </string>
     <string name="title_activity_comment_count">CommentCountActivity</string>
     <string name="title_activity_merchant_add_pictrue">MerchantAddPictrueActivity</string>
+    <string name="title_activity_photo_browse">PhotoBrowse</string>
 </resources>
