@@ -202,11 +202,11 @@
 
         <TextView
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:background="@mipmap/return_icon"
             android:textSize="@dimen/textSize18"
-            android:layout_width="15dp"
-            android:layout_height="25dp" />
+            android:layout_width="10dp"
+            android:layout_height="18dp" />
         <TextView
             android:id="@+id/return_tv"
             android:layout_marginLeft="5dp"
@@ -216,7 +216,7 @@
         <TextView
 
             android:layout_alignParentRight="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:text="编辑"
             android:textSize="@dimen/textSize18"

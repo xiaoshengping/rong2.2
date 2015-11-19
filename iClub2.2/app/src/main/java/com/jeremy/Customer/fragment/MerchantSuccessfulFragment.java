@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.TypeReference;
@@ -44,6 +45,8 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
 
     @ViewInject(R.id.merchant_invite_message_list_lv)
     private PullToRefreshListView merchantInviteMessageLv;
+    @ViewInject(R.id.accept_layout)
+    private LinearLayout acceptLayout;
     private HttpUtils httpUtils;
     private List<MerchantInviteValueBean> merchantInviteValueBeans;
     private MerchantInviteListAdapter inviteMessagelistAdapter;
@@ -102,6 +105,14 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
                     });*/
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<MerchantInviteValueBean>>() {
                     }, merchantInviteValueBeans, inviteMessagelistAdapter);
+                   if (merchantInviteValueBeans.size()==0){
+                       acceptLayout.setVisibility(View.VISIBLE);
+                       merchantInviteMessageLv.setVisibility(View.GONE);
+                   }else {
+                       acceptLayout.setVisibility(View.GONE);
+                       merchantInviteMessageLv.setVisibility(View.VISIBLE);
+                   }
+
                     merchantInviteMessageLv.onRefreshComplete();
 
 

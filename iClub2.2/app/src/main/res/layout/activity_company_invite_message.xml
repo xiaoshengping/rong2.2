@@ -5,17 +5,17 @@
     android:background="@color/layoutBackground"
     tools:context="com.example.administrator.iclub21.util.CompanyInviteMessageActivity"
     android:visibility="visible">
-
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        layout="@layout/app_white_tailt_layout"/>
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:weightSum="1">
-        <include
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            layout="@layout/app_white_tailt_layout"/>
+        >
+
         <ImageView
             android:src="@color/lineColor"
             android:layout_width="match_parent"

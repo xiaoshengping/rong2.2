@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,9 +41,11 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
     private TextView tailtReturnTv;
     @ViewInject(R.id.tailt_text)
     private TextView tailtText;
-    @ViewInject(R.id.not_resume_tv)
-    private TextView notResumeTv;
+    @ViewInject(R.id.add_resume_layout)
+    private LinearLayout notResumeLayout;
     private TextView addResumeTv;
+    @ViewInject(R.id.add_resumes_tv)
+    private TextView addResumeOneTv;
     @ViewInject(R.id.resume_list_lv)
     private PullToRefreshListView resumeListLv;
     private HttpUtils httpUtils;
@@ -106,19 +109,15 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
         startLabels.setRefreshingLabel("正在刷新...");// 刷新时
         startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
         resumeListLv.setRefreshing();
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if (resumeValueBeans.size()!=0){
+                if (resumeValueBeans.size() != 0) {
                     Intent intent = new Intent(ResumeActivity.this, ResumeParticularsActivity.class);
-                    intent.putExtra("resumeid", resumeValueBeans.get(position-1).getResumeid()+"");
+                    intent.putExtra("resumeid", resumeValueBeans.get(position - 1).getResumeid() + "");
                     startActivity(intent);
                 }
-
-
-
 
 
             }
@@ -141,19 +140,21 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
                 String result=responseInfo.result;
                 if (result!=null){
                     MyAppliction.showToast("list刷新成功");
-                    Log.e("list",result);
+                    Log.e("list", result);
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
                     }, resumeValueBeans, resumeListAdapter);
-                    resumeListLv.onRefreshComplete();
+
                    if (resumeValueBeans.size()!=0){
-                        notResumeTv.setVisibility(View.GONE);
-                        addResumeTv.setText("继续添加");
+                       notResumeLayout.setVisibility(View.GONE);
+                        addResumeTv.setText("继续添加简历");
+                       resumeListLv.setVisibility(View.VISIBLE);
                     }else {
-                        notResumeTv.setVisibility(View.VISIBLE);
-                        addResumeTv.setText("马上添加");
+                       addResumeOneTv.setOnClickListener(ResumeActivity.this);
+                       resumeListLv.setVisibility(View.GONE);
+                       notResumeLayout.setVisibility(View.VISIBLE);
 
                     }
-
+                    resumeListLv.onRefreshComplete();
 
 
 
@@ -186,6 +187,10 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
                 break;
             case R.id.tailt_return_tv:
                 finish();
+                break;
+            case R.id.add_resumes_tv:
+                Intent intent1 =new Intent(ResumeActivity.this,AddResumeActivity.class);
+                startActivity(intent1);
                 break;
 
 
