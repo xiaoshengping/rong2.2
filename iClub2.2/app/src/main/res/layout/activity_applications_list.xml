@@ -29,6 +29,13 @@
         android:src="@mipmap/null_icon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="亲,您还没有招聘,马上添加招聘吧!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
        <TextView
            android:id="@+id/add_application_tv"
            android:gravity="center"

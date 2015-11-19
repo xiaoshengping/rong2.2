@@ -5,8 +5,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -18,6 +20,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.ResumeMessageListAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeMessageValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
 import com.lidroid.xutils.HttpUtils;
@@ -39,6 +42,8 @@ public class TalentsDeliverMessageActivity extends ActionBarActivity implements 
     private TextView tailtText;
     @ViewInject(R.id.tailt_return_tv)
     private TextView tailtReturnTv;
+    @ViewInject(R.id.add_application_layout)
+    private LinearLayout applicationLayout;
 
     private List<ResumeMessageValueBean> informationValueBeans;
     private ResumeMessageListAdapter resumeMessageListAdapter;
@@ -129,6 +134,13 @@ public class TalentsDeliverMessageActivity extends ActionBarActivity implements 
                 String result = responseInfo.result;
                 HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ResumeMessageValueBean>>() {
                 }, informationValueBeans, resumeMessageListAdapter);
+                MyAppliction.showToast("" + informationValueBeans.size());
+                if (TextUtils.isEmpty(result)){
+                    MessageListView.setVisibility(View.GONE);
+                    applicationLayout.setVisibility(View.VISIBLE);
+                }else {
+                    MessageListView.setVisibility(View.VISIBLE);
+                }
                 MessageListView.onRefreshComplete();
 
             }
