@@ -28,12 +28,12 @@
          />
     <TextView
         android:id="@+id/save_text"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:text="保存"
         android:visibility="gone"
         android:textSize="@dimen/textSize18"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="30dp"
         style="@style/paren_layout_width"
         />
 </RelativeLayout>

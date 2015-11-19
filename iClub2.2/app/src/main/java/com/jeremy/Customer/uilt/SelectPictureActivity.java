@@ -230,7 +230,7 @@ public class SelectPictureActivity extends Activity {
             selectedPicture.add(cameraPath);
            data2 = new Intent();
             data2.putExtra(INTENT_SELECTED_PICTURE, selectedPicture);
-            setResult(RESULT_OK, data2);
+            setResult(0, data2);
             this.finish();
         }
     }

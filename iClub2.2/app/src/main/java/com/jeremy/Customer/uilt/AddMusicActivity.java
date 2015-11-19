@@ -6,7 +6,9 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -40,11 +42,19 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
     private TextView showMusicDataTv;
     @ViewInject(R.id.show_music_lv)
     private ListView showMusicLv;
+    @ViewInject(R.id.show_music_layout)
+    private LinearLayout showMusicLayout;
+    @ViewInject(R.id.show_music_one_layout)
+    private LinearLayout showMusicOneLayout;
+    @ViewInject(R.id.show_music_name_layout)
+    private LinearLayout showMusicNameLayout;
 
     private ResumeValueBean resumeValueBean;
     private String musicPath;
     private String musicName;
     private LoadingDialog loadingDialog;
+    private boolean isShowDelete;
+    private ResumeMusicAdapter resumeMusicAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +80,25 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
         saveText.setText("上传");
         addMusicBt.setOnClickListener(this);
         if (resumeValueBean!=null){
-            ResumeMusicAdapter resumeMusicAdapter=new ResumeMusicAdapter(resumeValueBean.getResumeMusic(),AddMusicActivity.this);
+            resumeMusicAdapter=new ResumeMusicAdapter(resumeValueBean.getResumeMusic(),AddMusicActivity.this);
             showMusicLv.setAdapter(resumeMusicAdapter);
             resumeMusicAdapter.notifyDataSetChanged();
+            if (resumeValueBean.getResumeMovie().size()!=0){
+                showMusicLayout.setVisibility(View.VISIBLE);
+            }
         }
-
+        showMusicLv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                if (isShowDelete) {
+                    isShowDelete = false;
+                } else {
+                    isShowDelete = true;
+                }
+                resumeMusicAdapter.setIsShowDelete(isShowDelete);
+                return  true;
+            }
+        });
 
     }
 
@@ -122,11 +146,12 @@ public class AddMusicActivity extends ActionBarActivity implements View.OnClickL
              musicPath=  data.getStringExtra("musicPath");
              musicName=  data.getStringExtra("musicName");
               if (!TextUtils.isEmpty(musicName)){
-                  showMusicDataTv.setVisibility(View.VISIBLE);
-                  showMusicDataTv.setText("你选择的音频文件: "+musicName);
+                  showMusicNameLayout.setVisibility(View.VISIBLE);
+                  showMusicDataTv.setText(musicName);
+                  showMusicOneLayout.setVisibility(View.VISIBLE);
               }else {
-                  showMusicDataTv.setVisibility(View.VISIBLE);
-                  showMusicDataTv.setText("你还没有音频文件");
+                  //showMusicDataTv.setVisibility(View.VISIBLE);
+                 // showMusicDataTv.setText("你还没有音频文件");
               }
                 break;
 

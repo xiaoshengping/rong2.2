@@ -17,7 +17,7 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
@@ -26,6 +26,7 @@ import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
+import com.jeremy.Customer.view.CustomHomeScrollListView;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -49,9 +50,13 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
     @ViewInject(R.id.add_video_bt)
     private Button  addVideoBt;
     @ViewInject(R.id.show_video_lv)
-    private ListView showVideoLv;
+    private CustomHomeScrollListView showVideoLv;
     @ViewInject(R.id.selete_video_text)
-    private TextView seleteVideoText;
+    private LinearLayout seleteVideoText;
+    @ViewInject(R.id.selete_video_text_one)
+    private LinearLayout seleteVideoOne;
+    @ViewInject(R.id.show_video_layout)
+    private LinearLayout showVideoLayout;
 
 
     private ResumeValueBean resumeValueBean;
@@ -236,7 +241,8 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
                             // pb.setVisibility(View.VISIBLE);
                             videoPath = c.getString(0);
                                 if (!TextUtils.isEmpty(videoPath)) {
-                                    showVideoIv.setVisibility(View.VISIBLE);
+                                    seleteVideoOne.setVisibility(View.VISIBLE);
+                                    showVideoLayout.setVisibility(View.VISIBLE);
                                     showVideoIv.setImageBitmap(getVideoThumbnail(videoPath, 1700, 1000,
                                             MediaStore.Images.Thumbnails.MINI_KIND));
                                 }

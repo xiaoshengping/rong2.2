@@ -18,16 +18,84 @@
         android:id="@+id/add_music_bt"
         android:textColor="@color/white"
         android:text="添加音乐" />
-    <TextView
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/show_music_one_layout"
+        android:background="@color/white"
+        android:orientation="vertical"
         android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <TextView
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:textColor="@color/hunTextColor"
+            android:text="你准备上传的音乐"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+    </LinearLayout>
+<LinearLayout
+    android:id="@+id/show_music_name_layout"
+    android:visibility="gone"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+
         android:textColor="@color/hunTextColor"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="30dp"
+        android:gravity="center_vertical"
         android:id="@+id/show_music_data_tv"
-        android:layout_marginTop="20dp"
+        android:background="@drawable/invite_corners"
+        android:drawableRight="@mipmap/paly_musin_icon"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
-    <ListView
+        android:layout_height="40dp" />
+</LinearLayout>
+    <LinearLayout
         android:layout_marginTop="10dp"
+        android:id="@+id/show_music_layout"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+        <TextView
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:textColor="@color/hunTextColor"
+            android:text="你已经上传的音乐(长按可以删除)"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <ImageView
+            android:src="@color/lineColor"
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+    </LinearLayout>
+
+    <ListView
         android:id="@+id/show_music_lv"
         android:dividerHeight="2dp"
         android:layout_width="match_parent"

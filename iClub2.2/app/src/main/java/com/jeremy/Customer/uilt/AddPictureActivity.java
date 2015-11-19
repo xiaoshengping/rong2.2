@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
@@ -19,6 +19,7 @@ import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
+import com.jeremy.Customer.view.MyGridView;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -37,7 +38,7 @@ import java.util.ArrayList;
 
 public class AddPictureActivity extends ActionBarActivity implements View.OnClickListener {
     private static final int REQUEST_PICK = 0;
-    private GridView gridview;
+    private MyGridView gridview;
     private GridAdapter adapter;
     private ArrayList<String> selectedPicture = new ArrayList<String>();
 
@@ -49,11 +50,11 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
     private TextView saveText;
 
     @ViewInject(R.id.show_picture_gridview)
-    private GridView showPictureGridView;
+    private MyGridView showPictureGridView;
     @ViewInject(R.id.show_picture_text)
-    private TextView showPcitureText;
+    private LinearLayout showPcitureText;
     @ViewInject(R.id.show_pciture_text_one)
-    private TextView showPcitureTextOne;
+    private LinearLayout showPcitureTextOne;
 
 
     private ResumeValueBean resumeValueBean;
@@ -118,7 +119,7 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
                 .diskCacheFileNameGenerator(new Md5FileNameGenerator()).diskCacheSize(100 * 1024 * 1024)
                 .diskCacheFileCount(300).tasksProcessingOrder(QueueProcessingType.LIFO).build();
         ImageLoader.getInstance().init(config);
-        gridview = (GridView) findViewById(R.id.gridview);
+        gridview = (MyGridView) findViewById(R.id.gridview);
         adapter = new GridAdapter();
         gridview.setAdapter(adapter);
     }
