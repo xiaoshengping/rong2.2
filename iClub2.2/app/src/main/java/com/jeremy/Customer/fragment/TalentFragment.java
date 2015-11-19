@@ -204,7 +204,9 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                                 adater.notifyDataSetChanged();
                             }
 
-                        } else {
+                        } else if(talentValue.getTotal() == 0) {
+                            Toast.makeText(getActivity(), "暂无相关人才", Toast.LENGTH_LONG).show();
+                        }else {
                             Toast.makeText(getActivity(), "以加载全部内容", Toast.LENGTH_LONG).show();
                         }
 

@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/activity_poster"
@@ -25,9 +26,6 @@
         android:text="玩使命“敢于挑战，超越梦想“微电影阿斯顿发送到"
         android:textColor="@color/activity_item_name"
         android:textSize="@dimen/activity_item_name"
-        android:background="#f5f5f5"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="15dp"
-        android:background="#ffffff"/>
+        android:background="#ECECEC"/>
+
 </LinearLayout>

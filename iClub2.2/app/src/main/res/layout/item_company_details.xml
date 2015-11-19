@@ -47,7 +47,7 @@
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
                     android:text="(1)按照领导的要求，努力完成领导布置的工作任务。\n(2)精通业务，熟练掌握酒吧各种工具、器具的使用方法。\n(3)了解所供酒品的特想及饮用形式，掌握一定的酒品知识。"
-                    android:textColor="@color/home_talents_item_name"
+                    android:textColor="#777777"
                     android:textSize="16sp" />
 
                 <TextView
@@ -106,7 +106,7 @@
                         android:layout_marginLeft="15dp"
                         android:lineSpacingMultiplier="1.4"
                         android:text="1345886456\n56898452\nwww.app.com\n广州越秀区中山四路148号"
-                        android:textColor="#787878"
+                        android:textColor="#777777"
                         android:textSize="16sp" />
 
                 </LinearLayout>

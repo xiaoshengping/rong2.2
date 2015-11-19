@@ -1,5 +1,6 @@
 package com.jeremy.Customer;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.jeremy.Customer.fragment.MineFragment;
 import com.jeremy.Customer.fragment.RecruitmentFragment;
 import com.jeremy.Customer.fragment.TalentFragment;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -50,6 +52,23 @@ public class HomeActivity extends ActionBarActivity {
 
     }
 
+    public static int getStatusBarHeight(Context context){
+        Class<?> c = null;
+        Object obj = null;
+        Field field = null;
+        int x = 0, statusBarHeight = 0;
+        try {
+            c = Class.forName("com.android.internal.R$dimen");
+            obj = c.newInstance();
+            field = c.getField("status_bar_height");
+            x = Integer.parseInt(field.get(obj).toString());
+            statusBarHeight = context.getResources().getDimensionPixelSize(x);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return statusBarHeight;
+    }
+
     //初始化启动页
     private void startPage(){
         DisplayMetrics dm = new DisplayMetrics();
@@ -59,7 +78,7 @@ public class HomeActivity extends ActionBarActivity {
 
         loadingDialog = new LoadingDialog(this,1);
         loadingDialog.show();
-        loadingDialog.getWindow().setLayout(screenWidth, screenHeigh);
+        loadingDialog.getWindow().setLayout(screenWidth, screenHeigh - getStatusBarHeight(HomeActivity.this));
 
         timer.schedule(task, 2000, 1000);       // timeTask
 

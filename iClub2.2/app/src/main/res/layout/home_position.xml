@@ -34,7 +34,8 @@
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
             android:textColor="@color/home_more"
-            android:textSize="@dimen/home_more" />
+            android:textSize="@dimen/home_more"
+            android:drawableRight="@mipmap/purple_right"/>
     </LinearLayout>
 
 

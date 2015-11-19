@@ -29,7 +29,8 @@
             android:paddingBottom="5dp"
             android:paddingLeft="10dp"
             android:textSize="@dimen/home_more"
-            android:textColor="@color/home_more"/>
+            android:textColor="@color/home_more"
+            android:drawableRight="@mipmap/purple_right"/>
     </LinearLayout>
     <com.jeremy.Customer.view.RoundAngleImageView
         xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"

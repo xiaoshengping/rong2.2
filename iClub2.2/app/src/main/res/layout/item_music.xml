@@ -10,11 +10,16 @@
         android:layout_height="wrap_content"
         android:background="@drawable/music_back_shape"
         android:scaleType="center"
-        android:layout_marginLeft="25dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
         android:text="烟火里的尘埃"
-        android:padding="10dp"
-        android:textSize="18sp"/>
+        android:drawableRight="@mipmap/music_play"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textSize="16sp"
+        android:textColor="#292931"/>
 
 </LinearLayout>

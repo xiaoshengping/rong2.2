@@ -70,7 +70,7 @@ public class PagesActivity extends ActionBarActivity implements OnClickListener,
             vp.setOnPageChangeListener(PagesActivity.this);
 
             //初始化底部小点
-//        initDots();
+        initDots();
 
     }
 
@@ -82,13 +82,13 @@ public class PagesActivity extends ActionBarActivity implements OnClickListener,
         //循环取得小点图片
         for (int i = 0; i < pics.length; i++) {
             dots[i] = (ImageView) ll.getChildAt(i);
-            dots[i].setEnabled(true);//都设为灰色
+            dots[i].setImageResource(R.mipmap.pager_dian0);
             dots[i].setOnClickListener(PagesActivity.this);
             dots[i].setTag(i);//设置位置tag，方便取出与当前位置对应
         }
 
         currentIndex = 0;
-        dots[currentIndex].setEnabled(false);//设置为白色，即选中状态
+        dots[currentIndex].setImageResource(R.mipmap.pager_dian);
     }
 
     /**
@@ -112,8 +112,8 @@ public class PagesActivity extends ActionBarActivity implements OnClickListener,
             return;
         }
 
-//        dots[positon].setEnabled(false);
-//        dots[currentIndex].setEnabled(true);
+        dots[positon].setImageResource(R.mipmap.pager_dian);
+        dots[currentIndex].setImageResource(R.mipmap.pager_dian0);
 
         currentIndex = positon;
     }
@@ -141,7 +141,7 @@ public class PagesActivity extends ActionBarActivity implements OnClickListener,
         }else {
             experience_immediately.setVisibility(View.INVISIBLE);
         }
-//        setCurDot(arg0);
+        setCurDot(arg0);
     }
 
     @Override

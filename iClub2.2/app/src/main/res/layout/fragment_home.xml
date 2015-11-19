@@ -17,7 +17,8 @@
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EBECF0">
+        android:background="#EBECF0"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"

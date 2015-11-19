@@ -48,8 +48,8 @@ public class LoadingDialog extends Dialog {
     private void Start() {
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.mipmap.startpage);
-        imageView.setBackgroundColor(0xff000000);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageView.setBackgroundResource(R.mipmap.startpage_back);
+        imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         super.setContentView(imageView);
     }
 

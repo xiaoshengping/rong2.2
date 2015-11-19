@@ -39,11 +39,11 @@ public class MyDialog extends Dialog {
         if(markedWords == Identification.NETWORKANOMALY){
             tisp = "网络异常，请稍后重试！";
         }else if(markedWords == Identification.LOGINPROMPTMERCHANT){
-            tisp = "请先注册或登录成为商家用户~";
+            tisp = "请先登录商家账号或注册成为商家用户~";
         }else if(markedWords == Identification.OFFER){
             tisp = "邀约成功，邀约信息已以短信形式发送到人才手机中";
         }else if(markedWords == Identification.LOGONTOTHETALENT){
-            tisp = "请先注册或登录成为人才用户~";
+            tisp = "请先登录人才账号或注册成为人才用户~";
         }
 
         if (type == Identification.TOOLTIP){

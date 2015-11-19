@@ -581,7 +581,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
         public void run() {
             bitmaps[bitNum] = createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + talentValueBean.getResumeMovie().get(bitNum).getPath());
             if(bitmaps[bitNum]==null){
-                BitmapDrawable b = (BitmapDrawable)getResources().getDrawable(R.mipmap.talents_back);
+                BitmapDrawable b = (BitmapDrawable)getResources().getDrawable(R.mipmap.huodongmore);
                 bitmaps[bitNum] = b.getBitmap();
             }
             videoAdapter.setBitmap(bitmaps);

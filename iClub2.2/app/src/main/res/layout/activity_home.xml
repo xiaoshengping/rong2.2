@@ -9,7 +9,7 @@
         android:id="@+id/home_title_bar_rl"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="#FFFFFF">
+        android:background="#f8f8f8">
 
         <TextView
             android:id="@+id/home_title_neme_tv"
@@ -38,14 +38,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#C6C6C6"/>
+        android:background="#dadada"/>
     <LinearLayout
         android:gravity="center"
         android:id="@+id/home_rido_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#f8f8f8"
+        android:background="#f6f6f6"
         android:orientation="vertical"
         android:paddingTop="7dp"
         android:paddingBottom="6dp">
