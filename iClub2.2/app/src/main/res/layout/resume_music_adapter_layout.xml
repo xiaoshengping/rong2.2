@@ -3,20 +3,33 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="70dp">
-
-    <TextView
-        android:background="@drawable/invite_corners"
-        android:gravity="center_vertical"
-        android:text="我的小苹果"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
-        android:drawableRight="@mipmap/paly_musin_icon"
-        android:id="@+id/show_music_tv"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginBottom="10dp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="wrap_content">
+        <TextView
+            android:background="@drawable/invite_corners"
+            android:gravity="center_vertical"
+            android:text="我的小苹果"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:drawableRight="@mipmap/paly_musin_icon"
+            android:id="@+id/show_music_tv"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+        <ImageView
+            android:visibility="gone"
+            android:id="@+id/delete_markView"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="@mipmap/delete_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+
 
 </LinearLayout>

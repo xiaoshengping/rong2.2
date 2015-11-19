@@ -20,6 +20,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.ResumeListAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
 import com.lidroid.xutils.HttpUtils;
@@ -67,24 +68,18 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
     private void intiView() {
         tailtText.setText("我的简历");
         tailtReturnTv.setOnClickListener(this);
-        SQLhelper sqLhelper=new SQLhelper(ResumeActivity.this);
+        /*SQLhelper sqLhelper=new SQLhelper(ResumeActivity.this);
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
             pid = cursor.getString(1);
 
-        }
+        }*/
     }
     @Override
     protected void onRestart() {
         super.onRestart();
-        SQLhelper sqLhelper=new SQLhelper(ResumeActivity.this);
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
-        while (cursor.moveToNext()) {
-            pid = cursor.getString(1);
 
-        }
         resumeListLv.setRefreshing();
     }
 
@@ -132,12 +127,21 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
     private void intiResumeListData(int offset) {
         httpUtils=new HttpUtils();
+        SQLhelper sqLhelper=new SQLhelper(ResumeActivity.this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            pid = cursor.getString(1);
+
+        }
         String resumeListUrl= AppUtilsUrl.getResumeList(pid, offset);
         httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result=responseInfo.result;
                 if (result!=null){
+                    MyAppliction.showToast("list刷新成功");
+                    Log.e("list",result);
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
                     }, resumeValueBeans, resumeListAdapter);
                     resumeListLv.onRefreshComplete();
