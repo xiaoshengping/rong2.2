@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
@@ -51,6 +52,10 @@ public class MerchantAddPictrueActivity extends ActionBarActivity implements Vie
     private TextView showPictureTextOne;
     @ViewInject(R.id.show_picture_gridview)
     private GridView showPictureGridview;
+    @ViewInject(R.id.show_picture_layout)
+    private LinearLayout showPictureLayout;
+    @ViewInject(R.id.show_picture_one_layout)
+    private LinearLayout showPictureOneLayout;
 
     private static final int REQUEST_PICK = 0;
     private GridView gridview;
@@ -94,7 +99,8 @@ public class MerchantAddPictrueActivity extends ActionBarActivity implements Vie
             showPictureGridview.setAdapter(resumePictureAdapter);
             resumePictureAdapter.notifyDataSetChanged();
             if (bMerchantValueBean.getBEpicture().size()!=0){
-                showPictureTextOne.setVisibility(View.VISIBLE);
+                showPictureOneLayout.setVisibility(View.VISIBLE);
+
             }
             showPictureGridview.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                 @Override
@@ -131,7 +137,7 @@ public class MerchantAddPictrueActivity extends ActionBarActivity implements Vie
         if (requestCode == 0) {
             ArrayList<String> list = ((ArrayList<String>) data.getSerializableExtra(SelectPictureActivity.INTENT_SELECTED_PICTURE));
             if (list != null && list.size() != 0) {
-                showPictureText.setVisibility(View.VISIBLE);
+                showPictureLayout.setVisibility(View.VISIBLE);
                 selectedPicture = (ArrayList<String>) data
                         .getSerializableExtra(SelectPictureActivity.INTENT_SELECTED_PICTURE);
                 adapter.notifyDataSetChanged();

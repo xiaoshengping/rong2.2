@@ -77,6 +77,10 @@ public class InviteproductionFragment extends Fragment implements View.OnClickLi
     private RelativeLayout showVideoLayout;
     @ViewInject(R.id.no_viseo_layout)
     private RelativeLayout noVideoLayout;
+    @ViewInject(R.id.no_misume_layout)
+    private RelativeLayout noMisumeLayout;
+    @ViewInject(R.id.no_picture_layout)
+    private RelativeLayout noPictureLayout;
 
     private ResumeValueBean resumeValueBean;
 
@@ -129,6 +133,7 @@ public class InviteproductionFragment extends Fragment implements View.OnClickLi
                     showMusicResumeTwo.setVisibility(View.GONE);
                 }
             } else {
+                noMisumeLayout.setVisibility(View.VISIBLE);
                 showMusicResumeTv.setVisibility(View.GONE);
                 showMusicResumeTwo.setVisibility(View.GONE);
             }
@@ -155,6 +160,7 @@ public class InviteproductionFragment extends Fragment implements View.OnClickLi
                 }
 
             }else {
+                noPictureLayout.setVisibility(View.VISIBLE);
                 showPictureResumeOne.setVisibility(View.GONE);
                 showPictureResumeTwo.setVisibility(View.GONE);
                 showPictureResumeThree.setVisibility(View.GONE);

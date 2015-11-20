@@ -105,7 +105,12 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
             resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
             resumeWorkPlaceTv.setText(resumeValueBeans.getResumeWorkPlace());
             resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobCategoryName());
-            browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
+            if (resumeValueBeans.getCommentCount()!=0){
+                browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
+            }else {
+                browseNumberTv.setText(0);
+            }
+
         }
 
 

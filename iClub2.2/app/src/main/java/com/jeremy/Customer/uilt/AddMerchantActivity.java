@@ -54,9 +54,9 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     @ViewInject(R.id.recruitingNumbers_edit)
     private EditText recruitingNumbersEdit;
     @ViewInject(R.id.profession_classification_tv)
-    private TextView professionClassfitionTv;
+    private TextView professionClassfitionTv;  //职位类别
     @ViewInject(R.id.work_address_tv)
-    private TextView workAddressTv;
+    private TextView workAddressTv;  //工作地点
     @ViewInject(R.id.experience_require_tv)
     private TextView experienceRequireTv;
     @ViewInject(R.id.work_describe_tv)
@@ -70,6 +70,9 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     private LinearLayout jobRequirementsLayout;
     @ViewInject(R.id.jobInfo_layout)
     private LinearLayout jobInfoLayout;
+
+    private  String professionClassfition;//职位类别
+    private  String workAddress;    //工作地点
 
 
     private List<String> data_list;

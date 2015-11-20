@@ -94,19 +94,19 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
 
 
 
-               if (!TextUtils.isEmpty(resumeValueBean.getTransactionRecord() + "")){
+               if (resumeValueBean.getTransactionRecord()!=0){
                    transactionRecordTv.setText(resumeValueBean.getTransactionRecord() + "");
                }else {
                    transactionRecordTv.setText("0");
                }
 
-         if (!TextUtils.isEmpty(resumeValueBean.getIntegrity() + "")){
+         if (resumeValueBean.getIntegrity()!=0){
                    integrityTv.setText(resumeValueBean.getIntegrity() + "");
                }else {
                    integrityTv.setText("0");
                }
 
-      if (!TextUtils.isEmpty(resumeValueBean.getAuthenticity() + "")){
+      if (resumeValueBean.getAuthenticity()!=0){
           authenticityTv.setText(resumeValueBean.getAuthenticity() + "");
       }else {
           authenticityTv.setText("0");

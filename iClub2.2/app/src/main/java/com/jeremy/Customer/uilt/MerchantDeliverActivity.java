@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.MerchantMessageValueBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
 import com.lidroid.xutils.HttpUtils;
@@ -47,6 +49,8 @@ public class MerchantDeliverActivity extends ActionBarActivity implements View.O
     @ViewInject(R.id.merchant_message_lv)
     //private ListView informationListv;
     private PullToRefreshListView informationListv;
+    @ViewInject(R.id.add_application_layout)
+    private LinearLayout mercharntDeliverLayout;
     private List<MerchantMessageValueBean> informationValueBeans;
     private MerchantMessageListAdapter merchantMessageListAdapter;
     private int offset=0;
@@ -112,12 +116,16 @@ public class MerchantDeliverActivity extends ActionBarActivity implements View.O
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
-                //Log.e("hsdhdfh",responseInfo.result);
-               /* ArtistParme<MerchantMessageValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<MerchantMessageValueBean>>() {
-                });
-                informationValueBeans = artistParme.getValue();*/
                 HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<MerchantMessageValueBean>>() {
                 }, informationValueBeans, merchantMessageListAdapter);
+                MyAppliction.showToast(informationValueBeans.size()+"");
+                if (informationValueBeans.size()==0){
+                    mercharntDeliverLayout.setVisibility(View.VISIBLE);
+                    informationListv.setVisibility(View.GONE);
+                }else {
+                    mercharntDeliverLayout.setVisibility(View.GONE);
+                    informationListv.setVisibility(View.VISIBLE);
+                }
                 informationListv.onRefreshComplete();
             }
 
