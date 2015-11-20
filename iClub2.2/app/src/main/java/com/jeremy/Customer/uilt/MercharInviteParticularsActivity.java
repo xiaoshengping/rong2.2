@@ -3,6 +3,7 @@ package com.jeremy.Customer.uilt;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -105,7 +106,7 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
             resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
             resumeWorkPlaceTv.setText(resumeValueBeans.getResumeWorkPlace());
             resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobCategoryName());
-            if (resumeValueBeans.getCommentCount()!=0){
+            if (!TextUtils.isEmpty(resumeValueBeans.getCommentCount()+"")){
                 browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
             }else {
                 browseNumberTv.setText(0);

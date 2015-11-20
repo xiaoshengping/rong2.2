@@ -228,6 +228,10 @@
             android:name=".uilt.PhotoBrowse"
             android:label="@string/title_activity_photo_browse" >
         </activity>
+        <activity
+            android:name=".uilt.ImagePagerBeActivity"
+            android:label="@string/title_activity_image_pager_be" >
+        </activity>
     </application>
 
 </manifest>

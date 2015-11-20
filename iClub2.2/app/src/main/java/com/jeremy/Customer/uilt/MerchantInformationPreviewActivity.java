@@ -17,7 +17,6 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.BMerchantValueBean;
-import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -253,16 +252,16 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
                 MerchantMoreLayout.setVisibility(View.GONE);
                 break;
             case R.id.show_merchant_picture_one:
-
+                imageBrower(0,bMerchantValueBean);
                 break;
             case R.id.show_merchant_picture_two:
-
+                imageBrower(1,bMerchantValueBean);
                 break;
             case R.id.show_merchant_picture_three:
-
+                imageBrower(2,bMerchantValueBean);
                 break;
             case R.id.show_merchant_picture_four:
-
+                imageBrower(3,bMerchantValueBean);
                 break;
 
 
@@ -272,11 +271,11 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
 
     }
 
-    private void imageBrower(int position,ResumeValueBean urls) {
-        Intent intent = new Intent(MerchantInformationPreviewActivity.this, ImagePagerActivity.class);
+    private void imageBrower(int position,BMerchantValueBean urls) {
+        Intent intent = new Intent(MerchantInformationPreviewActivity.this, ImagePagerBeActivity.class);
         // 图片url,为了演示这里使用常量，一般从数据库中或网络中获取
-        intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_URLS, urls);
-        intent.putExtra(ImagePagerActivity.EXTRA_IMAGE_INDEX, position);
+        intent.putExtra(ImagePagerBeActivity.EXTRA_IMAGE_URLS, urls);
+        intent.putExtra(ImagePagerBeActivity.EXTRA_IMAGE_INDEX, position);
         startActivity(intent);
     }
 
