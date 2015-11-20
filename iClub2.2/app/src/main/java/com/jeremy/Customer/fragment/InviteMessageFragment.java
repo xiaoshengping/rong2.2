@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.TypeReference;
@@ -45,6 +46,8 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
     @ViewInject(R.id.invite_message_list_lv)
     //private ListView inviteMessageLv;
     private PullToRefreshListView inviteMessageLv;
+    @ViewInject(R.id.accept_layout)
+    private LinearLayout acceptLayout;
 
 
     private HttpUtils httpUtils;
@@ -134,8 +137,18 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 if (!TextUtils.isEmpty(result)){
-                    HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>(){},inviteMessgaeListValueBeans,inviteMessagelistAdapter);
+                    HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
+                    }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
+                   if (inviteMessgaeListValueBeans.size()==0){
+                       acceptLayout.setVisibility(View.VISIBLE);
+                       inviteMessageLv.setVisibility(View.GONE);
+                   }else {
+                       acceptLayout.setVisibility(View.GONE);
+                       inviteMessageLv.setVisibility(View.VISIBLE);
+                   }
+
                     inviteMessageLv.onRefreshComplete();
+
 
                 }
 

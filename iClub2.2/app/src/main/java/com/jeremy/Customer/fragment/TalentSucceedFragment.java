@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.TypeReference;
@@ -44,6 +45,8 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
 
     @ViewInject(R.id.invite_successful_list_lv)
     private PullToRefreshListView inviteSuccessfulListLv;
+    @ViewInject(R.id.accept_layout)
+    private LinearLayout acceptLayout;
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private InviteMessageListAdapter inviteMessagelistAdapter;
@@ -97,10 +100,6 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
             uid = cursor.getString(0);
 
         }
-        /*if (!TextUtils.isEmpty(uid)){
-            requestParams.addBodyParameter("uid",uid);
-        }
-        requestParams.addBodyParameter("value", "complete");*/
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessage(uid, "complete", offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -110,10 +109,19 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
                     }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
                     inviteSuccessfulListLv.onRefreshComplete();
-                    /*if (inviteMessgaeListValueBeans.size()==0){
+                    if (inviteMessgaeListValueBeans.size()==0){
                         inviteSuccessfulListLv.setVisibility(View.GONE);
-                        messageTv.setVisibility(View.VISIBLE);
-                    }*/
+                        acceptLayout.setVisibility(View.VISIBLE);
+                        acceptLayout.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                inviteSuccessfulListLv.setRefreshing();
+                            }
+                        });
+                    }else {
+                        acceptLayout.setVisibility(View.GONE);
+                        inviteSuccessfulListLv.setVisibility(View.VISIBLE);
+                    }
                 }
 
 
@@ -149,13 +157,7 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
         inviteSuccessfulListLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               // Log.e("kjjjsjjj", inviteMessgaeListValueBeans.get(position - 1).getStatus());
-               /* if (inviteMessgaeListValueBeans.get(position - 1).getStatus().equals("3") ||
-                        inviteMessgaeListValueBeans.get(position - 1).getStatus().equals("4")) {
-                    MyAppliction.showToast("您已经完成评论!");
-                } else {
-                    showExitGameAlert(position);
-                }*/
+
                 Intent intent = new Intent(getActivity(), CompanyInviteMessageActivity.class);
                 intent.putExtra("InviteMessgaeListValueBean", inviteMessgaeListValueBeans.get(position-1));
                 intent.putExtra("flage", "AcceptInviteFragment");

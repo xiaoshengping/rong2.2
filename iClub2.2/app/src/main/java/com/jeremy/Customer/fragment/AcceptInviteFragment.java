@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.alibaba.fastjson.TypeReference;
@@ -44,6 +45,8 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
 
     @ViewInject(R.id.accept_invite_list_lv)
     private PullToRefreshListView accpetListLv;
+    @ViewInject(R.id.accept_layout)
+    private LinearLayout acceptLayout;
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private List<InviteMessgaeListValueBean> inviteMessgaeListValueBeans ;
@@ -103,6 +106,12 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
 
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
                     }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
+                   if (inviteMessgaeListValueBeans.size()==0){
+                       accpetListLv.setVisibility(View.GONE);
+                       acceptLayout.setVisibility(View.VISIBLE);
+                   }else {
+                       accpetListLv.setVisibility(View.VISIBLE);
+                   }
                     accpetListLv.onRefreshComplete();
                 }
 

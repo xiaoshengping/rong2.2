@@ -2,6 +2,7 @@ package com.jeremy.Customer.adapter;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,6 +64,7 @@ public class ResumePictureAdapter extends AppBaseAdapter<ResumePicture> {
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid", resumeid);
         requestParams.addBodyParameter("id", pictureId);
+        Log.e("hsdhhd",resumeid+"jfjfjjf"+pictureId);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeletePicture(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {

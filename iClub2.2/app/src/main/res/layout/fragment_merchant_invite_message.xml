@@ -7,9 +7,31 @@
         android:id="@+id/merchant_invite_message_list_lv"
         android:scrollbars="none"
         android:dividerHeight="1dp"
+        android:layout_marginRight="1dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
         />
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/accept_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+
+        <ImageView
+            android:layout_marginTop="30dp"
+            android:src="@mipmap/null_icon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="亲,您还没有邀约消息!"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 </FrameLayout>

@@ -6,21 +6,37 @@
     tools:context="com.example.administrator.iclub21.util.CooperationCommentActivity"
     >
         <include layout="@layout/app_white_tailt_layout"/>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
+        android:layout_marginTop="5dp"
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <EditText
         android:background="#ffffff"
-        android:layout_marginTop="5dp"
         android:id="@+id/comment_context_et"
         android:gravity="top"
         android:cursorVisible="false"
         android:textColorHint="@color/editTextPromptColor"
         android:textSize="@dimen/textSize15"
-        android:hint="    写点什么吧，您的意见对其他朋友有帮助!"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:hint="写点什么吧，您的意见对其他朋友有帮助!"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
-
-    <LinearLayout
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <ImageView
         android:layout_marginTop="10dp"
-
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
         android:background="#ffffff"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -182,6 +198,10 @@
               android:layout_height="wrap_content" />
       </LinearLayout>
    </LinearLayout>
+    <ImageView
+        android:src="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
     <TextView
         android:id="@+id/commit_comment_tv"
         android:layout_marginLeft="20dp"
