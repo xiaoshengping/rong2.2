@@ -242,22 +242,23 @@
             <LinearLayout
                 android:id="@+id/oneself_more_layout"
                 android:layout_marginBottom="20dp"
-                android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/oneself_more_tv"
-                    android:textColor="@color/redTextColor"
+                    android:textColor="#9373ee"
                     android:gravity="center"
-                    android:text="查看更多"
+                    android:text="查看更多..."
+                    android:layout_marginLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <ImageView
+               <!-- <ImageView
                     android:layout_marginLeft="3dp"
                     android:src="@mipmap/below_return_icon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" />-->
             </LinearLayout>
 
 
@@ -324,22 +325,23 @@
             <LinearLayout
                 android:id="@+id/experience_more_layout"
                 android:layout_marginBottom="20dp"
-                android:gravity="center"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
                     android:id="@+id/experience_more_tv"
-                    android:textColor="@color/redTextColor"
+                    android:textColor="#9373ee"
                     android:gravity="center"
-                    android:text="查看更多"
+                    android:layout_marginLeft="20dp"
+                    android:text="查看更多..."
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-                <ImageView
+            <!--    <ImageView
                     android:layout_marginLeft="3dp"
                     android:src="@mipmap/below_return_icon"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content" />-->
             </LinearLayout>
             <ImageView
                 android:src="@color/lineColor"

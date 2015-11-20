@@ -19,6 +19,12 @@ public class RoleRegisterActivity extends ActionBarActivity implements View.OnCl
     private TextView merchantUserTv;
     @ViewInject(R.id.tailt_return_iv)
     private ImageView tailtReturnIv;
+    @ViewInject(R.id.rcai_textView)
+    private TextView rcaiTextView;
+    @ViewInject(R.id.sjia_textView)
+    private TextView sjiaTextView;
+    @ViewInject(R.id.show_particulars_iv)
+    private ImageView showParticulars;
 
 
     @Override
@@ -38,8 +44,8 @@ public class RoleRegisterActivity extends ActionBarActivity implements View.OnCl
         talentsUserTv.setOnClickListener(this);
         merchantUserTv.setOnClickListener(this);
         tailtReturnIv.setOnClickListener(this);
-
-
+        rcaiTextView.setOnClickListener(this);
+        sjiaTextView.setOnClickListener(this);
     }
 
 
@@ -59,6 +65,14 @@ public class RoleRegisterActivity extends ActionBarActivity implements View.OnCl
                 break;
             case R.id.tailt_return_iv:
                 finish();
+                break;
+            case R.id.rcai_textView:
+                showParticulars.setVisibility(View.VISIBLE);
+                showParticulars.setBackgroundResource(R.mipmap.rcai_particulars_icon);
+                break;
+            case R.id.sjia_textView:
+                showParticulars.setVisibility(View.VISIBLE);
+                showParticulars.setBackgroundResource(R.mipmap.sjia_parculars_icon);
                 break;
         }
     }

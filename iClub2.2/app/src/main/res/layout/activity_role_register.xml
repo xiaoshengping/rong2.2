@@ -4,6 +4,9 @@
     android:background="@mipmap/reole_background_icon"
     android:orientation="vertical"
     tools:context="com.jeremy.Customer.uilt.RoleRegisterActivity">
+
+
+
      <ImageView
          android:id="@+id/tailt_return_iv"
          android:layout_marginTop="20dp"
@@ -35,11 +38,14 @@
         android:layout_toRightOf="@+id/rcai_textView"
         android:layout_below="@+id/yir_textView"
         android:text="详情"
-        android:gravity="center_vertical"
+
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/yuan_icon"
+        android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
+        android:textColor="@color/textColor242424"
         android:layout_width="wrap_content"
-        android:layout_height="40dp" />
+        android:layout_height="20dp" />
 
     <TextView
         android:layout_below="@+id/rcai_textView"
@@ -74,11 +80,13 @@
         android:layout_toRightOf="@+id/sjia_textView"
         android:layout_below="@+id/sjia_textView"
         android:text="详情"
-        android:gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/yuan_icon"
+        android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"
+        android:textColor="@color/textColor242424"
         android:layout_width="wrap_content"
-        android:layout_height="40dp" />
+        android:layout_height="20dp" />
 
     <TextView
         android:id="@+id/merchant_user_tv"
@@ -90,4 +98,11 @@
         android:layout_centerHorizontal="true"
         android:layout_width="150dp"
         android:layout_height="40dp" />
+
+    <ImageView
+        android:id="@+id/show_particulars_iv"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </RelativeLayout>
