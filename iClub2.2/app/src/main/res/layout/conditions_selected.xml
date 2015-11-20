@@ -32,10 +32,10 @@
 
         <ImageButton
             android:id="@+id/selected_city_cancel"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_toRightOf="@+id/selected_city"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/delete_gray"
             android:background="#00000000" />
     </RelativeLayout>
 
@@ -66,10 +66,10 @@
             android:textSize="16dp" />
         <ImageButton
             android:id="@+id/selected_position_cancel"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_toRightOf="@+id/selected_position"
-            android:src="@mipmap/ic_launcher"
+            android:src="@mipmap/delete_gray"
             android:background="#00000000" />
     </RelativeLayout>
 
