@@ -77,7 +77,7 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
     }
     private void intiResumeData() {
 
-        HttpUtils httpUtils=new HttpUtils();
+        HttpUtils httpUtils=new HttpUtils().configDefaultHttpCacheExpiry(0);
         String resumeListUrl= AppUtilsUrl.getResumeLista(((ResumeParticularsActivity) getActivity()).getResumeid());
         httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
             @Override

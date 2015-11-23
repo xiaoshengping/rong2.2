@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="170dp" />
             <TextView
-                android:text="亲,没有视频,赶紧上传视频吧!"
+                android:text="亲,这个人太懒了，还没有上传视频!"
                 android:textColor="@color/textColor242424"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
@@ -183,7 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp" />
             <TextView
-                android:text="亲,还没有音乐,赶紧上传音乐吧!"
+                android:text="亲,这个人太懒了，还没有上传音乐!"
                 android:textColor="@color/textColor242424"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
@@ -297,7 +297,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp" />
             <TextView
-                android:text="亲,还没有图片,赶紧上传图片吧!"
+                android:text="亲,这个人太懒了，还没有上传图片!"
                 android:textColor="@color/textColor242424"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"

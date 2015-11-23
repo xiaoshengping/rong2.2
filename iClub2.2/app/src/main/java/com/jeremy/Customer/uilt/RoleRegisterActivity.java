@@ -3,7 +3,9 @@ package com.jeremy.Customer.uilt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,12 +21,13 @@ public class RoleRegisterActivity extends ActionBarActivity implements View.OnCl
     private TextView merchantUserTv;
     @ViewInject(R.id.tailt_return_iv)
     private ImageView tailtReturnIv;
-    @ViewInject(R.id.rcai_textView)
+    @ViewInject(R.id.rcai_particulars_tv)
     private TextView rcaiTextView;
-    @ViewInject(R.id.sjia_textView)
+    @ViewInject(R.id.sjia_particulars_tv)
     private TextView sjiaTextView;
-    @ViewInject(R.id.show_particulars_iv)
-    private ImageView showParticulars;
+    /*@ViewInject(R.id.show_particulars_iv)
+    private ImageView showParticulars;*/
+
 
 
     @Override
@@ -66,15 +69,46 @@ public class RoleRegisterActivity extends ActionBarActivity implements View.OnCl
             case R.id.tailt_return_iv:
                 finish();
                 break;
-            case R.id.rcai_textView:
-                showParticulars.setVisibility(View.VISIBLE);
-                showParticulars.setBackgroundResource(R.mipmap.rcai_particulars_icon);
+            case R.id.rcai_particulars_tv:
+                showrCaiGameAlert();
                 break;
-            case R.id.sjia_textView:
-                showParticulars.setVisibility(View.VISIBLE);
-                showParticulars.setBackgroundResource(R.mipmap.sjia_parculars_icon);
+            case R.id.sjia_particulars_tv:
+                showsJiaGameAlert();
                 break;
         }
+    }
+
+    //人才详情
+    private void showrCaiGameAlert() {
+        final AlertDialog dlg = new AlertDialog.Builder(this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.show_role_layout);
+        ImageView showRoleIv = (ImageView) window.findViewById(R.id.show_role_iv);
+        showRoleIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dlg.dismiss();
+            }
+        });
+    }
+    //商家详情
+    private void showsJiaGameAlert() {
+        final AlertDialog dlg = new AlertDialog.Builder(this).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.show_role_layout);
+        ImageView showRoleIv = (ImageView) window.findViewById(R.id.show_role_iv);
+        showRoleIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dlg.dismiss();
+            }
+        });
     }
 
     @Override

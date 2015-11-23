@@ -50,7 +50,8 @@
                 android:textColorHint="#000000" />
             <Button
                 android:id="@+id/captcha_button"
-                android:text="发送验证码"
+                android:text="获取验证码"
+                android:textColor="#9373ee"
                 android:background="@drawable/rounded_button"
                 android:layout_marginLeft="10dp"
                 android:layout_width="wrap_content"
@@ -81,7 +82,7 @@
             android:layout_marginRight="50dp"
 
             android:drawablePadding="5dp"
-            android:hint="重复密码"
+            android:hint="确认密码"
             android:password="true"
             android:background="@drawable/rounded_edittext"
             android:paddingLeft="10dp"

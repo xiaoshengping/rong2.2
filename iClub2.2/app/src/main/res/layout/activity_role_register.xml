@@ -5,15 +5,13 @@
     android:orientation="vertical"
     tools:context="com.jeremy.Customer.uilt.RoleRegisterActivity">
 
-
-
      <ImageView
          android:id="@+id/tailt_return_iv"
          android:layout_marginTop="20dp"
          android:layout_marginLeft="20dp"
          android:background="@mipmap/return_icon"
-         android:layout_width="15dp"
-         android:layout_height="25dp" />
+         android:layout_width="10dp"
+         android:layout_height="18dp" />
 
     <TextView
         android:layout_marginTop="50dp"
@@ -38,7 +36,7 @@
         android:layout_toRightOf="@+id/rcai_textView"
         android:layout_below="@+id/yir_textView"
         android:text="详情"
-
+        android:id="@+id/rcai_particulars_tv"
         android:layout_marginTop="10dp"
         android:background="@mipmap/yuan_icon"
         android:gravity="center"
@@ -79,6 +77,7 @@
     <TextView
         android:layout_toRightOf="@+id/sjia_textView"
         android:layout_below="@+id/sjia_textView"
+        android:id="@+id/sjia_particulars_tv"
         android:text="详情"
         android:layout_marginTop="10dp"
         android:background="@mipmap/yuan_icon"
@@ -99,10 +98,5 @@
         android:layout_width="150dp"
         android:layout_height="40dp" />
 
-    <ImageView
-        android:id="@+id/show_particulars_iv"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 </RelativeLayout>
