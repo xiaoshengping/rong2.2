@@ -110,8 +110,18 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private RadioGroup sexRadioGroup;
     @ViewInject(R.id.boy_radio_button)
     private RadioButton boyRadioButton;
-    @ViewInject(R.id.girl_radio_button)
-    private RadioButton girlRadioButton;
+    @ViewInject(R.id.job_classfite_tv)
+    private TextView jobClassFiteTv; //职位分类(设置内容)
+    @ViewInject(R.id.job_city_tv)
+    private TextView jobCityTv;   //工作地点(设置内容)
+    @ViewInject(R.id.job_classfite_layout)
+    private LinearLayout jobClassfitelayout;//职位分类（点击）
+    @ViewInject(R.id.job_city_layout)
+    private LinearLayout jobCityLayout;  //工作地点（点击）
+
+    private String classFiteData;//职位分类（常量）
+    private String jobCityData;//工作地点（常量）
+
 
     private String mobile;
     private   String uid=null;
@@ -178,6 +188,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         sexRadioGroup.setOnCheckedChangeListener(this);
         nextTextView.setOnClickListener(this);
         boyRadioButton.setChecked(true);
+        jobClassfitelayout.setOnClickListener(this);
+        jobCityLayout.setOnClickListener(this);
         //获取系统时间
         Calendar calendar = Calendar.getInstance();
         year1 = calendar.get(Calendar.YEAR);

@@ -97,8 +97,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
     private ImageView touXiangIv;
     @ViewInject(R.id.resume_age_tv)
     private TextView resumeAgeTv;
-    @ViewInject(R.id.job_city_tv)
-    private TextView jobCityTv;
+
 
     @ViewInject(R.id.sex_radio_group)
     private RadioGroup sexRadioGroup;
@@ -108,7 +107,17 @@ public class ModificationInformationFragment extends Fragment implements View.On
     private RadioButton girlRadioButton;
     @ViewInject(R.id.next_resume_tv)
     private TextView nextResumeTv;
+    @ViewInject(R.id.job_classfite_tv)
+    private TextView jobClassFiteTv; //职位分类(设置内容)
+    @ViewInject(R.id.job_city_tv)
+    private TextView jobCityTv;   //工作地点(设置内容)
+    @ViewInject(R.id.job_classfite_layout)
+    private LinearLayout jobClassfitelayout;//职位分类（点击）
+    @ViewInject(R.id.job_city_layout)
+    private LinearLayout jobCityLayout;  //工作地点（点击）
 
+    private String classFiteData;//职位分类（常量）
+    private String jobCityData;//工作地点（常量）
 
 
 
@@ -169,6 +178,8 @@ public class ModificationInformationFragment extends Fragment implements View.On
         resumeAgeTv.setOnClickListener(this);
         sexRadioGroup.setOnCheckedChangeListener(this);
         nextResumeTv.setOnClickListener(this);
+        jobClassfitelayout.setOnClickListener(this);
+        jobCityLayout.setOnClickListener(this);
          loadingDialog=new LoadingDialog(getActivity(),"正在保存数据......");
         loadingDialogOne=new LoadingDialog(getActivity(),"正在加载数据......");
 
@@ -232,9 +243,6 @@ public class ModificationInformationFragment extends Fragment implements View.On
                 }
                 startActivityForResult(workIntent, EXPERIENCE_HINT_DATA);
                 break;
-
-
-
             case R.id.job_classfite_layout:
 
 

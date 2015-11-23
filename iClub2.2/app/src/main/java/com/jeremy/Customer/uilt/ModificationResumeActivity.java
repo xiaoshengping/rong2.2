@@ -90,13 +90,6 @@ public class ModificationResumeActivity extends ActionBarActivity implements Vie
             case R.id.tailt_return_tv:
                 finish();
                 break;
-           case R.id.job_classfite_layout:
-
-
-               break;
-           case R.id.job_city_layout:
-
-               break;
 
 
 

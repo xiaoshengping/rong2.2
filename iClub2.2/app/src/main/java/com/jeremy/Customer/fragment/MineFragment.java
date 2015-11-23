@@ -298,7 +298,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     startActivity(resumeIntent);
                 }
                 break;
-            case R.id.journey_merchant_tv:
+            case R.id.journey_merchant_tv: //行程和商家消息
                 if (state.equals("2")){
 
                 }else if (state.equals("3")){
