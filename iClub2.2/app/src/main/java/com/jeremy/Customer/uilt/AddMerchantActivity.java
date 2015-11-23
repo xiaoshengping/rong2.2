@@ -20,8 +20,10 @@ import android.widget.TextView;
 import com.bigkoo.alertview.AlertView;
 import com.bigkoo.alertview.OnItemClickListener;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.mine.RecruitmentHistoryValueBean;
+import com.jeremy.Customer.citySelection.CitySelectionActivity;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
@@ -231,11 +233,13 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 finish();
                 break;
             case R.id.profession_classification_tv:
-
+                Intent intent = new Intent(AddMerchantActivity.this, JobChoiceActivity.class);  //方法1
+                startActivityForResult(intent, 0);
 
                 break;
             case R.id.work_address_tv:
-
+                Intent intent1 = new Intent(AddMerchantActivity.this, CitySelectionActivity.class);  //方法1
+                startActivityForResult(intent1, 0);
 
                 break;
             case R.id.working_Time_edit:
@@ -329,6 +333,42 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
 
                 break;
         }
+
+        Bundle bundle = data.getExtras();
+        if (resultCode == Identification.CITYSELECTION) {
+         /*获取Bundle中的数据，注意类型和key*/
+            int city = bundle.getInt("City");
+            String cName = bundle.getString("CityName");
+            if (city >= 0) {
+                if (city != 0) {
+                    workAddressTv.setText(cName);
+                } else {
+                    workAddressTv.setText("选择城市");
+                }
+                workAddress = city+"";
+
+            }
+        } else if (resultCode == Identification.JOBCHOICE) {
+            int job = bundle.getInt("Job");
+            String pName = bundle.getString("JobName");
+//        if(job>=0&&job!=10){
+            if (job != 0) {
+                professionClassfitionTv.setText(pName);
+//                selected_position_cancel.setVisibility(View.VISIBLE);
+            } else {
+
+                professionClassfitionTv.setText("选择职位");
+            }
+            professionClassfition = job+"";
+
+        }
+
+        if (resultCode != Identification.RETURN) {
+//            initRecruitmentListData(citynum, jobnum, offset);
+//            recommend_list.onRefreshComplete();
+//            recommend_list.setRefreshing(true);adsgadga
+        }
+
     }
 
     private void intiEditData() {

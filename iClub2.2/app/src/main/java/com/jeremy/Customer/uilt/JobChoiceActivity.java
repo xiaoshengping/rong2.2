@@ -236,8 +236,8 @@ public class JobChoiceActivity extends Activity implements View.OnClickListener 
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
             //这里重写返回键
             Intent intent = new Intent();
-            intent.putExtra("City", -1);
-            intent.putExtra("CityName", "无");
+            intent.putExtra("Job", -1);
+            intent.putExtra("JobName", "无");
                         /*给上一个Activity返回结果*/
             JobChoiceActivity.this.setResult(Identification.RETURN, intent);
             JobChoiceActivity.this.finish();
@@ -249,8 +249,8 @@ public class JobChoiceActivity extends Activity implements View.OnClickListener 
 
     public void back(View v) {
         Intent intent = new Intent();
-        intent.putExtra("City", -1);
-        intent.putExtra("CityName", "无");
+        intent.putExtra("Job", -1);
+        intent.putExtra("JobName", "无");
                         /*给上一个Activity返回结果*/
         JobChoiceActivity.this.setResult(Identification.RETURN, intent);
         JobChoiceActivity.this.finish();

@@ -36,6 +36,7 @@ import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.bean.mine.SaveResumeValueBean;
+import com.jeremy.Customer.citySelection.CitySelectionActivity;
 import com.jeremy.Customer.http.ImageUtil;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -232,10 +233,13 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
 
             case R.id.job_classfite_layout:
-
+                Intent intent = new Intent(AddResumeActivity.this, JobChoiceActivity.class);  //方法1
+                startActivityForResult(intent, 0);
 
                 break;
             case R.id.job_city_layout:
+                Intent intent1 = new Intent(AddResumeActivity.this, CitySelectionActivity.class);  //方法1
+                startActivityForResult(intent1, 0);
 
                 break;
             case R.id.next_resume_tv:
@@ -487,14 +491,40 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Bundle bundle = data.getExtras();
         switch (requestCode) {
             case PHOTO_REQUEST_TAKEPHOTO:// 当选择拍照时调用
-                startPhotoZoom(Uri.fromFile(tempFile));
+
+                int city = bundle.getInt("City");
+                String cName = bundle.getString("CityName");
+                if(cName != null) {
+                    if (city >= 0) {
+                        if (city != 0) {
+                        jobCityLayout.setText(cName);
+                        } else {
+                        jobCityLayout.setText("选择城市");
+                        }
+                        jobCityData = city + "";
+
+                    }
+                }else {
+                    startPhotoZoom(Uri.fromFile(tempFile));
+                }
                 break;
             case PHOTO_REQUEST_GALLERY:// 当选择从本地获取图片时
                 // 做非空判断，当我们觉得不满意想重新剪裁的时候便不会报异常，下同
-                if (data != null)
+                int job = bundle.getInt("Job");
+                String pName = bundle.getString("JobName");
+                if(pName != null) {
+                    if (job != 0) {
+                    jobClassfitelayout.setText(pName);
+                    } else {
+                    jobClassfitelayout.setText("选择职位");
+                    }
+                    classFiteData = job + "";
+                }else if (data != null) {
                     startPhotoZoom(data.getData());
+                }
                 break;
             case PHOTO_REQUEST_CUT:// 返回的结果
                 if (data != null)

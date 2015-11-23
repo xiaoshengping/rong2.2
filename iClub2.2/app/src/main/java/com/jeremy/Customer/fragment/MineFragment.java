@@ -31,6 +31,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.MessageBean;
 import com.jeremy.Customer.bean.ParmeBean;
+import com.jeremy.Customer.calendar.CalendarActivity;
 import com.jeremy.Customer.http.ImageUtil;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.uilt.AnnouncementMessageActivity;
@@ -300,6 +301,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.journey_merchant_tv: //行程和商家消息
                 if (state.equals("2")){
+
+                    Intent intent1 = new Intent(getActivity(), CalendarActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("userType", 2);//测试用
+//                    bundle.putString("Personid", talentValueBean.getPersonid() + "");
+//                    bundle.putInt("Resumeid", talentValueBean.getResumeid());
+                    intent1.putExtras(bundle);
+                    startActivity(intent1);
 
                 }else if (state.equals("3")){
                    if (!TextUtils.isEmpty(companyName)){

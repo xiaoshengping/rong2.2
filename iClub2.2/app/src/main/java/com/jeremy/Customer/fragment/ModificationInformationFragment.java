@@ -32,8 +32,10 @@ import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.MessageBean;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.citySelection.CitySelectionActivity;
 import com.jeremy.Customer.http.ImageUtil;
 import com.jeremy.Customer.http.MyAppliction;
+import com.jeremy.Customer.uilt.JobChoiceActivity;
 import com.jeremy.Customer.uilt.ModificationResumeActivity;
 import com.jeremy.Customer.uilt.OneselfExperienceActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -58,8 +60,7 @@ import java.util.Date;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ModificationInformationFragment extends Fragment implements View.OnClickListener,RadioGroup.OnCheckedChangeListener {
-
+public class ModificationInformationFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
 
     //上传头像
@@ -120,7 +121,6 @@ public class ModificationInformationFragment extends Fragment implements View.On
     private String jobCityData;//工作地点（常量）
 
 
-
     private File tempFile = new File(Environment.getExternalStorageDirectory(),
             getPhotoFileName());
     private File screenshotFile = new File(Environment.getExternalStorageDirectory(),
@@ -129,18 +129,18 @@ public class ModificationInformationFragment extends Fragment implements View.On
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
 
-    private static final int INFOLT_HINT_DATA=7;//自我介绍
-    private static final int EXPERIENCE_HINT_DATA=8;//工作经验
+    private static final int INFOLT_HINT_DATA = 7;//自我介绍
+    private static final int EXPERIENCE_HINT_DATA = 8;//工作经验
 
     private String sex;
 
     private int selectYear;
     private int selectMonthOfYear;
     private int selectDayOfMonth;
-    private  int year1;
-    private  int monthOfYear;
-    private  int dayOfMonth;
-    private String  age;
+    private int year1;
+    private int monthOfYear;
+    private int dayOfMonth;
+    private String age;
     private DatePickerDialog datePickerDialog;
 
     private ResumeValueBean resumeValueBeans;
@@ -157,9 +157,9 @@ public class ModificationInformationFragment extends Fragment implements View.On
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view=inflater.inflate(R.layout.fragment_modification_information, container, false);
+        View view = inflater.inflate(R.layout.fragment_modification_information, container, false);
         ViewUtils.inject(this, view);
-         init();
+        init();
         return view;
     }
 
@@ -168,7 +168,6 @@ public class ModificationInformationFragment extends Fragment implements View.On
 
 
     }
-
 
 
     private void initView() {
@@ -180,25 +179,25 @@ public class ModificationInformationFragment extends Fragment implements View.On
         nextResumeTv.setOnClickListener(this);
         jobClassfitelayout.setOnClickListener(this);
         jobCityLayout.setOnClickListener(this);
-         loadingDialog=new LoadingDialog(getActivity(),"正在保存数据......");
-        loadingDialogOne=new LoadingDialog(getActivity(),"正在加载数据......");
+        loadingDialog = new LoadingDialog(getActivity(), "正在保存数据......");
+        loadingDialogOne = new LoadingDialog(getActivity(), "正在加载数据......");
 
         //获取系统时间
         Calendar calendar = Calendar.getInstance();
         year1 = calendar.get(Calendar.YEAR);
         monthOfYear = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DATE);
-       resumeValueBeans=((ModificationResumeActivity) getActivity()).getResumeValueBeans();
-        if (resumeValueBeans!=null){
+        resumeValueBeans = ((ModificationResumeActivity) getActivity()).getResumeValueBeans();
+        if (resumeValueBeans != null) {
             MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), usericonIV, MyAppliction.RoundedOptions);
             resumeZhName.setText(resumeValueBeans.getResumeZhName());
 
-            if (resumeValueBeans.getResumeSex().equals(0)){
+            if (resumeValueBeans.getResumeSex().equals(0)) {
                 boyRadioButton.setChecked(true);
-            }else if(resumeValueBeans.getResumeSex().equals(1)){
+            } else if (resumeValueBeans.getResumeSex().equals(1)) {
                 girlRadioButton.setChecked(true);
             }
-            resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
+            resumeAgeTv.setText(resumeValueBeans.getResumeAge() + "");
             resumeAgeTv.setTextColor(getResources().getColor(R.color.textColor242424));
             resumeJobName.setText(resumeValueBeans.getResumeJobCategoryName());
             jobCityTv.setText(resumeValueBeans.getResumeWorkPlace());
@@ -215,12 +214,9 @@ public class ModificationInformationFragment extends Fragment implements View.On
     }
 
 
-
-
-
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.resume_age_tv:
                 datePickerDialogData().show();
                 break;
@@ -229,25 +225,28 @@ public class ModificationInformationFragment extends Fragment implements View.On
                 break;
             case R.id.oneself_known_layout:
                 Intent infoIntent = new Intent(getActivity(), OneselfExperienceActivity.class);  //方法1
-                infoIntent.putExtra("hintData","infoIntent");
-                if (!TextUtils.isEmpty(userOnselfText.getText().toString())){
-                    infoIntent.putExtra("content",userOnselfText.getText().toString());
+                infoIntent.putExtra("hintData", "infoIntent");
+                if (!TextUtils.isEmpty(userOnselfText.getText().toString())) {
+                    infoIntent.putExtra("content", userOnselfText.getText().toString());
                 }
                 startActivityForResult(infoIntent, INFOLT_HINT_DATA);
                 break;
             case R.id.work_experience_layout:
                 Intent workIntent = new Intent(getActivity(), OneselfExperienceActivity.class);  //方法1
-                workIntent.putExtra("hintData","workIntent");
-                if (!TextUtils.isEmpty(workExpexteText.getText().toString())){
-                    workIntent.putExtra("content",workExpexteText.getText().toString());
+                workIntent.putExtra("hintData", "workIntent");
+                if (!TextUtils.isEmpty(workExpexteText.getText().toString())) {
+                    workIntent.putExtra("content", workExpexteText.getText().toString());
                 }
                 startActivityForResult(workIntent, EXPERIENCE_HINT_DATA);
                 break;
             case R.id.job_classfite_layout:
-
+                Intent intent = new Intent(getActivity(), JobChoiceActivity.class);  //方法1
+                startActivityForResult(intent, 0);
 
                 break;
             case R.id.job_city_layout:
+                Intent intent1 = new Intent(getActivity(), CitySelectionActivity.class);  //方法1
+                startActivityForResult(intent1, 0);
 
                 break;
             case R.id.next_resume_tv:
@@ -255,49 +254,46 @@ public class ModificationInformationFragment extends Fragment implements View.On
                 break;
 
 
-
-
         }
     }
 
 
-
-
     private void saveData() {
-        HttpUtils httpUtils=new HttpUtils();
-        RequestParams requestParams=new RequestParams();
-        String  touXiangPath = screenshotFile.getAbsolutePath();
-        if (!TextUtils.isEmpty(resumeValueBeans.getResumeid()+"")){
+        HttpUtils httpUtils = new HttpUtils();
+        RequestParams requestParams = new RequestParams();
+        String touXiangPath = screenshotFile.getAbsolutePath();
+        if (!TextUtils.isEmpty(resumeValueBeans.getResumeid() + "")) {
             requestParams.addBodyParameter("resumeid", resumeValueBeans.getResumeid() + "");
-            if (screenshotFile.exists()){
-                requestParams.addBodyParameter("usericon",new File(touXiangPath));
+            if (screenshotFile.exists()) {
+                requestParams.addBodyParameter("usericon", new File(touXiangPath));
             }
-            if (!TextUtils.isEmpty(resumeZhName.getText().toString())){
-                requestParams.addBodyParameter("resumeZhName",resumeZhName.getText().toString());
-                if (!TextUtils.isEmpty(sex)){
-                    requestParams.addBodyParameter("resumeSex",sex);
-                    if (selectYear!=0&&selectMonthOfYear!=0&&selectDayOfMonth!=0){
+            if (!TextUtils.isEmpty(resumeZhName.getText().toString())) {
+                requestParams.addBodyParameter("resumeZhName", resumeZhName.getText().toString());
+                if (!TextUtils.isEmpty(sex)) {
+                    requestParams.addBodyParameter("resumeSex", sex);
+                    if (selectYear != 0 && selectMonthOfYear != 0 && selectDayOfMonth != 0) {
                         requestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
                     }
-                    if (!TextUtils.isEmpty(resumeJobName.getText().toString())){
+                    if (!TextUtils.isEmpty(resumeJobName.getText().toString())) {
                         requestParams.addBodyParameter("resumeJobName", resumeJobName.getText().toString());
-                        if (!TextUtils.isEmpty(resumeQq.getText().toString())){
+                        if (!TextUtils.isEmpty(resumeQq.getText().toString())) {
                             requestParams.addBodyParameter("resumeQq", resumeQq.getText().toString());
-                            if (!TextUtils.isEmpty(resumeEmail.getText().toString())){
+                            if (!TextUtils.isEmpty(resumeEmail.getText().toString())) {
                                 requestParams.addBodyParameter("resumeEmail", resumeEmail.getText().toString());
-                               if (!TextUtils.isEmpty(userOnselfText.getText().toString())){
-                                   requestParams.addBodyParameter("resumeInfo", userOnselfText.getText().toString());
-                               if (!TextUtils.isEmpty(workExpexteText.getText().toString())){
-                                       requestParams.addBodyParameter("resumeWorkExperience", workExpexteText.getText().toString());
-                                   loadingDialog.show();
-                                   httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(), requestParams, new RequestCallBack<String>() {
-                                       @Override
-                                       public void onSuccess(ResponseInfo<String> responseInfo) {
-                                           if (!TextUtils.isEmpty(responseInfo.result)){
-                                               ParmeBean<MessageBean> parmeBean=JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
-                                               if (parmeBean.getState().equals("success")){
-                                                   if (parmeBean.getValue().getMessage().equals("success")){
-                                                       loadingDialog.dismiss();
+                                if (!TextUtils.isEmpty(userOnselfText.getText().toString())) {
+                                    requestParams.addBodyParameter("resumeInfo", userOnselfText.getText().toString());
+                                    if (!TextUtils.isEmpty(workExpexteText.getText().toString())) {
+                                        requestParams.addBodyParameter("resumeWorkExperience", workExpexteText.getText().toString());
+                                        loadingDialog.show();
+                                        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(), requestParams, new RequestCallBack<String>() {
+                                            @Override
+                                            public void onSuccess(ResponseInfo<String> responseInfo) {
+                                                if (!TextUtils.isEmpty(responseInfo.result)) {
+                                                    ParmeBean<MessageBean> parmeBean = JSONObject.parseObject(responseInfo.result, new TypeReference<ParmeBean<MessageBean>>() {
+                                                    });
+                                                    if (parmeBean.getState().equals("success")) {
+                                                        if (parmeBean.getValue().getMessage().equals("success")) {
+                                                            loadingDialog.dismiss();
                                                       /* Bundle bundle=new Bundle();
                                                        bundle.putString("resumeid",resumeValueBeans.getResumeid()+"");
                                                        bundle.putString("resumeZhName",resumeJobName.getText().toString());
@@ -316,47 +312,46 @@ public class ModificationInformationFragment extends Fragment implements View.On
                                                        Intent intent=new Intent(getActivity(), ResumeParticularsActivity.class);
                                                        intent.putExtra("modifiationData",bundle);
                                                        startActivity(intent);*/
-                                                       getActivity().finish();
+                                                            getActivity().finish();
 
-                                                   }
+                                                        }
 
-                                               }
-                                           }
-
-
-
-                                       }
-
-                                       @Override
-                                       public void onFailure(HttpException e, String s) {
-
-                                       }
-                                   });
+                                                    }
+                                                }
 
 
-                                   }else {
-                                   MyAppliction.showToast("请输入工作经验");
-                               }
+                                            }
 
-                               }else {
-                                   MyAppliction.showToast("请介绍一下自己");
-                               }
+                                            @Override
+                                            public void onFailure(HttpException e, String s) {
+
+                                            }
+                                        });
 
 
-                            }else {
+                                    } else {
+                                        MyAppliction.showToast("请输入工作经验");
+                                    }
+
+                                } else {
+                                    MyAppliction.showToast("请介绍一下自己");
+                                }
+
+
+                            } else {
                                 MyAppliction.showToast("请输入电子邮箱");
                             }
 
-                        }else {
+                        } else {
                             MyAppliction.showToast("请输入QQ号码");
                         }
 
-                    }else {
+                    } else {
                         MyAppliction.showToast("请输入职业名称");
 
                     }
                 }
-            }else {
+            } else {
                 MyAppliction.showToast("请输入姓名");
             }
         }
@@ -372,21 +367,22 @@ public class ModificationInformationFragment extends Fragment implements View.On
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                age = (year1 - year)+"";
+                age = (year1 - year) + "";
                 //Log.e("age00000",age+"");
-                if (Integer.valueOf(age)>0){
+                if (Integer.valueOf(age) > 0) {
                     resumeAgeTv.setText(age);
-                }else {
+                } else {
                     MyAppliction.showToast("亲,您设置的年龄要大于0哦!");
                 }
-                selectYear=year;
-                selectMonthOfYear=monthOfYear;
-                selectDayOfMonth =dayOfMonth;
+                selectYear = year;
+                selectMonthOfYear = monthOfYear;
+                selectDayOfMonth = dayOfMonth;
             }
         }, year1, monthOfYear, dayOfMonth);
         return datePickerDialog;
 
     }
+
     private void showDialog() {
         View view = getActivity().getLayoutInflater().inflate(R.layout.photo_choose_dialog, null);
         final Dialog dialog = new Dialog(getActivity(), R.style.transparentFrameWindowStyle);
@@ -407,9 +403,9 @@ public class ModificationInformationFragment extends Fragment implements View.On
         // 设置点击外围解散
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
-        Button pictureDialogButton= (Button) view.findViewById(R.id.picture_dialog_button);
-        Button photographDialogButton= (Button) view.findViewById(R.id.photograph_dialog_button);
-        Button cancelDialogButton= (Button) view.findViewById(R.id.cancel_dialog_button);
+        Button pictureDialogButton = (Button) view.findViewById(R.id.picture_dialog_button);
+        Button photographDialogButton = (Button) view.findViewById(R.id.photograph_dialog_button);
+        Button cancelDialogButton = (Button) view.findViewById(R.id.cancel_dialog_button);
         pictureDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -441,6 +437,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
 
 
     }
+
     private void startPhotoZoom(Uri uri) {
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri, "image/*");
@@ -514,6 +511,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
             }
         }
     }
+
     // 使用系统当前日期加以调整作为照片的名称
     private String getPhotoFileName() {
         Date date = new Date(System.currentTimeMillis());
@@ -525,14 +523,39 @@ public class ModificationInformationFragment extends Fragment implements View.On
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Bundle bundle = data.getExtras();
         switch (requestCode) {
             case PHOTO_REQUEST_TAKEPHOTO:// 当选择拍照时调用
-                startPhotoZoom(Uri.fromFile(tempFile));
+                int city = bundle.getInt("City");
+                String cName = bundle.getString("CityName");
+                if (cName != null) {
+                    if (city >= 0) {
+                        if (city != 0) {
+                            jobCityLayout.setText(cName);
+                        } else {
+                            jobCityLayout.setText("选择城市");
+                        }
+                        jobCityData = city + "";
+
+                    }
+                } else {
+                    startPhotoZoom(Uri.fromFile(tempFile));
+                }
                 break;
             case PHOTO_REQUEST_GALLERY:// 当选择从本地获取图片时
                 // 做非空判断，当我们觉得不满意想重新剪裁的时候便不会报异常，下同
-                if (data != null)
+                int job = bundle.getInt("Job");
+                String pName = bundle.getString("JobName");
+                if (pName != null) {
+                    if (job != 0) {
+                        jobClassfitelayout.setText(pName);
+                    } else {
+                        jobClassfitelayout.setText("选择职位");
+                    }
+                    classFiteData = job + "";
+                } else if (data != null) {
                     startPhotoZoom(data.getData());
+                }
                 break;
             case PHOTO_REQUEST_CUT:// 返回的结果
                 if (data != null)
@@ -540,49 +563,49 @@ public class ModificationInformationFragment extends Fragment implements View.On
                     sentPicToNext(data);
                 break;
             case INFOLT_HINT_DATA:
-                if (data.getStringExtra("infoIntent").toString().equals("notData")){
-                    if (userOnselfText.getText().toString().equals("介绍一下自己")){
+                if (data.getStringExtra("infoIntent").toString().equals("notData")) {
+                    if (userOnselfText.getText().toString().equals("介绍一下自己")) {
                         userOnselfText.setText("介绍一下自己");
                         userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
-                    }else {
+                    } else {
                         userOnselfText.setText(userOnselfText.getText().toString());
                         userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
 
-                }else if (data.getStringExtra("infoIntent").toString().equals("data")){
-                    if (userOnselfText.getText().toString().equals("介绍一下自己")){
+                } else if (data.getStringExtra("infoIntent").toString().equals("data")) {
+                    if (userOnselfText.getText().toString().equals("介绍一下自己")) {
                         userOnselfText.setText("介绍一下自己");
                         userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
-                    }else {
+                    } else {
                         userOnselfText.setText(userOnselfText.getText().toString());
                         userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
 
-                }else {
+                } else {
                     userOnselfText.setText(data.getStringExtra("infoIntent").toString());
                     userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
                 }
 
                 break;
             case EXPERIENCE_HINT_DATA:
-                if (data.getStringExtra("workIntent").toString().equals("notData")){
-                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")){
+                if (data.getStringExtra("workIntent").toString().equals("notData")) {
+                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")) {
                         workExpexteText.setText("分享一下自己工作经验");
                         workExpexteText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
-                    }else {
+                    } else {
                         workExpexteText.setText(workExpexteText.getText().toString());
                         workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
-                }else if (data.getStringExtra("workIntent").toString().equals("data")){
-                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")){
+                } else if (data.getStringExtra("workIntent").toString().equals("data")) {
+                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")) {
                         workExpexteText.setText("分享一下自己工作经验");
                         workExpexteText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
-                    }else {
+                    } else {
                         workExpexteText.setText(workExpexteText.getText().toString());
                         workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
 
-                }else {
+                } else {
                     workExpexteText.setText(data.getStringExtra("workIntent").toString());
                     workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
                 }
@@ -591,14 +614,15 @@ public class ModificationInformationFragment extends Fragment implements View.On
 
         }
     }
+
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId){
+        switch (checkedId) {
             case R.id.boy_radio_button:
-                sex="0";
+                sex = "0";
                 break;
             case R.id.girl_radio_button:
-                sex="1";
+                sex = "1";
                 break;
 
         }
