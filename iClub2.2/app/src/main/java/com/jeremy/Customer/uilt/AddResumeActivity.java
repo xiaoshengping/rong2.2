@@ -32,6 +32,7 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
@@ -58,12 +59,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AddResumeActivity extends ActionBarActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener {
+public class AddResumeActivity extends ActionBarActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
-      @ViewInject(R.id.tailt_return_tv)
-      private TextView tailtReturnTv;
-      @ViewInject(R.id.tailt_text)
-      private TextView tailtText;
+    @ViewInject(R.id.tailt_return_tv)
+    private TextView tailtReturnTv;
+    @ViewInject(R.id.tailt_text)
+    private TextView tailtText;
 
     //上传头像
     @ViewInject(R.id.updata_image)
@@ -102,11 +103,11 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private TextView resumeAgeTv;
 
     private String userName;
-    private  String sex = null;
+    private String sex = null;
     private String userJobName;
-    private  String userQq;
-    private  String userEmail;
-    private  String touXiangPath;
+    private String userQq;
+    private String userEmail;
+    private String touXiangPath;
     @ViewInject(R.id.sex_radio_group)
     private RadioGroup sexRadioGroup;
     @ViewInject(R.id.boy_radio_button)
@@ -125,7 +126,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
 
     private String mobile;
-    private   String uid=null;
+    private String uid = null;
 
     //下一步
     @ViewInject(R.id.next_layout)
@@ -141,23 +142,22 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     private static final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择
     private static final int PHOTO_REQUEST_CUT = 3;// 结果
     private HttpUtils httpUtils;
-    private static final int INFOLT_HINT_DATA=7;//自我介绍
-    private static final int EXPERIENCE_HINT_DATA=8;//工作经验
+    private static final int INFOLT_HINT_DATA = 7;//自我介绍
+    private static final int EXPERIENCE_HINT_DATA = 8;//工作经验
 
     private ResumeValueBean resumeValueBean;
     private String resumeNuber;
     private RequestParams compileRequestParams;
     private RequestParams requestParams;
     private DatePickerDialog datePickerDialog;
-    private  int year1;
-    private  int monthOfYear;
-    private  int dayOfMonth;
-    private String  age;
+    private int year1;
+    private int monthOfYear;
+    private int dayOfMonth;
+    private String age;
     private int selectYear;
     private int selectMonthOfYear;
     private int selectDayOfMonth;
     private LoadingDialog loadingDialog;
-
 
 
     @Override
@@ -173,11 +173,10 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         intiView();
 
 
-
     }
 
     private void intiView() {
-        loadingDialog = new LoadingDialog(this,"正在更新数据……");
+        loadingDialog = new LoadingDialog(this, "正在更新数据……");
         tailtReturnTv.setOnClickListener(this);
         tailtText.setText("添加简历");
         requestParams = new RequestParams();
@@ -203,7 +202,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.tailt_return_tv:
                 finish();
                 break;
@@ -215,21 +214,20 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 break;
             case R.id.oneself_known_layout:
                 Intent infoIntent = new Intent(AddResumeActivity.this, OneselfExperienceActivity.class);  //方法1
-                infoIntent.putExtra("hintData","infoIntent");
-                if (!TextUtils.isEmpty(userOnselfText.getText().toString())){
-                    infoIntent.putExtra("content",userOnselfText.getText().toString());
+                infoIntent.putExtra("hintData", "infoIntent");
+                if (!TextUtils.isEmpty(userOnselfText.getText().toString())) {
+                    infoIntent.putExtra("content", userOnselfText.getText().toString());
                 }
                 startActivityForResult(infoIntent, INFOLT_HINT_DATA);
                 break;
             case R.id.work_experience_layout:
                 Intent workIntent = new Intent(AddResumeActivity.this, OneselfExperienceActivity.class);  //方法1
-                workIntent.putExtra("hintData","workIntent");
-                if (!TextUtils.isEmpty(workExpexteText.getText().toString())){
-                    workIntent.putExtra("content",workExpexteText.getText().toString());
+                workIntent.putExtra("hintData", "workIntent");
+                if (!TextUtils.isEmpty(workExpexteText.getText().toString())) {
+                    workIntent.putExtra("content", workExpexteText.getText().toString());
                 }
                 startActivityForResult(workIntent, EXPERIENCE_HINT_DATA);
                 break;
-
 
 
             case R.id.job_classfite_layout:
@@ -250,7 +248,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
         }
 
-        }
+    }
 
     private void intiSaveData() {
         userName = resumeZhName.getText().toString();
@@ -258,73 +256,70 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         userQq = resumeQq.getText().toString();
         userEmail = resumeEmail.getText().toString();
         touXiangPath = screenshotFile.getAbsolutePath();
-        userInfo=userOnselfText.getText().toString();
-        userWork=workExpexteText.getText().toString();
-            if (!tempFile.exists() || TextUtils.isEmpty(userName)
-                    || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
-                    || userInfo.equals("介绍一下自己") ||userWork.equals("分享一下自己工作经验")
-                    ||selectYear==0||selectMonthOfYear==0||selectDayOfMonth==0) {
-                MyAppliction.showExitGameAlert("您填写的信息不全或错误", AddResumeActivity.this);
-            } else {
-                requestParams = new RequestParams();
-                requestParams.addBodyParameter("resumeSex", sex);
-                requestParams.addBodyParameter("uid", uid);
-                requestParams.addBodyParameter("resumeWorkExperience", userWork);
-                requestParams.addBodyParameter("resumeInfo", userInfo);
-                requestParams.addBodyParameter("resumeEmail", userEmail);
-                requestParams.addBodyParameter("resumeQq", userQq);
-                requestParams.addBodyParameter("resumeJobName", userJobName);
-                requestParams.addBodyParameter("resumeZhName", userName);
-                requestParams.addBodyParameter("usericon", new File(touXiangPath));
-                requestParams.addBodyParameter("resumeJobCategory", "12");
-                //requestParams.addBodyParameter("resumeCityId", job_city_num);
-                requestParams.addBodyParameter("resumeMobile", mobile);
-                requestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
-                loadingDialog.show();
-                httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddResume(), requestParams, new RequestCallBack<String>() {
-                    @Override
-                    public void onSuccess(ResponseInfo<String> responseInfo) {
-                        // Log.e("onSuccess", responseInfo.result);
-                        String result = responseInfo.result;
-                        if (result != null) {
-                            ParmeBean<SaveResumeValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<SaveResumeValueBean>>() {
-                            });
-                            if (parmeBean.getState().equals("success")) {
-                                SaveResumeValueBean saveValueBean = parmeBean.getValue();
-                                if (saveValueBean.getMessage().equals("提交数据成功")) {
-                                    Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
-                                    intent.putExtra("resumeid", saveValueBean.getResumeid());
-                                    startActivity(intent);
-                                    finish();
-                                    MyAppliction.showToast("提交数据成功");
-                                    loadingDialog.dismiss();
-                                } else {
-                                    MyAppliction.showToast(saveValueBean.getMessage());
-                                    loadingDialog.dismiss();
-                                }
-
-
-
-
+        userInfo = userOnselfText.getText().toString();
+        userWork = workExpexteText.getText().toString();
+        if (!tempFile.exists() || TextUtils.isEmpty(userName)
+                || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
+                || userInfo.equals("介绍一下自己") || userWork.equals("分享一下自己工作经验")
+                || selectYear == 0 || selectMonthOfYear == 0 || selectDayOfMonth == 0) {
+            MyAppliction.showExitGameAlert("您填写的信息不全或错误", AddResumeActivity.this);
+        } else {
+            requestParams = new RequestParams();
+            requestParams.addBodyParameter("resumeSex", sex);
+            requestParams.addBodyParameter("uid", uid);
+            requestParams.addBodyParameter("resumeWorkExperience", userWork);
+            requestParams.addBodyParameter("resumeInfo", userInfo);
+            requestParams.addBodyParameter("resumeEmail", userEmail);
+            requestParams.addBodyParameter("resumeQq", userQq);
+            requestParams.addBodyParameter("resumeJobName", userJobName);
+            requestParams.addBodyParameter("resumeZhName", userName);
+            requestParams.addBodyParameter("usericon", new File(touXiangPath));
+            requestParams.addBodyParameter("resumeJobCategory", "12");
+            //requestParams.addBodyParameter("resumeCityId", job_city_num);
+            requestParams.addBodyParameter("resumeMobile", mobile);
+            requestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
+            loadingDialog.show();
+            httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddResume(), requestParams, new RequestCallBack<String>() {
+                @Override
+                public void onSuccess(ResponseInfo<String> responseInfo) {
+                    // Log.e("onSuccess", responseInfo.result);
+                    String result = responseInfo.result;
+                    if (result != null) {
+                        ParmeBean<SaveResumeValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<SaveResumeValueBean>>() {
+                        });
+                        if (parmeBean.getState().equals("success")) {
+                            SaveResumeValueBean saveValueBean = parmeBean.getValue();
+                            if (saveValueBean.getMessage().equals("提交数据成功")) {
+                                Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
+                                intent.putExtra("resumeid", saveValueBean.getResumeid());
+                                startActivity(intent);
+                                finish();
+                                MyAppliction.showToast("提交数据成功");
+                                loadingDialog.dismiss();
+                            } else {
+                                MyAppliction.showToast(saveValueBean.getMessage());
+                                loadingDialog.dismiss();
                             }
+
+
                         }
-
-                        //
-
                     }
 
-                    @Override
-                    public void onFailure(HttpException e, String s) {
+                    //
 
-                        MyAppliction.showToast("网络出错了");
-                        loadingDialog.dismiss();
-                    }
-                });
-            }
+                }
+
+                @Override
+                public void onFailure(HttpException e, String s) {
+
+                    MyAppliction.showToast("网络出错了");
+                    loadingDialog.dismiss();
+                }
+            });
+        }
 
 
     }
-
 
 
     //查询数据库
@@ -335,9 +330,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
 
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
-            mobile=cursor.getString(5);
+            mobile = cursor.getString(5);
         }
-        if (!TextUtils.isEmpty(mobile)){
+        if (!TextUtils.isEmpty(mobile)) {
 
 
             phoneTextView.setText(mobile);
@@ -347,8 +342,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         db.close();
 
 
-
     }
+
     private void showDialog() {
         View view = this.getLayoutInflater().inflate(R.layout.photo_choose_dialog, null);
         final Dialog dialog = new Dialog(this, R.style.transparentFrameWindowStyle);
@@ -369,9 +364,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         // 设置点击外围解散
         dialog.setCanceledOnTouchOutside(true);
         dialog.show();
-        Button pictureDialogButton= (Button) view.findViewById(R.id.picture_dialog_button);
-        Button photographDialogButton= (Button) view.findViewById(R.id.photograph_dialog_button);
-        Button cancelDialogButton= (Button) view.findViewById(R.id.cancel_dialog_button);
+        Button pictureDialogButton = (Button) view.findViewById(R.id.picture_dialog_button);
+        Button photographDialogButton = (Button) view.findViewById(R.id.photograph_dialog_button);
+        Button cancelDialogButton = (Button) view.findViewById(R.id.cancel_dialog_button);
         pictureDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -480,6 +475,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             }
         }
     }
+
     // 使用系统当前日期加以调整作为照片的名称
     private String getPhotoFileName() {
         Date date = new Date(System.currentTimeMillis());
@@ -492,37 +488,39 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Bundle bundle = data.getExtras();
+
+        if (resultCode == Identification.CITYSELECTION) {
+         /*获取Bundle中的数据，注意类型和key*/
+            int city = bundle.getInt("City");
+            String cName = bundle.getString("CityName");
+            if (city >= 0) {
+                if (city != 0) {
+                    jobCityTv.setText(cName);
+                    Toast.makeText(AddResumeActivity.this, cName, Toast.LENGTH_LONG).show();
+                } else {
+                    jobCityTv.setText("选择城市");
+                }
+                jobCityData = city + "";
+
+            }
+        } else if (resultCode == Identification.JOBCHOICE) {
+            int job = bundle.getInt("Job");
+            String pName = bundle.getString("JobName");
+            if (job != 0) {
+                jobClassFiteTv.setText(pName);
+            } else {
+                jobClassFiteTv.setText("选择职位");
+            }
+            classFiteData = job + "";
+        }
+
         switch (requestCode) {
             case PHOTO_REQUEST_TAKEPHOTO:// 当选择拍照时调用
-
-                int city = bundle.getInt("City");
-                String cName = bundle.getString("CityName");
-                if(cName != null) {
-                    if (city >= 0) {
-                        if (city != 0) {
-                        jobCityLayout.setText(cName);
-                        } else {
-                        jobCityLayout.setText("选择城市");
-                        }
-                        jobCityData = city + "";
-
-                    }
-                }else {
-                    startPhotoZoom(Uri.fromFile(tempFile));
-                }
+                startPhotoZoom(Uri.fromFile(tempFile));
                 break;
             case PHOTO_REQUEST_GALLERY:// 当选择从本地获取图片时
                 // 做非空判断，当我们觉得不满意想重新剪裁的时候便不会报异常，下同
-                int job = bundle.getInt("Job");
-                String pName = bundle.getString("JobName");
-                if(pName != null) {
-                    if (job != 0) {
-                    jobClassfitelayout.setText(pName);
-                    } else {
-                    jobClassfitelayout.setText("选择职位");
-                    }
-                    classFiteData = job + "";
-                }else if (data != null) {
+                if (data != null) {
                     startPhotoZoom(data.getData());
                 }
                 break;
@@ -532,49 +530,49 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                     sentPicToNext(data);
                 break;
             case INFOLT_HINT_DATA:
-                if (data.getStringExtra("infoIntent").toString().equals("notData")){
-                    if (userOnselfText.getText().toString().equals("介绍一下自己")){
+                if (data.getStringExtra("infoIntent").toString().equals("notData")) {
+                    if (userOnselfText.getText().toString().equals("介绍一下自己")) {
                         userOnselfText.setText("介绍一下自己");
                         userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
-                    }else {
+                    } else {
                         userOnselfText.setText(userOnselfText.getText().toString());
                         userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
 
-                }else if (data.getStringExtra("infoIntent").toString().equals("data")){
-                    if (userOnselfText.getText().toString().equals("介绍一下自己")){
+                } else if (data.getStringExtra("infoIntent").toString().equals("data")) {
+                    if (userOnselfText.getText().toString().equals("介绍一下自己")) {
                         userOnselfText.setText("介绍一下自己");
                         userOnselfText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
-                    }else {
+                    } else {
                         userOnselfText.setText(userOnselfText.getText().toString());
                         userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
 
-                }else {
+                } else {
                     userOnselfText.setText(data.getStringExtra("infoIntent").toString());
                     userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
                 }
 
                 break;
             case EXPERIENCE_HINT_DATA:
-                if (data.getStringExtra("workIntent").toString().equals("notData")){
-                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")){
+                if (data.getStringExtra("workIntent").toString().equals("notData")) {
+                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")) {
                         workExpexteText.setText("分享一下自己工作经验");
                         workExpexteText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
-                    }else {
+                    } else {
                         workExpexteText.setText(workExpexteText.getText().toString());
                         workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
-                }else if (data.getStringExtra("workIntent").toString().equals("data")){
-                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")){
+                } else if (data.getStringExtra("workIntent").toString().equals("data")) {
+                    if (workExpexteText.getText().toString().equals("分享一下自己工作经验")) {
                         workExpexteText.setText("分享一下自己工作经验");
                         workExpexteText.setTextColor(getResources().getColor(R.color.editTextPromptColor));
-                    }else {
+                    } else {
                         workExpexteText.setText(workExpexteText.getText().toString());
                         workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
                     }
 
-                }else {
+                } else {
                     workExpexteText.setText(data.getStringExtra("workIntent").toString());
                     workExpexteText.setTextColor(getResources().getColor(R.color.textColor242424));
                 }
@@ -582,45 +580,48 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
                 break;
         }
     }
+
     //日期
-    public  DatePickerDialog datePickerDialogData() {
+    public DatePickerDialog datePickerDialogData() {
 
 
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                age = (year1 - year)+"";
+                age = (year1 - year) + "";
                 //Log.e("age00000",age+"");
-                if (Integer.valueOf(age)>0){
+                if (Integer.valueOf(age) > 0) {
                     resumeAgeTv.setText(age);
                     resumeAgeTv.setTextColor(getResources().getColor(R.color.textColor242424));
-                }else {
+                } else {
                     Toast.makeText(AddResumeActivity.this, "亲,您设置的年龄要大于0哦!", Toast.LENGTH_LONG).show();
                 }
-                selectYear=year;
-                selectMonthOfYear=monthOfYear;
-                selectDayOfMonth =dayOfMonth;
+                selectYear = year;
+                selectMonthOfYear = monthOfYear;
+                selectDayOfMonth = dayOfMonth;
             }
         }, year1, monthOfYear, dayOfMonth);
         return datePickerDialog;
 
     }
+
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId){
+        switch (checkedId) {
             case R.id.boy_radio_button:
-                sex="0";
+                sex = "0";
                 break;
             case R.id.girl_radio_button:
-                sex="1";
+                sex = "1";
                 break;
 
         }
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction()==MotionEvent.ACTION_DOWN){
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             hintKbTwo();
         }
 
@@ -628,9 +629,9 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     }
 
     private void hintKbTwo() {
-        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-        if(imm.isActive()&&getCurrentFocus()!=null){
-            if (getCurrentFocus().getWindowToken()!=null) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm.isActive() && getCurrentFocus() != null) {
+            if (getCurrentFocus().getWindowToken() != null) {
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
             }
         }

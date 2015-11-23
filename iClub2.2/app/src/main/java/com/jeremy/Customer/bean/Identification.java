@@ -18,8 +18,8 @@ public class Identification {
     public static int HOTJOBS = 5;//热门职位
 
     public static int RETURN = 0;//无返回值
-    public static int CITYSELECTION = 1;//选择城市
-    public static int JOBCHOICE = 2;//选择职位
+    public static int CITYSELECTION = 100;//选择城市
+    public static int JOBCHOICE = 200;//选择职位
 
 
     //提示框种类

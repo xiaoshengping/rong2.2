@@ -28,6 +28,7 @@ import android.widget.TextView;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.LoadingDialog;
 import com.jeremy.Customer.bean.MessageBean;
 import com.jeremy.Customer.bean.ParmeBean;
@@ -524,36 +525,36 @@ public class ModificationInformationFragment extends Fragment implements View.On
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Bundle bundle = data.getExtras();
+        if (resultCode == Identification.CITYSELECTION) {
+         /*获取Bundle中的数据，注意类型和key*/
+            int city = bundle.getInt("City");
+            String cName = bundle.getString("CityName");
+            if (city >= 0) {
+                if (city != 0) {
+                    jobCityTv.setText(cName);
+                } else {
+                    jobCityTv.setText("选择城市");
+                }
+                jobCityData = city + "";
+            }
+        } else if (resultCode == Identification.JOBCHOICE) {
+            int job = bundle.getInt("Job");
+            String pName = bundle.getString("JobName");
+            if (job != 0) {
+                jobClassFiteTv.setText(pName);
+            } else {
+                jobClassFiteTv.setText("选择职位");
+            }
+            classFiteData = job + "";
+        }
+
         switch (requestCode) {
             case PHOTO_REQUEST_TAKEPHOTO:// 当选择拍照时调用
-                int city = bundle.getInt("City");
-                String cName = bundle.getString("CityName");
-                if (cName != null) {
-                    if (city >= 0) {
-                        if (city != 0) {
-                            jobCityLayout.setText(cName);
-                        } else {
-                            jobCityLayout.setText("选择城市");
-                        }
-                        jobCityData = city + "";
-
-                    }
-                } else {
-                    startPhotoZoom(Uri.fromFile(tempFile));
-                }
+                startPhotoZoom(Uri.fromFile(tempFile));
                 break;
             case PHOTO_REQUEST_GALLERY:// 当选择从本地获取图片时
                 // 做非空判断，当我们觉得不满意想重新剪裁的时候便不会报异常，下同
-                int job = bundle.getInt("Job");
-                String pName = bundle.getString("JobName");
-                if (pName != null) {
-                    if (job != 0) {
-                        jobClassfitelayout.setText(pName);
-                    } else {
-                        jobClassfitelayout.setText("选择职位");
-                    }
-                    classFiteData = job + "";
-                } else if (data != null) {
+                if (data != null) {
                     startPhotoZoom(data.getData());
                 }
                 break;
