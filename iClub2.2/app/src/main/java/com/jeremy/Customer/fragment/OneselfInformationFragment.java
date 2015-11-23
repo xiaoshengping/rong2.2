@@ -16,7 +16,6 @@ import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
-import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.uilt.CommentCountActivity;
 import com.jeremy.Customer.uilt.ResumeParticularsActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -72,7 +71,6 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
     @Override
     public void onResume() {
         super.onResume();
-        MyAppliction.showToast("我是fragment000");
         intiResumeData();
     }
     private void intiResumeData() {
@@ -88,7 +86,6 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
                     });
                     ResumeValueBean resumeValueBean = artistParme.getValue();
                     if (resumeValueBean != null) {
-                        MyAppliction.showToast("获取数据成功");
                         resumeInfoTv.setText(resumeValueBean.getResumeInfo());
                         resumeExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
                         resumeQqTv.setText(resumeValueBean.getResumeQq());

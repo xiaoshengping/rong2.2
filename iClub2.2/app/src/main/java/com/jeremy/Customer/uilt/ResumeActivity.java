@@ -21,7 +21,6 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.ResumeListAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
-import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
 import com.lidroid.xutils.HttpUtils;
@@ -132,8 +131,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result=responseInfo.result;
                 if (result!=null){
-                    MyAppliction.showToast("list刷新成功");
-                    Log.e("list", result);
+
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
                     }, resumeValueBeans, resumeListAdapter);
 
