@@ -143,8 +143,10 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
                             resumeZhNameTv.setText(resumeValueBeanss.getResumeZhName());
                             if (resumeValueBeanss.getResumeSex()==0){
                                 resumeSexIv.setBackgroundResource(R.mipmap.man_icon);
+                                resumeAgeTv.setTextColor(getResources().getColor(R.color.textColor0299fe));
                             }else if (resumeValueBeanss.getResumeSex()==1){
                                 resumeSexIv.setBackgroundResource(R.mipmap.woman_icon);
+                                resumeAgeTv.setTextColor(getResources().getColor(R.color.textColorf56f94));
                             }
                             resumeAgeTv.setText(resumeValueBeanss.getResumeAge()+"");
                             resumeWorkPlaceTv.setText(resumeValueBeanss.getResumeWorkPlace());

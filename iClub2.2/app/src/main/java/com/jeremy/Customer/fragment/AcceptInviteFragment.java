@@ -22,6 +22,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.InviteMessageListAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.InviteMessgaeListValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.uilt.CompanyInviteMessageActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -41,7 +42,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView> {
+public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView>,View.OnClickListener {
 
     @ViewInject(R.id.accept_invite_list_lv)
     private PullToRefreshListView accpetListLv;
@@ -78,6 +79,7 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
     private void intiView() {
         httpUtils=new HttpUtils();
         requestParams=new RequestParams();
+        acceptLayout.setOnClickListener(this);
 
 
     }
@@ -175,4 +177,9 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
 
     }
 
+    @Override
+    public void onClick(View v) {
+        accpetListLv.setRefreshing();
+        MyAppliction.showToast("刷新成功");
+    }
 }

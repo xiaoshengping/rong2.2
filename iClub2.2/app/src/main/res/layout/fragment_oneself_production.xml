@@ -28,7 +28,7 @@
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
             android:text="更多"
-            android:textColor="@color/redTextColor"
+            android:textColor="#9373ee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -120,7 +120,7 @@
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
             android:text="更多"
-            android:textColor="@color/redTextColor"
+            android:textColor="#9373ee"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -228,7 +228,7 @@
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
             android:text="更多"
-            android:textColor="@color/redTextColor"
+            android:textColor="#9373ee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView

@@ -19,6 +19,8 @@
     <color name="editTextPromptColor">#d7d7d7</color>
     <color name="hunTextColor">#777778</color>
     <color name="redTextColor">#be0158</color>
+    <color name="textColor0299fe">#0299fe</color>
+    <color name="textColorf56f94">#f56f94</color>
 
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>

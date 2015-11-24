@@ -195,7 +195,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         year1 = calendar.get(Calendar.YEAR);
         monthOfYear = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DATE);
-        //resumeValueBeanData();   //列表数据
+
         selectDatabase();       //查询数据库
     }
 
@@ -258,65 +258,135 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
         touXiangPath = screenshotFile.getAbsolutePath();
         userInfo = userOnselfText.getText().toString();
         userWork = workExpexteText.getText().toString();
-        if (!tempFile.exists() || TextUtils.isEmpty(userName)
-                || TextUtils.isEmpty(userJobName) || TextUtils.isEmpty(userQq) || TextUtils.isEmpty(userEmail)
-                || userInfo.equals("介绍一下自己") || userWork.equals("分享一下自己工作经验")
-                || selectYear == 0 || selectMonthOfYear == 0 || selectDayOfMonth == 0) {
-            MyAppliction.showExitGameAlert("您填写的信息不全或错误", AddResumeActivity.this);
-        } else {
-            requestParams = new RequestParams();
-            requestParams.addBodyParameter("resumeSex", sex);
-            requestParams.addBodyParameter("uid", uid);
-            requestParams.addBodyParameter("resumeWorkExperience", userWork);
-            requestParams.addBodyParameter("resumeInfo", userInfo);
-            requestParams.addBodyParameter("resumeEmail", userEmail);
-            requestParams.addBodyParameter("resumeQq", userQq);
-            requestParams.addBodyParameter("resumeJobName", userJobName);
-            requestParams.addBodyParameter("resumeZhName", userName);
+        requestParams = new RequestParams();
+        if(screenshotFile.exists()){
             requestParams.addBodyParameter("usericon", new File(touXiangPath));
-            requestParams.addBodyParameter("resumeJobCategory", "12");
-            //requestParams.addBodyParameter("resumeCityId", job_city_num);
-            requestParams.addBodyParameter("resumeMobile", mobile);
-            requestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
-            loadingDialog.show();
-            httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddResume(), requestParams, new RequestCallBack<String>() {
-                @Override
-                public void onSuccess(ResponseInfo<String> responseInfo) {
-                    // Log.e("onSuccess", responseInfo.result);
-                    String result = responseInfo.result;
-                    if (result != null) {
-                        ParmeBean<SaveResumeValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<SaveResumeValueBean>>() {
-                        });
-                        if (parmeBean.getState().equals("success")) {
-                            SaveResumeValueBean saveValueBean = parmeBean.getValue();
-                            if (saveValueBean.getMessage().equals("提交数据成功")) {
-                                Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
-                                intent.putExtra("resumeid", saveValueBean.getResumeid());
-                                startActivity(intent);
-                                finish();
-                                MyAppliction.showToast("提交数据成功");
-                                loadingDialog.dismiss();
-                            } else {
-                                MyAppliction.showToast(saveValueBean.getMessage());
-                                loadingDialog.dismiss();
+            if (!TextUtils.isEmpty(userName)){
+                requestParams.addBodyParameter("resumeZhName", userName);
+                if (!TextUtils.isEmpty(sex)){
+                    requestParams.addBodyParameter("resumeSex", sex);
+                    if (selectYear != 0 || selectMonthOfYear != 0 || selectDayOfMonth != 0){
+                        requestParams.addBodyParameter("birthday", selectYear + "-" + selectMonthOfYear + "-" + selectDayOfMonth);
+                        if (!TextUtils.isEmpty(classFiteData)){
+                            requestParams.addBodyParameter("resumeJobCategory", classFiteData);
+                            if (!TextUtils.isEmpty(userJobName)){
+                                requestParams.addBodyParameter("resumeJobName", userJobName);
+                                if (!TextUtils.isEmpty(jobCityData)){
+                                    requestParams.addBodyParameter("resumeCityId", jobCityData);
+                                    if (!TextUtils.isEmpty(userQq)){
+                                        requestParams.addBodyParameter("resumeQq", userQq);
+                                        if (!TextUtils.isEmpty(userEmail)){
+                                            requestParams.addBodyParameter("resumeEmail", userEmail);
+                                            if (!userInfo.equals("介绍一下自己")){
+                                                requestParams.addBodyParameter("resumeInfo", userInfo);
+                                                if (!userWork.equals("分享一下自己工作经验")){
+                                                    requestParams.addBodyParameter("resumeWorkExperience", userWork);
+                                                    requestParams.addBodyParameter("uid", uid);
+
+
+                                                    requestParams.addBodyParameter("resumeMobile", mobile);
+
+                                                    loadingDialog.show();
+                                                    httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddResume(), requestParams, new RequestCallBack<String>() {
+                                                        @Override
+                                                        public void onSuccess(ResponseInfo<String> responseInfo) {
+                                                            // Log.e("onSuccess", responseInfo.result);
+                                                            String result = responseInfo.result;
+                                                            if (result != null) {
+                                                                ParmeBean<SaveResumeValueBean> parmeBean = JSONObject.parseObject(result, new TypeReference<ParmeBean<SaveResumeValueBean>>() {
+                                                                });
+                                                                if (parmeBean.getState().equals("success")) {
+                                                                    SaveResumeValueBean saveValueBean = parmeBean.getValue();
+                                                                    if (saveValueBean.getMessage().equals("提交数据成功")) {
+                                                                        Intent intent = new Intent(AddResumeActivity.this, ProductionResumeActivity.class);
+                                                                        intent.putExtra("resumeid", saveValueBean.getResumeid());
+                                                                        startActivity(intent);
+                                                                        finish();
+                                                                        MyAppliction.showToast("提交数据成功");
+                                                                        loadingDialog.dismiss();
+                                                                    } else {
+                                                                        MyAppliction.showToast(saveValueBean.getMessage());
+                                                                        loadingDialog.dismiss();
+                                                                    }
+
+
+                                                                }
+                                                            }
+
+                                                            //
+
+                                                        }
+
+                                                        @Override
+                                                        public void onFailure(HttpException e, String s) {
+
+                                                            MyAppliction.showToast("网络出错了");
+                                                            loadingDialog.dismiss();
+                                                        }
+                                                    });
+
+
+
+
+
+
+
+
+                                                }else {
+                                                    MyAppliction.showToast("请输入工作经验!");
+                                                }
+
+                                            }else {
+                                                MyAppliction.showToast("请输入自我介绍!");
+                                            }
+
+                                        }else {
+                                            MyAppliction.showToast("请输入电子邮箱!");
+                                        }
+                                    }else {
+                                        MyAppliction.showToast("请输入QQ号码!");
+                                    }
+                                }else {
+                                    MyAppliction.showToast("请选择工作地点!");
+                                }
+
+                            }else {
+                                MyAppliction.showToast("请输入职位名称!");
                             }
 
-
+                        }else {
+                            MyAppliction.showToast("请选择职业类别!");
                         }
+                    }else {
+                        MyAppliction.showToast("请选择出生年份!");
                     }
 
-                    //
-
+                    }else {
+                    MyAppliction.showToast("请选择性别!");
                 }
-
-                @Override
-                public void onFailure(HttpException e, String s) {
-
-                    MyAppliction.showToast("网络出错了");
-                    loadingDialog.dismiss();
-                }
-            });
+            }else {
+                MyAppliction.showToast("请输入姓名!");
+            }
+        }else {
+            MyAppliction.showToast("请选择要上传的头像!");
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
@@ -496,7 +566,8 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             if (city >= 0) {
                 if (city != 0) {
                     jobCityTv.setText(cName);
-                    Toast.makeText(AddResumeActivity.this, cName, Toast.LENGTH_LONG).show();
+                    jobClassFiteTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    //Toast.makeText(AddResumeActivity.this, cName, Toast.LENGTH_LONG).show();
                 } else {
                     jobCityTv.setText("选择城市");
                 }
@@ -508,6 +579,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             String pName = bundle.getString("JobName");
             if (job != 0) {
                 jobClassFiteTv.setText(pName);
+                jobClassFiteTv.setTextColor(getResources().getColor(R.color.textColor242424));
             } else {
                 jobClassFiteTv.setText("选择职位");
             }

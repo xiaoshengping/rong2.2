@@ -22,6 +22,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.InviteMessageListAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.InviteMessgaeListValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.uilt.CompanyInviteMessageActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -115,6 +116,7 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
                         acceptLayout.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                MyAppliction.showToast("刷新成功");
                                 inviteSuccessfulListLv.setRefreshing();
                             }
                         });
