@@ -79,4 +79,5 @@
     <string name="title_activity_merchant_add_pictrue">MerchantAddPictrueActivity</string>
     <string name="title_activity_photo_browse">PhotoBrowse</string>
     <string name="title_activity_image_pager_be">ImagePagerBeActivity</string>
+    <string name="title_activity_bound_accouns">BoundAccounsActivity</string>
 </resources>

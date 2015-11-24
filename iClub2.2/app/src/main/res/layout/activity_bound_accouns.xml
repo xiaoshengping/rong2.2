@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.jeremy.Customer.uilt.BoundAccounsActivity">
+    <include
+        android:id="@+id/tailt_layout"
+        layout="@layout/app_white_tailt_layout"/>
+    <EditText
+        android:id="@+id/accounts_edit"
+        android:layout_below="@+id/tailt_layout"
+        android:layout_marginTop="130dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:paddingLeft="10dp"
+        android:textColorHint="@color/hunTextColor"
+        android:background="@color/white"
+        android:hint="请输入已注册账号"
+        android:layout_width="match_parent"
+        android:layout_height="45dp" />
+
+    <EditText
+        android:id="@+id/psw_edit"
+        android:layout_below="@+id/accounts_edit"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:paddingLeft="10dp"
+        android:textColorHint="@color/hunTextColor"
+        android:background="@color/white"
+        android:hint="请输入已注册密码"
+        android:layout_width="match_parent"
+        android:layout_height="45dp" />
+       <TextView
+           android:id="@+id/no_register_tv"
+           android:layout_marginRight="20dp"
+           android:layout_marginTop="20dp"
+           android:text="还没有注册？"
+           android:textColor="#9373ee"
+           android:layout_alignParentRight="true"
+           android:layout_below="@+id/psw_edit"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content" />
+    <Button
+        android:background="@mipmap/red_button_icon"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:text="去绑定"
+        android:textColor="@color/white"
+        android:layout_below="@+id/no_register_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

@@ -342,11 +342,14 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         while (cursor.moveToNext()) {
-            uid=cursor.getString(1);
+            uid=cursor.getString(0);
             state = cursor.getString(4);
             userName = cursor.getString(2);
             userIcon=cursor.getString(3);
             companyName=cursor.getString(6);
+        }
+        if (!TextUtils.isEmpty(uid) || tempFile.exists()) {
+            intiToXiangData();
         }
         MyAppliction.showToast(uid+""+state+".."+userName+userIcon+companyName);
         if (!TextUtils.isEmpty(uid)) {
@@ -405,9 +408,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
             }
 
-            if (!TextUtils.isEmpty(uid) || tempFile.exists()) {
-                intiToXiangData();
-            }
+
         }else {
             mineLayout.setVisibility(View.GONE);
             eixtLoginLayout.setVisibility(View.GONE);
@@ -415,6 +416,8 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             touXiang1Tv.setVisibility(View.VISIBLE);
             petname1Tv.setVisibility(View.VISIBLE);
         }
+
+
 
     }
 
@@ -427,8 +430,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getEditUserIcon(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-               // Log.e("000000",responseInfo.result);
+                Log.e("000000",responseInfo.result);
                 if (!TextUtils.isEmpty(responseInfo.result)){
+                    //MyAppliction.showToast("数据提交成功");
                     ParmeBean<MessageBean> parmeBean= com.alibaba.fastjson.JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
                     if (parmeBean.getState().equals("success")){
                       String message=  parmeBean.getValue().getMessage();
@@ -440,6 +444,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                             while (cursor.moveToNext()) {
                                 userIcon=cursor.getString(3);
                             }
+                            MyAppliction.showToast(userIcon);
                             touXiangIv.setVisibility(View.VISIBLE);
                             if (!TextUtils.isEmpty(userIcon)){
                                 MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+userIcon,touXiangIv,MyAppliction.RoundedOptions);
