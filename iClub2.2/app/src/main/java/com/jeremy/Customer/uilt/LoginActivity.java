@@ -170,7 +170,9 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                                 sb.append(key + "=" + info.get(key).toString() + "\r\n");
                             }
                             String qqId = info.get("openid").toString();
-                            qqLoginData(qqId);
+                            //qqLoginData(qqId);
+                            MyAppliction.showToast(qqId);
+
                             Log.d("TestData", sb.toString());
                         } else {
                             Log.d("TestData", "发生错误：" + status);

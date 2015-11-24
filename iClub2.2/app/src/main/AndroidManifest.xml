@@ -224,10 +224,7 @@
             android:name=".uilt.MerchantAddPictrueActivity"
             android:label="@string/title_activity_merchant_add_pictrue" />
         <activity android:name=".uilt.ChooseAResumeActivity" />
-        <activity
-            android:name=".uilt.PhotoBrowse"
-            android:label="@string/title_activity_photo_browse" >
-        </activity>
+
         <activity
             android:name=".uilt.ImagePagerBeActivity"
             android:label="@string/title_activity_image_pager_be" >
