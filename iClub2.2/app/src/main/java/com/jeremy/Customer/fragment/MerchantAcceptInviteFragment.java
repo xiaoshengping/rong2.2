@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.TypeReference;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
@@ -23,6 +24,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.MerchantInviteListAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.MerchantInviteValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.uilt.MercharInviteParticularsActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -41,12 +43,14 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MerchantAcceptInviteFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView>  {
+public class MerchantAcceptInviteFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView> ,View.OnClickListener {
 
     @ViewInject(R.id.merchant_invite_message_list_lv)
     private PullToRefreshListView merchantInviteMessageLv;
     @ViewInject(R.id.accept_layout)
     private LinearLayout accpetLayout;
+    @ViewInject(R.id.anew_refresh_tv)
+    private TextView anewRefrsshTv;
     private HttpUtils httpUtils;
     private List<MerchantInviteValueBean> merchantInviteValueBeans;
     private MerchantInviteListAdapter inviteMessagelistAdapter;
@@ -73,6 +77,7 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
     }
 
     private void intiView() {
+        anewRefrsshTv.setOnClickListener(this);
         httpUtils=new HttpUtils();
 
 
@@ -164,5 +169,11 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
         offset=offset+10;
         intiData(offset);
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        MyAppliction.showToast("刷新完成");
+        merchantInviteMessageLv.setRefreshing();
     }
 }

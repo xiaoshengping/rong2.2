@@ -30,6 +30,15 @@
             android:text="亲,您还没有合作成功消息!"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
+        <TextView
+            android:id="@+id/anew_refresh_tv"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="重新刷新"
+            android:layout_marginLeft="130dp"
+            android:background="@drawable/invite_corners"
+            android:layout_width="100dp"
+            android:layout_height="40dp" />
     </LinearLayout>
 </FrameLayout>
