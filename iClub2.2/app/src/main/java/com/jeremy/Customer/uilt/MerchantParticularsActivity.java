@@ -96,7 +96,7 @@ public class MerchantParticularsActivity extends ActionBarActivity implements Vi
         position=getIntent().getStringExtra("position");
          recruitmentHistoryValueBean= (RecruitmentHistoryValueBean) getIntent().getSerializableExtra("recruitmentHistoryValueBean");
           if (recruitmentHistoryValueBean!=null){
-              //jobNameTv.setText(recruitmentHistoryValueBean.get);
+              jobNameTv.setText(recruitmentHistoryValueBean.getJobcategory()+"");
               payTv.setText(recruitmentHistoryValueBean.getWorkPay());
               timeNeirongTv.setText(recruitmentHistoryValueBean.getPuttime());
               deliverTv.setText(recruitmentHistoryValueBean.getViewCount()+"");

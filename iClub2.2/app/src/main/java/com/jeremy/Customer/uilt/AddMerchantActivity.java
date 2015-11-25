@@ -175,7 +175,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 workDescribeTv.setText("写一下职位描述哦(必填)");
                 workDescribeTv.setTextColor(getResources().getColor(R.color.hunTextColor));
             }
-
+            professionClassfitionTv.setText(recruitmentHistoryValueBean.getJobcategory()+"");
             workingTimeTt.setText(recruitmentHistoryValueBean.getWorkingTime());
             workingHoursEdit.setText(recruitmentHistoryValueBean.getWorkingHours());
             workPayEdit.setText(recruitmentHistoryValueBean.getWorkPay());
@@ -342,6 +342,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             if (city >= 0) {
                 if (city != 0) {
                     workAddressTv.setText(cName);
+                    workAddressTv.setTextColor(getResources().getColor(R.color.textColor242424));
                 } else {
                     workAddressTv.setText("选择城市");
                 }
@@ -354,7 +355,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
 //        if(job>=0&&job!=10){
             if (job != 0) {
                 professionClassfitionTv.setText(pName);
-//                selected_position_cancel.setVisibility(View.VISIBLE);
+                professionClassfitionTv.setTextColor(getResources().getColor(R.color.textColor242424));
             } else {
 
                 professionClassfitionTv.setText("选择职位");
@@ -386,8 +387,6 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 &&!TextUtils.isEmpty(workDescribeTv.getText().toString())
                 &&!TextUtils.isEmpty(experienceRequireTv.getText().toString())){
             requestParams.addBodyParameter("jobid",recruitmentHistoryValueBean.getJobId()+"");
-            requestParams.addBodyParameter("jobCategory",1+"");
-            requestParams.addBodyParameter("cityid",2+"");
             requestParams.addBodyParameter("position",position);
             requestParams.addBodyParameter("workPay",workPay);
             requestParams.addBodyParameter("recruitingNumbers", recruitingNumbers);
@@ -399,6 +398,13 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 requestParams.addBodyParameter("workingHours", recruitmentHistoryValueBean.getWorkingHours());
             }
             requestParams.addBodyParameter("workingTime", workingTime);
+            if (!TextUtils.isEmpty(professionClassfition)){
+                requestParams.addBodyParameter("jobCategory", professionClassfition);
+            }
+            if (!TextUtils.isEmpty(workAddress)){
+                requestParams.addBodyParameter("cityid", workAddress);
+            }
+
             loadingDialog.show();
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getEditJod(),requestParams, new RequestCallBack<String>() {
                 @Override
@@ -445,10 +451,9 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         String merchantInfo=experienceRequireTv.getText().toString();
         String merchantWork=workDescribeTv.getText().toString();
         if (!TextUtils.isEmpty(position) && !TextUtils.isEmpty(workPay) && !TextUtils.isEmpty(merchantWork)
-                && !TextUtils.isEmpty(merchantInfo) && !TextUtils.isEmpty(recruitingNumbers)) {
+                && !TextUtils.isEmpty(merchantInfo) && !TextUtils.isEmpty(recruitingNumbers)&&!TextUtils.isEmpty(professionClassfition)
+                &&!TextUtils.isEmpty(workAddress)) {
             requestParams.addBodyParameter("uid",uid);
-            requestParams.addBodyParameter("jobCategory", 2 + "");
-            requestParams.addBodyParameter("cityid", 1+"");
             requestParams.addBodyParameter("position", position);
             requestParams.addBodyParameter("workPay", workPay);
             requestParams.addBodyParameter("recruitingNumbers", recruitingNumbers);
@@ -460,7 +465,12 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             }else {
                 requestParams.addBodyParameter("workingTime", year1+"-"+monthOfYear+"-"+dayOfMonth);
             }
-
+            if (!TextUtils.isEmpty(professionClassfition)){
+                requestParams.addBodyParameter("jobCategory", professionClassfition);
+            }
+           if (!TextUtils.isEmpty(workAddress)){
+               requestParams.addBodyParameter("cityid", workAddress);
+           }
             loadingDialog.show();
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAddJod(), requestParams, new RequestCallBack<String>() {
                 @Override

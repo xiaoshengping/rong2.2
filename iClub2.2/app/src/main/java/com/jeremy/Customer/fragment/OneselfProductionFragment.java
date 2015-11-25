@@ -96,7 +96,6 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
 
        HttpUtils httpUtils=new HttpUtils().configDefaultHttpCacheExpiry(0);
         String resumeListUrl= AppUtilsUrl.getResumeLista(((ResumeParticularsActivity)getActivity()).getResumeid());
-        MyAppliction.showToast(((ResumeParticularsActivity)getActivity()).getResumeid());
         httpUtils.send(HttpRequest.HttpMethod.POST, resumeListUrl, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {

@@ -9,7 +9,7 @@
         android:id="@+id/video_layout"
 
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_marginTop="20dp"
             android:id="@+id/video_tailt_tv"
@@ -28,7 +28,7 @@
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
             android:text="更多"
-            android:textColor="@color/redTextColor"
+            android:textColor="@color/textColor9373ee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -44,7 +44,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
                 android:scaleType="centerCrop"
-                android:layout_marginBottom="20dp"
+
                 android:src="@color/textColor242424"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
@@ -55,6 +55,12 @@
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:background="@color/white"
+                android:layout_below="@+id/show_video_resume_iv"
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
         </RelativeLayout>
 
 
@@ -70,12 +76,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
-                android:src="@color/lineColor"
+                android:src="@color/white"
 
                 android:layout_width="match_parent"
-                android:layout_height="170dp" />
+                android:layout_height="100dp" />
             <TextView
-                android:text="亲,这个人太懒了，还没有上传视频!"
+                android:text="这个人太懒了，什么都没留下!"
                 android:textColor="@color/textColor242424"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
@@ -123,7 +129,7 @@
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
             android:text="更多"
-            android:textColor="@color/redTextColor"
+            android:textColor="@color/textColor9373ee"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -178,12 +184,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
-                android:src="@color/lineColor"
+                android:src="@color/white"
 
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="100dp" />
             <TextView
-                android:text="亲,这个人太懒了，还没有上传音乐!"
+                android:text="这个人太懒了，什么都没留下!"
                 android:textColor="@color/textColor242424"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
@@ -192,9 +198,7 @@
         </RelativeLayout>
 
     </RelativeLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="10dp" />
+
     </LinearLayout>
     <ImageView
         android:layout_below="@+id/music_layout"
@@ -233,7 +237,7 @@
             android:layout_marginRight="30dp"
             android:layout_alignParentRight="true"
             android:text="更多"
-            android:textColor="@color/redTextColor"
+            android:textColor="@color/textColor9373ee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <ImageView
@@ -292,12 +296,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
-                android:src="@color/lineColor"
+                android:src="@color/white"
 
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="100dp" />
             <TextView
-                android:text="亲,这个人太懒了，还没有上传图片!"
+                android:text="这个人太懒了，什么都没留下!"
                 android:textColor="@color/textColor242424"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"

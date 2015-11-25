@@ -257,7 +257,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
             case R.id.cpmpile_resume_tv:
                     Intent intent=new Intent(ResumeParticularsActivity.this,ModificationResumeActivity.class);
                     intent.putExtra("resumeValueBean",resumeValueBeanss);
-                startActivity(intent);
+                     startActivity(intent);
 
                 break;
 

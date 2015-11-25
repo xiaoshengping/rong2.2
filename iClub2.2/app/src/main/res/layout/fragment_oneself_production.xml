@@ -9,7 +9,7 @@
         android:id="@+id/video_layout"
 
         android:layout_width="match_parent"
-        android:layout_height="250dp">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_marginTop="20dp"
             android:id="@+id/video_tailt_tv"
@@ -44,7 +44,7 @@
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
                 android:scaleType="centerCrop"
-                android:layout_marginBottom="20dp"
+
                 android:src="@color/textColor242424"
                 android:layout_width="match_parent"
                 android:layout_height="200dp" />
@@ -55,10 +55,16 @@
                 android:layout_centerHorizontal="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:layout_below="@+id/show_video_resume_iv"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
         </RelativeLayout>
 
 
         <RelativeLayout
+
             android:layout_marginBottom="10dp"
             android:id="@+id/no_viseo_layout"
             android:visibility="gone"
@@ -71,12 +77,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
-                android:src="@color/lineColor"
+                android:src="@color/white"
 
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="100dp" />
             <TextView
-                android:text="亲,没有视频,赶紧上传视频吧!"
+                android:text="你太懒了，什么都没留下!"
                 android:textColor="@color/textColor242424"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
@@ -172,12 +178,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
-                android:src="@color/lineColor"
+                android:src="@color/white"
 
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="100dp" />
             <TextView
-                android:text="亲,还没有音乐,赶紧上传音乐吧!"
+                android:text="你太懒了，什么都没留下!"
                 android:textColor="@color/textColor242424"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
@@ -287,12 +293,12 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
-                android:src="@color/lineColor"
+                android:src="@color/white"
 
                 android:layout_width="match_parent"
-                android:layout_height="150dp" />
+                android:layout_height="100dp" />
             <TextView
-                android:text="亲,还没有图片,赶紧上传图片吧!"
+                android:text="你太懒了,什么都没留下!"
                 android:textColor="@color/textColor242424"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
