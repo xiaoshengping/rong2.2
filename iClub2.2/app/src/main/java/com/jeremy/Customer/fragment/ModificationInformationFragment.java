@@ -3,6 +3,7 @@ package com.jeremy.Customer.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,10 +13,12 @@ import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -200,7 +203,10 @@ public class ModificationInformationFragment extends Fragment implements View.On
             }
             resumeAgeTv.setText(resumeValueBeans.getResumeAge() + "");
             resumeAgeTv.setTextColor(getResources().getColor(R.color.textColor242424));
-            resumeJobName.setText(resumeValueBeans.getResumeJobCategoryName());
+            jobClassFiteTv.setText(resumeValueBeans.getResumeJobCategoryName());
+            jobClassFiteTv.setTextColor(getResources().getColor(R.color.textColor242424));
+            resumeJobName.setText(resumeValueBeans.getResumeJobName());
+            jobCityTv.setTextColor(getResources().getColor(R.color.textColor242424));
             jobCityTv.setText(resumeValueBeans.getResumeWorkPlace());
             phoneTextView.setText(resumeValueBeans.getResumeMobile());
             resumeQq.setText(resumeValueBeans.getResumeQq());
@@ -285,6 +291,12 @@ public class ModificationInformationFragment extends Fragment implements View.On
                                     requestParams.addBodyParameter("resumeInfo", userOnselfText.getText().toString());
                                     if (!TextUtils.isEmpty(workExpexteText.getText().toString())) {
                                         requestParams.addBodyParameter("resumeWorkExperience", workExpexteText.getText().toString());
+                                        if (!TextUtils.isEmpty(classFiteData)) {
+                                            requestParams.addBodyParameter("resumeJobCategory", classFiteData);
+                                        }
+                                            if (!TextUtils.isEmpty(jobCityData)) {
+                                                requestParams.addBodyParameter("resumeCityId", jobCityData);
+                                            }
                                         loadingDialog.show();
                                         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getCompileResume(), requestParams, new RequestCallBack<String>() {
                                             @Override
@@ -326,6 +338,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
                                             @Override
                                             public void onFailure(HttpException e, String s) {
 
+                                                loadingDialog.dismiss();
                                             }
                                         });
 
@@ -521,6 +534,24 @@ public class ModificationInformationFragment extends Fragment implements View.On
         return dateFormat.format(date) + ".jpg";
     }
 
+
+
+    public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction()==MotionEvent.ACTION_DOWN){
+            hintKbTwo();
+        }
+
+        return getActivity().onTouchEvent(event);
+    }
+
+    private void hintKbTwo() {
+        InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(imm.isActive()&&getActivity().getCurrentFocus()!=null){
+            if (getActivity().getCurrentFocus().getWindowToken()!=null) {
+                imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+            }
+        }
+    }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -532,6 +563,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
             if (city >= 0) {
                 if (city != 0) {
                     jobCityTv.setText(cName);
+                    jobCityTv.setTextColor(getResources().getColor(R.color.textColor242424));
                 } else {
                     jobCityTv.setText("选择城市");
                 }
@@ -542,6 +574,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
             String pName = bundle.getString("JobName");
             if (job != 0) {
                 jobClassFiteTv.setText(pName);
+                jobClassFiteTv.setTextColor(getResources().getColor(R.color.textColor242424));
             } else {
                 jobClassFiteTv.setText("选择职位");
             }

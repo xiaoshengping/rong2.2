@@ -352,7 +352,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             intiToXiangData();
         }
         MyAppliction.showToast(uid+""+state+".."+userName+userIcon+companyName);
-        if (!TextUtils.isEmpty(uid)) {
+        if (uid!=null) {
             if (!TextUtils.isEmpty(state)) {
                 mineLayout.setVisibility(View.VISIBLE);
                 eixtLoginLayout.setVisibility(View.VISIBLE);
@@ -412,7 +412,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         }else {
             mineLayout.setVisibility(View.GONE);
             eixtLoginLayout.setVisibility(View.GONE);
-            //petNameTv.setText("点击头像登录");
             touXiang1Tv.setVisibility(View.VISIBLE);
             petname1Tv.setVisibility(View.VISIBLE);
         }
@@ -600,7 +599,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 baos = new ByteArrayOutputStream();
                 photo.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 byte[] photodata = baos.toByteArray();
-                //System.out.println(photodata.toString());
+
 
             } catch (Exception e) {
                 e.getStackTrace();

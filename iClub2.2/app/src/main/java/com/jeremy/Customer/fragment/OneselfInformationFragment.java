@@ -27,8 +27,6 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
-import java.util.List;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -61,7 +59,7 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
     @ViewInject(R.id.commentCount_tv)
     private TextView commentCountTv;
 
-    private List<ResumeValueBean> resumeValueBeans;
+    private ResumeValueBean resumeValueBean;
 
 
     public OneselfInformationFragment() {
@@ -84,7 +82,7 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
                 if (result != null) {
                     ParmeBean<ResumeValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ParmeBean<ResumeValueBean>>() {
                     });
-                    ResumeValueBean resumeValueBean = artistParme.getValue();
+                     resumeValueBean = artistParme.getValue();
                     if (resumeValueBean != null) {
                         resumeInfoTv.setText(resumeValueBean.getResumeInfo());
                         resumeExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
@@ -229,10 +227,11 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
                 experienceMoreLayout.setVisibility(View.GONE);
                 break;
             case R.id.commentCount_tv:
-                Intent intent =new Intent(getActivity(), CommentCountActivity.class);
-                intent.putExtra("falge","resume");
-                startActivity(intent);
-
+                if (resumeValueBean.getCommentCount()!=0){
+                    Intent intent =new Intent(getActivity(), CommentCountActivity.class);
+                    intent.putExtra("falge","resume");
+                    startActivity(intent);
+                }
                 break;
 
 
