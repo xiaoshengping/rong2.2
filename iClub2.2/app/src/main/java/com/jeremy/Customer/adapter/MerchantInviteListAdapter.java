@@ -2,6 +2,7 @@ package com.jeremy.Customer.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -143,6 +144,11 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
             if (vid == viewHodle.rejectMerchantBt.getId()){
                 if (isChecked.get(position) == false){
                     isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
+                   if (data.size()!=0){
+
+
+                    if (!TextUtils.isEmpty(data.get(position).getBeStatus())){
+
                     if (data.get(position).getBeStatus().equals("6")) {
                         adoptData(data.get(position).getInviteid(),"998");
 
@@ -157,7 +163,11 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
                         adoptData(data.get(position).getInviteid(),"998");
                     }
 
-                    MyAppliction.showToast(position + "kkkkkk" + data.get(position).getInviteid());
+                   }
+                   }else {
+                       MyAppliction.showToast("网络异常");
+                   }
+                    //MyAppliction.showToast(position + "kkkkkk" + data.get(position).getInviteid());
                     //Log.e("steta________", position + "");
                 } else if (isChecked.get(position) == true){
                     isChecked.put(position, false);  // 根据点击的情况来将其位置和相应的状态存入
@@ -186,6 +196,9 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
             if (vid == viewHodle.acceptMerchantBt.getId()){
                 if (isChecked.get(position) == false){
                     isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
+                   if (!TextUtils.isEmpty(data.get(position).getBeStatus())){
+
+
                     if (data.get(position).getBeStatus().equals("1")) {
                         adoptData(data.get(position).getInviteid(),"3");
 
@@ -198,7 +211,9 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
                         context.startActivity(intent);
                         //MyAppliction.showToast("成功接受");
                     }
-
+                   }else {
+                       MyAppliction.showToast("网络异常");
+                   }
                     //MyAppliction.showToast(position + "kkkkkk" + data.get(position).getStatus());
                     //Log.e("steta________", position + "");
                 } else if (isChecked.get(position) == true){

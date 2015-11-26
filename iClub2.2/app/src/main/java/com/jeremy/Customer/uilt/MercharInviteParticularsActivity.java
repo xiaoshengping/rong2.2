@@ -99,8 +99,10 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
             MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), customImageView, MyAppliction.RoundedOptions);
             resumeZhNameTv.setText(resumeValueBeans.getResumeZhName());
             if (resumeValueBeans.getResumeSex()==0){
+                resumeAgeTv.setTextColor(getResources().getColor(R.color.textColor0299fe));
                 resumeSexIv.setBackgroundResource(R.mipmap.man_icon);
             }else if (resumeValueBeans.getResumeSex()==1){
+                resumeAgeTv.setTextColor(getResources().getColor(R.color.textColorf56f94));
                 resumeSexIv.setBackgroundResource(R.mipmap.woman_icon);
             }
             resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");

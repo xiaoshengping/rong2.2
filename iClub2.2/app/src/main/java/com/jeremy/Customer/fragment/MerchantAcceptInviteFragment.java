@@ -51,6 +51,8 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
     private LinearLayout accpetLayout;
     @ViewInject(R.id.anew_refresh_tv)
     private TextView anewRefrsshTv;
+    @ViewInject(R.id.tixing_text)
+    private  TextView tixingText;
     private HttpUtils httpUtils;
     private List<MerchantInviteValueBean> merchantInviteValueBeans;
     private MerchantInviteListAdapter inviteMessagelistAdapter;
@@ -121,6 +123,15 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
 
             @Override
             public void onFailure(HttpException e, String s) {
+
+                if (merchantInviteValueBeans.size()==0){
+                    tixingText.setText("网络异常，请重新刷新!");
+                    accpetLayout.setVisibility(View.VISIBLE);
+                    merchantInviteMessageLv.setVisibility(View.GONE);
+                }else {
+                    accpetLayout.setVisibility(View.GONE);
+                    merchantInviteMessageLv.setVisibility(View.VISIBLE);
+                }
                 Log.e("onFailure", s);
             }
         });

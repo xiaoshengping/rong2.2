@@ -301,12 +301,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.journey_merchant_tv: //行程和商家消息
                 if (state.equals("2")){
-
                     Intent intent1 = new Intent(getActivity(), CalendarActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putInt("userType", 2);//测试用
-//                    bundle.putString("Personid", talentValueBean.getPersonid() + "");
-//                    bundle.putInt("Resumeid", talentValueBean.getResumeid());
                     intent1.putExtras(bundle);
                     startActivity(intent1);
 
@@ -351,7 +348,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         if (!TextUtils.isEmpty(uid) || tempFile.exists()) {
             intiToXiangData();
         }
-        MyAppliction.showToast(uid+""+state+".."+userName+userIcon+companyName);
+        //MyAppliction.showToast(uid+""+state+".."+userName+userIcon+companyName);
         if (uid!=null) {
             if (!TextUtils.isEmpty(state)) {
                 mineLayout.setVisibility(View.VISIBLE);

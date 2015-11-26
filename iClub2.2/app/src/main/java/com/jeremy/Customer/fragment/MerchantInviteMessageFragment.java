@@ -51,6 +51,8 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
     private LinearLayout accpetLayout;
     @ViewInject(R.id.anew_refresh_tv)
     private TextView anewRefreshTv;
+    @ViewInject(R.id.tixing_text)
+    private TextView tixingText;
     private HttpUtils httpUtils;
     private List<MerchantInviteValueBean> merchantInviteValueBeans;
     private MerchantInviteListAdapter inviteMessagelistAdapter;
@@ -119,6 +121,14 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
 
             @Override
             public void onFailure(HttpException e, String s) {
+                if (merchantInviteValueBeans.size()==0){
+                    accpetLayout.setVisibility(View.VISIBLE);
+                    merchantInviteMessageLv.setVisibility(View.GONE);
+                    tixingText.setText("网络异常，请重新刷新!");
+                }else {
+                    accpetLayout.setVisibility(View.GONE);
+                    merchantInviteMessageLv.setVisibility(View.VISIBLE);
+                }
                 Log.e("onFailure", s);
             }
         });
@@ -130,7 +140,9 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
     private void intiListView() {
         merchantInviteValueBeans=new ArrayList<MerchantInviteValueBean>();
         inviteMessagelistAdapter=new MerchantInviteListAdapter(merchantInviteValueBeans,getActivity(),merchantInviteMessageLv);
-        merchantInviteMessageLv.setAdapter(inviteMessagelistAdapter);
+        if (merchantInviteValueBeans!=null){
+            merchantInviteMessageLv.setAdapter(inviteMessagelistAdapter);
+        }
         merchantInviteMessageLv.setMode(PullToRefreshBase.Mode.BOTH);
         merchantInviteMessageLv.setOnRefreshListener(this);
         ILoadingLayout endLabels  = merchantInviteMessageLv

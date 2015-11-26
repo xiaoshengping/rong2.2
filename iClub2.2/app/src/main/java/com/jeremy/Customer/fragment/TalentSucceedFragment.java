@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.TypeReference;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
@@ -42,12 +43,16 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TalentSucceedFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView>{
+public class TalentSucceedFragment extends Fragment implements PullToRefreshBase.OnRefreshListener2<ListView>,View.OnClickListener {
 
     @ViewInject(R.id.invite_successful_list_lv)
     private PullToRefreshListView inviteSuccessfulListLv;
     @ViewInject(R.id.accept_layout)
     private LinearLayout acceptLayout;
+    @ViewInject(R.id.amew_refrash_tv)
+    private TextView amewRefrashTv;
+    @ViewInject(R.id.tixing_text)
+    private TextView tixingText;
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private InviteMessageListAdapter inviteMessagelistAdapter;
@@ -88,7 +93,7 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
     private void intiView() {
         httpUtils=new HttpUtils();
         requestParams=new RequestParams();
-
+        amewRefrashTv.setOnClickListener(this);
 
     }
 
@@ -113,13 +118,7 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
                     if (inviteMessgaeListValueBeans.size()==0){
                         inviteSuccessfulListLv.setVisibility(View.GONE);
                         acceptLayout.setVisibility(View.VISIBLE);
-                        acceptLayout.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                MyAppliction.showToast("刷新成功");
-                                inviteSuccessfulListLv.setRefreshing();
-                            }
-                        });
+
                     }else {
                         acceptLayout.setVisibility(View.GONE);
                         inviteSuccessfulListLv.setVisibility(View.VISIBLE);
@@ -131,6 +130,16 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
 
             @Override
             public void onFailure(HttpException e, String s) {
+                if (inviteMessgaeListValueBeans.size()==0){
+                    inviteSuccessfulListLv.setVisibility(View.GONE);
+                    acceptLayout.setVisibility(View.VISIBLE);
+                    tixingText.setText("网络异常,请重新刷新!");
+
+                }else {
+                    acceptLayout.setVisibility(View.GONE);
+                    inviteSuccessfulListLv.setVisibility(View.VISIBLE);
+                }
+
                 inviteSuccessfulListLv.onRefreshComplete();
             }
         });
@@ -185,4 +194,9 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
 
     }
 
+    @Override
+    public void onClick(View v) {
+        MyAppliction.showToast("刷新成功");
+        inviteSuccessfulListLv.setRefreshing();
+    }
 }

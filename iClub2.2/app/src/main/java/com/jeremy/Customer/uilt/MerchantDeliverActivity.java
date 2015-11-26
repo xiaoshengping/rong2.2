@@ -23,7 +23,6 @@ import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.MerchantMessageValueBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
-import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
 import com.lidroid.xutils.HttpUtils;
@@ -118,7 +117,7 @@ public class MerchantDeliverActivity extends ActionBarActivity implements View.O
                 String result = responseInfo.result;
                 HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<MerchantMessageValueBean>>() {
                 }, informationValueBeans, merchantMessageListAdapter);
-                MyAppliction.showToast(informationValueBeans.size()+"");
+                //MyAppliction.showToast(informationValueBeans.size()+"");
                 if (informationValueBeans.size()==0){
                     mercharntDeliverLayout.setVisibility(View.VISIBLE);
                     informationListv.setVisibility(View.GONE);

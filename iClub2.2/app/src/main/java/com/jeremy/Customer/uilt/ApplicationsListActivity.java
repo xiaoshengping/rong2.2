@@ -24,6 +24,7 @@ import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.BMerchantValueBean;
 import com.jeremy.Customer.bean.mine.RecruitmentHistoryValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
 import com.lidroid.xutils.HttpUtils;
@@ -62,6 +63,10 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
     private LinearLayout addApplicationLayout;
     @ViewInject(R.id.add_application_tv)
     private TextView addApplicationTv;
+    @ViewInject(R.id.anew_refresh_tv)
+    private TextView anewRefrashTv;
+    @ViewInject(R.id.tixing_text)
+    private TextView tixingText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,18 +141,23 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
     @Override
     protected void onRestart() {
         super.onRestart();
-        SQLhelper sqLhelper=new SQLhelper(this);
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
 
-        while (cursor.moveToNext()) {
-            uid = cursor.getString(0);
-            bdName=cursor.getString(6);
-        }
         recruitmentHistoryLv.setRefreshing();
     }
 
     private void initView() {
+        /*SQLhelper sqLhelper=new SQLhelper(this);
+        SQLiteDatabase db= sqLhelper.getWritableDatabase();
+        Cursor cursor=db.query("user", null, null, null, null, null, null);
+
+        while (cursor.moveToNext()) {
+            uid = cursor.getString(0);
+            bdName=cursor.getString(6);
+        }*/
+
+    }
+
+    private void initRecruitmentHistoryData(int offset) {
         SQLhelper sqLhelper=new SQLhelper(this);
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
@@ -156,11 +166,6 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
             uid = cursor.getString(0);
             bdName=cursor.getString(6);
         }
-
-    }
-
-    private void initRecruitmentHistoryData(int offset) {
-
         if (!TextUtils.isEmpty(uid)){
             HttpUtils httpUtils=new HttpUtils();
             httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getRecruitmentHistoryList(uid, offset), new RequestCallBack<String>() {
@@ -185,6 +190,21 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
 
                 @Override
                 public void onFailure(HttpException e, String s) {
+
+                        anewRefrashTv.setVisibility(View.VISIBLE);
+                        addApplicationTv.setVisibility(View.GONE);
+                        tixingText.setText("网络异常，请重新刷新!");
+                        anewRefrashTv.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                MyAppliction.showToast("刷新成功");
+                                recruitmentHistoryLv.setRefreshing();
+                            }
+                        });
+                        recruitmentHistoryLv.setVisibility(View.GONE);
+                        addApplicationLayout.setVisibility(View.VISIBLE);
+
+
 
                 }
             });

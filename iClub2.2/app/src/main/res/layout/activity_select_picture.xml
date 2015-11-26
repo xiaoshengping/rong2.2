@@ -80,7 +80,7 @@
                 android:textColor="#fff"
                 android:textSize="14sp" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/preview_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
                 android:gravity="center"
                 android:text="预览"
                 android:textColor="#fff"
-                android:textSize="14sp" />
+                android:textSize="14sp" />-->
         </RelativeLayout>
 
         <ListView

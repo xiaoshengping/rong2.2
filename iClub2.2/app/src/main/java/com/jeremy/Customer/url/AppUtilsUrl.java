@@ -345,6 +345,13 @@ public class AppUtilsUrl  {
         return BaseUrl+"inviteListByBusiness.action?"+"uid="+uid+"&value="+value+"&offset="+offset+"&limit=10";
 
     }
+    //绑定-QQ-WEIBO
+    public static String BindingWeiboQq(){
+        // login_weibo.action
+        return BaseUrl+"binding_weibo_qq.action";
+
+    }
+
     //微博登陆
     public static String LoginWeiBo(){
         // login_weibo.action

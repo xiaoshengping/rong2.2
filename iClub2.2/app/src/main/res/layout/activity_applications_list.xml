@@ -30,12 +30,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
         <TextView
+            android:id="@+id/tixing_text"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:gravity="center"
             android:text="亲,您还没有招聘,马上添加招聘吧!"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/anew_refresh_tv"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="重新刷新"
+            android:layout_marginLeft="130dp"
+            android:background="@drawable/invite_corners"
+            android:layout_width="100dp"
+            android:layout_height="40dp" />
        <TextView
            android:id="@+id/add_application_tv"
            android:gravity="center"

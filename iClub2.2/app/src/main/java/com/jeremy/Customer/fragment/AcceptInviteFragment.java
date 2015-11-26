@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.TypeReference;
 import com.handmark.pulltorefresh.library.ILoadingLayout;
@@ -48,6 +49,10 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
     private PullToRefreshListView accpetListLv;
     @ViewInject(R.id.accept_layout)
     private LinearLayout acceptLayout;
+    @ViewInject(R.id.amew_refrash_tv)
+    private TextView amewRefrashTv;
+    @ViewInject(R.id.tixing_text)
+    private TextView tixingText;
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private List<InviteMessgaeListValueBean> inviteMessgaeListValueBeans ;
@@ -79,7 +84,7 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
     private void intiView() {
         httpUtils=new HttpUtils();
         requestParams=new RequestParams();
-        acceptLayout.setOnClickListener(this);
+        amewRefrashTv.setOnClickListener(this);
 
 
     }
@@ -122,6 +127,14 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
 
             @Override
             public void onFailure(HttpException e, String s) {
+                if (inviteMessgaeListValueBeans.size()==0){
+                    accpetListLv.setVisibility(View.GONE);
+                    acceptLayout.setVisibility(View.VISIBLE);
+                    tixingText.setText("网络异常，请重新刷新!");
+                }else {
+                    accpetListLv.setVisibility(View.VISIBLE);
+                }
+
                 accpetListLv.onRefreshComplete();
             }
         });

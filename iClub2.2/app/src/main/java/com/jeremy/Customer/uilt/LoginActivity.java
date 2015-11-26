@@ -258,6 +258,9 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                     for (String key : keys) {
                         sb.append(key + "=" + info.get(key).toString() + "\r\n");
                     }
+                    Intent intent=new Intent(LoginActivity.this,BoundAccounsActivity.class);
+                    intent.putExtra("QQdata",sb.toString().charAt(0));
+                    startActivity(intent);
                     Log.d("TestData", sb.toString());
                 } else {
                     Log.d("TestData", "发生错误：" + status);
