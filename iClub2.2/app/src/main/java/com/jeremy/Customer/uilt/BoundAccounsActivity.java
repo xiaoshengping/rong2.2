@@ -13,6 +13,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
+import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseInfo;
@@ -35,6 +36,7 @@ public class BoundAccounsActivity extends ActionBarActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bound_accouns);
+        ViewUtils.inject(this);
         inti();
         MyAppliction.showToast(getIntent().getStringExtra("QQdata"));
     }

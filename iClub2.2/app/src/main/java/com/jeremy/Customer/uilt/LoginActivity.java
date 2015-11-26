@@ -167,14 +167,15 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                             StringBuilder sb = new StringBuilder();
                             Set<String> keys = info.keySet();
                             for (String key : keys) {
-                                MyAppliction.showToast(info.get(key).toString());
+                                //MyAppliction.showToast(info.get(key).toString());
                                 sb.append(key + "=" + info.get(key).toString() + "\r\n");
                             }
                             //String qqId = info.get("openid").toString();
                             //qqLoginData(qqId);
                             //MyAppliction.showToast(qqId);
+                           // mController.getUserInfo();
                               Intent intent=new Intent(LoginActivity.this,BoundAccounsActivity.class);
-                              intent.putExtra("QQdata",sb.toString().charAt(0));
+                              intent.putExtra("QQdata", sb.toString());
                               startActivity(intent);
                             Log.d("TestData", sb.toString());
                         } else {

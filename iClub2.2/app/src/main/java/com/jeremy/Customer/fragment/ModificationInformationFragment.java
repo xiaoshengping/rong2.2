@@ -555,8 +555,9 @@ public class ModificationInformationFragment extends Fragment implements View.On
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Bundle bundle = data.getExtras();
+
         if (resultCode == Identification.CITYSELECTION) {
+            Bundle bundle = data.getExtras();
          /*获取Bundle中的数据，注意类型和key*/
             int city = bundle.getInt("City");
             String cName = bundle.getString("CityName");
@@ -570,6 +571,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
                 jobCityData = city + "";
             }
         } else if (resultCode == Identification.JOBCHOICE) {
+            Bundle bundle = data.getExtras();
             int job = bundle.getInt("Job");
             String pName = bundle.getString("JobName");
             if (job != 0) {
