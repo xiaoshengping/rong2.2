@@ -2,181 +2,230 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="10dp"
+    android:layout_marginTop="15dp"
+    android:background="#ffffff"
 
+    android:orientation="vertical"
     android:paddingBottom="15dp"
-    android:background="#FDFBFC"
-    android:layout_marginTop="15dp">
+    android:paddingTop="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="0dp"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp">
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="0dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="热门人才"
             android:textColor="@color/home_module_name"
-            android:textSize="@dimen/home_module_name"/>
+            android:textSize="@dimen/home_module_name" />
+
         <TextView
             android:id="@+id/home_more2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="更多"
+            android:drawableRight="@mipmap/purple_right"
+            android:paddingBottom="5dp"
             android:paddingLeft="10dp"
             android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textSize="@dimen/home_more"
+            android:text="更多"
             android:textColor="@color/home_more"
-            android:drawableRight="@mipmap/purple_right"/>
+            android:textSize="@dimen/home_more" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-            <com.jeremy.Customer.view.RoundAngleImageView
-                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
-                android:id="@+id/recommend_the_virtuous_and_able_riv1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <RelativeLayout
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="@mipmap/default_tvatar"
-                app:roundWidth = "@dimen/home_talents_headportrait_radius"
-                app:roundHeight = "@dimen/home_talents_headportrait_radius"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="3dp"
-                android:layout_margin="6dp"/>
+                android:layout_margin="6dp"
+                android:layout_marginTop="3dp">
+
+                <ImageView
+                    android:id="@+id/recommend_the_virtuous_and_able_riv1"
+                    android:layout_width="@dimen/home_talents_headportrait"
+                    android:layout_height="@dimen/home_talents_headportrait"
+                    android:background="@mipmap/default_tvatar"
+                    android:scaleType="centerCrop" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/abda"/>
+            </RelativeLayout>
+
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text=""
-                android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
-                android:layout_marginBottom="5dp"/>
-            <com.jeremy.Customer.view.RoundAngleImageView
-                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
-                android:id="@+id/recommend_the_virtuous_and_able_riv4"
+                android:textSize="@dimen/home_talents_item_name" />
+
+            <RelativeLayout
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="@mipmap/default_tvatar"
-                app:roundWidth = "@dimen/home_talents_headportrait_radius"
-                app:roundHeight = "@dimen/home_talents_headportrait_radius"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="3dp"
-                android:layout_margin="6dp"/>
+                android:layout_margin="6dp"
+                android:layout_marginTop="3dp">
+
+                <ImageView
+                    android:id="@+id/recommend_the_virtuous_and_able_riv4"
+                    android:layout_width="@dimen/home_talents_headportrait"
+                    android:layout_height="@dimen/home_talents_headportrait"
+                    android:background="@mipmap/default_tvatar"
+                    android:scaleType="centerCrop" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/abda"/>
+            </RelativeLayout>
+
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text=""
-                android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
-                android:layout_marginBottom="5dp"/>
+                android:textSize="@dimen/home_talents_item_name" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-            <com.jeremy.Customer.view.RoundAngleImageView
-                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
-                android:id="@+id/recommend_the_virtuous_and_able_riv2"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <RelativeLayout
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="@mipmap/default_tvatar"
-                app:roundWidth = "@dimen/home_talents_headportrait_radius"
-                app:roundHeight = "@dimen/home_talents_headportrait_radius"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="3dp"
-                android:layout_margin="6dp"/>
+                android:layout_margin="6dp"
+                android:layout_marginTop="3dp">
+
+                <ImageView
+                    android:id="@+id/recommend_the_virtuous_and_able_riv2"
+                    android:layout_width="@dimen/home_talents_headportrait"
+                    android:layout_height="@dimen/home_talents_headportrait"
+                    android:background="@mipmap/default_tvatar"
+                    android:scaleType="centerCrop" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/abda"/>
+            </RelativeLayout>
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text=""
-                android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
-                android:layout_marginBottom="5dp"/>
-            <com.jeremy.Customer.view.RoundAngleImageView
-                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
-                android:id="@+id/recommend_the_virtuous_and_able_riv5"
+                android:textSize="@dimen/home_talents_item_name" />
+
+            <RelativeLayout
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="@mipmap/default_tvatar"
-                app:roundWidth = "@dimen/home_talents_headportrait_radius"
-                app:roundHeight = "@dimen/home_talents_headportrait_radius"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="3dp"
-                android:layout_margin="6dp"/>
+                android:layout_margin="6dp"
+                android:layout_marginTop="3dp">
+
+                <ImageView
+                    android:id="@+id/recommend_the_virtuous_and_able_riv5"
+                    android:layout_width="@dimen/home_talents_headportrait"
+                    android:layout_height="@dimen/home_talents_headportrait"
+                    android:background="@mipmap/default_tvatar"
+                    android:scaleType="centerCrop" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/abda"/>
+            </RelativeLayout>
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text=""
-                android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
-                android:layout_marginBottom="5dp"/>
+                android:textSize="@dimen/home_talents_item_name" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-            <com.jeremy.Customer.view.RoundAngleImageView
-                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
-                android:id="@+id/recommend_the_virtuous_and_able_riv3"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <RelativeLayout
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="@mipmap/default_tvatar"
-                app:roundWidth = "@dimen/home_talents_headportrait_radius"
-                app:roundHeight = "@dimen/home_talents_headportrait_radius"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="3dp"
-                android:layout_margin="6dp"/>
+                android:layout_margin="6dp"
+                android:layout_marginTop="3dp">
+
+                <ImageView
+                    android:id="@+id/recommend_the_virtuous_and_able_riv3"
+                    android:layout_width="@dimen/home_talents_headportrait"
+                    android:layout_height="@dimen/home_talents_headportrait"
+                    android:background="@mipmap/default_tvatar"
+                    android:scaleType="centerCrop" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/abda"/>
+            </RelativeLayout>
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text=""
-                android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
-                android:layout_marginBottom="5dp"/>
-            <com.jeremy.Customer.view.RoundAngleImageView
-                xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
-                android:id="@+id/recommend_the_virtuous_and_able_riv6"
+                android:textSize="@dimen/home_talents_item_name" />
+
+            <RelativeLayout
                 android:layout_width="@dimen/home_talents_headportrait"
                 android:layout_height="@dimen/home_talents_headportrait"
-                android:background="@mipmap/default_tvatar"
-                app:roundWidth = "@dimen/home_talents_headportrait_radius"
-                app:roundHeight = "@dimen/home_talents_headportrait_radius"
-                android:scaleType="centerCrop"
-                android:layout_marginTop="3dp"
-                android:layout_margin="6dp"/>
+                android:layout_margin="6dp"
+                android:layout_marginTop="3dp">
+
+                <ImageView
+                    android:id="@+id/recommend_the_virtuous_and_able_riv6"
+                    android:layout_width="@dimen/home_talents_headportrait"
+                    android:layout_height="@dimen/home_talents_headportrait"
+                    android:background="@mipmap/default_tvatar"
+                    android:scaleType="centerCrop" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@mipmap/abda"/>
+            </RelativeLayout>
             <TextView
                 android:id="@+id/recommend_the_virtuous_and_able_tv6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:text=""
-                android:textSize="@dimen/home_talents_item_name"
                 android:textColor="@color/home_talents_item_name"
-                android:layout_marginBottom="5dp"/>
+                android:textSize="@dimen/home_talents_item_name" />
         </LinearLayout>
 
     </LinearLayout>

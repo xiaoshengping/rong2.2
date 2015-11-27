@@ -51,7 +51,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private RoundAngleImageView activity_picture_riv1, activity_picture_riv2;
     private TextView activity_name_tv1, activity_name_tv2;
 
-    private RoundAngleImageView recommend_the_virtuous_and_able_riv1, recommend_the_virtuous_and_able_riv2, recommend_the_virtuous_and_able_riv3, recommend_the_virtuous_and_able_riv4, recommend_the_virtuous_and_able_riv5, recommend_the_virtuous_and_able_riv6;
+    private ImageView recommend_the_virtuous_and_able_riv1;
+    private ImageView  recommend_the_virtuous_and_able_riv2, recommend_the_virtuous_and_able_riv3, recommend_the_virtuous_and_able_riv4, recommend_the_virtuous_and_able_riv5, recommend_the_virtuous_and_able_riv6;
     private TextView recommend_the_virtuous_and_able_tv1, recommend_the_virtuous_and_able_tv2, recommend_the_virtuous_and_able_tv3, recommend_the_virtuous_and_able_tv4, recommend_the_virtuous_and_able_tv5, recommend_the_virtuous_and_able_tv6;
 
     private TextView item_position_name_tv1, item_position_name_tv2, item_position_name_tv3, item_position_name_tv4, item_position_name_tv5;
@@ -111,12 +112,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         activity_picture_riv2 = (RoundAngleImageView) view.findViewById(R.id.activity_picture_riv2);
         activity_name_tv1 = (TextView) view.findViewById(R.id.activity_name_tv1);
         activity_name_tv2 = (TextView) view.findViewById(R.id.activity_name_tv2);
-        recommend_the_virtuous_and_able_riv1 = (RoundAngleImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv1);
-        recommend_the_virtuous_and_able_riv2 = (RoundAngleImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv2);
-        recommend_the_virtuous_and_able_riv3 = (RoundAngleImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv3);
-        recommend_the_virtuous_and_able_riv4 = (RoundAngleImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv4);
-        recommend_the_virtuous_and_able_riv5 = (RoundAngleImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv5);
-        recommend_the_virtuous_and_able_riv6 = (RoundAngleImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv6);
+        recommend_the_virtuous_and_able_riv1 = (ImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv1);
+        recommend_the_virtuous_and_able_riv2 = (ImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv2);
+        recommend_the_virtuous_and_able_riv3 = (ImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv3);
+        recommend_the_virtuous_and_able_riv4 = (ImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv4);
+        recommend_the_virtuous_and_able_riv5 = (ImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv5);
+        recommend_the_virtuous_and_able_riv6 = (ImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv6);
         recommend_the_virtuous_and_able_tv1 = (TextView) view.findViewById(R.id.recommend_the_virtuous_and_able_tv1);
         recommend_the_virtuous_and_able_tv2 = (TextView) view.findViewById(R.id.recommend_the_virtuous_and_able_tv2);
         recommend_the_virtuous_and_able_tv3 = (TextView) view.findViewById(R.id.recommend_the_virtuous_and_able_tv3);
