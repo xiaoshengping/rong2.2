@@ -53,6 +53,8 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
     private TextView anewRefreshTv;
     @ViewInject(R.id.tixing_text)
     private TextView tixingText;
+    @ViewInject(R.id.yichan_text)
+    private TextView yichanText;
     private HttpUtils httpUtils;
     private List<MerchantInviteValueBean> merchantInviteValueBeans;
     private MerchantInviteListAdapter inviteMessagelistAdapter;
@@ -107,6 +109,7 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
                         accpetLayout.setVisibility(View.VISIBLE);
                         merchantInviteMessageLv.setVisibility(View.GONE);
                     }else {
+                        yichanText.setVisibility(View.GONE);
                         accpetLayout.setVisibility(View.GONE);
                         merchantInviteMessageLv.setVisibility(View.VISIBLE);
                     }
@@ -121,14 +124,8 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
 
             @Override
             public void onFailure(HttpException e, String s) {
-                if (merchantInviteValueBeans.size()==0){
-                    accpetLayout.setVisibility(View.VISIBLE);
-                    merchantInviteMessageLv.setVisibility(View.GONE);
-                    tixingText.setText("网络异常，请重新刷新!");
-                }else {
-                    accpetLayout.setVisibility(View.GONE);
-                    merchantInviteMessageLv.setVisibility(View.VISIBLE);
-                }
+                merchantInviteMessageLv.onRefreshComplete();
+                yichanText.setVisibility(View.VISIBLE);
                 Log.e("onFailure", s);
             }
         });

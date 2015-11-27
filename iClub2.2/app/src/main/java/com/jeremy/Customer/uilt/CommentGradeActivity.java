@@ -248,6 +248,7 @@ public class CommentGradeActivity extends ActionBarActivity implements RadioGrou
 
             @Override
             public void onFailure(HttpException e, String s) {
+                MyAppliction.showToast("网络异常..");
                 Log.e("onFailureonFailure",s);
             }
         });

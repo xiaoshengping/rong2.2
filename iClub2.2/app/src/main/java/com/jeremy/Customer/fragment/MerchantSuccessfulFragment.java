@@ -53,6 +53,8 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
     private TextView anewRefrashTv;
     @ViewInject(R.id.tixing_text)
     private TextView tixingText;
+    @ViewInject(R.id.yichan_text)
+    private TextView yichanText;
     private HttpUtils httpUtils;
     private List<MerchantInviteValueBean> merchantInviteValueBeans;
     private MerchantInviteListAdapter inviteMessagelistAdapter;
@@ -116,6 +118,7 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
                        acceptLayout.setVisibility(View.VISIBLE);
                        merchantInviteMessageLv.setVisibility(View.GONE);
                    }else {
+                       yichanText.setVisibility(View.GONE);
                        acceptLayout.setVisibility(View.GONE);
                        merchantInviteMessageLv.setVisibility(View.VISIBLE);
                    }
@@ -130,16 +133,16 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
 
             @Override
             public void onFailure(HttpException e, String s) {
-                if (merchantInviteValueBeans.size()==0){
+                /*if (merchantInviteValueBeans.size()==0){
                     tixingText.setText("网络异常，请重新刷新!");
                     acceptLayout.setVisibility(View.VISIBLE);
                     merchantInviteMessageLv.setVisibility(View.GONE);
                 }else {
                     acceptLayout.setVisibility(View.GONE);
                     merchantInviteMessageLv.setVisibility(View.VISIBLE);
-                }
-
-
+                }*/
+                yichanText.setVisibility(View.VISIBLE);
+                merchantInviteMessageLv.onRefreshComplete();
                 Log.e("onFailure", s);
             }
         });

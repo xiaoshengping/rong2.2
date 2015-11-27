@@ -53,6 +53,8 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
     private TextView amewRefrashTv;
     @ViewInject(R.id.tixing_text)
     private TextView tixingText;
+    @ViewInject(R.id.yichan_text)
+    private TextView yichanText;
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private InviteMessageListAdapter inviteMessagelistAdapter;
@@ -120,6 +122,7 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
                         acceptLayout.setVisibility(View.VISIBLE);
 
                     }else {
+                        yichanText.setVisibility(View.GONE);
                         acceptLayout.setVisibility(View.GONE);
                         inviteSuccessfulListLv.setVisibility(View.VISIBLE);
                     }
@@ -130,16 +133,7 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
 
             @Override
             public void onFailure(HttpException e, String s) {
-                if (inviteMessgaeListValueBeans.size()==0){
-                    inviteSuccessfulListLv.setVisibility(View.GONE);
-                    acceptLayout.setVisibility(View.VISIBLE);
-                    tixingText.setText("网络异常,请重新刷新!");
-
-                }else {
-                    acceptLayout.setVisibility(View.GONE);
-                    inviteSuccessfulListLv.setVisibility(View.VISIBLE);
-                }
-
+                yichanText.setVisibility(View.VISIBLE);
                 inviteSuccessfulListLv.onRefreshComplete();
             }
         });

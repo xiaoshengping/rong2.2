@@ -24,7 +24,6 @@ import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.BMerchantValueBean;
 import com.jeremy.Customer.bean.mine.RecruitmentHistoryValueBean;
-import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
 import com.lidroid.xutils.HttpUtils;
@@ -67,6 +66,8 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
     private TextView anewRefrashTv;
     @ViewInject(R.id.tixing_text)
     private TextView tixingText;
+    @ViewInject(R.id.yichan_text)
+    private TextView yichanText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,8 +177,9 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
                     if (result!=null){
                         HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<RecruitmentHistoryValueBean>>() {
                         }, recruitmentHistoryValueBean, recruitmentHistoryAdapter);
-
+                        yichanText.setVisibility(View.GONE);
                         if (recruitmentHistoryValueBean.size()!=0){
+                            addResumeTv.setVisibility(View.VISIBLE);
                             addResumeTv.setText("继续添加招聘");
                             recruitmentHistoryLv.setVisibility(View.VISIBLE);
                         }else {
@@ -190,20 +192,9 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
 
                 @Override
                 public void onFailure(HttpException e, String s) {
-
-                        anewRefrashTv.setVisibility(View.VISIBLE);
-                        addApplicationTv.setVisibility(View.GONE);
-                        tixingText.setText("网络异常，请重新刷新!");
-                        anewRefrashTv.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                MyAppliction.showToast("刷新成功");
-                                recruitmentHistoryLv.setRefreshing();
-                            }
-                        });
-                        recruitmentHistoryLv.setVisibility(View.GONE);
-                        addApplicationLayout.setVisibility(View.VISIBLE);
-
+                    addResumeTv.setVisibility(View.GONE);
+                    yichanText.setVisibility(View.VISIBLE);
+                    recruitmentHistoryLv.onRefreshComplete();
 
 
                 }

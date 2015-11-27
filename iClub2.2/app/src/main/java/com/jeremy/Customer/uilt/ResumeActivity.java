@@ -47,6 +47,8 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
     private TextView addResumeOneTv;
     @ViewInject(R.id.resume_list_lv)
     private PullToRefreshListView resumeListLv;
+    @ViewInject(R.id.yichan_text)
+    private TextView yichanText;
     private HttpUtils httpUtils;
     private List<ResumeValueBean> resumeValueBeans;
     private ResumeListAdapter resumeListAdapter;
@@ -137,8 +139,11 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
                    if (resumeValueBeans.size()!=0){
                        notResumeLayout.setVisibility(View.GONE);
+                       addResumeTv.setVisibility(View.VISIBLE);
                         addResumeTv.setText("继续添加简历");
                        resumeListLv.setVisibility(View.VISIBLE);
+                       yichanText.setVisibility(View.GONE);
+
                     }else {
                        addResumeOneTv.setOnClickListener(ResumeActivity.this);
                        resumeListLv.setVisibility(View.GONE);
@@ -156,6 +161,8 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
             @Override
             public void onFailure(HttpException e, String s) {
+                addResumeTv.setVisibility(View.GONE);
+                yichanText.setVisibility(View.VISIBLE);
                 resumeListLv.onRefreshComplete(); 
                 Log.e("onFailure.......", s);
             }

@@ -54,7 +54,8 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
     private TextView amewRefrashTv;
     @ViewInject(R.id.tixing_text)
     private TextView tixingText;
-
+    @ViewInject(R.id.yichan_text)
+    private TextView yichanText;
     private HttpUtils httpUtils;
     private RequestParams requestParams;
     private List<InviteMessgaeListValueBean> inviteMessgaeListValueBeans;
@@ -148,6 +149,7 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
                        acceptLayout.setVisibility(View.VISIBLE);
                        inviteMessageLv.setVisibility(View.GONE);
                    }else {
+                       yichanText.setVisibility(View.GONE);
                        acceptLayout.setVisibility(View.GONE);
                        inviteMessageLv.setVisibility(View.VISIBLE);
                    }
@@ -162,14 +164,7 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
 
             @Override
             public void onFailure(HttpException e, String s) {
-                if (inviteMessgaeListValueBeans.size()==0){
-                    acceptLayout.setVisibility(View.VISIBLE);
-                    inviteMessageLv.setVisibility(View.GONE);
-                    tixingText.setText("网络异常,请重新刷新!");
-                }else {
-                    acceptLayout.setVisibility(View.GONE);
-                    inviteMessageLv.setVisibility(View.VISIBLE);
-                }
+                yichanText.setVisibility(View.VISIBLE);
                 inviteMessageLv.onRefreshComplete();
             }
         });
