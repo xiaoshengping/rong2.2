@@ -191,10 +191,10 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             workingTimeTt.setText(selectYear+"-"+(selectMonthOfYear+1)+"-"+selectDayOfMonth);
             workingTimeTt.setTextColor(getResources().getColor(R.color.textColor242424));
 
-        }else {
+        }/*else {
             workingTimeTt.setText(year1+"-"+monthOfYear+"-"+dayOfMonth);
             workingTimeTt.setTextColor(getResources().getColor(R.color.textColor242424));
-        }
+        }*/
 
 
 
@@ -374,11 +374,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
 
     private void intiEditData() {
         RequestParams requestParams=new RequestParams();
-        if (!TextUtils.isEmpty(selectYear+"")&&!TextUtils.isEmpty(selectMonthOfYear+"")&&!TextUtils.isEmpty(selectDayOfMonth+"")){
-            workingTime=selectYear+"-"+selectMonthOfYear+"-"+selectDayOfMonth;
-        }else {
-            workingTime=recruitmentHistoryValueBean.getWorkingTime();
-        }
+
 
         String position=positionEdit.getText().toString();
         String workPay=workPayEdit.getText().toString();
@@ -392,12 +388,17 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             requestParams.addBodyParameter("recruitingNumbers", recruitingNumbers);
             requestParams.addBodyParameter("jobRequirements", workDescribeTv.getText().toString());
             requestParams.addBodyParameter("jobInfo", experienceRequireTv.getText().toString());
+
+            if (selectYear!=0&&selectMonthOfYear!=0&&selectDayOfMonth!=0){
+                workingTime=selectYear+"-"+selectMonthOfYear+"-"+selectDayOfMonth;
+                requestParams.addBodyParameter("workingTime", workingTime);
+            }
             if (!TextUtils.isEmpty(workingHours)){
                 requestParams.addBodyParameter("workingHours", workingHours);
             }else {
                 requestParams.addBodyParameter("workingHours", recruitmentHistoryValueBean.getWorkingHours());
             }
-            requestParams.addBodyParameter("workingTime", workingTime);
+
             if (!TextUtils.isEmpty(professionClassfition)){
                 requestParams.addBodyParameter("jobCategory", professionClassfition);
             }

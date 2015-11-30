@@ -426,7 +426,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getEditUserIcon(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
-                Log.e("000000",responseInfo.result);
+                //Log.e("000000",responseInfo.result);
                 if (!TextUtils.isEmpty(responseInfo.result)){
                     //MyAppliction.showToast("数据提交成功");
                     ParmeBean<MessageBean> parmeBean= com.alibaba.fastjson.JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
@@ -648,7 +648,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     String uid = cursor.getString(0);
                     if (uid!= null) {
                      db.delete(SQLhelper.tableName, null, null);
-
                     }
                 }
 

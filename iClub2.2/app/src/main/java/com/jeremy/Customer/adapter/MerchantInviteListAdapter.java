@@ -196,7 +196,9 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
             if (vid == viewHodle.acceptMerchantBt.getId()){
                 if (isChecked.get(position) == false){
                     isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
-                   if (!TextUtils.isEmpty(data.get(position).getBeStatus())){
+                     if (data.size()!=0){
+
+                    if (!TextUtils.isEmpty(data.get(position).getBeStatus())){
 
 
                     if (data.get(position).getBeStatus().equals("1")) {
@@ -211,9 +213,12 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
                         context.startActivity(intent);
                         //MyAppliction.showToast("成功接受");
                     }
-                   }else {
-                       MyAppliction.showToast("网络异常");
                    }
+
+                     }else {
+                         MyAppliction.showToast("网络异常");
+                     }
+
                     //MyAppliction.showToast(position + "kkkkkk" + data.get(position).getStatus());
                     //Log.e("steta________", position + "");
                 } else if (isChecked.get(position) == true){
