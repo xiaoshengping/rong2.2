@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -97,7 +99,7 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
         }
 
 
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getMerchantInvite(uid, "note", offset), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getMerchantInvite(uid, "note", offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -105,16 +107,16 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
                 if (!TextUtils.isEmpty(result)) {
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<MerchantInviteValueBean>>() {
                     }, merchantInviteValueBeans, inviteMessagelistAdapter);
-                    if (merchantInviteValueBeans.size()==0){
+                    if (merchantInviteValueBeans.size() == 0) {
                         accpetLayout.setVisibility(View.VISIBLE);
                         merchantInviteMessageLv.setVisibility(View.GONE);
-                    }else {
+                        yichanText.setVisibility(View.GONE);
+                    } else {
                         yichanText.setVisibility(View.GONE);
                         accpetLayout.setVisibility(View.GONE);
                         merchantInviteMessageLv.setVisibility(View.VISIBLE);
                     }
                     merchantInviteMessageLv.onRefreshComplete();
-
 
 
                 }
@@ -124,7 +126,10 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
 
             @Override
             public void onFailure(HttpException e, String s) {
+                accpetLayout.setVisibility(View.GONE);
+                merchantInviteMessageLv.setVisibility(View.VISIBLE);
                 merchantInviteMessageLv.onRefreshComplete();
+                showAnim();
                 yichanText.setVisibility(View.VISIBLE);
                 Log.e("onFailure", s);
             }
@@ -133,7 +138,11 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
 
 
     }
+    private void showAnim() {
+        Animation appAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.alpthe);
+        yichanText.startAnimation(appAnim);
 
+    }
     private void intiListView() {
         merchantInviteValueBeans=new ArrayList<MerchantInviteValueBean>();
         inviteMessagelistAdapter=new MerchantInviteListAdapter(merchantInviteValueBeans,getActivity(),merchantInviteMessageLv);

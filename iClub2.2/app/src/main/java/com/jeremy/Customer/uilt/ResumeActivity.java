@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -145,6 +147,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
                        yichanText.setVisibility(View.GONE);
 
                     }else {
+                       yichanText.setVisibility(View.GONE);
                        addResumeOneTv.setOnClickListener(ResumeActivity.this);
                        resumeListLv.setVisibility(View.GONE);
                        notResumeLayout.setVisibility(View.VISIBLE);
@@ -163,6 +166,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
             public void onFailure(HttpException e, String s) {
                 addResumeTv.setVisibility(View.GONE);
                 yichanText.setVisibility(View.VISIBLE);
+                showAnim();
                 resumeListLv.onRefreshComplete(); 
                 Log.e("onFailure.......", s);
             }
@@ -174,7 +178,11 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
 
     }
 
+    private void showAnim() {
+        Animation appAnim = AnimationUtils.loadAnimation(this, R.anim.alpthe);
+        yichanText.startAnimation(appAnim);
 
+    }
 
     @Override
     public void onClick(View v) {

@@ -10,6 +10,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -106,7 +108,8 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
             uid = cursor.getString(0);
 
         }
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessage(uid, "accept", offset), new RequestCallBack<String>() {
+        httpUtils.configDefaultHttpCacheExpiry(1000);
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getInviteMessage(uid, "accept", offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -115,13 +118,14 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
 
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
                     }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
-                   if (inviteMessgaeListValueBeans.size()==0){
-                       accpetListLv.setVisibility(View.GONE);
-                       acceptLayout.setVisibility(View.VISIBLE);
-                   }else {
-                       yichanText.setVisibility(View.GONE);
-                       accpetListLv.setVisibility(View.VISIBLE);
-                   }
+                    if (inviteMessgaeListValueBeans.size() == 0) {
+                        accpetListLv.setVisibility(View.GONE);
+                        acceptLayout.setVisibility(View.VISIBLE);
+                        yichanText.setVisibility(View.GONE);
+                    } else {
+                        yichanText.setVisibility(View.GONE);
+                        accpetListLv.setVisibility(View.VISIBLE);
+                    }
                     accpetListLv.onRefreshComplete();
                 }
 
@@ -130,12 +134,21 @@ public class AcceptInviteFragment extends Fragment implements PullToRefreshBase.
 
             @Override
             public void onFailure(HttpException e, String s) {
+                accpetListLv.setVisibility(View.VISIBLE);
+                acceptLayout.setVisibility(View.GONE);
                 yichanText.setVisibility(View.VISIBLE);
+                showAnim();
                 accpetListLv.onRefreshComplete();
             }
         });
 
 
+
+    }
+
+    private void showAnim() {
+        Animation appAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.alpthe);
+        yichanText.startAnimation(appAnim);
 
     }
 

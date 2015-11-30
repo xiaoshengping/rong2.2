@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -194,6 +196,7 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
                 public void onFailure(HttpException e, String s) {
                     addResumeTv.setVisibility(View.GONE);
                     yichanText.setVisibility(View.VISIBLE);
+                    showAnim();
                     recruitmentHistoryLv.onRefreshComplete();
 
 
@@ -209,7 +212,11 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
 
     }
 
+    private void showAnim() {
+        Animation appAnim = AnimationUtils.loadAnimation(this, R.anim.alpthe);
+        yichanText.startAnimation(appAnim);
 
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){

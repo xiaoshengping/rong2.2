@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -99,7 +101,7 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
 
 
 
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getMerchantInvite(uid, "accept", offset), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getMerchantInvite(uid, "accept", offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -111,6 +113,7 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
                     if (merchantInviteValueBeans.size()==0){
                         accpetLayout.setVisibility(View.VISIBLE);
                         merchantInviteMessageLv.setVisibility(View.GONE);
+                        yichanText.setVisibility(View.GONE);
                     }else {
                         yichanText.setVisibility(View.GONE);
                         accpetLayout.setVisibility(View.GONE);
@@ -126,7 +129,10 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
 
             @Override
             public void onFailure(HttpException e, String s) {
+                accpetLayout.setVisibility(View.GONE);
+                merchantInviteMessageLv.setVisibility(View.VISIBLE);
                 yichanText.setVisibility(View.VISIBLE);
+                showAnim();
                 merchantInviteMessageLv.onRefreshComplete();
                 Log.e("onFailure", s);
             }
@@ -135,7 +141,11 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
 
 
     }
+    private void showAnim() {
+        Animation appAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.alpthe);
+        yichanText.startAnimation(appAnim);
 
+    }
     private void intiListView() {
         merchantInviteValueBeans=new ArrayList<>();
         inviteMessagelistAdapter=new MerchantInviteListAdapter(merchantInviteValueBeans,getActivity(),merchantInviteMessageLv);

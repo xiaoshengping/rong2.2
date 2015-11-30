@@ -10,6 +10,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -138,21 +140,23 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
             uid = cursor.getString(0);
 
         }
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessage(uid, "note", offset), requestParams, new RequestCallBack<String>() {
+        httpUtils.configDefaultHttpCacheExpiry(1000);
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getInviteMessage(uid, "note", offset), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
-                if (!TextUtils.isEmpty(result)){
+                if (!TextUtils.isEmpty(result)) {
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
                     }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
-                   if (inviteMessgaeListValueBeans.size()==0){
-                       acceptLayout.setVisibility(View.VISIBLE);
-                       inviteMessageLv.setVisibility(View.GONE);
-                   }else {
-                       yichanText.setVisibility(View.GONE);
-                       acceptLayout.setVisibility(View.GONE);
-                       inviteMessageLv.setVisibility(View.VISIBLE);
-                   }
+                    if (inviteMessgaeListValueBeans.size() == 0) {
+                        acceptLayout.setVisibility(View.VISIBLE);
+                        inviteMessageLv.setVisibility(View.GONE);
+                        yichanText.setVisibility(View.GONE);
+                    } else {
+                        yichanText.setVisibility(View.GONE);
+                        acceptLayout.setVisibility(View.GONE);
+                        inviteMessageLv.setVisibility(View.VISIBLE);
+                    }
 
                     inviteMessageLv.onRefreshComplete();
 
@@ -164,12 +168,21 @@ public class InviteMessageFragment extends Fragment implements PullToRefreshBase
 
             @Override
             public void onFailure(HttpException e, String s) {
+                acceptLayout.setVisibility(View.GONE);
+                inviteMessageLv.setVisibility(View.VISIBLE);
                 yichanText.setVisibility(View.VISIBLE);
                 inviteMessageLv.onRefreshComplete();
+                showAnim();
             }
         });
 
 
+
+    }
+
+    private void showAnim() {
+        Animation appAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.alpthe);
+        yichanText.startAnimation(appAnim);
 
     }
 

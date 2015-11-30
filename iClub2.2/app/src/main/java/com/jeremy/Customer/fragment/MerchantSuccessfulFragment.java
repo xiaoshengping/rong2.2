@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -104,7 +106,7 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
         }
 
 
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getMerchantInvite(uid, "complete", offset), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getMerchantInvite(uid, "complete", offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -114,14 +116,15 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
                     });*/
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<MerchantInviteValueBean>>() {
                     }, merchantInviteValueBeans, inviteMessagelistAdapter);
-                   if (merchantInviteValueBeans.size()==0){
-                       acceptLayout.setVisibility(View.VISIBLE);
-                       merchantInviteMessageLv.setVisibility(View.GONE);
-                   }else {
-                       yichanText.setVisibility(View.GONE);
-                       acceptLayout.setVisibility(View.GONE);
-                       merchantInviteMessageLv.setVisibility(View.VISIBLE);
-                   }
+                    if (merchantInviteValueBeans.size() == 0) {
+                        acceptLayout.setVisibility(View.VISIBLE);
+                        merchantInviteMessageLv.setVisibility(View.GONE);
+                        yichanText.setVisibility(View.GONE);
+                    } else {
+                        yichanText.setVisibility(View.GONE);
+                        acceptLayout.setVisibility(View.GONE);
+                        merchantInviteMessageLv.setVisibility(View.VISIBLE);
+                    }
 
                     merchantInviteMessageLv.onRefreshComplete();
 
@@ -133,15 +136,10 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
 
             @Override
             public void onFailure(HttpException e, String s) {
-                /*if (merchantInviteValueBeans.size()==0){
-                    tixingText.setText("网络异常，请重新刷新!");
-                    acceptLayout.setVisibility(View.VISIBLE);
-                    merchantInviteMessageLv.setVisibility(View.GONE);
-                }else {
-                    acceptLayout.setVisibility(View.GONE);
-                    merchantInviteMessageLv.setVisibility(View.VISIBLE);
-                }*/
+                acceptLayout.setVisibility(View.GONE);
+                merchantInviteMessageLv.setVisibility(View.VISIBLE);
                 yichanText.setVisibility(View.VISIBLE);
+                showAnim();
                 merchantInviteMessageLv.onRefreshComplete();
                 Log.e("onFailure", s);
             }
@@ -150,7 +148,11 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
 
 
     }
+    private void showAnim() {
+        Animation appAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.alpthe);
+        yichanText.startAnimation(appAnim);
 
+    }
     private void intiListView() {
         merchantInviteValueBeans=new ArrayList<>();
         inviteMessagelistAdapter=new MerchantInviteListAdapter(merchantInviteValueBeans,getActivity(),merchantInviteMessageLv);

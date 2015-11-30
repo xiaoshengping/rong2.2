@@ -10,6 +10,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -108,7 +110,8 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
             uid = cursor.getString(0);
 
         }
-        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteMessage(uid, "complete", offset), new RequestCallBack<String>() {
+        //httpUtils.configDefaultHttpCacheExpiry(1000);
+        httpUtils.send(HttpRequest.HttpMethod.GET , AppUtilsUrl.getInviteMessage(uid, "complete", offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -117,12 +120,12 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
                     HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<InviteMessgaeListValueBean>>() {
                     }, inviteMessgaeListValueBeans, inviteMessagelistAdapter);
                     inviteSuccessfulListLv.onRefreshComplete();
-                    if (inviteMessgaeListValueBeans.size()==0){
+                    yichanText.setVisibility(View.GONE);
+                    if (inviteMessgaeListValueBeans.size() == 0) {
                         inviteSuccessfulListLv.setVisibility(View.GONE);
                         acceptLayout.setVisibility(View.VISIBLE);
 
-                    }else {
-                        yichanText.setVisibility(View.GONE);
+                    } else {
                         acceptLayout.setVisibility(View.GONE);
                         inviteSuccessfulListLv.setVisibility(View.VISIBLE);
                     }
@@ -133,7 +136,10 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
 
             @Override
             public void onFailure(HttpException e, String s) {
+                acceptLayout.setVisibility(View.GONE);
                 yichanText.setVisibility(View.VISIBLE);
+                inviteSuccessfulListLv.setVisibility(View.VISIBLE);
+                showAnim();
                 inviteSuccessfulListLv.onRefreshComplete();
             }
         });
@@ -141,7 +147,11 @@ public class TalentSucceedFragment extends Fragment implements PullToRefreshBase
 
 
     }
+    private void showAnim() {
+        Animation appAnim = AnimationUtils.loadAnimation(getActivity(), R.anim.alpthe);
+        yichanText.startAnimation(appAnim);
 
+    }
     private void intiListView( ) {
         inviteMessgaeListValueBeans=new ArrayList<InviteMessgaeListValueBean>();
         inviteMessagelistAdapter=new InviteMessageListAdapter(inviteMessgaeListValueBeans,getActivity(),inviteSuccessfulListLv);
