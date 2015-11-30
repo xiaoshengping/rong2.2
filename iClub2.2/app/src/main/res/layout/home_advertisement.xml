@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_marginTop="15dp"
     android:padding="15dp"
     android:background="#FDFBFC">
 
@@ -32,51 +33,17 @@
             android:textColor="@color/home_more"
             android:drawableRight="@mipmap/purple_right"/>
     </LinearLayout>
-    <com.jeremy.Customer.view.RoundAngleImageView
-        xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
-        android:id="@+id/activity_picture_riv1"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_height"
-        android:background="@mipmap/huodongmore"
-        android:scaleType="fitCenter"
-        app:roundWidth = "5dp"
-        app:roundHeight = "5dp"
-        android:layout_marginTop="3dp"/>
-    <TextView
-        android:id="@+id/activity_name_tv1"
-        android:layout_width="match_parent"
+
+    <com.jeremy.Customer.view.Advertisement
+        android:id="@+id/advertisement1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="玩使命“敢于挑战，超越梦想“微电影阿斯顿发送到"
-        android:textSize="@dimen/activity_item_name"
-        android:textColor="@color/activity_item_name"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="2dp"
-        android:singleLine="true"
-        android:ellipsize="end"  />
-    <com.jeremy.Customer.view.RoundAngleImageView
-        xmlns:app="http://schemas.android.com/apk/res/com.jeremy.Customer"
-        android:id="@+id/activity_picture_riv2"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/activity_height"
-        android:background="@mipmap/huodongmore"
-        android:scaleType="fitCenter"
-        app:roundWidth = "5dp"
-        app:roundHeight = "5dp"
-        android:layout_marginTop="3dp"/>
-    <TextView
-        android:id="@+id/activity_name_tv2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="玩使命“敢于挑战，超越梦想“微电影阿斯顿发送到"
-        android:textSize="@dimen/activity_item_name"
-        android:textColor="@color/activity_item_name"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="2dp"
-        android:singleLine="true"
-        android:ellipsize="end"  />
+        android:layout_marginBottom="10dp">
+    </com.jeremy.Customer.view.Advertisement>
+    <com.jeremy.Customer.view.Advertisement
+        android:id="@+id/advertisement2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.jeremy.Customer.view.Advertisement>
 
 </LinearLayout>

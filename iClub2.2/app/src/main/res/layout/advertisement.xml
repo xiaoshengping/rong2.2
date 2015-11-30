@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/click_selector">
+
+    <ImageView
+        android:id="@+id/activity_picture_iv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/activity_height"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="3dp"/>
+    <TextView
+        android:id="@+id/activity_name_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="玩使命“敢于挑战，超越梦想“微电影阿斯顿发送到"
+        android:textSize="@dimen/activity_item_name"
+        android:textColor="@color/activity_item_name"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="2dp"
+        android:singleLine="true"
+        android:ellipsize="end"  />
+
+</LinearLayout>

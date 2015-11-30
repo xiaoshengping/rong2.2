@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,7 +29,7 @@ import com.jeremy.Customer.uilt.JobDetailsActivity;
 import com.jeremy.Customer.uilt.RecommenListActivity;
 import com.jeremy.Customer.uilt.TalentsDetailsActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
-import com.jeremy.Customer.view.RoundAngleImageView;
+import com.jeremy.Customer.view.Advertisement;
 import com.jeremy.Customer.view.SlideShowView;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
@@ -42,17 +43,18 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, View.OnTouchListener {
 
     @ViewInject(R.id.advertisement_ll)
     private LinearLayout advertisement_ll;
 
     private TextView home_more1, home_more2, home_more3;
-    private RoundAngleImageView activity_picture_riv1, activity_picture_riv2;
-    private TextView activity_name_tv1, activity_name_tv2;
+    //    private RoundAngleImageView activity_picture_riv1, activity_picture_riv2;
+//    private TextView activity_name_tv1, activity_name_tv2;
+    private Advertisement advertisement1, advertisement2;
 
     private ImageView recommend_the_virtuous_and_able_riv1;
-    private ImageView  recommend_the_virtuous_and_able_riv2, recommend_the_virtuous_and_able_riv3, recommend_the_virtuous_and_able_riv4, recommend_the_virtuous_and_able_riv5, recommend_the_virtuous_and_able_riv6;
+    private ImageView recommend_the_virtuous_and_able_riv2, recommend_the_virtuous_and_able_riv3, recommend_the_virtuous_and_able_riv4, recommend_the_virtuous_and_able_riv5, recommend_the_virtuous_and_able_riv6;
     private TextView recommend_the_virtuous_and_able_tv1, recommend_the_virtuous_and_able_tv2, recommend_the_virtuous_and_able_tv3, recommend_the_virtuous_and_able_tv4, recommend_the_virtuous_and_able_tv5, recommend_the_virtuous_and_able_tv6;
 
     private TextView item_position_name_tv1, item_position_name_tv2, item_position_name_tv3, item_position_name_tv4, item_position_name_tv5;
@@ -108,10 +110,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         home_more1 = (TextView) view.findViewById(R.id.home_more1);
         home_more2 = (TextView) view.findViewById(R.id.home_more2);
         home_more3 = (TextView) view.findViewById(R.id.home_more3);
-        activity_picture_riv1 = (RoundAngleImageView) view.findViewById(R.id.activity_picture_riv1);
-        activity_picture_riv2 = (RoundAngleImageView) view.findViewById(R.id.activity_picture_riv2);
-        activity_name_tv1 = (TextView) view.findViewById(R.id.activity_name_tv1);
-        activity_name_tv2 = (TextView) view.findViewById(R.id.activity_name_tv2);
+//        activity_picture_riv1 = (RoundAngleImageView) view.findViewById(R.id.activity_picture_riv1);
+//        activity_picture_riv2 = (RoundAngleImageView) view.findViewById(R.id.activity_picture_riv2);
+//        activity_name_tv1 = (TextView) view.findViewById(R.id.activity_name_tv1);
+//        activity_name_tv2 = (TextView) view.findViewById(R.id.activity_name_tv2);
+        advertisement1 = (Advertisement) view.findViewById(R.id.advertisement1);
+        advertisement2 = (Advertisement) view.findViewById(R.id.advertisement2);
         recommend_the_virtuous_and_able_riv1 = (ImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv1);
         recommend_the_virtuous_and_able_riv2 = (ImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv2);
         recommend_the_virtuous_and_able_riv3 = (ImageView) view.findViewById(R.id.recommend_the_virtuous_and_able_riv3);
@@ -172,9 +176,18 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         item_position_ll3.setOnClickListener(this);
         item_position_ll4.setOnClickListener(this);
         item_position_ll5.setOnClickListener(this);
-        activity_picture_riv1.setOnClickListener(this);
-        activity_picture_riv2.setOnClickListener(this);
+//        activity_picture_riv1.setOnClickListener(this);
+//        activity_picture_riv2.setOnClickListener(this);
+        advertisement1.setOnClickListener(this);
+        advertisement2.setOnClickListener(this);
         home_icon_iv.setOnClickListener(this);
+
+        recommend_the_virtuous_and_able_riv1.setOnTouchListener(this);
+        recommend_the_virtuous_and_able_riv2.setOnTouchListener(this);
+        recommend_the_virtuous_and_able_riv3.setOnTouchListener(this);
+        recommend_the_virtuous_and_able_riv4.setOnTouchListener(this);
+        recommend_the_virtuous_and_able_riv5.setOnTouchListener(this);
+        recommend_the_virtuous_and_able_riv6.setOnTouchListener(this);
 
         scrollView.setVisibility(View.GONE);
 
@@ -217,7 +230,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 start = 1;
                 try {
                     loadingDialog.dismiss();
-                }catch (Exception a){
+                } catch (Exception a) {
 
                 }
             }
@@ -237,10 +250,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     });
                     if ("success".equals(activityBean.getState())) {
                         if (activityBean.getValue().size() != 0) {
-                            bitmapUtils.display(activity_picture_riv1, AppUtilsUrl.ImageBaseUrl + activityBean.getValue().get(0).getImage());
-                            bitmapUtils.display(activity_picture_riv2, AppUtilsUrl.ImageBaseUrl + activityBean.getValue().get(1).getImage());
-                            activity_name_tv1.setText(activityBean.getValue().get(0).getTitle());
-                            activity_name_tv2.setText(activityBean.getValue().get(1).getTitle());
+                            bitmapUtils.display(advertisement1.getActivity_picture_iv(), AppUtilsUrl.ImageBaseUrl + activityBean.getValue().get(0).getImage());
+                            bitmapUtils.display(advertisement2.getActivity_picture_iv(), AppUtilsUrl.ImageBaseUrl + activityBean.getValue().get(1).getImage());
+//                            activity_name_tv1.setText(activityBean.getValue().get(0).getTitle());
+//                            activity_name_tv2.setText(activityBean.getValue().get(1).getTitle());
+                            advertisement1.setActivityNameTv(activityBean.getValue().get(0).getTitle());
+                            advertisement2.setActivityNameTv(activityBean.getValue().get(1).getTitle());
 
 //                            AssetManager mgr=getActivity().getAssets();//得到AssetManager
 //                            Typeface tf=Typeface.createFromAsset(mgr, "fonts/asdfa.otf");//根据路径得到Typeface
@@ -264,7 +279,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 start = 1;
                 try {
                     loadingDialog.dismiss();
-                }catch (Exception a){
+                } catch (Exception a) {
 
                 }
             }
@@ -315,7 +330,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 start = 1;
                 try {
                     loadingDialog.dismiss();
-                }catch (Exception a){
+                } catch (Exception a) {
 
                 }
             }
@@ -487,7 +502,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 setSV();
                 try {
                     loadingDialog.dismiss();
-                }catch (Exception a){
+                } catch (Exception a) {
 
                 }
 
@@ -500,7 +515,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 start = 1;
                 try {
                     loadingDialog.dismiss();
-                }catch (Exception a){
+                } catch (Exception a) {
 
                 }
 
@@ -574,10 +589,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 case R.id.item_position_ll5:
                     Position(4);
                     break;
-                case R.id.activity_picture_riv1:
+                case R.id.advertisement1:
                     Activity(0);
                     break;
-                case R.id.activity_picture_riv2:
+                case R.id.advertisement2:
                     Activity(1);
                     break;
                 case R.id.home_icon_iv:
@@ -626,4 +641,45 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+            switch (v.getId()) {
+                case R.id.recommend_the_virtuous_and_able_riv1:
+                    Click(recommend_the_virtuous_and_able_tv1);
+                    break;
+                case R.id.recommend_the_virtuous_and_able_riv2:
+                    Click(recommend_the_virtuous_and_able_tv2);
+                    break;
+                case R.id.recommend_the_virtuous_and_able_riv3:
+                    Click(recommend_the_virtuous_and_able_tv3);
+                    break;
+                case R.id.recommend_the_virtuous_and_able_riv4:
+                    Click(recommend_the_virtuous_and_able_tv4);
+                    break;
+                case R.id.recommend_the_virtuous_and_able_riv5:
+                    Click(recommend_the_virtuous_and_able_tv5);
+                    break;
+                case R.id.recommend_the_virtuous_and_able_riv6:
+                    Click(recommend_the_virtuous_and_able_tv6);
+                    break;
+            }
+        } else if (event.getAction() == MotionEvent.ACTION_UP) {
+            recommend_the_virtuous_and_able_tv1.setBackgroundResource(R.drawable.click_r_nomal_shape);
+            recommend_the_virtuous_and_able_tv2.setBackgroundResource(R.drawable.click_r_nomal_shape);
+            recommend_the_virtuous_and_able_tv3.setBackgroundResource(R.drawable.click_r_nomal_shape);
+            recommend_the_virtuous_and_able_tv4.setBackgroundResource(R.drawable.click_r_nomal_shape);
+            recommend_the_virtuous_and_able_tv5.setBackgroundResource(R.drawable.click_r_nomal_shape);
+            recommend_the_virtuous_and_able_tv6.setBackgroundResource(R.drawable.click_r_nomal_shape);
+
+        }
+
+        return false;
+    }
+
+    private void Click(View v) {
+        v.setBackgroundResource(R.drawable.click_r_focus_shape);
+    }
 }
