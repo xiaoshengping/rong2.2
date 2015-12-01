@@ -87,7 +87,7 @@
                     />
                 <RadioButton
                     android:id="@+id/truth_three_grade"
-                    android:checked="false"
+
                     android:layout_marginLeft="5dp"
                     android:background="@drawable/comment_rediao_button_selector"
                     android:layout_height="30dp"
@@ -111,9 +111,10 @@
                     android:layout_height="30dp"
                     android:layout_width="32dp"
                     android:button="@null"
-                    android:checked="false"
+
                     />
             </RadioGroup>
+
             <TextView
                 android:id="@+id/truth_state_tv"
 
@@ -156,7 +157,7 @@
                     android:layout_height="30dp"
                     android:layout_width="32dp"
                     android:button="@null"
-                    android:checked="false"
+
                     />
                 <RadioButton
                     android:id="@+id/honesty_three_grade"
@@ -166,7 +167,7 @@
                     android:layout_height="30dp"
                     android:layout_width="32dp"
                     android:button="@null"
-                    android:checked="false"
+
                     />
                 <RadioButton
                     android:id="@+id/honesty_four_grade"
@@ -176,7 +177,7 @@
                     android:layout_height="30dp"
                     android:layout_width="32dp"
                     android:button="@null"
-                    android:checked="false"
+
                     />
                 <RadioButton
                     android:id="@+id/honesty_five_grade"
@@ -186,9 +187,10 @@
                     android:layout_height="30dp"
                     android:layout_width="32dp"
                     android:button="@null"
-                    android:checked="false"
+
                     />
             </RadioGroup>
+
           <TextView
               android:id="@+id/honesty_state_tv"
 

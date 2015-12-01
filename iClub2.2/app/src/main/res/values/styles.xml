@@ -86,7 +86,6 @@
         <item name="android:textColor">@color/invite_color_seletor</item>
     </style>
 
-
     <style name="textview_paren_width" parent="paren_layout_width">
         <item name="android:padding">2dp</item>
     </style>

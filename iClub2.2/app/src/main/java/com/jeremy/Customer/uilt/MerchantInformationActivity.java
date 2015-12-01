@@ -82,7 +82,12 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
     private void initView() {
         loadingDialog=new LoadingDialog(this,"保存数据.....");
         tailtReturnTv.setOnClickListener(this);
-        tailtText.setText("添加商家信息");
+        if (getIntent().getStringExtra("merchantFalg").equals("addMerchant")) {
+            tailtText.setText("添加商家信息");
+        }else {
+            tailtText.setText("修改商家信息");
+        }
+
         saveText.setVisibility(View.VISIBLE);
         saveText.setOnClickListener(this);
         saveText.setText("保存");

@@ -14,7 +14,6 @@ import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -45,10 +44,8 @@ public class CommentGradeActivity extends ActionBarActivity implements RadioGrou
     private RadioGroup gradeRadiogroup;
     @ViewInject(R.id.honesty_grade_radiogroup)
     private RadioGroup honestyRradeRg;
-    @ViewInject(R.id.honesty_three_grade)
-    private RadioButton honestyThreeGrade;
-    @ViewInject(R.id.truth_three_grade)
-    private RadioButton truthThreeGrade;
+
+
     @ViewInject(R.id.truth_state_tv)
     private TextView truthStateTv;
     @ViewInject(R.id.honesty_state_tv)
@@ -75,6 +72,25 @@ public class CommentGradeActivity extends ActionBarActivity implements RadioGrou
     private String integrity;
     private boolean honestyGrade;
     private  String falge;
+   /* @ViewInject(R.id.truth_one_grade)
+    private RadioButton truthOneGrade;
+    @ViewInject(R.id.truth_two_grade)
+    private RadioButton truthTwoGrade;
+    @ViewInject(R.id.truth_three_grade)
+    private RadioButton truthThreeGrade;
+    @ViewInject(R.id.truth_four_grade)
+    private RadioButton truthFourGrade;
+
+    @ViewInject(R.id.honesty_one_grade)
+    private RadioButton honestyOneGrade;
+    @ViewInject(R.id.honesty_two_grade)
+    private RadioButton honestyTwoGrade;
+    @ViewInject(R.id.honesty_three_grade)
+    private RadioButton honestyThreeGrade;
+    @ViewInject(R.id.honesty_four_grade)
+    private RadioButton honestyFourGrade;*/
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -132,19 +148,30 @@ public class CommentGradeActivity extends ActionBarActivity implements RadioGrou
                         break;
                     case R.id.truth_two_grade:
                         authenticity="0";
+                        ///truthOneGrade.setChecked(true);
+
                         //Toast.makeText(CooperationCommentActivity.this, authenticity, Toast.LENGTH_LONG).show();
                         truthStateTv.setText("一般");
                         break;
                     case R.id.truth_three_grade:
                         authenticity="1";
+                        /*truthOneGrade.setClickable(true);
+                        truthTwoGrade.setChecked(true);*/
                         truthStateTv.setText("好");
                         break;
                     case R.id.truth_four_grade:
                         authenticity="3";
+                    /*    truthOneGrade.setChecked(true);
+                        truthTwoGrade.setChecked(true);
+                        truthThreeGrade.setChecked(true);*/
                         truthStateTv.setText("很好");
                         break;
                     case R.id.truth_five_grade:
                         authenticity="5";
+                       /* truthOneGrade.setChecked(true);
+                        truthTwoGrade.setChecked(true);
+                        truthThreeGrade.setChecked(true);
+                        truthFourGrade.setChecked(true);*/
                         truthStateTv.setText("非常好");
                         break;
 
@@ -161,18 +188,28 @@ public class CommentGradeActivity extends ActionBarActivity implements RadioGrou
                         break;
                     case R.id.honesty_two_grade:
                         integrity="0";
+                     /*   honestyOneGrade.setChecked(true);*/
                         honestyStateTv.setText("一般");
                         break;
                     case R.id.honesty_three_grade:
                         integrity="1";
+                       /* honestyOneGrade.setChecked(true);
+                        honestyTwoGrade.setChecked(true);*/
                         honestyStateTv.setText("好");
                         break;
                     case R.id.honesty_four_grade:
                         integrity="3";
+                        /*honestyOneGrade.setChecked(true);
+                        honestyTwoGrade.setChecked(true);
+                        honestyThreeGrade.setChecked(true);*/
                         honestyStateTv.setText("很好");
                         break;
                     case R.id.honesty_five_grade:
                         integrity="5";
+                       /* honestyOneGrade.setChecked(true);
+                        honestyTwoGrade.setChecked(true);
+                        honestyThreeGrade.setChecked(true);
+                        honestyFourGrade.setChecked(true);*/
                         honestyStateTv.setText("非常好");
                         break;
 

@@ -84,7 +84,7 @@ public class MerchantAcceptInviteFragment extends Fragment implements PullToRefr
 
     private void intiView() {
         anewRefrsshTv.setOnClickListener(this);
-        httpUtils=new HttpUtils();
+        httpUtils=new HttpUtils().configCurrentHttpCacheExpiry(1000);
 
 
 

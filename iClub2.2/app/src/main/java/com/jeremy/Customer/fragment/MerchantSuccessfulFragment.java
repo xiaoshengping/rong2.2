@@ -83,7 +83,7 @@ public class MerchantSuccessfulFragment extends Fragment implements PullToRefres
     }
     private void intiView() {
         anewRefrashTv.setOnClickListener(this);
-        httpUtils=new HttpUtils();
+        httpUtils=new HttpUtils().configCurrentHttpCacheExpiry(1000);
         intiListView();
 
 

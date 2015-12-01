@@ -83,7 +83,7 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
 
     private void intiView() {
         anewRefreshTv.setOnClickListener(this);
-        httpUtils=new HttpUtils();
+        httpUtils=new HttpUtils().configCurrentHttpCacheExpiry(1000);
         intiListView();
 
 
@@ -97,7 +97,6 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
             uid = cursor.getString(0);
 
         }
-
 
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getMerchantInvite(uid, "note", offset), new RequestCallBack<String>() {
             @Override

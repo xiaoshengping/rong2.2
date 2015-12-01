@@ -46,6 +46,7 @@ public class FeedBackActivity extends ActionBarActivity implements View.OnClickL
         tailtText.setText("更多");
         tailtReturnTv.setOnClickListener(this);
         feedbackFinistButton.setOnClickListener(this);
+        aboutIdeaEdit.setSelection(aboutIdeaEdit.getHint().toString().length());
 
     }
 

@@ -189,7 +189,8 @@ public class AddPictureActivity extends ActionBarActivity implements View.OnClic
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                loadingDialog.dismiss();
+                MyAppliction.showToast("网络异常...");
             }
         });
 
