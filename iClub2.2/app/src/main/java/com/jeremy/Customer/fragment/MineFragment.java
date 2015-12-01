@@ -337,7 +337,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         super.onResume();
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
+        Cursor cursor=db.query(SQLhelper.tableName, null, null, null, null, null, null);
         while (cursor.moveToNext()) {
             uid=cursor.getString(0);
             state = cursor.getString(4);
@@ -436,7 +436,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                             update(uid, parmeBean.getValue().getUsericon());
                             SQLhelper sqLhelper=new SQLhelper(getActivity());
                             SQLiteDatabase db= sqLhelper.getWritableDatabase();
-                            Cursor cursor=db.query("user", null, null, null, null, null, null);
+                            Cursor cursor=db.query(SQLhelper.tableName, null, null, null, null, null, null);
                             while (cursor.moveToNext()) {
                                 userIcon=cursor.getString(3);
                             }
@@ -643,7 +643,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 SQLhelper sqLhelper = new SQLhelper(getActivity());
                 SQLiteDatabase db = sqLhelper.getWritableDatabase();
 
-               Cursor cursor = db.query("user", null, null, null, null, null, null);
+               Cursor cursor = db.query(SQLhelper.tableName, null, null, null, null, null, null);
                 while (cursor.moveToNext()) {
                     String uid = cursor.getString(0);
                     if (uid!= null) {

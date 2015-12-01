@@ -163,6 +163,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_add_resume);
         ViewUtils.inject(this);
         inti();
@@ -567,7 +568,7 @@ public class AddResumeActivity extends ActionBarActivity implements View.OnClick
             if (city >= 0) {
                 if (city != 0) {
                     jobCityTv.setText(cName);
-                    jobClassFiteTv.setTextColor(getResources().getColor(R.color.textColor242424));
+                    jobCityTv.setTextColor(getResources().getColor(R.color.textColor242424));
                     //Toast.makeText(AddResumeActivity.this, cName, Toast.LENGTH_LONG).show();
                 } else {
                     jobCityTv.setText("选择城市");

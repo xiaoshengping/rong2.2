@@ -72,6 +72,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_login);
         ViewUtils.inject(this);
         init();

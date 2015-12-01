@@ -59,6 +59,7 @@ public class RegisterActivity extends ActionBarActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         setContentView(R.layout.activity_register);
         ViewUtils.inject(this);
         inti();

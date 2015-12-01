@@ -45,9 +45,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".uilt.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".uilt.RegisterActivity"
             android:label="@string/title_activity_register" />
         <activity
@@ -141,6 +143,7 @@
             android:name=".uilt.ResumeActivity"
             android:label="@string/title_activity_resume" />
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".uilt.AddResumeActivity"
             android:label="@string/title_activity_add_resume" />
         <activity android:name=".uilt.JobChoiceActivity" />
