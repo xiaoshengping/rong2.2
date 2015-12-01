@@ -62,8 +62,7 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
     private ImageView showPictureResumeTwo;
     @ViewInject(R.id.show_picture_resume_three)
     private ImageView showPictureResumeThree;
-    @ViewInject(R.id.show_picture_resume_four)
-    private ImageView showPictureResumeFour;
+
     @ViewInject(R.id.no_picture_layout)
     private  RelativeLayout noPictureLayout;
 
@@ -107,13 +106,16 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                     if (resumeValueBean!=null){
 
                         if (resumeValueBean.getResumeMovie().size() != 0) {
+                            moreVideoTv.setVisibility(View.VISIBLE);
                             //showVideoResumeIv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(), 10, 10));
                             new OneselfProductionAsynctack(showVideoResumeIv,AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath()).execute();
                         } else {
                             showVideoLayout.setVisibility(View.GONE);
                             noVideoLayout.setVisibility(View.VISIBLE);
+                            moreVideoTv.setVisibility(View.GONE);
                         }
                         if (resumeValueBean.getResumeMusic().size() != 0) {
+                            moreMusicTv.setVisibility(View.VISIBLE);
                             showMusicResumeTv.setText(resumeValueBean.getResumeMusic().get(0).getTitle());
                             if (resumeValueBean.getResumeMusic().size() >= 2) {
                                 showMusicResumeTwo.setText(resumeValueBean.getResumeMusic().get(1).getTitle());
@@ -121,37 +123,34 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                                 showMusicResumeTwo.setVisibility(View.GONE);
                             }
                         } else {
+                            moreMusicTv.setVisibility(View.GONE);
                             showMusicResumeTv.setVisibility(View.GONE);
                             showMusicResumeTwo.setVisibility(View.GONE);
                             noMisumeLayout.setVisibility(View.VISIBLE);
                         }
                         if (resumeValueBean.getResumePicture().size() != 0) {
+                            morePictureTv.setVisibility(View.VISIBLE);
                             MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(0).getPath(), showPictureResumeOne, MyAppliction.options);
                             if (resumeValueBean.getResumePicture().size() > 1) {
                                 MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(1).getPath(), showPictureResumeTwo, MyAppliction.options);
                                 if (resumeValueBean.getResumePicture().size() > 2) {
                                     MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(2).getPath(), showPictureResumeThree, MyAppliction.options);
-                                    if (resumeValueBean.getResumePicture().size() > 3) {
-                                        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(3).getPath(), showPictureResumeFour, MyAppliction.options);
 
-                                    }else {
-                                        showPictureResumeFour.setVisibility(View.GONE);
-                                    }
                                 }else {
                                     showPictureResumeThree.setVisibility(View.GONE);
-                                    showPictureResumeFour.setVisibility(View.GONE);
+                                    //showPictureResumeFour.setVisibility(View.GONE);
                                 }
                             }else {
                                 showPictureResumeTwo.setVisibility(View.GONE);
                                 showPictureResumeThree.setVisibility(View.GONE);
-                                showPictureResumeFour.setVisibility(View.GONE);
+                               // showPictureResumeFour.setVisibility(View.GONE);
                             }
 
                         }else {
                             showPictureResumeOne.setVisibility(View.GONE);
                             showPictureResumeTwo.setVisibility(View.GONE);
                             showPictureResumeThree.setVisibility(View.GONE);
-                            showPictureResumeFour.setVisibility(View.GONE);
+                            morePictureTv.setVisibility(View.GONE);
                             noPictureLayout.setVisibility(View.VISIBLE);
                         }
 
@@ -201,7 +200,7 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
         showPictureResumeOne.setOnClickListener(this);
         showPictureResumeTwo.setOnClickListener(this);
         showPictureResumeThree.setOnClickListener(this);
-        showPictureResumeFour.setOnClickListener(this);
+        //showPictureResumeFour.setOnClickListener(this);
         intiResumeData();
        //resumeValueBean=((ResumeParticularsActivity) getActivity()).getResumeValueBean();
         /*if (resumeValueBean!=null){
@@ -348,9 +347,7 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
             case R.id.show_picture_resume_three:
                 imageBrower(2,resumeValueBean);
                 break;
-            case R.id.show_picture_resume_four:
-                imageBrower(3,resumeValueBean);
-                break;
+
 
 
 

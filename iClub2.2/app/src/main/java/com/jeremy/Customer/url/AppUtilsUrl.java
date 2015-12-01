@@ -417,8 +417,8 @@ public class AppUtilsUrl  {
     public static String getTalenViewCount(int id){
         return BaseUrl+"resumeViewCount.action?resumeid="+id;
     }
-    public static String getLoginQQ(String tokenvalue){
-        return BaseUrl+"login_qq.action?token="+tokenvalue;
+    public static String getLoginQQ(){
+        return BaseUrl+"login_qq.action";
     }
     public static String getLoginWeibo(String tokenvalue){
         return BaseUrl+"login_weibo.action?weibouid="+tokenvalue;

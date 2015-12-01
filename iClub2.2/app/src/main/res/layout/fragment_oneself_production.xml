@@ -215,7 +215,7 @@
         android:background="@color/white"
         android:id="@+id/picture_layout"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_marginTop="20dp"
             android:id="@+id/picture_tailt_tv"
@@ -241,35 +241,35 @@
             android:id="@+id/show_picture_resume_one"
             android:layout_below="@+id/picture_tailt_tv"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
+
             android:layout_marginLeft="30dp"
-            android:scaleType="fitXY"
+            android:scaleType="centerCrop"
             android:src="@mipmap/resume_background_icon"
-            android:layout_width="75dp"
-            android:layout_height="80dp" />
+            android:layout_width="100dp"
+            android:layout_height="110dp" />
         <ImageView
             android:id="@+id/show_picture_resume_two"
             android:layout_below="@+id/picture_tailt_tv"
             android:layout_toRightOf="@+id/show_picture_resume_one"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="5dp"
-            android:scaleType="fitXY"
+
+            android:layout_marginLeft="10dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/resume_background_icon"
-            android:layout_width="75dp"
-            android:layout_height="80dp" />
+            android:layout_width="100dp"
+            android:layout_height="110dp" />
         <ImageView
             android:id="@+id/show_picture_resume_three"
             android:layout_below="@+id/picture_tailt_tv"
             android:layout_toRightOf="@+id/show_picture_resume_two"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginLeft="5dp"
-            android:scaleType="fitXY"
+
+            android:layout_marginLeft="10dp"
+            android:scaleType="centerCrop"
             android:src="@mipmap/resume_background_icon"
-            android:layout_width="75dp"
-            android:layout_height="80dp" />
-        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="110dp" />
+        <!--<ImageView
             android:id="@+id/show_picture_resume_four"
             android:layout_below="@+id/picture_tailt_tv"
             android:layout_toRightOf="@+id/show_picture_resume_three"
@@ -279,7 +279,7 @@
             android:scaleType="fitXY"
             android:src="@mipmap/resume_background_icon"
             android:layout_width="75dp"
-            android:layout_height="80dp" />
+            android:layout_height="80dp" />-->
         <RelativeLayout
             android:layout_marginBottom="10dp"
             android:id="@+id/no_picture_layout"
@@ -305,6 +305,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>
+        <TextView
+            android:layout_below="@+id/show_picture_resume_three"
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
     </RelativeLayout>
     <ImageView
         android:layout_below="@+id/picture_layout"

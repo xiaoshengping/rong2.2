@@ -21,6 +21,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.LoadingDialog;
+import com.jeremy.Customer.bean.MessageBean;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.LoginValueBean;
 import com.jeremy.Customer.http.MyAppliction;
@@ -174,10 +175,11 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                             //String qqId = info.get("openid").toString();
                             //qqLoginData(qqId);
                             //MyAppliction.showToast(qqId);
-                           // mController.getUserInfo();
-                              Intent intent=new Intent(LoginActivity.this,BoundAccounsActivity.class);
-                              intent.putExtra("QQdata", sb.toString());
-                              startActivity(intent);
+                            // mController.getUserInfo();
+                            //qqLoginData(sb.toString());
+                            Intent intent = new Intent(LoginActivity.this, BoundAccounsActivity.class);
+                            intent.putExtra("QQdata",sb.toString());
+                            startActivity(intent);
                             Log.d("TestData", sb.toString());
                         } else {
                             Log.d("TestData", "发生错误：" + status);
@@ -194,13 +196,30 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
     }
 
-    private void qqLoginData(String qqId) {
+    private void qqLoginData(final String token) {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
-       // requestParams.addBodyParameter("");
-        httpUtils.send(HttpRequest.HttpMethod.POST, "", requestParams, new RequestCallBack<String>() {
+        requestParams.addBodyParameter("token",token);
+        httpUtils.send(HttpRequest.HttpMethod.POST,AppUtilsUrl.getLoginQQ(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
+                ParmeBean<MessageBean> parmeBean=JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
+
+                        if(parmeBean.getState().equals("success")){
+                           /*if (parmeBean.getValue().getMessage().equals("success")){
+                               finish();
+
+
+                           }else {
+                               Intent intent = new Intent(LoginActivity.this, BoundAccounsActivity.class);
+                               intent.putExtra("QQdata",token);
+                               startActivity(intent);
+                           }*/
+
+
+                        }
+
+
 
             }
 

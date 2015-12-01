@@ -32,6 +32,11 @@ public class BoundAccounsActivity extends ActionBarActivity implements View.OnCl
     @ViewInject(R.id.bound_button)
     private Button boundButton;
 
+    @ViewInject(R.id.tailt_text)
+    private TextView tailtText;
+    @ViewInject(R.id.tailt_return_tv)
+    private TextView tailtReturnTv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,8 @@ public class BoundAccounsActivity extends ActionBarActivity implements View.OnCl
     private void intiView() {
         boundButton.setOnClickListener(this);
         noRegisterTv.setOnClickListener(this);
+        tailtText.setText("绑定账号");
+        tailtReturnTv.setOnClickListener(this);
 
 
     }
@@ -62,6 +69,9 @@ public class BoundAccounsActivity extends ActionBarActivity implements View.OnCl
                 break;
             case R.id.bound_button:
                 saveDate();
+                break;
+            case R.id.tailt_return_tv:
+                finish();
                 break;
         }
     }

@@ -1,13 +1,21 @@
 package com.jeremy.Customer.uilt;
 
 
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,6 +34,7 @@ import com.jeremy.Customer.view.CustomImageView;
 import com.jeremy.Customer.view.CustomViewPager;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.bitmap.callback.DefaultBitmapLoadCallBack;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
@@ -150,7 +159,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
                         resumeWorkPlaceTv.setText(resumeValueBeanss.getResumeWorkPlace());
                         resumeJobNameIsdTv.setText(resumeValueBeanss.getResumeJobCategoryName());
                         browseNumberTv.setText(resumeValueBeanss.getCommentCount() + "");
-                       // new OneselfProductionAsynctack(talenBackIv,AppUtilsUrl.ImageBaseUrl + resumeValueBeanss.getUsericon()).execute();
+                        // new OneselfProductionAsynctack(talenBackIv,AppUtilsUrl.ImageBaseUrl + resumeValueBeanss.getUsericon()).execute();
                         loadingDialog.dismiss();
 
                     }
@@ -163,6 +172,7 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
             @Override
             public void onFailure(HttpException e, String s) {
                 loadingDialog.dismiss();
+                MyAppliction.showToast("网络异常...");
                 Log.e("onFailure.......", s);
             }
         });
@@ -172,75 +182,6 @@ public class ResumeParticularsActivity extends ActionBarActivity  implements Vie
 
 
     }
-   /* private void blur(Bitmap bkg, View view, float radius) {
-        Bitmap overlay = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(overlay);
-        //canvas.drawBitmap(bkg, -view.getLeft(), -view.getTop(), null);
-        RenderScript rs = RenderScript.create(this);
-        Allocation overlayAlloc = Allocation.createFromBitmap(rs, overlay);
-        ScriptIntrinsicBlur blur = ScriptIntrinsicBlur.create(rs, overlayAlloc.getElement());
-        blur.setInput(overlayAlloc);
-        blur.setRadius(radius);
-        blur.forEach(overlayAlloc);
-        overlayAlloc.copyTo(overlay);
-        view.setBackground(new BitmapDrawable(getResources(), overlay));
-        rs.destroy();
-    }
-
-    class OneselfProductionAsynctack extends AsyncTask<String, Void, Bitmap> {
-        private ImageView imgView;
-        private String path;
-
-        public OneselfProductionAsynctack(ImageView imageView,String path) {
-            this.imgView = imageView;
-            this.path = path;
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            //这里的创建缩略图方法是调用VideoUtil类的方法，也是通过 android中提供的 ThumbnailUtils.createVideoThumbnail(vidioPath, kind);
-            Bitmap bitmap = getImageThumbnail(path, 100, 100);
-            return bitmap;
-        }
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-
-            //imgView.setImageBitmap(bitmap);
-            blur(bitmap,imgView,0.8f);
-        }
-    }
-
-
-    private Bitmap getImageThumbnail(String imagePath, int width, int height) {
-        Bitmap bitmap = null;
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        // 获取这个图片的宽和高，注意此处的bitmap为null
-        bitmap = BitmapFactory.decodeFile(imagePath, options);
-        options.inJustDecodeBounds = false; // 设为 false
-        // 计算缩放比
-        int h = options.outHeight;
-        int w = options.outWidth;
-        int beWidth = w / width;
-        int beHeight = h / height;
-        int be = 1;
-        if (beWidth < beHeight) {
-            be = beWidth;
-        } else {
-            be = beHeight;
-        }
-        if (be <= 0) {
-            be = 1;
-        }
-        options.inSampleSize = be;
-        // 重新读入图片，读取缩放后的bitmap，注意这次要把options.inJustDecodeBounds 设为 false
-        bitmap = BitmapFactory.decodeFile(imagePath, options);
-        // 利用ThumbnailUtils来创建缩略图，这里要指定要缩放哪个Bitmap对象
-        bitmap = ThumbnailUtils.extractThumbnail(bitmap, width, height,
-                ThumbnailUtils.OPTIONS_RECYCLE_INPUT);
-        return bitmap;
-    }*/
-
 
     private void addFragment() {
         fragments.add(oneselfInformationFragment);

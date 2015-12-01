@@ -349,7 +349,7 @@
         android:layout_height="1dp" />
     <TextView
         android:id="@+id/commentCount_tv"
-        android:drawableRight="@mipmap/right_return_icon"
+        android:drawableRight="@mipmap/downward_icon"
         android:textColor="@color/hunTextColor"
         android:paddingLeft="30dp"
         android:paddingRight="20dp"

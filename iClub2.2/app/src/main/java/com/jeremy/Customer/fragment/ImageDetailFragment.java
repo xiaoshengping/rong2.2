@@ -72,7 +72,7 @@ public class ImageDetailFragment extends Fragment {
         mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               //getActivity().finish();
+               getActivity().finish();
             }
         });
 
