@@ -17,8 +17,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 
-import uk.co.senab.photoview.PhotoViewAttacher;
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -26,7 +24,7 @@ public class ImageDetailFragment extends Fragment {
     private String mImageUrl;
     private ImageView mImageView;
     private ProgressBar progressBar;
-    private PhotoViewAttacher mAttacher;
+    //private PhotoViewAttacher mAttacher;
 
 
     public ImageDetailFragment() {
@@ -57,7 +55,7 @@ public class ImageDetailFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_image_detail, container, false);
         mImageView = (ImageView) v.findViewById(R.id.image);
-        mAttacher = new PhotoViewAttacher(mImageView);
+        /*mAttacher = new PhotoViewAttacher(mImageView);
 
         mAttacher.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
 
@@ -65,7 +63,7 @@ public class ImageDetailFragment extends Fragment {
             public void onPhotoTap(View arg0, float arg1, float arg2) {
                 getActivity().finish();
             }
-        });
+        });*/
 
         progressBar = (ProgressBar) v.findViewById(R.id.loading);
 
@@ -118,7 +116,7 @@ public class ImageDetailFragment extends Fragment {
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                 progressBar.setVisibility(View.GONE);
-                mAttacher.update();
+                //mAttacher.update();
             }
         });
 
