@@ -142,7 +142,7 @@ public class ResumeVideoAdapter extends AppBaseAdapter<ResumeMovie> {
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                MyAppliction.showToast("网络出错了,删除失败...");
             }
         });
 

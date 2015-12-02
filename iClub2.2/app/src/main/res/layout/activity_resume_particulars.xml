@@ -49,7 +49,7 @@
                 android:id="@+id/resumeZhName_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="啦啦啦"
+
                 android:textSize="@dimen/textSize16"
                 android:textColor="@color/white"
                 android:layout_below="@+id/talen_back_iv"
@@ -75,7 +75,7 @@
                     android:id="@+id/resumeAge_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="28"
+
                     android:textColor="@color/redTextColor"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
@@ -118,7 +118,7 @@
                     android:id="@+id/resume_WorkPlace_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="广州"
+
                     android:textColor="@color/white"
                     android:layout_marginLeft="10dp"
                     android:textSize="@dimen/textSize14"
@@ -146,7 +146,7 @@
                     android:id="@+id/resumeJobName_isd_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="酒吧DJ"
+
                     android:textColor="@color/white"
                     android:layout_marginLeft="10dp"
                     android:textSize="@dimen/textSize14"
@@ -239,7 +239,7 @@
             android:layout_marginTop="125dp"
             android:layout_marginRight="18dp"
             android:gravity="center"
-            android:text="10"
+            android:text="0"
             android:textSize="@dimen/textSize12"
             android:textColor="@color/white"
             android:layout_width="50dp"

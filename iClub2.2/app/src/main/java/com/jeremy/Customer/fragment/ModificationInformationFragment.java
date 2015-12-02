@@ -337,7 +337,7 @@ public class ModificationInformationFragment extends Fragment implements View.On
 
                                             @Override
                                             public void onFailure(HttpException e, String s) {
-
+                                                MyAppliction.showToast("网络出错了...");
                                                 loadingDialog.dismiss();
                                             }
                                         });

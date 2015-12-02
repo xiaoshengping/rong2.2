@@ -48,6 +48,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textSize="@dimen/textSize15"
+            android:text="网络异常，无法显示..."
             android:lineSpacingMultiplier="1.5"
             />
         <LinearLayout
@@ -130,6 +131,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textSize="@dimen/textSize15"
+            android:text="网络异常，无法显示..."
             android:lineSpacingMultiplier="1.5"
           />
         <LinearLayout
@@ -198,7 +200,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/resumeQq_tv"
-                android:text="QQ___"
+                android:text="网络异常，无法显示..."
                 android:layout_marginLeft="47dp"
                 android:textSize="@dimen/textSize14"
                 android:layout_width="wrap_content"
@@ -220,7 +222,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/resumeEmail_tv"
-                android:text="Email"
+                android:text="网络异常，无法显示..."
                 android:layout_marginLeft="32dp"
                 android:textSize="@dimen/textSize14"
 
@@ -243,7 +245,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/resumeMobile_tv"
-                android:text="手机号码"
+                android:text="网络异常，无法显示..."
                 android:layout_marginLeft="10dp"
                 android:textSize="@dimen/textSize14"
                 android:layout_width="wrap_content"
@@ -285,7 +287,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/integrity_tv"
-                android:text="100"
+                android:text="0"
                 android:textColor="@color/redTextColor"
                 android:layout_marginLeft="25dp"
                 android:textSize="@dimen/textSize14"
@@ -309,7 +311,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/authenticity_tv"
-                android:text="100"
+                android:text="0"
                 android:layout_marginLeft="25dp"
                 android:textSize="@dimen/textSize14"
                 android:textColor="@color/redTextColor"
@@ -335,7 +337,7 @@
             <TextView
                 android:textColor="@color/redTextColor"
                 android:id="@+id/transactionRecord_tv"
-                android:text="100"
+                android:text="0"
                 android:layout_marginLeft="10dp"
                 android:textSize="@dimen/textSize14"
                 android:layout_width="wrap_content"
@@ -356,7 +358,7 @@
 
         android:gravity="center_vertical"
         android:background="@color/white"
-        android:text="100位商家评论过"
+        android:text="暂没有商家评论过"
         android:layout_width="match_parent"
         android:layout_height="50dp" />
     <ImageView

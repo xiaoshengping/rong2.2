@@ -338,9 +338,10 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query(SQLhelper.tableName, null, null, null, null, null, null);
+
         while (cursor.moveToNext()) {
             uid=cursor.getString(0);
-            state = cursor.getString(4);
+            state= cursor.getString(4);
             userName = cursor.getString(2);
             userIcon=cursor.getString(3);
             companyName=cursor.getString(6);
@@ -650,7 +651,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                      db.delete(SQLhelper.tableName, null, null);
                     }
                 }
-
+                uid=null;
                 cursor.close();
                 db.close();
                 dlg.cancel();

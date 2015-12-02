@@ -31,6 +31,7 @@ import com.jeremy.Customer.uilt.MorePictureActivity;
 import com.jeremy.Customer.uilt.MoreVideoActivity;
 import com.jeremy.Customer.uilt.ResumeParticularsActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
+import com.jeremy.Customer.view.MusicActivity;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -79,6 +80,8 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
     private RelativeLayout showVideoLayout;
     @ViewInject(R.id.no_viseo_layout)
     private RelativeLayout noVideoLayout;
+    @ViewInject(R.id.show_no_video)
+    private TextView showNoTextVideo;
 
     private  ResumeValueBean resumeValueBean;
     public OneselfProductionFragment() {
@@ -94,7 +97,7 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
     private void intiResumeData() {
 
        HttpUtils httpUtils=new HttpUtils().configDefaultHttpCacheExpiry(0);
-        String resumeListUrl= AppUtilsUrl.getResumeLista(((ResumeParticularsActivity)getActivity()).getResumeid());
+        String resumeListUrl= AppUtilsUrl.getResumeLista(((ResumeParticularsActivity) getActivity()).getResumeid());
         httpUtils.send(HttpRequest.HttpMethod.POST, resumeListUrl, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -102,13 +105,13 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                 if (result != null) {
                     ParmeBean<ResumeValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ParmeBean<ResumeValueBean>>() {
                     });
-                    resumeValueBean=artistParme.getValue();
-                    if (resumeValueBean!=null){
+                    resumeValueBean = artistParme.getValue();
+                    if (resumeValueBean != null) {
 
                         if (resumeValueBean.getResumeMovie().size() != 0) {
                             moreVideoTv.setVisibility(View.VISIBLE);
                             //showVideoResumeIv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(), 10, 10));
-                            new OneselfProductionAsynctack(showVideoResumeIv,AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath()).execute();
+                            new OneselfProductionAsynctack(showVideoResumeIv, AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath()).execute();
                         } else {
                             showVideoLayout.setVisibility(View.GONE);
                             noVideoLayout.setVisibility(View.VISIBLE);
@@ -136,24 +139,23 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                                 if (resumeValueBean.getResumePicture().size() > 2) {
                                     MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(2).getPath(), showPictureResumeThree, MyAppliction.options);
 
-                                }else {
+                                } else {
                                     showPictureResumeThree.setVisibility(View.GONE);
                                     //showPictureResumeFour.setVisibility(View.GONE);
                                 }
-                            }else {
+                            } else {
                                 showPictureResumeTwo.setVisibility(View.GONE);
                                 showPictureResumeThree.setVisibility(View.GONE);
-                               // showPictureResumeFour.setVisibility(View.GONE);
+                                // showPictureResumeFour.setVisibility(View.GONE);
                             }
 
-                        }else {
+                        } else {
                             showPictureResumeOne.setVisibility(View.GONE);
                             showPictureResumeTwo.setVisibility(View.GONE);
                             showPictureResumeThree.setVisibility(View.GONE);
                             morePictureTv.setVisibility(View.GONE);
                             noPictureLayout.setVisibility(View.VISIBLE);
                         }
-
 
 
                     }
@@ -165,6 +167,11 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
 
             @Override
             public void onFailure(HttpException e, String s) {
+                morePictureTv.setVisibility(View.GONE);
+                moreMusicTv.setVisibility(View.GONE);
+                moreVideoTv.setVisibility(View.GONE);
+                showNoTextVideo.setVisibility(View.GONE);
+                MyAppliction.showToast("网络出错了...");
                 Log.e("onFailure.......", s);
             }
         });
@@ -200,60 +207,9 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
         showPictureResumeOne.setOnClickListener(this);
         showPictureResumeTwo.setOnClickListener(this);
         showPictureResumeThree.setOnClickListener(this);
-        //showPictureResumeFour.setOnClickListener(this);
+        showMusicResumeTv.setOnClickListener(this);
+        showMusicResumeTwo.setOnClickListener(this);
         intiResumeData();
-       //resumeValueBean=((ResumeParticularsActivity) getActivity()).getResumeValueBean();
-        /*if (resumeValueBean!=null){
-            if (resumeValueBean.getResumeMovie().size() != 0) {
-                //showVideoResumeIv.setImageBitmap(createVideoThumbnail(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath(), 10, 10));
-                new OneselfProductionAsynctack(showVideoResumeIv,AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath()).execute();
-            } else {
-                showVideoLayout.setVisibility(View.GONE);
-                noVideoLayout.setVisibility(View.VISIBLE);
-            }
-            if (resumeValueBean.getResumeMusic().size() != 0) {
-                showMusicResumeTv.setText(resumeValueBean.getResumeMusic().get(0).getTitle());
-                if (resumeValueBean.getResumeMusic().size() >= 2) {
-                    showMusicResumeTwo.setText(resumeValueBean.getResumeMusic().get(1).getTitle());
-                } else {
-                    showMusicResumeTwo.setVisibility(View.GONE);
-                }
-            } else {
-                showMusicResumeTv.setVisibility(View.GONE);
-                showMusicResumeTwo.setVisibility(View.GONE);
-            }
-            if (resumeValueBean.getResumePicture().size() != 0) {
-                MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(0).getPath(), showPictureResumeOne, MyAppliction.options);
-                if (resumeValueBean.getResumePicture().size() > 1) {
-                    MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(1).getPath(), showPictureResumeTwo, MyAppliction.options);
-                    if (resumeValueBean.getResumePicture().size() > 2) {
-                        MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(2).getPath(), showPictureResumeThree, MyAppliction.options);
-                        if (resumeValueBean.getResumePicture().size() > 3) {
-                            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumePicture().get(3).getPath(), showPictureResumeFour, MyAppliction.options);
-
-                        }else {
-                            showPictureResumeFour.setVisibility(View.GONE);
-                        }
-                    }else {
-                        showPictureResumeThree.setVisibility(View.GONE);
-                        showPictureResumeFour.setVisibility(View.GONE);
-                    }
-                }else {
-                    showPictureResumeTwo.setVisibility(View.GONE);
-                    showPictureResumeThree.setVisibility(View.GONE);
-                    showPictureResumeFour.setVisibility(View.GONE);
-                }
-
-            }else {
-                showPictureResumeOne.setVisibility(View.GONE);
-                showPictureResumeTwo.setVisibility(View.GONE);
-                showPictureResumeThree.setVisibility(View.GONE);
-                showPictureResumeFour.setVisibility(View.GONE);
-            }
-
-
-
-        }*/
 
 
     }
@@ -333,19 +289,49 @@ public class OneselfProductionFragment extends Fragment implements View.OnClickL
                 startActivity(pictureIntent);
                 break;
             case R.id.show_video_resume_iv:
+                if (resumeValueBean!=null){
+
                 Intent videoIntent = new Intent(Intent.ACTION_VIEW);
                 Uri videoUri = Uri.parse(AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath());
                 videoIntent.setDataAndType(videoUri, "video/mp4");
                 startActivity(videoIntent);
+
+                }
                 break;
             case R.id.show_picture_resume_one:
-                imageBrower(0,resumeValueBean);
+                if (resumeValueBean!=null) {
+                    imageBrower(0, resumeValueBean);
+                }
                 break;
             case R.id.show_picture_resume_two:
-                imageBrower(1,resumeValueBean);
+                if (resumeValueBean!=null) {
+                    imageBrower(1, resumeValueBean);
+                }
                 break;
             case R.id.show_picture_resume_three:
-                imageBrower(2,resumeValueBean);
+                if (resumeValueBean!=null) {
+                    imageBrower(2, resumeValueBean);
+                }
+                break;
+            case R.id.show_music_resume_tv:
+                if (resumeValueBean!=null) {
+                Intent intentMusic = new Intent(getActivity(), MusicActivity.class);  //方法1
+                intentMusic.putExtra("url", AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMusic().get(0).getPath());
+                intentMusic.putExtra("musicName", resumeValueBean.getResumeMusic().get(0).getTitle());
+                intentMusic.putExtras(intentMusic);
+                startActivity(intentMusic);
+                getActivity().overridePendingTransition(R.anim.out_to_not, R.anim.music_in);
+            }
+                break;
+            case R.id.show_music_resume_two:
+                if (resumeValueBean!=null) {
+                    Intent intentMusic = new Intent(getActivity(), MusicActivity.class);  //方法1
+                    intentMusic.putExtra("url", AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMusic().get(1).getPath());
+                    intentMusic.putExtra("musicName", resumeValueBean.getResumeMusic().get(1).getTitle());
+                    intentMusic.putExtras(intentMusic);
+                    startActivity(intentMusic);
+                    getActivity().overridePendingTransition(R.anim.out_to_not, R.anim.music_in);
+                }
                 break;
 
 

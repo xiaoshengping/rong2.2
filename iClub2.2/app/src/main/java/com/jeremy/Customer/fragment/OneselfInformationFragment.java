@@ -126,6 +126,9 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
 
             @Override
             public void onFailure(HttpException e, String s) {
+
+                oneselfMoreTv.setVisibility(View.GONE);
+                experienceMoreTv.setVisibility(View.GONE);
                 Log.e("onFailure.......", s);
             }
         });
@@ -227,10 +230,12 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
                 experienceMoreLayout.setVisibility(View.GONE);
                 break;
             case R.id.commentCount_tv:
-                if (resumeValueBean.getCommentCount()!=0){
-                    Intent intent =new Intent(getActivity(), CommentCountActivity.class);
-                    intent.putExtra("falge","resume");
-                    startActivity(intent);
+                if (resumeValueBean!=null) {
+                    if (resumeValueBean.getCommentCount() != 0) {
+                        Intent intent = new Intent(getActivity(), CommentCountActivity.class);
+                        intent.putExtra("falge", "resume");
+                        startActivity(intent);
+                    }
                 }
                 break;
 

@@ -64,7 +64,7 @@ public class ResumePictureAdapter extends AppBaseAdapter<ResumePicture> {
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid", resumeid);
         requestParams.addBodyParameter("id", pictureId);
-        Log.e("hsdhhd",resumeid+"jfjfjjf"+pictureId);
+       // Log.e("hsdhhd",resumeid+"jfjfjjf"+pictureId);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getDeletePicture(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -80,7 +80,7 @@ public class ResumePictureAdapter extends AppBaseAdapter<ResumePicture> {
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                MyAppliction.showToast("网络出错了,删除失败...");
             }
         });
 
