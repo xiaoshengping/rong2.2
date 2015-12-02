@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="0px"
-    android:background="@drawable/positon_item_shape"
+    android:background="@drawable/positon_item_selector"
     android:orientation="horizontal"
     android:paddingBottom="15dp"
     android:paddingLeft="20dp"

@@ -152,7 +152,7 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
         ILoadingLayout startLabels = recommend_list
                 .getLoadingLayoutProxy(true, false);
         startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
-        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setRefreshingLabel("正在加载...");// 刷新时
         startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
         recommend_list.setRefreshing();
 
@@ -205,7 +205,10 @@ public class TalentFragment extends Fragment implements PullToRefreshBase.OnRefr
                             }
 
                         } else if(talentValue.getTotal() == 0) {
+                            adater = new RecommendListAdater(getActivity(), talentValueBean, Identification.TALENTS);
+                            recommend_list.setAdapter(adater);
                             Toast.makeText(getActivity(), "暂无相关人才", Toast.LENGTH_LONG).show();
+
                         }else {
                             Toast.makeText(getActivity(), "以加载全部内容", Toast.LENGTH_LONG).show();
                         }

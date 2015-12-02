@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -30,6 +29,7 @@ import com.jeremy.Customer.uilt.RecommenListActivity;
 import com.jeremy.Customer.uilt.TalentsDetailsActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.Advertisement;
+import com.jeremy.Customer.view.MyScrollView;
 import com.jeremy.Customer.view.SlideShowView;
 import com.lidroid.xutils.BitmapUtils;
 import com.lidroid.xutils.HttpUtils;
@@ -43,7 +43,7 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener, View.OnTouchListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, View.OnTouchListener,MyScrollView.OnScrollListener {
 
     @ViewInject(R.id.advertisement_ll)
     private LinearLayout advertisement_ll;
@@ -64,7 +64,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 
     private LinearLayout item_position_ll1, item_position_ll2, item_position_ll3, item_position_ll4, item_position_ll5;
 
-    private static ScrollView scrollView;
+    private static MyScrollView scrollView;
     private static ImageView home_icon_iv;
 
     private BitmapUtils bitmapUtils;
@@ -159,7 +159,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
         item_position_ll4 = (LinearLayout) view.findViewById(R.id.item_position_ll4);
         item_position_ll5 = (LinearLayout) view.findViewById(R.id.item_position_ll5);
 
-        scrollView = (ScrollView) view.findViewById(R.id.scrollView);
+        scrollView = (MyScrollView) view.findViewById(R.id.scrollView);
         home_icon_iv = (ImageView) view.findViewById(R.id.home_icon_iv);
 
         home_more1.setOnClickListener(this);
@@ -189,6 +189,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
         recommend_the_virtuous_and_able_riv5.setOnTouchListener(this);
         recommend_the_virtuous_and_able_riv6.setOnTouchListener(this);
 
+        scrollView .setOnScrollListener(this);
         scrollView.setVisibility(View.GONE);
 
     }
@@ -645,7 +646,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
     public boolean onTouch(View v, MotionEvent event) {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-
+            click = true;
             switch (v.getId()) {
                 case R.id.recommend_the_virtuous_and_able_riv1:
                     Click(recommend_the_virtuous_and_able_tv1);
@@ -681,5 +682,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 
     private void Click(View v) {
         v.setBackgroundResource(R.drawable.click_r_focus_shape);
+    }
+
+    private boolean click = false;
+    @Override
+    public void onScroll(int scrollY) {
+        if(click) {
+            click = false;
+            recommend_the_virtuous_and_able_tv1.setBackgroundResource(R.drawable.click_r_nomal_shape);
+            recommend_the_virtuous_and_able_tv2.setBackgroundResource(R.drawable.click_r_nomal_shape);
+            recommend_the_virtuous_and_able_tv3.setBackgroundResource(R.drawable.click_r_nomal_shape);
+            recommend_the_virtuous_and_able_tv4.setBackgroundResource(R.drawable.click_r_nomal_shape);
+            recommend_the_virtuous_and_able_tv5.setBackgroundResource(R.drawable.click_r_nomal_shape);
+            recommend_the_virtuous_and_able_tv6.setBackgroundResource(R.drawable.click_r_nomal_shape);
+        }
     }
 }

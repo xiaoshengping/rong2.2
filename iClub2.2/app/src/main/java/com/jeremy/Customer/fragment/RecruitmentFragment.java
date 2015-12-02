@@ -154,7 +154,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
         ILoadingLayout startLabels = recommend_list
                 .getLoadingLayoutProxy(true, false);
         startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
-        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setRefreshingLabel("正在加载...");// 刷新时
         startLabels.setReleaseLabel("放开刷新...");// 下来达到一定距离时，显示的提示
         recommend_list.setRefreshing();
 
@@ -208,9 +208,11 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                                 adater.notifyDataSetChanged();
                             }
                         } else if(recruitmentListBean.getTotal() == 0) {
+                            adater = new RecommendListAdater(getActivity(), Identification.PROSITION, recruitmentListData);
+                            recommend_list.setAdapter(adater);
                             Toast.makeText(getActivity(), "暂无相关工作", Toast.LENGTH_LONG).show();
                         }else {
-                            Toast.makeText(getActivity(), "以上已为全部内容", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "已加载全部内容", Toast.LENGTH_LONG).show();
                         }
 
                     }

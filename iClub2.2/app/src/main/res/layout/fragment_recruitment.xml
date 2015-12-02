@@ -1,5 +1,6 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.jeremy.Customer.fragment.RecruitmentFragment">
 
@@ -8,25 +9,24 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            layout="@layout/conditions_selected"></include>
+        <include layout="@layout/conditions_selected"></include>
 
         <TextView
             android:id="@+id/network_hint"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="#FFF2CC"
-            android:text="加载失败，请稍后重试!"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:text="加载失败，请稍后重试!" />
 
-        <com.handmark.pulltorefresh.library.PullToRefreshListView
-            xmlns:ptr="http://schemas.android.com/apk/res-auto"
-            ptr:ptrHeaderTextColor="#000000"
+        <com.handmark.pulltorefresh.library.PullToRefreshListView xmlns:ptr="http://schemas.android.com/apk/res-auto"
             android:id="@+id/recommend_list"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:divider="#00ffffff"
-            android:dividerHeight="0px"/>
+            android:dividerHeight="0px"
+            ptr:ptrHeaderTextColor="#000000" />
+
     </LinearLayout>
 
 </FrameLayout>

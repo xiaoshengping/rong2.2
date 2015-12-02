@@ -4,16 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/picture_iv"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="6dp"
-        android:scaleType="centerCrop"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:src="@mipmap/dufuke_icon"/>
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/picture_iv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="0dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/dufuke_icon" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:background="@drawable/bai_kuang_shape"/>
+    </RelativeLayout>
 
 </LinearLayout>
