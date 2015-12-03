@@ -31,7 +31,7 @@
           android:textSize="@dimen/textSize18"
           android:layout_marginTop="10dp"
           android:layout_marginLeft="20dp"
-          android:text="广州贸易有限公司"
+          android:text="网络异常，无法正常显示..."
           android:layout_marginBottom="10dp"
           android:layout_width="match_parent"
           android:layout_height="wrap_content" />
@@ -49,7 +49,7 @@
         <TextView
             android:id="@+id/company_phone_tv"
             android:layout_marginLeft="20dp"
-            android:text="电话"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
            </LinearLayout>
@@ -69,7 +69,7 @@
                 android:id="@+id/company_email_tv"
                 android:layout_marginLeft="20dp"
 
-                android:text="邮箱"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -88,7 +88,7 @@
             <TextView
                 android:id="@+id/company_http_tv"
                 android:layout_marginLeft="20dp"
-                android:text="官网"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -108,7 +108,7 @@
             <TextView
                 android:id="@+id/company_address_tv"
                 android:layout_marginLeft="20dp"
-                android:text="地址"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -165,7 +165,7 @@
             android:layout_marginRight="20dp"
             android:textSize="@dimen/textSize15"
             android:lineSpacingMultiplier="1.5"
-            android:text="仅仅是接电话都或多或少都好的好的好的好的不烦不烦烦不烦部分恢复恢复很好合适的好的好的哈哈就是减肥减肥减肥就是的加减法好的好的好的基督教 就是觉得就是减肥就是减肥的减肥减肥还是说睡觉睡觉jjjsdfjjjs记得减肥解决方法解决决定将发挥发挥发挥北京时间附加费很舒服恢复和范冰冰"
+            android:text="网络异常，无法显示..."
             />
         <LinearLayout
             android:id="@+id/oneself_more_layout"
@@ -230,27 +230,31 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <ImageView
+                android:scaleType="centerCrop"
                 android:id="@+id/show_merchant_picture_one"
                 android:layout_marginLeft="20dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/dufuke_icon"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
             <ImageView
+                android:scaleType="centerCrop"
                 android:id="@+id/show_merchant_picture_two"
                 android:layout_marginLeft="5dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/dufuke_icon"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
             <ImageView
+                android:scaleType="centerCrop"
                 android:id="@+id/show_merchant_picture_three"
                 android:layout_marginLeft="5dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/dufuke_icon"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
             <ImageView
+                android:scaleType="centerCrop"
                 android:id="@+id/show_merchant_picture_four"
                 android:layout_marginLeft="5dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/dufuke_icon"
                 android:layout_width="80dp"
                 android:layout_height="80dp" />
 

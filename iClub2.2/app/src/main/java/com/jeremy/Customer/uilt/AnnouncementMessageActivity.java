@@ -3,7 +3,6 @@ package com.jeremy.Customer.uilt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,6 +15,7 @@ import com.jeremy.Customer.R;
 import com.jeremy.Customer.adapter.InfomationAdapter;
 import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.mine.InformationValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -64,7 +64,7 @@ public class AnnouncementMessageActivity extends ActionBarActivity implements Vi
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
-                Log.e("jsjdfjff",result);
+                //Log.e("jsjdfjff",result);
                 ArtistParme<InformationValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<InformationValueBean>>() {
                 });
                 informationValueBeans = artistParme.getValue();
@@ -86,7 +86,7 @@ public class AnnouncementMessageActivity extends ActionBarActivity implements Vi
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                MyAppliction.showToast("网络异常...");
             }
         });
 

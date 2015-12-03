@@ -386,8 +386,8 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             requestParams.addBodyParameter("position",position);
             requestParams.addBodyParameter("workPay",workPay);
             requestParams.addBodyParameter("recruitingNumbers", recruitingNumbers);
-            requestParams.addBodyParameter("jobRequirements", workDescribeTv.getText().toString());
-            requestParams.addBodyParameter("jobInfo", experienceRequireTv.getText().toString());
+            requestParams.addBodyParameter("jobRequirements", experienceRequireTv.getText().toString());
+            requestParams.addBodyParameter("jobInfo",workDescribeTv.getText().toString() );
 
             if (selectYear!=0&&selectMonthOfYear!=0&&selectDayOfMonth!=0){
                 workingTime=selectYear+"-"+selectMonthOfYear+"-"+selectDayOfMonth;
@@ -458,8 +458,8 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             requestParams.addBodyParameter("position", position);
             requestParams.addBodyParameter("workPay", workPay);
             requestParams.addBodyParameter("recruitingNumbers", recruitingNumbers);
-            requestParams.addBodyParameter("jobRequirements", merchantWork);
-            requestParams.addBodyParameter("jobInfo", merchantInfo);
+            requestParams.addBodyParameter("jobRequirements",merchantInfo );
+            requestParams.addBodyParameter("jobInfo", merchantWork);
             requestParams.addBodyParameter("workingHours", workingHours);
             if (!TextUtils.isEmpty(workingTime)){
                 requestParams.addBodyParameter("workingTime", workingTime);
