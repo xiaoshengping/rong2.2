@@ -10,6 +10,7 @@ import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.RecruitmentHistoryValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -104,7 +105,7 @@ public class MerchantJobParticularActivity extends ActionBarActivity implements 
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                MyAppliction.showToast("网络异常，无法显示...");
             }
         });
 

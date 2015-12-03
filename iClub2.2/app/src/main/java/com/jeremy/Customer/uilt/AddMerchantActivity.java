@@ -422,7 +422,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 @Override
                 public void onFailure(HttpException e, String s) {
 
-                    MyAppliction.showToast("网络请求超时");
+                    MyAppliction.showToast("网络异常，保存失败...");
                     loadingDialog.dismiss();
                 }
             });
@@ -487,6 +487,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
 
                 @Override
                 public void onFailure(HttpException e, String s) {
+                    MyAppliction.showToast("网络异常，保存失败...");
                     loadingDialog.dismiss();
 
                 }

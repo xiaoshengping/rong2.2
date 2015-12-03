@@ -88,8 +88,12 @@ public class ResumeVideoAdapter extends AppBaseAdapter<ResumeMovie> {
         }
         @Override
         protected void onPostExecute(Bitmap bitmap) {
+             if (bitmap!=null){
+                 imgView.setImageBitmap(bitmap);
+             }else {
+                 imgView.setBackgroundResource(R.color.textColor242424);
+             }
 
-            imgView.setImageBitmap(bitmap);
 
         }
     }

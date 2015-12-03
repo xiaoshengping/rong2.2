@@ -5,7 +5,7 @@
 
     <ImageView
         android:id="@+id/show_picture_iv"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:layout_width="80dp"
         android:layout_height="80dp" />
     <ImageView

@@ -122,6 +122,7 @@ public class InviteproductionFragment extends Fragment implements View.OnClickLi
                    new InviteProductionAsynctack(showVideoResumeIv, AppUtilsUrl.ImageBaseUrl + resumeValueBean.getResumeMovie().get(0).getPath()).execute();
 
             } else {
+                moreVideoTv.setVisibility(View.GONE);
                 showVideoLayout.setVisibility(View.GONE);
                 noVideoLayout.setVisibility(View.VISIBLE);
             }
@@ -133,6 +134,7 @@ public class InviteproductionFragment extends Fragment implements View.OnClickLi
                     showMusicResumeTwo.setVisibility(View.GONE);
                 }
             } else {
+                moreMusicTv.setVisibility(View.GONE);
                 noMisumeLayout.setVisibility(View.VISIBLE);
                 showMusicResumeTv.setVisibility(View.GONE);
                 showMusicResumeTwo.setVisibility(View.GONE);
@@ -160,6 +162,7 @@ public class InviteproductionFragment extends Fragment implements View.OnClickLi
                 }
 
             }else {
+                morePictureTv.setVisibility(View.GONE);
                 noPictureLayout.setVisibility(View.VISIBLE);
                 showPictureResumeOne.setVisibility(View.GONE);
                 showPictureResumeTwo.setVisibility(View.GONE);

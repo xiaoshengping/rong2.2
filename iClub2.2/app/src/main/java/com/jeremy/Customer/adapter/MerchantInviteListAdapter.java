@@ -247,6 +247,7 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
 
             @Override
             public void onFailure(HttpException e, String s) {
+                MyAppliction.showToast("网络出错了...");
                 Log.e("onFailure", s);
             }
         });

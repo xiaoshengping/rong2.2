@@ -30,7 +30,7 @@
                 android:id="@+id/usericon_background_iv"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:scaleType="fitXY"
+                android:scaleType="centerCrop"
                 android:layout_centerHorizontal="true"
                 android:layout_marginLeft="18dp"
                 android:layout_marginTop="-170dp"

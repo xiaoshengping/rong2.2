@@ -9,6 +9,14 @@
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/yichan_text"
+        android:gravity="center"
+        android:text="加载失败,请下拉刷新"
+        android:background="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/message_listView"
         android:dividerHeight="1dp"

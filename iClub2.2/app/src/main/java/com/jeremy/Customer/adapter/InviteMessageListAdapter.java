@@ -197,19 +197,21 @@ public class InviteMessageListAdapter extends  AppBaseAdapter<InviteMessgaeListV
             if (vid == viewHold.acceptButtonTv.getId()) {
                 if (isChecked.get(position) == false) {
                     isChecked.put(position, true);   // 根据点击的情况来将其位置和相应的状态存入
-                   if (!TextUtils.isEmpty(data.get(position).getStatus())){
-                    if (data.get(position).getStatus().equals("1")) {
-                        adoptData(data.get(position).getInviteid(), "3");
-                    } else if (data.get(position).getStatus().equals("0")) {
-                        adoptData(data.get(position).getInviteid(), "1");
-                    } else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
-                        Intent intent = new Intent(context, CommentGradeActivity.class);
-                        intent.putExtra("inviteMessgaeListValueBeans", (Serializable) data.get(position));
-                        intent.putExtra("falgeData", "SuccessfulInviteFragment");
-                        context.startActivity(intent);
+                   if (data.size()!=0) {
+                       if (!TextUtils.isEmpty(data.get(position).getStatus())) {
+                           if (data.get(position).getStatus().equals("1")) {
+                               adoptData(data.get(position).getInviteid(), "3");
+                           } else if (data.get(position).getStatus().equals("0")) {
+                               adoptData(data.get(position).getInviteid(), "1");
+                           } else if (data.get(position).getStatus().equals("3") || data.get(position).getStatus().equals("4")) {
+                               Intent intent = new Intent(context, CommentGradeActivity.class);
+                               intent.putExtra("inviteMessgaeListValueBeans", (Serializable) data.get(position));
+                               intent.putExtra("falgeData", "SuccessfulInviteFragment");
+                               context.startActivity(intent);
 
-                    }
+                           }
 
+                       }
                    }else {
                        MyAppliction.showToast("网络异常");
                    }
