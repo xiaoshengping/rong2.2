@@ -155,6 +155,8 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
 
             @Override
             public void onFailure(HttpException e, String s) {
+
+                MyAppliction.showToast("网络异常，无法上传...");
                 loadingDialog.dismiss();
             }
         });

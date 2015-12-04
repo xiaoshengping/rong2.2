@@ -220,6 +220,9 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
 
             @Override
             public void onFailure(HttpException e, String s) {
+                MyAppliction.showToast("网络异常...");
+                saveText.setVisibility(View.GONE);
+                MerchantMoreTv.setVisibility(View.GONE);
                 loadingDialog.dismiss();
             }
         });

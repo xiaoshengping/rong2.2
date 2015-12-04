@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -42,6 +44,8 @@ public class TalentsDeliverMessageActivity extends ActionBarActivity implements 
     private TextView tailtReturnTv;
     @ViewInject(R.id.add_application_layout)
     private LinearLayout applicationLayout;
+    @ViewInject(R.id.yichan_text)
+    private TextView yichanText;
 
     private List<ResumeMessageValueBean> informationValueBeans;
     private ResumeMessageListAdapter resumeMessageListAdapter;
@@ -124,19 +128,20 @@ public class TalentsDeliverMessageActivity extends ActionBarActivity implements 
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
         }
-        HttpUtils httpUtils = new HttpUtils();
+        HttpUtils httpUtils = new HttpUtils().configCurrentHttpCacheExpiry(1000);
         String informationUrl = AppUtilsUrl.getMessageList(uid, offset);
-        httpUtils.send(HttpRequest.HttpMethod.POST, informationUrl, new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, informationUrl, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
                 HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<ResumeMessageValueBean>>() {
                 }, informationValueBeans, resumeMessageListAdapter);
                 //MyAppliction.showToast("" + informationValueBeans.size());
-                if (informationValueBeans.size()==0){
+                yichanText.setVisibility(View.GONE);
+                if (informationValueBeans.size() == 0) {
                     MessageListView.setVisibility(View.GONE);
                     applicationLayout.setVisibility(View.VISIBLE);
-                }else {
+                } else {
                     applicationLayout.setVisibility(View.GONE);
                     MessageListView.setVisibility(View.VISIBLE);
                 }
@@ -146,9 +151,18 @@ public class TalentsDeliverMessageActivity extends ActionBarActivity implements 
 
             @Override
             public void onFailure(HttpException e, String s) {
+                yichanText.setVisibility(View.VISIBLE);
+                showAnim();
                 MessageListView.onRefreshComplete();
                 //Log.e("hdhfhhf", s);
             }
         });
     }
+
+    private void showAnim() {
+        Animation appAnim = AnimationUtils.loadAnimation(this, R.anim.alpthe);
+        yichanText.startAnimation(appAnim);
+
+    }
+
 }
