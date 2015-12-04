@@ -110,11 +110,7 @@
         </RadioGroup>
     </LinearLayout>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_above="@+id/home_rido_layout"
-        android:src="#999999" />
+
 
 
 

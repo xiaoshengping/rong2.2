@@ -42,6 +42,6 @@
     </com.jeremy.Customer.view.MyScrollView>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="1.5px"
-        android:background="#E2E2E4"/>
+        android:layout_height="1dp"
+        android:background="#b4b4b4"/>
 </FrameLayout>

@@ -38,7 +38,7 @@
                 android:paddingRight="40dp"
                 android:text="玩使命“敢于挑战，超越梦想”微电影大赛asdfasfsdf"
                 android:textSize="18sp"
-                android:textColor="#212121"
+                android:textColor="#333333"
                 android:background="#ffffff"/>
 
             <TextView

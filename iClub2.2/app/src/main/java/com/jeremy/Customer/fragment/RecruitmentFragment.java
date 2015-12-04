@@ -207,14 +207,18 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                                 adater.setRecruitmentListData(recruitmentListData);
                                 adater.notifyDataSetChanged();
                             }
-                        } else if(recruitmentListBean.getTotal() == 0) {
+                        } else if (recruitmentListBean.getTotal() == 0) {
                             adater = new RecommendListAdater(getActivity(), Identification.PROSITION, recruitmentListData);
                             recommend_list.setAdapter(adater);
                             Toast.makeText(getActivity(), "暂无相关工作", Toast.LENGTH_LONG).show();
-                        }else {
+                        } else {
                             Toast.makeText(getActivity(), "已加载全部内容", Toast.LENGTH_LONG).show();
                         }
 
+                    } else {
+                        recommend_list.onRefreshComplete();
+                        loadingDialog.dismiss();
+                        dialog();
                     }
 
                     recommend_list.onRefreshComplete();

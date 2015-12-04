@@ -66,7 +66,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
 
         mytitle = (MyTitleBar) findViewById(R.id.mytitle);
         recommend_list = (PullToRefreshListView) findViewById(R.id.recommend_list);
-        network_hint = (TextView)findViewById(R.id.network_hint);
+        network_hint = (TextView) findViewById(R.id.network_hint);
         network_hint.setVisibility(View.GONE);
 
         Bundle bundle = this.getIntent().getExtras();
@@ -115,7 +115,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
     //初始化活动列表
     private void intiActivity() {
         mytitle.setTextViewText("活动");
-        adater = new RecommendListAdater(identi,this,activityData);
+        adater = new RecommendListAdater(identi, this, activityData);
         recommend_list.setAdapter(adater);
 
         recommend_list.setMode(PullToRefreshBase.Mode.BOTH);
@@ -151,51 +151,55 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     });
                     if ("success".equals(activityBean.getState())) {
 
-                        if(offset == 0){
+                        if (offset == 0) {
                             activityData.clear();
                         }
 
 //                        if (activityBean.getValue().size() != 0) {
-                            if (activityBean.getTotal()>activityData.size()) {
-                                if(activityData.size() == 0 ){
-                                    activityData.addAll(activityBean.getValue());
-                                    adater = new RecommendListAdater(identi,RecommenListActivity.this,activityData);
-                                    recommend_list.setAdapter(adater);
-                                }else {
-                                    activityData.addAll(activityBean.getValue());
-                                    adater.setActivityBean(activityData);
-                                    adater.notifyDataSetChanged();
-                                }
-                            } else if(activityBean.getTotal() == 0) {
-                                adater = new RecommendListAdater(identi,RecommenListActivity.this,activityData);
+                        if (activityBean.getTotal() > activityData.size()) {
+                            if (activityData.size() == 0) {
+                                activityData.addAll(activityBean.getValue());
+                                adater = new RecommendListAdater(identi, RecommenListActivity.this, activityData);
                                 recommend_list.setAdapter(adater);
-                                Toast.makeText(RecommenListActivity.this, "暂无相关活动", Toast.LENGTH_LONG).show();
                             } else {
-                                Toast.makeText(RecommenListActivity.this, "已加载全部内容", Toast.LENGTH_LONG).show();
+                                activityData.addAll(activityBean.getValue());
+                                adater.setActivityBean(activityData);
+                                adater.notifyDataSetChanged();
                             }
-
+                        } else if (activityBean.getTotal() == 0) {
+                            adater = new RecommendListAdater(identi, RecommenListActivity.this, activityData);
+                            recommend_list.setAdapter(adater);
+                            Toast.makeText(RecommenListActivity.this, "暂无相关活动", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(RecommenListActivity.this, "已加载全部内容", Toast.LENGTH_LONG).show();
                         }
+
+                    }else {
                         recommend_list.onRefreshComplete();
-
                         loadingDialog.dismiss();
-
+                        dialog();
                     }
+                    recommend_list.onRefreshComplete();
 
+                    loadingDialog.dismiss();
 
                 }
+
+
+            }
 //            }
 
-                @Override
-                public void onFailure(HttpException e, String s) {
+            @Override
+            public void onFailure(HttpException e, String s) {
 //                    adater = new RecommendListAdater();
 //                    recommend_list.setAdapter(adater);
-                    recommend_list.onRefreshComplete();
-                    loadingDialog.dismiss();
+                recommend_list.onRefreshComplete();
+                loadingDialog.dismiss();
 //                recommend_list.setRefreshing(false);
 //                recommend_list.on;
-                    dialog();
-                }
-            });
+                dialog();
+            }
+        });
 
     }
 
@@ -242,21 +246,21 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     });
                     if (talentValue.getState().equals("success")) {
 
-                        if(offset == 0){
+                        if (offset == 0) {
                             talentValueBean.clear();
                         }
 
-                        if (talentValue.getTotal()>talentValueBean.size()) {
-                            if(talentValueBean.size() == 0 ){
+                        if (talentValue.getTotal() > talentValueBean.size()) {
+                            if (talentValueBean.size() == 0) {
                                 talentValueBean.addAll(talentValue.getValue());
                                 adater = new RecommendListAdater(RecommenListActivity.this, talentValueBean, Identification.TALENTS);
                                 recommend_list.setAdapter(adater);
-                            }else {
+                            } else {
                                 talentValueBean.addAll(talentValue.getValue());
                                 adater.setTalentValueBean(talentValueBean);
                                 adater.notifyDataSetChanged();
                             }
-                        }else if(talentValue.getTotal() == 0) {
+                        } else if (talentValue.getTotal() == 0) {
                             adater = new RecommendListAdater(RecommenListActivity.this, talentValueBean, Identification.TALENTS);
                             recommend_list.setAdapter(adater);
                             Toast.makeText(RecommenListActivity.this, "暂无相关人才", Toast.LENGTH_LONG).show();
@@ -264,6 +268,10 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                             Toast.makeText(RecommenListActivity.this, "已加载全部内容", Toast.LENGTH_LONG).show();
                         }
 
+                    }else {
+                        recommend_list.onRefreshComplete();
+                        loadingDialog.dismiss();
+                        dialog();
                     }
                     recommend_list.onRefreshComplete();
 
@@ -320,7 +328,7 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
 
         HttpUtils httpUtils = new HttpUtils();
         httpUtils.configCurrentHttpCacheExpiry(1000);
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(id, url,offset), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(id, url, offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -329,21 +337,21 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     });
                     if (commentBean.getState().equals("success")) {
 
-                        if(offset == 0){
+                        if (offset == 0) {
                             commentDate.clear();
                         }
 
-                        if (commentBean.getTotal()>commentDate.size()) {
-                            if(commentDate.size() == 0 ){
+                        if (commentBean.getTotal() > commentDate.size()) {
+                            if (commentDate.size() == 0) {
                                 commentDate.addAll(commentBean.getValue());
                                 adater = new RecommendListAdater(commentDate, Identification.COMMENT, RecommenListActivity.this);
                                 recommend_list.setAdapter(adater);
-                            }else {
+                            } else {
                                 commentDate.addAll(commentBean.getValue());
                                 adater.setCommentBean(commentDate);
                                 adater.notifyDataSetChanged();
                             }
-                        }else if(commentBean.getTotal() == 0) {
+                        } else if (commentBean.getTotal() == 0) {
                             adater = new RecommendListAdater(commentDate, Identification.COMMENT, RecommenListActivity.this);
                             recommend_list.setAdapter(adater);
                             Toast.makeText(RecommenListActivity.this, "暂无相关评论", Toast.LENGTH_LONG).show();
@@ -364,6 +372,10 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                         }*/
 //                        }
 
+                    }else {
+                        recommend_list.onRefreshComplete();
+                        loadingDialog.dismiss();
+                        dialog();
                     }
 
                     recommend_list.onRefreshComplete();
@@ -457,21 +469,21 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                     });
                     if (recruitmentListBean.getState().equals("success")) {
 
-                        if(offset == 0){
+                        if (offset == 0) {
                             recruitmentListData.clear();
                         }
 
-                        if (recruitmentListBean.getTotal()>recruitmentListData.size()) {
-                            if(recruitmentListData.size() == 0 ){
+                        if (recruitmentListBean.getTotal() > recruitmentListData.size()) {
+                            if (recruitmentListData.size() == 0) {
                                 recruitmentListData.addAll(recruitmentListBean.getValue());
                                 adater = new RecommendListAdater(RecommenListActivity.this, Identification.HOTJOBS, recruitmentListData);
                                 recommend_list.setAdapter(adater);
-                            }else {
+                            } else {
                                 recruitmentListData.addAll(recruitmentListBean.getValue());
                                 adater.setRecruitmentListData(recruitmentListData);
                                 adater.notifyDataSetChanged();
                             }
-                        }else if(recruitmentListBean.getTotal() == 0) {
+                        } else if (recruitmentListBean.getTotal() == 0) {
                             adater = new RecommendListAdater(RecommenListActivity.this, Identification.HOTJOBS, recruitmentListData);
                             recommend_list.setAdapter(adater);
                             Toast.makeText(RecommenListActivity.this, "暂无相关工作", Toast.LENGTH_LONG).show();
@@ -479,6 +491,10 @@ public class RecommenListActivity extends Activity implements PullToRefreshBase.
                             Toast.makeText(RecommenListActivity.this, "已加载全部内容", Toast.LENGTH_LONG).show();
                         }
 
+                    }else {
+                        recommend_list.onRefreshComplete();
+                        loadingDialog.dismiss();
+                        dialog();
                     }
                     recommend_list.onRefreshComplete();
 

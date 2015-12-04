@@ -175,7 +175,8 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
                 workDescribeTv.setText("写一下职位描述哦(必填)");
                 workDescribeTv.setTextColor(getResources().getColor(R.color.hunTextColor));
             }
-            professionClassfitionTv.setText(recruitmentHistoryValueBean.getJobcategory()+"");
+            String a[] = AddMerchantActivity.this.getString(R.string.position).split(recruitmentHistoryValueBean.getJobcategory()+":")[1].split(",");
+            professionClassfitionTv.setText(a[0]);
             workingTimeTt.setText(recruitmentHistoryValueBean.getWorkingTime());
             workingHoursEdit.setText(recruitmentHistoryValueBean.getWorkingHours());
             workPayEdit.setText(recruitmentHistoryValueBean.getWorkPay());

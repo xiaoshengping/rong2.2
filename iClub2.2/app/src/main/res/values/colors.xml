@@ -27,9 +27,9 @@
     <color name="home_more">#9373ee</color><!--首页更多-->
     <color name="activity_item_name">#333333</color><!--活动item名-->
     <color name="home_talents_item_name">#282a31</color><!--首页人才item名-->
-    <color name="position_item_name">#282a31</color><!--职位item名-->
+    <color name="position_item_name">#333333</color><!--职位item名-->
     <color name="position_item_salary">#e13430</color><!--职位item工资-->
-    <color name="position_item_rest">#777778</color><!--职位item其他信息-->
+    <color name="position_item_rest">#999999</color><!--职位item其他信息-->
     <color name="background">#eaecef</color><!--项目背景色-->
 
     <color name="city_name">#5F5F5F</color><!--城市选择界面字体颜色-->

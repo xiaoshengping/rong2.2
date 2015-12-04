@@ -217,6 +217,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 
                         initActivity();
 
+                    }else {
+                        start = 1;
+                        try {
+                            loadingDialog.dismiss();
+                        } catch (Exception a) {
+
+                        }
                     }
 
                 }
@@ -264,6 +271,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 
                         }
 
+                    }else {
+                        start = 1;
+                        try {
+                            loadingDialog.dismiss();
+                        } catch (Exception a) {
+
+                        }
                     }
 
                 }
@@ -316,6 +330,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
 
                         }
 
+                    }else {
+                        start = 1;
+                        try {
+                            loadingDialog.dismiss();
+                        } catch (Exception a) {
+
+                        }
                     }
 
                 }
@@ -495,6 +516,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
                             }
                         }
 
+                    }else {
+                        start = 1;
+                        try {
+                            loadingDialog.dismiss();
+                        } catch (Exception a) {
+
+                        }
                     }
 
                 }
