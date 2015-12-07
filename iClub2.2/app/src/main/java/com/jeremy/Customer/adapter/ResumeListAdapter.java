@@ -283,7 +283,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                    MyAppliction.showToast("网络异常...");
             }
         });
 
@@ -301,8 +301,8 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid",resumeId);
-        requestParams.addBodyParameter("state",state);
-        MyAppliction.showToast(resumeId);
+        requestParams.addBodyParameter("state", state);
+        //MyAppliction.showToast(resumeId);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getSaveStateResume(), requestParams,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -328,7 +328,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                MyAppliction.showToast("网络异常...");
             }
         });
 
@@ -340,7 +340,7 @@ public class ResumeListAdapter extends AppBaseAdapter<ResumeValueBean>   {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
         requestParams.addBodyParameter("resumeid",resumeId);
-        MyAppliction.showToast(resumeId);
+       // MyAppliction.showToast(resumeId);
         httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getRefreshResume(), requestParams,new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
