@@ -168,7 +168,7 @@ public class ResumeActivity extends ActionBarActivity implements View.OnClickLis
                 yichanText.setVisibility(View.VISIBLE);
                 showAnim();
                 resumeListLv.onRefreshComplete(); 
-                Log.e("onFailure.......", s);
+                //Log.e("onFailure.......", s);
             }
         });
 

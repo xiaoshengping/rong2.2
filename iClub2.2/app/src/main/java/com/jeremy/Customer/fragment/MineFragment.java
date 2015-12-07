@@ -441,7 +441,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                             while (cursor.moveToNext()) {
                                 userIcon=cursor.getString(3);
                             }
-                            MyAppliction.showToast(userIcon);
+                           // MyAppliction.showToast(userIcon);
                             touXiangIv.setVisibility(View.VISIBLE);
                             if (!TextUtils.isEmpty(userIcon)){
                                 MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl+userIcon,touXiangIv,MyAppliction.RoundedOptions);

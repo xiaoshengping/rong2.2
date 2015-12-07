@@ -45,7 +45,7 @@ public class MerchantInviteActivity extends ActionBarActivity implements View.On
         addFragment();
        // FragmentInviteTabAdapter fragmentTabAdapter=new FragmentInviteTabAdapter(MerchantInviteActivity.this,fragments,R.id.invite_fragment_layout,inviteRadioGrop);
         tailtReturnTv.setOnClickListener(this);
-        tailtText.setText("商家邀约消息");
+        tailtText.setText("邀约消息");
 
         adapter = new InvitePagerAdapter(fragments, getSupportFragmentManager());
         invitePager.setAdapter(adapter);

@@ -86,7 +86,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
         if (getIntent().getStringExtra("merchantFalg").equals("addMerchant")) {
             tailtText.setText("添加商家信息");
         }else {
-            tailtText.setText("修改商家信息");
+            tailtText.setText("编辑商家信息");
         }
 
         saveText.setVisibility(View.VISIBLE);
@@ -200,6 +200,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
 
                                     @Override
                                     public void onFailure(HttpException e, String s) {
+                                        MyAppliction.showToast("网络异常，请稍后重试...");
                                         loadingDialog.dismiss();
                                     }
                                 });
