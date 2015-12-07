@@ -102,7 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp" />
     <ImageView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
@@ -121,7 +121,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp" />
     <ImageView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
@@ -161,7 +161,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <ImageView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />

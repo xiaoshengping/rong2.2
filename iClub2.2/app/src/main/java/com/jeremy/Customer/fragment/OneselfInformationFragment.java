@@ -127,6 +127,11 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
             @Override
             public void onFailure(HttpException e, String s) {
 
+                resumeInfoTv.setText("网络异常，无法显示...");
+                resumeExperienceTv.setText("网络异常，无法显示...");
+                resumeQqTv.setText("网络异常，无法显示...");
+                resumeEmailTv.setText("网络异常，无法显示...");
+                resumeMobileTv.setText("网络异常，无法显示...");
                 oneselfMoreTv.setVisibility(View.GONE);
                 experienceMoreTv.setVisibility(View.GONE);
                 Log.e("onFailure.......", s);

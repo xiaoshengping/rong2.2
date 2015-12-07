@@ -1,5 +1,6 @@
 package com.jeremy.Customer.uilt;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -190,7 +191,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
                                     @Override
                                     public void onSuccess(ResponseInfo<String> responseInfo) {
 
-
+                                        update(uid,companyNameEt.getText().toString());
                                         MyAppliction.showToast("保存成功");
                                         loadingDialog.dismiss();
                                         finish();
@@ -237,7 +238,18 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
 
 
     }
-
+    /**
+     * 更新公司名字记录的
+     */
+    public void update(String uid,String name){
+        SQLhelper sqLhelper= new SQLhelper(this);
+        SQLiteDatabase db = sqLhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLhelper.COMPANYNAME, name);
+        db.update(SQLhelper.tableName, contentValues,
+                "uid=?",
+                new String[]{uid});
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

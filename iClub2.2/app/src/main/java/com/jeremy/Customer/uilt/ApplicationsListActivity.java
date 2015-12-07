@@ -26,6 +26,7 @@ import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.BMerchantValueBean;
 import com.jeremy.Customer.bean.mine.RecruitmentHistoryValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
 import com.lidroid.xutils.HttpUtils;
@@ -224,24 +225,28 @@ public class ApplicationsListActivity extends ActionBarActivity  implements View
                 finish();
                 break;
             case R.id.add_resume_tv:
-                if (!TextUtils.isEmpty(bdName)){
+                if (!TextUtils.isEmpty(bMerchantValueBean.getBEcompanyName())){
                     Intent intent=new Intent(ApplicationsListActivity.this,AddMerchantActivity.class);
                     intent.putExtra("fagle","addMerchant");
                     startActivity(intent);
                 }else {
                     Intent intent=new Intent(ApplicationsListActivity.this,MerchantInformationActivity.class);
+                    intent.putExtra("merchantFalg","addMerchant");
                     startActivity(intent);
+                    MyAppliction.showToast("先完善商家信息再添加招聘");
 
                 }
                 break;
             case R.id.add_application_tv:
-                if (!TextUtils.isEmpty(bdName)){
+                if (!TextUtils.isEmpty(bMerchantValueBean.getBEcompanyName())){
                     Intent intent=new Intent(ApplicationsListActivity.this,AddMerchantActivity.class);
                     intent.putExtra("fagle","addMerchant");
                     startActivity(intent);
                 }else {
                     Intent intent=new Intent(ApplicationsListActivity.this,MerchantInformationActivity.class);
+                    intent.putExtra("merchantFalg","addMerchant");
                     startActivity(intent);
+                    MyAppliction.showToast("先完善商家信息再添加招聘");
 
                 }
                 break;

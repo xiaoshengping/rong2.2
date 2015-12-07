@@ -48,7 +48,6 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textSize="@dimen/textSize15"
-            android:text="网络异常，无法显示..."
             android:lineSpacingMultiplier="1.5"
             />
         <LinearLayout
@@ -131,7 +130,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:textSize="@dimen/textSize15"
-            android:text="网络异常，无法显示..."
+
             android:lineSpacingMultiplier="1.5"
           />
         <LinearLayout
@@ -200,7 +199,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/resumeQq_tv"
-                android:text="网络异常，无法显示..."
+
                 android:layout_marginLeft="47dp"
                 android:textSize="@dimen/textSize14"
                 android:layout_width="wrap_content"
@@ -222,7 +221,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/resumeEmail_tv"
-                android:text="网络异常，无法显示..."
+
                 android:layout_marginLeft="32dp"
                 android:textSize="@dimen/textSize14"
 
@@ -245,7 +244,7 @@
                 android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/resumeMobile_tv"
-                android:text="网络异常，无法显示..."
+
                 android:layout_marginLeft="10dp"
                 android:textSize="@dimen/textSize14"
                 android:layout_width="wrap_content"
