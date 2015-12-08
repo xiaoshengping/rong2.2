@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
-import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -118,11 +117,12 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
             resumeAgeTv.setText(resumeValueBeans.getResumeAge()+"");
             resumeWorkPlaceTv.setText(resumeValueBeans.getResumeWorkPlace());
             resumeJobNameIsdTv.setText(resumeValueBeans.getResumeJobCategoryName());
-            if (!TextUtils.isEmpty(resumeValueBeans.getCommentCount()+"")){
+            /*if (!TextUtils.isEmpty(resumeValueBeans.getCommentCount()+"")){
                 browseNumberTv.setText(resumeValueBeans.getCommentCount()+"");
             }else {
                 browseNumberTv.setText(0);
-            }
+            }*/
+            browseNumberTv.setText("0");
             BitmapUtils bitmapUtils = new BitmapUtils(MercharInviteParticularsActivity.this);
 
             bitmapUtils.display(talenBackIv, AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), new DefaultBitmapLoadCallBack<ImageView>() {

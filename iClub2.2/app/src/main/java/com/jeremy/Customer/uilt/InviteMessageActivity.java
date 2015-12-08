@@ -20,10 +20,7 @@ import com.viewpagerindicator.TabPageIndicator;
 import java.util.ArrayList;
 
 public class InviteMessageActivity extends ActionBarActivity implements View.OnClickListener {
-    /*@ViewInject(R.id.invite_radio_rg)
-    private RadioGroup inviteRadioGrop;
-    @ViewInject(R.id.nvite_radio_bt)
-    private RadioButton adoptRadioButton;*/
+
     @ViewInject(R.id.tailt_return_tv)
     private TextView tailtReturnTv;
     @ViewInject(R.id.tailt_text)
