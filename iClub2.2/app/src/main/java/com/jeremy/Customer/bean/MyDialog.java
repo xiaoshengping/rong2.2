@@ -44,6 +44,8 @@ public class MyDialog extends Dialog {
             tisp = "邀约成功，邀约信息已以短信形式发送到人才手机中";
         }else if(markedWords == Identification.LOGONTOTHETALENT){
             tisp = "请先登录人才账号或注册成为人才用户~";
+        }else if(markedWords == Identification.NOTCOMPANYNAME){
+            tisp = "你尚未添加职位信息，请添加职位信息后重试！";
         }
 
         if (type == Identification.TOOLTIP){

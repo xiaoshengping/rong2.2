@@ -693,24 +693,16 @@ public class CalendarActivity extends Activity implements View.OnClickListener, 
                 dialog2.show();
                 break;
             case 7://无公司名
-//                dialog2 = new MyDialog(this, Identification.AFFIRM, Identification.OFFER);
-//                dialog2.setDetermine(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Intent intent = new Intent(CalendarActivity.this, LoginActivity.class);
-//                        startActivity(intent);
-////                recommend_list.setVisibility(View.GONE);
-//                        dialog2.dismiss();
-//                    }
-//                });
-//                dialog2.setCancel(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog2.dismiss();
-//                    }
-//                });
-//
-//                dialog2.show();
+                dialog2 = new MyDialog(this, Identification.TOOLTIP, Identification.NOTCOMPANYNAME);
+                dialog2.setDetermine(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                        finish();
+                        dialog2.dismiss();
+                    }
+                });
+
+                dialog2.show();
                 break;
         }
 

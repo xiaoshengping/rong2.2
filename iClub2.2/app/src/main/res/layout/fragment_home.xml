@@ -29,7 +29,8 @@
                 android:id="@+id/advertisement_ll"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/advertisement_height"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical"
+                android:layout_marginBottom="15dp"></LinearLayout>
 
             <include
                 layout="@layout/home_advertisement"></include>
@@ -40,8 +41,5 @@
 
         </LinearLayout>
     </com.jeremy.Customer.view.MyScrollView>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#b4b4b4"/>
+
 </FrameLayout>

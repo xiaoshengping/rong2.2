@@ -26,7 +26,7 @@ public class CustomImageView extends ImageView {
     private Bitmap mask;
     private Paint paint;
     private int mBorderWidth = 10;
-    private int mBorderColor = Color.parseColor("#f2f2f2");
+    private int mBorderColor = Color.parseColor("#ffffff");
 
     static {
         PorterDuff.Mode localMode = PorterDuff.Mode.DST_IN;
@@ -43,6 +43,7 @@ public class CustomImageView extends ImageView {
 
     public CustomImageView(Context paramContext, AttributeSet paramAttributeSet, int paramInt) {
         super(paramContext, paramAttributeSet, paramInt);
+        setScaleType(ScaleType.CENTER);
         TypedArray a = paramContext.obtainStyledAttributes(paramAttributeSet, R.styleable.CircularImage);
         mBorderColor = a.getColor(R.styleable.CircularImage_border_color, mBorderColor);
         final int defalut = (int) (2 * paramContext.getResources().getDisplayMetrics().density + 0.5f);

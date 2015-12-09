@@ -292,7 +292,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                     oldScrollY = mScrollY1;
                     oldScrollY1 = mScrollY;
                     animation = new TranslateAnimation((tooltips_width + (2 * w)), one, 0, 0);
-                    personal_data_button_tv.setTextColor(0xff8e44ad);
+                    personal_data_button_tv.setTextColor(0xff9373ee);
                     individual_works_button_tv.setTextColor(0xff282a31);
                     mScrollY2 = mScrollY;
                     break;
@@ -307,7 +307,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                     oldScrollY1 = mScrollY;
                     animation = new TranslateAnimation(one, (tooltips_width + (2 * w)), 0, 0);
                     personal_data_button_tv.setTextColor(0xff282a31);
-                    individual_works_button_tv.setTextColor(0xff8e44ad);
+                    individual_works_button_tv.setTextColor(0xff9373ee);
                     mScrollY1 = mScrollY;
                     break;
             }
