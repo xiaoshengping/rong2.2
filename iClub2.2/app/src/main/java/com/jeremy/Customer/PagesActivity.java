@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v7.app.ActionBarActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -157,6 +158,17 @@ public class PagesActivity extends ActionBarActivity implements OnClickListener,
         editor.commit();
         finish();
         overridePendingTransition(R.anim.out_to_not, R.anim.pages_out);
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+
+            //finish();
+            return true;
+        }
+        return false;
+
     }
 
 }

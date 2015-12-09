@@ -44,7 +44,7 @@ public class HomeActivity extends ActionBarActivity {
         isFirstIn = pref.getBoolean("isFirstIn", true);
         if(isFirstIn) {
             Intent intent = new Intent().setClass(HomeActivity.this,PagesActivity.class);
-            startActivity(intent);
+            startActivityForResult(intent,0);
         }
         HomeFragment.setStart(0);
         startPage();
