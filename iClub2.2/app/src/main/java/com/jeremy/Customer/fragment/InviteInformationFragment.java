@@ -1,7 +1,6 @@
 package com.jeremy.Customer.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +11,6 @@ import android.widget.TextView;
 
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
-import com.jeremy.Customer.uilt.CommentCountActivity;
 import com.jeremy.Customer.uilt.MercharInviteParticularsActivity;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -176,9 +174,12 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
 
                 break;
             case R.id.commentCount_tv:
-                Intent intent =new Intent(getActivity(), CommentCountActivity.class);
-                intent.putExtra("falge","merchar");
-                startActivity(intent);
+             /*   if (resumeValueBean.getCommentCount()!=0){
+                    Intent intent =new Intent(getActivity(), CommentCountActivity.class);
+                    intent.putExtra("falge","merchar");
+                    startActivity(intent);
+                }*/
+
                 break;
 
 

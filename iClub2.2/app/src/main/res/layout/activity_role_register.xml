@@ -13,31 +13,15 @@
          android:layout_width="10dp"
          android:layout_height="18dp" />
 
+
+
     <TextView
-        android:layout_marginTop="50dp"
-        android:id="@+id/yir_textView"
+        android:layout_toRightOf="@+id/talents_user_tv"
         android:layout_below="@+id/tailt_return_iv"
-        android:text="我是艺人"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:layout_width="150dp"
-        android:layout_height="40dp" />
-    <TextView
-        android:id="@+id/rcai_textView"
-        android:layout_below="@+id/yir_textView"
-        android:text="成为人才找工作"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:layout_width="150dp"
-        android:layout_height="40dp" />
-    <TextView
-        android:layout_toRightOf="@+id/rcai_textView"
-        android:layout_below="@+id/yir_textView"
         android:text="详情"
+        android:layout_marginLeft="10dp"
         android:id="@+id/rcai_particulars_tv"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="130dp"
         android:background="@mipmap/yuan_icon"
         android:gravity="center"
         android:layout_centerHorizontal="true"
@@ -46,40 +30,24 @@
         android:layout_height="20dp" />
 
     <TextView
-        android:layout_below="@+id/rcai_textView"
+        android:layout_below="@+id/tailt_return_iv"
         android:id="@+id/talents_user_tv"
         android:layout_centerHorizontal="true"
-        android:text="人才用户"
+        android:text="演艺人才"
         android:gravity="center"
-        android:layout_marginTop="20dp"
+
+        android:layout_marginTop="120dp"
         android:background="@mipmap/roel_icon"
         android:layout_width="150dp"
         android:layout_height="40dp" />
+
     <TextView
-        android:layout_marginTop="100dp"
-        android:id="@+id/sjia_textView"
+        android:layout_toRightOf="@+id/merchant_user_tv"
         android:layout_below="@+id/talents_user_tv"
-        android:text="我是商家"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:layout_width="150dp"
-        android:layout_height="40dp" />
-    <TextView
-        android:id="@+id/cwei_sjia_textView"
-        android:layout_below="@+id/sjia_textView"
-        android:text="成为商家找人才"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:layout_width="150dp"
-        android:layout_height="40dp" />
-    <TextView
-        android:layout_toRightOf="@+id/sjia_textView"
-        android:layout_below="@+id/sjia_textView"
         android:id="@+id/sjia_particulars_tv"
         android:text="详情"
-        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="160dp"
         android:background="@mipmap/yuan_icon"
         android:gravity="center"
         android:layout_centerHorizontal="true"
@@ -91,8 +59,8 @@
         android:id="@+id/merchant_user_tv"
         android:text="商家用户"
         android:gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_below="@+id/cwei_sjia_textView"
+        android:layout_marginTop="150dp"
+        android:layout_below="@+id/talents_user_tv"
         android:background="@mipmap/roel_icon"
         android:layout_centerHorizontal="true"
         android:layout_width="150dp"

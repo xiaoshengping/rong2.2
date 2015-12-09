@@ -5,16 +5,24 @@
     tools:context="com.jeremy.Customer.uilt.MerchantInformationPreviewActivity">
 
      <LinearLayout
+
          android:orientation="vertical"
          android:layout_marginBottom="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+         <include
+             android:id="@+id/tailt_layout"
+             layout="@layout/app_white_tailt_layout"/>
+     <LinearLayout
+        android:id="@+id/show_merchant_messager"
+         android:orientation="vertical"
          android:layout_width="match_parent"
          android:layout_height="wrap_content">
 
 
 
-     <include
-         android:id="@+id/tailt_layout"
-         layout="@layout/app_white_tailt_layout"/>
+
+
     <LinearLayout
         android:id="@+id/informaction_layout"
         android:background="@color/white"
@@ -48,7 +56,6 @@
         <TextView
             android:id="@+id/company_phone_tv"
             android:layout_marginLeft="20dp"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
            </LinearLayout>
@@ -265,6 +272,21 @@
             android:layout_width="match_parent"
             android:layout_height="1dp" />
     </LinearLayout>
+     </LinearLayout>
+
+
+
+             <ImageView
+                 android:id="@+id/show_no_merchant_messager"
+                 android:visibility="gone"
+                 android:layout_marginTop="100dp"
+                 android:src="@mipmap/home_load_fail"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent" />
+
+
+
 
      </LinearLayout>
+
 </ScrollView>

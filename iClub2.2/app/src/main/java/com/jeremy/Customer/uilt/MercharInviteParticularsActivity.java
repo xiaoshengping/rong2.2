@@ -34,10 +34,7 @@ import java.util.List;
 public class MercharInviteParticularsActivity extends ActionBarActivity implements View.OnClickListener {
     @ViewInject(R.id.usericon_background_iv)
     private CustomImageView customImageView;
-    /*@ViewInject(R.id.resume_radioGroup)
-    private RadioGroup resumeRadioGroup;
-    @ViewInject(R.id.oneself_informaction_rb)
-    private RadioButton oneselfInformactionRb;*/
+
     @ViewInject(R.id.resumeZhName_tv)
     private TextView resumeZhNameTv;
     @ViewInject(R.id.resumeSex_iv)

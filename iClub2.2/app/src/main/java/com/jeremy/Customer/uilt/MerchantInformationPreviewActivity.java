@@ -61,6 +61,11 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
     private ImageView showPictureThree;
     @ViewInject(R.id.show_merchant_picture_four)
     private ImageView showPictureFour;
+    @ViewInject(R.id.show_no_merchant_messager)
+    private ImageView showNoMerchantMessagerIv;
+    @ViewInject(R.id.show_merchant_messager)
+    private  LinearLayout showMerchantMessager;
+
 
     private String uid;
     private BMerchantValueBean bMerchantValueBean;
@@ -92,6 +97,7 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
         showPictureFour.setOnClickListener(this);
         MerchantMoreLayout.setOnClickListener(this);
         loadingDialog=new LoadingDialog(this,"正在加载.....");
+        showNoMerchantMessagerIv.setOnClickListener(this);
         selectDatabase();
         if (!TextUtils.isEmpty(uid)){
             initData(uid);
@@ -148,6 +154,8 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
                 if (parmeBean.getState().equals("success")) {
                     bMerchantValueBean = parmeBean.getValue();
                     if (bMerchantValueBean != null) {
+                        showNoMerchantMessagerIv.setVisibility(View.GONE);
+                        showMerchantMessager.setVisibility(View.VISIBLE);
                         companyNmeTv.setText(bMerchantValueBean.getBEcompanyName());
                         if (!TextUtils.isEmpty(bMerchantValueBean.getBEphone())) {
                             companyPhoneTv.setText(bMerchantValueBean.getBEphone());
@@ -220,9 +228,11 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
 
             @Override
             public void onFailure(HttpException e, String s) {
-                companyNmeTv.setText("网络异常，无法显示...");
-                merchantInfoTv.setText("网络异常，无法显示...");
-                MyAppliction.showToast("网络异常...");
+                /*companyNmeTv.setText("网络异常，无法显示...");
+                merchantInfoTv.setText("网络异常，无法显示...");*/
+                showNoMerchantMessagerIv.setVisibility(View.VISIBLE);
+                showMerchantMessager.setVisibility(View.GONE);
+                MyAppliction.showToast("网络异常，请稍后刷新...");
                 saveText.setVisibility(View.GONE);
                 MerchantMoreTv.setVisibility(View.GONE);
                 loadingDialog.dismiss();
@@ -267,6 +277,14 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
                 break;
             case R.id.show_merchant_picture_four:
                 imageBrower(3,bMerchantValueBean);
+                break;
+            case R.id.show_no_merchant_messager:
+                selectDatabase();
+                if (!TextUtils.isEmpty(uid)){
+                    initData(uid);
+                }
+
+
                 break;
 
 
