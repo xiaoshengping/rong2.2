@@ -102,7 +102,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, View
         bitmapUtils = new BitmapUtils(getActivity());
         binding(view);
         initAdvertisement();
-
         return view;
     }
 
