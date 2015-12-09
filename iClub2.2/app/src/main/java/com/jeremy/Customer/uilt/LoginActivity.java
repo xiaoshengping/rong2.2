@@ -122,10 +122,10 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
                 break;
             case R.id.qq_login:
-                  qqLogin();
+                 // qqLogin();
                 break;
             case R.id.weibo_login:
-                weiboLogin();
+                //weiboLogin();
                 break;
             case R.id.register_tv:
                 Intent registerIntent=new Intent(LoginActivity.this,RoleRegisterActivity.class);

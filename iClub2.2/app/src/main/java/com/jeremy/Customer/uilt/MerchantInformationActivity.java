@@ -1,5 +1,6 @@
 package com.jeremy.Customer.uilt;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -85,7 +86,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
         if (getIntent().getStringExtra("merchantFalg").equals("addMerchant")) {
             tailtText.setText("添加商家信息");
         }else {
-            tailtText.setText("修改商家信息");
+            tailtText.setText("编辑商家信息");
         }
 
         saveText.setVisibility(View.VISIBLE);
@@ -190,7 +191,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
                                     @Override
                                     public void onSuccess(ResponseInfo<String> responseInfo) {
 
-
+                                        update(uid,companyNameEt.getText().toString());
                                         MyAppliction.showToast("保存成功");
                                         loadingDialog.dismiss();
                                         finish();
@@ -199,6 +200,7 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
 
                                     @Override
                                     public void onFailure(HttpException e, String s) {
+                                        MyAppliction.showToast("网络异常，请稍后重试...");
                                         loadingDialog.dismiss();
                                     }
                                 });
@@ -237,7 +239,18 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
 
 
     }
-
+    /**
+     * 更新公司名字记录的
+     */
+    public void update(String uid,String name){
+        SQLhelper sqLhelper= new SQLhelper(this);
+        SQLiteDatabase db = sqLhelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(SQLhelper.COMPANYNAME, name);
+        db.update(SQLhelper.tableName, contentValues,
+                "uid=?",
+                new String[]{uid});
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

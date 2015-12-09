@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,6 +25,7 @@ import com.jeremy.Customer.bean.ArtistParme;
 import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.MerchantMessageValueBean;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.url.HttpHelper;
 import com.lidroid.xutils.HttpUtils;
@@ -53,6 +56,9 @@ public class MerchantDeliverActivity extends ActionBarActivity implements View.O
     private List<MerchantMessageValueBean> informationValueBeans;
     private MerchantMessageListAdapter merchantMessageListAdapter;
     private int offset=0;
+    @ViewInject(R.id.yichan_text)
+    private TextView yichanText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -118,10 +124,11 @@ public class MerchantDeliverActivity extends ActionBarActivity implements View.O
                 HttpHelper.baseToUrl(result, new TypeReference<ArtistParme<MerchantMessageValueBean>>() {
                 }, informationValueBeans, merchantMessageListAdapter);
                 //MyAppliction.showToast(informationValueBeans.size()+"");
-                if (informationValueBeans.size()==0){
+                yichanText.setVisibility(View.GONE);
+                if (informationValueBeans.size() == 0) {
                     mercharntDeliverLayout.setVisibility(View.VISIBLE);
                     informationListv.setVisibility(View.GONE);
-                }else {
+                } else {
                     mercharntDeliverLayout.setVisibility(View.GONE);
                     informationListv.setVisibility(View.VISIBLE);
                 }
@@ -130,7 +137,9 @@ public class MerchantDeliverActivity extends ActionBarActivity implements View.O
 
             @Override
             public void onFailure(HttpException e, String s) {
-
+                MyAppliction.showToast("网络异常，请稍后重试...");
+                showAnim();
+                yichanText.setVisibility(View.VISIBLE);
                 informationListv.onRefreshComplete();
                 Log.e("onFailure", s);
             }
@@ -140,7 +149,11 @@ public class MerchantDeliverActivity extends ActionBarActivity implements View.O
 
 
     }
+    private void showAnim() {
+        Animation appAnim = AnimationUtils.loadAnimation(this, R.anim.alpthe);
+        yichanText.startAnimation(appAnim);
 
+    }
     private void intiResumeData(String resumeid) {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();

@@ -179,6 +179,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             }
             String a[] = AddMerchantActivity.this.getString(R.string.position).split(recruitmentHistoryValueBean.getJobcategory()+":")[1].split(",");
             professionClassfitionTv.setText(a[0]);
+            professionClassfitionTv.setTextColor(getResources().getColor(R.color.textColor242424));
             workingTimeTt.setText(recruitmentHistoryValueBean.getWorkingTime());
             workingHoursEdit.setText(recruitmentHistoryValueBean.getWorkingHours());
             workPayEdit.setText(recruitmentHistoryValueBean.getWorkPay());

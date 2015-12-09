@@ -1,11 +1,16 @@
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:scrollbars="none"
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.fragment.MineFragment"
     >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <RelativeLayout
         android:background="@mipmap/mien_icon"
         android:layout_width="match_parent"
@@ -35,6 +40,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/touxiang1_iv"
             android:text="点击头像登录"
+            android:textSize="@dimen/textSize18"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -45,6 +51,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/touxiang_iv"
             android:text="点击头像登录"
+            android:textSize="@dimen/textSize18"
             android:textColor="@color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -100,7 +107,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp" />
     <ImageView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
@@ -119,7 +126,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp" />
     <ImageView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
@@ -159,7 +166,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     <ImageView
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
@@ -177,4 +184,5 @@
         android:layout_height="1dp" />
 
     </LinearLayout>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

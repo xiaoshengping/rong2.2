@@ -101,7 +101,7 @@ public class RoleRegisterActivity extends ActionBarActivity implements View.OnCl
         Window window = dlg.getWindow();
         // *** 主要就是在这里实现这种效果的.
         // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
-        window.setContentView(R.layout.show_role_layout);
+        window.setContentView(R.layout.show_role_sjia_layou);
         ImageView showRoleIv = (ImageView) window.findViewById(R.id.show_role_iv);
         showRoleIv.setOnClickListener(new View.OnClickListener() {
             @Override

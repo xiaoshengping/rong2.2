@@ -1,24 +1,27 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.jeremy.Customer.uilt.MerchantDeliverActivity">
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-
         <include layout="@layout/app_white_tailt_layout"></include>
         <ImageView
             android:src="@color/lineColor"
             android:layout_width="match_parent"
             android:layout_height="1dp" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/yichan_text"
+        android:gravity="center"
+        android:text="加载失败,请下拉刷新"
+        android:background="@color/lineColor"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
         <com.handmark.pulltorefresh.library.PullToRefreshListView
             android:id="@+id/merchant_message_lv"
             android:dividerHeight="3dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-    </LinearLayout>
+
     <LinearLayout
         android:visibility="gone"
         android:id="@+id/add_application_layout"
@@ -28,7 +31,7 @@
 
 
         <ImageView
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="80dp"
             android:src="@mipmap/null_icon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -42,4 +45,4 @@
 
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

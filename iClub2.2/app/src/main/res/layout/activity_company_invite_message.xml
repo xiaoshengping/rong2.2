@@ -31,10 +31,19 @@
 
     </LinearLayout>
 
+  <LinearLayout
+      android:id="@+id/comment_layout"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <ImageView
+          android:src="@color/lineColor"
+          android:layout_width="match_parent"
+          android:layout_height="1dp" />
     <LinearLayout
-        android:id="@+id/comment_layout"
+
         android:gravity="center_vertical"
-        android:background="@color/textColor9373ee"
+        android:background="@color/white"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -45,8 +54,8 @@
             android:layout_marginLeft="20dp"
             android:text="请在七天内回复"
             android:drawablePadding="15dp"
-            android:drawableLeft="@mipmap/message_icon"
-            android:textColor="@color/white"
+
+            android:textColor="@color/textColor9373ee"
             android:textSize="@dimen/textSize15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,19 +66,20 @@
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:text="接受"
-            android:textColor="@color/white"
-            android:background="@mipmap/invite_button_icon"
+            android:textColor="@color/textColor9373ee"
+            android:background="@mipmap/invate_jshou_icon"
             android:layout_width="match_parent"
             android:layout_height="35dp" />
         <Button
             android:id="@+id/refuse_invite_bt"
             android:layout_marginLeft="5dp"
-            android:textColor="@color/white"
+            android:textColor="@color/textColor9373ee"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:text="拒绝"
-            android:background="@mipmap/invite_button_icon"
+            android:background="@mipmap/invate_jshou_icon"
             android:layout_width="match_parent"
             android:layout_height="35dp" />
     </LinearLayout>
+  </LinearLayout>
 </LinearLayout>

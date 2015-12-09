@@ -220,6 +220,8 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
 
             @Override
             public void onFailure(HttpException e, String s) {
+                companyNmeTv.setText("网络异常，无法显示...");
+                merchantInfoTv.setText("网络异常，无法显示...");
                 MyAppliction.showToast("网络异常...");
                 saveText.setVisibility(View.GONE);
                 MerchantMoreTv.setVisibility(View.GONE);

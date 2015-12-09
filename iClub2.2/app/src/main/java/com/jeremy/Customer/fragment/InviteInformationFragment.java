@@ -4,7 +4,6 @@ package com.jeremy.Customer.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,7 +92,7 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
 
 
 
-
+/*
                if (!TextUtils.isEmpty(resumeValueBean.getTransactionRecord()+"")){
                    transactionRecordTv.setText(resumeValueBean.getTransactionRecord() + "");
                }else {
@@ -106,7 +105,7 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
                    integrityTv.setText("0");
                }
 
-      if (!TextUtils.isEmpty(resumeValueBean.getAuthenticity()+"")){
+      if (resumeValueBean.getAuthenticity()!=0){
           authenticityTv.setText(resumeValueBean.getAuthenticity() + "");
       }else {
           authenticityTv.setText("0");
@@ -115,8 +114,11 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
            commentCountTv.setText(resumeValueBean.getCommentCount() + "位商家评论过");
        }else {
            commentCountTv.setText("0位商家评论过");
-       }
-
+       }*/
+               transactionRecordTv.setText("0");
+               integrityTv.setText("0");
+               authenticityTv.setText("0");
+               commentCountTv.setText("0位商家评论过");
 
            }
         resumeInfoTv.post(new Runnable() {
@@ -184,45 +186,5 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
         }
     }
 
-    /*private void intiResumeListData() {
-        HttpUtils httpUtils=new HttpUtils();
-        SQLhelper sqLhelper=new SQLhelper(getActivity());
-        SQLiteDatabase db= sqLhelper.getWritableDatabase();
-        Cursor cursor=db.query("user", null, null, null, null, null, null);
-        String uid=null;
-        while (cursor.moveToNext()) {
-            uid = cursor.getString(0);
 
-        }
-        String resumeListUrl= AppUtilsUrl.getResumeLista(uid);
-        httpUtils.send(HttpRequest.HttpMethod.GET, resumeListUrl, new RequestCallBack<String>() {
-            @Override
-            public void onSuccess(ResponseInfo<String> responseInfo) {
-                String result = responseInfo.result;
-                if (result != null) {
-                    ArtistParme<ResumeValueBean> artistParme = JSONObject.parseObject(result, new TypeReference<ArtistParme<ResumeValueBean>>() {
-                    });
-                    if (artistParme.getState().equals("success")) {
-                        resumeValueBeans = artistParme.getValue();
-                        // Log.e("dddddff",Integer.valueOf(((ResumeParticularsActivity) getActivity()).getPosition())+"");
-
-                    }
-
-
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(HttpException e, String s) {
-                Log.e("onFailure.......", s);
-            }
-        });
-
-
-
-
-
-    }*/
 }
