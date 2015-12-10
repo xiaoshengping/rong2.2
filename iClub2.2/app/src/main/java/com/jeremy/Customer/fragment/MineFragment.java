@@ -349,7 +349,6 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         if (!TextUtils.isEmpty(uid) || tempFile.exists()) {
             intiToXiangData();
         }
-        //MyAppliction.showToast(uid+""+state+".."+userName+userIcon+companyName);
         if (uid!=null) {
             if (!TextUtils.isEmpty(state)) {
                 mineLayout.setVisibility(View.VISIBLE);
