@@ -87,7 +87,7 @@ public class MerchantAddPictrueActivity extends ActionBarActivity implements Vie
     private void initView() {
         loadingDialog=new LoadingDialog(this,"正在上传.....");
         tailtReturnTv.setOnClickListener(this);
-        tailtText.setText("添加介绍照片");
+        tailtText.setText("添加");
         saveText.setVisibility(View.VISIBLE);
         saveText.setOnClickListener(this);
         saveText.setText("上传");

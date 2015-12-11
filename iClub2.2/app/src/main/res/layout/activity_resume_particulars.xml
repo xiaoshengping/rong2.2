@@ -227,7 +227,7 @@
             android:layout_marginTop="112dp"
             android:layout_marginRight="27dp"
             android:gravity="center"
-            android:text="浏览量"
+            android:text="邀约数"
             android:textSize="@dimen/textSize10"
             android:textColor="@color/white"
             android:layout_width="wrap_content"

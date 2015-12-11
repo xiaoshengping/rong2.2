@@ -96,7 +96,7 @@
             android:gravity="center_vertical"
             android:background="@color/white"
             android:textColor="@color/hunTextColor"
-            android:text="你已经上传的照片(长按可以删除)"
+            android:text="你已经上传的照片"
             android:layout_width="match_parent"
             android:layout_height="30dp" />
         <ImageView

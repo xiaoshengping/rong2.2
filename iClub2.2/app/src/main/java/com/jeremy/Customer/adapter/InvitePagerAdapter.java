@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class InvitePagerAdapter extends PagerAdapter {
 
-    private String[] titles = {"邀约历史", "接受邀约", "合作成功"};
+    private String[] titles = {"邀约历史", "接受邀约", "合作记录"};
     private List<Fragment> fragments;
     private FragmentManager manager;
 

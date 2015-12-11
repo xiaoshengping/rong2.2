@@ -45,13 +45,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:windowSoftInputMode="adjustPan"
             android:name=".uilt.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:windowSoftInputMode="adjustPan"
             android:name=".uilt.RegisterActivity"
-            android:label="@string/title_activity_register" />
+            android:label="@string/title_activity_register"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".uilt.RoleRegisterActivity"
             android:label="@string/title_activity_role_register" />
@@ -143,9 +143,9 @@
             android:name=".uilt.ResumeActivity"
             android:label="@string/title_activity_resume" />
         <activity
-            android:windowSoftInputMode="adjustPan"
             android:name=".uilt.AddResumeActivity"
-            android:label="@string/title_activity_add_resume" />
+            android:label="@string/title_activity_add_resume"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".uilt.JobChoiceActivity" />
         <activity
             android:name=".uilt.OneselfExperienceActivity"
@@ -232,6 +232,10 @@
         <activity
             android:name=".uilt.BoundAccounsActivity"
             android:label="@string/title_activity_bound_accouns" >
+        </activity>
+        <activity
+            android:name=".uilt.AbouyMessageActivity"
+            android:label="@string/title_activity_abouy_message" >
         </activity>
     </application>
 
