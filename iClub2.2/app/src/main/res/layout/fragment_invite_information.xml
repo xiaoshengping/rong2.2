@@ -349,7 +349,7 @@
         android:src="@color/editTextPromptColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
-    <TextView
+    <!--<TextView
         android:id="@+id/commentCount_tv"
         android:drawableRight="@mipmap/right_return_icon"
         android:textColor="@color/hunTextColor"
@@ -364,6 +364,6 @@
         android:layout_marginBottom="20dp"
         android:src="@color/lineColor"
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="1dp" />-->
 
 </LinearLayout>

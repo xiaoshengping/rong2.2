@@ -162,6 +162,16 @@ public class MerchantInformationPreviewActivity extends ActionBarActivity implem
                         } else {
                             companyPhoneTv.setText("********");
                         }
+                        MerchantMoreLayout.setVisibility(View.VISIBLE);
+                        merchantInfoTv.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (merchantInfoTv.getLineCount()>4){
+                                    merchantInfoTv.setLines(4);
+                                }
+
+                            }
+                        });
                         if (!TextUtils.isEmpty(bMerchantValueBean.getBEemail())) {
                             companyEmailTv.setText(bMerchantValueBean.getBEemail());
                         } else {

@@ -46,8 +46,8 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
     private TextView integrityTv;
     @ViewInject(R.id.transactionRecord_tv)
     private TextView transactionRecordTv;
-    @ViewInject(R.id.commentCount_tv)
-    private TextView commentCountTv;
+    /*@ViewInject(R.id.commentCount_tv)
+    private TextView commentCountTv;*/
 
     private List<ResumeValueBean> resumeValueBeans;
     private ResumeValueBean resumeValueBean;
@@ -79,7 +79,7 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
         experienceMoreLayout.setOnClickListener(this);
         oneselfMoreLayout.setOnClickListener(this);
         resumeInfoTv.setOnClickListener(this);
-        commentCountTv.setOnClickListener(this);
+        //commentCountTv.setOnClickListener(this);
        resumeValueBean = ((MercharInviteParticularsActivity) getActivity()).getResumeValueBean();
            if (resumeValueBean!=null){
         resumeInfoTv.setText(resumeValueBean.getResumeInfo());
@@ -116,7 +116,7 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
                transactionRecordTv.setText("0");
                integrityTv.setText("0");
                authenticityTv.setText("0");
-               commentCountTv.setText("0位商家评论过");
+               //commentCountTv.setText("0位商家评论过");
 
            }
         resumeInfoTv.post(new Runnable() {
@@ -173,14 +173,14 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
                 });
 
                 break;
-            case R.id.commentCount_tv:
-             /*   if (resumeValueBean.getCommentCount()!=0){
+           /* case R.id.commentCount_tv:
+             *//*   if (resumeValueBean.getCommentCount()!=0){
                     Intent intent =new Intent(getActivity(), CommentCountActivity.class);
                     intent.putExtra("falge","merchar");
                     startActivity(intent);
-                }*/
+                }*//*
 
-                break;
+                break;*/
 
 
 

@@ -25,7 +25,6 @@
         android:background="@mipmap/yuan_icon"
         android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/textColor242424"
         android:layout_width="wrap_content"
         android:layout_height="20dp" />
 
@@ -51,7 +50,7 @@
         android:background="@mipmap/yuan_icon"
         android:gravity="center"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/textColor242424"
+
         android:layout_width="wrap_content"
         android:layout_height="20dp" />
 

@@ -83,7 +83,7 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
 
     private void intiView() {
         anewRefreshTv.setOnClickListener(this);
-        httpUtils=new HttpUtils().configCurrentHttpCacheExpiry(1000);
+        httpUtils=new HttpUtils().configCurrentHttpCacheExpiry(0);
         intiListView();
 
 

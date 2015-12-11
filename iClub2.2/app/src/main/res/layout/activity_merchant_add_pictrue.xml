@@ -70,7 +70,7 @@
             android:id="@+id/show_pciture_text_one"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
-            android:text="你已经上传的照片(长按可以删除)"
+            android:text="你已经上传的照片"
             android:layout_width="match_parent"
             android:layout_height="30dp" />
         <ImageView
