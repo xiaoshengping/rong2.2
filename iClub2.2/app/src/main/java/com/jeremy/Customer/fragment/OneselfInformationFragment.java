@@ -97,6 +97,7 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
                         } else {
                             commentCountTv.setText(resumeValueBean.getCommentCount() + "位商家评论过");
                         }
+                        resumeInfoTv.setVisibility(View.VISIBLE);
                         resumeInfoTv.post(new Runnable() {
                             @Override
                             public void run() {
@@ -106,6 +107,7 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
 
                             }
                         });
+                        resumeExperienceTv.setVisibility(View.VISIBLE);
                         resumeExperienceTv.post(new Runnable() {
                             @Override
                             public void run() {
@@ -167,39 +169,6 @@ public class OneselfInformationFragment extends Fragment implements View.OnClick
         oneselfMoreLayout.setOnClickListener(this);
         resumeInfoTv.setOnClickListener(this);
         commentCountTv.setOnClickListener(this);
-       /*ResumeValueBean resumeValueBean=((ResumeParticularsActivity) getActivity()).getResumeValueBean();
-        if (resumeValueBean!=null){
-            resumeInfoTv.setText(resumeValueBean.getResumeInfo());
-            resumeExperienceTv.setText(resumeValueBean.getResumeWorkExperience());
-            resumeQqTv.setText(resumeValueBean.getResumeQq());
-            resumeEmailTv.setText(resumeValueBean.getResumeEmail());
-            resumeMobileTv.setText(resumeValueBean.getResumeMobile());
-            authenticityTv.setText(resumeValueBean.getAuthenticity()+"");
-            integrityTv.setText(resumeValueBean.getIntegrity()+"");
-            transactionRecordTv.setText(resumeValueBean.getTransactionRecord()+"");
-            commentCountTv.setText(resumeValueBean.getCommentCount()+"位商家评论过");
-
-            resumeInfoTv.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (resumeInfoTv.getLineCount() > 4) {
-                        resumeInfoTv.setLines(4);
-                    }
-
-                }
-            });
-            resumeExperienceTv.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (resumeExperienceTv.getLineCount() > 4) {
-                        resumeExperienceTv.setLines(4);
-                    }
-
-                }
-            });
-
-
-        }*/
         intiResumeData();
 
 
