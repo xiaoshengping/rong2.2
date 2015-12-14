@@ -9,6 +9,7 @@
 -keep class com.alibaba.fastjson.** { *; }
 -keep class com.jeremy.Customer.view.** { *; }
 
+
 -keepclassmembers class * {
 public <methods>;
 }
