@@ -3,15 +3,134 @@
     android:layout_height="match_parent"
     tools:context="com.jeremy.Customer.uilt.AbouyMessageActivity">
     <LinearLayout
+        android:background="@color/white"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
         <ImageView
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="140dp"
             android:id="@+id/show_role_iv"
             android:scaleType="fitXY"
-            android:background="@mipmap/about_message_icon"
+            android:background="@mipmap/icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginLeft="155dp"
+            android:textSize="@dimen/textSize18"
+            android:text="iClub2.3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="只需5分钟,带你玩转iClub,开创演艺招聘的新篇章
+打开APP,我们就来到了iClub的首页界面
+我们可以看到首页分为几个部分:1、广告专区;2、活动专区;3、人才专区;4、职位专区。下面我们将逐一为大家介绍每个部分的功能
+"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+         <ImageView
+             android:layout_marginTop="10dp"
+             android:layout_marginLeft="50dp"
+             android:layout_marginRight="50dp"
+             android:src="@mipmap/c1"
+             android:scaleType="fitXY"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="首先是广告专区:广告专区,顾名思义,就是一个用来打广告,做宣传的地方,这部分基本上是为商家而设。具体的广告收费方式,欢迎广大商家向我们踊跃咨询"
+            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/c2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="活动专区这部分,是为了方便用户们通过我们APP清楚知道最近有哪些演艺领域的专项活动,而且我们提供一站式报名的功能,让用户可以更加方便快捷地报名参加
+"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/c3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="找人才按钮主要是为商家提供的,可以直接转到找人才界面。
+在找人才的界面,商家可以通过城市地区,职位等方面去挑选符合条件的人才,点击相应的人才头像,可以直接查看人才的个人简历介绍、个人作品以及信誉评价等,保证人才的真实性
+"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/c4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="找工作按钮,则是专门为演艺人才而设。
+在找工作界面,演艺人才可以通过城市和职位去定位合心的职位,并可以点击相应职位查看职位详情,商家的信誉度和评价等,确保工作的真实性。
+"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/c5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text=" iClub的用户分为两种:人才用户和商家用户,大家在注册的时候一定要注意自己的角色哦!因为人才用户只能使用找工作的功能而商家用户只能找人才的!
+        所有的用户都可以在登陆后通过个人中心去完善自己的账户信息(人才用户可以添加自己的简历,上传自己的个人作品;商家用户可以发布职位招聘,添加自己的商家信息),而且招聘信息的反馈也可以及时地在这里查看,方便用户的操作和体验。最后衷心祝愿大家都可以通过iClub去找到自己合心意的工作或人才!
+"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+       <TextView
+           android:textColor="@color/hunTextColor"
+           android:layout_marginTop="20dp"
+           android:layout_marginBottom="20dp"
+           android:textSize="@dimen/textSize18"
+           android:gravity="center"
+           android:text="广州荣氏软件科技有限公司"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content" />
 
 
     </LinearLayout>
