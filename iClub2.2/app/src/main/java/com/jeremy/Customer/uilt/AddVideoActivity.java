@@ -82,7 +82,7 @@ public class AddVideoActivity extends ActionBarActivity implements View.OnClickL
         loadingDialog = new LoadingDialog(this,"正在更新数据……");
         resumeValueBean= (ResumeValueBean) getIntent().getSerializableExtra("resumeValueBean");
         tailtReturnTv.setOnClickListener(this);
-        tailtText.setText("添加图片");
+        tailtText.setText("添加视频");
         saveText.setVisibility(View.VISIBLE);
         saveText.setOnClickListener(this);
         saveText.setText("上传");
