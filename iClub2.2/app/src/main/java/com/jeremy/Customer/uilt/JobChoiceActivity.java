@@ -15,7 +15,7 @@ public class JobChoiceActivity extends Activity implements View.OnClickListener 
 
     private TextView job1,job2,job3,job4,job5,job6,job7,job8,job9,job10,job11,job12,job13,job14;
     private TextView job15,job16,job17,job18,job19,job20,job21,job22,job23,job24,job25,job26,job27;
-    private TextView job28,job29,job30,job31,job32,job33,job34,job35,job36,job37;
+    private TextView job28,job29,job30,job31,job32,job33,job34,job35,job36,job37,job38;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +62,7 @@ public class JobChoiceActivity extends Activity implements View.OnClickListener 
         job35 = (TextView)findViewById(R.id.job35);
         job36 = (TextView)findViewById(R.id.job36);
         job37 = (TextView)findViewById(R.id.job37);
+        job38 = (TextView)findViewById(R.id.job38);
 
         job1.setOnClickListener(this);
         job2.setOnClickListener(this);
@@ -101,6 +102,7 @@ public class JobChoiceActivity extends Activity implements View.OnClickListener 
         job35.setOnClickListener(this);
         job36.setOnClickListener(this);
         job37.setOnClickListener(this);
+        job38.setOnClickListener(this);
 
     }
 
@@ -218,6 +220,9 @@ public class JobChoiceActivity extends Activity implements View.OnClickListener 
                 break;
             case R.id.job37:
                 name = job37.getText().toString();
+                break;
+            case R.id.job38:
+                name = job38.getText().toString();
                 break;
         }
         String a[] = JobChoiceActivity.this.getString(R.string.position).split(":" + name)[0].split(",");

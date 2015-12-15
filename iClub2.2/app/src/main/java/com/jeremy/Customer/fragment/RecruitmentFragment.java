@@ -192,7 +192,7 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                     ArtistParme<RecruitmentListBean> recruitmentListBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<RecruitmentListBean>>() {
                     });
                     if (recruitmentListBean.getState().equals("success")) {
-
+                        recommend_list.setVisibility(View.VISIBLE);
                         if (offset == 0) {
                             recruitmentListData.clear();
                         }
@@ -208,9 +208,10 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                                 adater.notifyDataSetChanged();
                             }
                         } else if (recruitmentListBean.getTotal() == 0) {
-                            adater = new RecommendListAdater(getActivity(), Identification.PROSITION, recruitmentListData);
-                            recommend_list.setAdapter(adater);
-                            Toast.makeText(getActivity(), "暂无相关工作", Toast.LENGTH_LONG).show();
+//                            adater = new RecommendListAdater(getActivity(), Identification.PROSITION, recruitmentListData);
+//                            recommend_list.setAdapter(adater);
+//                            Toast.makeText(getActivity(), "暂无相关工作", Toast.LENGTH_LONG).show();
+                            recommend_list.setVisibility(View.GONE);
                         } else {
                             Toast.makeText(getActivity(), "已加载全部内容", Toast.LENGTH_LONG).show();
                         }
@@ -296,8 +297,13 @@ public class RecruitmentFragment extends Fragment implements PullToRefreshBase.O
                 selected_position.setText(pName);
                 selected_position_cancel.setVisibility(View.VISIBLE);
             } else {
-
                 selected_position.setText("选择职位");
+                selected_position_cancel.setVisibility(View.GONE);
+                jobnum = 0;
+                offset = 0;
+//                recruitmentListData.clear();
+//                initRecruitmentListData(citynum, jobnum, offset);
+//                selected_position.setText("选择职位");
             }
             jobnum = job;
             offset = 0;
