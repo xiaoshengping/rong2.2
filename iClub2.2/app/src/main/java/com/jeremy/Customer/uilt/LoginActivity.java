@@ -100,7 +100,11 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         forgetTv.setOnClickListener(this);
         qq_login.setOnClickListener(this);
         weibo_login.setOnClickListener(this);
-        httpUtils=new HttpUtils();
+        try {
+            httpUtils=new HttpUtils();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

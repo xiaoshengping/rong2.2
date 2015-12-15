@@ -5,11 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jeremy.Customer.R;
@@ -88,21 +85,6 @@ public class MineMoreActivity extends ActionBarActivity implements View.OnClickL
         }
     }
 
-    //关于
-    private void showrCaiGameAlert() {
-        final AlertDialog dlg = new AlertDialog.Builder(this).create();
-        dlg.show();
-        Window window = dlg.getWindow();
-        // *** 主要就是在这里实现这种效果的.
-        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
-        window.setContentView(R.layout.about_layout);
-        ImageView showRoleIv = (ImageView) window.findViewById(R.id.show_role_iv);
-        showRoleIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dlg.dismiss();
-            }
-        });
-    }
+
 
 }
