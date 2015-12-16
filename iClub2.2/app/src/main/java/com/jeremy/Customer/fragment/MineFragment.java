@@ -48,6 +48,7 @@ import com.jeremy.Customer.uilt.ResumeActivity;
 import com.jeremy.Customer.uilt.SQLhelper;
 import com.jeremy.Customer.uilt.TalentsDeliverMessageActivity;
 import com.jeremy.Customer.url.AppUtilsUrl;
+import com.jeremy.Customer.view.CustomImageView;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.exception.HttpException;
@@ -84,7 +85,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
 
     @ViewInject(R.id.touxiang_iv)
-    private ImageView touXiangIv;
+    private CustomImageView touXiangIv;
     @ViewInject(R.id.touxiang1_iv)
     private ImageView touXiang1Tv;
     @ViewInject(R.id.announcement_message_tv)

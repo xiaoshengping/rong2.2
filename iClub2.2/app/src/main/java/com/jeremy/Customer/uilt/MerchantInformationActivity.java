@@ -7,17 +7,22 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
 import com.jeremy.Customer.bean.LoadingDialog;
+import com.jeremy.Customer.bean.ParmeBean;
 import com.jeremy.Customer.bean.mine.BMerchantValueBean;
 import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
@@ -80,6 +85,15 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (getIntent().getStringExtra("merchantFalg").equals("previewMerchant")){
+            initData(uid);
+
+        }
+    }
+
     private void initView() {
         loadingDialog=new LoadingDialog(this,"保存数据.....");
         tailtReturnTv.setOnClickListener(this);
@@ -97,19 +111,78 @@ public class MerchantInformationActivity extends ActionBarActivity implements Vi
         selectDatabase();
 
         if (getIntent().getStringExtra("merchantFalg").equals("previewMerchant")){
-         bMerchantValueBean= (BMerchantValueBean) getIntent().getSerializableExtra("bMerchantValueBean");
-           if (bMerchantValueBean!=null){
-               companyNameEt.setText(bMerchantValueBean.getBEcompanyName());
-               companyPhoneEv.setText(bMerchantValueBean.getBEphone());
-               companyEmailEv.setText(bMerchantValueBean.getBEemail());
-               companyHttpEv.setText(bMerchantValueBean.getBEweb());
-               companyAddressEv.setText(bMerchantValueBean.getBEaddress());
-               userOnselfText.setText(bMerchantValueBean.getBEcompanyInfo());
-               userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
-           }
+            initData(uid);
 
         }
     }
+
+    private void initData(String uid) {
+        HttpUtils httpUtils=new HttpUtils();
+        RequestParams requestParams=new RequestParams();
+        requestParams.addBodyParameter("uid", uid);
+        loadingDialog.show();
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getAcquireMerchant(), requestParams, new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                ParmeBean<BMerchantValueBean> parmeBean = JSONObject.parseObject(responseInfo.result, new TypeReference<ParmeBean<BMerchantValueBean>>() {
+                });
+                if (parmeBean.getState().equals("success")) {
+                    bMerchantValueBean = parmeBean.getValue();
+                    if (bMerchantValueBean != null) {
+                        companyNameEt.setText(bMerchantValueBean.getBEcompanyName());
+                        companyPhoneEv.setText(bMerchantValueBean.getBEphone());
+                        companyEmailEv.setText(bMerchantValueBean.getBEemail());
+                        companyHttpEv.setText(bMerchantValueBean.getBEweb());
+                        companyAddressEv.setText(bMerchantValueBean.getBEaddress());
+                        userOnselfText.setText(bMerchantValueBean.getBEcompanyInfo());
+                        userOnselfText.setTextColor(getResources().getColor(R.color.textColor242424));
+                        loadingDialog.dismiss();
+
+
+                    }
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+                showExitGameAlert("网络异常，请稍后操作!", MerchantInformationActivity.this);
+                loadingDialog.dismiss();
+                MyAppliction.showToast("网络异常，请稍后...");
+
+            }
+        });
+
+
+
+    }
+
+    //对话框
+    public  void showExitGameAlert(String text, final Context app) {
+        final AlertDialog dlg = new AlertDialog.Builder(app).create();
+        dlg.show();
+        Window window = dlg.getWindow();
+        // *** 主要就是在这里实现这种效果的.
+        // 设置窗口的内容页面,shrew_exit_dialog.xml文件中定义view内容
+        window.setContentView(R.layout.tishi_exit_dialog);
+        TextView tailte = (TextView) window.findViewById(R.id.tailte_tv);
+        tailte.setText(text);
+        // 关闭alert对话框架
+        TextView cancel = (TextView) window.findViewById(R.id.btn_cancel);
+        cancel.setText("确定");
+        cancel.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                finish();
+                dlg.cancel();
+            }
+        });
+    }
+
+
+
 
     //查询数据库
     private void selectDatabase() {

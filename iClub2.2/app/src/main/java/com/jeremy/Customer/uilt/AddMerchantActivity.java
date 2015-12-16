@@ -99,6 +99,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
     private int selectYear;
     private int selectMonthOfYear;
     private int selectDayOfMonth;
+    private Calendar calendar;
 
     private String workingHours;
     private String workingTime;
@@ -186,14 +187,15 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             recruitingNumbersEdit.setText(recruitmentHistoryValueBean.getRecruitingNumbers());
         }
         //获取系统时间
-        Calendar calendar = Calendar.getInstance();
+        calendar = Calendar.getInstance();
         year1 = calendar.get(Calendar.YEAR);
         monthOfYear = calendar.get(Calendar.MONTH);
         dayOfMonth = calendar.get(Calendar.DATE);
 
         if (selectYear!=0&&selectMonthOfYear!=0&&selectDayOfMonth!=0){
-            workingTimeTt.setText(selectYear+"-"+(selectMonthOfYear+1)+"-"+selectDayOfMonth);
-            workingTimeTt.setTextColor(getResources().getColor(R.color.textColor242424));
+                workingTimeTt.setText(selectYear+"-"+(selectMonthOfYear+1)+"-"+selectDayOfMonth);
+                workingTimeTt.setTextColor(getResources().getColor(R.color.textColor242424));
+
 
         }
 
@@ -269,12 +271,25 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                workingTimeTt.setText(year+"-"+(monthOfYear+1)+"-"+dayOfMonth);
-                workingTimeTt.setTextColor(getResources().getColor(R.color.textColor242424));
 
                 selectYear=year;
                 selectMonthOfYear=monthOfYear;
                 selectDayOfMonth =dayOfMonth;
+                if(year1>year){
+                    MyAppliction.showToast("请填写有效工作日期!");
+                }else if(year1==year) {
+                    if (calendar.get(Calendar.MONTH)>monthOfYear||calendar.get(Calendar.DATE)>dayOfMonth){
+                        MyAppliction.showToast("请填写有效工作日期!");
+                    }else {
+                        workingTimeTt.setText(year+"-"+(monthOfYear+1)+"-"+dayOfMonth);
+                        workingTimeTt.setTextColor(getResources().getColor(R.color.textColor242424));
+                    }
+
+                }else {
+                    workingTimeTt.setText(year+"-"+(monthOfYear+1)+"-"+dayOfMonth);
+                    workingTimeTt.setTextColor(getResources().getColor(R.color.textColor242424));
+                }
+
             }
         }, year1, monthOfYear, dayOfMonth);
         return datePickerDialog;
@@ -517,8 +532,10 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
             requestParams.addBodyParameter("jobInfo",workDescribeTv.getText().toString() );
 
             if (selectYear!=0&&selectMonthOfYear!=0&&selectDayOfMonth!=0){
-                workingTime=selectYear+"-"+selectMonthOfYear+"-"+selectDayOfMonth;
+                workingTime=selectYear+"-"+(selectMonthOfYear+1)+"-"+selectDayOfMonth;
                 requestParams.addBodyParameter("workingTime", workingTime);
+
+
             }
             if (!TextUtils.isEmpty(workingHours)){
                 requestParams.addBodyParameter("workingHours", workingHours);
@@ -571,7 +588,7 @@ public class AddMerchantActivity extends ActionBarActivity implements View.OnCli
 
     private void intiData() {
         RequestParams requestParams = new RequestParams();
-        workingTime=selectYear+"-"+selectMonthOfYear+"-"+selectDayOfMonth;
+        workingTime=selectYear+"-"+(selectMonthOfYear+1)+"-"+selectDayOfMonth;
 
         String position = positionEdit.getText().toString();
         String workPay = workPayEdit.getText().toString();

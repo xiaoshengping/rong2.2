@@ -17,7 +17,7 @@
         android:layout_height="180dp">
 
 
-        <ImageView
+        <com.jeremy.Customer.view.CustomImageView
             android:visibility="gone"
             android:id="@+id/touxiang_iv"
             android:src="@mipmap/login_touxiang_cion"

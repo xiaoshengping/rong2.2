@@ -21,7 +21,7 @@
                 android:id="@+id/talen_back_iv"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:src="@mipmap/resume_background_icon"
+                android:src="@mipmap/talents_back"
                 android:scaleType="centerCrop"
                 />
 
