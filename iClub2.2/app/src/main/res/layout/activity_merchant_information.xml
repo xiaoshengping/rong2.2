@@ -1,22 +1,26 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
+
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.MerchantInformationActivity">
-
+    <include
+        android:id="@+id/tailt_layout"
+        layout="@layout/app_white_tailt_layout"/>
+    <ScrollView
+     android:layout_below="@+id/tailt_layout"
+    android:scrollbars="none"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <LinearLayout
         android:orientation="vertical"
         android:focusable="true"
         android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <include
-        android:id="@+id/tailt_layout"
-        layout="@layout/app_white_tailt_layout"/>
+
     <ImageView
         android:id="@+id/tailt_line_iv"
-        android:layout_below="@+id/tailt_layout"
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
@@ -263,4 +267,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp" />
     </LinearLayout>
+
 </ScrollView>
+</RelativeLayout>

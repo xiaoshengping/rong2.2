@@ -83,21 +83,20 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
 
     private void intiView() {
         anewRefreshTv.setOnClickListener(this);
-        httpUtils=new HttpUtils().configCurrentHttpCacheExpiry(0);
+
         intiListView();
 
 
     }
     private void intiData(int offset) {
+        httpUtils=new HttpUtils().configCurrentHttpCacheExpiry(0);
         SQLhelper sqLhelper=new SQLhelper(getActivity());
         SQLiteDatabase db= sqLhelper.getWritableDatabase();
         Cursor cursor=db.query("user", null, null, null, null, null, null);
         String uid=null;
         while (cursor.moveToNext()) {
             uid = cursor.getString(0);
-
         }
-
         httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getMerchantInvite(uid, "note", offset), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
@@ -186,6 +185,9 @@ public class MerchantInviteMessageFragment extends Fragment implements PullToRef
 
         offset=offset+10;
         intiData(offset);
+
+
+
     }
 
     @Override

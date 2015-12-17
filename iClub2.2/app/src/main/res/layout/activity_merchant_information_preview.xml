@@ -1,8 +1,15 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layoutBackground"
     tools:context="com.jeremy.Customer.uilt.MerchantInformationPreviewActivity">
+    <include
+        android:id="@+id/tailt_layout"
+        layout="@layout/app_white_tailt_layout"/>
+    <ScrollView
+        android:layout_below="@+id/tailt_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
      <LinearLayout
 
@@ -10,9 +17,7 @@
          android:layout_marginBottom="20dp"
          android:layout_width="match_parent"
          android:layout_height="match_parent">
-         <include
-             android:id="@+id/tailt_layout"
-             layout="@layout/app_white_tailt_layout"/>
+
      <LinearLayout
         android:id="@+id/show_merchant_messager"
          android:orientation="vertical"
@@ -288,5 +293,5 @@
 
 
      </LinearLayout>
-
-</ScrollView>
+    </ScrollView>
+</RelativeLayout>
