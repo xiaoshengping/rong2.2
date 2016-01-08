@@ -50,7 +50,7 @@ public class MyAppliction extends Application {
                 .showImageOnFail(R.mipmap.dufuke_icon)//加载失败时显示的图片
                 .cacheInMemory()
                 .cacheOnDisc()
-                .displayer(new RoundedBitmapDisplayer(30))
+
                 .build();
     }
     public static void initImageLoader(Context context) {

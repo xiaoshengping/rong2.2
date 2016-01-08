@@ -242,6 +242,7 @@ public class MerchantInviteListAdapter extends AppBaseAdapter<MerchantInviteValu
                 // Log.e("responseInfo",responseInfo.result);
                 if (responseInfo.result != null) {
                     merchantInviteMessageLv.setRefreshing();
+                    notifyDataSetChanged();
                 }
             }
 

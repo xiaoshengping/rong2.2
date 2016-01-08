@@ -14,6 +14,7 @@ import com.jeremy.Customer.bean.CommentBean;
 import com.jeremy.Customer.bean.Identification;
 import com.jeremy.Customer.bean.RecruitmentListBean;
 import com.jeremy.Customer.bean.TalentValueBean;
+import com.jeremy.Customer.http.MyAppliction;
 import com.jeremy.Customer.url.AppUtilsUrl;
 import com.jeremy.Customer.view.RoundAngleImageView;
 import com.lidroid.xutils.BitmapUtils;
@@ -159,7 +160,8 @@ public class RecommendListAdater extends BaseAdapter {
             viewActivity = (ViewActivity) view.getTag();
         }
         try {
-            bitmapUtils.display(viewActivity.activity_poster, AppUtilsUrl.ImageBaseUrl + activityData.get(position).getImage());
+            MyAppliction.imageLoader.displayImage(AppUtilsUrl.ImageBaseUrl + activityData.get(position).getImage(),viewActivity.activity_poster,MyAppliction.RoundedOptionsOne);
+            //bitmapUtils.display(viewActivity.activity_poster, AppUtilsUrl.ImageBaseUrl + activityData.get(position).getImage());
             viewActivity.activity_name.setText(activityData.get(position).getTitle());
         }catch (Exception e) {}
 

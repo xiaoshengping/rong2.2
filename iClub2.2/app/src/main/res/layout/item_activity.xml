@@ -5,13 +5,17 @@
     android:orientation="vertical"
     android:background="@drawable/click_selector"
     android:padding="10dp">
-
+<LinearLayout
+    android:background="@drawable/rounded_imageview"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <ImageView
         android:id="@+id/activity_poster"
         android:layout_width="match_parent"
         android:layout_height="@dimen/activity_height2"
         android:layout_marginTop="0dp"
-        android:background="@mipmap/huodongmore" />
+        android:background="@mipmap/dufuke_icon" />
 
     <TextView
         android:id="@+id/activity_name"
@@ -27,5 +31,5 @@
         android:textColor="@color/activity_item_name"
         android:textSize="@dimen/activity_item_name"
         android:background="#ECECEC"/>
-
+</LinearLayout>
 </LinearLayout>

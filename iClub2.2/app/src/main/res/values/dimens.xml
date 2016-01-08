@@ -24,8 +24,8 @@
     <dimen name="position_item_name">18sp</dimen><!--职位item名-->
     <dimen name="position_item_salary">15sp</dimen><!--职位item工资-->
     <dimen name="position_item_rest">14sp</dimen><!--职位item其他信息-->
-    <dimen name="activity_height">170dp</dimen><!--活动item图片高度-->
-    <dimen name="activity_height2">190dp</dimen><!--活动item图片高度2-->
+    <dimen name="activity_height">155dp</dimen><!--活动item图片高度-->
+    <dimen name="activity_height2">160dp</dimen><!--活动item图片高度2-->
     <dimen name="home_talents_headportrait">66dp</dimen><!--主页头像宽高-->
     <dimen name="home_talents_headportrait_radius">33dp</dimen><!--主页头像宽高半径-->
     <dimen name="talents_details_back">250dp</dimen><!--人才详情背景高-->
