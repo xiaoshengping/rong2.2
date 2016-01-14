@@ -79,6 +79,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
+ * 我的模块fragment
+ *
  * A simple {@link Fragment} subclass.
  */
 public class MineFragment extends Fragment implements View.OnClickListener {
@@ -147,7 +149,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
         return view;
     }
-
+/*
+* 初始化入口方法
+* */
     private void inti() {
         intiView();
         umengShare();//分享
@@ -155,7 +159,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
 
     }
-
+    /*
+    * 友盟分享
+    * */
     private void umengShare() {
         // 首先在您的Activity中添加如下成员变量
          mController = UMServiceFactory.getUMSocialService("com.umeng.share");
@@ -221,7 +227,9 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         mController.getConfig().setSsoHandler(new SinaSsoHandler());
 
     }
-
+/*
+* 初始化View
+* */
     private void intiView() {
         touXiangIv.setOnClickListener(this);
         announcementMessageTv.setOnClickListener(this);
@@ -241,29 +249,29 @@ public class MineFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.touxiang_iv:
+            case R.id.touxiang_iv:    //上传修改头像
                     showDialog();
                 break;
-            case R.id.touxiang1_iv:
+            case R.id.touxiang1_iv:   //点击头像登录
                 Intent intent =new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.announcement_message_tv:
+            case R.id.announcement_message_tv:  //公告消息
                 Intent announcementIntent =new Intent(getActivity(), AnnouncementMessageActivity.class);
                 startActivity(announcementIntent);
                 break;
-            case R.id.share_tv:
+            case R.id.share_tv:  //分享
                 mController.openShare(getActivity(), false);
 
                 break;
-            case R.id.exit_login:
+            case R.id.exit_login:  //退出登录
                 showExitGameAlert();
                 break;
-            case R.id.more_mine_tv:
+            case R.id.more_mine_tv:  //更多
                 Intent  moreIntent =new Intent(getActivity(), MineMoreActivity.class);
                 startActivity(moreIntent);
                 break;
-            case R.id.deliver_message_tv:
+            case R.id.deliver_message_tv:  //投递消息
                 if (state.equals("2")){
                     Intent TalentsDeliverMessageIntent=new Intent(getActivity(), TalentsDeliverMessageActivity.class);
                     startActivity(TalentsDeliverMessageIntent);
@@ -272,7 +280,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                     startActivity(MerchantDeliver);
                 }
                 break;
-            case R.id.invite_message_tv:
+            case R.id.invite_message_tv:  //邀约消息
                 if (state.equals("2")){
                     Intent InviteMessageIntent=new Intent(getActivity(), InviteMessageActivity.class);
                     startActivity(InviteMessageIntent);
@@ -282,7 +290,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 }
 
                 break;
-            case R.id.petname_tv:
+            case R.id.petname_tv:    //昵称
                 Intent nickNameIntent=new Intent(getActivity(), NickNameActivity.class);
                 if (!TextUtils.isEmpty(userName)){
                     nickNameIntent.putExtra("userName",userName);
@@ -291,7 +299,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
                 }
                 startActivity(nickNameIntent);
                 break;
-            case R.id.resume_zhaoping_tv:
+            case R.id.resume_zhaoping_tv:  //简历和招聘
                 if (state.equals("2")){
                     Intent resumeIntent=new Intent(getActivity(), ResumeActivity.class);
                     startActivity(resumeIntent);
