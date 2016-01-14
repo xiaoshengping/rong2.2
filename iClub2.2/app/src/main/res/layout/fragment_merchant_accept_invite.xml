@@ -14,6 +14,9 @@
 
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/merchant_invite_message_list_lv"
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        ptr:ptrHeaderTextColor="@color/title_c"
+        ptr:ptrDrawable="@mipmap/loading_icon"
         android:scrollbars="none"
         android:dividerHeight="1dp"
         android:layout_marginRight="1dp"

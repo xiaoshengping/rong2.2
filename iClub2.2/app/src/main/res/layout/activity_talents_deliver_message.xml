@@ -18,6 +18,9 @@
         android:layout_width="match_parent"
         android:layout_height="40dp" />
     <com.handmark.pulltorefresh.library.PullToRefreshListView
+        xmlns:ptr="http://schemas.android.com/apk/res-auto"
+        ptr:ptrHeaderTextColor="@color/title_c"
+        ptr:ptrDrawable="@mipmap/loading_icon"
         android:id="@+id/message_listView"
         android:dividerHeight="1dp"
         android:layout_width="match_parent"

@@ -24,13 +24,16 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <com.handmark.pulltorefresh.library.PullToRefreshListView xmlns:ptr="http://schemas.android.com/apk/res-auto"
+            <com.handmark.pulltorefresh.library.PullToRefreshListView
+                xmlns:ptr="http://schemas.android.com/apk/res-auto"
+                ptr:ptrHeaderTextColor="@color/title_c"
+                ptr:ptrDrawable="@mipmap/loading_icon"
                 android:id="@+id/recommend_list"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:divider="#00ffffff"
                 android:dividerHeight="0px"
-                ptr:ptrHeaderTextColor="#000000" />
+                />
             <ImageView
                 android:layout_width="0dp"
                 android:layout_weight="1"
