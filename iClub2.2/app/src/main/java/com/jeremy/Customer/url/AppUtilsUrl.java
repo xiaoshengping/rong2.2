@@ -309,12 +309,19 @@ public class AppUtilsUrl  {
     //商家评论人才
     public static String getCommentResume(){
         // addCommentByPerson.action
-        return BaseUrl+"addCommentByBePerson.action";
+        return BaseUrl+"addResumCommentByMerchant.action";
 
     }
+    //商家用户邀约详细获取展示性，诚信度，合作数次，评论数
+    public static String getInviteGrade(String personid){
+        // addCommentByPerson.action
+        return BaseUrl+"grade.action?personid="+personid;
 
-
-
+    }
+    //获取人才对商家的评论总数
+    public static String getInviteComment(int personid){
+        return BaseUrl+ "getCommentByResume.action?resumeid="+personid+"&offset=0"+"&limit=10";
+    }
     //添加公司图片
     public static String getAddBePicture(){
         // addBePicture.action
@@ -329,8 +336,8 @@ public class AppUtilsUrl  {
 
     //商家--来自人才的评论
     public static String getResumeCommentData(String personid,int offset){
-        // getCommentByBePerson.action
-        return BaseUrl+"getCommentByBePerson.action?personid="+personid+"&offset="+offset+"&limit=10";
+        // getCommentByResume
+        return BaseUrl+"getCommentByResume.action?personid="+personid+"&offset="+offset+"&limit=10";
 
     }
 
@@ -417,8 +424,8 @@ public class AppUtilsUrl  {
     public static String getTalenViewCount(int id){
         return BaseUrl+"resumeViewCount.action?resumeid="+id;
     }
-    public static String getLoginQQ(){
-        return BaseUrl+"login_qq.action";
+    public static String getLoginQQAndWeiBo(){
+        return BaseUrl+"verification_weibo_qq.action";
     }
     public static String getLoginWeibo(String tokenvalue){
         return BaseUrl+"login_weibo.action?weibouid="+tokenvalue;
