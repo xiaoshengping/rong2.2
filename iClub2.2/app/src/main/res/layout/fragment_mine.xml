@@ -58,47 +58,50 @@
 
     </RelativeLayout>
     <LinearLayout
-
-        android:background="#ffffff"
+        android:background="@mipmap/mien_icon_one"
         android:id="@+id/mine_layout"
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="90dp">
         <TextView
             android:id="@+id/resume_zhaoping_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
-            android:drawablePadding="10dp"
+            android:drawablePadding="5dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/ic_white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/invite_message_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
-            android:drawablePadding="10dp"
+            android:drawablePadding="5dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/ic_white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/journey_merchant_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
-            android:drawablePadding="10dp"
+            android:drawablePadding="5dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/ic_white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/deliver_message_tv"
             android:drawableTop="@mipmap/ic_launcher"
             android:text="我的简历"
-            android:drawablePadding="10dp"
+            android:drawablePadding="5dp"
             android:layout_weight="1"
             android:gravity="center"
+            android:textColor="@color/ic_white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -106,11 +109,11 @@
         android:src="@color/lineColor"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
-    <ImageView
-        android:layout_marginTop="10dp"
+    <!--<ImageView
+
         android:src="@color/lineColor"
         android:layout_width="match_parent"
-        android:layout_height="1dp" />
+        android:layout_height="1dp" />-->
     <TextView
         android:background="#ffffff"
         android:drawableLeft="@mipmap/announement_icon"
