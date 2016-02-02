@@ -119,7 +119,9 @@ public class MercharInviteParticularsActivity extends ActionBarActivity implemen
             }else {
                 browseNumberTv.setText(0);
             }*/
-            browseNumberTv.setText("0");
+
+                browseNumberTv.setText(resumeValueBeans.getInviteCount()+"");
+
             BitmapUtils bitmapUtils = new BitmapUtils(MercharInviteParticularsActivity.this);
 
             bitmapUtils.display(talenBackIv, AppUtilsUrl.ImageBaseUrl + resumeValueBeans.getUsericon(), new DefaultBitmapLoadCallBack<ImageView>() {
