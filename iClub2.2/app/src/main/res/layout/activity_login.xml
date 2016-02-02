@@ -84,7 +84,7 @@
                />
         </LinearLayout>
     </LinearLayout>
-    <LinearLayout
+   <!-- <LinearLayout
         android:gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="75dp"
@@ -118,7 +118,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
+     &lt;!&ndash;   <ImageView
             android:id="@+id/qq_login"
             android:layout_weight="1"
             android:layout_marginLeft="100dp"
@@ -131,9 +131,9 @@
             android:layout_marginRight="100dp"
             android:src="@mipmap/wei_bo_login_icon"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content" />&ndash;&gt;
 
-    </LinearLayout>
+    </LinearLayout>-->
 
 
 
