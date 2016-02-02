@@ -20,6 +20,7 @@ import android.provider.MediaStore;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -499,7 +500,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
 
         //获取评论
         HttpUtils httpUtils = new HttpUtils();
-        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(talentValueBean.getResumeid(), "getCommentByPerson.action?resumeid=", 0), new RequestCallBack<String>() {
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getComment(talentValueBean.getResumeid(), "getCommentByResume.action?resumeid=", 0), new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 String result = responseInfo.result;
@@ -836,7 +837,7 @@ public class TalentsDetailsActivity extends Activity implements View.OnClickList
                 Intent intent = new Intent();
                 intent.setClass(TalentsDetailsActivity.this, RecommenListActivity.class);
                 intent.putExtra("Ident", Identification.COMMENT);
-                intent.putExtra("URL", "getCommentByPerson.action?resumeid=");
+                intent.putExtra("URL", "getCommentByResume.action?resumeid=");
                 intent.putExtra("ID", talentValueBean.getResumeid());
                 startActivity(intent);
                 break;
