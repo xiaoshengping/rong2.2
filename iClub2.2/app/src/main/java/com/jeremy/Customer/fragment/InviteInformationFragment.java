@@ -3,16 +3,29 @@ package com.jeremy.Customer.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.jeremy.Customer.R;
+import com.jeremy.Customer.bean.ArtistParme;
+import com.jeremy.Customer.bean.CommentBean;
+import com.jeremy.Customer.bean.ParmeBean;
+import com.jeremy.Customer.bean.mine.InviteGradeValue;
 import com.jeremy.Customer.bean.mine.ResumeValueBean;
 import com.jeremy.Customer.uilt.MercharInviteParticularsActivity;
+import com.jeremy.Customer.url.AppUtilsUrl;
+import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.ViewUtils;
+import com.lidroid.xutils.exception.HttpException;
+import com.lidroid.xutils.http.ResponseInfo;
+import com.lidroid.xutils.http.callback.RequestCallBack;
+import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.view.annotation.ViewInject;
 
 import java.util.List;
@@ -46,8 +59,8 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
     private TextView integrityTv;
     @ViewInject(R.id.transactionRecord_tv)
     private TextView transactionRecordTv;
-    /*@ViewInject(R.id.commentCount_tv)
-    private TextView commentCountTv;*/
+    @ViewInject(R.id.commentCount_tv)
+    private TextView commentCountTv;
 
     private List<ResumeValueBean> resumeValueBeans;
     private ResumeValueBean resumeValueBean;
@@ -90,39 +103,11 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
 
 
 
-/*
-               if (!TextUtils.isEmpty(resumeValueBean.getTransactionRecord()+"")){
-                   transactionRecordTv.setText(resumeValueBean.getTransactionRecord() + "");
-               }else {
-                   transactionRecordTv.setText("0");
-               }
-
-         if (!TextUtils.isEmpty(resumeValueBean.getIntegrity()+"")){
-                   integrityTv.setText(resumeValueBean.getIntegrity() + "");
-               }else {
-                   integrityTv.setText("0");
-               }
-
-      if (resumeValueBean.getAuthenticity()!=0){
-          authenticityTv.setText(resumeValueBean.getAuthenticity() + "");
-      }else {
-          authenticityTv.setText("0");
-      }
-       if (!TextUtils.isEmpty(resumeValueBean.getCommentCount()+"")){
-           commentCountTv.setText(resumeValueBean.getCommentCount() + "位商家评论过");
-       }else {
-           commentCountTv.setText("0位商家评论过");
-       }*/
-               transactionRecordTv.setText("0");
-               integrityTv.setText("0");
-               authenticityTv.setText("0");
-               //commentCountTv.setText("0位商家评论过");
-
            }
         resumeInfoTv.post(new Runnable() {
             @Override
             public void run() {
-                if (resumeInfoTv.getLineCount()>4){
+                if (resumeInfoTv.getLineCount() > 4) {
                     resumeInfoTv.setLines(4);
                 }
 
@@ -131,9 +116,72 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
         resumeExperienceTv.post(new Runnable() {
             @Override
             public void run() {
-                if (resumeExperienceTv.getLineCount()>4){
+                if (resumeExperienceTv.getLineCount() > 4) {
                     resumeExperienceTv.setLines(4);
                 }
+
+            }
+        });
+        initInviteData();
+        //inviCommenData();
+
+
+
+
+    }
+
+    private void inviCommenData() {
+        HttpUtils httpUtils = new HttpUtils();
+        httpUtils.send(HttpRequest.HttpMethod.GET, AppUtilsUrl.getInviteComment(resumeValueBean.getResumeid()), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                String result = responseInfo.result;
+               if (result != null) {
+                    ArtistParme<CommentBean> commentBean = JSONObject.parseObject(result, new TypeReference<ArtistParme<CommentBean>>() {
+                    });
+                    if (commentBean.getState().equals("success")) {
+                        if (commentBean.getTotal() > 0) {
+                            commentCountTv.setText(commentBean.getTotal() + "位商家评论过");
+                        } else {
+                            commentCountTv.setText("还没有商家进行评论哦~");
+                            //commentCountTv.setTextColor(0xff777778);
+                        }
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
+//                reputation_tipe_tv.setTextColor(0xffDEDDE2);
+//                reputation_tipe_tv.setText("网路异常，请稍后再试！");
+            }
+        });
+
+
+
+
+    }
+
+    private void initInviteData() {
+        HttpUtils httpUtils=new HttpUtils();
+        httpUtils.send(HttpRequest.HttpMethod.POST, AppUtilsUrl.getInviteGrade(resumeValueBean.getPersonid() + ""), new RequestCallBack<String>() {
+            @Override
+            public void onSuccess(ResponseInfo<String> responseInfo) {
+                if (!TextUtils.isEmpty(responseInfo.result)) {
+                    ParmeBean<InviteGradeValue> parmeBean = JSONObject.parseObject(responseInfo.result, new TypeReference<ParmeBean<InviteGradeValue>>() {
+                    });
+                    InviteGradeValue inviteGradeValue = parmeBean.getValue();
+                    transactionRecordTv.setText(inviteGradeValue.getTransactionRecord() + "");
+                    integrityTv.setText(inviteGradeValue.getIntegrity() + "");
+                    authenticityTv.setText(inviteGradeValue.getAuthenticity() + "");
+                }
+            }
+
+            @Override
+            public void onFailure(HttpException e, String s) {
 
             }
         });
@@ -142,11 +190,7 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
 
 
 
-
     }
-
-
-
 
 
     @Override
@@ -173,14 +217,7 @@ public class InviteInformationFragment extends Fragment implements View.OnClickL
                 });
 
                 break;
-           /* case R.id.commentCount_tv:
-             *//*   if (resumeValueBean.getCommentCount()!=0){
-                    Intent intent =new Intent(getActivity(), CommentCountActivity.class);
-                    intent.putExtra("falge","merchar");
-                    startActivity(intent);
-                }*//*
 
-                break;*/
 
 
 
