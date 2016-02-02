@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,10 +59,10 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     private TextView RegisterTv;
     @ViewInject(R.id.forget_psw_tv)
     private TextView forgetTv;
-    @ViewInject(R.id.qq_login)
+    /*@ViewInject(R.id.qq_login)
     private ImageView qq_login;
     @ViewInject(R.id.weibo_login)
-    private ImageView weibo_login;
+    private ImageView weibo_login;*/
     private LoadingDialog loadingDialog;
 
     private HttpUtils httpUtils;
@@ -98,8 +97,8 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         loginButton.setOnClickListener(this);
         RegisterTv.setOnClickListener(this);
         forgetTv.setOnClickListener(this);
-        qq_login.setOnClickListener(this);
-        weibo_login.setOnClickListener(this);
+        //qq_login.setOnClickListener(this);
+        //weibo_login.setOnClickListener(this);
         try {
             httpUtils=new HttpUtils();
         } catch (Exception e) {
@@ -125,12 +124,12 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 }
 
                 break;
-            case R.id.qq_login:
-                 // qqLogin();
+           /* case R.id.qq_login:
+                  qqLogin();
                 break;
             case R.id.weibo_login:
-                //weiboLogin();
-                break;
+                weiboLogin();
+                break;*/
             case R.id.register_tv:
                 Intent registerIntent=new Intent(LoginActivity.this,RoleRegisterActivity.class);
                 startActivity(registerIntent);
@@ -181,9 +180,10 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                             //MyAppliction.showToast(qqId);
                             // mController.getUserInfo();
                             //qqLoginData(sb.toString());
-                            Intent intent = new Intent(LoginActivity.this, BoundAccounsActivity.class);
-                            intent.putExtra("QQdata",sb.toString());
-                            startActivity(intent);
+                            qqAndWeiboLoginData("openid",sb.toString());
+                           /* Intent intent = new Intent(LoginActivity.this, BoundAccounsActivity.class);
+                            intent.putExtra("QQdata",sb.toString()+"");
+                            startActivity(intent);*/
                             Log.d("TestData", sb.toString());
                         } else {
                             Log.d("TestData", "发生错误：" + status);
@@ -200,27 +200,21 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
     }
 
-    private void qqLoginData(final String token) {
+    private void qqAndWeiboLoginData( String id, final String idText) {
         HttpUtils httpUtils=new HttpUtils();
         RequestParams requestParams=new RequestParams();
-        requestParams.addBodyParameter("token",token);
-        httpUtils.send(HttpRequest.HttpMethod.POST,AppUtilsUrl.getLoginQQ(), requestParams, new RequestCallBack<String>() {
+        requestParams.addBodyParameter(id,idText);
+        httpUtils.send(HttpRequest.HttpMethod.POST,AppUtilsUrl.getLoginQQAndWeiBo(), requestParams, new RequestCallBack<String>() {
             @Override
             public void onSuccess(ResponseInfo<String> responseInfo) {
                 ParmeBean<MessageBean> parmeBean=JSONObject.parseObject(responseInfo.result,new TypeReference<ParmeBean<MessageBean>>(){});
 
                         if(parmeBean.getState().equals("success")){
-                           /*if (parmeBean.getValue().getMessage().equals("success")){
-                               finish();
-
-
-                           }else {
-                               Intent intent = new Intent(LoginActivity.this, BoundAccounsActivity.class);
-                               intent.putExtra("QQdata",token);
-                               startActivity(intent);
-                           }*/
-
-
+                          MyAppliction.showToast(idText);
+                        }else {
+                            Intent intent = new Intent(LoginActivity.this, BoundAccounsActivity.class);
+                            intent.putExtra("QQdata",idText);
+                            startActivity(intent);
                         }
 
 
